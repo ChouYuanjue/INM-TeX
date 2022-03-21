@@ -1,0 +1,263 @@
+\notechapter{N-20220321}{Some Pre-Complex Analysis: Motion on the Unit Circle and Roots of Unity}
+
+\section{The complex exponential as motion}
+
+The first example to keep in mind is
+\[
+  Z(t)=e^{it}.
+\]
+Here \(t\) is time and \(Z(t)\) is the position of a moving particle in the complex plane.
+
+
+
+Differentiating gives
+\[
+  \frac{d}{dt}e^{it}=ie^{it}.
+\]
+Thus the velocity is
+\[
+  V(t)=iZ(t).
+\]
+Multiplication by \(i\) rotates a complex number by a right angle, so the velocity is always perpendicular to the position vector.
+
+At \(t=0\), the particle starts at
+\[
+  Z(0)=1,
+\]
+and the velocity is
+\[
+  V(0)=i.
+\]
+So the particle initially moves upward.  A moment later the position vector has turned slightly, and the velocity is again obtained by rotating that new position vector by \(90^\circ\).  Continuing this construction gives motion around the unit circle.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[scale=2.2,>=Stealth,every node/.style={fill=white,inner sep=1pt}]
+  \draw[->] (-1.25,0) -- (1.35,0) node[right] {$\operatorname{Re}$};
+  \draw[->] (0,-1.25) -- (0,1.35) node[above] {$\operatorname{Im}$};
+  \draw (0,0) circle (1);
+  \coordinate (O) at (0,0);
+  \coordinate (P) at (35:1);
+  \draw[->,thick] (O) -- (P);
+  \node[below right] at (25:0.55) {$Z(t)$};
+  \draw[->,thick] (P) -- ++(125:0.65);
+  \node[above left] at ($(P)+(125:0.45)$) {$iZ(t)$};
+  \fill (P) circle (0.03);
+  \node[below right=1pt] at (P) {$e^{it}$};
+  \draw[dashed] (0:0.35) arc (0:35:0.35);
+  \node at (18:0.52) {$t$};
+\end{tikzpicture}
+\caption{For \(Z(t)=e^{it}\), multiplication by \(i\) rotates the position vector by \(90^\circ\), giving the tangent velocity.}
+\end{figure}
+
+\section{Roots and angles}
+
+The same geometric viewpoint is useful for roots in the complex plane.  A root of unity is best understood not merely as a solution of an equation, but as a point on the unit circle with a specified angle.
+
+\begin{remark}
+This is why complex numbers make polynomial divisibility questions visual.  If a polynomial is built from powers of \(x\), its roots often arrange themselves by angles on the unit circle.
+\end{remark}
+
+\section{A divisibility result}
+
+The note records a result analogous to a previous observation about roots and angles.
+
+\begin{theorem}
+The polynomial
+\[
+  x^{2n}+x^n+1
+\]
+has the factor
+\[
+  x^2+x+1
+\]
+if and only if
+\[
+  n\not\equiv0\pmod3.
+\]
+\end{theorem}
+
+\begin{proof}
+The roots of \(x^2+x+1\) are the primitive third roots of unity, say
+\[
+  \omega=e^{2\pi i/3},\qquad \omega^2=e^{4\pi i/3}.
+\]
+Thus \(x^2+x+1\mid x^{2n}+x^n+1\) exactly when
+\[
+  \omega^{2n}+\omega^n+1=0.
+\]
+Let \(k\equiv n\pmod3\).  If \(k=0\), then \(\omega^n=1\), so the value is
+\[
+  1+1+1=3\neq0.
+\]
+If \(k=1\), then \(\omega^n=\omega\), and
+\[
+  \omega^{2n}+\omega^n+1=\omega^2+\omega+1=0.
+\]
+If \(k=2\), then \(\omega^n=\omega^2\), and
+\[
+  \omega^{2n}+\omega^n+1=\omega^4+\omega^2+1=\omega+\omega^2+1=0.
+\]
+Therefore divisibility holds precisely when \(n\not\equiv0\pmod3\).
+\end{proof}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[scale=2.1,>=Stealth,every node/.style={fill=white,inner sep=1pt}]
+  \draw[->] (-1.25,0) -- (1.35,0) node[right] {$\operatorname{Re}$};
+  \draw[->] (0,-1.25) -- (0,1.35) node[above] {$\operatorname{Im}$};
+  \draw (0,0) circle (1);
+  \coordinate (A) at (0:1);
+  \coordinate (B) at (120:1);
+  \coordinate (C) at (240:1);
+  \draw[thick] (B)--(C)--(A)--cycle;
+  \fill (A) circle (0.035) node[right=2pt] {$1$};
+  \fill (B) circle (0.035) node[above left=2pt] {$\omega$};
+  \fill (C) circle (0.035) node[below left=2pt] {$\omega^2$};
+  \node[below] at (0,-1.48) {$1+\omega+\omega^2=0$};
+\end{tikzpicture}
+\caption{Primitive third roots of unity on the unit circle.  Divisibility by \(x^2+x+1\) is checked by evaluating at \(\omega\) and \(\omega^2\).}
+\end{figure}
+
+\section{Summary}
+
+The two ideas in this note are connected by geometry.  The derivative of \(e^{it}\) says that motion on the unit circle is governed by rotation by \(i\).  The divisibility theorem says that evaluating a polynomial at roots of unity turns algebra into angle arithmetic.
+
+
+\section[Why multiplication by i is rotation]{Why multiplication by \(i\) is rotation}
+
+Write a complex number as \(z=x+iy\).  Then
+\[
+  iz=i(x+iy)=-y+ix.
+\]
+As a vector, this sends
+\[
+  (x,y)\mapsto(-y,x),
+\]
+which is rotation by \(90^\circ\) counterclockwise.  Therefore the differential equation
+\[
+  Z'(t)=iZ(t)
+\]
+says that the velocity is always obtained by rotating the radius vector by a right angle.  This is exactly uniform circular motion.
+
+The equation also explains why exponentials appear in complex analysis: the function \(e^{it}\) is the solution of a linear differential equation whose coefficient is multiplication by \(i\).
+
+\section{Roots of unity as symmetry}
+
+The equation
+\[
+  z^n=1
+\]
+has solutions
+\[
+  z_k=e^{2\pi i k/n},\qquad k=0,1,\ldots,n-1.
+\]
+These points form a regular \(n\)-gon on the unit circle.  Multiplying by \(e^{2\pi i/n}\) rotates the polygon by one step.  Thus roots of unity are not merely algebraic solutions; they are the rotational symmetries of the circle.
+
+For \(n=3\), if \(\omega=e^{2\pi i/3}\), then
+\[
+  1+\omega+\omega^2=0.
+\]
+Geometrically, the three vectors form an equilateral triangle centered at the origin, so their sum is zero.  Algebraically, the same identity comes from
+\[
+  x^3-1=(x-1)(x^2+x+1).
+\]
+
+\section{Expanded synthesis and advanced context}
+
+This note is a prelude to complex analysis because it already contains three central ideas: complex multiplication is geometry, exponentials solve differential equations, and roots of unity connect algebraic equations with symmetry.  Later topics such as residues, Fourier analysis, cyclotomic polynomials, and covering maps all reuse this same unit-circle picture.
+
+
+
+\paragraph{Expanded synthesis.}
+For this chapter, the elementary material should be read as a study of what remains invariant when coordinates change. The earlier sections (`The complex exponential as motion`, `Roots and angles`, `A divisibility result`, `Summary`, `Why multiplication by \(i\) is rotation`) compute with arrays, bases, pivots, determinants, or eigenvectors; the deeper object is a linear map together with the spaces it acts on. A matrix is a representation of that map after bases have been chosen. This is why formulas such as
+\[
+  A' = P^{-1}AP,\qquad \widetilde A = T^{-1}AS
+\]
+are not cosmetic: they distinguish an intrinsic morphism from a coordinate description.
+
+The structural hierarchy is as follows. Kernels record what a map forgets, images record what it reaches, cokernels record obstructions to solvability, and quotients record information after an equivalence has been imposed. Determinants act on the top exterior power and therefore measure oriented volume; traces are invariant under cyclic rearrangement and become characters in representation theory; adjoints depend on an inner product and lead to self-adjoint spectral theory.
+
+A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
+
+
+\section{Elementary-to-advanced bridge: roots of unity as characters of cyclic groups}
+
+The $n$-th roots of unity form a cyclic group
+\[
+  \mu_n=\{z\in\mathbb C:z^n=1\}.
+\]
+If $\zeta=e^{2\pi i/n}$, then every root is $\zeta^k$.  The functions
+\[
+  \chi_m(k)=\zeta^{mk}
+\]
+are characters of the finite cyclic group $\mathbb Z/n\mathbb Z$.
+
+Orthogonality of roots of unity becomes character orthogonality:
+\[
+  \sum_{k=0}^{n-1}\zeta^{mk}=0
+\]
+unless $n\mid m$, in which case the sum is $n$.
+
+\section{Elementary-to-advanced bridge: discrete Fourier transform}
+
+For a function $f:\mathbb Z/n\mathbb Z\to\mathbb C$, its discrete Fourier transform is
+\[
+  \widehat f(m)=\sum_{k=0}^{n-1}f(k)e^{-2\pi i mk/n}.
+\]
+The inverse formula is
+\[
+  f(k)=\frac1n\sum_{m=0}^{n-1}\widehat f(m)e^{2\pi i mk/n}.
+\]
+Thus roots of unity are the basis functions for finite periodic data.
+
+This connects elementary complex-number geometry to signal processing, finite harmonic analysis, and representation theory of finite abelian groups.
+
+\section{Elementary-to-advanced bridge: covering map from the line to the circle}
+
+The exponential map
+\[
+  \mathbb R\to S^1,\qquad t\mapsto e^{it}
+\]
+is a covering map with kernel $2\pi\mathbb Z$.  It wraps the real line around the circle infinitely many times.
+
+Angles modulo $2\pi$ are therefore elements of the quotient group
+\[
+  \mathbb R/2\pi\mathbb Z.
+\]
+The elementary fact that angles differing by $2\pi$ are equivalent is a quotient-space statement.
+
+\section{Elementary-to-advanced bridge: cyclotomic fields}
+
+The field $\mathbb Q(\zeta_n)$ generated by a primitive $n$-th root of unity is a cyclotomic field.  Its Galois group is
+\[
+  \operatorname{Gal}(\mathbb Q(\zeta_n)/\mathbb Q)\cong(\mathbb Z/n\mathbb Z)^\times.
+\]
+The elementary root powers $\zeta_n^a$ become field automorphisms when $a$ is invertible modulo $n$.
+
+Thus roots of unity are simultaneously geometry of the circle, Fourier basis functions, and algebraic numbers with arithmetic symmetries.
+
+% Second-pass deepening for waves 2-4: wave 4 part 3
+\section{Second-pass deepening: finite Fourier analysis from roots of unity}
+
+The orthogonality identity
+\[
+  \sum_{k=0}^{n-1}\zeta^{mk}=0
+\]
+for $n\nmid m$ is the engine of finite Fourier analysis.  It implies that the matrix
+\[
+  F_{mk}=\zeta^{mk}
+\]
+is unitary up to normalization.  Therefore every function on a cyclic group decomposes uniquely into frequency components.
+
+This gives an advanced interpretation of elementary root-of-unity sums.  They are not only tools for solving polynomial equations; they are projection formulas onto irreducible characters of a finite abelian group.
+
+\section{Second-pass deepening: cyclotomic fields and constructibility}
+
+Roots of unity also control constructible regular polygons.  A regular $n$-gon is constructible by straightedge and compass exactly when the relevant cyclotomic field can be built by successive quadratic extensions.  Gauss' theorem says this occurs when
+\[
+  n=2^k p_1\cdots p_m
+\]
+where the $p_i$ are distinct Fermat primes.
+
+Thus elementary geometry of regular polygons connects to field extensions and Galois theory through roots of unity.
