@@ -1,0 +1,254 @@
+\notechapter{N-20220417}{Proof Strategies, Cyclic Sums, and Inequality Methods}
+
+\section{Proof strategies}
+
+The note begins with a meta-level reflection: when solving a problem, one should distinguish between ``find all'' and ``prove all.''  A complete solution often has two halves:
+\begin{enumerate}[(i)]
+  \item find the candidates;
+  \item prove that these and only these candidates work.
+\end{enumerate}
+
+For example, to solve
+\[
+  3x+2=17,
+\]
+one first finds \(x=5\), then verifies that \(x=5\) indeed works and no other value can.
+
+A more olympiad-style example is the problem of finding all positive integers \(n\) such that
+\[
+  2^n+12^n+2011^n
+\]
+is a perfect square.  The note uses modular arithmetic to narrow the possibilities: if \(n>1\) is odd, one obtains a contradiction modulo \(4\); if \(n>1\) is even, one obtains a contradiction modulo \(3\).  Thus only \(n=1\) remains.
+
+The page lists several general proof moves:
+\begin{enumerate}[(i)]
+  \item prove both directions when the statement is iff;
+  \item for optimization, prove a bound and prove that equality can occur;
+  \item for existence, show an object can be constructed;
+  \item for minimality, exhibit a candidate and show anything smaller fails.
+\end{enumerate}
+
+\section{Cyclic and symmetric sums}
+
+For three variables, cyclic sums and symmetric sums differ.  The cyclic sum runs over cyclic permutations:
+\[
+  \sum_{\mathrm{cyc}}a^2=a^2+b^2+c^2,
+\]
+\[
+  \sum_{\mathrm{cyc}}a^2b=a^2b+b^2c+c^2a.
+\]
+The symmetric sum runs over all distinct permutations:
+\[
+  \sum_{\mathrm{sym}}a^2=a^2+b^2+c^2,
+\]
+\[
+  \sum_{\mathrm{sym}}a^2b
+  =a^2b+a^2c+b^2a+b^2c+c^2a+c^2b.
+\]
+This notation greatly shortens inequality statements.
+
+\section{AM--GM}
+
+For nonnegative numbers \(a_1,\ldots,a_n\), the arithmetic-geometric mean inequality is
+\[
+  \frac{a_1+\cdots+a_n}{n}\ge \sqrt[n]{a_1\cdots a_n}.
+\]
+
+A Canadian Olympiad example in the note is
+\[
+  \frac{a^3}{bc}+\frac{b^3}{ca}+\frac{c^3}{ab}\ge a+b+c
+\]
+for \(a,b,c>0\).  By AM--GM,
+\[
+  \frac{1}{4}\left(2\frac{a^3}{bc}+\frac{b^3}{ca}+\frac{c^3}{ab}\right)
+  \ge a.
+\]
+Repeating cyclically and adding gives the desired inequality.
+
+\section{Muirhead's inequality}
+
+For nonnegative variables, Muirhead's inequality compares symmetric sums using majorization.  If
+\[
+  (x_1,\ldots,x_n)\succ (y_1,\ldots,y_n),
+\]
+then
+\[
+  \sum_{\mathrm{sym}}a_1^{x_1}\cdots a_n^{x_n}
+  \ge
+  \sum_{\mathrm{sym}}a_1^{y_1}\cdots a_n^{y_n}.
+\]
+For three variables,
+\[
+  (3,0,0)\succ(2,1,0),
+\]
+so
+\[
+  a^3+b^3+c^3\ge \sum_{\mathrm{cyc}}a^2b
+\]
+is a typical Muirhead-type comparison after normalization of symmetric sums.
+
+\section{Power means}
+
+The power mean of order \(r\) is
+\[
+  P(r)=
+  \begin{cases}
+  \left(\dfrac{a_1^r+\cdots+a_n^r}{n}\right)^{1/r},&r\neq0,\\
+  \sqrt[n]{a_1\cdots a_n},&r=0.
+  \end{cases}
+\]
+The power mean inequality says that \(P(r)\) is increasing in \(r\).  The familiar chain is
+\[
+  \sqrt{\frac{a_1^2+\cdots+a_n^2}{n}}
+  \ge
+  \frac{a_1+\cdots+a_n}{n}
+  \ge
+  \sqrt[n]{a_1\cdots a_n}
+  \ge
+  \frac{n}{\frac1{a_1}+\cdots+\frac1{a_n}}.
+\]
+
+The note records several practical tricks:
+\begin{enumerate}[(i)]
+  \item if a condition says \(abc=1\), set \(a=x/y\), \(b=y/z\), \(c=z/x\);
+  \item if \(a,b,c\) are sides of a triangle, replace them by \(x+y,y+z,z+x\);
+  \item Schur's inequality often converts a cyclic sum into a more tractable expression.
+\end{enumerate}
+
+\section{Hölder and Cauchy}
+
+Hölder's inequality in the form appearing in the page is
+\[
+  \left(\sum_{i=1}^n a_i\right)^p
+  \left(\sum_{i=1}^n b_i\right)^q
+  \ge
+  \left(\sum_{i=1}^n \sqrt[p+q]{a_i^p b_i^q}\right)^{p+q}.
+\]
+When \(p=q=1\), it reduces to Cauchy's inequality:
+\[
+  \left(\sum_i a_i\right)\left(\sum_i b_i\right)
+  \ge
+  \left(\sum_i\sqrt{a_i b_i}\right)^2.
+\]
+
+The page also includes the example
+\[
+  \left(\sum_{\mathrm{cyc}}\frac a{\sqrt{b+c}}\right)^2
+  \left(\sum_{\mathrm{cyc}}a(b+c)\right)
+  \ge
+  (a+b+c)^3,
+\]
+which is a typical Hölder move: choose weights so that the radical disappears.
+
+\section{Jensen and Karamata}
+
+For a convex function \(f\), Jensen's inequality says
+\[
+  \frac{f(a_1)+\cdots+f(a_n)}{n}
+  \ge
+  f\left(\frac{a_1+\cdots+a_n}{n}\right).
+\]
+For a concave function, the inequality reverses.  Taking \(f(x)=\ln x\) on \((0,\infty)\) recovers AM--GM:
+\[
+  \frac{\ln a_1+\cdots+\ln a_n}{n}
+  \le
+  \ln\left(\frac{a_1+\cdots+a_n}{n}\right).
+\]
+
+Karamata's inequality states that if \(f\) is convex and
+\[
+  (x_1,\ldots,x_n)\succ(y_1,\ldots,y_n),
+\]
+then
+\[
+  f(x_1)+\cdots+f(x_n)
+  \ge
+  f(y_1)+\cdots+f(y_n).
+\]
+Muirhead is, in spirit, a multiplicative/symmetric-sum analogue of majorization; Jensen and Karamata are the functional version.
+
+
+\section{Cyclic sums}
+
+Cyclic notation compresses repeated symmetric expressions.  For variables \(a,b,c\), a cyclic sum means
+\[
+  \sum_{cyc} f(a,b,c)=f(a,b,c)+f(b,c,a)+f(c,a,b).
+\]
+It is weaker than a full symmetric sum but often exactly matches triangle or inequality problems where the variables play rotating roles.
+
+\section{Proof strategy before computation}
+
+Many inequality problems become easier once one identifies the likely equality case.  If equality occurs at \(a=b=c\), then substitutions that separate average and deviations are natural.  If equality occurs at a boundary, monotonicity or uvw-style methods may be better.  Guessing the equality case is not cheating; it guides the proof search.
+
+\section{Expanded synthesis and advanced context}
+
+The note is really about choosing the right inequality language.  AM--GM is local and elementary; Muirhead is symmetric and algebraic; Hölder is functional and norm-like; Jensen and Karamata are convex-geometric.  A good inequality proof often consists of recognizing which language matches the structure of the expression.
+
+
+\paragraph{Expanded synthesis.}
+The number-theoretic content of this chapter is best understood as arithmetic seen through algebraic structure. The earlier sections (`Proof strategies`, `Cyclic and symmetric sums`, `AM--GM`, `Muirhead's inequality`, `Power means`) compute divisibility, congruences, residues, prime factorizations, or finite-field examples. The deeper language is ideals, quotient rings, unit groups, valuations, and field extensions.
+
+Divisibility in $\mathbb Z$ is containment of principal ideals; congruence modulo $n$ is equality inside the quotient ring $\mathbb Z/n\mathbb Z$; invertibility modulo $n$ means being a unit; the Chinese remainder theorem is a product decomposition of quotient rings. Prime factorization supplies coordinates through valuations:
+\[
+  n=\prod_p p^{v_p(n)}.
+\]
+Gcd and lcm are coordinatewise minimum and maximum in these valuation coordinates.
+
+This algebraic reading explains why elementary tricks scale upward. Euclidean algorithms become the theory of Euclidean domains and PIDs; divisor sums become Dirichlet convolution and Euler products; roots of unity become cyclotomic fields and Galois actions; finite polynomial arithmetic becomes finite-field theory. The original computations should therefore be kept as the algorithmic core, while the advanced language identifies the structure that makes the algorithms work.
+
+
+\section{Pedagogical repair: inequality methods as choice of language}
+
+The inequality section should not be read as a list of weapons.  Each inequality method corresponds to a different kind of structure.  AM--GM sees products inside sums.  Cauchy and Hölder see norms and inner-product-like expressions.  Jensen sees convexity.  Muirhead sees symmetric homogeneous polynomials through majorization.
+
+A good contest solution usually begins before the first line of algebra: one asks which structure is already present.  If the expression is symmetric and homogeneous, Muirhead or \(uvw\) may be natural.  If there are denominators, Cauchy or Titu Andreescu's lemma may fit.  If a logarithm or power function appears, Jensen may be the real explanation.
+
+\section{Elementary-to-advanced bridge: convex functions behind Jensen and Karamata}
+
+Many inequalities in the original note are different faces of convexity.  A function $f$ is convex on an interval if
+\[
+  f(tx+(1-t)y)\le tf(x)+(1-t)f(y),\qquad 0\le t\le1.
+\]
+Jensen's inequality says that for weights $w_i\ge0$ with $\sum w_i=1$,
+\[
+  f\left(\sum_i w_ix_i\right)\le \sum_i w_if(x_i).
+\]
+AM--GM is Jensen applied to $f(x)=-\log x$, or equivalently to the concavity of $\log x$.
+
+Karamata's inequality refines Jensen through majorization.  If $x$ majorizes $y$, written $x\succ y$, then for convex $f$,
+\[
+  \sum_i f(x_i)\ge \sum_i f(y_i).
+\]
+This explains why many olympiad inequalities ask one to compare how ``spread out'' two lists are.
+
+\section{Elementary-to-advanced bridge: Schur convexity}
+
+A symmetric differentiable function $F(x_1,\ldots,x_n)$ is Schur-convex if
+\[
+  x\succ y\Rightarrow F(x)\ge F(y).
+\]
+A useful criterion is
+\[
+  (x_i-x_j)\left(\frac{\partial F}{\partial x_i}-\frac{\partial F}{\partial x_j}\right)\ge0
+\]
+for all $i,j$.  This turns some inequality problems into checking monotonicity of partial derivatives.
+
+For example, power sums
+\[
+  F_p(x)=\sum_i x_i^p
+\]
+are Schur-convex for $p\ge1$ on the positive orthant.  This explains why more uneven distributions increase higher powers.
+
+\section{Elementary-to-advanced bridge: entropy and the log-sum inequality}
+
+The log-sum inequality states
+\[
+  \sum_i a_i\log\frac{a_i}{b_i}
+  \ge
+  \left(\sum_i a_i\right)\log\frac{\sum_i a_i}{\sum_i b_i},\qquad a_i,b_i>0.
+\]
+It is Jensen's inequality in disguise.  In information theory, it implies nonnegativity of relative entropy:
+\[
+  D(p\|q)=\sum_i p_i\log\frac{p_i}{q_i}\ge0.
+\]
+This shows how elementary convexity inequalities become the mathematical foundation of entropy, statistics, and variational inference.
