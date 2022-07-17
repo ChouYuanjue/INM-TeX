@@ -1,0 +1,252 @@
+\notechapter{N-20220717}{Recurrences, Arithmetic and Geometric Progressions, and the First Examples of Groups}
+
+\section{A beginning point: recursive definitions}
+
+This note begins with the feeling that recurrence relations look like guessing games.  In fact, most elementary recurrences are solved by trying to convert them into one of a few familiar sequences.
+
+The first example is a recurrence of the form
+\[
+  a_{n+2}=5a_{n+1}-6a_n.
+\]
+If one expects powers, the natural test is to try \(a_n=r^n\).  Substitution gives
+\[
+  r^{n+2}=5r^{n+1}-6r^n,
+\]
+so
+\[
+  r^2-5r+6=0,\qquad (r-2)(r-3)=0.
+\]
+Thus the general shape is
+\[
+  a_n=A2^n+B3^n.
+\]
+This method is not magic: the recurrence is linear, and exponentials are eigenvectors for the shift operator.
+
+\section{Arithmetic progressions}
+
+An arithmetic progression is a sequence whose consecutive differences are constant:
+\[
+  a_{n+1}-a_n=d.
+\]
+Equivalently,
+\[
+  a_n=a_1+(n-1)d.
+\]
+The sum of the first \(n\) terms is
+\[
+  S_n=\frac n2(a_1+a_n)
+      =na_1+\frac{n(n-1)}2d.
+\]
+
+The note emphasizes an important point: if several indices have the same sum, then the corresponding terms of an arithmetic progression also have the same sum.  For example, if
+\[
+  x_1+x_2=y_1+y_2=m,
+\]
+then
+\[
+  a_{x_1}+a_{x_2}
+  =2a_1+(x_1+x_2-2)d
+  =2a_1+(m-2)d
+  =a_{y_1}+a_{y_2}.
+\]
+More generally, if
+\[
+  x_1+\cdots+x_k=y_1+\cdots+y_k,
+\]
+then
+\[
+  a_{x_1}+\cdots+a_{x_k}
+  =a_{y_1}+\cdots+a_{y_k}.
+\]
+This is a small but useful structural observation: arithmetic progressions turn index addition into term addition, up to a constant shift.
+
+\section{Determining an arithmetic progression}
+
+A typical exercise is: given \(a_2\) and \(a_5\), find \(a_1\) and \(d\).  For instance, if
+\[
+  a_2=5,\qquad a_5=11,
+\]
+then
+\[
+  a_1+d=5,\qquad a_1+4d=11.
+\]
+Subtracting gives \(3d=6\), so \(d=2\), and then \(a_1=3\).
+
+Another exercise gives several sums, for example
+\[
+  a_1+a_2+a_3=24,\qquad a_n+a_{n+1}+a_{n+2}=146,
+\]
+and asks for the number of terms or a particular partial sum.  The thought process is always the same: express every term as \(a_1+(k-1)d\), reduce to equations in \(a_1,d,n\), then use the sum formula.  The original page highlights the formula
+\[
+  S_n=\frac n2(a_1+a_n)
+\]
+because it often avoids writing every term.
+
+\section{Geometric progressions}
+
+A geometric progression is a sequence whose ratios are constant:
+\[
+  \frac{a_{n+1}}{a_n}=q.
+\]
+Hence
+\[
+  a_n=a_1q^{n-1}.
+\]
+If \(q\neq1\), then
+\[
+  S_n=a_1\frac{q^n-1}{q-1}.
+\]
+If \(q=1\), then
+\[
+  S_n=na_1.
+\]
+
+The note gives the derivation by subtracting:
+\[
+  S_n=a_1+a_1q+\cdots+a_1q^{n-1},
+\]
+\[
+  qS_n=a_1q+a_1q^2+\cdots+a_1q^n,
+\]
+so
+\[
+  (q-1)S_n=a_1(q^n-1).
+\]
+This derivation is better than memorization because it also explains why the case \(q=1\) must be separated.
+
+\section{Converting recurrences}
+
+The page contains the example
+\[
+  a_{n+1}=2a_n+1.
+\]
+There are two standard ways to solve it.
+
+First, shift the sequence by a constant.  Try \(b_n=a_n+c\), and choose \(c\) so that the recurrence becomes homogeneous.  Since
+\[
+  a_{n+1}+1=2(a_n+1),
+\]
+we let \(b_n=a_n+1\).  Then
+\[
+  b_{n+1}=2b_n,
+\]
+so \(b_n=2^{n-1}b_1\).  If \(a_1=1\), then \(b_1=2\), and
+\[
+  a_n=2^n-1.
+\]
+
+Second, one may divide by a power of \(2\).  This often works for recurrences of the form
+\[
+  a_{n+1}=qa_n+r_n.
+\]
+The goal is to make the left side telescope.
+
+\section{A factorial recurrence}
+
+Another example is
+\[
+  a_n=na_{n-1}+1,\qquad a_1=1.
+\]
+Dividing by \(n!\) gives
+\[
+  \frac{a_n}{n!}=\frac{a_{n-1}}{(n-1)!}+\frac1{n!}.
+\]
+Thus if
+\[
+  b_n=\frac{a_n}{n!},
+\]
+then
+\[
+  b_n=b_{n-1}+\frac1{n!}.
+\]
+Therefore
+\[
+  a_n=n!\left(1+\frac1{2!}+\frac1{3!}+\cdots+\frac1{n!}\right).
+\]
+The point is not the final formula alone.  The point is that multiplication by \(n\) suggests normalizing by \(n!\).
+
+\section{Groups}
+
+The second half of the note switches to group theory.  A group is a set \(G\) with a binary operation \(*\) satisfying:
+\begin{enumerate}[(i)]
+  \item associativity: \((a*b)*c=a*(b*c)\);
+  \item identity: there is \(1_G\) such that \(1_G*g=g*1_G=g\);
+  \item inverses: for each \(g\in G\), there is \(g^{-1}\) with \(gg^{-1}=g^{-1}g=1_G\).
+
+\end{enumerate}
+Commutativity is not required.  If it holds, the group is abelian.
+
+Standard examples include:
+\[
+  (\mathbb Z,+),\qquad \mathbb Z/n\mathbb Z,\qquad S^1=\{z\in\mathbb C:|z|=1\}.
+\]
+The note explicitly warns that closure is already included in the phrase ``binary operation on \(G\)'': if \(*:G\times G\to G\), then \(g*h\in G\) automatically.
+
+\section{Symmetric and dihedral groups}
+
+The symmetric group \(S_n\) consists of all permutations of \(n\) objects.  Composition is the group operation.  The note writes permutations in cycle notation and emphasizes that the order of composition matters.
+
+The dihedral group \(D_{2n}\) is the symmetry group of a regular \(n\)-gon.  It contains rotations and reflections.  It has presentation
+\[
+  D_{2n}=\langle r,s\mid r^n=s^2=1,\ srs=r^{-1}\rangle.
+\]
+For \(n=5\), for example, \(r\) is a rotation by \(72^\circ\), and \(s\) is a reflection.  The relation \(srs=r^{-1}\) says that reflecting reverses the direction of rotation.
+
+\section{Products and isomorphisms}
+
+If \(G,H\) are groups, their product is
+\[
+  G\times H=\{(g,h):g\in G,\ h\in H\},
+\]
+with operation
+\[
+  (g_1,h_1)(g_2,h_2)=(g_1g_2,h_1h_2).
+\]
+The inverse is
+\[
+  (g,h)^{-1}=(g^{-1},h^{-1}).
+\]
+
+Two groups are isomorphic if there is a bijection \(\varphi:G\to H\) such that
+\[
+  \varphi(g_1g_2)=\varphi(g_1)\varphi(g_2).
+\]
+An isomorphism means that the two groups have the same structure with different labels.
+
+
+\section{Linear recurrences}
+
+A first-order linear recurrence has the form
+\[
+  a_{n+1}=ra_n+b.
+\]
+If \(r
+e1\), look for a fixed point \(L\) satisfying \(L=rL+b\).  Then subtract it:
+\[
+  a_{n+1}-L=r(a_n-L).
+\]
+So
+\[
+  a_n-L=r^n(a_0-L).
+\]
+This method explains why geometric progressions appear inside many non-homogeneous recurrences.
+
+\section{Groups from repeated operations}
+
+The note's first group examples should be read as abstraction from repeated operations.  Integers under addition, nonzero rationals under multiplication, rotations of a polygon, and permutations are all systems where operations can be composed and undone.  The group axioms isolate exactly that pattern: associativity, identity, and inverses.
+
+\section{Expanded synthesis and advanced context}
+
+This note is valuable because it places recurrences and groups next to each other.  A recurrence is about repeatedly applying an operation; a group is about operations that can be composed and undone.  Both topics are early appearances of the same general idea: mathematics often studies not isolated objects, but transformations and their iterates.
+
+
+\paragraph{Expanded synthesis.}
+For this chapter, the elementary material should be read as a study of what remains invariant when coordinates change. The earlier sections (`A beginning point: recursive definitions`, `Arithmetic progressions`, `Determining an arithmetic progression`, `Geometric progressions`, `Converting recurrences`) compute with arrays, bases, pivots, determinants, or eigenvectors; the deeper object is a linear map together with the spaces it acts on. A matrix is a representation of that map after bases have been chosen. This is why formulas such as
+\[
+  A' = P^{-1}AP,\qquad \widetilde A = T^{-1}AS
+\]
+are not cosmetic: they distinguish an intrinsic morphism from a coordinate description.
+
+The structural hierarchy is as follows. Kernels record what a map forgets, images record what it reaches, cokernels record obstructions to solvability, and quotients record information after an equivalence has been imposed. Determinants act on the top exterior power and therefore measure oriented volume; traces are invariant under cyclic rearrangement and become characters in representation theory; adjoints depend on an inner product and lead to self-adjoint spectral theory.
+
+A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
