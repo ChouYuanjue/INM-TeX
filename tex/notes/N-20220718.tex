@@ -1,0 +1,145 @@
+\notechapter{N-20220718}{Nonlinear Recurrences, Fixed Points, and Metric-Space Exercises}
+
+\section{Fixed-point iteration}
+
+The note begins with iterative sequences.  If a function \(f\) has a fixed point \(x_0\), meaning
+\[
+  f(x_0)=x_0,
+\]
+then the recurrence
+\[
+  a_{n+1}=f(a_n)
+\]
+may converge to \(x_0\), depending on the behavior of \(f\).  The graphical picture is the intersection of \(y=f(x)\) and \(y=x\).
+
+The elementary idea is this: if \(a_n\to L\) and \(f\) is continuous, then
+\[
+  L=\lim a_{n+1}=\lim f(a_n)=f(L),
+\]
+so any limit must be a fixed point.  But finding a fixed point is not the same as proving convergence.  A recurrence can have fixed points and still oscillate or diverge.
+
+\section{Möbius recurrences}
+
+The page considers recurrences of the form
+\[
+  a_{n+1}=\frac{pa_n+q}{ra_n+t}.
+\]
+These are fractional linear or Möbius transformations.  Their fixed points solve
+\[
+  x=\frac{px+q}{rx+t},
+\]
+so
+\[
+  rx^2+(t-p)x-q=0.
+\]
+Suppose \(x_1,x_2\) are two distinct fixed points.  Then a standard calculation gives
+\[
+  \frac{a_{n+1}-x_1}{a_{n+1}-x_2}
+  =
+  \lambda\frac{a_n-x_1}{a_n-x_2}
+\]
+for a constant \(\lambda\).  Thus the new sequence
+\[
+  b_n=\frac{a_n-x_1}{a_n-x_2}
+\]
+is geometric.
+
+This is the key idea in the note: convert a nonlinear recurrence into a geometric progression by using the fixed points as coordinates.  This is not accidental.  Möbius transformations act naturally on the projective line, and the cross-ratio-like expression above is the coordinate that linearizes the action.
+
+\section{Example}
+
+For
+\[
+  a_1=\frac12,\qquad a_{n+1}=\frac{5a_n-1}{a_n+3},
+\]
+the fixed-point equation is
+\[
+  x=\frac{5x-1}{x+3},
+\]
+so
+\[
+  x^2-2x+1=0,\qquad x=1.
+\]
+Here the two fixed points coincide, so the previous method degenerates.  One then studies
+\[
+  a_{n+1}-1=\frac{4a_n-4}{a_n+3}=\frac{4(a_n-1)}{a_n+3}.
+\]
+Taking reciprocals gives
+\[
+  \frac1{a_{n+1}-1}=\frac{a_n+3}{4(a_n-1)}
+  =\frac14+\frac1{a_n-1}.
+\]
+Thus
+\[
+  b_n=\frac1{a_n-1}
+\]
+is arithmetic, not geometric.  This is the repeated-root analogue of the fixed-point method.
+
+\section{Second-order linear recurrences}
+
+The next topic is
+\[
+  a_{n+2}=pa_{n+1}+qa_n.
+\]
+Try \(a_n=\lambda^n\).  The characteristic equation is
+\[
+  \lambda^2-p\lambda-q=0.
+\]
+If it has two distinct roots \(\lambda_1,\lambda_2\), then
+\[
+  a_n=A\lambda_1^n+B\lambda_2^n.
+\]
+If the root is repeated, then the second independent solution is \(n\lambda^n\), so
+\[
+  a_n=(A+Bn)\lambda^n.
+\]
+This is the recurrence analogue of solving a linear differential equation with constant coefficients.
+
+\section{Dedekind cuts and metric exercises}
+
+The uploaded pages also continue exercises on Dedekind cuts and metric spaces.  For Dedekind cuts \(X,Y\), the sum is
+\[
+  X+Y=\{x+y:x\in X,\ y\in Y\}.
+\]
+The notes check that this is again a cut: it is nonempty, not all of \(\mathbb Q\), downward closed, and has no largest rational.
+
+For a metric space \((X,d)\), if \(Y\subseteq X\), the subspace metric is
+\[
+  d_Y(y_1,y_2)=d(y_1,y_2).
+\]
+The note also checks that Euclidean distance on \(\mathbb R^n\)
+\[
+  d(x,y)=\sqrt{(x_1-y_1)^2+\cdots+(x_n-y_n)^2}
+\]
+is a metric.  The only nontrivial axiom is the triangle inequality, which ultimately follows from Cauchy--Schwarz.
+
+
+\section{Fixed points of recurrence maps}
+
+A recurrence \(x_{n+1}=f(x_n)\) is an iteration problem.  A possible limit \(L\) must satisfy
+\[
+  L=f(L).
+\]
+Thus the first step is to solve the fixed-point equation.  The second step is to decide whether the iteration actually converges to that fixed point.
+
+A common local test is \(|f'(L)|<1\).  Then nearby points are pulled toward \(L\).  If \(|f'(L)|>1\), nearby points are pushed away.  This explains why fixed points are not automatically limits.
+
+\section{Monotone bounded sequences}
+
+Many elementary recurrence proofs use the theorem: a monotone bounded real sequence converges.  The method is to prove by induction that the sequence stays in an interval, then prove monotonicity.  Completeness of \(\mathbb R\) is the hidden reason the limit exists.
+
+\section{Expanded synthesis and advanced context}
+
+The important common thread is change of coordinates.  A Möbius recurrence becomes geometric after measuring position relative to fixed points.  A repeated fixed point becomes arithmetic after taking a reciprocal.  A Dedekind cut becomes a real number after using order-theoretic structure.  A subset becomes a metric space after inheriting distance.  The mathematical move is the same: choose the representation in which the structure becomes visible.
+
+
+\paragraph{Expanded synthesis.}
+The common theme of this chapter is that an elementary limiting or computational rule becomes powerful only after one specifies the space in which the limiting process takes place. The earlier sections (`Fixed-point iteration`, `Möbius recurrences`, `Example`, `Second-order linear recurrences`, `Dedekind cuts and metric exercises`) may look like separate techniques, but they all ask the same question: which operations are stable under approximation? A derivative is stable first-order approximation,
+\[
+  f(a+h)=f(a)+L(h)+o(|h|),
+\]
+while an integral is stable accumulation with respect to a measure, and a convergent series is a limit in a chosen norm or topology.
+
+The advanced bridge is functional-analytic. Uniform convergence is convergence in a sup norm; $L^p$ convergence is convergence in an integral norm; differentiability is the existence of a continuous linear approximation; many differential equations are operator equations $L[u]=f$. Theorems such as dominated convergence, the inverse function theorem, the projection theorem in Hilbert spaces, and semigroup existence results are refined answers to the same elementary concern: when may we pass from finite approximations to a genuine limiting object?
+
+To use this viewpoint when rereading the original examples, identify the hidden stability condition. A Taylor expansion asks for control of the remainder. A change of variables asks for differentiability and Jacobian control. Termwise differentiation of a series asks for uniform convergence of derivative series. A differential-equation formula asks whether the operator is invertible under the imposed initial or boundary data. The elementary computation is the visible part; the advanced theory names the hypotheses that make it legitimate.
