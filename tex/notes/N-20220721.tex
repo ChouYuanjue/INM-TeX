@@ -1,0 +1,125 @@
+\notechapter{N-20220721}{Probability, Conditional Probability, and Substitution Tricks in Inequalities}
+
+\section{Random experiments and sample spaces}
+
+This note begins with the language of probability.  A random experiment is a process that can be repeated under the same conditions, whose possible outcomes are known, but whose actual outcome is uncertain.  Examples include tossing a coin, drawing a ball from a box, or choosing a card.
+
+The set of all possible basic outcomes is the sample space, denoted
+\[
+  \Omega.
+\]
+A subset \(A\subseteq\Omega\) is an event.  If the sample space is finite and all outcomes are equally likely, then
+\[
+  P(A)=\frac{|A|}{|\Omega|}.
+\]
+
+The note stresses that events are sets.  This is why union, intersection, complement, and inclusion--exclusion immediately become probability tools:
+\[
+  P(A\cup B)=P(A)+P(B)-P(A\cap B).
+\]
+
+\section{Classical model and Venn diagrams}
+
+One example has seven labeled balls, with three properties represented by sets \(A_1,A_2,A_3\).  The note uses a Venn diagram and factorial counts to compute a probability such as
+\[
+  P=\frac{7!-3\cdot6!+3\cdot5!-4!}{7!}.
+\]
+The exact numbers matter less than the method.  If conditions overlap, count by inclusion--exclusion.  A Venn diagram is not a proof by itself, but it helps prevent double-counting.
+
+\section{Conditional probability}
+
+The conditional probability of \(B\) given \(A\) is
+\[
+  P(B\mid A)=\frac{P(A\cap B)}{P(A)}
+\]
+when \(P(A)>0\).  The note includes examples where one must be careful not to confuse \(P(B\mid A)\) with \(P(B)\).
+
+Independence is the condition
+\[
+  P(A\cap B)=P(A)P(B),
+\]
+or equivalently
+\[
+  P(B\mid A)=P(B).
+\]
+This means that knowing \(A\) occurred does not change the probability of \(B\).
+
+A common trap appears in nested events.  If \(A\subseteq B\), then
+\[
+  P(B\mid A)=1,
+\]
+but
+\[
+  P(A\mid B)=\frac{P(A)}{P(B)}
+\]
+may be much smaller.  Conditional probability is not symmetric.
+
+\section{A transition to substitution tricks}
+
+The note then changes direction and discusses substitutions used in inequalities.  A recurring constraint is
+\[
+  abc=1.
+\]
+A standard substitution is
+\[
+  a=\frac xy,\qquad b=\frac yz,\qquad c=\frac zx.
+\]
+Another useful substitution is
+\[
+  x=a+\frac1a,\qquad y=b+\frac1b,\qquad z=c+\frac1c.
+\]
+Such substitutions are not just algebraic decoration.  They encode hidden positivity and symmetry.  The note points out that many complicated-looking inequalities become simpler after this change of variables.
+
+\section{A classical symmetric equation}
+
+The pages discuss equations such as
+\[
+  xyz=x+y+z+2.
+\]
+This can be rewritten as
+\[
+  xyz+1=(x+1)(y+1)(z+1)-xy-yz-zx-x-y-z.
+\]
+A better-known substitution is
+\[
+  x=a+\frac1a,\quad y=b+\frac1b,\quad z=c+\frac1c,
+\]
+or trigonometric substitutions when the variables resemble
+\[
+  2\cos A,\quad 2\cos B,\quad 2\cos C.
+\]
+The note is circling around the idea that symmetric algebraic equations often become geometry or trigonometry after the right substitution.
+
+\section{Inequality examples}
+
+One example asks to prove
+\[
+  \frac{a}{b+c+a}+\frac{b}{c+a+b}+\frac{c}{a+b+c}\ge\frac32
+\]
+in a normalized form.  The exact expression on the page is a contest inequality, and the solution uses standard tools such as Cauchy, AM--GM, or substitution.
+
+The point is that conditions like \(abc=1\), \(x+y+z=\text{constant}\), or \(x^2+y^2+z^2+2xyz=1\) should not be treated as random constraints.  They are invitations to choose a special parametrization.
+
+\section{Jensen, trigonometry, and contest style}
+
+Later examples involve trigonometric inequalities in a triangle.  A triangle condition \(A+B+C=\pi\) naturally suggests identities such as
+\[
+  \cos^2A+\cos^2B+\cos^2C+2\cos A\cos B\cos C=1.
+\]
+This identity is one of the reasons that substitutions by cosines appear in olympiad inequalities.
+
+\section{Expanded synthesis and advanced context}
+
+This note looks like probability followed by inequalities, but both topics are about choosing the right sample space.  In probability, the sample space is literal: events are subsets of \(\Omega\).  In inequalities, the ``sample space'' is the domain allowed by the constraint.  A good substitution changes that domain into something more natural, just as choosing a good probability model turns a counting problem into a set problem.
+
+
+\paragraph{Expanded synthesis.}
+The higher-level content of this chapter is the passage from pointwise description to invariant structure. The earlier sections (`Random experiments and sample spaces`, `Classical model and Venn diagrams`, `Conditional probability`, `A transition to substitution tricks`, `A classical symmetric equation`) introduce objects that may be drawn, listed, glued, or computed, but the advanced question is what remains unchanged under the allowed maps. In topology the allowed maps are continuous maps; in category theory they are morphisms preserving the relevant structure; in homology they induce maps between algebraic invariants.
+
+The guiding pattern is
+\[
+  \text{space or structure}\quad \xrightarrow{\text{allowed maps}}\quad \text{invariant data}.
+\]
+Quotient spaces formalize gluing; products formalize simultaneous coordinates; compactness formalizes the impossibility of escaping by a limiting process; connectedness formalizes the impossibility of separation; homology converts holes into groups. When a note discusses closure, quotienting, paths, products, or functors, it is already working with this invariant language.
+
+A quotient exercise is a gluing construction; a compactness exercise is an infinite pigeonhole argument; a homotopy exercise is a controlled deformation; a functorial example says that a construction is compatible with maps. The advanced theory does not add decoration. It explains why the same few operations, such as taking products, quotients, images, kernels, and induced maps, occur throughout topology, algebra, and geometry.
