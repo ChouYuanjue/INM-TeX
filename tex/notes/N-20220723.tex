@@ -1,0 +1,118 @@
+\notechapter{N-20220723}{Roots of Unity, Decagons, and Cyclotomic Divisibility}
+
+\section{The ant on a decagon}
+
+The first problem features an ant standing on vertex \(1\) of a regular decagon.  It hops \(1\) space at a time for \(10\) hops, then \(2\) spaces at a time for \(10\) hops, and so on until it hops \(10\) spaces at a time for \(10\) hops.
+
+Modulo \(10\), doing \(10\) hops of length \(k\) moves the ant by
+\[
+  10k\equiv0\pmod{10}.
+\]
+Thus after each block of ten hops, the ant returns to the same vertex.  Since it starts at vertex \(1\), it ends at vertex \(1\).  This is the most elementary roots-of-unity idea: motion around a regular polygon is arithmetic modulo the number of vertices.
+
+\section{Roots of unity}
+
+For a positive integer \(n\), the \(n\)-th roots of unity are the complex solutions of
+\[
+  z^n=1.
+\]
+They are
+\[
+  U_n=\left\{e^{2\pi ik/n}:k=0,1,\ldots,n-1\right\}.
+\]
+Geometrically, these are the vertices of a regular \(n\)-gon on the unit circle.
+
+If \(n\) is even, \(z^n=1\) has two real roots, \(1\) and \(-1\).  If \(n\) is odd, the only real root is \(1\).
+
+The example
+\[
+  \left(\frac{-1+i\sqrt3}{2}\right)^3
+\]
+is easiest in polar form.  Since
+\[
+  \frac{-1+i\sqrt3}{2}=\cos\frac{2\pi}{3}+i\sin\frac{2\pi}{3},
+\]
+its cube is
+\[
+  \cos 2\pi+i\sin 2\pi=1.
+\]
+
+\section[The polynomial x\textasciicircum{}2n + x\textasciicircum{}n + 1]{The polynomial \(x^{2n}+x^n+1\)}
+
+The note includes a Math StackExchange question about when
+\[
+  x^2+x+1
+\]
+divides
+\[
+  x^{2n}+x^n+1.
+\]
+Let \(\omega\) be a primitive third root of unity.  Then
+\[
+  \omega^2+\omega+1=0.
+\]
+The polynomial \(x^2+x+1\) divides \(x^{2n}+x^n+1\) iff both \(\omega\) and \(\omega^2\) are roots of the latter.  Now
+\[
+  \omega^{2n}+\omega^n+1=0
+\]
+iff \(\omega^n\) is a nontrivial third root of unity.  This happens iff
+\[
+  n\not\equiv0\pmod3.
+\]
+
+\section{A broader pattern}
+
+The natural generalization is
+\[
+  1+x^n+x^{2n}+\cdots+x^{kn}
+\]
+and the divisor
+\[
+  1+x+x^2+\cdots+x^k=\frac{x^{k+1}-1}{x-1}.
+\]
+The roots of the divisor are the nontrivial \((k+1)\)-st roots of unity.  If \(\zeta^{k+1}=1\) and \(\zeta\ne1\), then
+\[
+  1+\zeta^n+\cdots+\zeta^{kn}=0
+\]
+provided \(\zeta^n\ne1\).  If the map
+\[
+  \zeta\mapsto\zeta^n
+\]
+permutes the nontrivial \((k+1)\)-st roots, which occurs when
+\[
+  \gcd(n,k+1)=1,
+\]
+then divisibility follows.
+
+\section{Cyclotomic viewpoint}
+
+The polynomial \(x^m-1\) factors as
+\[
+  x^m-1=\prod_{d\mid m}\Phi_d(x),
+\]
+where \(\Phi_d\) is the \(d\)-th cyclotomic polynomial.  The quotient
+\[
+  \frac{x^{k+1}-1}{x-1}
+\]
+is the product of cyclotomic factors \(\Phi_d(x)\) for \(d\mid k+1\), \(d>1\).  Divisibility questions of this type are therefore really questions about how exponentiation acts on roots of unity.
+
+\section{Why this is more than a trick}
+
+The note's handwritten comment says that this is not merely about solving a problem.  That is exactly right.  Roots of unity turn algebra into geometry: powers become rotations, divisibility becomes vanishing on polygons, and congruences become angle arithmetic.  This is the same philosophy behind Fourier analysis, cyclic groups, and cyclotomic fields.
+
+
+\section{Roots of unity viewpoint}
+
+A regular decagon is naturally encoded by the tenth roots of unity:
+\[
+  \zeta^k=e^{2\pi i k/10},\qquad k=0,1,\ldots,9.
+\]
+Moving by \(m\) vertices is multiplication by \(\zeta^m\).  After ten such moves, the total displacement is multiplication by \((\zeta^m)^{10}=1\).  This explains why the ant returns after each block of ten equal jumps.
+
+The advantage of this model is that a geometric hopping problem becomes modular arithmetic in \(\mathbb Z/10\mathbb Z\).
+
+\section{Cyclotomic divisibility}
+
+The same roots of unity explain polynomial divisibility.  To show that a polynomial \(Q(x)\) divides \(P(x)\), one may show that every root of \(Q\) is also a root of \(P\), provided \(Q\) has no repeated roots and the field is appropriate.
+
+For example, divisibility by \(x^2+x+1\) can be checked at primitive third roots of unity.  This is often cleaner than expanding and factoring by force.
