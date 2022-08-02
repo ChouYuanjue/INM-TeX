@@ -1,0 +1,260 @@
+\notechapter{N-20220802}{Trigonometric Functions, Radians, Identities, and Triangle Formulas}
+
+\section{Angles and radians}
+
+The note begins with angles.  An angle has an initial side and a terminal side.  Rotating counterclockwise gives a positive angle; rotating clockwise gives a negative angle.  Angles differing by a full revolution represent the same terminal direction:
+\[
+  \theta\sim\theta+2k\pi,\qquad k\in\mathbb Z.
+\]
+
+Radian measure is defined by arc length:
+\[
+  \theta=\frac{s}{r}.
+\]
+Thus one radian is the angle subtending an arc whose length equals the radius.  Since the circumference of a circle is \(2\pi r\), one full turn is
+\[
+  2\pi\text{ radians}=360^\circ.
+\]
+Therefore
+\[
+  1\text{ radian}\approx57.3^\circ.
+\]
+
+\section{Sine, cosine, and tangent}
+
+For a point \(P=(x,y)\) on the terminal side of an angle \(\alpha\), put
+\[
+  r=|OP|=\sqrt{x^2+y^2}.
+\]
+Then
+\[
+  \sin\alpha=\frac yr,\qquad
+  \cos\alpha=\frac xr,\qquad
+  \tan\alpha=\frac yx.
+\]
+On the unit circle, \(r=1\), so
+\[
+  P=(\cos\alpha,\sin\alpha).
+\]
+The basic identity is
+\[
+  \sin^2\alpha+\cos^2\alpha=1,
+\]
+and
+\[
+  \tan\alpha=\frac{\sin\alpha}{\cos\alpha}.
+\]
+The note's sign diagrams for \(\sin,\cos,	an\) are exactly quadrant information.
+
+\section{Special angles}
+
+The page computes values such as
+\[
+  \sin\frac{2\pi}{3}=\frac{\sqrt3}{2},\qquad
+  \cos\frac{2\pi}{3}=-\frac12,\qquad
+  \tan\frac{2\pi}{3}=-\sqrt3,
+\]
+and
+\[
+  \sin\frac{3\pi}{2}=-1,\qquad
+  \cos\frac{3\pi}{2}=0.
+\]
+The method is not memorization alone: reduce to a reference angle and then use the quadrant sign.
+
+\section{Addition formulas}
+
+The central identity is the cosine subtraction formula:
+\[
+  \cos(\alpha-\beta)
+  =\cos\alpha\cos\beta+\sin\alpha\sin\beta.
+\]
+From it one obtains
+\[
+  \cos(\alpha+\beta)
+  =\cos\alpha\cos\beta-\sin\alpha\sin\beta,
+\]
+\[
+  \sin(\alpha+\beta)
+  =\sin\alpha\cos\beta+\cos\alpha\sin\beta,
+\]
+\[
+  \sin(\alpha-\beta)
+  =\sin\alpha\cos\beta-\cos\alpha\sin\beta.
+\]
+The tangent formula follows by dividing sine by cosine:
+\[
+  \tan(\alpha+\beta)=\frac{\tan\alpha+\tan\beta}{1-\tan\alpha\tan\beta}.
+\]
+
+The note writes these not as isolated formulas but as relations among angles on the unit circle.  That is the best way to remember them.
+
+\section{Double-angle and half-angle formulas}
+
+From the addition formulas:
+\[
+  \sin2\alpha=2\sin\alpha\cos\alpha,
+\]
+\[
+  \cos2\alpha=\cos^2\alpha-\sin^2\alpha
+  =1-2\sin^2\alpha
+  =2\cos^2\alpha-1.
+\]
+The half-angle identities are
+\[
+  \sin^2\frac\alpha2=\frac{1-\cos\alpha}{2},
+  \qquad
+  \cos^2\frac\alpha2=\frac{1+\cos\alpha}{2}.
+\]
+These formulas are especially useful in integrals and triangle geometry.
+
+\section{Graphs of trigonometric functions}
+
+The note draws the graphs of \(y=\sin x\), \(y=\cos x\), and \(y=\tan x\).  The key facts are:
+\[
+  \sin(x+2\pi)=\sin x,\qquad \cos(x+2\pi)=\cos x,
+\]
+\[
+  \tan(x+\pi)=\tan x.
+\]
+Sine and cosine are bounded between \(-1\) and \(1\); tangent has vertical asymptotes at
+\[
+  x=\frac\pi2+k\pi.
+\]
+
+\section{Triangle formulas}
+
+For a triangle \(ABC\) with sides \(a,b,c\) opposite the corresponding angles, the law of sines is
+\[
+  \frac a{\sin A}=\frac b{\sin B}=\frac c{\sin C}=2R,
+\]
+where \(R\) is the circumradius.
+
+The area formulas include
+\[
+  [ABC]=\frac12bc\sin A
+\]
+and Heron's formula
+\[
+  [ABC]=\sqrt{s(s-a)(s-b)(s-c)},\qquad s=\frac{a+b+c}{2}.
+\]
+
+The note also records trigonometric transformations involving sums of angles in a triangle, especially \(A+B+C=\pi\).  For example,
+\[
+  \sin(A+B)=\sin C,\qquad \cos(A+B)=-\cos C.
+\]
+
+
+\section{Radians are not a convention only}
+
+The radian measure of an angle is defined by arc length divided by radius:
+\[
+  \theta=\frac{s}{r}.
+\]
+This makes the derivative formulas clean:
+\[
+  \frac{d}{dx}\sin x=\cos x,\qquad
+  \frac{d}{dx}\cos x=-\sin x.
+\]
+If degrees were used inside calculus, extra conversion constants would appear everywhere.  Thus radians are the natural unit for analysis.
+
+\section{Addition formulas as rotation composition}
+
+The matrix
+\[
+  R(\theta)=\begin{pmatrix}\cos\theta&-\sin\theta\\ \sin\theta&\cos\theta\end{pmatrix}
+\]
+rotates the plane by \(\theta\).  Since rotations compose by adding angles,
+\[
+  R(\alpha+\beta)=R(\alpha)R(\beta).
+\]
+Multiplying the matrices gives the sine and cosine addition formulas.  This explains why those identities are not arbitrary memorized formulas but the algebra of rotations.
+
+\section{Expanded synthesis and advanced context}
+
+Trigonometry is not just a table of identities.  It is the coordinate algebra of the circle.  Radians measure angle by arc length; sine and cosine are coordinates on the unit circle; addition formulas express rotation composition; triangle formulas translate between angle data and side data.  This is why trigonometry becomes natural again in complex numbers, Fourier analysis, rotations, and differential equations.
+
+
+
+\paragraph{Expanded synthesis.}
+The elementary geometric content of this chapter should be read through transformations and invariants. The earlier sections (`Angles and radians`, `Sine, cosine, and tangent`, `Special angles`, `Addition formulas`, `Double-angle and half-angle formulas`) may use coordinates, angles, determinants, parametrizations, or integral formulas, but the organizing question is: which quantities survive the transformations naturally associated with the problem? Euclidean geometry preserves distances and angles; affine geometry preserves lines and ratios on a line; projective geometry preserves incidence and cross ratio; differential geometry preserves coordinate-independent objects such as forms, metrics, and orientations.
+
+This perspective separates different layers of a problem. A dot product belongs to metric geometry. A determinant belongs to oriented volume. A cross ratio belongs to projective geometry. A line or surface integral of a differential form belongs to oriented topology. A scalar area integral belongs to the metric-induced measure. Confusing these layers is the source of many errors, especially in vector calculus where $dS$, $F\cdot n\,dS$, $dx\wedge dy$, and boundary orientation look similar but encode different structures.
+
+When returning to the original examples, identify the natural object before computing. If the problem is about concurrence or collinearity, projective or affine tools may be natural. If it is about distance, angle, or orthogonality, metric tools are essential. If it is about flux or circulation, differential forms and orientation explain the signs. The advanced viewpoint makes the elementary solution more disciplined rather than more abstract for its own sake.
+
+
+\section{Elementary-to-advanced bridge: trigonometry as representation of rotations}
+
+The matrix
+\[
+  R_\theta=\begin{pmatrix}\cos\theta&-\sin\theta\\\sin\theta&\cos\theta\end{pmatrix}
+\]
+represents rotation by angle $\theta$.  The identity
+\[
+  R_\alpha R_\beta=R_{\alpha+\beta}
+\]
+contains the addition formulas for sine and cosine.
+
+Thus trigonometric identities are representation theory of the group $SO(2)$ in coordinates.
+
+\section{Elementary-to-advanced bridge: complex exponentials}
+
+Euler's formula
+\[
+  e^{i\theta}=\cos\theta+i\sin\theta
+\]
+turns trigonometric identities into exponential algebra.  For example,
+\[
+  e^{i(\alpha+\beta)}=e^{i\alpha}e^{i\beta}
+\]
+gives both addition formulas at once.
+
+The multiple-angle formulas are simply
+\[
+  (e^{i\theta})^n=e^{in\theta}.
+\]
+Taking real and imaginary parts yields Chebyshev-type identities:
+\[
+  \cos(n\theta)=T_n(\cos\theta).
+\]
+
+\section{Elementary-to-advanced bridge: spherical trigonometry}
+
+On a sphere, triangles are bounded by great-circle arcs.  Their angles and side lengths satisfy different laws from Euclidean triangles.  The spherical law of cosines is
+\[
+  \cos c=\cos a\cos b+\sin a\sin b\cos C.
+\]
+This reduces to the Euclidean law of cosines in a small-scale limit.
+
+The elementary triangle formulas in the plane are therefore the zero-curvature case of trigonometry on constant-curvature geometries.
+
+\section{Elementary-to-advanced bridge: harmonic analysis}
+
+Trigonometric functions form an orthogonal system.  On $[-\pi,\pi]$,
+\[
+  \int_{-\pi}^{\pi}\sin mx\sin nx\,dx=0
+\]
+for $m\ne n$, and similarly for cosines.  This is why Fourier series can decompose functions into sine and cosine modes.
+
+The original trigonometric identities are therefore also algebra of Fourier modes.  Products of sines and cosines correspond to sums of frequencies.
+
+% Second-pass deepening for waves 2-4: wave 4 part 3
+\section{Second-pass deepening: trigonometric identities as algebra in the group algebra}
+
+The functions $e^{in\theta}$ form characters of the circle group.  Products of trigonometric functions are products of characters, which add frequencies:
+\[
+  e^{im\theta}e^{in\theta}=e^{i(m+n)\theta}.
+\]
+The product-to-sum formulas are just this identity rewritten in real and imaginary parts.
+
+This explains why trigonometric simplification is often frequency bookkeeping.  A complicated expression may be simplified by converting to exponentials, combining frequencies, and returning to real functions.
+
+\section{Second-pass deepening: curvature and spherical trigonometry}
+
+In Euclidean geometry, the angle sum of a triangle is $\pi$.  On a unit sphere, the spherical excess satisfies
+\[
+  A+B+C-\pi=\operatorname{area}(\triangle).
+\]
+Thus trigonometry detects curvature.  Plane triangle formulas are the zero-curvature limit of spherical and hyperbolic formulas.
+
+This provides a genuine high-level extension of elementary trigonometry: identities involving sides and angles are not merely computational; they reflect the geometry of the underlying space.
