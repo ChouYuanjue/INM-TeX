@@ -1,0 +1,344 @@
+\notechapter{N-20220911}{Analytic Geometry: Lines, Circles, and Coordinate Tricks}
+
+\section{Line formulas}
+
+This note is a formula sheet and worked exercise collection for analytic geometry.  The first part summarizes equations of a line.
+
+If a line has inclination angle \(\alpha\), then its slope is
+\[
+  k=\tan\alpha,\qquad \alpha\neq\frac\pi2.
+\]
+If it passes through two points
+\[
+  P_1=(x_1,y_1),\qquad P_2=(x_2,y_2),
+\]
+then
+\[
+  k=\frac{y_2-y_1}{x_2-x_1}.
+\]
+The point-slope form is
+\[
+  y-y_1=k(x-x_1),
+\]
+the slope-intercept form is
+\[
+  y=kx+b,
+\]
+the two-point form is
+\[
+  \frac{y-y_1}{y_2-y_1}=\frac{x-x_1}{x_2-x_1},
+\]
+the intercept form is
+\[
+  \frac xa+\frac yb=1,
+\]
+and the general form is
+\[
+  Ax+By+C=0.
+\]
+
+The note's diagram of intercepts reminds us that the intercept form is convenient only when the line meets both coordinate axes away from the origin.
+
+\section{Parallel and perpendicular lines}
+
+For
+\[
+  l_1:y=k_1x+b_1,\qquad l_2:y=k_2x+b_2,
+\]
+we have
+\[
+  l_1\parallel l_2\quad\Longleftrightarrow\quad k_1=k_2,\ b_1\neq b_2,
+\]
+and
+\[
+  l_1\perp l_2\quad\Longleftrightarrow\quad k_1k_2=-1.
+\]
+For lines in general form,
+\[
+  l_1:A_1x+B_1y+C_1=0,\qquad
+  l_2:A_2x+B_2y+C_2=0,
+\]
+parallelism is detected by proportional normal vectors:
+\[
+  \frac{A_1}{A_2}=\frac{B_1}{B_2}\neq\frac{C_1}{C_2},
+\]
+and perpendicularity is
+\[
+  A_1A_2+B_1B_2=0.
+\]
+This is just the dot product of the normal vectors.
+
+\section{Direction and normal vectors}
+
+For a line
+\[
+  Ax+By+C=0,
+\]
+a normal vector is
+\[
+  n=(A,B),
+\]
+and a direction vector is
+\[
+  d=(-B,A).
+\]
+Thus the vector form through \(P_0=(x_0,y_0)\) is
+\[
+  \frac{x-x_0}{u}=\frac{y-y_0}{v}
+\]
+if \(d=(u,v)\), and
+\[
+  a(x-x_0)+b(y-y_0)=0
+\]
+if \(n=(a,b)\).
+
+This vector viewpoint is the easiest way to remember the formulas.  The line is the set of points whose displacement from \(P_0\) is perpendicular to a fixed normal vector.
+
+\section{Angles, distances, and parallel lines}
+
+The angle between two nonvertical lines is given by
+\[
+  \tan\theta=\left|\frac{k_1-k_2}{1+k_1k_2}\right|.
+\]
+Equivalently, using direction vectors \(d_1,d_2\),
+\[
+  \cos\theta=\frac{|d_1\cdot d_2|}{|d_1|\,|d_2|}.
+\]
+
+The distance between points is
+\[
+  |AB|=\sqrt{(x_2-x_1)^2+(y_2-y_1)^2}.
+\]
+The distance from a point \(P(x_0,y_0)\) to a line
+\[
+  Ax+By+C=0
+\]
+is
+\[
+  d=\frac{|Ax_0+By_0+C|}{\sqrt{A^2+B^2}}.
+\]
+For parallel lines
+\[
+  Ax+By+C_1=0,\qquad Ax+By+C_2=0,
+\]
+the distance is
+\[
+  d=\frac{|C_1-C_2|}{\sqrt{A^2+B^2}}.
+\]
+
+\section{Circle equations}
+
+A circle with center \(C(a,b)\) and radius \(r\) has equation
+\[
+  (x-a)^2+(y-b)^2=r^2.
+\]
+The general equation is
+\[
+  x^2+y^2+Dx+Ey+F=0.
+\]
+Completing the square gives
+\[
+  \left(x+\frac D2\right)^2+\left(y+\frac E2\right)^2
+  =\frac{D^2+E^2-4F}{4}.
+\]
+Hence the center is
+\[
+  \left(-\frac D2,-\frac E2\right),
+\]
+and it is a real circle exactly when
+\[
+  D^2+E^2-4F>0.
+\]
+
+The handwritten note underlines this discriminant-like quantity because forgetting it leads to treating imaginary circles as real ones.
+
+\section{A fractional-linear range problem}
+
+One example asks for the range of
+\[
+  \mu=\frac{x}{y-3}
+\]
+under
+\[
+  |x|+|y|\le1.
+\]
+The idea is geometric.  The equation
+\[
+  \mu=\frac{x}{y-3}
+\]
+can be rewritten as
+\[
+  x=\mu(y-3).
+\]
+For fixed \(\mu\), this is a line through the point \((0,3)\).  The range of \(\mu\) is determined by which slopes make this line intersect the diamond
+\[
+  |x|+|y|\le1.
+\]
+The boundary slopes give
+\[
+  \mu\in\left[-\frac13,\frac13\right].
+\]
+The note draws the diamond because the range is easier to see as a family of lines than as an algebraic fraction.
+
+\section{A graph-slope counting problem}
+
+Another exercise asks for the number of \(x_i\) such that
+\[
+  \frac{f(x_i)}{x_i}
+\]
+has a fixed value.  Geometrically, the ratio \(f(x)/x\) is the slope of the line from the origin to the point \((x,f(x))\).  So the problem asks how many times a line through the origin can be tangent or secant to the drawn curve with a given slope.  The answer is read from the graph, not from algebraic manipulation.
+
+This is a useful change of viewpoint: ratios involving \(y/x\) often mean slopes of rays from the origin.
+
+\section{A moving-line maximum}
+
+A later problem has moving lines through fixed points \(A=(-3,0)\) and \(B=(1,6)\), intersecting at \(P\), and asks for the maximum of
+\[
+  |PA|\cdot |PB|.
+\]
+The solution uses a right-angle configuration.  Since the two moving lines are perpendicular, \(P\) lies on the circle with diameter \(AB\).  Then
+\[
+  |PA|^2+|PB|^2=|AB|^2.
+\]
+Thus
+\[
+  |PA||PB|\le\frac{|PA|^2+|PB|^2}{2}=\frac{|AB|^2}{2}.
+\]
+This is equality when \(PA=PB\).  With
+\[
+  |AB|^2=(1+3)^2+6^2=52,
+\]
+the maximum is
+\[
+  26.
+\]
+
+\section{Triangle coordinate problem}
+
+The final worked example gives \(A=(5,1)\), the median line \(CM\), and the perpendicular bisector \(BN\), then asks for \(B\) and the equation of \(BC\).  The handwritten solution introduces unknown coordinates and uses two facts:
+\begin{enumerate}[(i)]
+  \item a median means a midpoint condition;
+  \item a perpendicular bisector means equal distances or perpendicular slopes.
+
+\end{enumerate}
+Coordinate geometry often works this way: translate each geometric phrase into an equation, then solve the resulting system.
+
+
+\section{Coordinate tricks as changes of viewpoint}
+
+Analytic geometry often becomes simple after choosing better coordinates.  A line is easiest when written in point-direction form,
+\[
+  p+tv,
+\]
+while a circle is easiest when written by center and radius,
+\[
+  (x-a)^2+(y-b)^2=r^2.
+\]
+Expanding too early hides the geometry.  Completing the square recovers it.
+
+\section{Power of a point}
+
+For a circle with center \(O\) and radius \(r\), the power of a point \(P\) is
+\[
+  OP^2-r^2.
+\]
+If a line through \(P\) meets the circle at \(A,B\), then
+\[
+  PA\cdot PB
+\]
+is constant.  This is a standard way to convert circle intersection geometry into algebraic length equations.
+
+\section{Expanded synthesis and advanced context}
+
+Analytic geometry is not merely a bag of formulas.  Each formula has a vector meaning: slope is direction, \(Ax+By+C=0\) encodes a normal vector, distance to a line is projection onto that normal vector, and circle equations are completed squares.  The more one sees these meanings, the less one needs to memorize.
+
+
+
+\paragraph{Expanded synthesis.}
+For this chapter, the elementary material should be read as a study of what remains invariant when coordinates change. The earlier sections (`Line formulas`, `Parallel and perpendicular lines`, `Direction and normal vectors`, `Angles, distances, and parallel lines`, `Circle equations`) compute with arrays, bases, pivots, determinants, or eigenvectors; the deeper object is a linear map together with the spaces it acts on. A matrix is a representation of that map after bases have been chosen. This is why formulas such as
+\[
+  A' = P^{-1}AP,\qquad \widetilde A = T^{-1}AS
+\]
+are not cosmetic: they distinguish an intrinsic morphism from a coordinate description.
+
+The structural hierarchy is as follows. Kernels record what a map forgets, images record what it reaches, cokernels record obstructions to solvability, and quotients record information after an equivalence has been imposed. Determinants act on the top exterior power and therefore measure oriented volume; traces are invariant under cyclic rearrangement and become characters in representation theory; adjoints depend on an inner product and lead to self-adjoint spectral theory.
+
+A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
+
+
+\section{Elementary-to-advanced bridge: conics as quadratic forms}
+
+A conic in the plane has equation
+\[
+  ax^2+2bxy+cy^2+dx+ey+f=0.
+\]
+The quadratic part is the symmetric matrix
+\[
+  Q=\begin{pmatrix}a&b\\b&c\end{pmatrix}.
+\]
+Orthogonal diagonalization of $Q$ removes the $xy$ term.  Translation then attempts to remove linear terms.  This is the linear-algebraic classification behind the elementary conic formulas.
+
+The discriminant
+\[
+  b^2-ac
+\]
+distinguishes ellipse, parabola, and hyperbola types in the nondegenerate real case.  In projective geometry, these distinctions are understood through rank and intersection with the line at infinity.
+
+\section{Elementary-to-advanced bridge: affine transformations}
+
+An affine transformation has the form
+\[
+  x\mapsto Ax+b,\qquad A\in GL(n).
+\]
+It sends lines to lines and preserves ratios along a line, but not necessarily distances or angles.  Many analytic-geometry simplifications are affine changes of coordinates.
+
+Under affine transformations, ellipses may be transformed into circles, and general nondegenerate conics may be brought to standard forms.  The elementary completion-of-squares method is one coordinate expression of this broader equivalence.
+
+\section{Elementary-to-advanced bridge: projective viewpoint on conics}
+
+Using homogeneous coordinates $[X:Y:Z]$, a conic is given by a homogeneous quadratic equation
+\[
+  \begin{pmatrix}X&Y&Z\end{pmatrix}A\begin{pmatrix}X\\Y\\Z\end{pmatrix}=0.
+\]
+Projective transformations act by
+\[
+  A\mapsto P^TAP.
+\]
+This unifies ellipses, parabolas, and hyperbolas over the complex projective plane; the affine differences come from how the conic meets the line at infinity $Z=0$.
+
+\section{Elementary-to-advanced bridge: duality}
+
+In projective geometry, points and lines have a dual relationship.  A nondegenerate conic identifies points with polar lines.  If a conic is represented by a symmetric matrix $A$, the polar line of a point $p$ is
+\[
+  p^TAx=0.
+\]
+This gives an advanced interpretation of tangents and chord relations.
+
+\section{Returning to analytic geometry}
+
+The original formulas for lines, circles, and conics remain the computational core.  The advanced layer says: lines are affine/projective objects, conics are quadratic forms, coordinate changes are group actions, and tangents/polars come from bilinear algebra.
+
+% Second-pass deepening for waves 2-4: wave 4 part 1
+\section{Second-pass deepening: distance formulas as dual norms}
+
+The distance from a point $x_0$ to a line
+\[
+  ax+by+c=0
+\]
+is
+\[
+  \frac{|ax_0+by_0+c|}{\sqrt{a^2+b^2}}.
+\]
+The numerator evaluates an affine functional; the denominator is the norm of its linear part.  In normed-space language, distance to a hyperplane uses the dual norm of the defining functional.
+
+For a hyperplane $\varphi(x)=c$ in an inner product space,
+\[
+  \operatorname{dist}(x_0,H)=\frac{|\varphi(x_0)-c|}{\|\varphi\|_*}.
+\]
+In Euclidean coordinates, $\|\varphi\|_*$ is the length of the normal vector.
+
+\section{Second-pass deepening: conics and degenerations}
+
+A conic represented by a symmetric homogeneous matrix $A$ may be nondegenerate or degenerate.  Degenerate conics include pairs of lines, double lines, or points over the real affine plane.  Algebraically, degeneracy corresponds to rank drop of $A$.
+
+This gives a unified view of many analytic-geometry cases: a circle, ellipse, parabola, hyperbola, or pair of lines is controlled by rank, signature, and the line at infinity.  Completing squares is a coordinate method for revealing those invariants.
