@@ -1,0 +1,251 @@
+\notechapter{N-20220913}{Divisibility, Congruences, and the Habit of Proving Necessity}
+
+\section{From guessing to proving}
+
+The note opens with a useful warning: in number theory, guessing examples is not enough.  One must separate necessity and sufficiency.  If a condition is necessary, it must follow from the assumption.  If it is sufficient, it must imply the desired conclusion.  Many false solutions prove only one direction.
+
+The first example asks for a prime \(p\) of the form
+\[
+  p=x(x+1)-4,\qquad x\in\mathbb N_+.
+\]
+Since \(x(x+1)\) is always even,
+\[
+  p=x(x+1)-4
+\]
+is even.  If \(p\) is prime, then the only even prime is \(2\).  Hence
+\[
+  p=2,\qquad x(x+1)=6,
+\]
+so
+\[
+  x=2.
+\]
+This is a clean example of using parity as a necessary condition before solving.
+
+\section{Divisibility}
+
+For integers \(a,b\), with \(a\neq0\), we write
+\[
+  a\mid b
+\]
+if there exists \(q\in\mathbb Z\) such that
+\[
+  b=aq.
+\]
+The page lists standard properties:
+\begin{enumerate}[(i)]
+  \item \(a\mid b\Longleftrightarrow -a\mid b\Longleftrightarrow a\mid -b\Longleftrightarrow |a|\mid |b|\);
+  \item if \(a\mid b\) and \(b\mid c\), then \(a\mid c\);
+  \item if \(a\mid b\) and \(a\mid c\), then \(a\mid bx+cy\) for all integers \(x,y\);
+  \item if \(m\neq0\), then \(a\mid b\Longleftrightarrow ma\mid mb\);
+  \item if \(a\mid b\) and \(b\mid a\), then \(b=\pm a\);
+  \item if \(b\neq0\) and \(a\mid b\), then \(|a|\le |b|\).
+
+\end{enumerate}
+
+The handwritten note points out that property (iii) is often the most useful.  It lets us combine divisibility relations linearly.
+
+\section{Example: reducing the dividend}
+
+Suppose
+\[
+  x^2+1\mid x^3-x,\qquad x\in\mathbb Z_+.
+\]
+Modulo \(x^2+1\), we have
+\[
+  x^2\equiv -1,
+\]
+so
+\[
+  x^3-x=x(x^2)-x\equiv -x-x=-2x.
+\]
+Thus
+\[
+  x^2+1\mid 2x.
+\]
+For \(x>1\),
+\[
+  x^2+1>2x,
+\]
+so divisibility is impossible unless \(2x=0\), which cannot happen for positive \(x\).  Checking \(x=1\), we get
+\[
+  1^3-1=0,
+\]
+so \(x=1\) works.
+
+This example illustrates the handwritten strategy: reduce the large expression by using the divisor itself, then use size estimates to force a small list of cases.
+
+\section{Example: polynomial divisibility in one variable}
+
+For divisibility such as
+\[
+  x^2+x+1\mid x^4-2,
+\]
+one uses
+\[
+  x^2+x+1=0\quad\Longrightarrow\quad x^3-1=(x-1)(x^2+x+1)\equiv0.
+\]
+Thus \(x^3\equiv1\), and
+\[
+  x^4-2\equiv x-2.
+\]
+So the divisor must divide \(x-2\).  This leaves only very small candidates, because for large \(|x|\), the quadratic divisor is too large in absolute value to divide the linear remainder.
+
+The general method is Euclidean division in disguise: replace the dividend by its remainder modulo the divisor.
+
+\section{Congruences}
+
+Congruence notation compresses divisibility:
+\[
+  a\equiv b\pmod m
+\]
+means
+\[
+  m\mid a-b.
+\]
+This turns many divisibility problems into arithmetic with remainders.  The note emphasizes that congruences can be added, subtracted, and multiplied:
+\[
+  a\equiv b\pmod m,\quad c\equiv d\pmod m
+  \Longrightarrow
+  a+c\equiv b+d,\quad ac\equiv bd\pmod m.
+\]
+
+\section{A large power sum}
+
+The last problem asks to prove a divisibility statement involving
+\[
+  1^{1983}+2^{1983}+\cdots+1983^{1983}.
+\]
+The intended thought is pairing and congruence.  When the exponent is odd,
+\[
+  (m-k)^{1983}\equiv -k^{1983}\pmod m.
+\]
+So terms can be paired to cancel modulo a suitable modulus.  To prove divisibility by
+\[
+  1+2+\cdots+1983=\frac{1983\cdot1984}{2},
+\]
+one decomposes the modulus into factors and proves divisibility factor by factor, using pairing and residue classes.
+
+The handwritten solution is valuable because it records a strategy rather than just a theorem: for large power sums, first look for symmetry \(k\leftrightarrow m-k\), then reduce to congruences.
+
+\section{Expanded synthesis and advanced context}
+
+Divisibility is the first place where algebraic thinking becomes economical.  Instead of expanding huge expressions, we work modulo the divisor and keep only remainders.  This is exactly the same principle behind quotient rings such as
+\[
+  \mathbb Z/m\mathbb Z
+\]
+and polynomial quotients
+\[
+  F[x]/(f).
+\]
+The note's small examples are therefore early versions of modular algebra.
+
+
+
+\paragraph{Expanded synthesis.}
+For this chapter, the elementary material should be read as a study of what remains invariant when coordinates change. The earlier sections (`From guessing to proving`, `Divisibility`, `Example: reducing the dividend`, `Example: polynomial divisibility in one variable`, `Congruences`) compute with arrays, bases, pivots, determinants, or eigenvectors; the deeper object is a linear map together with the spaces it acts on. A matrix is a representation of that map after bases have been chosen. This is why formulas such as
+\[
+  A' = P^{-1}AP,\qquad \widetilde A = T^{-1}AS
+\]
+are not cosmetic: they distinguish an intrinsic morphism from a coordinate description.
+
+The structural hierarchy is as follows. Kernels record what a map forgets, images record what it reaches, cokernels record obstructions to solvability, and quotients record information after an equivalence has been imposed. Determinants act on the top exterior power and therefore measure oriented volume; traces are invariant under cyclic rearrangement and become characters in representation theory; adjoints depend on an inner product and lead to self-adjoint spectral theory.
+
+A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
+
+
+\section{Elementary-to-advanced bridge: divisibility as ideal containment}
+
+In the integers, the statement $a\mid b$ is equivalent to
+\[
+  b\in (a),
+\]
+where $(a)=a\mathbb Z$ is the ideal generated by $a$.  Also,
+\[
+  (b)\subseteq(a)
+\]
+when $a\mid b$.  Divisibility reverses inclusion of principal ideals.
+
+The greatest common divisor and least common multiple have ideal meanings:
+\[
+  (a)+(b)=(\gcd(a,b)),\qquad (a)\cap(b)=(\operatorname{lcm}(a,b)).
+\]
+Thus elementary divisibility manipulations are ideal arithmetic in $\mathbb Z$.
+
+\section{Elementary-to-advanced bridge: quotient rings and congruence}
+
+The congruence
+\[
+  a\equiv b\pmod n
+\]
+means that $a$ and $b$ define the same element of the quotient ring
+\[
+  \mathbb Z/n\mathbb Z.
+\]
+Addition and multiplication modulo $n$ are not ad hoc remainder tricks; they are ring operations in a quotient.
+
+A number $a$ has a multiplicative inverse modulo $n$ exactly when
+\[
+  \gcd(a,n)=1.
+\]
+Equivalently, the class of $a$ is a unit in $\mathbb Z/n\mathbb Z$.  Bezout's identity
+\[
+  ax+ny=1
+\]
+produces the inverse $x\pmod n$.
+
+\section{Elementary-to-advanced bridge: polynomial analogues}
+
+Many integer divisibility facts have polynomial analogues.  Over a field $k$, the ring $k[x]$ has Euclidean division: for $f,g\in k[x]$ with $g\ne0$,
+\[
+  f=qg+r,\qquad \deg r<\deg g.
+\]
+Thus $k[x]$ is a Euclidean domain just like $\mathbb Z$.  Greatest common divisors, Bezout identities, and modular arithmetic all exist for polynomials.
+
+For example, saying that $f(a)=0$ is equivalent to saying
+\[
+  x-a\mid f(x).
+\]
+This is the polynomial version of divisibility detecting roots.
+
+\section{Elementary-to-advanced bridge: local-to-global hints}
+
+A congruence modulo $n$ can often be decomposed prime-power by prime-power.  If
+\[
+  n=\prod_i p_i^{e_i},
+\]
+then the Chinese remainder theorem gives
+\[
+  \mathbb Z/n\mathbb Z\cong \prod_i \mathbb Z/p_i^{e_i}\mathbb Z.
+\]
+This is the first local-to-global principle: solve a problem at prime powers, then recombine.
+
+The same philosophy appears across number theory: global arithmetic objects are studied through their local information at primes.
+
+% Second-pass deepening for waves 2-4: wave 3 A-C part 2
+\section{Second-pass deepening: congruence classes as quotient objects}
+
+Working modulo $n$ replaces integers by equivalence classes.  The projection
+\[
+  \pi:\mathbb Z\to\mathbb Z/n\mathbb Z
+\]
+forgets the exact integer and remembers only its remainder.  A congruence proof is often shorter because it applies $\pi$ and works in a smaller ring.
+
+The kernel of this projection is $n\mathbb Z$.  This is the first isomorphism theorem in its simplest form:
+\[
+  \mathbb Z/n\mathbb Z\cong \mathbb Z/\ker \pi.
+\]
+Thus modular arithmetic is quotient algebra, not merely remainder arithmetic.
+
+\section{Second-pass deepening: valuations as coordinates at primes}
+
+For nonzero integers, the function $v_p(n)$ records the exponent of $p$ in $n$.  Divisibility becomes coordinatewise comparison:
+\[
+  a\mid b\quad\Longleftrightarrow\quad v_p(a)\le v_p(b)\text{ for all primes }p.
+\]
+Gcd and lcm are coordinatewise minimum and maximum:
+\[
+  v_p(\gcd(a,b))=\min(v_p(a),v_p(b)),\qquad
+  v_p(\operatorname{lcm}(a,b))=\max(v_p(a),v_p(b)).
+\]
+This turns divisibility into geometry on an exponent lattice.
