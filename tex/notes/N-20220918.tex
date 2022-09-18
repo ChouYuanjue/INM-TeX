@@ -1,0 +1,193 @@
+\notechapter{N-20220918}{Divisibility by Finite Differences and Pairing}
+
+\section{A general odd-power divisibility principle}
+
+The page begins with a useful theorem: for odd \(r\), the sum
+\[
+  1^r+2^r+\cdots+k^r
+\]
+has a strong divisibility property by the triangular number
+\[
+  1+2+\cdots+k=\frac{k(k+1)}2.
+\]
+The natural proof idea is pairing.  Pair \(j\) with \(k+1-j\).  Since \(r\) is odd,
+\[
+  j^r+(k+1-j)^r
+\]
+is divisible by \(k+1\), because
+\[
+  k+1-j\equiv -j\pmod{k+1}.
+\]
+A second argument handles the factor \(k\) or the remaining factor according to parity.  The handwritten note records the right high-level method in blue: pairing, oddness, and treating the whole expression rather than each term separately.
+
+\section[A divisibility problem with 512]{A divisibility problem with \(512\)}
+
+The main worked example is:
+\[
+  \text{prove that }512\mid 3^{2n}-32n^2+24n-1,\qquad n\in\mathbb N_+.
+\]
+Set
+\[
+  f(n)=3^{2n}-32n^2+24n-1.
+\]
+The note uses finite differences.  Since \(512\mid f(1)\), it is enough to show
+\[
+  512\mid f(n+1)-f(n)
+\]
+for all \(n\).  Compute
+\[
+\begin{aligned}
+ f(n+1)-f(n)
+ &=3^{2n+2}-32(n+1)^2+24(n+1)-1\\
+ &\quad -3^{2n}+32n^2-24n+1\\
+ &=8\cdot3^{2n}-64n-8\\
+ &=8(3^{2n}-8n-1).
+\end{aligned}
+\]
+Thus it remains to prove
+\[
+  64\mid 3^{2n}-8n-1.
+\]
+Define
+\[
+  h(n)=3^{2n}-8n-1.
+\]
+Then
+\[
+\begin{aligned}
+ h(n+1)-h(n)
+ &=3^{2n+2}-8(n+1)-1-3^{2n}+8n+1\\
+ &=8\cdot3^{2n}-8\\
+ &=8(3^{2n}-1).
+\end{aligned}
+\]
+So it is enough to know
+\[
+  8\mid 3^{2n}-1.
+\]
+But \(3^2=9\equiv1\pmod8\), so
+\[
+  3^{2n}\equiv1\pmod8.
+\]
+Therefore \(64\mid h(n)\), and hence \(512\mid f(n)\).
+
+\section{Why finite differences work}
+
+The solution is essentially induction, but written in a more structural way.  If \(m\mid f(1)\) and \(m\mid f(n+1)-f(n)\) for every \(n\), then
+\[
+  f(n)=f(1)+\sum_{j=1}^{n-1}(f(j+1)-f(j))
+\]
+is divisible by \(m\).  This is the discrete analogue of recovering a function from its derivative.
+
+The page is valuable because it shows a common trick for expressions involving \(n\) both in an exponent and a polynomial.  Direct induction may be messy, but finite differences reduce the polynomial part and often reveal a smaller congruence.
+
+\section{An alternating harmonic numerator}
+
+The second problem is:
+\[
+  \frac pq=1-\frac12+\frac13-\frac14+\cdots-\frac1{1318}+\frac1{1319},
+\]
+where \(p,q\) are coprime positive integers, and one must prove
+\[
+  1979\mid p.
+\]
+The note rewrites the alternating sum by separating odd and even denominators:
+\[
+  1+\frac13+\cdots+\frac1{1319}
+  -2\left(\frac12+\frac14+\cdots+\frac1{1318}\right).
+\]
+After simplification, this becomes a sum of paired fractions in which a factor \(1979\) appears in the numerator.  The important observation is that \(1979\) is prime and is coprime to the denominators appearing after cancellation, so if the rational number is written in lowest terms, the factor \(1979\) cannot disappear into the denominator.  Hence it must divide \(p\).
+
+\section{Expanded synthesis and advanced context}
+
+Both problems use the same philosophy: do not expand everything.  For power sums, pair symmetric terms.  For congruence sequences, take finite differences.  For rational sums, reorganize the denominator structure so that a prime factor becomes visible.  These are all examples of choosing the right invariant before calculating.
+
+
+
+\paragraph{Expanded synthesis.}
+The common theme of this chapter is that an elementary limiting or computational rule becomes powerful only after one specifies the space in which the limiting process takes place. The earlier sections (`A general odd-power divisibility principle`, `A divisibility problem with \(512\)`, `Why finite differences work`, `An alternating harmonic numerator`, `Higher viewpoint`) may look like separate techniques, but they all ask the same question: which operations are stable under approximation? A derivative is stable first-order approximation,
+\[
+  f(a+h)=f(a)+L(h)+o(|h|),
+\]
+while an integral is stable accumulation with respect to a measure, and a convergent series is a limit in a chosen norm or topology.
+
+The advanced bridge is functional-analytic. Uniform convergence is convergence in a sup norm; $L^p$ convergence is convergence in an integral norm; differentiability is the existence of a continuous linear approximation; many differential equations are operator equations $L[u]=f$. Theorems such as dominated convergence, the inverse function theorem, the projection theorem in Hilbert spaces, and semigroup existence results are refined answers to the same elementary concern: when may we pass from finite approximations to a genuine limiting object?
+
+To use this viewpoint when rereading the original examples, identify the hidden stability condition. A Taylor expansion asks for control of the remainder. A change of variables asks for differentiability and Jacobian control. Termwise differentiation of a series asks for uniform convergence of derivative series. A differential-equation formula asks whether the operator is invertible under the imposed initial or boundary data. The elementary computation is the visible part; the advanced theory names the hypotheses that make it legitimate.
+
+
+\section{Elementary-to-advanced bridge: finite differences as discrete derivatives}
+
+The finite difference operator
+\[
+  \Delta f(n)=f(n+1)-f(n)
+\]
+is the discrete analogue of the derivative.  For a polynomial of degree $d$,
+\[
+  \Delta^{d+1}f=0.
+\]
+This is why finite-difference tables detect polynomial behavior.
+
+The binomial basis is adapted to this operator:
+\[
+  \Delta \binom nk=\binom n{k-1}.
+\]
+Therefore every integer-valued polynomial can be written as an integer linear combination of binomial coefficients:
+\[
+  f(n)=\sum_k c_k\binom nk,\qquad c_k\in\mathbb Z.
+\]
+This is much more natural for divisibility than the monomial basis $1,n,n^2,\ldots$.
+
+\section{Elementary-to-advanced bridge: integer-valued polynomials}
+
+A polynomial $f(x)\in\mathbb Q[x]$ is integer-valued if $f(n)\in\mathbb Z$ for all $n\in\mathbb Z$.  The ring of integer-valued polynomials is
+\[
+  \operatorname{Int}(\mathbb Z)=\{f\in\mathbb Q[x]:f(\mathbb Z)\subseteq\mathbb Z\}.
+\]
+A classical theorem says that it has basis
+\[
+  \binom x0,\ \binom x1,\ \binom x2,\ \ldots
+\]
+over $\mathbb Z$.
+
+This explains why binomial coefficients appear in divisibility identities.  They are the correct integral coordinate system for polynomial functions on integers.
+
+\section{Elementary-to-advanced bridge: p-adic valuation intuition}
+
+The exponent of a prime $p$ in $n$ is the $p$-adic valuation $v_p(n)$.  It satisfies
+\[
+  v_p(ab)=v_p(a)+v_p(b),\qquad
+  v_p(a+b)\ge \min(v_p(a),v_p(b)).
+\]
+Many divisibility problems become simple after translating them into inequalities involving $v_p$.
+
+For factorials, Legendre's formula is
+\[
+  v_p(n!)=\sum_{k\ge1}\left\lfloor \frac n{p^k}\right\rfloor.
+\]
+This allows precise control of divisibility of binomial coefficients.
+
+\section{Elementary-to-advanced bridge: discrete calculus}
+
+Summation is inverse to finite difference, just as integration is inverse to differentiation.  If $\Delta F(n)=f(n)$, then
+\[
+  \sum_{n=a}^{b-1} f(n)=F(b)-F(a).
+\]
+This is the discrete fundamental theorem of calculus.  Many finite-sum identities in the original note are telescoping identities in disguise.
+
+% Second-pass deepening for waves 2-4: wave 3 A-C part 3
+\section{Second-pass deepening: finite differences and congruences}
+
+If a sequence is defined by polynomial expressions, finite differences lower degree and often expose divisibility.  Suppose $f(n)$ is integer-valued.  Expanding in the binomial basis,
+\[
+  f(n)=\sum_k c_k\binom nk,
+\]
+makes congruence properties more transparent because $\binom nk$ has built-in divisibility and integrality behavior.
+
+This is especially useful in problems asking to prove that a certain expression is divisible by $m$ for all integers $n$.  Instead of expanding powers, one may show that the relevant finite differences eventually become multiples of $m$, then rebuild the sequence by summation.
+
+\section{Second-pass deepening: p-adic lifting viewpoint}
+
+Many divisibility exercises become sharper when one tracks $v_p$ separately.  A typical pattern is that a congruence modulo $p$ can be lifted to a congruence modulo $p^k$ under suitable derivative conditions.  This is the idea behind Hensel lifting.
+
+Even when the full theorem is not needed, the intuition is useful: prime-power divisibility is controlled locally at each prime, and repeated finite-difference or binomial expansions measure how divisibility improves with powers.
