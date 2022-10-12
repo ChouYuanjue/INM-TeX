@@ -1,0 +1,230 @@
+\notechapter{N-20221012}{A Map of Classical Inequalities}
+
+\section{Bernoulli's inequality}
+
+The note begins in the middle of a list of standard inequalities.  Bernoulli's inequality says that if \(x>-1\) and \(n\in\mathbb N\), then
+\[
+  (1+x)^n\ge 1+nx.
+\]
+A slightly more general form is: if \(x_i>-1\) and the \(x_i\)'s have the same sign, then
+\[
+  (1+x_1)(1+x_2)\cdots(1+x_n)
+  \ge 1+x_1+x_2+\cdots+x_n.
+\]
+When \(x_1=\cdots=x_n=x\), this reduces to Bernoulli's inequality.
+
+The handwritten note adds the useful memory: for \(x>0\), the graph of \(y=(1+x)^n\) lies above its tangent line at \(0\).  This is the convexity explanation.
+
+\section{Power means}
+
+For a positive vector
+\[
+  a=(a_1,\ldots,a_n),
+\]
+and \(r\neq0\), define the power mean
+\[
+  M_r(a)=\left(\frac{a_1^r+a_2^r+\cdots+a_n^r}{n}\right)^{1/r}.
+\]
+The power mean inequality says that if \(r\le s\), then
+\[
+  M_r(a)\le M_s(a).
+\]
+Thus the familiar chain is
+\[
+  \text{harmonic mean}\le\text{geometric mean}\le\text{arithmetic mean}\le\text{quadratic mean}.
+\]
+
+This is a good example of a high-level unification.  Instead of remembering many separate inequalities, one remembers that changing the exponent changes the mean monotonically.
+
+\section{Cauchy--Schwarz}
+
+The Cauchy inequality is
+\[
+  (a_1^2+\cdots+a_n^2)(b_1^2+\cdots+b_n^2)
+  \ge (a_1b_1+\cdots+a_nb_n)^2.
+\]
+It is equality exactly when the two vectors are proportional:
+\[
+  (a_1,\ldots,a_n)=\lambda(b_1,\ldots,b_n).
+\]
+
+The Engel form, also called Titu Andreescu's lemma, is
+\[
+  \frac{a_1^2}{b_1}+\frac{a_2^2}{b_2}+\cdots+\frac{a_n^2}{b_n}
+  \ge
+  \frac{(a_1+a_2+\cdots+a_n)^2}{b_1+b_2+\cdots+b_n},
+\]
+for \(b_i>0\).  The note marks this formula because it is one of the most frequently used forms in contest inequalities.
+
+The equality condition is
+\[
+  \frac{a_1}{b_1}=\frac{a_2}{b_2}=\cdots=\frac{a_n}{b_n}.
+\]
+
+\section{Minkowski inequality}
+
+The page also records the inequality
+\[
+  \sqrt{a_1^2+b_1^2}+\cdots+\sqrt{a_n^2+b_n^2}
+  \ge
+  \sqrt{(a_1+\cdots+a_n)^2+(b_1+\cdots+b_n)^2}.
+\]
+This is the triangle inequality in \(\mathbb R^2\), applied repeatedly.  Each pair \((a_i,b_i)\) is a vector, and the left side is the sum of lengths, while the right side is the length of the sum.
+
+This viewpoint is much better than memorizing the expression.  Whenever square roots of sums of squares appear, try to see vectors.
+
+\section{A three-variable inequality}
+
+One of the listed consequences has the form
+\[
+  \frac{x}{y+z}(a+b)+\frac{y}{z+x}(c+a)+\frac{z}{x+y}(a+b)
+  \ge \sqrt{3(ab+bc+ca)},
+\]
+under positivity assumptions.  The exact printed expression is somewhat compressed, but the intended family is clear: combine Cauchy/Engel form with AM--GM to convert fractions into symmetric expressions.
+
+The practical rule is: denominators such as \(x+y\), \(y+z\), \(z+x\) usually suggest either Nesbitt-type transformations or Engel form.
+
+\section{Chebyshev's inequality}
+
+If
+\[
+  a_1\le a_2\le\cdots\le a_n,\qquad
+  b_1\le b_2\le\cdots\le b_n,
+\]
+then Chebyshev's sum inequality says
+\[
+  \left(\frac{a_1+\cdots+a_n}{n}\right)
+  \left(\frac{b_1+\cdots+b_n}{n}\right)
+  \le
+  \frac{a_1b_1+\cdots+a_nb_n}{n}.
+\]
+Equivalently,
+\[
+  (a_1+\cdots+a_n)(b_1+\cdots+b_n)
+  \le n(a_1b_1+\cdots+a_nb_n).
+\]
+The note writes this as ``same monotonic order gives larger average product.''  This is the right intuition: sorted sequences positively correlate.
+
+\section{Jensen's inequality}
+
+For a convex function \(f\), Jensen's inequality says
+\[
+  f(\alpha x+(1-\alpha)y)
+  \le \alpha f(x)+(1-\alpha)f(y),
+\]
+where \(0\le\alpha\le1\).  More generally, if \(\alpha_i\ge0\) and \(\sum\alpha_i=1\), then
+\[
+  f(\alpha_1x_1+\cdots+\alpha_nx_n)
+  \le
+  \alpha_1f(x_1)+\cdots+\alpha_nf(x_n).
+\]
+The note also records the second-derivative criterion: if
+\[
+  f''(x)\ge0,
+\]
+then \(f\) is convex.
+
+Jensen is not just another inequality; it is a language.  AM--GM follows by applying Jensen to \(\ln x\), and many trigonometric inequalities follow by checking convexity or concavity on the relevant interval.
+
+\section{Young, Hölder, and Minkowski}
+
+Young's inequality says that if \(a,b>0\), \(p,q>1\), and
+\[
+  \frac1p+\frac1q=1,
+\]
+then
+\[
+  ab\le\frac{a^p}{p}+\frac{b^q}{q}.
+\]
+Equality holds when
+\[
+  a^p=b^q.
+\]
+
+Hölder's inequality says
+\[
+  a_1b_1+\cdots+a_nb_n
+  \le
+  \left(a_1^p+\cdots+a_n^p\right)^{1/p}
+  \left(b_1^q+\cdots+b_n^q\right)^{1/q}.
+\]
+Minkowski's inequality says, for \(p>1\),
+\[
+  \left(\sum_{i=1}^n(a_i+b_i)^p\right)^{1/p}
+  \le
+  \left(\sum_{i=1}^n a_i^p\right)^{1/p}
+  +
+  \left(\sum_{i=1}^n b_i^p\right)^{1/p}.
+\]
+
+The note lists these at the end because they are higher-level inequalities.  They belong naturally to normed vector spaces and \(L^p\) spaces.
+
+
+\section{Cauchy--Schwarz as a master inequality}
+
+The Cauchy--Schwarz inequality
+\[
+  \left(\sum_i a_i b_i\right)^2\le\left(\sum_i a_i^2\right)\left(\sum_i b_i^2\right)
+\]
+can be read geometrically as
+\[
+  |a\cdot b|\le \|a\|\,\|b\|.
+\]
+Many inequalities are disguised Cauchy--Schwarz.  The skill is to choose the two vectors correctly.
+
+\section{Equality conditions}
+
+For every inequality, the equality condition is part of the theorem.  In Cauchy--Schwarz, equality holds iff the two vectors are linearly dependent.  In AM--GM, equality holds iff all the compared positive numbers are equal.  Tracking equality conditions is essential in optimization problems.
+
+\section{Expanded synthesis and advanced context}
+
+This page is best read as a map rather than a list.  Bernoulli comes from convexity of powers.  Power means organize all classical means.  Cauchy is inner-product geometry.  Minkowski is the triangle inequality.  Chebyshev is monotone correlation.  Jensen is convexity.  Young and Hölder are the algebra of dual exponents.  Once one sees these meanings, choosing the right inequality becomes much less arbitrary.
+
+
+
+\paragraph{Expanded synthesis.}
+For this chapter, the elementary material should be read as a study of how inequalities preserve order under algebraic transformation. The earlier sections discuss Bernoulli's inequality, power means, Cauchy--Schwarz, Minkowski, and a three-variable inequality. They do not mainly compute matrices; they compare quantities under convexity, norm structure, and averaging.
+
+The deeper object is an order relation compatible with algebraic operations.  The point of each proof is to transform the expression without losing the direction of the inequality.
+
+The structural hierarchy is as follows. Kernels record what a map forgets, images record what it reaches, cokernels record obstructions to solvability, and quotients record information after an equivalence has been imposed. Determinants act on the top exterior power and therefore measure oriented volume; traces are invariant under cyclic rearrangement and become characters in representation theory; adjoints depend on an inner product and lead to self-adjoint spectral theory.
+
+A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
+
+
+\section{Elementary-to-advanced bridge: Hölder and Minkowski in measure spaces}
+
+The finite-sum inequalities in the original note extend directly to measure spaces.  If $1<p,q<\infty$ and $1/p+1/q=1$, Hölder's inequality says
+\[
+  \int |fg|\,d\mu\le \left(\int |f|^p\,d\mu\right)^{1/p}
+  \left(\int |g|^q\,d\mu\right)^{1/q}.
+\]
+Minkowski's inequality says
+\[
+  \|f+g\|_p\le \|f\|_p+\|g\|_p.
+\]
+Thus $L^p$ spaces are normed spaces.  For $p=2$, $L^2$ is a Hilbert space with inner product
+\[
+  \langle f,g\rangle=\int f\overline g\,d\mu.
+\]
+
+\section{Elementary-to-advanced bridge: Young's inequality and duality}
+
+Young's inequality for conjugate exponents is
+\[
+  ab\le \frac{a^p}{p}+\frac{b^q}{q},\qquad a,b\ge0,\quad \frac1p+\frac1q=1.
+\]
+It is the pointwise engine behind Hölder.  From a convex-analysis viewpoint, it is the Fenchel inequality for the convex function $\phi(a)=a^p/p$ and its Legendre dual $\phi^*(b)=b^q/q$.
+
+This shows that many inequalities are duality statements.  Cauchy--Schwarz is Hilbert-space duality; Hölder is $L^p$--$L^q$ duality; Jensen is convexity under expectation.
+
+\section{Elementary-to-advanced bridge: convolution inequality}
+
+Young's convolution inequality says, under suitable exponent conditions,
+\[
+  \|f*g\|_r\le \|f\|_p\|g\|_q,\qquad
+  1+\frac1r=\frac1p+\frac1q.
+\]
+This is an advanced descendant of Hölder and Minkowski.  It controls smoothing operators, PDE estimates, and harmonic analysis.
+
+The classical inequality map in the original note is therefore a small finite-dimensional visible part of a much larger landscape of norm estimates for functions and operators.
