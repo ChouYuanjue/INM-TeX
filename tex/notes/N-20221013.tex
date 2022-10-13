@@ -1,0 +1,209 @@
+\notechapter{N-20221013}{Shoelace Formula, Remainder Theorem, and Modular Arithmetic}
+
+\section{Shoelace formula}
+
+For a polygon with vertices
+\[
+  A_1(x_1,y_1), A_2(x_2,y_2),\ldots,A_n(x_n,y_n),
+\]
+listed cyclically, its area is
+\[
+  S=\frac12\left|\sum_{i=1}^n(x_iy_{i+1}-x_{i+1}y_i)\right|,
+\]
+where
+\[
+  x_{n+1}=x_1,\qquad y_{n+1}=y_1.
+\]
+This is the shoelace formula.
+
+For the example
+\[
+  A_1=(3,4),\quad A_2=(5,11),\quad A_3=(12,8),\quad A_4=(9,5),\quad A_5=(5,6),
+\]
+the note computes
+\[
+\begin{aligned}
+2S&=|3\cdot11-5\cdot4+5\cdot8-12\cdot11+12\cdot5-8\cdot9\\
+&\quad+9\cdot6-5\cdot5+5\cdot4-3\cdot6|\\
+&=60.
+\end{aligned}
+\]
+Thus
+\[
+  S=30.
+\]
+
+\section{Why the shoelace formula works}
+
+Each term
+\[
+  x_iy_{i+1}-x_{i+1}y_i
+\]
+is a \(2\times2\) determinant.  Geometrically, it is the signed area of the parallelogram spanned by the two position vectors.  The shoelace formula adds signed triangle areas around the origin.  Interior cancellations leave the polygon area.
+
+This determinant viewpoint explains why orientation matters.  Reversing the order of vertices changes the sign, and the absolute value recovers ordinary area.
+
+\section{A circle-area maximum problem}
+
+One exercise asks: if three points lie on
+\[
+  x^2+y^2=2x-4y,
+\]
+what is the maximum of
+\[
+  x_1y_2-x_2y_1+x_2y_3-x_3y_2?
+\]
+First complete the square:
+\[
+  (x-1)^2+(y+2)^2=5.
+\]
+So the points lie on a circle of radius \(\sqrt5\).  Expressions such as
+\[
+  x_iy_j-x_jy_i
+\]
+are twice signed triangle areas with the origin.  The handwritten solution interprets the expression as twice the area of a triangle determined by the points and then maximizes the possible area.
+
+The largest triangle area in a circle occurs for a suitably positioned chord/diameter configuration; the note obtains the maximum
+\[
+  20.
+\]
+The main idea is not the number alone: determinants convert coordinate expressions into signed areas.
+
+\section{Remainder theorem}
+
+If a polynomial \(p(x)\) is divided by \(x-c\), then the remainder is
+\[
+  p(c).
+\]
+Indeed, polynomial division gives
+\[
+  p(x)=(x-c)q(x)+r,
+\]
+where \(r\) is constant.  Substituting \(x=c\) yields
+\[
+  r=p(c).
+\]
+
+The note includes this proof because it is often more useful than the statement.  It explains why evaluating at roots kills divisible parts.
+
+\section{A polynomial remainder example}
+
+Suppose \(P(x)\) leaves remainder \(99\) when divided by \(x-19\), and remainder \(19\) when divided by \(x-99\).  If \(P(x)\) is divided by
+\[
+  (x-19)(x-99),
+\]
+the remainder must be linear:
+\[
+  R(x)=ax+b.
+\]
+The conditions are
+\[
+  R(19)=99,\qquad R(99)=19.
+\]
+Thus
+\[
+  19a+b=99,\qquad 99a+b=19.
+\]
+Solving gives
+\[
+  a=-1,\qquad b=118,
+\]
+so
+\[
+  R(x)=118-x.
+\]
+This example is the remainder theorem plus interpolation.
+
+\section{Congruence arithmetic}
+
+The note then switches to congruences.  We write
+\[
+  a\equiv b\pmod m
+\]
+if
+\[
+  m\mid a-b.
+\]
+Useful properties include:
+\begin{enumerate}[(i)]
+  \item reflexivity: \(a\equiv a\pmod m\);
+  \item symmetry and transitivity;
+  \item compatibility with addition and multiplication;
+  \item if \(a\equiv b\pmod m\), then \(a^k\equiv b^k\pmod m\).
+
+\end{enumerate}
+
+The page also records elementary digit facts:
+\begin{enumerate}[(i)]
+  \item \(n^2\pmod3\) is \(0\) or \(1\);
+  \item \(n^2\pmod8\) is \(0,1,4\);
+  \item \(n\equiv\) sum of digits of \(n\pmod9\).
+
+\end{enumerate}
+These are quick residue filters for contest problems.
+
+\section{Fermat and Euler}
+
+Fermat's little theorem says: if \(p\) is prime and \(p\nmid a\), then
+\[
+  a^{p-1}\equiv1\pmod p.
+\]
+Euler's theorem generalizes it: if
+\[
+  \gcd(a,m)=1,
+\]
+then
+\[
+  a^{\varphi(m)}\equiv1\pmod m.
+\]
+Here \(\varphi(m)\) is Euler's totient function: the number of positive integers up to \(m\) that are coprime to \(m\).
+
+The note's example asks for the remainder of
+\[
+  2^{1000}
+\]
+modulo \(13\).  Since
+\[
+  \varphi(13)=12,
+\]
+we reduce
+\[
+  1000\equiv4\pmod{12}.
+\]
+Therefore
+\[
+  2^{1000}\equiv2^4=16\equiv3\pmod{13}.
+\]
+
+
+\section{Shoelace formula as oriented area}
+
+For polygon vertices \((x_i,y_i)\), the shoelace formula is
+\[
+  A=\frac12\left|\sum_i (x_i y_{i+1}-x_{i+1}y_i)\right|.
+\]
+The summand
+\[
+  x_i y_{i+1}-x_{i+1}y_i
+\]
+is the two-dimensional determinant of the consecutive vertex vectors.  Thus the formula computes oriented area by summing triangular pieces based at the origin.  The absolute value at the end forgets orientation and returns ordinary area.
+
+\section{Remainder theorem}
+
+The polynomial remainder theorem says that the remainder of \(f(x)\) on division by \(x-a\) is \(f(a)\).  Thus \(x-a\) divides \(f(x)\) iff \(f(a)=0\).  This is the simplest root-factor principle and is the foundation for many later factorization arguments.
+
+\section{Expanded synthesis and advanced context}
+
+This note connects three determinant-like ideas.  The shoelace formula uses \(2\times2\) determinants to measure area.  The remainder theorem uses evaluation to collapse polynomial division.  Congruences use remainders to collapse integer arithmetic.  In all three cases, the strategy is to replace a complicated object by an invariant that preserves exactly the information needed.
+
+
+\paragraph{Expanded synthesis.}
+For this chapter, the elementary material should be read as a study of what remains invariant when coordinates change. The earlier sections (`Shoelace formula`, `Why the shoelace formula works`, `A circle-area maximum problem`, `Remainder theorem`, `A polynomial remainder example`) compute with arrays, bases, pivots, determinants, or eigenvectors; the deeper object is a linear map together with the spaces it acts on. A matrix is a representation of that map after bases have been chosen. This is why formulas such as
+\[
+  A' = P^{-1}AP,\qquad \widetilde A = T^{-1}AS
+\]
+are not cosmetic: they distinguish an intrinsic morphism from a coordinate description.
+
+The structural hierarchy is as follows. Kernels record what a map forgets, images record what it reaches, cokernels record obstructions to solvability, and quotients record information after an equivalence has been imposed. Determinants act on the top exterior power and therefore measure oriented volume; traces are invariant under cyclic rearrangement and become characters in representation theory; adjoints depend on an inner product and lead to self-adjoint spectral theory.
+
+A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
