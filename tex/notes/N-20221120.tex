@@ -1,0 +1,201 @@
+\notechapter{N-20221120}{Elliptic Curves: Nonsingularity, Group Law, and Cryptographic Motivation}
+
+\section{Definition and nonsingularity}
+
+An elliptic curve in short Weierstrass form is the set of solutions
+\[
+  E:y^2=x^3+ax+b
+\]
+together with a point at infinity.  The printed page emphasizes a crucial restriction: elliptic curves are not allowed to have double or triple roots in the cubic polynomial
+\[
+  x^3+ax+b.
+\]
+Geometrically, a triple root gives a cusp, while a double root gives a self-intersection or node.  These singularities destroy the clean group law.
+
+The nonsingularity condition is
+\[
+  4a^3+27b^2\neq0.
+\]
+Equivalently, the discriminant
+\[
+  \Delta=-16(4a^3+27b^2)
+\]
+is nonzero.  The note's highlighted line is important: this condition is not cosmetic.  It ensures that the tangent line is well-behaved and that the addition law can be defined without pathological exceptions.
+
+\section{Why the discriminant appears}
+
+If the cubic has a double root \(r_1\), then
+\[
+  x^3+ax+b=(x-r_1)^2(x-r_2).
+\]
+Expanding and comparing coefficients gives a relation between \(a,b,r_1,r_2\).  Eliminating the roots yields
+\[
+  4a^3+27b^2=0.
+\]
+Conversely, if this expression vanishes, the cubic has a repeated root.  This is the cubic discriminant calculation.
+
+A useful conceptual memory: repeated roots occur exactly when a polynomial and its derivative have a common root.  Here
+\[
+  f(x)=x^3+ax+b,\qquad f'(x)=3x^2+a.
+\]
+So singularity is the failure of \(f\) and \(f'\) to be coprime.
+
+\section{Cryptographic motivation}
+
+The printed note then moves to cryptography.  Earlier cryptosystems such as Diffie--Hellman use discrete exponentiation in a group.  To use elliptic curves cryptographically, we need the points on an elliptic curve to form a group.  The advantage is that elliptic-curve groups can give strong security with smaller parameters than classical finite-field multiplicative groups.
+
+This is the key shift:
+\[
+  \text{number-theoretic cryptography}\quad\rightsquigarrow\quad\text{hard problems in groups}.
+\]
+For elliptic curves, the hard problem is the elliptic-curve discrete logarithm problem.
+
+\section{Geometric addition law}
+
+Let \(P_1,P_2\in E\).  If \(P_1\neq P_2\), draw the line through them.  It intersects the cubic in a third point \(R\).  Reflect \(R\) across the \(x\)-axis; the reflected point is defined to be
+\[
+  P_1+P_2.
+\]
+If \(P_1=P_2\), use the tangent line at \(P_1\) instead of the secant line.  This is point doubling.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[scale=1.0,>=Stealth,every node/.style={fill=white,inner sep=1.2pt}]
+  \draw[->] (-3.2,0)--(3.2,0) node[right] {$x$};
+  \draw[->] (0,-3)--(0,3) node[above] {$y$};
+  \draw[thick,smooth,domain=-1.75:2.2,samples=120] plot(\x,{sqrt(max(0,\x*\x*\x-\x+1))});
+  \draw[thick,smooth,domain=-1.75:2.2,samples=120] plot(\x,{-sqrt(max(0,\x*\x*\x-\x+1))});
+  \coordinate (P) at (-1.1,1.0);
+  \coordinate (Q) at (0.7,0.8);
+  \coordinate (R) at (1.8,-2.1);
+  \draw[thick] (-1.5,1.08)--(2.1,-2.4);
+  \draw[dashed] (R)--(1.8,2.1);
+  \fill (P) circle (0.035) node[above left=2pt] {$P$};
+  \fill (Q) circle (0.035) node[above right=2pt] {$Q$};
+  \fill (R) circle (0.035) node[below right=2pt] {$R$};
+  \fill (1.8,2.1) circle (0.035) node[above right=2pt] {$P+Q$};
+\end{tikzpicture}
+\caption{Schematic chord-and-tangent addition on an elliptic curve.}
+\end{figure}
+
+\section{Algebraic formula}
+
+For
+\[
+  P=(x_1,y_1),\qquad Q=(x_2,y_2),
+\]
+with \(P\neq Q\), the slope is
+\[
+  m=\frac{y_2-y_1}{x_2-x_1}.
+\]
+Then
+\[
+  x_3=m^2-x_1-x_2,
+\]
+and
+\[
+  y_3=m(x_1-x_3)-y_1.
+\]
+Thus
+\[
+  P+Q=(x_3,y_3).
+\]
+For point doubling,
+\[
+  m=\frac{3x_1^2+a}{2y_1}.
+\]
+These formulas come from substituting the line equation into the cubic and using the fact that a line meets a cubic in three points counted with multiplicity.
+
+\section{Special cases and the point at infinity}
+
+If \(Q=-P\), then the line through \(P\) and \(Q\) is vertical, so it does not meet the affine curve in a third finite point.  We define
+\[
+  P+(-P)=\mathcal O,
+\]
+where \(\mathcal O\) is the point at infinity.  This point acts as the identity:
+\[
+  P+\mathcal O=P.
+\]
+
+The printed pages point out that all vertical lines on the elliptic curve meet at the point at infinity in the projective closure.  This is not just a convenient fiction; projective geometry is the natural setting in which a line always meets a cubic in three points.
+
+\section{Why associativity is difficult}
+
+The group law is visually simple, but associativity
+\[
+  (P+Q)+R=P+(Q+R)
+\]
+is hard to prove by direct geometry.  Algebraically it becomes a long calculation.  Conceptually, elliptic curves are genus-one algebraic curves, and the chord-and-tangent law is related to divisor classes.  That higher viewpoint explains why the operation is genuinely associative rather than merely plausible from the picture.
+
+\section{Elliptic curves over finite fields}
+
+For cryptography one usually works over a finite field:
+\[
+  E(\mathbb F_p):y^2=x^3+ax+b\pmod p.
+\]
+The same addition formulas work, with division interpreted as multiplication by inverses modulo \(p\).  The group \(E(\mathbb F_p)\) is finite, and scalar multiplication
+\[
+  nP=P+P+\cdots+P
+\]
+is computationally easy, while recovering \(n\) from \(P\) and \(nP\) is believed hard for well-chosen curves.
+
+
+\section{Why nonsingularity matters for the group law}
+
+The chord-and-tangent construction needs every line to meet the cubic in three points counted with multiplicity.  If the curve has a cusp or a node, the tangent behavior at the singular point is not well-defined in the smooth sense, and the group law becomes degenerate.
+
+Algebraically, singularity occurs when the cubic \(x^3+ax+b\) has a repeated root.  This happens exactly when the polynomial and its derivative
+\[
+  3x^2+a
+\]
+have a common root.  The discriminant condition
+\[
+  4a^3+27b^2\ne0
+\]
+excludes that.  Thus the printed discriminant is not a decorative formula; it is what guarantees that the geometric addition law behaves smoothly.
+
+\section{Explicit addition formulas}
+
+If \(P=(x_1,y_1)\) and \(Q=(x_2,y_2)\) with \(P\ne Q\), the slope of the line through them is
+\[
+  m=\frac{y_2-y_1}{x_2-x_1}.
+\]
+The third intersection point has \(x\)-coordinate
+\[
+  x_3=m^2-x_1-x_2.
+\]
+After reflecting across the \(x\)-axis, the sum is
+\[
+  P+Q=(x_3,\,m(x_1-x_3)-y_1).
+\]
+For doubling \(P=Q\), use the tangent slope
+\[
+  m=\frac{3x_1^2+a}{2y_1}.
+\]
+These formulas are what make elliptic curves computationally usable.
+
+\section{Cryptographic intuition}
+
+Over a finite field, the set \(E(\mathbb F_p)\) is finite but still carries the elliptic-curve group law.  Repeated addition gives scalar multiplication:
+\[
+  nP=P+P+\cdots+P.
+\]
+It is easy to compute \(nP\) by double-and-add, but hard to recover \(n\) from \(P\) and \(nP\) for suitable curves and parameters.  This is the elliptic curve discrete logarithm problem.
+
+The note's cryptographic motivation should therefore be understood as a computational asymmetry: the group law is efficient in one direction and hard to invert in the other.
+
+\section{Expanded synthesis and advanced context}
+
+This note is a good meeting point of algebraic geometry and cryptography.  A cubic equation becomes a smooth curve; smoothness is a discriminant condition; a geometric chord construction becomes a group operation; projective geometry supplies the identity element; finite fields turn the group into a computational object.  The remarkable fact is that a picture of a cubic curve encodes a serious algebraic group.
+
+
+\paragraph{Expanded synthesis.}
+The common theme of this chapter is that an elementary limiting or computational rule becomes powerful only after one specifies the space in which the limiting process takes place. The earlier sections (`Definition and nonsingularity`, `Why the discriminant appears`, `Cryptographic motivation`, `Geometric addition law`, `Algebraic formula`) may look like separate techniques, but they all ask the same question: which operations are stable under approximation? A derivative is stable first-order approximation,
+\[
+  f(a+h)=f(a)+L(h)+o(|h|),
+\]
+while an integral is stable accumulation with respect to a measure, and a convergent series is a limit in a chosen norm or topology.
+
+The advanced bridge is functional-analytic. Uniform convergence is convergence in a sup norm; $L^p$ convergence is convergence in an integral norm; differentiability is the existence of a continuous linear approximation; many differential equations are operator equations $L[u]=f$. Theorems such as dominated convergence, the inverse function theorem, the projection theorem in Hilbert spaces, and semigroup existence results are refined answers to the same elementary concern: when may we pass from finite approximations to a genuine limiting object?
+
+To use this viewpoint when rereading the original examples, identify the hidden stability condition. A Taylor expansion asks for control of the remainder. A change of variables asks for differentiability and Jacobian control. Termwise differentiation of a series asks for uniform convergence of derivative series. A differential-equation formula asks whether the operator is invertible under the imposed initial or boundary data. The elementary computation is the visible part; the advanced theory names the hypotheses that make it legitimate.
