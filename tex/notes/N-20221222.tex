@@ -1,0 +1,106 @@
+\notechapter{N-20221222}{Topological Re-definitions, Subspaces, Connectedness, and Path-Connectedness}
+
+\section{Re-defining continuity}
+
+After defining topological spaces, the note rewrites metric definitions using open sets.  A function \(f:X\to Y\) is continuous if
+\[
+  f^{-1}(V)\text{ is open in }X
+\]
+for every open \(V\subseteq Y\).  This definition no longer mentions \(\varepsilon\), \(\delta\), or distances.  It says that open information in \(Y\) pulls back to open information in \(X\).
+
+A homeomorphism is a bijection preserving open sets in both directions.  This is the topological notion of sameness.
+
+\section{Closed sets and closure}
+
+A set \(C\subseteq X\) is closed if \(X\setminus C\) is open.  The closure of \(S\) is the smallest closed set containing \(S\):
+\[
+  \overline S=\bigcap\{C:C\text{ closed and }S\subseteq C\}.
+\]
+The note warns that complete and totally bounded are metric properties, not topological properties.  It also warns that sequences do not work perfectly in general topology; one often needs nets or filters.
+
+\section{Subspaces}
+
+If \(Y\subseteq X\), the subspace topology on \(Y\) is
+\[
+  \tau_Y=\{U\cap Y:U\in\tau_X\}.
+\]
+The key warning is: open in \(Y\) need not be open in \(X\).  For example,
+\[
+  [0,1)=[0,2]\cap(-1,1)
+\]
+is open in \([0,2]\), but not open in \(\mathbb R\).
+
+\section{Connectedness}
+
+A space \(X\) is disconnected if there are nonempty open sets \(U,V\) such that
+\[
+  X=U\cup V,\qquad U\cap V=\varnothing.
+\]
+If no such separation exists, \(X\) is connected.  Equivalently, \(X\) has no nontrivial clopen subset.  Separated unions such as \([1,2]\cup[3,4]\) are disconnected, while intervals are connected.
+
+\section{Path-connectedness}
+
+A space \(X\) is path-connected if for any \(x,y\in X\), there is a continuous map
+\[
+  \gamma:[0,1]\to X,\qquad \gamma(0)=x,\quad \gamma(1)=y.
+\]
+Path-connectedness implies connectedness.  The converse can fail.  In ordinary regions of \(\mathbb R^n\), it matches the intuition that one can walk from one point to another without leaving the set.
+
+
+\section{Continuity: why preimages appear}
+
+The preimage definition of continuity can feel backward at first.  We define continuity by saying that for every open set \(V\subseteq Y\), the preimage \(f^{-1}(V)\) is open in \(X\), not by saying images of open sets are open.  The reason is logical: to know whether \(f(x)\) lies in a neighborhood \(V\), we ask which points \(x\) are sent into \(V\).  That set is the preimage.
+
+Images of open sets need not be open.  For example, the map
+\[
+  f:\mathbb R\to\mathbb R,\qquad f(x)=x^2
+\]
+sends the open interval \((-1,1)\) to \([0,1)\), which is not open in \(\mathbb R\).  But \(f\) is continuous, because preimages of open sets are open.
+
+This example is important because it prevents a common misconception: continuity is about pulling back open tests, not pushing open sets forward.
+
+\section{Closure through neighborhoods}
+
+The closure \(\overline S\) can also be described pointwise:
+\[
+  x\in\overline S
+  \quad\Longleftrightarrow\quad
+  \text{every open neighborhood of }x\text{ meets }S.
+\]
+This description is often easier than the intersection-of-closed-sets definition.  For instance,
+\[
+  \overline{\mathbb Q}=\mathbb R
+\]
+in the usual topology because every interval contains rational numbers.  Similarly,
+\[
+  \overline{\mathbb R\setminus\mathbb Q}=\mathbb R.
+\]
+The two dense subsets are disjoint, showing that closure is not about having large measure or containing intervals; it is about meeting every neighborhood.
+
+\section{Connectedness by continuous images}
+
+A useful theorem is that continuous images of connected spaces are connected.  If \(X\) is connected and \(f:X\to Y\) is continuous, then \(f(X)\) is connected.  Otherwise, if \(f(X)=U\cup V\) were a separation, then \(f^{-1}(U)\) and \(f^{-1}(V)\) would separate \(X\).
+
+This theorem proves that intervals in \(\mathbb R\) are connected.  If an interval were split into two nonempty open pieces, one could construct a continuous map to the discrete two-point space, contradicting the intermediate value principle.  Conversely, the intermediate value theorem is essentially a connectedness statement about intervals.
+
+\section{Path-connectedness and components}
+
+Path-connectedness is stronger because it requires an explicit continuous path.  The path-connected component of a point \(x\) is the set of all points reachable from \(x\) by paths.  These components partition the space.
+
+Every path-connected space is connected.  The proof is simple: if \(X=U\cup V\) were a separation and a path \(\gamma:[0,1]\to X\) started in \(U\) and ended in \(V\), then \([0,1]\) would be separated by \(\gamma^{-1}(U)\) and \(\gamma^{-1}(V)\), impossible because \([0,1]\) is connected.
+
+The converse fails in spaces like the topologist's sine curve.  That example is not needed for computation, but it explains why topology keeps the two definitions separate.
+
+\section{Expanded synthesis and advanced context}
+
+Continuity, closure, subspace topology, connectedness, and path-connectedness are open-set notions.  Boundedness and completeness are not.  The note is teaching what topology remembers and what it deliberately forgets.
+
+
+\paragraph{Expanded synthesis.}
+For this chapter, the elementary material should be read as a study of what topology remembers when distances are no longer available. The earlier sections (`Re-defining continuity`, `Closed sets and closure`, `Subspaces`, `Connectedness`, `Path-connectedness`) are not algebraic computations. They are tests for how open-set information behaves under pullback, restriction, closure, and decomposition.
+
+The unifying principle is this: continuity pulls open tests backward, closure records unavoidable nearby points, subspace topology restricts the ambient open sets, and connectedness forbids a space from splitting into two separated open pieces.
+
+The structural hierarchy is as follows. Kernels record what a map forgets, images record what it reaches, cokernels record obstructions to solvability, and quotients record information after an equivalence has been imposed. Determinants act on the top exterior power and therefore measure oriented volume; traces are invariant under cyclic rearrangement and become characters in representation theory; adjoints depend on an inner product and lead to self-adjoint spectral theory.
+
+A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
