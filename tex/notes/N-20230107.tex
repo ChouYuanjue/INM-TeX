@@ -1,0 +1,110 @@
+\notechapter{N-20230107}{Function Graphs, Symmetry Centers, and Transformations}
+
+\section{A note on graph problems}
+
+This handwritten note studies function graphs and transformations: centers of symmetry, symmetry about vertical lines, absolute values, and graph-based zero counting.  The important habit is to translate a visual symmetry into an algebraic identity.
+
+\section{Centers of symmetry}
+
+A graph \(y=f(x)\) has center of symmetry \((a,b)\) if
+\[
+  f(a+t)+f(a-t)=2b
+\]
+whenever both sides are defined.  Thus for a rational function like
+\[
+  f(x)=\frac{1}{x+1}+\frac{1}{x+2},
+\]
+one shifts \(x=a+t\) and looks for cancellation between \(t\) and \(-t\).  The vertical asymptotes also help: the center of symmetry often lies halfway between paired asymptotes.
+
+\section{Symmetry about a line}
+
+A graph is symmetric about the vertical line \(x=c\) iff
+\[
+  f(c+t)=f(c-t).
+\]
+The note uses this for functions such as
+\[
+  f(x)=(1-x^2)(x^2+ax+b).
+\]
+If the graph is symmetric about \(x=-2\), substitute \(x=-2+t\) and \(x=-2-t\), then equate the two expressions.  This is safer than trying to see the answer from the expanded graph.
+
+\section{Absolute value transformations}
+
+Expressions involving
+\[
+  |x-a|,\qquad ||x|-2|,\qquad |f(x)|
+\]
+should be read as folding operations.  The graph of \(y=|f(x)|\) reflects the part of \(f\) below the \(x\)-axis upward.  The graph of \(y=f(|x|)\) copies the right half of the graph to the left symmetrically.
+
+The problem involving
+\[
+  |||x|-2|-1|+|||y|-2|-1|=1
+\]
+is best attacked by symmetry.  First solve in the first quadrant, then reflect across the coordinate axes.  The curve is made of translated line segments, so the required string length is a sum of segment lengths rather than an area computation.
+
+\section{Zero counting by graphs}
+
+A later exercise combines a periodic/symmetric function \(f\) with
+\[
+  g(x)=|x\cos(\pi x)|.
+\]
+The number of zeros of \(g(x)-f(x)\) is the number of intersections of two graphs.  The correct method is to use symmetry and monotonicity on subintervals instead of solving a transcendental equation directly.
+
+
+\section{How to find a center of symmetry in practice}
+
+For a rational function, a center of symmetry is often hidden in the denominator structure.  Suppose two vertical asymptotes are paired around a point \(x=a\).  Then \(a\) is a natural candidate for the horizontal coordinate of the center.  After shifting \(x=a+t\), test whether
+\[
+  f(a+t)+f(a-t)
+\]
+is constant.  If it equals \(2b\), then the center is \((a,b)\).
+
+This method is better than expanding everything at once.  The shift recenters the graph so that symmetry becomes ordinary oddness or evenness around the origin.  In many problems, the algebra simplifies only after this recentering.
+
+\section{Absolute value as folding}
+
+The note's absolute-value examples should be read visually.  The transformation
+\[
+  y=|f(x)|
+\]
+keeps the part of the graph above the \(x\)-axis and reflects the part below upward.  The transformation
+\[
+  y=f(|x|)
+\]
+copies the right half of the original graph to the left.  Nested absolute values such as
+\[
+  ||x|-2|
+\]
+are successive folds of the number line.  Each fold creates new symmetry and new corner points.
+
+For a curve such as
+\[
+  |||x|-2|-1|+|||y|-2|-1|=1,
+\]
+one should not immediately expand into many cases.  First locate the breakpoints \(x=0,\pm1,\pm2,\pm3\), solve the shape in one symmetric region, and reflect it.  The algebraic expression is complicated, but the geometry is a repeated folding of straight lines.
+
+\section{Parameter motion and intersection counting}
+
+Many graph problems ask for the number of roots of
+\[
+  f(x)-g(x)=0.
+\]
+This is the number of intersections of two graphs.  When a parameter moves one graph, the number of intersections is stable except at critical moments: tangency, passing through a corner, or passing through an endpoint of a piece.
+
+Thus parameter problems should be solved by first finding the exceptional parameter values.  Between two exceptional values, the number of intersections cannot change.  This converts an apparently algebraic zero-counting problem into a geometric classification problem.
+
+\section{Higher viewpoint: transformations as group actions}
+
+Translations, reflections, scalings, and absolute-value folds act on graphs.  The point of the note is to stop seeing each exercise as isolated.  A line of symmetry, a center of symmetry, a folded graph, and a shifted graph are all manifestations of transformations acting on functions.  The equation of the graph changes, but the underlying geometric operation is often simple.
+
+\section{Expanded synthesis and advanced context}
+
+This note is about turning visual transformations into equations.  A center of symmetry is a two-point sum identity; a vertical symmetry line is an evenness identity after translation; absolute values are folds; zero-counting is intersection-counting.  Graph problems become much cleaner when every visual statement is translated into an algebraic invariant.
+
+
+\paragraph{Expanded synthesis.}
+The elementary geometric content of this chapter should be read through transformations and invariants. The earlier sections (`A note on graph problems`, `Centers of symmetry`, `Symmetry about a line`, `Absolute value transformations`, `Zero counting by graphs`) may use coordinates, angles, determinants, parametrizations, or integral formulas, but the organizing question is: which quantities survive the transformations naturally associated with the problem? Euclidean geometry preserves distances and angles; affine geometry preserves lines and ratios on a line; projective geometry preserves incidence and cross ratio; differential geometry preserves coordinate-independent objects such as forms, metrics, and orientations.
+
+This perspective separates different layers of a problem. A dot product belongs to metric geometry. A determinant belongs to oriented volume. A cross ratio belongs to projective geometry. A line or surface integral of a differential form belongs to oriented topology. A scalar area integral belongs to the metric-induced measure. Confusing these layers is the source of many errors, especially in vector calculus where $dS$, $F\cdot n\,dS$, $dx\wedge dy$, and boundary orientation look similar but encode different structures.
+
+When returning to the original examples, identify the natural object before computing. If the problem is about concurrence or collinearity, projective or affine tools may be natural. If it is about distance, angle, or orthogonality, metric tools are essential. If it is about flux or circulation, differential forms and orientation explain the signs. The advanced viewpoint makes the elementary solution more disciplined rather than more abstract for its own sake.
