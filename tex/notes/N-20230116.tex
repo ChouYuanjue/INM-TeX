@@ -1,0 +1,183 @@
+\notechapter{N-20230116}{Functions, Mappings, Injections, Surjections, and Functional Equations}
+
+\section{What a function is}
+
+The handwritten pages continue the chapter on functions.  A function is not just a formula.  It consists of a domain, a codomain, and a rule assigning to each input exactly one output:
+\[
+  f:X\to Y.
+\]
+For a finite set such as
+\[
+  X=\{1,2,\ldots,n\},
+\]
+a function $f:X\to X$ can be recorded by the list
+\[
+  (f(1),f(2),\ldots,f(n)).
+\]
+This is why the page writes small arrays of values.  The list representation is useful when studying injections, surjections, permutations, and iterates of $f$.
+
+\section{Image and preimage}
+
+For $A\subseteq X$, the image is
+\[
+  f(A)=\{f(a):a\in A\}.
+\]
+For $B\subseteq Y$, the preimage is
+\[
+  f^{-1}(B)=\{x\in X:f(x)\in B\}.
+\]
+The note repeatedly uses the fact that preimages behave better than images:
+\[
+  f^{-1}(B\cup C)=f^{-1}(B)\cup f^{-1}(C),
+\]
+\[
+  f^{-1}(B\cap C)=f^{-1}(B)\cap f^{-1}(C),
+\]
+\[
+  f^{-1}(Y\setminus B)=X\setminus f^{-1}(B).
+\]
+Images preserve unions, but not intersections in general.
+
+\section{Injective and surjective}
+
+A function is injective if
+\[
+  f(x_1)=f(x_2)\quad\Longrightarrow\quad x_1=x_2.
+\]
+It is surjective if every element of the codomain is hit:
+\[
+  \forall y\in Y,\quad \exists x\in X,\quad f(x)=y.
+\]
+For finite sets of the same size, injective and surjective are equivalent.  The handwritten notes use this fact in examples where a function from a finite set to itself is shown to be a permutation.
+
+\section{Composition and inverse functions}
+
+The composition of $f:X\to Y$ and $g:Y\to Z$ is
+\[
+  g\circ f:X\to Z,\qquad (g\circ f)(x)=g(f(x)).
+\]
+If there is a function $g:Y\to X$ such that
+\[
+  g\circ f=\operatorname{id}_X,\qquad f\circ g=\operatorname{id}_Y,
+\]
+then $f$ is bijective and $g=f^{-1}$.
+
+The note includes finite examples where $f^2=f\circ f$ or $f^3$ is computed.  The orbit of an element under repeated application of $f$ is
+\[
+  x,\ f(x),\ f^2(x),\ldots.
+\]
+For a finite set, every orbit eventually repeats.  If $f$ is a permutation, every orbit is a cycle.
+
+\section{Functional equations on finite sets}
+
+Several exercises ask for functions satisfying equations such as
+\[
+  f(f(x))=x
+\]
+or
+\[
+  f(f(x))=f(x).
+\]
+The first says that $f$ is an involution.  Its cycles have length $1$ or $2$.  The second says that every value of $f$ is fixed by $f$; after one application, the function stabilizes.
+
+These examples explain why drawing arrows is useful.  A finite function is a directed graph where each vertex has exactly one outgoing arrow.  Equations involving iterates impose restrictions on the possible directed graph.
+
+\section{Functional equations over real numbers}
+
+The printed exercise page includes functional equations over $\mathbb R$.  A common form is Jensen-like or Cauchy-like:
+\[
+  f(x+y)=f(x)+f(y),
+\]
+possibly with extra regularity assumptions.  Without assumptions, such equations can be wild; with continuity or monotonicity, they often force linearity.
+
+For example, if $f$ is continuous and additive, then
+\[
+  f(x)=cx.
+\]
+The proof first shows $f(n)=nf(1)$ for integers, then $f(q)=qf(1)$ for rationals, then extends to reals by continuity.
+
+\section{Expanded synthesis and advanced context}
+
+The note moves from set-level functions to structural behavior.  A function can be studied by its image/preimage behavior, its injectivity/surjectivity, its iterates, or the equations it satisfies.  In finite settings, iteration gives cycles and trees.  In real settings, functional equations often force rigid algebraic forms once continuity or monotonicity is added.
+
+
+
+\paragraph{Expanded synthesis.}
+For this chapter, the elementary material should be read as a study of what remains invariant when coordinates change. The earlier sections (`What a function is`, `Image and preimage`, `Injective and surjective`, `Composition and inverse functions`, `Functional equations on finite sets`) compute with arrays, bases, pivots, determinants, or eigenvectors; the deeper object is a linear map together with the spaces it acts on. A matrix is a representation of that map after bases have been chosen. This is why formulas such as
+\[
+  A' = P^{-1}AP,\qquad \widetilde A = T^{-1}AS
+\]
+are not cosmetic: they distinguish an intrinsic morphism from a coordinate description.
+
+The structural hierarchy is as follows. Kernels record what a map forgets, images record what it reaches, cokernels record obstructions to solvability, and quotients record information after an equivalence has been imposed. Determinants act on the top exterior power and therefore measure oriented volume; traces are invariant under cyclic rearrangement and become characters in representation theory; adjoints depend on an inner product and lead to self-adjoint spectral theory.
+
+A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
+
+
+\section{Elementary-to-advanced bridge: functions as morphisms}
+
+The original note studies injections, surjections, and functions.  In category theory, functions are morphisms in the category $\mathbf{Set}$.  A function $f:A\to B$ is injective iff it is left-cancellable:
+\[
+  f\circ g_1=f\circ g_2\Rightarrow g_1=g_2.
+\]
+This is the categorical notion of monomorphism.  It is surjective iff it is right-cancellable in $\mathbf{Set}$:
+\[
+  h_1\circ f=h_2\circ f\Rightarrow h_1=h_2.
+\]
+This is epimorphism in $\mathbf{Set}$.
+
+The warning is that in other categories epimorphism need not mean surjectivity.  For example, the inclusion $\mathbb Z\hookrightarrow \mathbb Q$ is an epimorphism in the category of rings, but not a surjective map.  Thus the elementary set case is friendly but not universal.
+
+\section{Elementary-to-advanced bridge: image and preimage as an adjunction}
+
+For a function $f:X\to Y$, the direct image and inverse image satisfy
+\[
+  f(A)\subseteq B\quad\Longleftrightarrow\quad A\subseteq f^{-1}(B).
+\]
+This is a Galois connection between subsets of $X$ and subsets of $Y$.
+
+The inverse image preserves all Boolean operations:
+\[
+  f^{-1}(B\cup C)=f^{-1}(B)\cup f^{-1}(C),\qquad
+  f^{-1}(Y\setminus B)=X\setminus f^{-1}(B).
+\]
+Direct image preserves unions but not generally intersections or complements.  This asymmetry explains many elementary mistakes in set-function exercises.
+
+\section{Elementary-to-advanced bridge: finite functional graphs}
+
+A function $f:X\to X$ on a finite set defines a directed graph where each vertex has one outgoing edge $x\to f(x)$.  Every connected component consists of a directed cycle with rooted trees feeding into it.
+
+This structure explains iteration.  For every $x$, the sequence
+\[
+  x,\ f(x),\ f^2(x),\ \ldots
+\]
+eventually becomes periodic.  Injectivity means every component is a pure cycle; surjectivity on a finite set is equivalent to injectivity.
+
+Thus elementary finite-function exercises are also the first examples of discrete dynamical systems.
+
+\section{Returning to the original examples}
+
+Counting functions, checking injectivity, and computing images/preimages are not isolated set-theory tasks.  They are the concrete form of morphisms, adjunctions between image and preimage, and finite dynamics under iteration.  The original examples should be kept because they make these abstract ideas visible.
+
+% Second-pass deepening for waves 2-4: wave 3 A-C part 2
+\section{Second-pass deepening: injections and surjections through factorization}
+
+Every function $f:X\to Y$ factors as
+\[
+  X\twoheadrightarrow X/{\sim_f} \xrightarrow{\cong} f(X) \hookrightarrow Y,
+\]
+where $x\sim_f x'$ iff $f(x)=f(x')$.  The first map collapses fibers, the middle map identifies equivalence classes with image points, and the last map includes the image in $Y$.
+
+In elementary language, injectivity says the first collapse is trivial.  Surjectivity says the last inclusion reaches all of $Y$.  This factorization is the set-theoretic prototype of epi-mono factorization in category theory.
+
+\section{Second-pass deepening: fibers as local data of a function}
+
+The fiber over $y\in Y$ is
+\[
+  f^{-1}(y)=\{x\in X:f(x)=y\}.
+\]
+Counting a finite domain by fibers gives
+\[
+  |X|=\sum_{y\in f(X)}|f^{-1}(y)|.
+\]
+This is the elementary version of disintegration: study a map by decomposing the domain into fibers.  In topology and geometry, fiber bundles and covering spaces refine this idea when all fibers vary continuously over the base.
