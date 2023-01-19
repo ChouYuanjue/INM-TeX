@@ -1,0 +1,183 @@
+\notechapter{N-20230119}{Plane Geometry I: Ceva, Menelaus, Ptolemy, Simson Line, and Euler Line}
+
+\section{Why this geometry chapter matters}
+
+The note is a chapter-style plane geometry note.  It does not merely list named theorems; it gives statements, pictures, proofs, and comments about when each theorem is useful.  The main pattern is:
+\[
+\begin{gathered}
+  \text{Ceva detects concurrence},\quad
+  \text{Menelaus detects collinearity},\\
+  \text{Ptolemy detects cyclicity}.
+\end{gathered}
+\]
+Then Simson line and Euler line enter as richer configurations involving circles, projections, centers, and ratios.
+
+\section{Ceva's theorem}
+
+Let $D,E,F$ lie on $BC,CA,AB$ or their extensions in triangle $ABC$.  Ceva's theorem says that $AD,BE,CF$ are concurrent iff
+\[
+  \frac{BD}{DC}\cdot \frac{CE}{EA}\cdot \frac{AF}{FB}=1
+\]
+using directed lengths.
+
+The proof in the note uses areas.  Suppose the cevians meet at $O$.  Since triangles with bases on the same line and the same altitude have areas proportional to their bases,
+\[
+  \frac{BD}{DC}=\frac{[ABD]}{[ACD]}=\frac{[OBD]}{[OCD]}.
+\]
+Subtracting the smaller triangles gives
+\[
+  \frac{[ABO]}{[ACO]}=\frac{BD}{DC}.
+\]
+Similarly,
+\[
+  \frac{[BCO]}{[BAO]}=\frac{CE}{EA},\qquad
+  \frac{[CAO]}{[CBO]}=\frac{AF}{FB}.
+\]
+Multiplying the three identities cancels all area factors and gives the Ceva product $1$.
+
+The inverse theorem is often the useful direction: if the product of ratios is $1$, then the three cevians are concurrent.  In olympiad geometry, this is the standard tool for proving three lines meet at one point.
+
+\section{Menelaus' theorem}
+
+Menelaus is the collinearity counterpart of Ceva.  If a line meets the sidelines of triangle $ABC$ at $D,E,F$, then
+\[
+  \frac{AE}{EC}\cdot \frac{CD}{DB}\cdot \frac{BF}{FA}=1
+\]
+again with directed lengths.
+
+The proof in the original note draws a parallel through a vertex.  For instance, draw through $B$ a line parallel to the transversal and compare similar triangles.  The ratios on the sides of the triangle become ratios on a pair of parallel lines.  After substitution, the product becomes $1$.
+
+The memory rule is useful but not enough: Ceva and Menelaus look similar, so one must remember what they prove.  Ceva: three cevians concurrent.  Menelaus: three points collinear.
+
+\section{Ptolemy's theorem}
+
+For a cyclic quadrilateral $ABCD$, Ptolemy's theorem states
+\[
+  AC\cdot BD=AB\cdot CD+AD\cdot BC.
+\]
+The note also records the converse: if a convex quadrilateral satisfies this equality, then it is cyclic.
+
+A classical proof chooses a point or diagonal construction so that two pairs of triangles become similar.  The products $AB\cdot CD$ and $AD\cdot BC$ then appear as pieces of $AC\cdot BD$.  What matters is that cyclicity converts equal angles into similarity.
+
+Ptolemy is metric: it relates lengths, not only ratios.  That is why it is more rigid than Ceva or Menelaus.
+
+\section{Generalized Ptolemy inequality}
+
+For any convex quadrilateral $ABCD$, the generalized Ptolemy inequality says
+\[
+  AC\cdot BD\le AB\cdot CD+AD\cdot BC,
+\]
+with equality iff the quadrilateral is cyclic.
+
+The note gives a complex-plane proof.  Assign complex numbers $a,b,c,d$ to the vertices.  The identity
+\[
+  (a-b)(c-d)+(a-d)(b-c)=(a-c)(b-d)
+\]
+is exact.  Taking moduli and applying the triangle inequality gives
+\[
+  |a-c||b-d|\le |a-b||c-d|+|a-d||b-c|.
+\]
+This is precisely Ptolemy's inequality.  Equality in the triangle inequality corresponds to the relevant complex numbers having the same argument, which geometrically means the points are concyclic in the required order.
+
+This proof is important because it changes the language of geometry: a quadrilateral becomes four complex numbers, and a metric inequality becomes the ordinary triangle inequality.
+
+\section{Simson line}
+
+Simson's theorem says: if $P$ lies on the circumcircle of triangle $ABC$, and perpendiculars are dropped from $P$ to the three sides (or their extensions), then the three feet are collinear.  The common line is the Simson line of $P$.
+
+The proof in the note uses cyclic quadrilaterals.  Let the feet be $D,E,F$.  Because $PE\perp AB$ and $PF\perp AC$, quadrilaterals such as $AEPF$ are cyclic.  Similar cyclic-angle relations show that the angle between two of the foot segments is supplementary to the angle between another pair.  Hence the three feet lie on a line.
+
+The inverse theorem is also true.  The practical use is: when a problem contains many perpendicular feet from a point to the sides of a triangle, look for a circumcircle point and a Simson line.
+
+\section{Euler line and Euler formula}
+
+For triangle $ABC$, let $O$ be the circumcenter, $G$ the centroid, and $H$ the orthocenter.  Euler's theorem says that $O,G,H$ are collinear and
+\[
+  OG:GH=1:2,
+\]
+equivalently $GH=2OG$.  This common line is the Euler line.
+
+One proof uses midpoints and similar triangles.  Let $D$ be the midpoint of $BC$.  Since $G$ is the centroid, $AG:GD=2:1$.  Using the facts that the circumcenter lies on perpendicular bisectors and the orthocenter lies on altitudes, one constructs similar triangles showing that the point on $OH$ with the centroid ratio is exactly $G$.
+
+The note also states Euler's formula relating the circumradius $R$, inradius $r$, and the distance $d=OI$ between circumcenter and incenter:
+\[
+  R^2-d^2=2Rr.
+\]
+This immediately gives Euler's inequality
+\[
+  R\ge 2r,
+\]
+with equality iff the triangle is equilateral.  The proof in the note uses the angle bisector through the incenter, intersections with the circumcircle, and similar triangles to derive a product relation.  The key point is that the inequality is not a random radius estimate; it is the nonnegativity of $d^2$.
+
+\section{Expanded synthesis and advanced context}
+
+This chapter is a small map of classical geometry.  Ceva and Menelaus are ratio theorems, almost projective in flavor.  Ptolemy is metric and cyclic.  Simson line turns perpendicular projections into collinearity.  Euler line organizes triangle centers, and Euler's formula links local radii with the global placement of centers.  The proofs constantly switch languages: area, similarity, complex numbers, cyclic angles, and centers.  That switching is the real skill of plane geometry.
+
+
+
+\paragraph{Expanded synthesis.}
+For this chapter, the elementary material should be read as a study of what remains invariant when coordinates change. The earlier sections (`Why this geometry chapter matters`, `Ceva's theorem`, `Menelaus' theorem`, `Ptolemy's theorem`, `Generalized Ptolemy inequality`) compute with arrays, bases, pivots, determinants, or eigenvectors; the deeper object is a linear map together with the spaces it acts on. A matrix is a representation of that map after bases have been chosen. This is why formulas such as
+\[
+  A' = P^{-1}AP,\qquad \widetilde A = T^{-1}AS
+\]
+are not cosmetic: they distinguish an intrinsic morphism from a coordinate description.
+
+The structural hierarchy is as follows. Kernels record what a map forgets, images record what it reaches, cokernels record obstructions to solvability, and quotients record information after an equivalence has been imposed. Determinants act on the top exterior power and therefore measure oriented volume; traces are invariant under cyclic rearrangement and become characters in representation theory; adjoints depend on an inner product and lead to self-adjoint spectral theory.
+
+A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
+
+
+\section{Elementary-to-advanced bridge: barycentric coordinates}
+
+For a triangle $ABC$, barycentric coordinates write a point $P$ as
+\[
+  P=\frac{\alpha A+\beta B+\gamma C}{\alpha+\beta+\gamma}.
+\]
+The ratios in Ceva and Menelaus are naturally expressed through barycentric coordinates.  For instance, a point on side $BC$ has coordinates $(0:\beta:\gamma)$, and the side ratio is encoded by $\beta/\gamma$.
+
+Ceva's theorem becomes a product condition on ratios because three cevians are concurrent exactly when their barycentric coordinate equations have a common solution.
+
+\section{Elementary-to-advanced bridge: projective transformations}
+
+Ceva, Menelaus, and many incidence theorems are projective: they remain true under projective transformations.  A projective transformation sends lines to lines and preserves incidence, but not lengths or angles.
+
+This explains why ratio and cross-ratio methods are so powerful.  They use quantities that survive projective changes.  One may move a complicated triangle configuration to a simpler projective position, prove the statement there, and transfer it back.
+
+\section{Elementary-to-advanced bridge: Ptolemy and inversive geometry}
+
+Ptolemy's theorem characterizes cyclic quadrilaterals:
+\[
+  AC\cdot BD=AB\cdot CD+BC\cdot AD
+\]
+for a cyclic quadrilateral $ABCD$.  Inversive geometry explains why cyclic configurations are flexible.  Inversion in a circle sends generalized circles to generalized circles and preserves angles.
+
+Many circle theorems, including Simson line configurations, become simpler after an inversion sends one circle to a line or normalizes the circumcircle.
+
+\section{Elementary-to-advanced bridge: elliptic and hyperbolic analogues}
+
+Classical Euclidean triangle geometry has analogues in spherical and hyperbolic geometry.  Ceva-type and Menelaus-type theorems survive with trigonometric replacements.  For example, in spherical geometry, side lengths and angles interact through sine laws rather than linear ratios.
+
+This shows which parts of theorems are affine/projective and which depend on Euclidean metric.  Ratio statements tend to be projective; angle and length statements depend more strongly on the geometry.
+
+\section{Returning to the theorem list}
+
+The original list of Ceva, Menelaus, Ptolemy, Simson, and Euler-line facts is not just a catalogue.  It spans three geometries: affine ratio geometry, projective incidence geometry, and inversive circle geometry.  The advanced reconstruction should keep the elementary proofs while identifying which invariance principle makes each theorem natural.
+
+% Second-pass deepening for waves 2-4: wave 4 part 1
+\section{Second-pass deepening: Ceva and Menelaus as dual affine statements}
+
+Ceva concerns concurrence of cevians; Menelaus concerns collinearity of points on sides.  In barycentric coordinates, these become dual linear-algebraic conditions.  Concurrence means three lines have a common solution.  Collinearity means three points satisfy one linear equation.
+
+This duality is why the product of ratios appears in both theorems, with reciprocal-looking signs.  The elementary ratio-chasing proof is a coordinate proof in the affine\-/projective plane.
+
+\section{Second-pass deepening: Euler line and affine covariance}
+
+The centroid, circumcenter, orthocenter, and nine-point center belong to metric triangle geometry, but some constructions behave well under affine maps and others do not.  The centroid is affine: it is the average of vertices.  Orthocenter and circumcenter depend on perpendicularity, so they are metric.
+
+The Euler line therefore mixes affine and metric structures.  Understanding which points survive affine transformations clarifies why some triangle centers are more universal than others.
+
+\section{Second-pass deepening: Simson line through projection}
+
+The Simson line theorem says that projections of a point on the circumcircle onto the three sides of a triangle are collinear.  This can be interpreted through oriented angles and cyclic quadrilaterals, but also through projective degeneration: as a point moves on the circumcircle, a family of pedal triangles degenerates exactly when the point lies on the circumcircle.
+
+Thus the theorem is not just a miracle of angle chasing; it records a degeneracy condition in a moving geometric construction.
