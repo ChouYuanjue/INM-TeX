@@ -1,0 +1,198 @@
+\notechapter{N-20230127}{Factorization of \texorpdfstring{$\sum_{i=0}^k x^{in}$}{sum x^{in}}: Roots of Unity, False Generalization, and Cyclotomic Structure}
+
+\section{The original problem and the first successful method}
+
+The paper begins with the factorization of
+\[
+  x^{2n}+x^n+1
+\]
+by
+\[
+  x^2+x+1.
+\]
+Let $\omega$ be a primitive cubic root of unity.  Then
+\[
+  \omega^2+\omega+1=0,\qquad \omega^3=1,\qquad \omega\ne1.
+\]
+The polynomial $x^2+x+1$ divides $x^{2n}+x^n+1$ iff both $\omega$ and $\omega^2$ are roots.  Substituting $x=\omega$ gives
+\[
+  \omega^{2n}+\omega^n+1.
+\]
+This is zero exactly when $\omega^n$ is a nontrivial cubic root of unity.  Therefore the divisibility holds iff
+\[
+  n\not\equiv0\pmod3.
+\]
+This proof is short because roots of unity convert a divisibility question into an exponent congruence question.
+
+\section{The direct factorization attempt}
+
+The note then tries to prove the same statement by direct algebra.  Since
+\[
+  x^{2n}+x^n+1=\frac{x^{3n}-1}{x^n-1},
+\]
+one can try to factor numerator and denominator using difference of squares or cubes.  For example, when $n=2$,
+\[
+  x^4+x^2+1=(x^2+x+1)(x^2-x+1).
+\]
+When $n=4$, one obtains several quadratic-looking factors, including again $x^2+x+1$.
+
+But when $n$ changes parity or becomes divisible by $3$, the algebraic route splits into cases.  The original article carefully lists cases such as $n=3m\pm1$ and tracks which geometric-series quotients appear.  The lesson is that direct factorization can prove the theorem, but it obscures the simple reason: the exponent map $z\mapsto z^n$ acts on the three roots of unity.
+
+\section{The attempted generalization}
+
+The natural next question is whether
+\[
+  1+x^n+x^{2n}+\cdots+x^{kn}
+\]
+is divisible by
+\[
+  1+x+x^2+\cdots+x^k
+\]
+whenever $n$ is not a multiple of $k+1$.  The author first guesses yes, then uses roots of unity to test the guess.
+
+Let $\xi$ be a nontrivial $(k+1)$-st root of unity.  We need
+\[
+  1+\xi^n+\xi^{2n}+\cdots+\xi^{kn}=0
+\]
+for every such $\xi$.  The geometric sum vanishes if $\xi^n\ne1$.  Thus the required condition is that no nontrivial $(k+1)$-st root becomes $1$ after raising to the $n$th power.  This is equivalent to
+\[
+  \gcd(n,k+1)=1.
+\]
+So the first guess $n\not\equiv0\pmod{k+1}$ is too weak.  For example, $n$ can be nonzero modulo $k+1$ but still share a nontrivial common divisor with $k+1$.
+
+\section{The computational experiment}
+
+The note then turns to MATLAB.  It computes roots of
+\[
+  x^{kn}+x^{(k-1)n}+\cdots+x^n+1=0
+\]
+for different values of $n$ and plots them in the complex plane, sometimes using a third coordinate to record $n$.  This is not just decoration.  The picture reveals periodicity in the arguments of the roots.
+
+The observed pattern is: the roots lie on the unit circle, their arguments are fractions of $2\pi$, and as $n$ varies the same angular patterns repeat.  For $k=2$, the pattern has two angles per block; for $k=3$, three angles per block; in general, the $(k+1)$-st-root structure controls the blocks.
+
+This experimental section is important because it records a genuine mathematical process: a false conjecture is tested, numerical pictures suggest the right invariant, and then the invariant is expressed exactly by roots of unity.
+
+\section{Explicit root formula}
+
+The equation
+\[
+  1+x^n+x^{2n}+\cdots+x^{kn}=0
+\]
+can be rewritten as
+\[
+  \frac{x^{n(k+1)}-1}{x^n-1}=0.
+\]
+Thus the roots are those $n(k+1)$-st roots of unity whose $n$th power is not $1$.  Equivalently,
+\[
+  x=\exp\left(\frac{2\pi i}{n(k+1)}(r(k+1)+m)\right),
+\]
+where $r=0,\ldots,n-1$ and $m=1,\ldots,k$.  This gives exactly $kn$ roots, as expected from the degree.
+
+The original note writes these roots as products of exponentials:
+\[
+  e^{2\pi i r/n}e^{2\pi i m/(n(k+1))}.
+\]
+Substituting into the polynomial gives a finite geometric sum whose ratio is a nontrivial $(k+1)$-st root of unity, hence the sum is zero.
+
+\section{Common real factors}
+
+The final theorem concerns common real-coefficient factors among these polynomials as $n$ varies.  Since complex roots come in conjugate pairs, a set of roots stable under conjugation gives a real polynomial factor.  When $d=\gcd(n,k+1)>1$, some of the angular positions line up across different $n$, producing common roots and hence common real factors.
+
+This is the cyclotomic viewpoint in disguise.  The polynomial
+\[
+  x^m-1
+\]
+factors as
+\[
+  x^m-1=\prod_{d\mid m}\Phi_d(x),
+\]
+and the geometric sum
+\[
+  1+x+\cdots+x^k=\frac{x^{k+1}-1}{x-1}
+\]
+contains the cyclotomic factors $\Phi_d(x)$ for divisors $d>1$ of $k+1$.  Replacing $x$ by $x^n$ pulls these cyclotomic conditions back along the power map.
+
+\section{Expanded synthesis and advanced context}
+
+The value of this note is the exploration, not only the final condition.  It begins with a correct theorem, tries a direct factorization proof, guesses a generalization, finds that the guess is false, uses computation to see the roots, and finally explains the pattern by complex exponentials.  That is a miniature version of mathematical research: algebraic manipulation, conjecture, counterexample, visualization, and structural explanation.
+
+
+
+\paragraph{Expanded synthesis.}
+For this chapter, the elementary material should be read as a study of what remains invariant when coordinates change. The earlier sections (`The original problem and the first successful method`, `The direct factorization attempt`, `The attempted generalization`, `The computational experiment`, `Explicit root formula`) compute with arrays, bases, pivots, determinants, or eigenvectors; the deeper object is a linear map together with the spaces it acts on. A matrix is a representation of that map after bases have been chosen. This is why formulas such as
+\[
+  A' = P^{-1}AP,\qquad \widetilde A = T^{-1}AS
+\]
+are not cosmetic: they distinguish an intrinsic morphism from a coordinate description.
+
+The structural hierarchy is as follows. Kernels record what a map forgets, images record what it reaches, cokernels record obstructions to solvability, and quotients record information after an equivalence has been imposed. Determinants act on the top exterior power and therefore measure oriented volume; traces are invariant under cyclic rearrangement and become characters in representation theory; adjoints depend on an inner product and lead to self-adjoint spectral theory.
+
+A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
+
+
+\section{Elementary-to-advanced bridge: cyclotomic polynomials}
+
+The roots of $x^n-1$ are the $n$-th roots of unity.  The primitive $n$-th roots are those with exact order $n$.  The cyclotomic polynomial is
+\[
+  \Phi_n(x)=\prod_{\substack{1\le k\le n\\ \gcd(k,n)=1}}(x-e^{2\pi i k/n}).
+\]
+It has degree $\varphi(n)$ and integer coefficients.
+
+The factorization is
+\[
+  x^n-1=\prod_{d\mid n}\Phi_d(x).
+\]
+This identity is the structural version of many elementary root-of-unity factorization exercises.
+
+\section{Elementary-to-advanced bridge: Galois action on roots of unity}
+
+The field $\mathbb Q(\zeta_n)$ generated by a primitive root of unity $\zeta_n$ is the $n$-th cyclotomic field.  Its Galois group is
+\[
+  \operatorname{Gal}(\mathbb Q(\zeta_n)/\mathbb Q)\cong(\mathbb Z/n\mathbb Z)^\times.
+\]
+An element $a\in(\mathbb Z/n\mathbb Z)^\times$ acts by
+\[
+  \zeta_n\mapsto \zeta_n^a.
+\]
+Thus the same reduced residue system that appears in elementary number theory controls the symmetries of roots of unity.
+
+\section{Elementary-to-advanced bridge: resultants and common roots}
+
+Two polynomials have a common root exactly when their resultant is zero.  For example, studying when a cyclotomic polynomial divides another expression can be reframed as asking which roots are common.
+
+The elementary method says: substitute a primitive root $\omega$ and check whether the expression vanishes.  The algebraic version says: divisibility is detected by vanishing on all Galois conjugate roots, or by a resultant condition.
+
+\section{Elementary-to-advanced bridge: finite fields and character sums}
+
+Roots of unity also appear in finite fields.  The multiplicative group $\mathbb F_q^\times$ is cyclic of order $q-1$.  Therefore roots of $x^n=1$ in $\mathbb F_q$ are controlled by $\gcd(n,q-1)$.
+
+Character sums such as
+\[
+  \sum_{x\in\mathbb F_q}\chi(x)\psi(f(x))
+\]
+are research-level descendants of elementary root-of-unity sums.  They connect finite fields, Fourier analysis on finite groups, and algebraic geometry.
+
+\section{Returning to the original experiments}
+
+The note's factorization experiments with roots on the complex plane are the concrete beginning of cyclotomic theory.  The advanced bridge is precise: roots of unity form finite cyclic groups, cyclotomic polynomials package primitive roots, and Galois groups act by exponentiation modulo $n$.
+
+% Second-pass deepening for waves 2-4: wave 3 A-C part 3
+\section{Second-pass deepening: primitive roots and cyclotomic factor tests}
+
+To decide whether a polynomial expression is divisible by $\Phi_n(x)$, it is enough to substitute a primitive $n$-th root of unity $\zeta$ and check whether the expression vanishes.  Because $\Phi_n$ is the minimal polynomial of $\zeta$ over $\mathbb Q$, vanishing at one primitive root forces vanishing at all Galois conjugates.
+
+This explains why root-of-unity substitution is not just a clever complex-number trick.  It is a minimal-polynomial test.
+
+\section{Second-pass deepening: cyclotomic identities through Möbius inversion}
+
+From
+\[
+  x^n-1=\prod_{d\mid n}\Phi_d(x)
+\]
+one obtains
+\[
+  \Phi_n(x)=\prod_{d\mid n}(x^d-1)^{\mu(n/d)}.
+\]
+This is Möbius inversion on the divisor lattice.  The alternating exponents in this formula are the same inclusion--exclusion pattern seen in counting and arithmetic functions.
+
+Thus the note's factorization experiments sit at an intersection of complex roots, integer polynomials, Galois symmetry, and Möbius inversion.
