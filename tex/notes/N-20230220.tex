@@ -1,0 +1,94 @@
+\notechapter{N-20230220}{Special Proofs of Trigonometric Addition Formulas}
+
+\section{Motivation}
+
+This handwritten note tries several proofs of trigonometric addition formulas.  The author first tried a mixed line-slope proof for tangent, then tried reciprocal bases, then settled on more reliable methods for sine and cosine.  This history is important: it records why some apparently clever approaches become awkward.
+
+\section{Sine difference formula by geometry}
+
+Place two unit vectors at angles \(\alpha\) and \(\beta\):
+\[
+  u=(\cos\alpha,\sin\alpha),\qquad v=(\cos\beta,\sin\beta).
+\]
+The magnitude of the two-dimensional cross product is
+\[
+  |u\times v|=\sin|\beta-\alpha|.
+\]
+But the determinant gives
+\[
+  u\times v=\cos\alpha\sin\beta-\sin\alpha\cos\beta.
+\]
+Hence, with orientation taken into account,
+\[
+  \sin(\beta-\alpha)=\sin\beta\cos\alpha-\cos\beta\sin\alpha.
+\]
+
+This proof is clean because the determinant already measures signed area, and signed area of two unit vectors is sine of the included angle.
+
+\section{Rotation-matrix proof}
+
+The rotation matrix is
+\[
+  R(\theta)=
+  \begin{pmatrix}
+  \cos\theta&-\sin\theta\\
+  \sin\theta&\cos\theta
+  \end{pmatrix}.
+\]
+Because rotating by \(\alpha\) and then by \(\beta\) is the same as rotating by \(\alpha+\beta\),
+\[
+  R(\alpha+\beta)=R(\beta)R(\alpha).
+\]
+Multiplying matrices gives
+\[
+  \cos(\alpha+\beta)=\cos\alpha\cos\beta-\sin\alpha\sin\beta,
+\]
+\[
+  \sin(\alpha+\beta)=\sin\alpha\cos\beta+\cos\alpha\sin\beta.
+\]
+This is probably the most conceptual elementary proof: addition formulas are simply composition laws for rotations.
+
+\section{Euler formula proof}
+
+Euler's formula gives
+\[
+  e^{i\theta}=\cos\theta+i\sin\theta.
+\]
+Then
+\[
+  e^{i(\alpha+\beta)}=e^{i\alpha}e^{i\beta}.
+\]
+Expanding the right-hand side gives
+\[
+  (\cos\alpha+i\sin\alpha)(\cos\beta+i\sin\beta)
+\]
+\[
+  =(\cos\alpha\cos\beta-\sin\alpha\sin\beta)
+  +i(\sin\alpha\cos\beta+\cos\alpha\sin\beta).
+\]
+Equating real and imaginary parts yields the addition formulas.
+
+\section{Tangent formula}
+
+Once sine and cosine are known,
+\[
+  \tan(\alpha+\beta)=\frac{\sin(\alpha+\beta)}{\cos(\alpha+\beta)}
+  =\frac{\tan\alpha+	an\beta}{1-	an\alpha\tan\beta},
+\]
+provided the denominators are nonzero.  This is why trying to prove tangent first is often less natural: tangent is a quotient, while sine and cosine are coordinates of rotation.
+
+\section{Expanded synthesis and advanced context}
+
+The same formulas have three interpretations: geometry says sine is signed area, linear algebra says rotations compose by matrix multiplication, and complex analysis says rotations are multiplication by unit complex numbers.  The formulas are memorable once they are seen as structure-preservation laws rather than isolated identities.
+
+
+\paragraph{Expanded synthesis.}
+For this chapter, the elementary material should be read as a study of what remains invariant when coordinates change. The earlier sections (`Motivation`, `Sine difference formula by geometry`, `Rotation-matrix proof`, `Euler formula proof`, `Tangent formula`) compute with arrays, bases, pivots, determinants, or eigenvectors; the deeper object is a linear map together with the spaces it acts on. A matrix is a representation of that map after bases have been chosen. This is why formulas such as
+\[
+  A' = P^{-1}AP,\qquad \widetilde A = T^{-1}AS
+\]
+are not cosmetic: they distinguish an intrinsic morphism from a coordinate description.
+
+The structural hierarchy is as follows. Kernels record what a map forgets, images record what it reaches, cokernels record obstructions to solvability, and quotients record information after an equivalence has been imposed. Determinants act on the top exterior power and therefore measure oriented volume; traces are invariant under cyclic rearrangement and become characters in representation theory; adjoints depend on an inner product and lead to self-adjoint spectral theory.
+
+A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
