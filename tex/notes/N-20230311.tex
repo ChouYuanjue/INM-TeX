@@ -1,0 +1,304 @@
+\notechapter{N-20230311}{Riemann Integration and Lebesgue Integration: From Partitions of the Domain to Partitions of Values}
+
+\section{Why two theories of integration exist}
+
+This note compares Riemann integration and Lebesgue integration.  A compressed summary such as “Riemann cuts the $x$-axis; Lebesgue cuts the $y$-axis” is memorable, but it is not enough.  The real issue is what kinds of limiting processes the integral is supposed to tolerate.
+
+Riemann integration works beautifully for continuous functions and many functions with mild discontinuities.  But once functions oscillate too much, especially when rational and irrational points behave differently, the Riemann approach becomes rigid.  Lebesgue integration was designed to handle limits of functions more naturally, especially in analysis, probability, and Fourier theory.
+
+\section{Riemann sums}
+
+Let $f:[a,b]\to\mathbb R$ be bounded.  A partition is a finite sequence
+\[
+  P:a=x_0<x_1<\cdots<x_n=b.
+\]
+Choose a sample point $\xi_i\in[x_{i-1},x_i]$ in each subinterval.  The Riemann sum is
+\[
+  \sum_{i=1}^n f(\xi_i)\Delta x_i,
+  \qquad
+  \Delta x_i=x_i-x_{i-1}.
+\]
+If all such sums approach the same limit as the mesh
+\[
+  \|P\|=\max_i \Delta x_i
+\]
+tends to zero, that limit is the Riemann integral.
+
+The geometric picture is rectangles under a graph.  But the definition is not simply about drawing rectangles; it says that the total contribution should stabilize no matter how the sample points are chosen, once the partition is sufficiently fine.
+
+\section{Darboux upper and lower sums}
+
+A cleaner equivalent formulation is Darboux integration.  On each interval $[x_{i-1},x_i]$, define
+\[
+  M_i=\sup_{x\in[x_{i-1},x_i]} f(x),
+  \qquad
+  m_i=\inf_{x\in[x_{i-1},x_i]} f(x).
+\]
+The upper and lower sums are
+\[
+  U(P,f)=\sum_i M_i\Delta x_i,
+  \qquad
+  L(P,f)=\sum_i m_i\Delta x_i.
+\]
+Then
+\[
+  f\text{ is Riemann integrable}
+  \quad\Longleftrightarrow\quad
+  \inf_P U(P,f)=\sup_P L(P,f).
+\]
+The common value is the integral.
+
+This formulation explains why discontinuities matter.  If a function oscillates wildly on every interval, then $M_i-m_i$ remains large no matter how small the interval is, and the upper and lower sums cannot meet.
+
+\section{A simple integrable discontinuity}
+
+Consider
+\[
+  f(x)=\begin{cases}
+  1,&x=c,\\
+  0,&x\ne c
+  \end{cases}
+\]
+on $[a,b]$.  This function is discontinuous at one point, but it is Riemann integrable with integral zero.  Indeed, the lower sums are all zero.  For any partition, only one subinterval can contain $c$, and the contribution to the upper sum from that subinterval can be made arbitrarily small.
+
+Thus Riemann integration tolerates finite discontinuities.  More generally, a bounded function is Riemann integrable iff its set of discontinuities has Lebesgue measure zero.  This theorem already hints that measure theory is hiding behind Riemann integration.
+
+\section{Dirichlet's function}
+
+The Dirichlet function is
+\[
+  1_{\mathbb Q}(x)=\begin{cases}
+  1,&x\in\mathbb Q,\\
+  0,&x\notin\mathbb Q.
+  \end{cases}
+\]
+On every nonempty interval there are rational and irrational numbers.  Therefore on every subinterval,
+\[
+  M_i=1,
+  \qquad
+  m_i=0.
+\]
+Hence
+\[
+  U(P,f)=b-a,
+  \qquad
+  L(P,f)=0
+\]
+for every partition.  The upper and lower integrals never meet, so the function is not Riemann integrable.
+
+Lebesgue integration handles this example immediately: since $\mathbb Q$ is countable and has measure zero,
+\[
+  \int_{[a,b]}1_{\mathbb Q}\,dx=0.
+\]
+This one example explains much of the motivation for Lebesgue's theory.
+
+\section{The Lebesgue idea}
+
+Riemann integration partitions the domain into small intervals and asks how the function behaves on each interval.  Lebesgue integration partitions according to values.  For a nonnegative simple function
+\[
+  s=\sum_{j=1}^m a_j1_{E_j},
+\]
+where the $E_j$ are measurable and disjoint, define
+\[
+  \int s\,d\mu=\sum_{j=1}^m a_j\mu(E_j).
+\]
+For a nonnegative measurable function $f$, define
+\[
+  \int f\,d\mu=\sup\left\{\int s\,d\mu:s\le f,\ s\text{ simple}\right\}.
+\]
+For a general integrable function, write
+\[
+  f=f^+-f^-.
+\]
+If both $\int f^+$ and $\int f^-$ are finite, define
+\[
+  \int f=\int f^+-\int f^-.
+\]
+
+The construction is less pictorial than Riemann sums, but more robust.  It counts how much space is occupied by each range of values.
+
+\section{Characteristic functions and sets}
+
+The Lebesgue integral turns set measure into function integration:
+\[
+  \int 1_E\,d\mu=\mu(E).
+\]
+This is conceptually important.  Sets become functions, and measuring a set becomes integrating its indicator.  Probability theory uses exactly this viewpoint: expectation is integration, and probabilities are integrals of indicators.
+
+For the Dirichlet function,
+\[
+  1_{\mathbb Q\cap[a,b]}
+\]
+has integral zero because the rationals are countable.  For the Thomae function, which is discontinuous at every rational and continuous at every irrational, the function is still Riemann integrable because its discontinuity set is countable.  Lebesgue theory makes such examples easier to organize.
+
+\section{Convergence theorems}
+
+The major advantage of Lebesgue integration is not merely that it integrates more functions.  It has powerful limit theorems.
+
+The Monotone Convergence Theorem says: if
+\[
+  0\le f_1\le f_2\le\cdots,
+  \qquad
+  f_n\to f,
+\]
+then
+\[
+  \int f\,d\mu=\lim_{n\to\infty}\int f_n\,d\mu.
+\]
+The Dominated Convergence Theorem says: if $f_n\to f$ pointwise, and $|f_n|\le g$ for an integrable $g$, then
+\[
+  \lim_{n\to\infty}\int f_n\,d\mu=\int f\,d\mu.
+\]
+These are theorems Riemann integration cannot match in such generality.  They explain why Lebesgue integration becomes the standard language of modern analysis.
+
+\section{Improper Riemann integrals versus Lebesgue integrals}
+
+A subtle point: some improper Riemann integrals converge conditionally but are not Lebesgue integrable.  For example,
+\[
+  \int_1^\infty \frac{\sin x}{x}\,dx
+\]
+converges as an improper integral, but
+\[
+  \int_1^\infty \left|\frac{\sin x}{x}\right|dx
+\]
+diverges.  Lebesgue integrability of a signed function requires integrability of the absolute value.  Thus Lebesgue integration is not simply “more permissive”; it is more structurally consistent with normed function spaces such as $L^1$.
+
+\section{Comparison table}
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{@{}lYY@{}}
+\toprule
+Aspect & Riemann & Lebesgue \\
+\midrule
+Partition & Domain intervals & Value levels and measurable sets \\
+Basic object & Bounded functions on intervals & Measurable functions \\
+Bad example & $1_{\mathbb Q}$ not integrable & Integral is $0$ \\
+Limit theorems & Limited & MCT, Fatou, DCT \\
+Natural space & Continuous functions and elementary calculus & $L^p$ spaces, probability, Fourier analysis \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+
+\section{Source repair: the measure-space starting point}
+
+The uploaded note explicitly starts the Lebesgue construction from a measure space
+\[
+  (X,\mathcal M,\mu),
+\]
+where \(\mathcal M\) is a \(\sigma\)-algebra and \(\mu\) is a measure.  A function \(f:X\to\mathbb R\) is measurable if sets such as
+\[
+  \{x\in X:f(x)>\alpha\}
+\]
+belong to \(\mathcal M\) for every real \(\alpha\).  This is the point at which the theory leaves elementary calculus: before integrating, one must decide which subsets are measurable.
+
+\section{Source repair: simple functions as building blocks}
+
+The uploaded text defines a nonnegative simple function by
+\[
+  \varphi(x)=\sum_{i=1}^n a_i\chi_{A_i}(x),
+\]
+and sets
+\[
+  \int_X \varphi\,d\mu=\sum_{i=1}^n a_i\mu(A_i).
+\]
+For a nonnegative measurable function,
+\[
+  \int_X f\,d\mu
+  =\sup\left\{\int_X\varphi\,d\mu:0\le\varphi\le f,\ \varphi\text{ simple}\right\}.
+\]
+This is the formal version of cutting by values.  Instead of approximating the domain by small intervals, we approximate the function from below by simple measurable functions.
+
+\section{Source repair: probability viewpoint}
+
+The source also points toward probability.  A random variable is a measurable function, and expectation is an integral:
+\[
+  \mathbb E[X]=\int_\Omega X\,d\mathbb P.
+\]
+Events are measured by probabilities, and indicators satisfy
+\[
+  \mathbb E[1_A]=\mathbb P(A).
+\]
+This makes the Lebesgue framework the natural language of modern probability, not only a generalization of calculus.
+
+\section{Expanded synthesis and advanced context}
+
+The slogan is useful:
+\[
+  \text{Riemann cuts the domain; Lebesgue cuts by values.}
+\]
+But the deeper difference is categorical: Riemann integration is built around approximating graphs by rectangles, while Lebesgue integration is built around measurable sets and stable limiting operations.  That is why Lebesgue integration becomes the foundation for modern analysis, probability, PDE, and functional analysis.
+
+
+
+\paragraph{Expanded synthesis.}
+The common theme of this chapter is that an elementary limiting or computational rule becomes powerful only after one specifies the space in which the limiting process takes place. The earlier sections (`Why two theories of integration exist`, `Riemann sums`, `Darboux upper and lower sums`, `A simple integrable discontinuity`, `Dirichlet's function`) may look like separate techniques, but they all ask the same question: which operations are stable under approximation? A derivative is stable first-order approximation,
+\[
+  f(a+h)=f(a)+L(h)+o(|h|),
+\]
+while an integral is stable accumulation with respect to a measure, and a convergent series is a limit in a chosen norm or topology.
+
+The advanced bridge is functional-analytic. Uniform convergence is convergence in a sup norm; $L^p$ convergence is convergence in an integral norm; differentiability is the existence of a continuous linear approximation; many differential equations are operator equations $L[u]=f$. Theorems such as dominated convergence, the inverse function theorem, the projection theorem in Hilbert spaces, and semigroup existence results are refined answers to the same elementary concern: when may we pass from finite approximations to a genuine limiting object?
+
+To use this viewpoint when rereading the original examples, identify the hidden stability condition. A Taylor expansion asks for control of the remainder. A change of variables asks for differentiability and Jacobian control. Termwise differentiation of a series asks for uniform convergence of derivative series. A differential-equation formula asks whether the operator is invertible under the imposed initial or boundary data. The elementary computation is the visible part; the advanced theory names the hypotheses that make it legitimate.
+
+
+\section{Elementary-to-advanced bridge: Riemann sums and measure spaces}
+
+The Riemann integral begins with partitions of intervals and rectangles.  Lebesgue integration changes the organizing principle: instead of cutting the domain into small intervals first, it studies the size of sets on which the function takes certain values.  A measure space is a triple
+\[
+  (X,\mathcal A,\mu),
+\]
+where $\mathcal A$ is a sigma-algebra of measurable sets and $\mu$ assigns sizes to those sets.
+
+A simple function has the form
+\[
+  s=\sum_{j=1}^m c_j\mathbf 1_{E_j}.
+\]
+Its integral is defined by
+\[
+  \int s\,d\mu=\sum_{j=1}^m c_j\mu(E_j).
+\]
+Nonnegative measurable functions are integrated by approximating from below by simple functions, and general integrable functions are handled by positive and negative parts.
+
+This preserves the elementary intuition of area, but it makes convergence theorems much stronger.
+
+\section{Elementary-to-advanced bridge: convergence theorems}
+
+The Riemann integral has difficulty with limits of functions.  Lebesgue theory supplies three central tools.
+
+Monotone convergence theorem: if $0\le f_n\uparrow f$, then
+\[
+  \int f_n\,d\mu\to \int f\,d\mu.
+\]
+Fatou's lemma:
+\[
+  \int \liminf f_n\,d\mu\le \liminf \int f_n\,d\mu
+\]
+for nonnegative $f_n$.  Dominated convergence theorem: if $f_n\to f$ pointwise and $|f_n|\le g$ for some integrable $g$, then
+\[
+  \int f_n\,d\mu\to \int f\,d\mu.
+\]
+
+These theorems explain why Lebesgue integration is the natural language of probability, Fourier analysis, and PDEs: it allows limiting procedures to pass through integrals under precise hypotheses.
+
+\section{Elementary-to-advanced bridge: Lp spaces and duality}
+
+For $1\le p<\infty$, define
+\[
+  L^p(X)=\{f:\ \int |f|^p\,d\mu<\infty\}/\sim,
+\]
+where functions equal almost everywhere are identified.  The norm is
+\[
+  \|f\|_p=\left(\int |f|^p\,d\mu\right)^{1/p}.
+\]
+Hölder's inequality says that if $1/p+1/q=1$, then
+\[
+  \int |fg|\,d\mu\le \|f\|_p\|g\|_q.
+\]
+Thus integration becomes a pairing between function spaces.  The elementary integral $\int fg$ is now a duality bracket, and inequalities become statements about bounded linear functionals.
+
+\section{Returning to the original Riemann examples}
+
+Darboux sums, Riemann sums, and step-function pictures remain valuable because they teach integral as accumulation.  The advanced reconstruction does not erase them.  It explains why later mathematics replaces intervals by measurable sets, pointwise equality by almost-everywhere equality, and ordinary convergence by modes of convergence suitable for passing limits through integrals.
