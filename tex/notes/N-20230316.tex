@@ -1,0 +1,175 @@
+\notechapter{N-20230316}{Fixed Points, Iteration, and the Banach Contraction Principle}
+
+\section{Fixed points}
+
+A fixed point of a map \(T:X\to X\) is a point \(x\in X\) such that
+\[
+  T(x)=x.
+\]
+Intuitively, applying the transformation does not move the point.
+
+A basic example is
+\[
+  T(x)=\cos x.
+\]
+The equation
+\[
+  x=\cos x
+\]
+has a unique real solution, approximately
+\[
+  x\approx0.739085\ldots,
+\]
+often called the Dottie number.  Iteration
+\[
+  x_{n+1}=\cos x_n
+\]
+converges to this fixed point for many starting values.
+
+\section{Iteration}
+
+Given a map \(T:X\to X\), an iterative process has the form
+\[
+  x_{n+1}=T(x_n).
+\]
+If \(x_n\to x\) and \(T\) is continuous, then
+\[
+  T(x)=T\left(\lim_{n\to\infty}x_n\right)=\lim_{n\to\infty}T(x_n)=\lim_{n\to\infty}x_{n+1}=x.
+\]
+Thus the limit of a convergent iteration is automatically a fixed point.
+
+The hard question is not this final step, but why the iteration converges at all.
+
+\section{Metric spaces and contractions}
+
+\begin{definition}
+A metric space is a set \(X\) equipped with a distance function \(d:X\times X\to\mathbb R_{\ge0}\) such that:
+\begin{enumerate}[(i)]
+  \item \(d(x,y)=0\) iff \(x=y\);
+  \item \(d(x,y)=d(y,x)\);
+  \item \(d(x,z)\le d(x,y)+d(y,z)\).
+\end{enumerate}
+\end{definition}
+
+\begin{definition}
+A map \(T:X\to X\) is a contraction if there exists a constant \(0<c<1\) such that
+\[
+  d(Tx,Ty)\le c\,d(x,y)
+\]
+for all \(x,y\in X\).
+\end{definition}
+
+\section{Banach fixed point theorem}
+
+\begin{theorem}[Banach contraction principle]
+Let \(X\) be a nonempty complete metric space, and let \(T:X\to X\) be a contraction.  Then \(T\) has a unique fixed point \(x^*\).  Moreover, for any starting point \(x_0\in X\), the sequence
+\[
+  x_{n+1}=T(x_n)
+\]
+converges to \(x^*\).
+\end{theorem}
+
+\begin{proof}
+Let \(x_{n+1}=T(x_n)\).  Since \(T\) is a contraction,
+\[
+  d(x_{n+1},x_n)=d(Tx_n,Tx_{n-1})\le c\,d(x_n,x_{n-1}).
+\]
+Inductively,
+\[
+  d(x_{n+1},x_n)\le c^n d(x_1,x_0).
+\]
+For \(m>n\), the triangle inequality gives
+\[
+  d(x_m,x_n)\le \sum_{k=n}^{m-1}d(x_{k+1},x_k)
+  \le \sum_{k=n}^{m-1}c^k d(x_1,x_0)
+  \le \frac{c^n}{1-c}d(x_1,x_0).
+\]
+Thus \((x_n)\) is Cauchy.  Completeness gives a limit \(x^*\).  By continuity of \(T\),
+\[
+  T(x^*)=x^*.
+\]
+For uniqueness, if \(Tx=x\) and \(Ty=y\), then
+\[
+  d(x,y)=d(Tx,Ty)\le c\,d(x,y).
+\]
+Since \(c<1\), this forces \(d(x,y)=0\), so \(x=y\).
+\end{proof}
+
+\section{Error estimate}
+
+The proof gives an explicit estimate:
+\[
+  d(x_n,x^*)\le \frac{c^n}{1-c}d(x_1,x_0).
+\]
+This is useful computationally because it tells us how quickly the iteration converges.
+
+\Needspace{16\baselineskip}
+\section{Applications}
+
+\begin{example}[Solving equations]
+To solve \(f(x)=0\), one may rewrite it as \(x=T(x)\).  If \(T\) is a contraction on a complete interval or metric space, iteration converges to the solution.
+\end{example}
+
+\begin{example}[Differential equations]
+Picard iteration for ordinary differential equations is an application of the contraction principle in a function space.  The local existence and uniqueness theorem for ODEs can be proved this way.
+\end{example}
+
+\begin{example}[Functional equations]
+Many recursive definitions can be interpreted as fixed point problems.  In computer science, fixed point theorems appear in domain theory, semantics of recursion, and program analysis.
+\end{example}
+
+\section{Beyond Banach}
+
+Banach's theorem is powerful because it gives existence, uniqueness, and an algorithm.  Other fixed point theorems weaken some of these conclusions:
+\begin{enumerate}[(i)]
+  \item Brouwer's fixed point theorem gives existence for continuous maps from a closed ball to itself, but not uniqueness or iteration convergence;
+  \item Schauder's fixed point theorem extends Brouwer-type ideas to infinite-dimensional settings;
+  \item Tarski's fixed point theorem concerns monotone maps on complete lattices.
+\end{enumerate}
+
+\section{Summary}
+
+The fixed point idea is a bridge between analysis, topology, computation, and dynamics.  The Banach contraction principle is the cleanest analytic version: contraction gives a unique fixed point and a concrete iterative algorithm for finding it.
+
+
+\section{Why completeness is the hidden hypothesis}
+
+The contraction estimate shows that the iterative sequence is Cauchy.  It does not by itself produce a point inside the space.  Completeness is exactly the condition that Cauchy sequences have limits in the space.  This is why the theorem is false on an incomplete space: the iteration may approach a missing point.
+
+For example, in \((0,1)\) one may construct a contraction whose natural limit is \(0\), but \(0\notin(0,1)\).  The shrinking process is not enough unless the space contains its limiting points.
+
+\section{Picard iteration as fixed-point theory}
+
+The same idea solves ordinary differential equations.  The initial value problem
+\[
+  y'(t)=f(t,y(t)),\qquad y(t_0)=y_0
+\]
+is equivalent to
+\[
+  y(t)=y_0+\int_{t_0}^{t}f(s,y(s))\,ds.
+\]
+Define an operator \(T\) on functions by the right-hand side.  Under a Lipschitz condition and on a short interval, \(T\) is a contraction.  Its fixed point is the solution.  Thus the theorem is not merely about numerical iteration; it is the engine behind existence and uniqueness.
+
+\section{Source repair: non-contractive fixed-point theorems}
+
+The uploaded note does not stop at Banach's theorem.  It asks what happens when the map is not a strict contraction.  Krasnoselskii-type theorems apply when an operator can be decomposed as
+\[
+  T=A+B,
+\]
+where \(A\) is contractive and \(B\) is compact, usually on a closed convex subset of a Banach space.  The guiding idea is that the contractive part controls distance, while the compact part supplies finite-dimensional approximation behavior.
+
+Meir--Keeler's theorem weakens the fixed contraction constant.  Instead of requiring one number \(q<1\) for all distances, it asks that distances in a small band above \(\varepsilon\) are pushed below \(\varepsilon\).  Geraghty-type theorems further replace a fixed constant by a control function.  The common theme remains: some form of distance decrease forces Cauchy behavior.
+
+\section{Source repair: Brouwer and Schauder}
+
+Brouwer's theorem says that a continuous map from a closed ball in finite-dimensional Euclidean space to itself has a fixed point.  It gives existence but not uniqueness, and it does not give the Banach iteration estimate.
+
+Schauder's theorem is an infinite-dimensional analogue: compact continuous maps on suitable closed convex sets have fixed points.  This is important in differential and integral equations, where solutions are often obtained as fixed points of compact operators.
+
+The contrast is useful:
+\[
+  \text{Banach: contraction }\Rightarrow\text{ unique fixed point and iteration},
+\]
+\[
+  \text{Brouwer/Schauder: compactness and convexity }\Rightarrow\text{ existence only}.
+\]
