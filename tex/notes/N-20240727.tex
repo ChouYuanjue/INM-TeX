@@ -1,0 +1,166 @@
+\notechapter{N-20240727}{Hopf Fibration, Homotopy, and a First Misreading}
+
+\section{Why this note exists}
+
+This note records the first layer of a longer story.  In the summer of 2024, while scrolling through a social-media feed, I saw a lecture poster by Peng Keyao with the title roughly translated as ``Entering the Hall: From Elementary Arithmetic to Higher Algebra.''  The abstract promised a path from the Hopf fibration, homotopy groups, configuration spaces, and algebraic \(K\)-theory toward the strange line
+\[
+  0=1-1=-1+1=0.
+\]
+This immediately recalled an older memory: in the summer of 2021, I had listened to a lecture by the same speaker on the Hopf fibration.  At that time I was still learning what a fibre bundle was, and the picture of linked circles in \(S^3\) felt like a gateway into real topology.
+
+The first memo I wrote after seeing the 2024 poster was not a finished mathematical account.  It was a personal attempt to decode a meme.  It mixed correct intuitions with premature explanations: Hopf fibration, homotopy groups, framed cobordism, algebraic \(K\)-theory, the field with one element, and the Eilenberg swindle were all pulled into one ladder.  That memo is worth preserving because it records the actual birth of the question.  But it should be rewritten as a notebook entry, with its limitations made explicit.
+
+The goal of this note is therefore modest.  It explains the first geometric anchor: why the Hopf fibration appears at the beginning of the story, and why a line that looks like elementary arithmetic might eventually be about homotopy rather than arithmetic.  The later correction, where \(0=1-1=-1+1=0\) becomes a nontrivial loop in a \(K\)-theoretic space, is postponed to the next note.
+
+\section{The old anchor: the Hopf fibration}
+
+The Hopf fibration is a map
+\[
+  H:S^3\longrightarrow S^2.
+\]
+One clean definition uses complex coordinates.  View
+\[
+  S^3=\{(z_1,z_2)\in\mathbb C^2: |z_1|^2+|z_2|^2=1\}.
+\]
+Then define
+\[
+  H(z_1,z_2)=[z_1:z_2]\in \mathbb{CP}^1.
+\]
+Since \(\mathbb{CP}^1\cong S^2\), this is a map from \(S^3\) to \(S^2\).
+
+\begin{definition}[Fibre]
+For a map \(f:X\to Y\) and a point \(y\in Y\), the fibre over \(y\) is
+\[
+  f^{-1}(y)=\{x\in X:f(x)=y\}.
+\]
+For the Hopf map, every fibre is a circle \(S^1\).
+\end{definition}
+
+The surprise is not only that the fibres are circles.  The surprise is that the circles are linked.  After stereographic projection into ordinary three-dimensional space, one sees a family of circles arranged like a nested system of linked rings.  This is the image that made the Hopf fibration memorable long before I understood the modern algebra around it.
+
+\Needspace{16\baselineskip}
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.70\textwidth]{figures/N-20240727/Hopf_Fibration.png}
+  \caption{a visualization of the Hopf fibration after stereographic projection.}
+\end{figure}
+
+\begin{remark}
+The Hopf fibration is often the first example where the phrase ``a map between spheres'' stops being a boring dimension-counting object.  A map \(S^3\to S^2\) can have a robust topological shape.  It can fail to be deformed to a constant map.
+\end{remark}
+
+\section{Homotopy groups as the language of deformation}
+
+The next rung in the meme is the passage from a map to its homotopy class.  If \(X\) is a based space, then
+\[
+  \pi_n(X)=\{\text{based maps }S^n\to X\}/\text{based homotopy}.
+\]
+This group records \(n\)-dimensional ways of probing the space \(X\).
+
+For example:
+\[
+  \pi_0(X)\quad \text{counts connected components,}
+\]
+while
+\[
+  \pi_1(X)\quad \text{is the fundamental group of loops.}
+\]
+For \(n\ge 2\), the groups \(\pi_n(X)\) are higher analogues of the fundamental group.
+
+A beginner might expect maps from a higher-dimensional sphere into a lower-dimensional sphere to be uninteresting.  The Hopf fibration is a warning against that expectation.  The Hopf map represents a nontrivial element of
+\[
+  \pi_3(S^2).
+\]
+It cannot be continuously deformed to the constant map.
+
+This is the first conceptual correction to the naive reading of the meme.  The point is not the numerical value of a formula.  The point is that a process, a deformation, or a path can be nontrivial even if its endpoints look the same.
+
+\section{From unstable to stable phenomena}
+
+The original memo jumped from the Hopf fibration to a line involving stable homotopy:
+\[
+  \pi_1^s(\mathbb S)\cong \Omega_1^{\mathrm{fr}}.
+\]
+At the time this looked like another mysterious galaxy-brain level.  It is better to unpack the words.
+
+\begin{definition}[Stable homotopy group]
+The stable homotopy groups of spheres are obtained by repeatedly suspending maps between spheres and then passing to the stable range:
+\[
+  \pi_i^s(\mathbb S)=\lim_{n\to\infty}\pi_{i+n}(S^n).
+\]
+The symbol \(\mathbb S\) denotes the sphere spectrum.
+\end{definition}
+
+The word ``stable'' means that instead of asking about one specific map \(S^m\to S^n\), we ask what remains after both dimensions have been shifted upward many times.  Some unstable accidents disappear; some essential patterns survive.
+
+\begin{theorem}[Pontryagin--Thom, notebook form]
+Stable homotopy classes of maps into spheres can be represented by framed manifolds up to framed cobordism.  In low degree this gives an identification of the form
+\[
+  \pi_1^s(\mathbb S)\cong \Omega_1^{\mathrm{fr}}.
+\]
+\end{theorem}
+
+For the present story, the useful image is this: a loop or movie can leave behind a framed one-dimensional manifold.  Whether that framed circle bounds a framed disk is a geometric way to test whether the loop is trivial.  The Hopf class survives as the nontrivial element of a \(\mathbb Z/2\)-phenomenon.
+
+\section{The galaxy-brain meme as a learning ladder}
+
+The meme that triggered the later reflection should be kept as part of the background.  It should not be read as a proof.  It is a ladder of associations.
+
+\Needspace{18\baselineskip}
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.58\textwidth]{figures/N-20240727/hopf_meme.jpg}
+  \caption{the meme that compresses Hopf fibration, stable homotopy, \(K\)-theory, and the equation \(0=1-1=-1+1=0\) into one ladder.}
+\end{figure}
+
+A cleaned-up reading of the ladder is:
+\[
+\begin{array}{c}
+\text{Hopf fibration }S^3\to S^2\\
+\Downarrow\\
+\text{nontrivial homotopy groups of spheres}\\
+\Downarrow\\
+\text{stable homotopy and framed cobordism}\\
+\Downarrow\\
+\text{\(K\)-theory of finite sets / the field with one element}\\
+\Downarrow\\
+\text{the loop hidden behind \(0=1-1=-1+1=0\).}
+\end{array}
+\]
+
+The first memo tried to explain all of this at once.  That was too much.  A better notebook strategy is to separate the ladder into two layers.  This note handles the memory and the geometric entry point.  The next note handles the corrected mathematical mechanism.
+
+\section{The early misreading}
+
+The tempting first interpretation of
+\[
+  0=1-1=-1+1=0
+\]
+is analytic.  One thinks of divergent sums such as
+\[
+  1-1+1-1+\cdots
+\]
+and of Ces\`aro summation, Abel summation, or analytic continuation.  Another tempting interpretation is the Eilenberg swindle: in an infinite direct sum, one shifts terms so that an object cancels itself.
+
+Those ideas are not irrelevant to the culture around \(K\)-theory, but they are not the point of Peng's lecture.  The lecture is not asking for the numerical value of an infinite expression.  It is asking for the shape of a finite process.
+
+In the language of this note, the first attempt had the right instinct but the wrong centre of gravity.  The right instinct was: the equation is not ordinary arithmetic.  The wrong centre of gravity was: maybe infinity trivializes something.  The corrected centre of gravity is:
+\[
+  \text{the equation describes a path from \(0\) to \(0\), and this path is not the identity path.}
+\]
+
+\section{What to remember before the correction}
+
+The background of the note should not be erased.  The path toward the correct reading really passed through a memory of Hopf fibration, a lecture poster, and a meme.  Mathematically, however, the items to keep are the following.
+
+First, the Hopf fibration gives a concrete model of a nontrivial homotopy class.  It teaches that a map can be nontrivial even when the source and target are simple spheres.
+
+Second, homotopy theory cares about deformation classes, not just endpoint values.  This is the philosophical bridge from equality-as-proposition to equality-as-path.
+
+Third, stable homotopy and framed cobordism provide a language in which a loop or movie can become a geometric object.  The Hopf class will later reappear as a stable \(\mathbb Z/2\)-class.
+
+Finally, the equation
+\[
+  0=1-1=-1+1=0
+\]
+should be read cautiously.  In the next note it will no longer mean a strange numerical equality.  It will mean a specific loop in a \(K\)-theoretic space of finite signed configurations.
