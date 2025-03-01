@@ -1,0 +1,176 @@
+\notechapter{N-20250301}{Projective Schemes and Gluing: A Gentle View of Proj}
+
+\section{Why projective schemes are needed}
+
+Projective varieties are built from homogeneous equations. Schemes ask for the same idea at the level of rings, prime ideals, and local functions.
+
+The construction is called \(\operatorname{Proj}\). It is the projective companion of \(\operatorname{Spec}\).
+
+If \(S\) is a graded ring
+\[
+  S=S_0\oplus S_1\oplus S_2\oplus\cdots,
+\]
+then \(\operatorname{Proj}S\) is built from homogeneous prime ideals not containing the irrelevant ideal.
+
+This sounds technical, but the basic idea is familiar: projective geometry ignores common scaling, so only homogeneous data make sense.
+
+\section{Projective space}
+
+The most important example is
+\[
+  \mathbb P^n_R=\operatorname{Proj}R[x_0,\ldots,x_n],
+\]
+where the variables have degree \(1\).
+
+The standard affine chart \(x_i\ne0\) is written
+\[
+  D_+(x_i).
+\]
+On this chart, ratios
+\[
+  \frac{x_j}{x_i}
+\]
+become ordinary affine coordinates.
+
+So projective space is assembled from affine pieces, one for each coordinate that is nonzero.
+
+\section{Homogeneous ideals}
+
+A projective subscheme of \(\mathbb P^n\) is described by a homogeneous ideal
+\[
+  I\subset R[x_0,\ldots,x_n].
+\]
+Homogeneous equations are necessary because the point
+\[
+  [x_0:\cdots:x_n]
+\]
+is unchanged by scaling all coordinates.
+
+For example, a projective conic is given by a homogeneous quadratic equation
+\[
+  F(x,y,z)=0.
+\]
+In the chart \(z\ne0\), it becomes an affine equation in \(x/z\) and \(y/z\).
+
+\section{Gluing affine charts}
+
+The most concrete way to think about \(\operatorname{Proj}\) is gluing. Each \(D_+(x_i)\) is affine. The overlaps \(D_+(x_i)\cap D_+(x_j)\) are also affine, and the coordinate changes are given by ratios.
+
+For \(\mathbb P^1\), there are two charts:
+\[
+  U_0=\{x_0\ne0\},\qquad U_1=\{x_1\ne0\}.
+\]
+On \(U_0\), use coordinate \(t=x_1/x_0\). On \(U_1\), use coordinate \(s=x_0/x_1\). On the overlap,
+\[
+  s=\frac1t.
+\]
+This is the same gluing pattern as the Riemann sphere.
+
+\section{Projective closure revisited}
+
+Given an affine equation \(f(x,y)=0\), homogenizing it gives a projective equation
+\[
+  F(x,y,z)=0.
+\]
+The projective scheme remembers not only the affine curve but also what happens at infinity and, if present, nilpotent or embedded structure.
+
+This is a scheme-level version of a familiar geometric act: complete the affine picture by adding the missing directions at infinity.
+
+\section{Why this is not too abstract}
+
+The point of \(\operatorname{Proj}\) is not to make projective geometry harder. It lets projective geometry use the same local-function language as \(\operatorname{Spec}\).
+
+The repeated pattern is:
+\[
+\begin{array}{c}
+  \text{build local affine pieces,}\\
+  \text{understand their rings of functions,}\\
+  \text{glue them along overlaps.}
+\end{array}
+\]
+
+\section{Relation with the earlier conic note}
+
+The earlier Erlangen-style conic note emphasized transformations and invariants. The scheme viewpoint emphasizes functions and local rings. These are not competing views.
+
+\[
+\begin{array}{c|c}
+\text{projective geometry} & \text{incidence, duality, transformations}\\
+\text{algebraic geometry} & \text{equations, coordinate rings, local functions}\\
+\text{scheme theory} & \text{nilpotents, gluing, base rings}
+\end{array}
+\]
+
+The same shape becomes richer as the language becomes richer.
+
+%% expanded-on-review
+
+\section{The two-chart construction of the projective line}
+
+The most useful model of \(\operatorname{Proj}\) is still the elementary construction of \(\mathbb P^1\). Take two affine lines:
+\[
+  U_0=\operatorname{Spec}R[t],\qquad U_1=\operatorname{Spec}R[s].
+\]
+On the open subsets where \(t\ne0\) and \(s\ne0\), glue by
+\[
+  s=\frac1t.
+\]
+The result is projective line.
+
+This example should be kept in mind whenever \(\operatorname{Proj}\) feels abstract. The construction is not a single mysterious space; it is affine geometry plus gluing rules.
+
+\section{Standard opens in the projective plane}
+
+Projective plane has three standard affine charts:
+\[
+  D_+(x),\qquad D_+(y),\qquad D_+(z).
+\]
+On \(D_+(z)\), the affine coordinates are
+\[
+  X=\frac{x}{z},\qquad Y=\frac{y}{z}.
+\]
+On \(D_+(x)\), one uses
+\[
+  U=\frac{y}{x},\qquad V=\frac{z}{x}.
+\]
+The projective plane is what appears after gluing these charts along their overlaps.
+
+This makes projective geometry feel less like adding a mystical line at infinity and more like coordinating several affine windows.
+
+\section{A conic across charts}
+
+The projective conic
+\[
+  xz-y^2=0
+\]
+looks different in different charts. On \(z\ne0\), it becomes
+\[
+  X=Y^2.
+\]
+On \(x\ne0\), it becomes
+\[
+  V=U^2.
+\]
+The same projective curve has multiple affine faces. A single affine picture can hide part of the curve, especially at infinity.
+
+\section{What Proj adds to the earlier story}
+
+The earlier projective note explained homogeneous coordinates and incidence. This note adds the function-theoretic layer:
+\[
+\begin{array}{c|c}
+\text{homogeneous coordinates} & \text{homogeneous primes}\\
+\text{affine charts} & \text{standard affine opens}\\
+\text{projective equations} & \text{homogeneous ideals}
+\end{array}
+\]
+The new language is heavier, but the basic picture is the same: projective spaces are made by gluing affine charts.
+
+
+\section{What to remember}
+
+\(\operatorname{Spec}\) turns rings into affine geometric spaces. \(\operatorname{Proj}\) turns graded rings into projective geometric spaces.
+
+\[
+  \text{Proj is projective geometry rebuilt from homogeneous algebra and affine gluing.}
+\]
+This is a good endpoint for the Geometry volume: it returns to projective geometry, but now with the function-theoretic language of schemes.
