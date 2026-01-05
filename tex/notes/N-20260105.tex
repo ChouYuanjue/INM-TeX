@@ -1,0 +1,569 @@
+\notechapter{N-20260105}{Linear Algebra Review IV: Eigenvalue Tricks, Positive Definiteness, and More}
+
+
+
+\section{Eigenvalues of matrix functions}
+
+The first highlighted method says that if $A\xi=\lambda\xi$, then many matrices built from $A$ have the same eigenvector.  For a polynomial $f$,
+\[
+  f(A)\xi=f(\lambda)\xi.
+\]
+If $A$ is invertible, then
+\[
+  A^{-1}\xi=\lambda^{-1}\xi.
+\]
+If $A$ is invertible, its adjugate satisfies
+\[
+  A^*=|A|A^{-1},
+\]
+so
+\[
+  A^*\xi=
+\frac{|A|}{\lambda}\xi.
+\]
+This is the principle behind the first example: if $A^k=O$, then all eigenvalues satisfy $\lambda^k=0$, hence all eigenvalues are zero.  Therefore
+\[
+  |E+3A|=\prod_i(1+3\lambda_i)=1.
+\]
+The handwritten note identifies this as nilpotent behavior: all eigenvalues of a nilpotent matrix are zero.
+
+\section{No real eigenvector from a quadratic relation}
+
+Another example assumes a real $2\times2$ matrix satisfies
+\[
+  A^2+aA+bE=O,\qquad a^2-4b<0.
+\]
+If there were a real eigenvector $\beta$ with real eigenvalue $\lambda$, then
+\[
+  (\lambda^2+a\lambda+b)\beta=0.
+\]
+Since $\beta\ne0$, one would have
+\[
+  \lambda^2+a\lambda+b=0.
+\]
+But the discriminant is negative, so there is no real root.  Hence the matrix has no real eigenvector.  The page notes this as a useful way to rule out real eigenvectors by reducing the problem to the scalar polynomial satisfied by $A$.
+
+\section{Independence of eigenvectors}
+
+The second highlighted block uses standard eigenvector facts:
+\begin{itemize}
+  \item eigenvectors belonging to distinct eigenvalues are linearly independent;
+  \item an $n\times n$ matrix is diagonalizable iff it has $n$ independent eigenvectors;
+  \item for a real symmetric matrix, eigenvectors belonging to different eigenvalues are orthogonal;
+  \item the geometric multiplicity of an eigenvalue is at most its algebraic multiplicity.
+\end{itemize}
+
+For example, if $A$ has three distinct eigenvalues $\lambda_1,\lambda_2,\lambda_3$ with eigenvectors $\alpha_1,\alpha_2,\alpha_3$, and if
+\[
+  B=\alpha_1+\alpha_2+\alpha_3,
+\]
+then expressions such as
+\[
+  A^3B,\qquad (R-A)B
+\]
+can be evaluated by applying $A$ to each eigendirection separately.  The source uses the characteristic identity
+\[
+  (A^3-A^2)\alpha_i=(\lambda_i^3-\lambda_i^2)\alpha_i.
+\]
+
+\section{Real symmetric reconstruction from eigenvalues}
+
+One example states that a real symmetric $3\times3$ matrix has eigenvalues
+\[
+  -1,\ 1,\ 1
+\]
+and that an eigenvector belonging to $-1$ is
+\[
+  (0,1,1)^T.
+\]
+To reconstruct $A$, choose an orthonormal basis with first vector in the $-1$ eigenspace and the other two spanning its orthogonal complement.  If
+\[
+  P=(\xi_1,\xi_2,\xi_3)
+\]
+is orthogonal and
+\[
+  D=\operatorname{diag}(-1,1,1),
+\]
+then
+\[
+  A=PDP^T.
+\]
+The note's handwritten solution chooses simple orthogonal vectors, forms $P$, and computes $A$ explicitly.  The key is that real symmetric matrices are orthogonally diagonalizable, so reconstruction from eigenspaces is geometrically natural.
+
+\section{Similarity invariants: trace and determinant}
+
+If $A$ and $B$ are similar, then they have the same characteristic polynomial and hence the same eigenvalues with multiplicity.  Therefore
+\[
+  \operatorname{tr}A=\operatorname{tr}B,\qquad |A|=|B|.
+\]
+One problem uses this with matrices such as
+\[
+  3E+2A,\qquad 2E+B,\qquad E-2B
+\]
+being noninvertible.  Noninvertibility gives eigenvalue conditions.  For example,
+\[
+  |3E+2A|=0
+\]
+means that $-3/2$ is an eigenvalue of $A$.  After collecting the shared eigenvalues, the trace of the adjugate is computed using
+\[
+  \lambda(A^*)=
+\frac{|A|}{\lambda(A)}.
+\]
+The page writes the final trace as a sum of transformed eigenvalues.
+
+\section{Trace shortcuts}
+
+The note includes a boxed reminder:
+\begin{enumerate}[(i)]
+  \item for a concrete matrix, the trace is the sum of diagonal entries;
+  \item for a matrix with known eigenvalues, the trace is the sum of eigenvalues;
+  \item a skew-symmetric matrix has diagonal entries zero, so its trace is zero;
+  \item a nilpotent matrix has all eigenvalues zero, so its trace is zero.
+\end{enumerate}
+The handwritten comment says that these are not different facts; they are the same invariant read in different languages.
+
+\section{Row-sum eigenvectors}
+
+A highlighted method uses equations such as
+\[
+  A\xi=\lambda\xi,\qquad |\lambda E-A|=0.
+\]
+If every row sum of $A$ is $2$, then
+\[
+  A(1,1,\ldots,1)^T=2(1,1,\ldots,1)^T.
+\]
+So $2$ is an eigenvalue and the all-ones vector is an eigenvector.  The note treats this as a standard quick observation: constant row sums produce the eigenvector $\mathbf 1$.
+
+\section{Diagonalization problems}
+
+One problem gives
+\[
+  A=\begin{pmatrix}1&-1&1\\a&4&b\\-3&-3&5\end{pmatrix}
+\]
+and says it has three independent eigenvectors, with $2$ a double eigenvalue.  Since $A$ is diagonalizable, the eigenspace for $\lambda=2$ must have dimension $2$.  Therefore
+\[
+  r(2E-A)=1.
+\]
+Row reduction of $2E-A$ gives conditions on $a,b$, and the page obtains
+\[
+  a=2,\qquad b=-2.
+\]
+The method is important: when a repeated eigenvalue occurs in a diagonalizable matrix, its eigenspace dimension must equal its algebraic multiplicity.
+
+Another example uses $A^3=A$.  The polynomial relation is
+\[
+  A(A-E)(A+E)=O.
+\]
+The possible eigenvalues are $-1,0,1$.  The note compares ranks of factors to count geometric multiplicities and concludes diagonalizability by showing that the total number of independent eigendirections is $n$.
+
+\section{Real symmetric eigenvalue problems}
+
+For a real symmetric matrix with rank $2$ and relation
+\[
+  A^3+2A^2=O,
+\]
+the eigenvalues satisfy
+\[
+  \lambda^3+2\lambda^2=\lambda^2(\lambda+2)=0.
+\]
+Thus possible eigenvalues are $0$ and $-2$.  Since $r(A)=2$, exactly two eigenvalues are nonzero, and for a real symmetric matrix the diagonal form is similar to
+\[
+  \operatorname{diag}(-2,-2,0).
+\]
+The source warns not to infer algebraic multiplicities only from the scalar equation; rank supplies the missing count.
+
+\section{Odd powers of real symmetric matrices}
+
+One problem states: if $A$ is a real symmetric matrix, prove that for every positive integer $k$ there exists a real symmetric matrix $B$ such that
+\[
+  B^{2k+1}=A.
+\]
+Since $A$ is real symmetric, there is an orthogonal matrix $Q$ with
+\[
+  Q^TAQ=D=\operatorname{diag}(\lambda_1,\ldots,\lambda_n).
+\]
+Every real number has a real $(2k+1)$-st root, so define
+\[
+  C=\operatorname{diag}(\sqrt[2k+1]{\lambda_1},\ldots,\sqrt[2k+1]{\lambda_n}).
+\]
+Then
+\[
+  B=QCQ^T
+\]
+is real symmetric and satisfies $B^{2k+1}=A$.  The source points out that the odd power matters; even roots of negative eigenvalues would fail over the reals.
+
+\section{Rayleigh quotient extrema}
+
+For a real symmetric matrix $A$, the problem asks for
+\[
+  \max_{x^Tx=1}x^TAx,\qquad
+  \min_{x^Tx=1}x^TAx.
+\]
+If
+\[
+  A=Q^T\operatorname{diag}(\lambda_1,\ldots,\lambda_n)Q
+\]
+with $Q$ orthogonal, set $y=Qx$.  Then $y^Ty=1$ and
+\[
+  x^TAx=y^T\operatorname{diag}(\lambda_i)y
+  =\sum_i\lambda_i y_i^2.
+\]
+Thus the maximum is the largest eigenvalue and the minimum is the smallest eigenvalue.  In the source example, the eigenvalues are
+\[
+  1,\ 4,\ 10,
+\]
+so the maximum is $10$ and the minimum is $1$.
+
+\section{Orthogonal determinant trick}
+
+If $A$ is an orthogonal matrix and $|A|=-1$, then the note proves that $A$ has eigenvalue $-1$.  Since $A$ is orthogonal,
+\[
+  |A|\,|E+A|=|A+A^TA|=|E+A|.
+\]
+Because $|A|=-1$, this forces
+\[
+  |E+A|=0.
+\]
+Therefore $-1$ is an eigenvalue.
+
+\section{Quadratic forms through diagonalization}
+
+The quadratic-form section uses diagonalization.  If
+\[
+  f(x_1,x_2,x_3)=x^TAx
+\]
+is brought by an orthogonal change $x=Py$ to
+\[
+  2y_1^2-y_2^2-y_3^2,
+\]
+then $A$ is orthogonally similar to
+\[
+  D=\operatorname{diag}(2,-1,-1).
+\]
+A problem asks for
+\[
+  |3A^*-2A^{-1}|.
+\]
+Using similarity and adjugate eigenvalues, reduce the determinant to the diagonal case:
+\[
+  3A^*-2A^{-1}
+  \sim
+  (3|D|-2)D^{-1},
+\]
+so the determinant is computed from the diagonal entries.  The source obtains a numerical value by multiplying the resulting diagonal factors.
+
+\section{Positive definite equations}
+
+One problem states: if $A,C$ are positive definite symmetric matrices and the equation
+\[
+  AX+XA=C
+\]
+has a unique solution $B$, prove $B$ is positive definite.  The note observes first that transposing the equation gives another solution, so uniqueness implies
+\[
+  B^T=B.
+\]
+If $B\xi=\lambda\xi$, then using the equation gives
+\[
+  \xi^TC\xi
+  =
+  \xi^TAB\xi+\xi^TBA\xi
+  =
+  2\lambda\,\xi^TA\xi.
+\]
+Since $A$ and $C$ are positive definite, both quadratic forms are positive for $\xi\ne0$, so $\lambda>0$.  Hence all eigenvalues of the symmetric matrix $B$ are positive, and $B$ is positive definite.
+
+\section{Commuting positive definite products}
+
+If $A,B$ are symmetric positive definite and
+\[
+  AB=BA,
+\]
+then $AB$ is symmetric and positive definite.  Symmetry follows from
+\[
+  (AB)^T=B^TA^T=BA=AB.
+\]
+For positive definiteness, diagonalize $B=P^TDP$ with $D>0$, or use the fact that commuting real symmetric matrices can be simultaneously orthogonally diagonalized.  Then the eigenvalues of $AB$ are products of positive eigenvalues, hence positive.
+
+The source also proves an inequality: for positive definite $A,B$,
+\[
+  (A+B)(A^{-1}+B^{-1})
+\]
+has all eigenvalues at least $4$.  Writing
+\[
+  (A+B)(A^{-1}+B^{-1})=2E+C+C^{-1},\qquad C=AB^{-1},
+\]
+and reducing to the positive eigenvalues of a similar symmetric positive definite matrix gives
+\[
+  \lambda+\lambda^{-1}\ge2.
+\]
+
+\section{Principal minors and congruence}
+
+The page uses positive definiteness through principal minors.  One example has $Ax=0$ with nonzero solution, so
+\[
+  |A|=0.
+\]
+Candidate values for a parameter are tested by the leading principal minors of a given positive definite matrix $B$.  The source chooses the value making both the determinant condition and positive definiteness true.
+
+Another problem uses congruence.  If $B$ is symmetric, prove that
+\[
+  A=\begin{pmatrix}E&B\\B&E\end{pmatrix}
+\]
+is positive definite iff all eigenvalues of $B$ satisfy
+\[
+  |\lambda_i(B)|<1.
+\]
+The hint uses a congruent transformation with a matrix like
+\[
+  P=\begin{pmatrix}E&-B\\O&E\end{pmatrix}
+\]
+to reduce the form to
+\[
+  \operatorname{diag}(E,E-B^2).
+\]
+Thus positive definiteness is equivalent to
+\[
+  E-B^2>0,
+\]
+which is equivalent to $1-\lambda_i(B)^2>0$.
+
+\section{Ordering eigenvalues and positive definiteness}
+
+If $A,B$ are symmetric positive definite and the smallest eigenvalue of $A$ is larger than the largest eigenvalue of $B$, then $A-B$ is positive definite.  The note's hint takes a midpoint $k$ between those two eigenvalue bounds.  Then
+\[
+  A-kE>0,\qquad kE-B>0,
+\]
+so
+\[
+  A-B=(A-kE)+(kE-B)>0.
+\]
+
+\section{Transition matrices}
+
+The linear-space section studies change of basis.  Suppose in $\mathbb R^3$ there are bases
+\[
+\varepsilon_1,
+\varepsilon_2,
+\varepsilon_3
+\]
+and
+\[
+  \alpha_1=
+\varepsilon_1,\quad
+  \alpha_2=
+\varepsilon_1+
+\varepsilon_2,\quad
+  \alpha_3=
+\varepsilon_1+
+\varepsilon_2+
+\varepsilon_3,
+\]
+as well as another basis
+\[
+  \beta_1=
+\varepsilon_1+
+\varepsilon_2,\quad
+  \beta_2=2
+\varepsilon_2+
+\varepsilon_3,\quad
+  \beta_3=
+\varepsilon_1+3
+\varepsilon_3.
+\]
+Let
+\[
+  (\alpha_1,\alpha_2,\alpha_3)
+  =
+  (
+\varepsilon_1,
+\varepsilon_2,
+\varepsilon_3)P_1,
+\]
+and
+\[
+  (\beta_1,\beta_2,\beta_3)
+  =
+  (
+\varepsilon_1,
+\varepsilon_2,
+\varepsilon_3)P_2.
+\]
+Then the transition matrix from the $\alpha$-basis to the $\beta$-basis is
+\[
+  P=P_1^{-1}P_2,
+\]
+because
+\[
+  (\beta_1,\beta_2,\beta_3)
+  =
+  (\alpha_1,\alpha_2,\alpha_3)P.
+\]
+The handwritten solution computes these matrices explicitly.
+
+\section{Same coordinates under two bases}
+
+The last page asks for vectors whose coordinates are the same under two bases.  Let the standard basis be
+\[
+\varepsilon_1=(1,0,0)^T,\quad
+\varepsilon_2=(0,1,0)^T,\quad
+\varepsilon_3=(0,0,1)^T,
+\]
+and another basis be
+\[
+  \alpha_1=(1,0,0)^T,\quad
+  \alpha_2=(1,1,0)^T,\quad
+  \alpha_3=(1,1,1)^T.
+\]
+A vector with coordinate column $t=(t_1,t_2,t_3)^T$ has the same coordinates in both bases iff
+\[
+  t_1
+\varepsilon_1+t_2
+\varepsilon_2+t_3
+\varepsilon_3
+  =
+  t_1\alpha_1+t_2\alpha_2+t_3\alpha_3.
+\]
+This gives a homogeneous linear system in $t$.  The source row-reduces the system and obtains a one-dimensional family, hence all such vectors are scalar multiples of one vector.
+
+\section{Expanded synthesis and advanced context}
+
+This note is a review of how eigenvalues and bases organize linear algebra.  Polynomial identities for matrices become scalar identities on eigenvalues.  Diagonalization translates operators into independent directions.  Real symmetric matrices make the translation orthogonal and geometric.  Positive definiteness is tested by eigenvalues, principal minors, or congruence.  Change of basis problems are solved by writing both bases in a common reference basis and multiplying the corresponding coordinate matrices.
+
+
+
+\paragraph{Expanded synthesis.}
+For this chapter, the elementary material should be read as a study of what remains invariant when coordinates change. The earlier sections (`Eigenvalues of matrix functions`, `No real eigenvector from a quadratic relation`, `Independence of eigenvectors`, `Real symmetric reconstruction from eigenvalues`) compute with arrays, bases, pivots, determinants, or eigenvectors; the deeper object is a linear map together with the spaces it acts on. A matrix is a representation of that map after bases have been chosen. This is why formulas such as
+\[
+  A' = P^{-1}AP,\qquad \widetilde A = T^{-1}AS
+\]
+are not cosmetic: they distinguish an intrinsic morphism from a coordinate description.
+
+The structural hierarchy is as follows. Kernels record what a map forgets, images record what it reaches, cokernels record obstructions to solvability, and quotients record information after an equivalence has been imposed. Determinants act on the top exterior power and therefore measure oriented volume; traces are invariant under cyclic rearrangement and become characters in representation theory; adjoints depend on an inner product and lead to self-adjoint spectral theory.
+
+A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
+
+
+\section{Elementary-to-advanced bridge: functional calculus for diagonalizable and symmetric matrices}
+
+If $A$ is diagonalizable, $A=PDP^{-1}$, then a polynomial or suitable function of $A$ is defined by
+\[
+  f(A)=Pf(D)P^{-1},\qquad f(D)=\operatorname{diag}(f(\lambda_1),\ldots,f(\lambda_n)).
+\]
+For real symmetric matrices, this is especially stable because $P$ can be chosen orthogonal.
+
+This explains many eigenvalue tricks in the note.  If $A\xi=\lambda\xi$, then
+\[
+  f(A)\xi=f(\lambda)\xi.
+\]
+Nilpotent, idempotent, inverse, adjugate, and odd-root problems are all examples of applying functions to eigenvalues.
+
+\section{Elementary-to-advanced bridge: Loewner order and positive definiteness}
+
+For symmetric matrices, write
+\[
+  A\succeq B
+\]
+if $A-B$ is positive semidefinite.  This is the Loewner order.  Positive definiteness is then $A\succ0$.
+
+The Rayleigh quotient characterizes eigenvalue bounds:
+\[
+  \lambda_{\min}(A)\le \frac{x^TAx}{x^Tx}\le \lambda_{\max}(A).
+\]
+Thus a statement such as ``the smallest eigenvalue of $A$ is larger than the largest eigenvalue of $B$'' immediately implies
+\[
+  A-B\succ0.
+\]
+This is exactly the order-theoretic content of one of the positive-definite examples.
+
+\section{Elementary-to-advanced bridge: Lyapunov equations}
+
+The equation
+\[
+  AX+XA=C
+\]
+in the note is a special Lyapunov/Sylvester equation.  More generally,
+\[
+  AX+XB=C
+\]
+has a unique solution when the spectra of $A$ and $-B$ are disjoint.
+
+If $A$ is positive definite and symmetric, the equation
+\[
+  AX+XA=C
+\]
+can be diagonalized by an orthogonal matrix.  If $A=QDQ^T$ and $Y=Q^TXQ$, $K=Q^TCQ$, then
+\[
+  DY+YD=K,\qquad (d_i+d_j)Y_{ij}=K_{ij}.
+\]
+Because $d_i+d_j>0$, the solution is unique.  Positivity of $C$ then forces positivity properties of $X$.
+
+\section{Elementary-to-advanced bridge: convex optimization and semidefinite programs}
+
+Positive semidefinite matrices form a convex cone:
+\[
+  S_+^n=\{A=A^T:\ x^TAx\ge0\text{ for all }x\}.
+\]
+A semidefinite program optimizes a linear function over affine slices of this cone.  Many quadratic-form inequalities can be rewritten as semidefinite constraints.
+
+The elementary leading-principal-minor tests are therefore finite-dimensional certificates for membership in this cone.  The research-level continuation is optimization over matrix cones.
+
+\section{Elementary-to-advanced bridge: matrix monotone warning}
+
+For positive numbers, $0<a\le b$ implies $a^2\le b^2$.  For positive definite matrices, this implication may fail when matrices do not commute.  Functions preserving Loewner order are called operator monotone.
+
+The function $t\mapsto t^{-1}$ reverses order on positive definite matrices:
+\[
+  0\prec A\preceq B\quad\Longrightarrow\quad B^{-1}\preceq A^{-1}.
+\]
+This kind of phenomenon explains why matrix inequalities are subtler than scalar inequalities, even when the notation looks similar.
+
+% Second-pass deepening for waves 2-4: wave 2 remaining
+\section{Second-pass deepening: positive definite matrices as geometry of ellipsoids}
+
+A symmetric positive definite matrix $A$ defines an ellipsoid
+\[
+  E_A=\{x:x^TAx\le1\}.
+\]
+If $A=QDQ^T$ with $D=\operatorname{diag}(\lambda_i)$, then the principal semi-axis lengths are $1/\sqrt{\lambda_i}$.  Larger eigenvalues mean tighter curvature in the corresponding eigenvector directions.
+
+This turns inequalities between positive definite matrices into inclusions of ellipsoids.  If
+\[
+  A\succeq B,
+\]
+then $x^TAx\ge x^TBx$ for all $x$, so
+\[
+  E_A\subseteq E_B.
+\]
+The Loewner order is therefore geometric containment reversed through quadratic forms.
+
+\section{Second-pass deepening: Lyapunov equations and stability}
+
+For a continuous-time linear system
+\[
+  x'=Mx,
+\]
+a Lyapunov function may have the form
+\[
+  V(x)=x^TPx,\qquad P\succ0.
+\]
+Then
+\[
+  \frac d{dt}V(x(t))=x^T(M^TP+PM)x.
+\]
+If one can solve
+\[
+  M^TP+PM=-Q,\qquad Q\succ0,
+\]
+then $V$ decreases along nonzero trajectories, proving stability.
+
+This gives an applied meaning to Sylvester and Lyapunov equations.  They are not only matrix exercises; they construct quadratic energies for dynamical systems.
+
+\section{Second-pass deepening: functional calculus and matrix inequalities}
+
+For a positive definite matrix $A$, one defines
+\[
+  A^{1/2}=Q\operatorname{diag}(\sqrt{\lambda_i})Q^T.
+\]
+This square root is the unique positive definite matrix satisfying $(A^{1/2})^2=A$.  Similarly, one defines $\log A$, $e^A$, and $A^t$ spectrally.
+
+However, scalar intuition can fail for noncommuting matrices.  Even if $A\preceq B$, it is not always true for arbitrary scalar functions $f$ that $f(A)\preceq f(B)$.  Operator monotone functions are precisely those for which this implication holds.  This warning is essential when extending elementary inequalities to matrices.
