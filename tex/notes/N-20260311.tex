@@ -1,0 +1,73 @@
+\notechapter{N-20260311}{Metrics, Norms, Cauchy Sequences, and Completeness}
+
+
+\section{Metric spaces}
+
+A metric on a nonempty set $X$ is a function $d:X\times X\to[0,\infty)$ satisfying positivity, symmetry, and the triangle inequality:
+\[
+  d(x,y)=0\Leftrightarrow x=y,\qquad d(x,y)=d(y,x),\qquad d(x,z)\le d(x,y)+d(y,z).
+\]
+The pair $(X,d)$ is a metric space.  This definition abstracts the part of Euclidean geometry needed for convergence and continuity.
+
+\section{Norms}
+
+A norm on a vector space $V$ satisfies
+\[
+  \|x\|=0\Leftrightarrow x=0,\qquad \|\lambda x\|=|\lambda|\|x\|,\qquad \|x+y\|\le\|x\|+\|y\|.
+\]
+Every norm gives a metric by $d(x,y)=\|x-y\|$.  Important examples on $\mathbb R^n$ include
+\[
+  \|x\|_1=\sum_i|x_i|,\qquad
+  \|x\|_2=\sqrt{\sum_i x_i^2},\qquad
+  \|x\|_\infty=\max_i|x_i|.
+\]
+
+\section{Equivalence and completeness}
+
+On a finite-dimensional vector space all norms are equivalent.  Hence convergence and continuity do not depend on the chosen norm.  In infinite dimensions this fails and becomes a central issue of functional analysis.
+
+A sequence is Cauchy if
+\[
+  \forall \varepsilon>0,\ \exists N,\ m,n>N\Rightarrow d(x_m,x_n)<\varepsilon.
+\]
+A metric space is complete if every Cauchy sequence converges in it.  A complete normed vector space is a Banach space.
+
+\section{Expanded synthesis and advanced context}
+
+Metrics tell us what it means for points to be close.  Norms tell us what it means for vectors to be small.  Completeness says that limiting procedures stay inside the space.  These are the exact structures needed for approximation arguments.
+
+
+
+\paragraph{Expanded synthesis.}
+For this chapter, the elementary material should be read as a study of what remains invariant when coordinates change. The earlier sections (`Metric spaces`, `Norms`, `Equivalence and completeness`, `Higher viewpoint`, `Expanded comparison with finite-dimensional intuition`) compute with arrays, bases, pivots, determinants, or eigenvectors; the deeper object is a linear map together with the spaces it acts on. A matrix is a representation of that map after bases have been chosen. This is why formulas such as
+\[
+  A' = P^{-1}AP,\qquad \widetilde A = T^{-1}AS
+\]
+are not cosmetic: they distinguish an intrinsic morphism from a coordinate description.
+
+The structural hierarchy is as follows. Kernels record what a map forgets, images record what it reaches, cokernels record obstructions to solvability, and quotients record information after an equivalence has been imposed. Determinants act on the top exterior power and therefore measure oriented volume; traces are invariant under cyclic rearrangement and become characters in representation theory; adjoints depend on an inner product and lead to self-adjoint spectral theory.
+
+A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
+
+
+\section{Expanded comparison with finite-dimensional intuition}
+
+In $\mathbb R^n$, different norms produce the same convergent sequences, but they emphasize different shapes.  The $1$-norm has diamond-shaped balls, the Euclidean norm has round balls, and the $\infty$-norm has cubes.  Equivalence of norms says these shapes trap each other up to constant rescaling.
+
+In infinite-dimensional spaces this fails.  On $C[0,1]$, the norm
+\[
+  \|f\|_\infty=\max_{x\in[0,1]}|f(x)|
+\]
+controls uniform error, while
+\[
+  \|f\|_1=\int_0^1 |f(x)|\,dx
+\]
+allows tall narrow spikes to be small.  Thus convergence depends on the norm.
+
+\section{Completeness and fixed points}
+
+Completeness is not only a definition.  The Banach fixed-point theorem says that if $(X,d)$ is complete and $T:X\to X$ satisfies
+\[
+  d(Tx,Ty)\le qd(x,y),\qquad 0<q<1,
+\]
+then $T$ has a unique fixed point.  Iterating $x_{n+1}=T(x_n)$ converges to it.  This theorem is the conceptual backbone of many existence-and-uniqueness arguments.
