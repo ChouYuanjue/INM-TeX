@@ -1,0 +1,82 @@
+\notechapter{N-20260312}{Spectral Radius, Matrix Series, and Numerical Conditioning}
+
+
+\section{Spectral radius}
+
+For $A\in\mathbb C^{n\times n}$ with eigenvalues $\lambda_1,\ldots,\lambda_n$, the spectral radius is
+\[
+  \rho(A)=\max_j |\lambda_j|.
+\]
+For any operator norm,
+\[
+  \rho(A)\le \|A\|.
+\]
+Indeed, if $Ax=\lambda x$ and $x\ne0$, then $|\lambda|\|x\|=\|Ax\|\le\|A\|\|x\|$.
+
+\section{Powers and convergence}
+
+The long-term behavior of $A^k$ is controlled by $\rho(A)$.  In finite dimension,
+\[
+  A^k\to0\quad\Longleftrightarrow\quad \rho(A)<1.
+\]
+The Jordan form explains the borderline cases: a block with eigenvalue $|\lambda|<1$ decays even with polynomial factors, while $|\lambda|\ge1$ prevents decay.
+
+\section{Matrix geometric series}
+
+If $\rho(A)<1$, then
+\[
+  \sum_{k=0}^\infty A^k=(I-A)^{-1}.
+\]
+This is the matrix version of the scalar geometric series.  The condition is not merely $\|A\|<1$ for a particular norm; $\rho(A)<1$ is the intrinsic condition, although a suitable norm can often be chosen with $\|A\|<1$.
+
+\section{Condition number}
+
+For an invertible matrix $A$, the condition number in a norm is
+\[
+  \kappa(A)=\|A\|\|A^{-1}\|.
+\]
+It measures how much relative error can be amplified when solving $Ax=b$.  In the Euclidean norm,
+\[
+  \kappa_2(A)=\frac{\sigma_{\max}(A)}{\sigma_{\min}(A)}.
+\]
+A large condition number means the problem is intrinsically sensitive, not just that an algorithm is poorly written.
+
+\section{Expanded synthesis and advanced context}
+
+Spectral radius describes asymptotic dynamics, the matrix geometric series describes stable feedback, and condition number describes sensitivity to perturbation.  These are the linear-algebraic roots of many stability questions in numerical analysis and machine learning.
+
+
+
+\paragraph{Expanded synthesis.}
+For this chapter, the elementary material should be read as a study of what remains invariant when coordinates change. The earlier sections (`Spectral radius`, `Powers and convergence`, `Matrix geometric series`, `Condition number`, `Higher viewpoint`) compute with arrays, bases, pivots, determinants, or eigenvectors; the deeper object is a linear map together with the spaces it acts on. A matrix is a representation of that map after bases have been chosen. This is why formulas such as
+\[
+  A' = P^{-1}AP,\qquad \widetilde A = T^{-1}AS
+\]
+are not cosmetic: they distinguish an intrinsic morphism from a coordinate description.
+
+The structural hierarchy is as follows. Kernels record what a map forgets, images record what it reaches, cokernels record obstructions to solvability, and quotients record information after an equivalence has been imposed. Determinants act on the top exterior power and therefore measure oriented volume; traces are invariant under cyclic rearrangement and become characters in representation theory; adjoints depend on an inner product and lead to self-adjoint spectral theory.
+
+A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
+
+
+\section{Expanded spectral-radius calculus}
+
+The inequality $\rho(A)\le\|A\|$ is only the beginning.  Gelfand's formula says
+\[
+  \rho(A)=\lim_{k\to\infty}\|A^k\|^{1/k}
+\]
+for any matrix norm.  Thus spectral radius is the intrinsic exponential growth rate of powers of $A$.
+
+This explains why $\rho(A)<1$ is the exact condition for $A^k\to0$.  If $A$ has a Jordan block $J=\lambda I+N$, then
+\[
+  J^k=\sum_{j=0}^{m-1}\binom{k}{j}\lambda^{k-j}N^j.
+\]
+The polynomial factor cannot defeat exponential decay when $|\lambda|<1$, but it matters on the boundary $|\lambda|=1$.
+
+\section{Conditioning as geometry of inverse maps}
+
+Solving $Ax=b$ applies $A^{-1}$ to $b$.  If $A$ sends some unit vector to a very short vector, then $A^{-1}$ must stretch that direction enormously.  In singular-value language,
+\[
+  \kappa_2(A)=\frac{\sigma_{\max}}{\sigma_{\min}}.
+\]
+A large condition number means small errors in $b$ may create large errors in $x$.
