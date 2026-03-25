@@ -1,0 +1,78 @@
+\notechapter{N-20260325}{Extrema of Two-Variable Functions and the Hessian Test}
+
+
+\section{Local extrema}
+
+For $f(x,y)$ defined on a region $G$, a point $P_0\in G$ is a local maximum if $f(P)\le f(P_0)$ for all $P$ near $P_0$, and a local minimum if $f(P)\ge f(P_0)$.  If the inequality is strict away from $P_0$, the extremum is strict.
+
+\section{Necessary condition}
+
+If $f$ is differentiable at an interior local extremum, then
+\[
+  \nabla f(P_0)=0.
+\]
+This is Fermat's theorem in several variables: every directional derivative must vanish.  Such points are critical points, but not every critical point is an extremum.
+
+\section{Second derivative test}
+
+Let
+\[
+  A=f_{xx}(P_0),\qquad B=f_{xy}(P_0),\qquad C=f_{yy}(P_0),\qquad D=AC-B^2.
+\]
+If $\nabla f(P_0)=0$, then:
+\[
+\begin{aligned}
+  D>0,\ A>0&\Rightarrow\text{local minimum},\\
+  D>0,\ A<0&\Rightarrow\text{local maximum},\\
+  D<0&\Rightarrow\text{saddle point}.
+\end{aligned}
+\]
+If $D=0$, the test is inconclusive.  This is the quadratic form test for the Hessian matrix.
+
+\section{Constrained extrema}
+
+For a constraint $g(x,y)=0$, the Lagrange multiplier condition is
+\[
+  \nabla f=\lambda \nabla g.
+\]
+Geometrically, at a constrained extremum the level curve of $f$ is tangent to the constraint curve.  For several constraints, the gradient of $f$ lies in the span of the constraint gradients.
+
+\section{Expanded synthesis and advanced context}
+
+The first derivative locates candidates; the second derivative classifies the local quadratic model.  Unconstrained extrema are about the Hessian; constrained extrema are about tangency of level sets.
+
+
+
+\paragraph{Expanded synthesis.}
+For this chapter, the elementary material should be read as a study of what remains invariant when coordinates change. The earlier sections (`Local extrema`, `Necessary condition`, `Second derivative test`, `Constrained extrema`, `Higher viewpoint`) compute with arrays, bases, pivots, determinants, or eigenvectors; the deeper object is a linear map together with the spaces it acts on. A matrix is a representation of that map after bases have been chosen. This is why formulas such as
+\[
+  A' = P^{-1}AP,\qquad \widetilde A = T^{-1}AS
+\]
+are not cosmetic: they distinguish an intrinsic morphism from a coordinate description.
+
+The structural hierarchy is as follows. Kernels record what a map forgets, images record what it reaches, cokernels record obstructions to solvability, and quotients record information after an equivalence has been imposed. Determinants act on the top exterior power and therefore measure oriented volume; traces are invariant under cyclic rearrangement and become characters in representation theory; adjoints depend on an inner product and lead to self-adjoint spectral theory.
+
+A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
+
+
+\section{Expanded Hessian interpretation}
+
+At a critical point, the Taylor expansion begins as
+\[
+  f(P_0+h)=f(P_0)+\frac12 h^T H(P_0)h+o(|h|^2).
+\]
+Thus the classification problem becomes classification of the quadratic form $h^THh$.
+
+For two variables,
+\[
+  H=\begin{pmatrix}A&B\\B&C\end{pmatrix},\qquad D=AC-B^2.
+\]
+If $D>0$ and $A>0$, then $H$ is positive definite; if $D>0$ and $A<0$, it is negative definite; if $D<0$, it takes both signs, so the point is a saddle.
+
+\section{Constrained extrema and geometry}
+
+For $g(x,y)=0$, the gradient $\nabla g$ is normal to the constraint curve.  At a constrained extremum, moving along the curve produces no first-order change in $f$, so $\nabla f$ must also be normal to the curve.  Hence
+\[
+  \nabla f=\lambda\nabla g.
+\]
+The multiplier $\lambda$ records sensitivity of the extremal value to relaxing the constraint.
