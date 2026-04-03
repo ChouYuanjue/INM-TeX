@@ -1,0 +1,135 @@
+\notechapter{N-20260403}{Double Integrals: Riemann Definition, Properties, Symmetry, and Mean Value}
+
+
+\section{Definition}
+
+Let $f$ be a bounded function on a bounded closed region $D\subseteq\mathbb R^2$.  Partition $D$ into small subregions $\Delta\sigma_i$, choose sample points $(\xi_i,\eta_i)$, and form
+\[
+  \sum_{i=1}^n f(\xi_i,\eta_i)\Delta\sigma_i.
+\]
+If this sum has a limit independent of the partition and sample points as the mesh tends to zero, the limit is the double integral
+\[
+  \iint_D f(x,y)\,d\sigma.
+\]
+
+\section{Basic properties}
+
+Double integrals are linear, additive over regions, monotone, and compatible with estimates:
+\[
+  m\le f\le M\quad\Rightarrow\quad
+  m\,\operatorname{area}(D)\le\iint_D f\,dA\le M\,\operatorname{area}(D).
+\]
+If $f$ is continuous on $D$, it is Riemann integrable.
+
+\section{Symmetry}
+
+If $D$ is symmetric and $f$ is odd with respect to that symmetry, then the integral is zero.  If $f$ is even, the integral over the full region is twice the integral over one half.  Symmetry is not a shortcut after computation; it is often the computation.
+
+\section{Mean value theorem}
+
+If $f$ is continuous on a connected bounded closed region $D$, then there exists $P_0\in D$ such that
+\[
+  \iint_D f\,dA=f(P_0)\operatorname{area}(D).
+\]
+This says that an integral is an average value multiplied by area.
+
+
+\section{Meaning of the double-integral notation}
+
+The annotated source image is better represented as notation rather than as a screenshot.  In
+\[
+  \iint_D f(x,y)\,d\sigma
+  =\lim_{\lambda\to0}\sum_{i=1}^n f(\xi_i,\eta_i)\Delta\sigma_i,
+\]
+Here \(D\) is the integration region, \(f(x,y)\) is the integrand, and \(d\sigma\) is the area element.  The term \(f(\xi_i,\eta_i)\Delta\sigma_i\) is the contribution of one small cell in a Riemann sum.  The limit says that the mesh size \(\lambda\) tends to zero.
+
+\section{Expanded synthesis and advanced context}
+
+A double integral is the continuous version of adding weighted area elements.  Its most important conceptual move is to separate the integrand from the measure of the region.
+
+
+
+\paragraph{Expanded synthesis.}
+For this chapter, the elementary material should be read as a study of what remains invariant when coordinates change. The earlier sections (`Definition`, `Basic properties`, `Symmetry`, `Mean value theorem`) compute with arrays, bases, pivots, determinants, or eigenvectors; the deeper object is a linear map together with the spaces it acts on. A matrix is a representation of that map after bases have been chosen. This is why formulas such as
+\[
+  A' = P^{-1}AP,\qquad \widetilde A = T^{-1}AS
+\]
+are not cosmetic: they distinguish an intrinsic morphism from a coordinate description.
+
+The structural hierarchy is as follows. Kernels record what a map forgets, images record what it reaches, cokernels record obstructions to solvability, and quotients record information after an equivalence has been imposed. Determinants act on the top exterior power and therefore measure oriented volume; traces are invariant under cyclic rearrangement and become characters in representation theory; adjoints depend on an inner product and lead to self-adjoint spectral theory.
+
+A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
+
+
+\section{Expanded Riemann-sum interpretation}
+
+The Riemann definition says: divide a region into tiny pieces, multiply each tiny area by a sample value of the function, and let the largest diameter of the pieces go to zero.  The insistence on arbitrary partitions is important.  It ensures that the value of the integral belongs to the function and the region, not to a preferred grid.
+
+When $f\ge0$, the double integral is volume under the surface $z=f(x,y)$.  When $f$ changes sign, it is signed volume.  When $f$ is a density, the integral is mass.
+
+\section{Comparison examples}
+
+If $D$ is symmetric about the $y$-axis and $f(x,y)=xg(x^2,y)$, then the integral is zero by oddness in $x$.  If $f$ is even with respect to that symmetry, the full integral is twice the integral over one half.  This is the kind of observation that should be made before computation.
+
+\section{Mean value as average}
+
+The formula
+\[
+  \iint_D f\,dA=f(\xi,\eta)\operatorname{area}(D)
+\]
+for continuous $f$ on connected compact $D$ says that the average value of $f$ is achieved somewhere.  It is the two-dimensional analogue of the one-variable integral mean value theorem.
+
+\section{Elementary-to-advanced bridge: double integrals as measure integrals}
+
+A double integral over a plane region $D$ is an integral with respect to two-dimensional Lebesgue measure:
+\[
+  \iint_D f(x,y)\,dA=\int_{\mathbb R^2} f(x,y)\mathbf 1_D(x,y)\,d\lambda^2.
+\]
+This point of view separates the function from the region.  The domain is represented by a characteristic function, and the area element is the underlying measure.
+
+Tonelli's theorem says that for nonnegative measurable $f$,
+\[
+  \iint f\,d(\mu\times\nu)=\int\left(\int f(x,y)\,d\nu(y)\right)d\mu(x)
+\]
+without needing prior integrability.  Fubini's theorem gives the same iterated formula for integrable functions.
+
+\section{Elementary-to-advanced bridge: product measures}
+
+The reason iterated integrals work is product measure.  If $(X,\mu)$ and $(Y,\nu)$ are measure spaces, their product has measure $\mu\times\nu$ satisfying
+\[
+  (\mu\times\nu)(A\times B)=\mu(A)\nu(B).
+\]
+Rectangles generate the product sigma-algebra.  General regions are built from rectangles by limiting processes.
+
+Thus the elementary partition of a plane region into small rectangles is the Riemann-sum shadow of product measure.
+
+\section{Elementary-to-advanced bridge: change of variables theorem}
+
+For a $C^1$ diffeomorphism $T:U\to V$,
+\[
+  \int_V f(x)\,dx=\int_U f(T(u))|\det DT(u)|\,du.
+\]
+The Jacobian determinant is the local area scaling.  The elementary polar-coordinate formula $dA=r\,dr\,d\theta$ is one instance.
+
+The theorem is not merely computational: it says integration is compatible with smooth coordinate change, provided one accounts for local volume distortion.
+
+\section{Returning to the double-integral examples}
+
+The original Riemann-sum definition, region splitting, symmetry, and mean-value exercises are all preserved.  The advanced layer says that they belong to measure theory: double integrals use product measure, Fubini/Tonelli justify iterated integration, and change of variables is measure transformation under a differentiable map.
+
+% Second-pass deepening for waves 2-4: wave 4 part 2
+\section{Second-pass deepening: Fubini failures and why hypotheses matter}
+
+For nonnegative functions, Tonelli's theorem allows iterated integration even if the integral is infinite.  For sign-changing functions, Fubini requires integrability of $|f|$.  Without that hypothesis, changing order may change the answer or make one order meaningless.
+
+This matters because elementary calculus often trains order-switching as a geometric skill, but advanced analysis adds a convergence condition.  The region must be described correctly, and the function must be integrable in the appropriate sense.
+
+\section{Second-pass deepening: symmetry as group action on measure}
+
+If a region $D$ is invariant under a transformation $g$ and the measure is preserved, then
+\[
+  \int_D f\,dA=\int_D f\circ g\,dA.
+\]
+If $f\circ g=-f$, the integral is zero.  This is the group-action explanation of odd-function cancellation over symmetric domains.
+
+The elementary symmetry shortcuts are therefore rigorous consequences of measure-preserving transformations.
