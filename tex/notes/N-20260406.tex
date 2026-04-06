@@ -1,0 +1,151 @@
+\notechapter{N-20260406}{Triple Integrals: Rectangular, Cylindrical, and Spherical Coordinates}
+
+
+\section{Definition and Fubini principle}
+
+A triple integral accumulates a scalar field over a spatial region $\Omega\subseteq\mathbb R^3$:
+\[
+  \iiint_\Omega f(x,y,z)\,dV.
+\]
+For a box or simple region, it becomes an iterated integral.  A typical $xy$-simple region has
+\[
+  (x,y)\in D,\qquad z_1(x,y)\le z\le z_2(x,y),
+\]
+so
+\[
+  \iiint_\Omega f\,dV=\iint_D\int_{z_1}^{z_2}f(x,y,z)\,dz\,dA.
+\]
+
+\section{Cylindrical coordinates}
+
+Cylindrical coordinates are
+\[
+  x=r\cos\theta,\quad y=r\sin\theta,\quad z=z,\quad dV=r\,dr\,d\theta\,dz.
+\]
+They are natural for cylinders, cones, and solids with axial symmetry.
+
+\section{Spherical coordinates}
+
+With
+\[
+  x=\rho\sin\varphi\cos\theta,\quad
+  y=\rho\sin\varphi\sin\theta,\quad
+  z=\rho\cos\varphi,
+\]
+one has
+\[
+  dV=\rho^2\sin\varphi\,d\rho\,d\varphi\,d\theta.
+\]
+The factor comes from the small lengths $d\rho$, $\rho d\varphi$, and $\rho\sin\varphi d\theta$.
+
+\section{Applications}
+
+Mass, center of mass, and moments are all integrals of density multiplied by coordinate functions.  For density $\rho(x,y,z)$,
+\[
+  M=\iiint_\Omega \rho\,dV,\qquad
+  \bar x=\frac1M\iiint_\Omega x\rho\,dV.
+\]
+
+\section{Expanded synthesis and advanced context}
+
+A triple integral is a measure of volume weighted by a function.  The coordinate system should be chosen so that the boundary of the region becomes simple and the Jacobian expresses the local volume scaling.
+
+
+
+\paragraph{Expanded synthesis.}
+The common theme of this chapter is that a limiting or computational rule becomes powerful only after one specifies the space in which the limit takes place. The earlier sections on Fubini's principle, cylindrical coordinates, spherical coordinates, applications, and the higher viewpoint may look separate. They ask the same question: which operations are stable under approximation? A derivative is stable first-order approximation,
+\[
+  f(a+h)=f(a)+L(h)+o(|h|),
+\]
+while an integral is stable accumulation with respect to a measure, and a convergent series is a limit in a chosen norm or topology.
+
+The advanced bridge is functional-analytic. Uniform convergence is convergence in a sup norm; $L^p$ convergence is convergence in an integral norm; differentiability is the existence of a continuous linear approximation; many differential equations are operator equations $L[u]=f$. Theorems such as dominated convergence, the inverse function theorem, the projection theorem in Hilbert spaces, and semigroup existence results are refined answers to the same elementary concern: when may we pass from finite approximations to a genuine limiting object?
+
+To use this viewpoint when rereading the original examples, identify the hidden stability condition. A Taylor expansion asks for control of the remainder. A change of variables asks for differentiability and Jacobian control. Termwise differentiation of a series asks for uniform convergence of derivative series. A differential-equation formula asks whether the operator is invertible under the imposed initial or boundary data. The elementary computation is the visible part; the advanced theory names the hypotheses that make it legitimate.
+
+
+\section{Expanded coordinate-choice strategy}
+
+Rectangular coordinates are good when the region is bounded by coordinate planes or graphs over coordinate planes.  Cylindrical coordinates are good when $x^2+y^2$ appears or the region has rotational symmetry about the $z$-axis.  Spherical coordinates are good when $x^2+y^2+z^2$ or cones from the origin appear.
+
+The mistake to avoid is using a beautiful coordinate system for the integrand but a terrible one for the boundary.  The best coordinates simplify both the integrand and the region.
+
+\section{Symmetry in triple integrals}
+
+If $\Omega$ is symmetric about $x=0$ and the integrand is odd in $x$, then
+\[
+  \iiint_\Omega f(x,y,z)\,dV=0.
+\]
+If the integrand is even in $x$, the integral over $\Omega$ is twice the integral over the half-region $x\ge0$.  In three dimensions, symmetry can remove entire coordinates from computation.
+
+\section{Elementary-to-advanced bridge: volume forms}
+
+In $\mathbb R^3$, the standard volume form is
+\[
+  dx\wedge dy\wedge dz.
+\]
+A coordinate change $(u,v,w)\mapsto(x,y,z)$ pulls it back to
+\[
+  dx\wedge dy\wedge dz
+  =\det\frac{\partial(x,y,z)}{\partial(u,v,w)}\,du\wedge dv\wedge dw.
+\]
+This is the differential-form explanation of the Jacobian in triple integrals.
+
+For cylindrical coordinates,
+\[
+  dV=r\,dr\,d\theta\,dz.
+\]
+For spherical coordinates,
+\[
+  dV=\rho^2\sin\varphi\,d\rho\,d\varphi\,d\theta.
+\]
+These factors are not mnemonics; they are determinants of coordinate maps.
+
+\section{Elementary-to-advanced bridge: divergence theorem preparation}
+
+Triple integrals of divergence appear in Gauss' theorem:
+\[
+  \iiint_\Omega \nabla\cdot F\,dV=\iint_{\partial\Omega}F\cdot n\,dS.
+\]
+Before one learns the theorem, triple integrals train the measurement of total source over a volume.  After the theorem, the same integral becomes a boundary flux.
+
+The elementary density interpretation also fits: if $\rho(x,y,z)$ is mass density, then
+\[
+  M=\iiint_\Omega \rho\,dV.
+\]
+If $\nabla\cdot F$ is source density, the same integral is total production inside $\Omega$.
+
+\section{Elementary-to-advanced bridge: measure-preserving transformations}
+
+A transformation is volume-preserving if
+\[
+  |\det DT|=1.
+\]
+Rotations and translations preserve volume.  Hamiltonian flows in phase space preserve symplectic volume by Liouville's theorem.
+
+Thus the elementary Jacobian test connects to dynamics: some transformations move regions around without changing volume.  This is important in mechanics, ergodic theory, and PDE transport equations.
+
+\section{Returning to coordinate systems}
+
+Rectangular, cylindrical, and spherical coordinates should be chosen not by habit but by symmetry.  The advanced viewpoint says: choose coordinates adapted to the geometry, compute the pulled-back volume form, then integrate over the parameter domain.
+
+% Second-pass deepening for waves 2-4: wave 4 part 2
+\section{Second-pass deepening: volume, density, and pushforward}
+
+If $T:U\to V$ is a coordinate map, then a density on $V$ pulls back to a density on $U$ by multiplying with $|\det DT|$.  Conversely, one may push forward a density through $T$.  In probability, this is the change-of-variables formula for random variables.
+
+For example, if a random vector has density $f_X(x)$ and $Y=T(X)$ with invertible $T$, then
+\[
+  f_Y(y)=f_X(T^{-1}y)|\det DT^{-1}(y)|.
+\]
+Triple-integral Jacobians are therefore the same mathematics as probability density transformations.
+
+\section{Second-pass deepening: divergence and infinitesimal volume change}
+
+If a vector field $F$ generates a flow $\Phi_t$, then divergence measures infinitesimal volume expansion:
+\[
+  \frac d{dt}\bigg|_{t=0}\operatorname{vol}(\Phi_t(\Omega))=\int_\Omega \nabla\cdot F\,dV.
+\]
+Thus the divergence theorem relates local infinitesimal expansion to flux through the boundary.
+
+The elementary triple integral of $\nabla\cdot F$ is therefore measuring total infinitesimal source over a region.
