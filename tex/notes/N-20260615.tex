@@ -3,7 +3,7 @@
 \section{Why this note is split this way}
 
 
-\section{Four integrals that look similar but mean different things}
+\section{Four similar-looking integrals}
 
 The first task is to separate four objects:
 \[
@@ -220,7 +220,7 @@ The high-level statement is the boundary principle:
 \]
 Green, Gauss, and Stokes are all versions of this formula.  The old vector-calculus notation hides the unity; differential forms reveal it.  The derivative $d\omega$ records local change inside a region, and the boundary integral records the accumulated effect at the edge.
 
-\section{Elementary-to-advanced bridge: general Stokes theorem}
+\section{General Stokes theorem}
 
 The vector-calculus theorems in this note are all cases of the general Stokes theorem.  If $M$ is an oriented smooth manifold with boundary and $\omega$ is a compactly supported differential form of degree one less than $\dim M$, then
 \[
@@ -237,7 +237,7 @@ Green's theorem, Stokes' theorem, and Gauss' theorem correspond to different deg
 \]
 The apparently different vector formulas are one theorem written in different degrees.
 
-\section{Elementary-to-advanced bridge: singular sources and distributions}
+\section{Singular sources and distributions}
 
 The note mentions singular fields and missing points.  The advanced language for point sources is distribution theory.  The Dirac delta $\delta_0$ is not an ordinary function but satisfies
 \[
@@ -255,7 +255,7 @@ one has classically $\nabla\cdot F=0$ away from the origin, but distributionally
 \]
 This reconciles the nonzero flux through spheres with zero ordinary divergence away from the singularity.
 
-\section{Elementary-to-advanced bridge: conservation laws}
+\section{Conservation laws}
 
 Many PDEs have conservation-law form
 \[
@@ -267,7 +267,7 @@ Integrating over a region $\Omega$ and applying Gauss' theorem gives
 \]
 Change inside equals negative outward flux.  Thus Gauss' theorem is the geometric mechanism behind conservation of mass, charge, and probability.
 
-\section{Elementary-to-advanced bridge: currents}
+\section{Currents}
 
 A current generalizes an oriented submanifold by acting on differential forms.  An oriented curve $C$ defines a current
 \[
@@ -282,7 +282,7 @@ This extends Stokes' theorem to singular chains, weak surfaces, and geometric me
 The elementary surface and curve integrals in the note are therefore the smooth case of a much more flexible integration theory over generalized geometric objects.
 
 % Second-pass deepening for waves 2-4: wave 4 part 3
-\section{Second-pass deepening: Gauss and Stokes as dual local-to-global laws}
+\section{Gauss and Stokes as dual local-to-global laws}
 
 Gauss' theorem and Stokes' theorem are both local-to-global principles.  Gauss says that local source density accumulates to boundary flux.  Stokes says that local rotation accumulates to boundary circulation.  In differential-form notation, both are one formula:
 \[
@@ -292,7 +292,7 @@ The difference lies only in the degree of the form and the dimension of the mani
 
 This unification matters because it prevents memorizing vector identities as separate facts.  The object being integrated determines the theorem: a one-form over a boundary curve gives curl through a surface; a two-form over a closed surface gives divergence through a volume.
 
-\section{Second-pass deepening: weak forms and PDE}
+\section{Weak forms and PDE}
 
 In PDE, integration by parts and Stokes-type formulas define weak solutions.  Instead of requiring derivatives to exist pointwise, one tests against smooth functions.  For example, a weak divergence equation is read through
 \[

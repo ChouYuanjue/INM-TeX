@@ -38,7 +38,7 @@ for any path from $A$ to $B$.  On a simply connected region, $P_y=Q_x$ is the us
 
 
 
-\section{Expanded synthesis and advanced context}
+\section{Why the pattern matters}
 
 Green's theorem is Stokes' theorem in the plane.  It says that the integral of a differential form over a boundary equals the integral of its derivative over the region.  This is the conceptual bridge to surface flux, Gauss' theorem, and the general Stokes theorem.
 
@@ -79,7 +79,7 @@ The condition $P_y=Q_x$ says that local curl is zero.  On a simply connected reg
 \]
 on $\mathbb R^2\setminus\{0\}$.  Its curl is zero away from the origin, but circulation around the unit circle is $2\pi$.
 
-\section{Elementary-to-advanced bridge: closed forms and exact forms}
+\section{Closed forms and exact forms}
 
 For a plane vector field $F=(P,Q)$, the form
 \[
@@ -93,7 +93,7 @@ It is exact when $\omega=df$ for some potential $f$.
 
 Exact implies closed because $d^2=0$.  The converse depends on topology.  On simply connected domains in the plane, closed one-forms are exact.  On a punctured plane, this can fail.
 
-\section{Elementary-to-advanced bridge: de Rham cohomology}
+\section{De Rham cohomology}
 
 The first de Rham cohomology group is
 \[
@@ -111,7 +111,7 @@ is closed but not exact, because
 \]
 This integral detects the hole at the origin.
 
-\section{Elementary-to-advanced bridge: Green's theorem as Stokes theorem}
+\section{Green's theorem as Stokes theorem}
 
 Green's theorem says
 \[
@@ -126,7 +126,7 @@ This is exactly Stokes' theorem in dimension two.
 
 The original path-independence tests therefore belong to a broad principle: boundary integrals measure the integral of a derivative over the interior.
 
-\section{Elementary-to-advanced bridge: harmonic forms}
+\section{Harmonic forms}
 
 On a compact Riemannian manifold, each de Rham cohomology class has a unique harmonic representative.  A harmonic form satisfies
 \[
@@ -137,7 +137,7 @@ where $\Delta$ is the Hodge Laplacian.  This is Hodge theory.
 For elementary vector calculus, the hint is this: fields can be decomposed into gradient-like, curl-like, and harmonic parts.  The harmonic part records topology.  This is the high-level continuation of conservative-field tests.
 
 % Second-pass deepening for waves 2-4: wave 4 part 3
-\section{Second-pass deepening: circulation as obstruction to a potential}
+\section{Circulation as obstruction to a potential}
 
 A field can have zero curl locally but still fail to have a global potential.  The punctured-plane form
 \[
@@ -151,7 +151,7 @@ The integral
 \]
 measures winding around the missing point.  Thus a line integral can detect topology.  This is the serious meaning behind the elementary warning that $P_y=Q_x$ is not enough on a domain with holes.
 
-\section{Second-pass deepening: Green's theorem as cancellation of internal boundaries}
+\section{Green theorem and boundary cancellation}
 
 One way to understand Green's theorem is to subdivide a region into many small rectangles.  The boundary integrals over internal edges cancel because each internal edge is traversed twice in opposite directions.  Only the outer boundary remains.  This cancellation principle survives in chain complexes, singular homology, and general Stokes theorem.
 

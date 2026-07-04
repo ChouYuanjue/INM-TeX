@@ -174,7 +174,7 @@ means the kernel is a subobject of the domain.  The image is a subobject of the 
 
 This is a useful preview: linear algebra already contains many category-theoretic patterns, even before they are named abstractly.
 
-\section{Expanded synthesis and advanced context}
+\section{The general pattern}
 
 This note links computational linear algebra with structural thinking.  Row reduction gives the null space; the minus-one trick packages free-variable substitution.  Linear maps become matrices only after choosing bases.  Basis change explains why the same map can have different matrices.  Kernel and image describe what a map destroys and what it reaches.  These ideas are also the language behind machine-learning embeddings, where vectors need not be arrows but still live in vector spaces with meaningful linear structure.
 
@@ -192,7 +192,7 @@ The structural hierarchy is as follows. Kernels record what a map forgets, image
 A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
 
 
-\section{Elementary-to-advanced bridge: exact sequences behind rank-nullity}
+\section{Exact sequences behind rank-nullity}
 
 For a linear map $T:V\to W$, the kernel and image fit into the exact sequence
 \[
@@ -206,7 +206,7 @@ This is rank-nullity.
 
 The elementary theorem is therefore the dimension shadow of an exact sequence.  Exact sequences become one of the central languages of algebra, topology, and geometry.
 
-\section{Elementary-to-advanced bridge: quotient description of the image}
+\section{Quotient description of the image}
 
 The first isomorphism theorem says
 \[
@@ -216,7 +216,7 @@ The quotient collapses all vectors that differ by a null vector.  What remains i
 
 This gives a clean meaning to free variables and solution spaces.  The kernel is what the map forgets; the image is what survives.
 
-\section{Elementary-to-advanced bridge: cokernel and obstructions}
+\section{Cokernel and obstructions}
 
 The cokernel of $T:V\to W$ is
 \[
@@ -235,7 +235,7 @@ Thus kernel measures non-uniqueness, while cokernel measures obstruction to exis
 The minus-one trick, basis conversion, and kernel/image computations in the note are all examples of one structure: a linear map forgets some directions, preserves some information, and may fail to reach some outputs.  Exact sequences and quotients express this without depending on a chosen matrix.
 
 % Second-pass deepening for waves 2-4: wave 2
-\section{Second-pass deepening: row reduction as choosing a splitting}
+\section{Row reduction as choosing a splitting}
 
 When a matrix is row-reduced, the pivot variables are expressed in terms of free variables.  Abstractly, this chooses a splitting of the domain into a complement of the kernel plus the kernel:
 \[
@@ -249,7 +249,7 @@ This splitting is not canonical: different row-reduction choices or different ba
 \]
 is canonical; a particular parametric solution is a coordinate choice.
 
-\section{Second-pass deepening: cokernel as the missing equation space}
+\section{Cokernel as the missing equation space}
 
 For $T:V\to W$, the cokernel $W/\operatorname{im}T$ measures which right-hand sides are not reachable.  In matrix terms, left null vectors produce compatibility conditions.  If $y\in\ker T^T$, then any solvable equation $Tx=b$ must satisfy
 \[

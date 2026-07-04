@@ -180,7 +180,7 @@ which counts all intermediate vertices $v_k$.  The general case follows by induc
 
 % N-20240323 overflow relief B
 \enlargethispage{4\baselineskip}
-\section{Expanded synthesis and advanced context}
+\section{The deeper habit}
 
 This note collects several ways of counting: direct binomial identities, recurrence, generating functions, Catalan decomposition, convex geometry, and graph adjacency matrices.  The common habit is to replace a raw counting problem by a structure-preserving encoding: subsets become binomial coefficients, recursions become generating functions, triangulations become Catalan recurrences, convex hulls become linear combinations, and walks become matrix powers.
 
@@ -198,7 +198,7 @@ Gcd and lcm are coordinatewise minimum and maximum in these valuation coordinate
 This algebraic reading explains why elementary tricks scale upward. Euclidean algorithms become the theory of Euclidean domains and PIDs; divisor sums become Dirichlet convolution and Euler products; roots of unity become cyclotomic fields and Galois actions; finite polynomial arithmetic becomes finite-field theory. The original computations should therefore be kept as the algorithmic core, while the advanced language identifies the structure that makes the algorithms work.
 
 
-\section{Elementary-to-advanced bridge: Catalan numbers as recursive geometry}
+\section{Catalan numbers as recursive geometry}
 
 Catalan numbers count many objects: correctly matched parentheses, triangulations of polygons, rooted binary trees, Dyck paths, and noncrossing partitions.  A standard formula is
 \[
@@ -220,7 +220,7 @@ Solving gives
 \]
 Thus an elementary recursion becomes an algebraic generating function.
 
-\section{Elementary-to-advanced bridge: lattice paths and reflection principle}
+\section{Lattice paths and reflection principle}
 
 Many Catalan formulas are proved by the reflection principle.  The number of paths from $(0,0)$ to $(n,n)$ that never go above the diagonal is
 \[
@@ -230,7 +230,7 @@ The subtracted term counts bad paths by reflecting the part up to the first diag
 
 This is a model example of an involutive or bijective proof.  Rather than evaluating a sum, one constructs a symmetry pairing bad objects with easier objects.
 
-\section{Elementary-to-advanced bridge: graph walks and adjacency matrices}
+\section{Graph walks and adjacency matrices}
 
 If $G$ is a finite graph with adjacency matrix $A$, then
 \[
@@ -242,7 +242,7 @@ If $A$ is diagonalizable with eigenvalues $\lambda_1,\ldots,\lambda_n$, the grow
 
 Thus an elementary graph-walk count leads directly to spectral graph theory.
 
-\section{Elementary-to-advanced bridge: random walks and Markov chains}
+\section{Random walks and Markov chains}
 
 Normalize the adjacency matrix of a $d$-regular graph by
 \[
@@ -257,7 +257,7 @@ Eigenvalues of $P$ determine convergence to stationarity.  If the graph is conne
 The same object therefore has two readings: $A^k$ counts deterministic walks, while $P^k$ describes probabilities.  The note's graph-walk calculations are the finite beginning of Markov-chain theory.
 
 % Second-pass deepening for waves 2-4: wave 3 A-C part 2
-\section{Second-pass deepening: Catalan recursion and moduli of parenthesization}
+\section{Catalan recursion and parenthesization}
 
 Polygon triangulations and parenthesizations are the same combinatorial structure.  A triangulation of an $(n+2)$-gon corresponds to a way of multiplying $n+1$ factors with binary parentheses.  Choosing the triangle incident to a fixed edge splits the polygon into two smaller polygons, producing the Catalan recursion.
 
@@ -267,7 +267,7 @@ This is the combinatorics behind the associahedron, a polytope whose vertices ar
 \]
 The elementary Catalan count therefore touches the geometry of moduli spaces of bracketings.
 
-\section{Second-pass deepening: adjacency spectra and expansion}
+\section{Adjacency spectra and expansion}
 
 The theorem that $(A^k)_{ij}$ counts walks becomes much stronger when combined with eigenvalues.  If a graph is $d$-regular with adjacency eigenvalues
 \[

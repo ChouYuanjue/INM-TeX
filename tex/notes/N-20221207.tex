@@ -162,7 +162,7 @@ is proved by taking an arbitrary \(x\) and translating membership:
 \]
 This is exactly the condition for membership in the right-hand side.  The diagram gives intuition; the element chase gives proof.
 
-\section{Expanded synthesis and advanced context}
+\section{A wider frame}
 
 This note is about extremal and logical reasoning.  The extremal problem uses auxiliary sets and cardinality bounds.  The Venn problem uses Boolean algebra and region decomposition.  Both are early forms of a common method: replace a vague configuration by a finite list of regions or quantities that can be counted exactly.  This is the same spirit behind combinatorial proofs, measure decompositions, and even sigma-algebra calculations later in analysis.
 
@@ -176,7 +176,7 @@ This perspective separates different layers of a problem. A dot product belongs 
 When returning to the original examples, identify the natural object before computing. If the problem is about concurrence or collinearity, projective or affine tools may be natural. If it is about distance, angle, or orthogonality, metric tools are essential. If it is about flux or circulation, differential forms and orientation explain the signs. The advanced viewpoint makes the elementary solution more disciplined rather than more abstract for its own sake.
 
 
-\section{Elementary-to-advanced bridge: extremal set theory}
+\section{Extremal set theory}
 
 The original extremal set exercises ask how large a family of sets can be under some forbidden configuration.  This is the central form of extremal combinatorics.  A typical question is: among all families $\mathcal F\subseteq \mathcal P([n])$ satisfying a condition, maximize $|\mathcal F|$.
 
@@ -188,7 +188,7 @@ The largest antichain is the middle layer of the Boolean lattice.
 
 This is the advanced version of the elementary strategy ``look at the largest level.''  The theorem says that this intuition is exactly right under the antichain constraint.
 
-\section{Elementary-to-advanced bridge: Erdős--Ko--Rado flavor}
+\section{Erdős--Ko--Rado flavor}
 
 Another central theme is intersecting families.  A family $\mathcal F\subseteq \binom{[n]}k$ is intersecting if
 \[
@@ -202,7 +202,7 @@ The extremal example is a star: all $k$-sets containing a fixed element.
 
 This theorem explains a common pattern in elementary problems: when every pair must intersect, the largest construction often comes from forcing one common element.
 
-\section{Elementary-to-advanced bridge: shifting and compression}
+\section{Shifting and compression}
 
 Shifting is a method that transforms a set family into a more ordered family without changing its size or destroying the required property.  A basic shift replaces an element $j$ by a smaller element $i$ when possible.  Repeated shifts push a family toward lexicographically simpler sets.
 
@@ -210,7 +210,7 @@ The key idea is that extremal families can often be assumed to have a compressed
 
 This is the advanced form of an elementary simplification habit: if a problem is symmetric, move examples toward a canonical position.
 
-\section{Elementary-to-advanced bridge: VC dimension}
+\section{VC dimension}
 
 A set family $\mathcal F\subseteq \mathcal P(X)$ shatters a subset $S\subseteq X$ if every subset of $S$ occurs as an intersection $F\cap S$ for some $F\in\mathcal F$.  The VC dimension is the largest size of a shattered set.
 
@@ -223,7 +223,7 @@ for $|X|=n$.  Thus a local shattering restriction gives a global counting bound.
 This connects elementary extremal set problems to statistical learning theory: VC dimension measures the capacity of a class of classifiers.
 
 % Second-pass deepening for waves 2-4: wave 3 A-C part 1
-\section{Second-pass deepening: extremal examples as stability problems}
+\section{Extremal examples as stability problems}
 
 An extremal theorem does not only ask for the maximum size; it also asks what near-maximum examples look like.  For Sperner's theorem, the exact extremal family is the middle layer.  A stability version asks: if an antichain has size close to
 \[
@@ -233,7 +233,7 @@ must it be structurally close to the middle layer?
 
 This is a research-level refinement of an elementary habit: after finding equality cases, ask what happens when equality is almost achieved.  Stability results are important because many real configurations are approximate rather than exact.
 
-\section{Second-pass deepening: shifting as canonicalization}
+\section{Shifting as canonicalization}
 
 Shifting operations preserve size and the forbidden-intersection property while simplifying the family.  After repeated shifts, if a set contains a large element but not a smaller one, the shifted family tends to replace the large element by the smaller one.
 

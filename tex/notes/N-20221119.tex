@@ -126,7 +126,7 @@ A typical problem asks for a digit or a remainder of a large power.  The method 
 \]
 Once the period is known, the exponent can be reduced modulo the period.
 
-\section{Expanded synthesis and advanced context}
+\section{Broader perspective}
 
 This note is a transition from divisibility to arithmetic structure.  Prime factorization turns every positive integer into exponent data.  Divisor counting and divisor sums become products over primes.  Congruences turn equality into equality up to remainders.  Together, these tools make large integer problems finite and computable.
 
@@ -144,7 +144,7 @@ Gcd and lcm are coordinatewise minimum and maximum in these valuation coordinate
 This algebraic reading explains why elementary tricks scale upward. Euclidean algorithms become the theory of Euclidean domains and PIDs; divisor sums become Dirichlet convolution and Euler products; roots of unity become cyclotomic fields and Galois actions; finite polynomial arithmetic becomes finite-field theory. The original computations should therefore be kept as the algorithmic core, while the advanced language identifies the structure that makes the algorithms work.
 
 
-\section{Elementary-to-advanced bridge: arithmetic functions and Dirichlet convolution}
+\section{Arithmetic functions and convolution}
 
 The divisor-counting functions in the original note are examples of arithmetic functions, functions
 \[
@@ -172,7 +172,7 @@ The sum-of-divisors function is
   \sigma=\operatorname{id}*1,\qquad \operatorname{id}(n)=n.
 \]
 
-\section{Elementary-to-advanced bridge: Möbius inversion in number theory}
+\section{Möbius inversion in number theory}
 
 The number-theoretic Möbius function is
 \[
@@ -197,7 +197,7 @@ then
 \]
 This is Möbius inversion on the divisibility poset.
 
-\section{Elementary-to-advanced bridge: Dirichlet series and Euler products}
+\section{Dirichlet series and Euler products}
 
 To an arithmetic function $f$ one may attach a Dirichlet series
 \[
@@ -215,7 +215,7 @@ The Euler product is unique factorization written analytically.
 
 The elementary prime and divisor computations in the note therefore open the door to analytic number theory: primes are encoded in the analytic behavior of $\zeta(s)$ and related series.
 
-\section{Elementary-to-advanced bridge: p-adic valuations and multiplicativity}
+\section{P-adic valuations and multiplicativity}
 
 If
 \[
@@ -229,7 +229,7 @@ then multiplicative functions are determined by their values on prime powers.  F
 This is why divisor-function formulas are products over primes.  Elementary prime factorization is already a coordinate system for arithmetic functions.
 
 % Second-pass deepening for waves 2-4: wave 3 A-C part 3
-\section{Second-pass deepening: Euler products and prime independence}
+\section{Euler products and prime independence}
 
 The Euler product
 \[
@@ -243,7 +243,7 @@ for every prime $p$.  Expanding the product chooses an exponent for each prime, 
 
 This is unique factorization written as analysis.  Elementary divisor formulas are multiplicative because the exponent choices at different primes are independent.
 
-\section{Second-pass deepening: Möbius function as inclusion--exclusion over primes}
+\section{Möbius inversion over primes}
 
 The Möbius function $\mu(n)$ performs inclusion--exclusion over the set of primes dividing $n$.  If $n$ is squarefree with $k$ prime factors, then $\mu(n)=(-1)^k$.  If a square divides $n$, it contributes zero because repeated prime factors break the simple subset structure.
 

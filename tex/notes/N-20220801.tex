@@ -160,7 +160,7 @@ Each element chooses either \(0\) or \(1\), so a set with \(n\) elements has \(2
 
 A function is not merely a formula.  It consists of a domain, codomain, and assignment rule.  The same formula can define different functions if the domain or codomain changes.  This is why image, preimage, injectivity, and surjectivity must always be stated relative to a specified domain and codomain.
 
-\section{Expanded synthesis and advanced context}
+\section{The method behind the trick}
 
 This note is a collection of elementary set and function exercises, but the hidden agenda is representational flexibility.  A set can be represented by a list, a predicate, a Venn diagram, or a characteristic function.  A function can be represented by a formula, a graph, a domain/range description, or an iteration rule.  Much of mathematics consists of switching to the representation in which the problem becomes visible.
 
@@ -178,7 +178,7 @@ Gcd and lcm are coordinatewise minimum and maximum in these valuation coordinate
 This algebraic reading explains why elementary tricks scale upward. Euclidean algorithms become the theory of Euclidean domains and PIDs; divisor sums become Dirichlet convolution and Euler products; roots of unity become cyclotomic fields and Galois actions; finite polynomial arithmetic becomes finite-field theory. The original computations should therefore be kept as the algorithmic core, while the advanced language identifies the structure that makes the algorithms work.
 
 
-\section{Elementary-to-advanced bridge: set operations as Boolean algebra}
+\section{Set operations as Boolean algebra}
 
 The original exercises with unions, intersections, complements, and Venn diagrams are the concrete beginning of Boolean algebra.  A Boolean algebra is a structure with operations
 \[
@@ -196,7 +196,7 @@ The elementary identities
 \]
 are therefore not isolated set tricks.  They are algebraic laws in a Boolean algebra.
 
-\section{Elementary-to-advanced bridge: characteristic functions}
+\section{Characteristic functions}
 
 Every subset $A\subseteq U$ has a characteristic function
 \[
@@ -219,7 +219,7 @@ For finite sets,
 \]
 This converts Venn-diagram counting into algebra.  Inclusion--exclusion is just the expansion of a product of factors $1-\mathbf 1_{A_i}$.
 
-\section{Elementary-to-advanced bridge: sigma-algebras and measurable events}
+\section{Sigma-algebras and measurable events}
 
 In probability and measure theory, one does not always allow every subset of a universe.  A sigma-algebra $\mathcal A$ on $U$ is a collection of subsets satisfying
 \[
@@ -234,7 +234,7 @@ The elementary set laws still hold, but the important new question is: which sub
 \]
 for disjoint events.  Thus basic set operations become the grammar of probability.
 
-\section{Elementary-to-advanced bridge: Stone duality intuition}
+\section{Stone duality intuition}
 
 Stone duality says, roughly, that every Boolean algebra can be represented as an algebra of clopen subsets of a topological space.  For a Boolean algebra $B$, its Stone space consists of ultrafilters on $B$.  Each element $b\in B$ determines a set
 \[
@@ -249,7 +249,7 @@ This tells us that elementary set algebra is not merely a notation for collectio
 The original exercises train manipulation of $\cup,\cap,{}^c,\setminus$.  At the advanced level, the same manipulations become Boolean algebra, characteristic-function algebra, measurable-event algebra, and even topological representation theory through Stone duality.  Nothing in the elementary calculations is wasted: every identity is a structural law that survives into probability, logic, and topology.
 
 % Second-pass deepening for waves 2-4: wave 3 A-C part 1
-\section{Second-pass deepening: from Venn diagrams to algebra of information}
+\section{From Venn diagrams to algebra of information}
 
 A Venn diagram is a visual partition of a universe into atoms determined by a finite family of sets.  For two sets, the atoms are
 \[
@@ -261,7 +261,7 @@ This gives a systematic method for elementary set identities: reduce both sides 
 
 Thus the elementary operation of shading regions is already the algebra of information partitions.  A set is a yes/no question about elements; a finite family of sets is a finite collection of yes/no questions; the atoms are the complete answer patterns.
 
-\section{Second-pass deepening: why sigma-algebras restrict what can be asked}
+\section{Why sigma-algebras restrict what can be asked}
 
 In finite examples one usually allows every subset.  In analysis, allowing every subset of $\mathbb R$ is incompatible with countably additive length if one accepts the usual choice principles.  Sigma-algebras solve this by specifying which questions are measurable.
 

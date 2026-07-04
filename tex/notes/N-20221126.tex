@@ -152,7 +152,7 @@ Squaring gives residues
 \]
 Thus only \(0,1,4\) occur.  This is a powerful small filter in number theory problems.
 
-\section{Expanded synthesis and advanced context}
+\section{Where the idea leads}
 
 Congruence classes are quotient thinking.  Instead of remembering the whole integer, we remember only its class in
 \[
@@ -174,7 +174,7 @@ Gcd and lcm are coordinatewise minimum and maximum in these valuation coordinate
 This algebraic reading explains why elementary tricks scale upward. Euclidean algorithms become the theory of Euclidean domains and PIDs; divisor sums become Dirichlet convolution and Euler products; roots of unity become cyclotomic fields and Galois actions; finite polynomial arithmetic becomes finite-field theory. The original computations should therefore be kept as the algorithmic core, while the advanced language identifies the structure that makes the algorithms work.
 
 
-\section{Elementary-to-advanced bridge: residue systems as groups of units}
+\section{Residue systems as groups of units}
 
 A reduced residue system modulo $n$ is the unit group
 \[
@@ -188,7 +188,7 @@ This is simply Lagrange's theorem applied to the finite group of units.
 
 Thus the elementary reduced-residue computations are group theory in disguise.
 
-\section{Elementary-to-advanced bridge: CRT decomposition of unit groups}
+\section{CRT decomposition of unit groups}
 
 If $m,n$ are coprime, then
 \[
@@ -203,7 +203,7 @@ This explains the multiplicativity of $\varphi$.
 
 For prime powers, the structure of the unit group is more subtle.  For odd primes $p$, the group $(\mathbb Z/p^k\mathbb Z)^\times$ is cyclic of order $p^{k-1}(p-1)$.  Powers of $2$ require separate treatment.
 
-\section{Elementary-to-advanced bridge: primitive roots and characters}
+\section{Primitive roots and characters}
 
 A primitive root modulo $n$ is a generator of the unit group.  When the unit group is cyclic, every unit is a power of one element.  This converts multiplicative congruence problems into exponent arithmetic.
 
@@ -218,7 +218,7 @@ extended to all integers by setting $\chi(a)=0$ when $\gcd(a,n)>1$.  They are Fo
 The note's residue tables, reduced systems, and Euler-function formulas are not just modular arithmetic.  They are computations inside finite groups.  The next levels are group decomposition, primitive roots, and characters.
 
 % Second-pass deepening for waves 2-4: wave 3 A-C part 3
-\section{Second-pass deepening: primitive roots as logarithms in finite groups}
+\section{Primitive roots as logarithms in finite groups}
 
 When $(\mathbb Z/n\mathbb Z)^\times$ is cyclic with generator $g$, every unit has the form $g^k$.  This turns multiplication into addition of exponents modulo the group order.  In other words, a primitive root supplies a discrete logarithm coordinate.
 
@@ -228,7 +228,7 @@ This is powerful but also limited: not every modulus has primitive roots.  The c
 \]
 where $p$ is an odd prime.  This explains why some modular arithmetic problems become simple after choosing a primitive root, while others require decomposing the unit group into several cyclic factors.
 
-\section{Second-pass deepening: characters as Fourier analysis on unit groups}
+\section{Characters as Fourier analysis on unit groups}
 
 Dirichlet characters are not arbitrary functions; they are group homomorphisms from the unit group to complex roots of unity.  Orthogonality of characters gives filters for congruence classes.  This is the multiplicative analogue of using roots of unity to filter residues modulo $n$.
 

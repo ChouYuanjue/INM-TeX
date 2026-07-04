@@ -172,7 +172,7 @@ The repeated methods are:
   \item use prime factorization when divisor functions appear.
 \end{enumerate}
 
-\section{Expanded synthesis and advanced context}
+\section{From example to method}
 
 The note develops number theory from one simple relation: divisibility.  The division algorithm gives remainders; remainders give the Euclidean algorithm; the Euclidean algorithm gives Bezout; Bezout gives Gauss's lemma; Gauss's lemma supports prime factorization and congruence arguments.  This chain is the backbone of elementary number theory.
 
@@ -186,7 +186,7 @@ This perspective separates different layers of a problem. A dot product belongs 
 When returning to the original examples, identify the natural object before computing. If the problem is about concurrence or collinearity, projective or affine tools may be natural. If it is about distance, angle, or orthogonality, metric tools are essential. If it is about flux or circulation, differential forms and orientation explain the signs. The advanced viewpoint makes the elementary solution more disciplined rather than more abstract for its own sake.
 
 
-\section{Elementary-to-advanced bridge: \texorpdfstring{$\mathbb Z$}{Z} as a PID}
+\section{\texorpdfstring{$\mathbb Z$}{Z} as a PID}
 
 The full chain of gcd, lcm, Bezout identity, congruence, and modular inverse is unified by the fact that $\mathbb Z$ is a principal ideal domain.  Every ideal is of the form
 \[
@@ -205,7 +205,7 @@ For example,
 \]
 is the numerical reflection of how prime valuations take minima and maxima.
 
-\section{Elementary-to-advanced bridge: modular inverses as units}
+\section{Modular inverses as units}
 
 The congruence equation
 \[
@@ -219,7 +219,7 @@ More generally,
 \]
 has a solution iff $\gcd(a,n)\mid b$.  This is because the image of multiplication by $a$ on $\mathbb Z/n\mathbb Z$ has size $n/\gcd(a,n)$ and consists exactly of multiples of that gcd class.
 
-\section{Elementary-to-advanced bridge: Smith normal form over integers}
+\section{Smith normal form over integers}
 
 Linear equations over $\mathbb Z$ require more than rank.  For an integer matrix $A$, Smith normal form says there exist unimodular integer matrices $P,Q$ such that
 \[
@@ -229,7 +229,7 @@ This diagonal form solves integer linear systems and classifies finitely generat
 
 Thus gcd and Bezout operations are the $1\times1$ and row-column-operation shadows of Smith normal form.
 
-\section{Elementary-to-advanced bridge: CRT as product decomposition}
+\section{CRT as product decomposition}
 
 When $m,n$ are coprime,
 \[
@@ -240,7 +240,7 @@ The Chinese remainder theorem is therefore not simply a trick for solving congru
 This decomposition explains why arithmetic functions and congruence problems split prime by prime.
 
 % Second-pass deepening for waves 2-4: wave 3 A-C part 3
-\section{Second-pass deepening: solving congruences by image and kernel}
+\section{Solving congruences by image and kernel}
 
 Multiplication by $a$ defines a group homomorphism
 \[
@@ -250,7 +250,7 @@ The congruence $ax\equiv b\pmod n$ asks whether $b$ lies in the image of this ma
 
 The solvability condition $\gcd(a,n)\mid b$ is therefore rank-nullity for a finite abelian group.  Once solvable, there are exactly $\gcd(a,n)$ solutions modulo $n$.
 
-\section{Second-pass deepening: Smith normal form as many-variable congruence solving}
+\section{Smith normal form and congruences}
 
 A system of integer linear equations
 \[

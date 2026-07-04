@@ -250,7 +250,7 @@ D_{\mathrm{KL}}(q_\phi(z\mid x)\Vert p(z)) & \text{rate / information cost}
 \]
 This interpretation is helpful, but it should not replace the probabilistic derivation.  The ELBO is first of all a lower bound on marginal likelihood.
 
-\section{What the ELBO does not guarantee}
+\section{Limits of the ELBO}
 
 The ELBO is powerful, but it is not magic.  Several limitations remain.
 
@@ -262,7 +262,7 @@ Third, the decoder may be too powerful.  If the decoder can model the data witho
 
 Fourth, maximizing a lower bound is not the same as exactly maximizing \(\log p_\theta(x)\).  The gap is the posterior KL.
 
-\section{What to remember}
+\section{What survives later}
 
 The VAE objective is not merely a heuristic sum of two losses.  It is a variational identity:
 \[

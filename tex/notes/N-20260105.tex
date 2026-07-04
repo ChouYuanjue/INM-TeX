@@ -425,7 +425,7 @@ A vector with coordinate column $t=(t_1,t_2,t_3)^T$ has the same coordinates in 
 \]
 This gives a homogeneous linear system in $t$.  The source row-reduces the system and obtains a one-dimensional family, hence all such vectors are scalar multiples of one vector.
 
-\section{Expanded synthesis and advanced context}
+\section{Conceptual synthesis}
 
 This note is a review of how eigenvalues and bases organize linear algebra.  Polynomial identities for matrices become scalar identities on eigenvalues.  Diagonalization translates operators into independent directions.  Real symmetric matrices make the translation orthogonal and geometric.  Positive definiteness is tested by eigenvalues, principal minors, or congruence.  Change of basis problems are solved by writing both bases in a common reference basis and multiplying the corresponding coordinate matrices.
 
@@ -443,7 +443,7 @@ The structural hierarchy is as follows. Kernels record what a map forgets, image
 A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
 
 
-\section{Elementary-to-advanced bridge: functional calculus for diagonalizable and symmetric matrices}
+\section{Functional calculus for matrices}
 
 If $A$ is diagonalizable, $A=PDP^{-1}$, then a polynomial or suitable function of $A$ is defined by
 \[
@@ -457,7 +457,7 @@ This explains many eigenvalue tricks in the note.  If $A\xi=\lambda\xi$, then
 \]
 Nilpotent, idempotent, inverse, adjugate, and odd-root problems are all examples of applying functions to eigenvalues.
 
-\section{Elementary-to-advanced bridge: Loewner order and positive definiteness}
+\section{Loewner order and positive definiteness}
 
 For symmetric matrices, write
 \[
@@ -475,7 +475,7 @@ Thus a statement such as ``the smallest eigenvalue of $A$ is larger than the lar
 \]
 This is exactly the order-theoretic content of one of the positive-definite examples.
 
-\section{Elementary-to-advanced bridge: Lyapunov equations}
+\section{Lyapunov equations}
 
 The equation
 \[
@@ -497,7 +497,7 @@ can be diagonalized by an orthogonal matrix.  If $A=QDQ^T$ and $Y=Q^TXQ$, $K=Q^T
 \]
 Because $d_i+d_j>0$, the solution is unique.  Positivity of $C$ then forces positivity properties of $X$.
 
-\section{Elementary-to-advanced bridge: convex optimization and semidefinite programs}
+\section{Convex and semidefinite optimization}
 
 Positive semidefinite matrices form a convex cone:
 \[
@@ -507,7 +507,7 @@ A semidefinite program optimizes a linear function over affine slices of this co
 
 The elementary leading-principal-minor tests are therefore finite-dimensional certificates for membership in this cone.  The research-level continuation is optimization over matrix cones.
 
-\section{Elementary-to-advanced bridge: matrix monotone warning}
+\section{Matrix monotone warning}
 
 For positive numbers, $0<a\le b$ implies $a^2\le b^2$.  For positive definite matrices, this implication may fail when matrices do not commute.  Functions preserving Loewner order are called operator monotone.
 
@@ -518,7 +518,7 @@ The function $t\mapsto t^{-1}$ reverses order on positive definite matrices:
 This kind of phenomenon explains why matrix inequalities are subtler than scalar inequalities, even when the notation looks similar.
 
 % Second-pass deepening for waves 2-4: wave 2 remaining
-\section{Second-pass deepening: positive definite matrices as geometry of ellipsoids}
+\section{Positive definite matrices and ellipsoids}
 
 A symmetric positive definite matrix $A$ defines an ellipsoid
 \[
@@ -536,7 +536,7 @@ then $x^TAx\ge x^TBx$ for all $x$, so
 \]
 The Loewner order is therefore geometric containment reversed through quadratic forms.
 
-\section{Second-pass deepening: Lyapunov equations and stability}
+\section{Lyapunov equations and stability}
 
 For a continuous-time linear system
 \[
@@ -558,7 +558,7 @@ then $V$ decreases along nonzero trajectories, proving stability.
 
 This gives an applied meaning to Sylvester and Lyapunov equations.  They are not only matrix exercises; they construct quadratic energies for dynamical systems.
 
-\section{Second-pass deepening: functional calculus and matrix inequalities}
+\section{Functional calculus and matrix inequalities}
 
 For a positive definite matrix $A$, one defines
 \[

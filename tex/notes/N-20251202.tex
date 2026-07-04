@@ -330,7 +330,7 @@ The handwritten comments emphasize several traps:
   \item positive definiteness is a statement about all nonzero vectors, not only about diagonal entries.
 \end{itemize}
 
-\section{Expanded synthesis and advanced context}
+\section{A closing lens}
 
 This note links eigenvalue theory and geometry.  Diagonalization decomposes a linear map into independent eigen-directions.  Inner products measure lengths and angles.  Schmidt orthogonalization turns independence into orthogonality.  Orthogonal matrices preserve geometry.  Real symmetric matrices are the ideal case: they have real eigenvalues, orthogonal eigenspaces, and orthogonal diagonalization.  Quadratic forms use this structure to classify conics, extrema, and definiteness.
 
@@ -348,7 +348,7 @@ The structural hierarchy is as follows. Kernels record what a map forgets, image
 A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
 
 
-\section{Elementary-to-advanced bridge: spectral theorem as the source of orthogonal diagonalization}
+\section{Spectral theorem and orthogonal bases}
 
 The note's real symmetric matrix theorem is the finite-dimensional spectral theorem.  If $A=A^T$, then there exists an orthogonal matrix $Q$ such that
 \[
@@ -358,7 +358,7 @@ Equivalently, $\mathbb R^n$ has an orthonormal basis of eigenvectors of $A$.
 
 This theorem is deeper than ordinary diagonalization because the basis can be chosen orthonormal.  Orthogonality preserves lengths and angles, so quadratic forms can be classified geometrically rather than only algebraically.
 
-\section{Elementary-to-advanced bridge: QR decomposition as algorithmic Gram--Schmidt}
+\section{QR as algorithmic Gram--Schmidt}
 
 Gram--Schmidt turns independent vectors into an orthonormal set.  Written in matrix form, it gives QR decomposition:
 \[
@@ -368,7 +368,7 @@ In numerical linear algebra, QR is used to solve least-squares problems and comp
 
 Thus the elementary orthogonalization exercise is not just a hand computation.  It is the conceptual beginning of stable matrix algorithms.
 
-\section{Elementary-to-advanced bridge: Sylvester's law of inertia}
+\section{Sylvester's law of inertia}
 
 A real quadratic form can be diagonalized by congruence:
 \[
@@ -382,7 +382,7 @@ Therefore a quadratic form has an intrinsic signature
 \]
 Positive definiteness means signature $(n,0,0)$.  This explains why completing squares and diagonalizing symmetric matrices lead to the same classification.
 
-\section{Elementary-to-advanced bridge: Hilbert-space projection}
+\section{Hilbert-space projection}
 
 In an inner product space, projection onto a closed subspace is characterized by orthogonality of the error.  In finite dimensions this is ordinary projection.  In Hilbert spaces it becomes the projection theorem: if $M$ is a closed subspace of a Hilbert space $H$, then every $x\in H$ decomposes uniquely as
 \[
@@ -391,7 +391,7 @@ In an inner product space, projection onto a closed subspace is characterized by
 Least squares, Fourier series, and orthogonal diagonalization all rely on this same projection geometry.
 
 % Second-pass deepening for waves 2-4: wave 2 remaining
-\section{Second-pass deepening: orthogonal diagonalization as choosing principal axes}
+\section{Orthogonal diagonalization and axes}
 
 For a real symmetric matrix $A$, the quadratic form $q(x)=x^TAx$ defines a family of level sets.  Orthogonal diagonalization chooses axes along which the cross terms vanish:
 \[
@@ -401,7 +401,7 @@ The eigenvectors are the principal axes, and the eigenvalues are the curvatures 
 
 This interpretation unifies conic classification, second-derivative tests, inertia of quadratic forms, and PCA.  In PCA, the covariance matrix is symmetric and positive semidefinite.  Its eigenvectors give directions of maximal variance.
 
-\section{Second-pass deepening: Gram--Schmidt as factorization of coordinates}
+\section{Gram--Schmidt as factorization of coordinates}
 
 Suppose the columns of $A$ are independent vectors $a_1,\ldots,a_n$.  Gram--Schmidt constructs orthonormal vectors $q_1,\ldots,q_n$ and upper-triangular coefficients $r_{ij}$ such that
 \[
@@ -419,7 +419,7 @@ This makes the connection to least squares immediate.  Solving $Ax\approx b$ bec
 \]
 which is stable because $Q$ preserves lengths.
 
-\section{Second-pass deepening: spectral theorem beyond finite dimension}
+\section{Spectral theorem beyond finite dimension}
 
 The finite-dimensional spectral theorem has infinite-dimensional descendants.  A bounded self-adjoint operator on a Hilbert space has a spectral measure.  This lets one define functions of the operator by integration over its spectrum.  Differential operators such as $-d^2/dx^2$ are unbounded.  With suitable domains, however, they are self-adjoint and have eigenfunction expansions.
 
