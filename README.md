@@ -1,6 +1,6 @@
-# Informal Notes on Mathematics
+# INM TeX
 
-**Informal Notes on Mathematics** is a TeX-refactored, English-only version of the original project:
+**INM-TeX** is the TeX-refactored, English-only version of the original project:
 
 ```text
 https://github.com/ChouYuanjue/Informal_Notes_on_Mathematics
@@ -165,7 +165,3 @@ inm.pdf
 The PDF is included because the document is book-length, rebuilding may be inconvenient for casual readers, and the compiled file is the natural reading artifact.
 
 Ordinary LaTeX auxiliary files are ignored by `.gitignore`.  Source files and `inm.pdf` are the important tracked artifacts.
-
-## Current status
-
-At the time of this README revision, the project successfully builds with `latexmk` and produces an 828-page PDF.
