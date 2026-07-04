@@ -1,0 +1,55 @@
+\notechapter{N-20221221}{Basic Topology II: Completion, Homeomorphism Warnings, and Quotient Intuition}
+
+\section{Completion}
+
+The note continues with the theorem that every metric space can be completed.  The standard example is
+\[
+  \mathbb Q\quad\leadsto\quad\mathbb R.
+\]
+A rational Cauchy sequence should be thought of as trying to name a real number.  If the real number is irrational, the sequence has no limit in \(\mathbb Q\), but it has a limit after completion.
+
+One construction takes equivalence classes of Cauchy sequences.  Two Cauchy sequences \((x_n)\), \((y_n)\) represent the same completed point if
+\[
+  d(x_n,y_n)\to0.
+\]
+This is an early quotient construction: the new point is not one sequence but a class of mutually converging sequences.
+
+\section{Let the buyer beware}
+
+The note warns that boundedness and completeness are not topological invariants.  The interval \((0,1)\) and the line \(\mathbb R\) are homeomorphic, for instance by
+\[
+  f(x)=\tan(\pi(x-1/2)).
+\]
+But \((0,1)\) is bounded and not complete under the Euclidean metric, while \(\mathbb R\) is complete and unbounded.
+
+This is the first serious conceptual warning: homeomorphism preserves open-set structure, not distances, diameters, or Cauchy behavior.
+
+\section{Homeomorphisms and embeddings}
+
+A homeomorphism \(f:M\to N\) is a bijection such that both \(f\) and \(f^{-1}\) are continuous.  The inverse condition is essential.  A continuous bijection can fail to be a homeomorphism if the inverse destroys neighborhoods.
+
+An embedding realizes a space as a subspace of another space in a topology-preserving way.  It is more than an injection: it must preserve the local structure inherited from the target.
+
+\section{Quotient intuition}
+
+A quotient space identifies points.  For example,
+\[
+  [-1,1]/(-1\sim1)\cong S^1.
+\]
+A neighborhood of the glued point corresponds upstairs to two half-neighborhoods at the two endpoints.  This explains why quotient topology is defined by requiring a set downstairs to be open exactly when its preimage upstairs is open.
+
+\section{Expanded synthesis and advanced context}
+
+Completion adds missing limits.  Homeomorphism forgets metric size.  Embedding preserves a space as a subspace.  Quotient topology glues points together.  These are four ways of changing a space while controlling which structure survives.
+
+
+\paragraph{Expanded synthesis.}
+For this chapter, the elementary material should be read as a study of what remains invariant when coordinates change. The earlier sections (`Completion`, `Let the buyer beware`, `Homeomorphisms and embeddings`, `Quotient intuition`, `Higher viewpoint`) compute with arrays, bases, pivots, determinants, or eigenvectors; the deeper object is a linear map together with the spaces it acts on. A matrix is a representation of that map after bases have been chosen. This is why formulas such as
+\[
+  A' = P^{-1}AP,\qquad \widetilde A = T^{-1}AS
+\]
+are not cosmetic: they distinguish an intrinsic morphism from a coordinate description.
+
+The structural hierarchy is as follows. Kernels record what a map forgets, images record what it reaches, cokernels record obstructions to solvability, and quotients record information after an equivalence has been imposed. Determinants act on the top exterior power and therefore measure oriented volume; traces are invariant under cyclic rearrangement and become characters in representation theory; adjoints depend on an inner product and lead to self-adjoint spectral theory.
+
+A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.

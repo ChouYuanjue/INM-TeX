@@ -1,0 +1,130 @@
+\notechapter{N-20230223}{Trigonometric Systems, Multiple-Angle Formulas, and a Determinant Recurrence}
+
+\section{Correcting a trigonometric mistake}
+
+The first handwritten line says that an earlier calculation from February 20 contained a mistake.  The attempted determinant manipulation involved vectors built from angles $\alpha$ and $\beta$, and a factor such as $\tan(\alpha-\beta)$.  The note records that the determinant-style computation did not work and that the reason for the error was not immediately clear.
+
+This is worth preserving.  A failed determinant manipulation is not useless; it tells us that the problem probably has hidden dependencies among the trigonometric variables.  Before choosing a linear algebra method, one must check whether the equations are genuinely linear in the chosen unknowns.
+
+\section{A trigonometric system}
+
+The main problem asks for $\cos\alpha\cos\beta$ under conditions of the form
+\[
+  \sin\alpha+\sin\beta=\frac12,
+  \qquad
+  \cos\alpha-\cos\beta=\frac13.
+\]
+The note introduces
+\[
+  a=\sin\alpha,\qquad b=\sin\beta,\qquad
+  c=\cos\alpha,\qquad d=\cos\beta.
+\]
+Then the equations become
+\[
+  a+b=\frac12,\qquad c-d=\frac13,\qquad
+  a^2+c^2=1,\qquad b^2+d^2=1.
+\]
+This transforms a trigonometric problem into an algebraic system.
+
+\section{A rational-parametrization idea}
+
+The handwritten solution tries to express the four variables as sums of rational parts and radicals:
+\[
+  a=q_1+r_1,\qquad b=q_2-r_1,\qquad
+  c=q_3+r_2,\qquad d=q_4+r_2,
+\]
+with
+\[
+  q_1+q_2=\frac12,\qquad q_3-q_4=\frac13.
+\]
+The two circle equations become quadratic equations in the radical parts.  Comparing rational and irrational parts can force relations among the $q_i$ and $r_i$.
+
+The note finds relations such as
+\[
+  q_1^2+q_3^2=q_2^2+q_4^2,
+\]
+and a linear relation between $r_1$ and $r_2$.  One conclusion written on the page is that the signs may be controlled by introducing one radical and then solving back for $c,d$.  The method is experimental, and the note explicitly says that another method was not successful.
+
+\section{A direct algebraic route}
+
+A cleaner derivation is to use sum-to-product formulas.  We have
+\[
+  \sin\alpha+\sin\beta
+  =2\sin\frac{\alpha+\beta}{2}\cos\frac{\alpha-\beta}{2}=\frac12,
+\]
+and
+\[
+  \cos\alpha-\cos\beta
+  =-2\sin\frac{\alpha+\beta}{2}\sin\frac{\alpha-\beta}{2}=\frac13.
+\]
+Dividing gives
+\[
+  -\tan\frac{\alpha-\beta}{2}=\frac{2}{3},
+\]
+provided the common factor is nonzero.  This determines the half-difference angle.  Then one can recover products such as
+\[
+  \cos\alpha\cos\beta
+  =\frac{\cos(\alpha+\beta)+\cos(\alpha-\beta)}2.
+\]
+The direct method shows why the algebraic system has hidden trigonometric structure.
+
+\section{Multiple-angle formulas}
+
+The second page records standard multiple-angle formulas.  One form is
+\[
+  \sin(nx)=\sum_{k=0}^n \binom nk
+  \cos^k x\,\sin^{n-k}x\;
+  \sin\left(\frac{(n-k)\pi}{2}\right),
+\]
+and
+\[
+  \cos(nx)=\sum_{k=0}^n \binom nk
+  \cos^k x\,\sin^{n-k}x\;
+  \cos\left(\frac{(n-k)\pi}{2}\right).
+\]
+These come from expanding
+\[
+  (\cos x+i\sin x)^n=\cos(nx)+i\sin(nx).
+\]
+Thus De Moivre's formula is the conceptual source of the binomial-looking expressions.
+
+The recurrence formulas are
+\[
+  \sin(nx)=2\sin((n-1)x)\cos x-\sin((n-2)x),
+\]
+\[
+  \cos(nx)=2\cos((n-1)x)\cos x-\cos((n-2)x),
+\]
+and
+\[
+  \tan(nx)=\frac{\tan((n-1)x)+\tan x}{1-\tan((n-1)x)\tan x}.
+\]
+The sine and cosine recurrences are Chebyshev-type recurrences.
+
+\section{The determinant recurrence}
+
+The final page asks one to prove a determinant formula.  The displayed matrix is tridiagonal, with diagonal entries involving $2\cos\theta$ and off-diagonal entries equal to $1$, with a modified first entry involving $\cos\theta$.  The intended proof is expansion along the last row or last column.
+
+If $D_n$ denotes the determinant of the $n\times n$ tridiagonal matrix with diagonal $2\cos\theta$ and off-diagonal $1$, then it satisfies
+\[
+  D_n=2\cos\theta\,D_{n-1}-D_{n-2}.
+\]
+This is the same recurrence as the multiple-angle formulas.  Therefore $D_n$ can be expressed in terms of $\sin((n+1)\theta)/\sin\theta$ or a related Chebyshev polynomial, depending on the exact boundary convention.
+
+The note's blue comment says that proving the determinant is a cosine expression can be done by the recurrence.  This is exactly the right idea: the matrix determinant and the trigonometric formula are the same recurrence with the same initial values.
+
+\section{Expanded synthesis and advanced context}
+
+This note is about recognizing when a problem should be treated as trigonometry, algebra, or linear algebra.  A failed determinant trick reveals hidden constraints.  Sum-to-product formulas solve the angle system more naturally.  Multiple-angle identities come from De Moivre's formula.  Tridiagonal determinants satisfy the same recurrence as Chebyshev polynomials.  The common theme is that recurrence relations are a bridge between trigonometry and matrices.
+
+
+\paragraph{Expanded synthesis.}
+For this chapter, the elementary material should be read as a study of what remains invariant when coordinates change. The earlier sections (`Correcting a trigonometric mistake`, `A trigonometric system`, `A rational-parametrization idea`, `A direct algebraic route`, `Multiple-angle formulas`) compute with arrays, bases, pivots, determinants, or eigenvectors; the deeper object is a linear map together with the spaces it acts on. A matrix is a representation of that map after bases have been chosen. This is why formulas such as
+\[
+  A' = P^{-1}AP,\qquad \widetilde A = T^{-1}AS
+\]
+are not cosmetic: they distinguish an intrinsic morphism from a coordinate description.
+
+The structural hierarchy is as follows. Kernels record what a map forgets, images record what it reaches, cokernels record obstructions to solvability, and quotients record information after an equivalence has been imposed. Determinants act on the top exterior power and therefore measure oriented volume; traces are invariant under cyclic rearrangement and become characters in representation theory; adjoints depend on an inner product and lead to self-adjoint spectral theory.
+
+A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.

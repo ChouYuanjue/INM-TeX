@@ -1,0 +1,57 @@
+\notechapter{N-20260318}{Polynomial Matrices, Smith Normal Form, and Operator Iteration}
+
+
+\section{Polynomial matrices}
+
+A $\lambda$-matrix is a matrix whose entries are polynomials in $\lambda$.  Elementary row and column operations over the polynomial ring can reduce such matrices to Smith normal form:
+\[
+  P(\lambda)A(\lambda)Q(\lambda)=\operatorname{diag}(d_1(\lambda),\ldots,d_r(\lambda),0,\ldots,0),
+\]
+where $d_i\mid d_{i+1}$.  The polynomials $d_i$ are invariant factors.
+
+\section{Invariant factors and elementary divisors}
+
+For $A\in\mathbb C^{n\times n}$, the Smith form of $\lambda I-A$ encodes the Jordan structure.  The product of invariant factors is the characteristic polynomial, and the largest invariant factor is the minimal polynomial.  Elementary divisors describe the sizes of Jordan blocks.
+
+\section{Matrix iteration}
+
+To compute $A^n$, one can use diagonalization, Jordan form, Cayley--Hamilton reduction, nilpotent decomposition, or rank-one formulas.  If $A=PDP^{-1}$, then
+\[
+  A^n=PD^nP^{-1}.
+\]
+If $A=\lambda I+N$ with $N^k=0$, then
+\[
+  A^n=\sum_{j=0}^{k-1}\binom nj \lambda^{n-j}N^j.
+\]
+
+\section{Expanded synthesis and advanced context}
+
+Polynomial matrices turn the study of a linear operator into divisibility in $\mathbb C[\lambda]$.  This is the algebraic skeleton behind characteristic polynomials, minimal polynomials, Jordan blocks, and formulas for powers of a matrix.
+
+
+
+\paragraph{Expanded synthesis.}
+For this chapter, the elementary material should be read as a study of what remains invariant when coordinates change. The earlier sections (`Polynomial matrices`, `Invariant factors and elementary divisors`, `Matrix iteration`, `Higher viewpoint`, `Expanded invariant-factor viewpoint`) compute with arrays, bases, pivots, determinants, or eigenvectors; the deeper object is a linear map together with the spaces it acts on. A matrix is a representation of that map after bases have been chosen. This is why formulas such as
+\[
+  A' = P^{-1}AP,\qquad \widetilde A = T^{-1}AS
+\]
+are not cosmetic: they distinguish an intrinsic morphism from a coordinate description.
+
+The structural hierarchy is as follows. Kernels record what a map forgets, images record what it reaches, cokernels record obstructions to solvability, and quotients record information after an equivalence has been imposed. Determinants act on the top exterior power and therefore measure oriented volume; traces are invariant under cyclic rearrangement and become characters in representation theory; adjoints depend on an inner product and lead to self-adjoint spectral theory.
+
+A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
+
+
+\section{Expanded invariant-factor viewpoint}
+
+The Smith normal form of $\lambda I-A$ is a bridge between polynomial algebra and matrix similarity.  The invariant factors $d_1|\cdots|d_r$ encode the cyclic decomposition of the vector space as a module over $\mathbb C[\lambda]$ where $\lambda$ acts by $A$.
+
+The characteristic polynomial is the product of the invariant factors; the minimal polynomial is the largest invariant factor.  If the minimal polynomial splits into distinct linear factors, then $A$ is diagonalizable.  If powers such as $(\lambda-\lambda_0)^k$ occur, the exponent records the size of the largest Jordan block for $\lambda_0$.
+
+\section{Computing powers without diagonalization}
+
+Cayley--Hamilton says that $p_A(A)=0$.  Therefore every high power $A^n$ can be reduced to a linear combination of
+\[
+  I,A,\ldots,A^{m-1},
+\]
+where $m$ is at most the degree of the minimal polynomial.  If $A=\lambda I+N$ with $N$ nilpotent, the binomial expansion terminates.  This is the computational meaning of Jordan decomposition.

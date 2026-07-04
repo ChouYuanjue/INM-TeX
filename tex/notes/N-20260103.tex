@@ -1,0 +1,665 @@
+\notechapter{N-20260103}{Linear Algebra Review III: Determinant Tricks, Rank, Matrix Powers, and More}
+
+
+
+\section{Determinant expansion and cofactors}
+
+The first group of problems uses determinant expansion.  If $A_{ij}$ denotes the cofactor of $a_{ij}$, then
+\[
+  |A|=\sum_{j=1}^n a_{ij}A_{ij}
+\]
+for expansion along the $i$-th row.  A useful extension is the cofactor orthogonality relation:
+\[
+  \sum_{j=1}^n b_j A_{ij}
+\]
+is the determinant obtained by replacing the $i$-th row of $A$ by the row $(b_1,\ldots,b_n)$.
+
+The first example asks for a sum such as
+\[
+  M_{41}+M_{42}+M_{43}
+\]
+from a given $4\times4$ determinant.  The note's hint says to regard it as replacing the fourth row by a row such as $(-1,1,-1,0)$.  This is the key move: a linear combination of cofactors is usually not computed one cofactor at a time; it is reassembled into one determinant.
+
+A second example gives entries in one row and cofactors in another row.  The identity
+\[
+  \sum_j a_{ij}A_{kj}=0,\qquad i\ne k,
+\]
+allows the unknown entry to be solved quickly.  This is again not a calculation trick but a structural fact: the determinant with two equal rows is zero.
+
+\section{Recursive determinants}
+
+One determinant has diagonal entries $a+b$, adjacent entries $ab$ and $1$, and zeros elsewhere.  Expanding along the first column or splitting the first column gives a recurrence of the form
+\[
+  D_n=(a+b)D_{n-1}-abD_{n-2}.
+\]
+The characteristic equation is
+\[
+  x^2-(a+b)x+ab=0,
+\]
+with roots $a$ and $b$.  Therefore the closed form is of the type
+\[
+  D_n=a^n+b^n
+\]
+up to the indexing convention used in the original determinant.
+
+The page's point is that determinant recurrences are often solved exactly like linear recurrences.  After expansion, the determinant order becomes the sequence index.
+
+\section{Circulant-style determinant}
+
+The next determinant is a $4\times4$ matrix built from cyclic shifts of
+\[
+  a,\ b,\ c,\ d.
+\]
+The hint uses a block form
+\[
+  \begin{pmatrix}C&D\\D&C\end{pmatrix}
+\]
+and the block transformation
+\[
+  \begin{vmatrix}C&D\\D&C\end{vmatrix}
+  =
+  |C+D|\,|C-D|.
+\]
+The resulting eigenvalue-like factors are
+\[
+  a+c\pm\sqrt{(a+b)(c+d)},\qquad
+  a-c\pm\sqrt{(b-a)(d-b)}
+\]
+with the exact signs depending on the row ordering.
+
+The important idea is that cyclic or block-symmetric structure should be attacked by adding and subtracting matching blocks.  This diagonalizes the symmetry.
+
+\section{Cancellation through orthogonal matrices}
+
+One problem states: if $A$ and $B$ are same-order orthogonal matrices and
+\[
+  |A|+|B|=0,
+\]
+prove
+\[
+  |A+B|=0.
+\]
+Since $A$ and $B$ are orthogonal,
+\[
+  |A|,|B|\in\{1,-1\}.
+\]
+The hint uses
+\[
+  A^T(A+B)B^T=A^TB^T+E.
+\]
+A simpler determinant argument is
+\[
+  |A^T(A+B)B^T|=|A^T|\,|A+B|\,|B^T|.
+\]
+The transformed matrix has determinant proportional to $|A+B|$, and the condition $|A|+|B|=0$ forces singularity.  The source proof is a typical example of using invertible multiplication to preserve the zero/nonzero status of a determinant.
+
+\section{Determinant product and block simplification}
+
+A problem with column vectors
+\[
+  A=(\alpha_1,\alpha_2,\alpha_3),\qquad
+  B=(\alpha_3-2\alpha_1,3\alpha_2,\alpha_1)
+\]
+uses the factorization
+\[
+  B=AC
+\]
+for a concrete matrix $C$.  Then
+\[
+  |B|=|A|\,|C|.
+\]
+If $|B|=6$, one computes $|A|$ from $|C|$, and then
+\[
+  |A+B|=|A(I+C)|=|A|\,|I+C|.
+\]
+The handwritten solution does exactly this: once the matrix relation is seen, the determinant becomes a product problem rather than an expansion problem.
+
+The page also includes a block determinant simplification: for suitable rectangular blocks,
+\[
+  \begin{vmatrix}A&O\\E_n&B^T\end{vmatrix}=0
+\]
+when the block triangular formula leaves a zero determinant factor.  The intended memory is the block triangular determinant rule and the fact that rectangular dimensions can force a zero block determinant.
+
+\section{Schur-complement style block transformation}
+
+For square blocks $A,B,C,D$ with $A$ invertible and $AC=CA$, the note proves
+\[
+  \begin{vmatrix}A&B\\C&D\end{vmatrix}=|AD-CB|.
+\]
+The hint multiplies by the block matrix
+\[
+  \begin{pmatrix}E&O\\-CA^{-1}&E\end{pmatrix}
+\]
+to eliminate the lower-left block:
+\[
+  \begin{pmatrix}E&O\\-CA^{-1}&E\end{pmatrix}
+  \begin{pmatrix}A&B\\C&D\end{pmatrix}
+  =
+  \begin{pmatrix}A&B\\O&D-CA^{-1}B\end{pmatrix}.
+\]
+Thus
+\[
+  \begin{vmatrix}A&B\\C&D\end{vmatrix}
+  =|A|\,|D-CA^{-1}B|
+  =|AD-CB|,
+\]
+where the commutation condition is needed to pass from $A(D-CA^{-1}B)$ to $AD-CB$.
+
+\section{Rank-two decomposition}
+
+The vector-and-matrix section begins with a standard-form/rank decomposition problem.  If
+\[
+  A\in\mathbb R^{m\times n},\qquad r(A)=2,
+\]
+then there exist column vectors
+\[
+  \alpha_1,\alpha_2\in\mathbb R^m,\qquad
+  \beta_1,\beta_2\in\mathbb R^n
+\]
+such that
+\[
+  A=\alpha_1\beta_1^T+\alpha_2\beta_2^T.
+\]
+The hint is the rank normal form
+\[
+  A=P\operatorname{diag}(E_2,O)Q.
+\]
+Writing the first two columns of $P$ as $\alpha_1,\alpha_2$ and the first two rows of $Q$ as $\beta_1^T,\beta_2^T$ gives the result.
+
+This is the finite-dimensional version of saying that a rank-$r$ matrix is a sum of $r$ rank-one matrices.
+
+\section{Adjugate identities}
+
+The pages list the key adjugate formulas:
+\[
+  AA^*=A^*A=|A|E,
+\]
+\[
+  (kA)^{-1}=k^{-1}A^{-1},\qquad
+  (AB)^{-1}=B^{-1}A^{-1},
+\]
+\[
+  |A^*|=|A|^{n-1}.
+\]
+One problem gives $A^*$ and asks for $A$.  From
+\[
+  |A^*|=|A|^{n-1}
+\]
+one first finds $|A|$, then uses
+\[
+  (A^*)^{-1}=
+\frac1{|A|}A.
+\]
+Thus
+\[
+  A=|A|(A^*)^{-1}.
+\]
+The handwritten solution tracks the possible sign of $|A|$ and then writes the final matrix.
+
+\section{Skew-symmetric matrices via quadratic forms}
+
+A problem states: if for all $\xi\in\mathbb R^n$,
+\[
+  \xi^TA\xi=0,
+\]
+prove that $A$ is skew-symmetric.  The note's hint says to take $\xi=e_i$ and $\xi=e_i+e_j$.
+
+Taking $\xi=e_i$ gives
+\[
+  a_{ii}=0.
+\]
+Taking $\xi=e_i+e_j$ gives
+\[
+  a_{ii}+a_{ij}+a_{ji}+a_{jj}=0.
+\]
+Since the diagonal entries are zero,
+\[
+  a_{ij}+a_{ji}=0.
+\]
+Hence
+\[
+  A^T=-A.
+\]
+
+\section{Absorption and cancellation}
+
+If
+\[
+  A^2=A,\qquad B^2=B,\qquad (A+B)^2=A+B,
+\]
+then expanding gives
+\[
+  AB+BA=0.
+\]
+Multiplying on the left by $A$ gives
+\[
+  AAB+ABA=0\quad\Longrightarrow\quad AB+ABA=0.
+\]
+Multiplying on the right by $A$ gives
+\[
+  ABA+BA=0.
+\]
+Combining these relations yields
+\[
+  AB=BA=0.
+\]
+The source labels this as using absorption and cancellation: idempotent matrices behave like projections, and the condition that their sum is again idempotent forces their interaction to vanish.
+
+\section{Rank identities}
+
+The rank block on the page records:
+\[
+  0\le r(A)\le\min\{m,n\},
+\]
+\[
+  r(A^T)=r(A),\qquad r(kA)=r(A)\quad(k\ne0),
+\]
+\[
+  r(A)+r(B)-n\le r(AB)\le\min\{r(A),r(B)\},
+\]
+\[
+  r(A+B)\le r(A)+r(B).
+\]
+It also records that elementary transformations preserve rank and that
+\[
+  |A|\ne0\quad\Longleftrightarrow\quad A	ext{ is full-rank}.
+\]
+
+Two examples use these identities.  If
+\[
+  A^2=-A,
+\]
+then
+\[
+  A(E+A)=0
+\]
+and the rank inequality gives
+\[
+  r(A)+r(E+A)=n.
+\]
+Another example with $A=MN^T$ and $|N^TM|\ne0$ proves
+\[
+  r(A^2)=r(A)
+\]
+by bounding ranks from both sides and using the invertibility of $N^TM$.
+
+\section{Commutation from factorization}
+
+If
+\[
+  BA=A+2B,
+\]
+then
+\[
+  (B-E)(A-2E)=2E.
+\]
+Hence $B-E$ is invertible and
+\[
+  (B-E)^{-1}=
+\frac12(A-2E).
+\]
+Since a matrix commutes with its inverse and with polynomials in itself, one obtains the commutation needed to show
+\[
+  AB=BA.
+\]
+The trick is to factor the equation into an invertible product.
+
+\section{Projection-like matrices from bases}
+
+A problem defines
+\[
+  A=(\alpha_1,\ldots,\alpha_n),\qquad
+  B=A^{-1},\qquad
+  B^T=(\beta_1,\ldots,\beta_n),
+\]
+and
+\[
+  C=\alpha_1\beta_1^T+\cdots+\alpha_k\beta_k^T.
+\]
+The hint writes
+\[
+  C=(\alpha_1,\ldots,\alpha_k)(\beta_1,\ldots,\beta_k)^T
+  =A\operatorname{diag}(E_k,O)A^{-1}.
+\]
+Therefore
+\[
+  C^2=C.
+\]
+The equation $Cx=0$ is then equivalent to killing the first $k$ coordinates in the $A$-basis.  The solution space is spanned by the remaining basis vectors.
+
+\section{Nilpotent polynomial inverse}
+
+If
+\[
+  A^k=O,
+\]
+then
+\[
+  (E-A)(E+A+A^2+\cdots+A^{k-1})=E-A^k=E.
+\]
+Therefore $E-A$ is invertible and
+\[
+  (E-A)^{-1}=E+A+\cdots+A^{k-1}.
+\]
+This page labels the method as using polynomial formulas.  It is the finite geometric series identity for matrices.
+
+\section{Equivalent vector groups}
+
+One problem gives two independent vector groups
+\[
+  \alpha_1,\alpha_2,\alpha_3,\qquad \beta_1,\beta_2,
+\]
+with all cross inner products zero:
+\[
+  (\alpha_i,\beta_j)=0.
+\]
+It asks to prove that the combined group is linearly independent.  If
+\[
+  \alpha+\beta=0,
+\]
+where $\alpha$ is in the span of the $\alpha_i$ and $\beta$ is in the span of the $\beta_j$, then substituting $\beta=-\alpha$ gives
+\[
+  (\alpha,\alpha)=0.
+\]
+By positive definiteness of the inner product, $\alpha=0$, and then $\beta=0$.  Hence all coefficients vanish.
+
+Another problem asks for a vector $\gamma$ so that two vector groups become equivalent.  The note's method is to express each known vector in terms of the other group and then add one suitable missing vector so both spans coincide.
+
+\section{Computing matrix powers}
+
+The note gives several methods for $A^n$.
+
+For
+\[
+  A=E+C,\qquad C^3=0,
+\]
+use the binomial formula:
+\[
+  A^n=(E+C)^n=E+nC+
+\frac{n(n-1)}2C^2.
+\]
+
+For a rank-one matrix
+\[
+  B=\alpha\beta^T,
+\]
+we have
+\[
+  B^n=(\beta^T\alpha)^{n-1}\alpha\beta^T.
+\]
+This appears in the source hint as
+\[
+  (\alpha\beta^T)^n=\alpha(\beta^T\alpha)^{n-1}\beta^T.
+\]
+
+A permutation/shear example computes
+\[
+  \begin{pmatrix}1&0&0\\0&1&0\\2&0&1\end{pmatrix}^{100}
+  A
+  \begin{pmatrix}0&0&1\\0&1&0\\1&0&0\end{pmatrix}^{99}.
+\]
+The left factor adds $100$ times the first row to the third row, while the right factor permutes columns.  The source solution explicitly rewrites the effect as row and column operations.
+
+For a stochastic-like matrix
+\[
+  A=\begin{pmatrix}1-a&a\\b&1-b\end{pmatrix},\qquad 0<a,b<1,
+\]
+find eigenvalues
+\[
+  1,\qquad 1-a-b.
+\]
+Since $|1-a-b|<1$, the second eigenvalue tends to zero in powers.  Thus $A^n$ tends to the projection onto the eigenline for eigenvalue $1$.
+
+\section{Homogeneous systems and adjugate}
+
+If
+\[
+  |A|=0,\qquad A^*\ne O,
+\]
+then
+\[
+  AA^*=0.
+\]
+Any nonzero column of $A^*$ is a nonzero solution of
+\[
+  Ax=0.
+\]
+The note also observes that $A^*\ne0$ and $|A|=0$ imply
+\[
+  r(A)=n-1,
+\]
+so the null space is one-dimensional.  Thus the general solution is
+\[
+  x=k\xi,
+\]
+where $\xi$ is any nonzero column of $A^*$.
+
+\section{Null space basis and augmented rank}
+
+If $A\in\mathbb R^{m\times n}$ has rank $r<n$, and $N$ is the matrix whose columns form a basis of the solution space of $Ax=0$, then the note proves
+\[
+  r(A^T,N)=n.
+\]
+The idea is to show that the only solution of
+\[
+  A x=0,\qquad N^Tx=0
+\]
+is $x=0$.  Since $x\in\ker A$, write $x=Nc$.  Then
+\[
+  N^TNc=0.
+\]
+Because the columns of $N$ are independent, $N^TN$ is invertible, so $c=0$.
+
+\section{Rank of products and equality of solution spaces}
+
+The page uses the dimension formula
+\[
+  r(A)+\dim N(A)=n.
+\]
+If
+\[
+  r(AB)=r(B),
+\]
+then the systems
+\[
+  ABx=0,\qquad Bx=0
+\]
+have the same nullity and one null space is contained in the other; hence their solution spaces are equal.  This is then used to show
+\[
+  r(ABC)=r(BC).
+\]
+
+Similarly,
+\[
+  r(AA^T)=r(A)
+\]
+is proved by comparing the equations
+\[
+  AA^Tx=0
+\]
+and
+\[
+  A^Tx=0.
+\]
+Indeed,
+\[
+  x^TAA^Tx=(A^Tx)^T(A^Tx)=0
+\]
+forces $A^Tx=0$.
+
+\section{General solution from known solutions}
+
+One problem gives a nonhomogeneous system $Ax=b$ with a known solution and additional vectors satisfying relations such as
+\[
+  \eta_1+\eta_2=(2,3,4,5)^T,\qquad
+  \eta_2+\eta_3=(1,2,3,4)^T.
+\]
+The note uses the rule:
+\[
+  	ext{general solution}
+  =
+  	ext{one particular solution}
+  +
+  	ext{general solution of }Ax=0.
+\]
+If the rank is $3$ in four unknowns, the homogeneous solution space is one-dimensional, so the final answer has one free parameter.
+
+Another problem combines bases of $Ax=0$ and $Bx=0$ to prove that the block system
+\[
+  \begin{pmatrix}A\\B\end{pmatrix}x=0
+\]
+has a nonzero solution.  This is essentially an intersection-of-null-spaces question.
+
+\section{Equivalence of row vector groups}
+
+The last page proves a criterion of the form:
+\[
+\begin{aligned}
+  &Ax=0,\ Bx=0\text{ have the same solutions}\\
+  &\qquad\Longleftrightarrow\qquad
+  \text{the row groups of }A,B\text{ are equivalent}.
+\end{aligned}
+\]
+The rank condition behind it is
+\[
+  r(A)=r(A,B)=r(B)
+\]
+for the stacked row matrix.  If the solution spaces are equal, the orthogonal complements of those solution spaces, namely the row spaces, are equal.  Conversely, equal row spaces clearly define the same homogeneous equations.
+
+\section{Diagonal dominance and invertibility}
+
+One problem states: if
+\[
+  |a_{ii}|>\sum_{j\ne i}|a_{ij}|,\qquad i=1,\ldots,n,
+\]
+then $A$ is invertible.  The proof is by contradiction.  If $Ax=0$ has a nonzero solution, choose $k$ so that
+\[
+  |x_k|=\max_i|x_i|.
+\]
+The $k$-th equation gives
+\[
+  a_{kk}x_k=-\sum_{j\ne k}a_{kj}x_j.
+\]
+Taking absolute values,
+\[
+  |a_{kk}||x_k|
+  \le \sum_{j\ne k}|a_{kj}||x_j|
+  \le \left(\sum_{j\ne k}|a_{kj}|
+\right)|x_k|.
+\]
+Since $x_k\ne0$, this contradicts strict diagonal dominance.  Hence $Ax=0$ only has the zero solution and $A$ is invertible.
+
+\section{Expanded synthesis and advanced context}
+
+This self-review page is not a random list.  Almost every problem asks: can the object be transformed into a standard form without changing the essential quantity?  Determinant problems use row/column operations and block decompositions.  Rank problems use normal forms and null spaces.  Vector-group problems use span equivalence.  Matrix-power problems use eigenvalues, nilpotence, or rank-one structure.  Linear-system problems use the principle that solution sets are affine spaces built from one particular solution plus the null space.
+
+
+
+\paragraph{Expanded synthesis.}
+For this chapter, the elementary material should be read as a study of what remains invariant when coordinates change. The earlier sections (`Determinant expansion and cofactors`, `Recursive determinants`, `Circulant-style determinant`, `Cancellation through orthogonal matrices`) compute with arrays, bases, pivots, determinants, or eigenvectors; the deeper object is a linear map together with the spaces it acts on. A matrix is a representation of that map after bases have been chosen. This is why formulas such as
+\[
+  A' = P^{-1}AP,\qquad \widetilde A = T^{-1}AS
+\]
+are not cosmetic: they distinguish an intrinsic morphism from a coordinate description.
+
+The structural hierarchy is as follows. Kernels record what a map forgets, images record what it reaches, cokernels record obstructions to solvability, and quotients record information after an equivalence has been imposed. Determinants act on the top exterior power and therefore measure oriented volume; traces are invariant under cyclic rearrangement and become characters in representation theory; adjoints depend on an inner product and lead to self-adjoint spectral theory.
+
+A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
+
+
+\section{Elementary-to-advanced bridge: rank factorization and normal forms}
+
+If $A$ has rank $r$, then it factors as
+\[
+  A=BC,\qquad B\in k^{m\times r},\quad C\in k^{r\times n},\quad \operatorname{rank}B=\operatorname{rank}C=r.
+\]
+This is the abstract form behind the note's rank-two decomposition.  It says a rank-$r$ map first projects into an $r$-dimensional image coordinate space and then embeds that information into the output.
+
+Over a field, elementary row and column operations reduce $A$ to the normal form
+\[
+  \begin{pmatrix}I_r&0\\0&0\end{pmatrix}.
+\]
+Over $\mathbb Z$, the analogue is Smith normal form, where divisibility data remain.  This shows why rank is enough over fields but not enough over rings.
+
+\section{Elementary-to-advanced bridge: idempotents as projections}
+
+A matrix $P$ satisfying
+\[
+  P^2=P
+\]
+is idempotent.  Its eigenvalues are only $0$ and $1$, and
+\[
+  V=\operatorname{im}P\oplus \ker P.
+\]
+If $P$ is also symmetric, it is an orthogonal projection.  Without symmetry, it is projection along one subspace onto another.
+
+The note contains several absorption/idempotent problems.  The advanced reading is that these are problems about decomposing a vector space into complementary subspaces.
+
+\section{Elementary-to-advanced bridge: spectral asymptotics of matrix powers}
+
+Many self-review problems ask for $A^n$.  The long-term behavior is governed by eigenvalues and Jordan blocks.  If
+\[
+  A=PJP^{-1},\qquad J=\lambda I+N,\quad N^m=0,
+\]
+then
+\[
+  J^n=\sum_{k=0}^{m-1}\binom nk \lambda^{n-k}N^k.
+\]
+Thus powers are controlled by exponential factors $\lambda^n$ and polynomial factors from nilpotent parts.
+
+For stochastic-like matrices, the eigenvalue $1$ often gives a limiting projection, while all eigenvalues of modulus less than $1$ decay.  This is the finite-dimensional model of convergence to equilibrium in Markov chains.
+
+\section{Elementary-to-advanced bridge: null spaces and orthogonal complements}
+
+The identity
+\[
+  \operatorname{rank}(AA^T)=\operatorname{rank}A
+\]
+comes from equality of null spaces:
+\[
+  AA^Tx=0\quad\Longleftrightarrow\quad A^Tx=0.
+\]
+Indeed,
+\[
+  x^TAA^Tx=|A^Tx|^2.
+\]
+This is a Hilbert-space idea in finite-dimensional form: positivity of an inner product turns an algebraic equation into a norm-square equation.
+
+% Second-pass deepening for waves 2-4: wave 2 remaining
+\section{Second-pass deepening: matrix powers, projection components, and stable limits}
+
+When computing $A^n$, diagonalization is only one case.  More generally, the behavior of powers is governed by spectral projectors.  If the eigenvalues split into dominant and decaying parts, then $A^n$ often approaches a projection onto the dominant eigenspace after normalization.
+
+For example, if $P$ is a projection, then
+\[
+  P^n=P
+\]
+for all $n\ge1$.  If $A=P+N$ with $PN=NP=0$ and $N^n\to0$, then
+\[
+  A^n\to P.
+\]
+This pattern explains many self-review problems where a matrix has a stable part and a nilpotent or contracting part.
+
+\section{Second-pass deepening: row space, column space, and rank factorization}
+
+A rank factorization $A=BC$ can be constructed by choosing a basis of the column space.  The matrix $B$ embeds the coordinate space of the image into the output; the matrix $C$ records the coordinate functionals that produce those image coordinates from the input.
+
+This is a concrete form of the factorization
+\[
+  V\to V/\ker A\cong \operatorname{im}A\to W.
+\]
+The map first forgets kernel directions, then identifies the quotient with the image, then includes the image into $W$.
+
+Thus rank factorization is not just a computational compression.  It is the canonical quotient-image structure written in matrices.
+
+\section{Second-pass deepening: positivity through Gram forms}
+
+Identities such as $\operatorname{rank}(AA^T)=\operatorname{rank}A$ rely on positivity:
+\[
+  x^TAA^Tx=\|A^Tx|^2.
+\]
+A Gram matrix has entries
+\[
+  G_{ij}=\langle v_i,v_j\rangle.
+\]
+It is always positive semidefinite.  Conversely, every positive semidefinite matrix is a Gram matrix of some vectors.  This connects rank, inner products, and geometric realization of matrices.

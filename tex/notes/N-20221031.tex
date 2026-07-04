@@ -1,0 +1,263 @@
+\notechapter{N-20221031}{Divisibility, Euclidean Algorithm, Greatest Common Divisor, Bezout, and Congruences}
+
+\section{Divisibility}
+
+The first page begins with divisibility.  For integers $a,b$, with $a\ne0$, we write
+\[
+  a\mid b
+\]
+if there exists $k\in\mathbb Z$ such that
+\[
+  b=ak.
+\]
+If no such integer exists, we write $a\nmid b$.
+
+The basic properties recorded in the note are:
+\begin{enumerate}[(i)]
+  \item $a\mid a$ and $a\mid0$;
+  \item if $a\mid b$ and $b\mid a$, then $a=\pm b$;
+  \item if $a\mid b$ and $b\mid c$, then $a\mid c$;
+  \item if $a\mid b$ and $a\mid c$, then $a\mid bx+cy$ for all integers $x,y$;
+  \item if $a\mid b$, then $ac\mid bc$ for every integer $c$.
+\end{enumerate}
+
+The handwritten proofs repeatedly use the definition.  For instance, if $b=am$ and $c=an$, then
+\[
+  bx+cy=a(mx+ny),
+\]
+so $a\mid bx+cy$.
+
+\section{Division algorithm}
+
+The division algorithm says: if $a,b\in\mathbb Z$ and $b>0$, then there exist unique integers $q,r$ such that
+\[
+  a=bq+r,\qquad 0\le r<b.
+\]
+The note calls attention to uniqueness.  If
+\[
+  a=bq+r=bq'+r',\qquad 0\le r,r'<b,
+\]
+then
+\[
+  b(q-q')=r'-r.
+\]
+The right side has absolute value less than $b$, while the left side is a multiple of $b$.  Therefore $r=r'$ and then $q=q'$.
+
+\section{Greatest common divisor and least common multiple}
+
+The greatest common divisor is written
+\[
+  (a,b),
+\]
+and the least common multiple is written
+\[
+  [a,b].
+\]
+The note records the identity
+\[
+  (a,b)[a,b]=|ab|.
+\]
+It also records useful gcd properties:
+\[
+  (a,1)=1,\qquad (a,0)=|a|,\qquad (a,a)=|a|,
+\]
+\[
+  (a,b)=(b,a)=(ta,tb)/|t|,
+\]
+and most importantly the Euclidean step
+\[
+  (a,b)=(a-b,b),
+\]
+or more generally
+\[
+  (a,b)=(a-qb,b).
+\]
+
+The proof of the Euclidean step is inclusion both ways.  Any common divisor of $a$ and $b$ divides $a-qb$.  Conversely, any common divisor of $a-qb$ and $b$ divides $a$.
+
+\section{Euclidean algorithm}
+
+Repeatedly applying
+\[
+  (a,b)=(b,r),\qquad a=bq+r,
+\]
+produces the Euclidean algorithm.  The last nonzero remainder is the gcd.
+
+The note's red proof makes the descent explicit: the remainders strictly decrease and remain nonnegative, so the process must terminate.  This is not just an algorithm; it is a proof that the gcd can be computed by repeated division.
+
+\section{Bezout theorem}
+
+Bezout's theorem says that if $a,b\in\mathbb Z$ are not both zero, then there exist $s,t\in\mathbb Z$ such that
+\[
+  as+bt=(a,b).
+\]
+The note proves this by induction on $a+b$ and also implicitly through the Euclidean algorithm.  When the gcd is obtained as the last nonzero remainder, one substitutes backward to express that remainder as an integer linear combination of $a$ and $b$.
+
+A key special case is:
+\[
+  (a,b)=1
+  \quad\Longleftrightarrow\quad
+  \exists s,t\in\mathbb Z,\ as+bt=1.
+\]
+This is the form most often used in proofs.
+
+\section{Gauss lemma and divisibility consequences}
+
+The next page proves Euclid's lemma or Gauss's lemma:
+\[
+  (a,b)=1,\quad a\mid bc
+  \quad\Longrightarrow\quad
+  a\mid c.
+\]
+Using Bezout, choose $s,t$ such that
+\[
+  as+bt=1.
+\]
+Multiplying by $c$ gives
+\[
+  asc+btc=c.
+\]
+Since $a\mid asc$ and $a\mid bc$ implies $a\mid btc$, we get $a\mid c$.
+
+This is the standard tool behind unique factorization and many modular arguments.
+
+\section{Prime numbers}
+
+A prime number $p$ satisfies: if
+\[
+  p\mid ab,
+\]
+then
+\[
+  p\mid a\quad\text{or}\quad p\mid b.
+\]
+This follows from Gauss's lemma.  If $p\nmid a$, then $(p,a)=1$, so from $p\mid ab$ we get $p\mid b$.
+
+The note also uses the property repeatedly in exercises involving prime powers and factorization.
+
+\section{Congruences}
+
+For an integer $m>0$, write
+\[
+  a\equiv b\pmod m
+\]
+if $m\mid(a-b)$.  Congruence is compatible with addition and multiplication:
+\[
+  a\equiv b,\quad c\equiv d\pmod m
+  \quad\Longrightarrow\quad
+  a+c\equiv b+d\pmod m,
+\]
+\[
+  ac\equiv bd\pmod m.
+\]
+The handwritten examples include reductions of powers modulo $m$ and using congruences to rule out equations.
+
+\section{Exercises and common methods}
+
+The printed exercise pages ask one to prove identities such as
+\[
+  (a,b)=(a-b,b),\qquad
+  (a^m-1,a^n-1)=a^{(m,n)}-1,
+\]
+and divisibility statements involving expressions like
+\[
+  2^{2n+1}+1,\qquad 3^{2n}-1.
+\]
+The repeated methods are:
+\begin{enumerate}[(i)]
+  \item apply the Euclidean algorithm to gcd expressions;
+  \item use Bezout when coprimality appears;
+  \item factor expressions like $x^m-y^m$;
+  \item reduce powers modulo a suitable modulus;
+  \item use prime factorization when divisor functions appear.
+\end{enumerate}
+
+\section{Expanded synthesis and advanced context}
+
+The note develops number theory from one simple relation: divisibility.  The division algorithm gives remainders; remainders give the Euclidean algorithm; the Euclidean algorithm gives Bezout; Bezout gives Gauss's lemma; Gauss's lemma supports prime factorization and congruence arguments.  This chain is the backbone of elementary number theory.
+
+
+
+\paragraph{Expanded synthesis.}
+The elementary geometric content of this chapter should be read through transformations and invariants. The earlier sections (`Divisibility`, `Division algorithm`, `Greatest common divisor and least common multiple`, `Euclidean algorithm`, `Bezout theorem`) may use coordinates, angles, determinants, parametrizations, or integral formulas, but the organizing question is: which quantities survive the transformations naturally associated with the problem? Euclidean geometry preserves distances and angles; affine geometry preserves lines and ratios on a line; projective geometry preserves incidence and cross ratio; differential geometry preserves coordinate-independent objects such as forms, metrics, and orientations.
+
+This perspective separates different layers of a problem. A dot product belongs to metric geometry. A determinant belongs to oriented volume. A cross ratio belongs to projective geometry. A line or surface integral of a differential form belongs to oriented topology. A scalar area integral belongs to the metric-induced measure. Confusing these layers is the source of many errors, especially in vector calculus where $dS$, $F\cdot n\,dS$, $dx\wedge dy$, and boundary orientation look similar but encode different structures.
+
+When returning to the original examples, identify the natural object before computing. If the problem is about concurrence or collinearity, projective or affine tools may be natural. If it is about distance, angle, or orthogonality, metric tools are essential. If it is about flux or circulation, differential forms and orientation explain the signs. The advanced viewpoint makes the elementary solution more disciplined rather than more abstract for its own sake.
+
+
+\section{Elementary-to-advanced bridge: \texorpdfstring{$\mathbb Z$}{Z} as a PID}
+
+The full chain of gcd, lcm, Bezout identity, congruence, and modular inverse is unified by the fact that $\mathbb Z$ is a principal ideal domain.  Every ideal is of the form
+\[
+  (n)=n\mathbb Z.
+\]
+For two integers,
+\[
+  (a)+(b)=(\gcd(a,b)),\qquad
+  (a)\cap(b)=(\operatorname{lcm}(a,b)).
+\]
+This gives a structural proof of many gcd-lcm identities.
+
+For example,
+\[
+  \gcd(a,b)\operatorname{lcm}(a,b)=|ab|
+\]
+is the numerical reflection of how prime valuations take minima and maxima.
+
+\section{Elementary-to-advanced bridge: modular inverses as units}
+
+The congruence equation
+\[
+  ax\equiv1\pmod n
+\]
+asks whether the residue class of $a$ is a unit in the ring $\mathbb Z/n\mathbb Z$.  It has a solution iff $\gcd(a,n)=1$.
+
+More generally,
+\[
+  ax\equiv b\pmod n
+\]
+has a solution iff $\gcd(a,n)\mid b$.  This is because the image of multiplication by $a$ on $\mathbb Z/n\mathbb Z$ has size $n/\gcd(a,n)$ and consists exactly of multiples of that gcd class.
+
+\section{Elementary-to-advanced bridge: Smith normal form over integers}
+
+Linear equations over $\mathbb Z$ require more than rank.  For an integer matrix $A$, Smith normal form says there exist unimodular integer matrices $P,Q$ such that
+\[
+  PAQ=\operatorname{diag}(d_1,\ldots,d_r,0,\ldots,0),\qquad d_i\mid d_{i+1}.
+\]
+This diagonal form solves integer linear systems and classifies finitely generated abelian groups.
+
+Thus gcd and Bezout operations are the $1\times1$ and row-column-operation shadows of Smith normal form.
+
+\section{Elementary-to-advanced bridge: CRT as product decomposition}
+
+When $m,n$ are coprime,
+\[
+  \mathbb Z/mn\mathbb Z\cong \mathbb Z/m\mathbb Z\times \mathbb Z/n\mathbb Z.
+\]
+The Chinese remainder theorem is therefore not simply a trick for solving congruences.  It says the quotient ring modulo a product of coprime moduli decomposes as a product of quotient rings.
+
+This decomposition explains why arithmetic functions and congruence problems split prime by prime.
+
+% Second-pass deepening for waves 2-4: wave 3 A-C part 3
+\section{Second-pass deepening: solving congruences by image and kernel}
+
+Multiplication by $a$ defines a group homomorphism
+\[
+  m_a:\mathbb Z/n\mathbb Z\to\mathbb Z/n\mathbb Z,\qquad x\mapsto ax.
+\]
+The congruence $ax\equiv b\pmod n$ asks whether $b$ lies in the image of this map.  The kernel has size $\gcd(a,n)$, so the image has size $n/\gcd(a,n)$.
+
+The solvability condition $\gcd(a,n)\mid b$ is therefore rank-nullity for a finite abelian group.  Once solvable, there are exactly $\gcd(a,n)$ solutions modulo $n$.
+
+\section{Second-pass deepening: Smith normal form as many-variable congruence solving}
+
+A system of integer linear equations
+\[
+  Ax=b
+\]
+can be simplified by invertible integer row and column operations.  Smith normal form diagonalizes $A$ into invariant factors $d_i$.  The system reduces to independent divisibility conditions
+\[
+  d_i y_i=c_i.
+\]
+Thus the one-variable congruence theorem is the first case of a full normal-form theory for homomorphisms of finitely generated abelian groups.

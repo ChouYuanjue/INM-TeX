@@ -1,0 +1,99 @@
+\notechapter{N-20260313}{Multivariable Chain Rule, Total Derivatives, and Implicit Differentiation}
+
+
+\section{Chain rule as matrix multiplication}
+
+Let $F:\mathbb R^n\to\mathbb R^m$ and $G:\mathbb R^m\to\mathbb R^k$ be differentiable.  The derivative of the composite is
+\[
+  D(G\circ F)(x)=DG(F(x))\,DF(x).
+\]
+The familiar formulas with partial derivatives are coordinate expressions of this matrix multiplication.
+
+For $z=f(u,v)$ with $u=\varphi(x)$ and $v=\psi(x)$,
+\[
+  \frac{dz}{dx}=\frac{\partial z}{\partial u}\frac{du}{dx}+\frac{\partial z}{\partial v}\frac{dv}{dx}.
+\]
+If $u=u(x,y)$ and $v=v(x,y)$, then
+\[
+  \frac{\partial z}{\partial x}=z_u u_x+z_v v_x,\qquad
+  \frac{\partial z}{\partial y}=z_u u_y+z_v v_y.
+\]
+
+\section{Total differential}
+
+The total differential packages first-order change:
+\[
+  dz=f_x\,dx+f_y\,dy.
+\]
+For a vector-valued map, the same idea becomes
+\[
+  dF=J_F\,dx,
+\]
+where $J_F$ is the Jacobian.  This notation is safe when interpreted as a linear approximation, not as a mysterious fraction manipulation.
+
+\section{Implicit functions}
+
+If $F(x,y)=0$ defines $y$ locally as a function of $x$ and $F_y\ne0$, then
+\[
+  \frac{dy}{dx}=-\frac{F_x}{F_y}.
+\]
+For a system $F(u,x)=0$ with $F_u$ invertible, the implicit derivative is
+\[
+  Du(x)=-(F_u)^{-1}F_x.
+\]
+This is the matrix form of solving the linearized constraint.
+
+\section{Expanded synthesis and advanced context}
+
+The chain rule is not a list of cases.  It says that first-order approximations compose.  The note's many formulas become conceptually simple once every derivative is viewed as a linear map and every chain rule as multiplication of those maps.
+
+
+
+\paragraph{Expanded synthesis.}
+For this chapter, the elementary material should be read as a study of what remains invariant when coordinates change. The earlier sections (`Chain rule as matrix multiplication`, `Total differential`, `Implicit functions`, `Higher viewpoint`, `Expanded chain-rule dictionary`) compute with arrays, bases, pivots, determinants, or eigenvectors; the deeper object is a linear map together with the spaces it acts on. A matrix is a representation of that map after bases have been chosen. This is why formulas such as
+\[
+  A' = P^{-1}AP,\qquad \widetilde A = T^{-1}AS
+\]
+are not cosmetic: they distinguish an intrinsic morphism from a coordinate description.
+
+The structural hierarchy is as follows. Kernels record what a map forgets, images record what it reaches, cokernels record obstructions to solvability, and quotients record information after an equivalence has been imposed. Determinants act on the top exterior power and therefore measure oriented volume; traces are invariant under cyclic rearrangement and become characters in representation theory; adjoints depend on an inner product and lead to self-adjoint spectral theory.
+
+A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
+
+
+\section{Expanded chain-rule dictionary}
+
+The note lists several chain-rule formulas.  They are all one formula in disguise.  If
+\[
+  x\mapsto (u(x),v(x))\mapsto z=f(u,v),
+\]
+then
+\[
+  \frac{dz}{dx}=
+  \begin{pmatrix}f_u&f_v\end{pmatrix}
+  \begin{pmatrix}u_x\\v_x\end{pmatrix}.
+\]
+If $(x,y)\mapsto(u,v)\mapsto z$, then
+\[
+  \begin{pmatrix}z_x&z_y\end{pmatrix}
+  =
+  \begin{pmatrix}f_u&f_v\end{pmatrix}
+  \begin{pmatrix}u_x&u_y\\v_x&v_y\end{pmatrix}.
+\]
+This is exactly Jacobian multiplication.
+
+\section{Implicit differentiation as solving a linearized constraint}
+
+For $F(x,y)=0$, differentiating gives
+\[
+  F_x\,dx+F_y\,dy=0.
+\]
+If $F_y\ne0$, then
+\[
+  \frac{dy}{dx}=-\frac{F_x}{F_y}.
+\]
+For a system $F(x,u)=0$, the same argument gives
+\[
+  du=-F_u^{-1}F_x\,dx.
+\]
+The implicit function theorem says when this linearized computation is locally legitimate.

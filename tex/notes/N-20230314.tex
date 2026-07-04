@@ -1,0 +1,119 @@
+\notechapter{N-20230314}{Category Theory Continued: Free and Forgetful Functors, Concrete Categories, and Group Actions}
+
+\section{Free and forgetful functors}
+
+The first page discusses free and forgetful functors.  These words are often used informally before one learns the general adjunction language.  The basic pattern is simple: a forgetful functor removes structure, while a free functor freely adds structure.
+
+For example, the forgetful functor
+\[
+  U:\mathbf{Vect}_k\to\mathbf{Set}
+\]
+sends a vector space to its underlying set and a linear map to its underlying function.  Similarly,
+\[
+  \mathbf{Grp}\to\mathbf{Set},\qquad
+  \mathbf{CRing}\to\mathbf{Set}
+\]
+forget group or ring structure.  There is also a forgetful functor
+\[
+  \mathbf{CRing}\to\mathbf{Grp}
+\]
+that sends a commutative ring $R$ to its additive abelian group $(R,+)$.
+
+A free functor goes in the opposite direction.  The free vector space functor
+\[
+  F:\mathbf{Set}\to\mathbf{Vect}_k
+\]
+sends a set $S$ to the vector space with basis $S$.  A function $f:S\to T$ induces a linear map $F(S)\to F(T)$ by sending the basis vector $s$ to the basis vector $f(s)$ and extending linearly.
+
+The slogan is:
+\[
+\begin{gathered}
+  \text{free} = \text{add the least structure needed},\\
+  \text{forgetful} = \text{discard structure but keep underlying data}.
+\end{gathered}
+\]
+
+\section{Faithful and full functors}
+
+For a functor $F:\mathcal A\to\mathcal B$, each pair of objects $A_1,A_2$ gives a map on hom-sets:
+\[
+  F:\operatorname{Hom}_{\mathcal A}(A_1,A_2)
+  \to
+  \operatorname{Hom}_{\mathcal B}(F(A_1),F(A_2)).
+\]
+The functor is faithful if this map is injective for every pair of objects.  It is full if this map is surjective for every pair.
+
+Faithful means that distinct arrows remain distinct after applying $F$.  Full means that every arrow between the images comes from an arrow upstairs.  A forgetful functor is often faithful but not full.  For instance, not every function between underlying sets of groups is a group homomorphism.
+
+\section{Concrete categories}
+
+A concrete category is a category equipped with a faithful functor to $\mathbf{Set}$:
+\[
+  U:\mathcal A\to\mathbf{Set}.
+\]
+This means every object has an underlying set and every arrow has an underlying function, in a way that does not collapse distinct arrows.
+
+The handwritten note is careful here: many familiar categories are concrete, such as groups, rings, vector spaces, and topological spaces.  But the word “concrete” is extra structure, not just a vibe.  It depends on choosing a faithful functor to sets.
+
+\section{Functors out of a one-object group category}
+
+Let $G$ be a group and let $\mathcal G$ be its associated one-object category.  There is one object $*$, and
+\[
+  \operatorname{Hom}_{\mathcal G}(*,*)=G.
+\]
+Consider a functor
+\[
+  F:\mathcal G\to\mathbf{Set}.
+\]
+The object $*$ is sent to a set
+\[
+  S=F(*).
+\]
+Each group element $g\in G$, regarded as an arrow $*:\to*$, is sent to a function
+\[
+  F(g):S\to S.
+\]
+Since functors preserve identity and composition,
+\[
+  F(e)=\operatorname{id}_S,\qquad
+  F(gh)=F(g)\circ F(h)
+\]
+up to the convention of left or right actions.  This is exactly a group action of $G$ on $S$.
+
+Thus:
+\[
+  \text{functor }\mathcal G\to\mathbf{Set}
+  \quad\Longleftrightarrow\quad
+  \text{a }G\text{-set}.
+\]
+This is an early example of category theory turning algebra into actions that preserve structure.
+
+\section{Functors between one-object group categories}
+
+If $G$ and $H$ are groups and $\mathcal G,\mathcal H$ their one-object categories, then a functor
+\[
+  F:\mathcal G\to\mathcal H
+\]
+must send the unique object of $\mathcal G$ to the unique object of $\mathcal H$.  On arrows, it gives a function
+\[
+  G\to H.
+\]
+Functoriality requires
+\[
+  F(gh)=F(g)F(h),\qquad F(e_G)=e_H.
+\]
+So functors $\mathcal G\to\mathcal H$ are exactly group homomorphisms $G\to H$.
+
+This shows again that functoriality is not an extra decoration.  It is exactly the condition that algebraic composition is preserved.
+
+\section{Why the note says “learn algebra first”}
+
+The handwritten page remarks that one should learn enough algebra before pushing further.  That is reasonable: the example of a group as a one-object category is conceptually simple only if one already understands group operations, homomorphisms, and group actions.  Without those, the category-theoretic formulation can feel like empty abstraction.
+
+The actual learning path is circular in a productive way.  Algebra supplies examples for category theory; category theory then reorganizes algebra.
+
+\section{Looking ahead: natural transformations}
+
+The final handwritten comment says that natural transformations are coming next.  This is the right next step.  If functors are structure-preserving maps between categories, then natural transformations are structure-preserving maps between functors.
+
+In the group-action example, a natural transformation between two functors $\mathcal G\to\mathbf{Set}$ is a function between the underlying $G$-sets that commutes with the $G$-action.  In other words, it is an equivariant map.  This is the categorical reason natural transformations are not optional: they are the morphisms between representations of the same structure.

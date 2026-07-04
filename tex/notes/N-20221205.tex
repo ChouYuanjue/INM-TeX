@@ -1,0 +1,313 @@
+\notechapter{N-20221205}{Lecture Notes on Sets, Counting, and Binomial Coefficients}
+
+\section{Summation and product notation}
+
+This note is a lecture-style introduction to sets and elementary combinatorics.  It begins with notation.  If \(m\le n\), then
+\[
+  \sum_{k=m}^n a_k=a_m+a_{m+1}+\cdots+a_n,
+\]
+and
+\[
+  \prod_{k=m}^n a_k=a_m a_{m+1}\cdots a_n.
+\]
+Nested sums are allowed.  For example,
+\[
+  \sum_{j=1}^n\sum_{k=1}^j a_k
+  =
+  a_1+(a_1+a_2)+\cdots+(a_1+a_2+\cdots+a_n).
+\]
+The notation is not merely shorthand.  It teaches us to control indices, which is essential in combinatorics and analysis.
+
+\section{De Morgan's laws}
+
+For subsets \(A,B\) of a universe \(U\), De Morgan's laws say
+\[
+  \overline{A\cup B}=\overline A\cap\overline B,
+\]
+and
+\[
+  \overline{A\cap B}=\overline A\cup\overline B.
+\]
+The proof is an element-chasing proof.  For the first identity:
+\[
+\begin{aligned}
+ x\in\overline{A\cup B}
+ &\Longleftrightarrow x\notin A\cup B\\
+ &\Longleftrightarrow x\notin A\text{ and }x\notin B\\
+ &\Longleftrightarrow x\in\overline A\cap\overline B.
+\end{aligned}
+\]
+The handwritten margin proves the second identity in the same style.  The important habit is to translate set operations into logical words: union means ``or'', intersection means ``and'', complement means ``not.''
+
+\section{Inclusion--exclusion}
+
+For finite sets,
+\[
+  |A\cup B|=|A|+|B|-|A\cap B|.
+\]
+For three sets,
+\[
+\begin{aligned}
+|A\cup B\cup C|
+&=|A|+|B|+|C|\\
+&\quad-|A\cap B|-|A\cap C|-|B\cap C|\\
+&\quad+|A\cap B\cap C|.
+\end{aligned}
+\]
+The note derives the three-set formula by applying the two-set formula to
+\[
+  A\cup(B\cup C).
+\]
+The overcounting pattern is worth remembering: count singles, subtract pairwise overlaps, add triple overlaps back.  Higher versions continue with alternating signs.
+
+\section{Pigeonhole principle}
+
+The pigeonhole principle states: if \(n+1\) objects are placed into \(n\) boxes, then at least one box contains at least two objects.  This is almost obvious, but it is extremely powerful.
+
+The useful mental form is contrapositive: if every box contains at most one object, then \(n\) boxes contain at most \(n\) objects.  Whenever a problem asks us to prove two objects share a property, try to define boxes by that property.
+
+\section{Addition and multiplication principles}
+
+The addition principle says: if a task can be completed in disjoint ways, with \(m_k\) possibilities in case \(k\), then the total number is
+\[
+  \sum_k m_k.
+\]
+The note's example is choosing a route from home to school: if the alternatives are parallel choices, add them.
+
+The multiplication principle says: if a task is completed in stages, with \(m_k\) choices at stage \(k\), then the total number is
+\[
+  \prod_k m_k.
+\]
+This is sequential choice.  The key distinction is:
+\[
+  \text{cases}\Rightarrow\text{add},\qquad
+  \text{stages}\Rightarrow\text{multiply}.
+\]
+Many counting mistakes come from confusing these two.
+
+\section{Permutations}
+
+To arrange \(n\) distinct objects without repetition, there are
+\[
+  n!=n(n-1)(n-2)\cdots2\cdot1
+\]
+ways.  If we choose and arrange \(m\) objects from \(n\), the number is
+\[
+  A_n^m=n(n-1)\cdots(n-m+1)=\frac{n!}{(n-m)!}.
+\]
+The multiplication principle explains the formula: first choose the first object, then the second, and so on, with one fewer option each time.
+
+\section{Combinations}
+
+If order does not matter, we divide by the number of internal arrangements.  Thus the number of \(m\)-element subsets of an \(n\)-element set is
+\[
+  \binom nm=\frac{n!}{m!(n-m)!}.
+\]
+The note remarks that different exams may write this as \(C_n^m\) or \(\binom nm\).  The mathematical object is the same.
+
+The symmetry
+\[
+  \binom nm=\binom n{n-m}
+\]
+has a simple interpretation: choosing the \(m\) elements included is the same as choosing the \(n-m\) elements excluded.
+
+\section{Pascal identity}
+
+The note asks the reader to verify
+\[
+  \binom nm=\binom{n-1}{m}+\binom{n-1}{m-1}.
+\]
+A combinatorial proof: count \(m\)-subsets of an \(n\)-element set according to whether they contain a distinguished element \(x\).  If they do not contain \(x\), choose all \(m\) elements from the remaining \(n-1\).  If they do contain \(x\), choose the remaining \(m-1\) elements from the remaining \(n-1\).
+
+This proof is better than algebraic manipulation because it explains why the identity exists.
+
+\section{Binomial theorem}
+
+The binomial theorem is
+\[
+  (a+b)^n=\sum_{j=0}^n\binom nj a^{n-j}b^j.
+\]
+The note suggests two proofs.  The combinatorial proof expands
+\[
+  (a+b)(a+b)\cdots(a+b).
+\]
+To get \(a^{n-j}b^j\), choose exactly \(j\) of the \(n\) brackets to contribute \(b\).  This can be done in \(\binom nj\) ways.
+
+The induction proof is longer but mechanical.  Both are useful, but the combinatorial proof reveals the meaning of the coefficients.
+
+\section{Counting subsets}
+
+If a set \(S\) has \(n\) elements, then it has
+\[
+  2^n
+\]
+subsets.  One proof is to count by size:
+\[
+  \sum_{m=0}^n\binom nm=(1+1)^n=2^n.
+\]
+Another proof is binary choice: each element is either included or excluded.
+
+The second proof is usually the best mental model.  A subset is a yes/no decision for each element.
+
+\section{Examples and exercises}
+
+The later pages contain examples involving set-builder notation, floor functions, integer lattice points, and set operations.  The method is always to translate definitions into simpler conditions.
+
+For instance, if
+\[
+  A=\{x:x^2-6<0\},
+\]
+then
+\[
+  -\sqrt6<x<\sqrt6.
+\]
+If a set uses the floor function \([x]\), split the real line into intervals
+\[
+  k\le x<k+1.
+\]
+If a set contains integer pairs satisfying
+\[
+  x^2+y^2\le1,
+\]
+then draw the tiny lattice disk and count directly.
+
+The note also has exercises asking whether certain sets intersect a circle or line family.  The principle is again translation: set notation becomes equations, equations become geometry.
+
+
+\section{Indicator functions as a unifying proof method}
+
+Many counting identities become transparent with indicator functions.  For a set \(A\), define
+\[
+  1_A(x)=\begin{cases}1,&x\in A,\\0,&x\notin A.\end{cases}
+\]
+Then
+\[
+  |A|=\sum_x1_A(x)
+\]
+when the universe is finite.  De Morgan's laws, inclusion--exclusion, and complement counting can all be proved by checking the identity pointwise for each element \(x\).
+
+For two sets,
+\[
+  1_{A\cup B}=1_A+1_B-1_{A\cap B}.
+\]
+Summing over the universe gives
+\[
+  |A\cup B|=|A|+|B|-|A\cap B|.
+\]
+For many sets, the same pointwise idea gives the full inclusion--exclusion formula.
+
+\section{Combinatorial identities by double counting}
+
+The binomial identity
+\[
+  \binom n r=\binom{n-1}r+\binom{n-1}{r-1}
+\]
+can be proved by deciding whether a distinguished element is chosen.  If it is not chosen, choose all \(r\) elements from the remaining \(n-1\).  If it is chosen, choose \(r-1\) more.
+
+This is the basic style of double counting: count the same collection in two ways.  It is more robust than algebraic manipulation because it explains why the identity is true.
+
+\section{Expanded synthesis and advanced context}
+
+This lecture is not just ``sets and counting.''  It introduces three ways of thinking that remain important everywhere: logical translation, structural counting, and representation switching.  De Morgan turns set algebra into propositional logic; inclusion--exclusion counts by correcting overcounting; binomial coefficients count subsets and coefficients at once.  These are the first signs that combinatorics is both discrete and algebraic.
+
+
+
+\paragraph{Expanded synthesis.}
+The elementary geometric content of this chapter should be read through transformations and invariants. The earlier sections (`Summation and product notation`, `De Morgan's laws`, `Inclusion--exclusion`, `Pigeonhole principle`, `Addition and multiplication principles`) may use coordinates, angles, determinants, parametrizations, or integral formulas, but the organizing question is: which quantities survive the transformations naturally associated with the problem? Euclidean geometry preserves distances and angles; affine geometry preserves lines and ratios on a line; projective geometry preserves incidence and cross ratio; differential geometry preserves coordinate-independent objects such as forms, metrics, and orientations.
+
+This perspective separates different layers of a problem. A dot product belongs to metric geometry. A determinant belongs to oriented volume. A cross ratio belongs to projective geometry. A line or surface integral of a differential form belongs to oriented topology. A scalar area integral belongs to the metric-induced measure. Confusing these layers is the source of many errors, especially in vector calculus where $dS$, $F\cdot n\,dS$, $dx\wedge dy$, and boundary orientation look similar but encode different structures.
+
+When returning to the original examples, identify the natural object before computing. If the problem is about concurrence or collinearity, projective or affine tools may be natural. If it is about distance, angle, or orthogonality, metric tools are essential. If it is about flux or circulation, differential forms and orientation explain the signs. The advanced viewpoint makes the elementary solution more disciplined rather than more abstract for its own sake.
+
+
+\section{Elementary-to-advanced bridge: inclusion--exclusion as Möbius inversion}
+
+The original inclusion--exclusion formulas are a special case of Möbius inversion on a poset.  For a finite poset $P$, suppose functions $f,g:P\to R$ satisfy
+\[
+  g(x)=\sum_{y\le x} f(y).
+\]
+Then one can recover $f$ by
+\[
+  f(x)=\sum_{y\le x} \mu(y,x)g(y),
+\]
+where $\mu$ is the Möbius function of the poset.
+
+For the Boolean lattice $\mathcal P([n])$, the Möbius function is
+\[
+  \mu(A,B)=(-1)^{|B|-|A|}
+\]
+when $A\subseteq B$.  Inclusion--exclusion is precisely Möbius inversion on this Boolean lattice.
+
+This gives a structural explanation of the alternating signs: they are not a trick; they are the inverse of the zeta summation operator on the subset poset.
+
+\section{Elementary-to-advanced bridge: incidence algebra}
+
+The incidence algebra of a finite poset consists of functions $h(x,y)$ defined for $x\le y$, with convolution
+\[
+  (h*k)(x,z)=\sum_{x\le y\le z}h(x,y)k(y,z).
+\]
+The zeta function is
+\[
+  \zeta(x,y)=1
+\]
+for $x\le y$.  The Möbius function is its inverse:
+\[
+  \mu*\zeta=\zeta*\mu=\delta.
+\]
+
+Thus counting by inclusion--exclusion is algebra inside the incidence algebra.  This viewpoint unifies subset counting, divisor sums in number theory, and partition-lattice formulas.
+
+\section{Elementary-to-advanced bridge: generating functions}
+
+If $a_n$ counts objects of size $n$, the ordinary generating function is
+\[
+  A(x)=\sum_{n\ge0}a_nx^n.
+\]
+Disjoint union corresponds to addition, and product-like constructions often correspond to multiplication.  Binomial coefficients appear through
+\[
+  (1+x)^n=\sum_{k=0}^n \binom nk x^k.
+\]
+
+Generating functions convert counting problems into algebraic manipulation.  The elementary binomial expansions in the note become coefficient extraction:
+\[
+  a_n=[x^n]A(x).
+\]
+
+\section{Elementary-to-advanced bridge: probabilistic method}
+
+The pigeonhole principle says that if the average load is greater than a threshold, some box exceeds the threshold.  The probabilistic method generalizes this: if a random object has positive probability of satisfying a property, then such an object exists.
+
+A simple tool is expectation.  If $X$ counts bad events and
+\[
+  \mathbb E X<1,
+\]
+then there exists an outcome with $X=0$.  This converts existence problems into average estimates.
+
+The elementary counting exercises in the note are therefore the deterministic surface of a broader probabilistic existence method.
+
+% Second-pass deepening for waves 2-4: wave 3 A-C part 1
+\section{Second-pass deepening: inclusion--exclusion beyond finite pictures}
+
+Inclusion--exclusion for three sets says
+\[
+  |A\cup B\cup C|=|A|+|B|+|C|-|A\cap B|-|A\cap C|-|B\cap C|+|A\cap B\cap C|.
+\]
+The signs come from correcting overcounting.  In the Boolean-lattice view, each element lying in exactly $r$ of the sets is counted
+\[
+  \binom r1-\binom r2+\cdots+(-1)^{r+1}\binom rr=1.
+\]
+This binomial identity is the local reason the formula works.
+
+The same principle becomes sieve theory in number theory.  To count integers not divisible by any prime in a set $P$, one subtracts multiples of single primes, adds multiples of products of two primes, and so on.  The elementary Venn formula therefore becomes the combinatorial skeleton of the Eratosthenes sieve and its analytic descendants.
+
+\section{Second-pass deepening: generating functions as lossless compression}
+
+A generating function stores an entire sequence in one analytic object.  Recurrences become equations, convolution becomes multiplication, and asymptotic behavior can sometimes be read from singularities.  If
+\[
+  A(x)=\sum a_nx^n,\qquad B(x)=\sum b_nx^n,
+\]
+then
+\[
+  A(x)B(x)=\sum_n\left(\sum_{k=0}^n a_kb_{n-k}\right)x^n.
+\]
+This explains why product constructions in counting create convolution sums.  The original binomial and counting examples are the first cases of this algebra of sequences.

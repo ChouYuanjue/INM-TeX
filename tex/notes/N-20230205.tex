@@ -1,0 +1,184 @@
+\notechapter{N-20230205}{Vector Triple Product, Tensors, and Coordinate-Free Thinking}
+
+\section{The vector triple product}
+
+The note begins with a proof of the identity
+\[
+  u\times(v\times w)=(u\cdot w)v-(u\cdot v)w.
+\]
+The key observation is that \(u\times(v\times w)\) lies in the plane spanned by \(v\) and \(w\), because it is perpendicular to \(v\times w\).  Therefore
+\[
+  u\times(v\times w)=A v+B w.
+\]
+Taking dot products with suitable vectors determines \(A\) and \(B\), giving
+\[
+  A=u\cdot w,\qquad B=-(u\cdot v).
+\]
+
+This proof is better than expanding a determinant because it explains the geometry: the result must live in the \(v,w\)-plane, and only the two scalar projections of \(u\) onto \(v,w\) can appear.
+
+\section{Scalar triple product}
+
+The scalar triple product is
+\[
+  [u,v,w]=(u\times v)\cdot w.
+\]
+It equals the signed volume of the parallelepiped spanned by \(u,v,w\).  It is alternating: swapping two vectors changes the sign.  It vanishes exactly when the three vectors are coplanar.
+
+The note uses this to justify identities involving cross products and dot products.  The recurring geometric idea is that determinants measure oriented volume.
+
+\section{Tensors and coordinate changes}
+
+The second part turns to tensor language.  A vector has components that change when the basis changes.  Covectors change by the inverse transpose.  A tensor keeps track of how multiple vector and covector slots transform.
+
+The page contains calculations with matrices such as
+\[
+  A^{-1},\qquad A^T,\qquad A^{-T}.
+\]
+The point is that a coordinate expression is not the object itself.  The object is what remains invariant when coordinates change.
+
+\section{Why this matters}
+
+Vector calculus formulas are often memorized in coordinates, but tensor thinking explains which formulas are intrinsic.  Dot product, cross product, determinant, and triple product are all examples of operations that have coordinate formulas but geometric meanings.
+
+
+\section{Levi-Civita notation}
+
+The coordinate proof becomes much shorter with the Levi-Civita symbol.  Write
+\[
+  (u\times v)_i=\varepsilon_{ijk}u_jv_k,
+\]
+using the Einstein summation convention.  Then
+\[
+  (u\times(v\times w))_i
+  =\varepsilon_{ijk}u_j\varepsilon_{klm}v_lw_m.
+\]
+The contraction identity
+\[
+  \varepsilon_{ijk}\varepsilon_{klm}
+  =\delta_{il}\delta_{jm}-\delta_{im}\delta_{jl}
+\]
+gives
+\[
+  (u\times(v\times w))_i=(u_jw_j)v_i-(u_jv_j)w_i.
+\]
+This is exactly
+\[
+  u\times(v\times w)=(u\cdot w)v-(u\cdot v)w.
+\]
+
+This notation is useful because it separates the combinatorics of signs from the geometry of the identity.
+
+\section{Lagrange identity}
+
+Another important identity is
+\[
+  (u\times v)\cdot(w\times z)
+  =(u\cdot w)(v\cdot z)-(u\cdot z)(v\cdot w).
+\]
+Setting \(w=u\) and \(z=v\) gives
+\[
+  \|u\times v\|^2=\|u\|^2\|v\|^2-(u\cdot v)^2.
+\]
+This is the area formula for the parallelogram spanned by \(u\) and \(v\).  It also shows that Cauchy--Schwarz is equivalent to the nonnegativity of a squared area.
+
+\section{Why tensors enter naturally}
+
+The cross product is special to three dimensions, but the ideas behind it are not.  The determinant, alternating forms, metrics, and contractions are tensorial constructions.  A tensor is not a multidimensional array by itself; the array is a coordinate representation of a multilinear object.
+
+For example, the metric tensor lets us convert vectors to covectors.  The volume form lets us express oriented volume.  In three-dimensional Euclidean space, the cross product is essentially produced by combining the metric with the volume form.  This explains why the cross product behaves so specially and why it does not generalize naively to every dimension.
+
+\section{Coordinate-free moral}
+
+The note's vector identities are training for coordinate-free thinking.  Coordinates are useful for checking signs, but the real objects are projections, oriented areas, volumes, and multilinear maps.  Once this is understood, tensor notation stops looking like decoration: it is a way to write formulas that remain meaningful after a change of basis.
+
+\section{Expanded synthesis and advanced context}
+
+This note is a bridge from vector identities to tensorial thinking.  The vector triple product is not a trick; it is a projection formula inside a plane.  The scalar triple product is oriented volume.  Tensors generalize the idea that meaningful quantities must transform correctly under change of basis.
+
+
+
+\paragraph{Expanded synthesis.}
+For this chapter, the elementary material should be read as a study of what remains invariant when coordinates change. The earlier sections (`The vector triple product`, `Scalar triple product`, `Tensors and coordinate changes`, `Why this matters`, `Levi-Civita notation`) compute with arrays, bases, pivots, determinants, or eigenvectors; the deeper object is a linear map together with the spaces it acts on. A matrix is a representation of that map after bases have been chosen. This is why formulas such as
+\[
+  A' = P^{-1}AP,\qquad \widetilde A = T^{-1}AS
+\]
+are not cosmetic: they distinguish an intrinsic morphism from a coordinate description.
+
+The structural hierarchy is as follows. Kernels record what a map forgets, images record what it reaches, cokernels record obstructions to solvability, and quotients record information after an equivalence has been imposed. Determinants act on the top exterior power and therefore measure oriented volume; traces are invariant under cyclic rearrangement and become characters in representation theory; adjoints depend on an inner product and lead to self-adjoint spectral theory.
+
+A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
+
+
+\section{Elementary-to-advanced bridge: Levi-Civita symbol as a tensor}
+
+The vector identities in this note become systematic with the Levi-Civita symbol.  In an oriented orthonormal basis of $\mathbb R^3$,
+\[
+  \varepsilon_{ijk}=
+  \begin{cases}
+  1,&(i,j,k)\text{ even permutation of }(1,2,3),\\
+  -1,&(i,j,k)\text{ odd permutation},\\
+  0,&\text{otherwise}.
+  \end{cases}
+\]
+Then
+\[
+  (u\times v)_i=\sum_{j,k}\varepsilon_{ijk}u_jv_k.
+\]
+The scalar triple product is
+\[
+  u\cdot(v\times w)=\sum_{i,j,k}\varepsilon_{ijk}u_iv_jw_k.
+\]
+This notation reveals the tensorial structure behind determinant formulas.
+
+\section{Elementary-to-advanced bridge: contraction identities}
+
+Many vector identities reduce to contractions of $\varepsilon_{ijk}$.  The key identity is
+\[
+  \sum_k \varepsilon_{ijk}\varepsilon_{mnk}
+  =\delta_{im}\delta_{jn}-\delta_{in}\delta_{jm}.
+\]
+Using this, one obtains the vector triple product formula
+\[
+  u\times(v\times w)=v(u\cdot w)-w(u\cdot v).
+\]
+What looks like a clever mnemonic is actually an index contraction identity.
+
+\section{Elementary-to-advanced bridge: coordinate-free meaning}
+
+A tensor is not its array of components.  Components change when the basis changes, while the tensorial object remains.  A bilinear form, for instance, is a map
+\[
+  B:V\times V\to k.
+\]
+Its matrix depends on a basis, but the operation $B(u,v)$ does not.
+
+The elementary formulas of dot product, cross product, and triple product are therefore best read as components of coordinate-free objects: metrics, alternating forms, and contractions.
+
+\section{Returning to the original vector identities}
+
+The original note's identities are not separate facts to memorize.  Dot products come from a metric, cross products come from wedge product plus Hodge star, and triple products come from the volume form.  The tensor notation gives a uniform way to prove and remember all of them.
+
+% Second-pass deepening for waves 2-4: wave 2
+\section{Second-pass deepening: from vector identities to index-free proofs}
+
+The vector triple product
+\[
+  a\times(b\times c)=b(a\cdot c)-c(a\cdot b)
+\]
+can be derived by index contraction, but it also has a geometric meaning.  The vector $b\times c$ is perpendicular to the plane spanned by $b,c$, so $a\times(b\times c)$ lies in that plane.  The right-hand side expresses it as the unique linear combination of $b$ and $c$ with coefficients determined by inner products with $a$.
+
+In exterior algebra, this identity is a special case of relationships between wedge product, contraction, and Hodge star.  If $\iota_a$ denotes contraction by $a$, then expressions of the form
+\[
+  \iota_a(b\wedge c)
+\]
+encode projections of $a$ against an oriented area element.  The elementary formula is therefore a low-dimensional coordinate shadow of a general calculus of multivectors.
+
+\section{Second-pass deepening: why tensor notation matters}
+
+Einstein notation is not merely shorter writing.  It separates free indices from contracted indices.  Free indices describe the type of the output; repeated indices describe summation.  For example,
+\[
+  (a\times b)_i=\varepsilon_{ijk}a_jb_k
+\]
+has one free index $i$, so the result is a vector.  The repeated indices $j,k$ are summed.
+
+This discipline prevents type errors.  A scalar has no free indices, a vector has one, a matrix has two, and higher tensors have more.  The original vector computations become much easier to audit once every expression has a tensor type.

@@ -1,0 +1,156 @@
+\notechapter{N-20221107}{Trigonometric Limits, Derivatives, and Inverse Trigonometric Examples}
+
+\section{Trigonometric limits}
+
+The note collects examples about trigonometric functions and derivatives.  The first basic limit is
+\[
+  \lim_{x\to0}\frac{\sin x}{x}=1.
+\]
+From this one obtains
+\[
+  \lim_{x\to0}\frac{1-\cos x}{x}=0,\qquad
+  \lim_{x\to0}\frac{1-\cos x}{x^2}=\frac12.
+\]
+The second follows from
+\[
+  1-\cos x=2\sin^2\frac x2.
+\]
+
+The handwritten page uses these limits repeatedly when deriving derivatives of trigonometric functions.
+
+\section{Derivative of sine and cosine}
+
+Using the addition formula,
+\[
+  \sin(x+h)-\sin x
+  =\sin x(\cos h-1)+\cos x\sin h.
+\]
+Therefore
+\[
+  \frac{\sin(x+h)-\sin x}{h}
+  =\sin x\frac{\cos h-1}{h}
+  +\cos x\frac{\sin h}{h}.
+\]
+Letting $h\to0$ gives
+\[
+  (\sin x)'=\cos x.
+\]
+Similarly,
+\[
+  \cos(x+h)-\cos x
+  =\cos x(\cos h-1)-\sin x\sin h,
+\]
+so
+\[
+  (\cos x)'=-\sin x.
+\]
+
+\section{Tangent, cotangent, secant, and cosecant}
+
+Using quotient rule,
+\[
+  \tan x=\frac{\sin x}{\cos x}
+  \quad\Longrightarrow\quad
+  (\tan x)'=\frac{1}{\cos^2x}=\sec^2x.
+\]
+Similarly,
+\[
+  (\cot x)'=-\csc^2x,\qquad
+  (\sec x)'=\sec x\tan x,\qquad
+  (\csc x)'=-\csc x\cot x.
+\]
+The note includes examples where the algebra is simplified by rewriting everything in sine and cosine first.
+
+\section{Inverse trigonometric derivatives}
+
+For $y=\arcsin x$, we have
+\[
+  x=\sin y,\qquad
+  1=\cos y\,y'.
+\]
+Since $y\in[-\pi/2,\pi/2]$, $\cos y=\sqrt{1-x^2}$, so
+\[
+  (\arcsin x)'=\frac1{\sqrt{1-x^2}}.
+\]
+Similarly,
+\[
+  (\arccos x)'=-\frac1{\sqrt{1-x^2}},\qquad
+  (\arctan x)'=\frac1{1+x^2}.
+\]
+The page also works through reciprocal-trigonometric inverse derivatives, using triangles to determine the missing side length.
+
+\section{Examples from the handwritten page}
+
+A typical example differentiates a composite expression such as
+\[
+  y=\frac{\sin x}{1+\cos x}.
+\]
+One can use quotient rule directly, but the note also points out the simplification
+\[
+  \frac{\sin x}{1+\cos x}=\tan\frac x2.
+\]
+Thus
+\[
+  y'=\frac12\sec^2\frac x2.
+\]
+This illustrates a useful habit: before differentiating, look for a trigonometric identity that simplifies the expression.
+
+Another example uses implicit differentiation for equations involving $\sin x$ and $\cos x$.  The method is always the same: differentiate both sides, then solve for the desired derivative.
+
+\section{Expanded synthesis and advanced context}
+
+The derivatives of trigonometric functions are not isolated formulas.  They all come from the same two sources: the fundamental limit $\sin h/h\to1$ and the addition formulas.  Inverse trigonometric derivatives then come from implicit differentiation and right-triangle identities.  The note is mainly about learning to move between these representations fluently.
+
+
+
+\paragraph{Expanded synthesis.}
+The common theme of this chapter is that an elementary limiting or computational rule becomes powerful only after one specifies the space in which the limiting process takes place. The earlier sections (`Trigonometric limits`, `Derivative of sine and cosine`, `Tangent, cotangent, secant, and cosecant`, `Inverse trigonometric derivatives`, `Examples from the handwritten page`) may look like separate techniques, but they all ask the same question: which operations are stable under approximation? A derivative is stable first-order approximation,
+\[
+  f(a+h)=f(a)+L(h)+o(|h|),
+\]
+while an integral is stable accumulation with respect to a measure, and a convergent series is a limit in a chosen norm or topology.
+
+The advanced bridge is functional-analytic. Uniform convergence is convergence in a sup norm; $L^p$ convergence is convergence in an integral norm; differentiability is the existence of a continuous linear approximation; many differential equations are operator equations $L[u]=f$. Theorems such as dominated convergence, the inverse function theorem, the projection theorem in Hilbert spaces, and semigroup existence results are refined answers to the same elementary concern: when may we pass from finite approximations to a genuine limiting object?
+
+To use this viewpoint when rereading the original examples, identify the hidden stability condition. A Taylor expansion asks for control of the remainder. A change of variables asks for differentiability and Jacobian control. Termwise differentiation of a series asks for uniform convergence of derivative series. A differential-equation formula asks whether the operator is invertible under the imposed initial or boundary data. The elementary computation is the visible part; the advanced theory names the hypotheses that make it legitimate.
+
+
+\section{Elementary-to-advanced bridge: the circle as a Lie group}
+
+The trigonometric derivative formulas become conceptually simpler when the unit circle is viewed as a group:
+\[
+  S^1=\{e^{it}:t\in\mathbb R\},\qquad e^{is}e^{it}=e^{i(s+t)}.
+\]
+Euler's formula
+\[
+  e^{it}=\cos t+i\sin t
+\]
+packages the addition formulas for sine and cosine into one multiplication law.  Differentiating gives
+\[
+  \frac d{dt}e^{it}=ie^{it},
+\]
+so real and imaginary parts yield
+\[
+  (\cos t)'=-\sin t,\qquad (\sin t)'=\cos t.
+\]
+
+\section{Elementary-to-advanced bridge: harmonic oscillator}
+
+The identities
+\[
+  (\sin x)''=-\sin x,\qquad (\cos x)''=-\cos x
+\]
+mean that sine and cosine solve
+\[
+  y''+y=0.
+\]
+The two-dimensional solution space has basis $\cos x,\sin x$.  On this space the derivative operator satisfies $D^2=-I$, so it acts like multiplication by $i$.
+
+\section{Elementary-to-advanced bridge: Fourier modes}
+
+The functions $e^{inx}$ are eigenfunctions of the derivative operator:
+\[
+  \frac d{dx}e^{inx}=in e^{inx},\qquad
+  -\frac{d^2}{dx^2}e^{inx}=n^2e^{inx}.
+\]
+This is the spectral reason trigonometric functions dominate Fourier series and PDEs on intervals and circles.

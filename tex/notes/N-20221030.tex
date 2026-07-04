@@ -1,0 +1,212 @@
+\notechapter{N-20221030}{Integer Arithmetic: Well-Ordering, Euclidean Algorithm, and the Euler Function}
+
+\section{The well-ordering principle}
+
+The note begins with a concise list of basic facts about integers.  The first is the well-ordering principle:
+\begin{theorem}[Well-ordering of \(\mathbb Z_+\)]
+Every nonempty subset \(A\subseteq\mathbb Z_+\) has a least element.
+\end{theorem}
+This statement looks elementary, but it is the engine behind many proofs in number theory.  It is the reason the Euclidean algorithm terminates, the reason minimal-counterexample arguments work, and one of the standard formulations equivalent to induction.
+
+\section{Divisibility, gcd, and lcm}
+
+For integers \(a,b\), with \(a\neq0\), we say
+\[
+  a\mid b
+\]
+if there exists \(c\in\mathbb Z\) such that
+\[
+  b=ac.
+\]
+The greatest common divisor of nonzero integers \(a,b\) is the positive integer \(d\) such that
+\[
+  d\mid a,\qquad d\mid b,
+\]
+and if \(e\mid a\) and \(e\mid b\), then \(e\mid d\).  We write
+\[
+  d=(a,b).
+\]
+If \((a,b)=1\), then \(a\) and \(b\) are relatively prime.
+
+Similarly, the least common multiple \(l\) is the positive integer such that
+\[
+  a\mid l,\qquad b\mid l,
+\]
+and every common multiple of \(a,b\) is a multiple of \(l\).  For positive \(a,b\),
+\[
+  (a,b)[a,b]=ab.
+\]
+The relation is best understood prime-by-prime: gcd takes the smaller exponent, lcm takes the larger exponent.
+
+\section{Division algorithm}
+
+The division algorithm says that for \(a,b\in\mathbb Z\), \(b\neq0\), there exist unique integers \(q,r\) such that
+\[
+  a=qb+r,\qquad 0\le r<|b|.
+\]
+Here \(q\) is the quotient and \(r\) is the remainder.  This is not merely long division.  It is the formal foundation of modular arithmetic and the Euclidean algorithm.
+
+\section{Euclidean algorithm}
+
+Starting with \(a,b\neq0\), repeatedly divide:
+\[
+\begin{aligned}
+  a&=q_0b+r_0,\\
+  b&=q_1r_0+r_1,\\
+  r_0&=q_2r_1+r_2,\\
+  &\ \vdots\\
+  r_{n-2}&=q_nr_{n-1}+r_n,\\
+  r_{n-1}&=q_{n+1}r_n.
+\end{aligned}
+\]
+The last nonzero remainder \(r_n\) is the gcd of \(a,b\).
+
+The reason is the invariant
+\[
+  (a,b)=(b,r_0)=(r_0,r_1)=\cdots=(r_{n-1},r_n)=r_n.
+\]
+At each step, replacing \((a,b)\) by \((b,a-qb)\) does not change the set of common divisors.  This is the real idea; the numerical algorithm is just repeated use of this invariant.
+
+\section{Example}
+
+The note gives a Euclidean-algorithm example such as
+\[
+  57970\quad\text{and}\quad 10353.
+\]
+The computation proceeds by repeated division until the remainder becomes zero.  The last nonzero remainder is the gcd.  The same backward substitutions produce integers \(x,y\) such that
+\[
+  ax+by=(a,b).
+\]
+This is Bézout's identity.
+
+\section{Fundamental theorem of arithmetic}
+
+Every integer \(n>1\) factors uniquely into primes:
+\[
+  n=p_1^{\alpha_1}p_2^{\alpha_2}\cdots p_k^{\alpha_k}.
+\]
+The note presents this as an essential property of integers.  Uniqueness is what makes gcd, lcm, and the Euler function computable by exponents.
+
+For example, if
+\[
+  a=\prod p^{\alpha_p},\qquad b=\prod p^{\beta_p},
+\]
+then
+\[
+  (a,b)=\prod p^{\min(\alpha_p,\beta_p)},\qquad
+  [a,b]=\prod p^{\max(\alpha_p,\beta_p)}.
+\]
+
+\section{The Euler phi function}
+
+The Euler function \(\varphi(n)\) counts the positive integers not exceeding \(n\) that are coprime to \(n\).  If
+\[
+  n=p_1^{\alpha_1}\cdots p_k^{\alpha_k},
+\]
+then
+\[
+  \varphi(n)=n\left(1-\frac1{p_1}\right)\cdots\left(1-\frac1{p_k}\right).
+\]
+This follows by inclusion--exclusion: remove multiples of each prime divisor of \(n\).
+
+For a prime power,
+\[
+  \varphi(p^a)=p^a-p^{a-1}.
+\]
+For a prime \(p\),
+\[
+  \varphi(p)=p-1.
+\]
+
+\section{Expanded synthesis and advanced context}
+
+This note is a compact bridge from elementary arithmetic to algebra.  The Euclidean algorithm is not just a computation; it is an algorithmic proof that \(\mathbb Z\) is a Euclidean domain.  Bézout identity says ideals in \(\mathbb Z\) are principal.  Unique factorization says primes control divisibility.  The Euler function prepares the way for the multiplicative group \((\mathbb Z/n\mathbb Z)^\times\), where number theory becomes group theory.
+
+
+
+\paragraph{Expanded synthesis.}
+The higher-level content of this chapter is the passage from pointwise description to invariant structure. The earlier sections (`The well-ordering principle`, `Divisibility, gcd, and lcm`, `Division algorithm`, `Euclidean algorithm`, `Example`) introduce objects that may be drawn, listed, glued, or computed, but the advanced question is what remains unchanged under the allowed maps. In topology the allowed maps are continuous maps; in category theory they are morphisms preserving the relevant structure; in homology they induce maps between algebraic invariants.
+
+The guiding pattern is
+\[
+  \text{space or structure}\quad \xrightarrow{\text{allowed maps}}\quad \text{invariant data}.
+\]
+Quotient spaces formalize gluing; products formalize simultaneous coordinates; compactness formalizes the impossibility of escaping by a limiting process; connectedness formalizes the impossibility of separation; homology converts holes into groups. When a note discusses closure, quotienting, paths, products, or functors, it is already working with this invariant language.
+
+A quotient exercise is a gluing construction; a compactness exercise is an infinite pigeonhole argument; a homotopy exercise is a controlled deformation; a functorial example says that a construction is compatible with maps. The advanced theory does not add decoration. It explains why the same few operations, such as taking products, quotients, images, kernels, and induced maps, occur throughout topology, algebra, and geometry.
+
+
+\section{Elementary-to-advanced bridge: Euclidean domains}
+
+The Euclidean algorithm works in $\mathbb Z$ because there is a division process with decreasing remainder.  A Euclidean domain is an integral domain $R$ with a size function $N$ such that for $a,b\in R$, $b\ne0$, one can write
+\[
+  a=qb+r,\qquad r=0\text{ or }N(r)<N(b).
+\]
+The integers and polynomial rings $k[x]$ over a field are Euclidean domains.
+
+In every Euclidean domain, the Euclidean algorithm produces greatest common divisors and Bezout identities.  Thus the elementary gcd algorithm is one example of a general algebraic mechanism.
+
+\section{Elementary-to-advanced bridge: PID and Bezout domains}
+
+A principal ideal domain is an integral domain in which every ideal is generated by one element.  In a PID, gcds exist because
+\[
+  (a)+(b)=(d)
+\]
+for some $d$, and that $d$ is a greatest common divisor of $a$ and $b$.
+
+Bezout's identity
+\[
+  ax+by=d
+\]
+means precisely that $d\in(a)+(b)$ and generates the sum ideal.  This reframes gcd as an ideal-theoretic object.
+
+\section{Elementary-to-advanced bridge: Euler phi as unit counting}
+
+Euler's function counts units in a quotient ring:
+\[
+  \varphi(n)=|(\mathbb Z/n\mathbb Z)^\times|.
+\]
+If
+\[
+  n=\prod_i p_i^{e_i},
+\]
+then the Chinese remainder theorem gives
+\[
+  (\mathbb Z/n\mathbb Z)^\times\cong \prod_i(\mathbb Z/p_i^{e_i}\mathbb Z)^\times.
+\]
+Therefore
+\[
+  \varphi(n)=n\prod_{p\mid n}\left(1-\frac1p\right).
+\]
+The familiar formula is a group-size computation.
+
+\section{Elementary-to-advanced bridge: multiplicative functions}
+
+A function $f(n)$ is multiplicative if $f(mn)=f(m)f(n)$ whenever $\gcd(m,n)=1$.  Euler's phi, the divisor-counting function $\tau(n)$, and the sum-of-divisors function $\sigma(n)$ are multiplicative.
+
+The reason is again Chinese remaindering or prime factorization: arithmetic data often decomposes independently over primes.  This is the elementary beginning of Euler products and analytic number theory.
+
+% Second-pass deepening for waves 2-4: wave 3 A-C part 3
+\section{Second-pass deepening: Euclidean algorithm as constructive ideal theory}
+
+The Euclidean algorithm does more than compute a gcd.  It constructs coefficients $x,y$ such that
+\[
+  ax+by=\gcd(a,b).
+\]
+The back-substitution process is a constructive proof that the ideal $(a,b)$ is principal.
+
+This construction also gives modular inverses.  If $\gcd(a,n)=1$, then
+\[
+  ax+ny=1,
+\]
+so $x$ is the inverse of $a$ modulo $n$.  The original algorithmic procedure is therefore the computational heart of quotient-ring arithmetic.
+
+\section{Second-pass deepening: Euler's theorem as group theory}
+
+Euler's theorem
+\[
+  a^{\varphi(n)}\equiv1\pmod n
+\]
+for $\gcd(a,n)=1$ follows from Lagrange's theorem in the finite group $(\mathbb Z/n\mathbb Z)^\times$.  The elementary proof by reduced residue systems is already a group action proof: multiplication by $a$ permutes the reduced residues.
+
+This viewpoint clarifies why the exponent $\varphi(n)$ appears: it is the order of the group of units.

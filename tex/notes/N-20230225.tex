@@ -1,0 +1,235 @@
+\notechapter{N-20230225}{Nonstandard Analysis and the Meaning of \texorpdfstring{$0.999\ldots=1$}{0.999...=1}}
+
+\section{Why this topic appears}
+
+The note begins from a familiar confusion: why should
+\[
+  0.999\ldots=1
+\]
+be exactly true?  The standard real-number answer is short: the decimal is the infinite series
+\[
+  \sum_{k=1}^{\infty}9\cdot10^{-k}=1.
+\]
+But the note wants to explore a different intuition: if one stops after a very large number of nines, the number is slightly less than one.  Nonstandard analysis gives a formal language in which “very large finite” and “infinitesimally small” can be discussed without contradiction.
+
+\section{The real-number proof}
+
+Let
+\[
+  x=0.999\ldots.
+\]
+Then
+\[
+  10x=9.999\ldots.
+\]
+Subtracting gives
+\[
+  9x=9,
+  \qquad
+  x=1.
+\]
+Equivalently,
+\[
+  0.999\ldots=\sum_{k=1}^{\infty}9\cdot10^{-k}
+  =9\cdot \frac{1/10}{1-1/10}=1.
+\]
+In the real numbers there is no positive real number smaller than all $10^{-n}$.  Therefore the “gap” between $0.999\ldots$ and $1$ is not a real number.
+
+\section{Hyperreal numbers}
+
+Nonstandard analysis extends $\mathbb R$ to a larger field $^*\mathbb R$, containing infinitesimal and infinite numbers.  One construction uses an ultrapower:
+\[
+  {}^*\mathbb R=\mathbb R^{\mathbb N}/\mathcal U,
+\]
+where $\mathcal U$ is a nonprincipal ultrafilter on $\mathbb N$.  A hyperreal number is represented by a sequence of real numbers; two sequences are considered equal if they agree on a set belonging to the ultrafilter.
+
+For example,
+\[
+  H=[1,2,3,4,\ldots]
+\]
+is an infinite hyperinteger, because it is larger than every standard integer.  Its reciprocal
+\[
+  \varepsilon=1/H
+\]
+is a positive infinitesimal: it is greater than zero but smaller than every positive standard real number.
+
+\section{Infinitesimals and finite hyperreals}
+
+A hyperreal $x$ is infinitesimal if
+\[
+  |x|<r
+\]
+for every positive standard real $r$.  A hyperreal $x$ is finite if
+\[
+  |x|<N
+\]
+for some standard integer $N$.  Every finite hyperreal $x$ is infinitely close to a unique real number, called its standard part:
+\[
+  \operatorname{st}(x).
+\]
+We write $x\approx y$ if $x-y$ is infinitesimal.
+
+The standard-part map is the bridge back to ordinary real analysis.  Nonstandard analysis often computes with infinitesimal quantities and then takes standard part to return to a real value.
+
+\section{Hyperfinite strings of nines}
+
+Let $H$ be an infinite hyperinteger and define the hyperfinite decimal
+\[
+  x_H=\sum_{k=1}^{H}9\cdot10^{-k}.
+\]
+The finite geometric-sum formula still applies by transfer:
+\[
+  x_H=1-10^{-H}.
+\]
+Here $10^{-H}$ is a positive infinitesimal.  Therefore
+\[
+  x_H<1,
+  \qquad
+  x_H\approx1,
+  \qquad
+  \operatorname{st}(x_H)=1.
+\]
+This distinguishes two statements:
+\begin{enumerate}[(i)]
+  \item the real infinite decimal $0.999\ldots$ equals $1$;
+  \item a hyperfinite string of $H$ nines equals $1-10^{-H}$, which is infinitesimally below $1$.
+\end{enumerate}
+The confusion comes from mixing these two interpretations.
+
+\section{Transfer principle}
+
+The transfer principle says that every first-order statement true in $\mathbb R$ is true in $^*\mathbb R$ after replacing objects by their hyperreal extensions.  This is why ordinary algebraic identities, order laws, and finite-sum formulas can be used with hyperintegers.
+
+For example, the formula
+\[
+  \sum_{k=1}^n 9\cdot10^{-k}=1-10^{-n}
+\]
+for every natural number $n$ transfers to every hypernatural $H$:
+\[
+  \sum_{k=1}^{H}9\cdot10^{-k}=1-10^{-H}.
+\]
+This is the formal justification behind the hyperfinite decimal calculation.
+
+\section{Derivative through infinitesimals}
+
+If $f$ is differentiable at $a$, then for every nonzero infinitesimal $\varepsilon$,
+\[
+  f'(a)=\operatorname{st}\left(
+  \frac{f(a+\varepsilon)-f(a)}{\varepsilon}
+  \right).
+\]
+For example, if $f(x)=x^2$, then
+\[
+  \frac{(a+\varepsilon)^2-a^2}{\varepsilon}=2a+\varepsilon.
+\]
+Taking standard part gives
+\[
+  f'(a)=2a.
+\]
+This recovers the intuitive infinitesimal calculation that historically motivated calculus, but now in a rigorous model.
+
+For a trigonometric example, let \(f(x)=\sin x\) and let \(\varepsilon\ne0\) be infinitesimal.  Then
+\[
+\begin{aligned}
+  \frac{\sin(x+\varepsilon)-\sin x}{\varepsilon}
+  &=
+  \frac{\sin x\cos\varepsilon+\cos x\sin\varepsilon-\sin x}{\varepsilon}\\
+  &=
+  \sin x\frac{\cos\varepsilon-1}{\varepsilon}
+  +
+  \cos x\frac{\sin\varepsilon}{\varepsilon}.
+\end{aligned}
+\]
+The rigorous nonstandard meaning of the familiar approximations is:
+\[
+  \frac{\sin\varepsilon}{\varepsilon}\approx1,
+  \qquad
+  \frac{\cos\varepsilon-1}{\varepsilon}\approx0,
+\]
+because the standard limits
+\[
+  \lim_{h\to0}\frac{\sin h}{h}=1,
+  \qquad
+  \lim_{h\to0}\frac{\cos h-1}{h}=0
+\]
+transfer to infinitesimal \(h\).  Taking standard part therefore gives
+\[
+  \operatorname{st}\left(
+  \frac{\sin(x+\varepsilon)-\sin x}{\varepsilon}
+  \right)
+  =
+  \cos x.
+\]
+This is the same derivative as in standard calculus, but the computation is genuinely infinitesimal rather than merely symbolic.
+
+\section{Integral through hyperfinite sums}
+
+For a continuous function $f$ on $[a,b]$, take an infinite hyperinteger $H$ and set
+\[
+  \Delta x=\frac{b-a}{H},
+  \qquad
+  x_i=a+i\Delta x.
+\]
+Then
+\[
+  \int_a^b f(x)\,dx
+  =\operatorname{st}\left(\sum_{i=0}^{H-1}f(x_i)\Delta x\right).
+\]
+This is a hyperfinite Riemann sum.  It makes the intuitive phrase “add infinitely many infinitesimal rectangles” precise.
+
+\section{What nonstandard analysis is not saying}
+
+Nonstandard analysis does not say that the real number $0.999\ldots$ is less than $1$.  In $\mathbb R$, it equals $1$.  What nonstandard analysis adds is a separate object: a hyperfinite decimal with an infinite but not completed number of nines.  That object is infinitesimally below $1$, and its standard part is $1$.
+
+This distinction is exactly why nonstandard analysis is useful.  It can formalize intuitive infinitesimal reasoning without changing the standard real results.
+
+
+\section{Source repair: internal and external sets}
+
+The uploaded note includes the important distinction between internal and external sets.  Internal sets arise from the ultrapower construction, roughly by taking sequences of standard sets and passing to the quotient.  External sets are subsets of \({}^*\mathbb R\) that do not arise in this way.
+
+A standard example is the set of infinitesimals
+\[
+  \mu(0)=\{x\in{}^*\mathbb R:x\text{ is infinitesimal}\}.
+\]
+This set is external.  The distinction matters because the transfer principle applies to internal objects, not arbitrary external subsets.  Many false proofs in nonstandard analysis come from accidentally applying transfer to an external set.
+
+\section{Source repair: standard part and Loeb measure}
+
+For every finite hyperreal \(x\), there is a unique real number infinitely close to it.  This number is the standard part:
+\[
+  \operatorname{st}(x)\in\mathbb R,\qquad x\approx \operatorname{st}(x).
+\]
+Infinitesimal calculations produce finite hyperreal approximations; taking standard part extracts the real answer.
+
+The source also points toward Loeb measure.  The rough pattern is
+\[
+  \text{hyperfinite counting measure}
+  \quad\longrightarrow\quad
+  \text{standard part}
+  \quad\longrightarrow\quad
+  \text{Loeb measure}.
+\]
+This turns an internally finite-looking probability space into a standard measure space rich enough for analysis.
+
+\section{Source repair: transfer has limits}
+
+The uploaded note correctly worries that transfer applies to first-order statements, not arbitrary higher-order assertions.  Algebraic identities, order properties, and finite-sum formulas transfer cleanly.  Statements quantifying over all subsets or all functions require more care.
+
+Thus the safe habit is: use transfer for first-order statements about standard structures, use internal-set reasoning inside the hyperreal universe, and use standard part only when returning to ordinary real analysis.
+
+\section{Expanded synthesis and advanced context}
+
+Nonstandard analysis is a model-theoretic enlargement of the real line.  It does not replace epsilon-delta analysis; it gives an equivalent language for many arguments.  The standard real continuum has no infinitesimals, but a sufficiently rich extension can contain them while preserving first-order real algebra and order facts by transfer.  The decimal example is a good gateway because it separates completed infinite limits from hyperfinite approximations.
+
+
+\paragraph{Expanded synthesis.}
+The common theme of this chapter is that an elementary limiting or computational rule becomes powerful only after one specifies the space in which the limiting process takes place. The earlier sections (`Why this topic appears`, `The real-number proof`, `Hyperreal numbers`, `Infinitesimals and finite hyperreals`, `Hyperfinite strings of nines`) may look like separate techniques, but they all ask the same question: which operations are stable under approximation? A derivative is stable first-order approximation,
+\[
+  f(a+h)=f(a)+L(h)+o(|h|),
+\]
+while an integral is stable accumulation with respect to a measure, and a convergent series is a limit in a chosen norm or topology.
+
+The advanced bridge is functional-analytic. Uniform convergence is convergence in a sup norm; $L^p$ convergence is convergence in an integral norm; differentiability is the existence of a continuous linear approximation; many differential equations are operator equations $L[u]=f$. Theorems such as dominated convergence, the inverse function theorem, the projection theorem in Hilbert spaces, and semigroup existence results are refined answers to the same elementary concern: when may we pass from finite approximations to a genuine limiting object?
+
+To use this viewpoint when rereading the original examples, identify the hidden stability condition. A Taylor expansion asks for control of the remainder. A change of variables asks for differentiability and Jacobian control. Termwise differentiation of a series asks for uniform convergence of derivative series. A differential-equation formula asks whether the operator is invertible under the imposed initial or boundary data. The elementary computation is the visible part; the advanced theory names the hypotheses that make it legitimate.

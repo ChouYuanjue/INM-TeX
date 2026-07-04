@@ -1,0 +1,180 @@
+\notechapter{N-20220615}{A Russian-Style Early Olympiad Game: Coordinates, Packing, and Symmetry}
+
+\section{What the note contains}
+
+This note consists of a short mock or translated olympiad-style problem sheet.  The cover page imitates an elementary mathematics olympiad booklet and states the usual rules: a multiple-choice test, one correct answer per problem, no calculators, and figures not necessarily drawn to scale.  The mathematically relevant part is a collection of four problems about coordinate geometry, optimization, packing, and symmetric equations.
+
+\section{Problem 1: two distances under a linear constraint}
+
+In the coordinate plane let
+\[
+  A=(0,-2),\qquad B=(2,-2),\qquad M=(x,y),\qquad x+y=1.
+\]
+The problem asks for the maximum and minimum of
+\[
+  AM^2+BM^2.
+\]
+Since \(y=1-x\),
+\[
+\begin{aligned}
+AM^2+BM^2
+&=x^2+(y+2)^2+(x-2)^2+(y+2)^2\\
+&=x^2+(3-x)^2+(x-2)^2+(3-x)^2\\
+&=4x^2-16x+22\\
+&=4(x-2)^2+6.
+\end{aligned}
+\]
+Thus the minimum is \(6\), achieved at \(x=2,y=-1\).  There is no maximum on the whole line \(x+y=1\), because the expression tends to infinity as \(|x|\to\infty\).
+
+\begin{remark}
+The page asks for both maximum and minimum.  This is a useful trap: on an unbounded line, a positive quadratic has a minimum but no maximum.
+\end{remark}
+
+\section{Problem 2: a parabola and the square distance to the origin}
+
+Let \(M=(x,y)\) lie on the parabola
+\[
+  y=ax^2+bx,\qquad a<0,\quad b>0.
+\]
+The quantity to maximize is
+\[
+  OM^2=x^2+y^2=x^2+(ax^2+bx)^2.
+\]
+The problem asks for the maximum on intervals such as
+\[
+  0\le x\le -\frac ba
+\]
+and a larger interval involving \(b\).  The first interval is exactly the interval between the two \(x\)-intercepts of the downward-opening parabola.  Hence the endpoints lie on the \(x\)-axis, while the vertex lies at
+\[
+  x=-\frac b{2a},\qquad y=-\frac{b^2}{4a}>0.
+\]
+
+The derivative method is direct.  Put
+\[
+  F(x)=x^2+(ax^2+bx)^2.
+\]
+Then
+\[
+  F'(x)=2x+2(ax^2+bx)(2ax+b).
+\]
+The maximum on a closed interval occurs at an endpoint or at a critical point of this derivative.
+
+\section{Problem 3: packing unit circles}
+
+The third problem asks about packing \(n\) circles of unit diameter into a circle of smallest possible diameter, and into a square of smallest possible side length.  This is a circle-packing problem.  For small \(n\), the optimal configurations are concrete and geometric; for general \(n\), exact formulas are difficult and often unknown.
+
+A few elementary bounds are immediate.  If \(n\) unit-diameter circles are packed into a container circle of diameter \(D\), then area gives
+\[
+  n\cdot \pi\left(\frac12\right)^2\le \pi\left(\frac D2\right)^2,
+\]
+so
+\[
+  D\ge \sqrt n.
+\]
+This bound is not usually sharp because circles leave gaps.  For a square of side \(s\), the area bound gives
+\[
+  n\cdot\frac\pi4\le s^2,\qquad s\ge\frac{\sqrt{n\pi}}2.
+\]
+Again, the actual packing problem is subtler.
+
+\section{Problem 4: a symmetric Diophantine equation}
+
+The final problem asks for the least integer solution of
+\[
+  \frac{a}{b+c}+\frac{b}{a+c}+\frac{c}{a+b}=4.
+\]
+This is a symmetric rational equation.  A standard approach is to clear denominators:
+\[
+  a(a+c)(a+b)+b(b+c)(a+b)+c(b+c)(a+c)=4(a+b)(a+c)(b+c).
+\]
+After expansion and symmetrization, one may search for integer solutions or reduce by substituting elementary symmetric polynomials
+\[
+  s=a+b+c,\qquad p=ab+bc+ca,\qquad q=abc.
+\]
+The problem belongs to the family of olympiad equations where symmetry is more important than direct expansion.
+
+\section{Expanded synthesis and advanced context}
+
+This short problem sheet moves between three worlds: quadratic optimization, geometric packing, and symmetric algebra.  The common olympiad skill is to recognize the structure before calculating: a quadratic may have no maximum on an unbounded domain, a packing problem is governed first by area bounds and then by geometry, and a symmetric equation should be attacked through symmetric functions rather than arbitrary expansion.
+
+
+\paragraph{Expanded synthesis.}
+For this chapter, the elementary material should be read as a study of what remains invariant when coordinates change. The earlier sections (`What the note contains`, `Problem 1: two distances under a linear constraint`, `Problem 2: a parabola and the square distance to the origin`, `Problem 3: packing unit circles`, `Problem 4: a symmetric Diophantine equation`) compute with arrays, bases, pivots, determinants, or eigenvectors; the deeper object is a linear map together with the spaces it acts on. A matrix is a representation of that map after bases have been chosen. This is why formulas such as
+\[
+  A' = P^{-1}AP,\qquad \widetilde A = T^{-1}AS
+\]
+are not cosmetic: they distinguish an intrinsic morphism from a coordinate description.
+
+The structural hierarchy is as follows. Kernels record what a map forgets, images record what it reaches, cokernels record obstructions to solvability, and quotients record information after an equivalence has been imposed. Determinants act on the top exterior power and therefore measure oriented volume; traces are invariant under cyclic rearrangement and become characters in representation theory; adjoints depend on an inner product and lead to self-adjoint spectral theory.
+
+A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
+
+
+\section{Pedagogical repair: what an olympiad sheet trains}
+
+This sheet looks elementary, but it trains several habits that reappear later.  The distance problem asks us to parametrize a line and reduce geometry to a quadratic.  The parabola problem asks us to decide whether a maximum exists on a specified interval.  The packing problem teaches the difference between lower bounds and exact solutions.  The symmetric equation teaches that expanding blindly is rarely the best first move.
+
+Thus the real notebook value is in the decision process: before computing, decide whether the domain is bounded, whether the object is symmetric, whether a crude bound is sharp, and whether a problem is actually asking for an exact classification.
+
+\section{Elementary-to-advanced bridge: coordinate geometry as optimization}
+
+The original olympiad-style coordinate problems often reduce a geometric claim to an algebraic inequality or an extremum.  This is the beginning of optimization geometry.  For example, placing points in coordinates turns distances into quadratic functions:
+\[
+  |x-y|^2=(x-y)\cdot(x-y).
+\]
+Then many geometric constraints become quadratic inequalities.
+
+A modern viewpoint is to treat a geometric configuration as a feasible set and a desired length, angle, or area as an objective function.  Convexity, symmetry, and compactness then explain why extrema exist and why equality cases are structured.
+
+\section{Elementary-to-advanced bridge: packing and convex bodies}
+
+Packing problems ask how many objects can fit without overlap.  In the plane, disk packing leads to density questions.  A convex body $K\subseteq \mathbb R^n$ is a compact convex set with nonempty interior.  A packing by translates of $K$ is a family
+\[
+  K+x_i
+\]
+with disjoint interiors.
+
+The density of a lattice packing is
+\[
+  \Delta=\frac{\operatorname{vol}(K)}{\operatorname{covol}(\Lambda)}
+\]
+when the translates are indexed by a lattice $\Lambda$.  Elementary circle or sphere packing problems are finite visible versions of questions about optimal densities.
+
+This connects school geometry to research-level topics such as lattice packing, sphere packing, and the geometry of numbers.
+
+\section{Elementary-to-advanced bridge: group actions and symmetry reduction}
+
+Many coordinate solutions become shorter after using symmetry.  A group action formalizes this.  If a group $G$ acts on a set $X$, then points in the same orbit
+\[
+  Gx=\{gx:g\in G\}
+\]
+are equivalent under the symmetry.
+
+For a symmetric geometric configuration, one can choose coordinates adapted to the group.  For example, rotational symmetry suggests polar coordinates; reflection symmetry suggests placing axes on symmetry lines.  The elementary trick of ``put the origin at the center'' is the coordinate form of quotienting by translations or rotations.
+
+\section{Elementary-to-advanced bridge: convexity and supporting hyperplanes}
+
+A line tangent to a convex curve or a plane tangent to a convex body is a supporting hyperplane.  A hyperplane $H$ supports a convex set $K$ if $K$ lies in one closed half-space determined by $H$ and $H\cap K\ne\varnothing$.
+
+Many olympiad inequalities about distances to lines or extreme points can be rephrased using supporting lines.  This is the finite Euclidean beginning of convex analysis.
+
+\section{Returning to the original coordinate methods}
+
+The elementary coordinate transformations, distance formulas, and symmetry placements should be kept exactly because they teach the practical side.  The advanced layer explains what they are doing: reducing a geometric problem by symmetry, encoding constraints algebraically, and optimizing over a convex or compact feasible region.
+
+% Second-pass deepening for waves 2-4: wave 4 part 1
+\section{Second-pass deepening: coordinate choice as quotienting symmetry}
+
+When an olympiad solution places the origin at a center or aligns an axis with a symmetry line, it is not merely making the algebra shorter.  It is quotienting out irrelevant degrees of freedom.  Translations remove the absolute position of the configuration; rotations remove absolute direction; scaling removes absolute size when the problem is similarity-invariant.
+
+A clean coordinate setup therefore identifies the true moduli of the configuration.  For a triangle up to similarity, for instance, three vertex coordinates contain redundant information because translation, rotation, and scaling do not change the intrinsic shape.  The remaining parameters describe shape, not placement.
+
+\section{Second-pass deepening: packing bounds as volume plus local obstruction}
+
+Elementary packing arguments often begin with area or volume comparison.  But pure volume comparison is rarely sharp because local geometry imposes additional constraints.  In circle packing, density depends on how neighboring circles can touch; the hexagonal packing is optimal in the plane.
+
+The higher-dimensional sphere-packing problem asks for the maximal density of non-overlapping equal balls in $\mathbb R^n$.  In special dimensions, such as $8$ and $24$, exceptional lattices provide optimal packings.  Thus a simple finite packing exercise belongs to a long research line connecting geometry, lattices, modular forms, and optimization.
+
+\section{Second-pass deepening: equality cases as rigid configurations}
+
+In geometry problems, equality cases often correspond to symmetric or rigid configurations.  If a bound is proved by Cauchy, AM--GM, or convexity, equality conditions translate back into geometric constraints: equal lengths, parallel directions, tangency, or regularity.  The advanced habit is to track equality throughout the proof, because it reveals the extremal geometry.

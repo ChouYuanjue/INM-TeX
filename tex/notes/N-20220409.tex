@@ -1,0 +1,173 @@
+\notechapter{N-20220409}{Faà di Bruno, Leibniz Rules, and Matrix Multiplication}
+
+\section{Motivation}
+
+This note jumps among several topics: high-order derivatives of composite functions, Leibniz-type determinant differentiation, and the beginning of matrix multiplication.  The unifying theme is that complicated formulas become manageable once the indexing convention is chosen correctly.
+
+\section{Faà di Bruno formula}
+
+For one-variable functions, the \(n\)-th derivative of a composite \(f\circ g\) is governed by Faà di Bruno's formula:
+\[
+  (f\circ g)^{(n)}(x)
+  =
+  \sum_{m=1}^{n}
+  \sum_{(k_1,\ldots,k_n)\in\Gamma_{m,n}}
+  \frac{n!}{k_1!\cdots k_n!}
+  f^{(m)}(g(x))
+  \prod_{j=1}^{n}
+  \left(\frac{g^{(j)}(x)}{j!}\right)^{k_j},
+\]
+where
+\[
+  \Gamma_{m,n}=
+  \left\{
+  (k_1,\ldots,k_n):
+  k_j\in\mathbb Z_{\ge0},
+  k_1+\cdots+k_n=m,
+  k_1+2k_2+\cdots+nk_n=n
+  \right\}.
+\]
+This is the high-order chain rule.  The indexing records how the \(n\) derivatives are partitioned among the derivatives of \(g\).
+
+\section{Leibniz's differential notation}
+
+If \(y=f(x)\), then
+\[
+  dy=f'(x)\,dx.
+\]
+Taking another differential gives
+\[
+  d^2y=d(f'(x)dx)=f''(x)dx^2+f'(x)d^2x.
+\]
+If \(x=x(t)\), this corresponds to the ordinary chain rule
+\[
+  \frac{dy}{dt}=f'(x(t))x'(t).
+\]
+For the third differential, one obtains
+\[
+  d^3y=f'''(x)dx^3+3f''(x)dx\,d^2x+f'(x)d^3x.
+\]
+This is already a visible shadow of Faà di Bruno.
+
+\section{Parametric derivatives}
+
+If a curve is given parametrically by
+\[
+  x=x(t),\qquad y=y(t),
+\]
+then
+\[
+  y'=\frac{dy}{dx}=\frac{dy/dt}{dx/dt}.
+\]
+The second derivative is
+\[
+  y''=
+  \frac{x'(t)y''(t)-y'(t)x''(t)}{(x'(t))^3}.
+\]
+This can be written as a determinant:
+\[
+  y''=
+  \frac{
+  \begin{vmatrix}
+  x'&y'\\
+  x''&y''
+  \end{vmatrix}
+  }{(x')^3}.
+\]
+
+\section{Differentiating determinants}
+
+For an \(n\times n\) matrix of functions \(A(x)=(f_{ij}(x))\), the derivative of the determinant is obtained by differentiating one row at a time:
+\[
+  \frac d{dx}\det A(x)
+  =
+  \sum_{i=1}^n
+  \det
+  \begin{pmatrix}
+  f_{11}&\cdots&f_{1n}\\
+  \vdots&&\vdots\\
+  f'_{i1}&\cdots&f'_{in}\\
+  \vdots&&\vdots\\
+  f_{n1}&\cdots&f_{nn}
+  \end{pmatrix}.
+\]
+This is simply the multilinearity of the determinant.
+
+\section{Matrix multiplication}
+
+If
+\[
+  A\in M_{m\times n},\qquad B\in M_{n\times p},
+\]
+then their product \(C=AB\in M_{m\times p}\) has entries
+\[
+  C_{ij}=\sum_{k=1}^n a_{ik}b_{kj}.
+\]
+The note emphasizes that in general \(AB\neq BA\), while associativity still holds:
+\[
+  A(BC)=(AB)C.
+\]
+
+For block matrices,
+\[
+  \begin{pmatrix}
+  A_{11}&A_{12}\\
+  A_{21}&A_{22}
+  \end{pmatrix}
+  \begin{pmatrix}
+  B_{11}&B_{12}\\
+  B_{21}&B_{22}
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+  A_{11}B_{11}+A_{12}B_{21}&A_{11}B_{12}+A_{12}B_{22}\\
+  A_{21}B_{11}+A_{22}B_{21}&A_{21}B_{12}+A_{22}B_{22}
+  \end{pmatrix}.
+\]
+
+\section{Schur complement}
+
+The block elimination identity in the note is
+\[
+  \begin{pmatrix}
+  I&0\\
+  -CA^{-1}&I
+  \end{pmatrix}
+  \begin{pmatrix}
+  A&B\\
+  C&D
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+  A&B\\
+  0&D-CA^{-1}B
+  \end{pmatrix}.
+\]
+The matrix
+\[
+  D-CA^{-1}B
+\]
+is the Schur complement of \(A\) in the block matrix.  It is the block-matrix version of Gaussian elimination.
+
+\section{Expanded synthesis and advanced context}
+
+The note moves from high-order calculus to matrix algebra, but the same mathematical taste appears in both places: the right notation makes the formula intelligible.  Multi-indices organize Faà di Bruno, determinants organize parametric derivatives, and block matrices organize elimination.
+
+
+\paragraph{Expanded synthesis.}
+For this chapter, the elementary material should be read as a study of what remains invariant when coordinates change. The earlier sections (`Motivation`, `Faà di Bruno formula`, `Leibniz's differential notation`, `Parametric derivatives`, `Differentiating determinants`) compute with arrays, bases, pivots, determinants, or eigenvectors; the deeper object is a linear map together with the spaces it acts on. A matrix is a representation of that map after bases have been chosen. This is why formulas such as
+\[
+  A' = P^{-1}AP,\qquad \widetilde A = T^{-1}AS
+\]
+are not cosmetic: they distinguish an intrinsic morphism from a coordinate description.
+
+The structural hierarchy is as follows. Kernels record what a map forgets, images record what it reaches, cokernels record obstructions to solvability, and quotients record information after an equivalence has been imposed. Determinants act on the top exterior power and therefore measure oriented volume; traces are invariant under cyclic rearrangement and become characters in representation theory; adjoints depend on an inner product and lead to self-adjoint spectral theory.
+
+A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
+
+
+\section{Pedagogical repair: high-order formulas are indexing problems}
+
+The common feeling behind Faà di Bruno, determinant differentiation, and block multiplication is that the formula is not hard because of deep ideas, but because the bookkeeping can explode.  The right notation compresses the bookkeeping.
+
+Faà di Bruno records partitions of \(n\) differentiations.  Determinant differentiation records the fact that a determinant is multilinear in its rows.  Matrix multiplication records the rule that an intermediate index is summed over.  In each case, the expression becomes natural once we identify what is being varied: derivative slots, rows, or internal indices.

@@ -1,0 +1,459 @@
+\notechapter{N-20260106}{Calculus Review IV: Convexity, Integral Inequalities, Wallis Formula, and More}
+
+
+
+\section{Convexity and the Hermite--Hadamard inequality}
+
+The first blackboard block considers a function $f$ continuous on $[a,b]$ and twice differentiable on $(a,b)$ with
+\[
+  f''(x)>0.
+\]
+This means the graph is convex.  The visible statement is the Hermite--Hadamard inequality:
+\[
+  f\left(
+\frac{a+b}{2}
+\right)
+  \le
+\frac1{b-a}\int_a^b f(x)\,dx
+  \le
+\frac{f(a)+f(b)}2.
+\]
+
+The left inequality says that the value at the midpoint is no larger than the average value of a convex function.  The right inequality says that the average value is no larger than the average of the endpoint values.
+
+The geometric proof shown on the board uses two facts.  First, a convex curve lies below the chord joining its endpoints:
+\[
+  f(x)\le
+\frac{b-x}{b-a}f(a)+
+\frac{x-a}{b-a}f(b).
+\]
+Integrating this gives the upper bound.  Second, symmetry around the midpoint and convexity imply
+\[
+  f(x)+f(a+b-x)\ge 2f\left(
+\frac{a+b}{2}
+\right).
+\]
+Integrating from $a$ to $b$ gives the lower bound.
+
+The handwritten comment points to the geometric picture: the tangent line is below a convex graph, while the chord is above it.
+
+\section{Kantorovich-type integral inequality}
+
+Another framed problem assumes that $f$ is continuous and bounded between two positive constants:
+\[
+  0<\lambda_1\le f(x)\le \lambda_2,\qquad x\in[a,b].
+\]
+The goal is the estimate
+\[
+  \left(\int_a^b f(x)\,dx
+\right)
+  \left(\int_a^b 
+\frac{dx}{f(x)}
+\right)
+  \le
+\frac{(\lambda_1+\lambda_2)^2}{4\lambda_1\lambda_2}(b-a)^2.
+\]
+
+The board proof starts from
+\[
+  (f(x)-\lambda_1)(f(x)-\lambda_2)\le0.
+\]
+After expanding and dividing by $f(x)>0$, one obtains
+\[
+  f(x)+
+\frac{\lambda_1\lambda_2}{f(x)}
+  \le \lambda_1+\lambda_2.
+\]
+Integrating gives
+\[
+  A+\lambda_1\lambda_2 B
+  \le
+  (\lambda_1+\lambda_2)(b-a),
+\]
+where
+\[
+  A=\int_a^b f(x)\,dx,\qquad
+  B=\int_a^b
+\frac{dx}{f(x)}.
+\]
+Since for positive numbers $u,v$ one has $uv\le ((u+v)/2)^2$, we get
+\[
+  \lambda_1\lambda_2 AB
+  \le
+\frac{(\lambda_1+\lambda_2)^2}{4}(b-a)^2.
+\]
+This is the desired inequality.
+
+The note's important warning is that the usual Cauchy inequality gives the lower bound
+\[
+  \left(\int_a^b f
+\right)\left(\int_a^b
+\frac1f
+\right)\ge (b-a)^2,
+\]
+whereas this problem asks for an upper bound under a two-sided bound on $f$.
+
+\section{Integral mean value with odd symmetry}
+
+A lower-left blackboard block considers a function defined on a symmetric interval and transforms two integrals.  The visible pattern is
+\[
+  \int_0^x f(t)\,dt+\int_0^{-x}f(t)\,dt
+  =
+  \int_0^x [f(t)-f(-t)]\,dt.
+\]
+If $f$ is differentiable near $0$, then the integral mean value theorem gives a number $	heta\in(0,1)$ such that
+\[
+  \int_0^x [f(t)-f(-t)]\,dt
+  =
+  x\,[f(	heta x)-f(-	heta x)].
+\]
+
+When $x	o0$, the quotient comparison uses
+\[
+  f(	heta x)-f(-	heta x)\approx 2	heta x f'(0),
+\]
+while
+\[
+  \int_0^x [f(t)-f(-t)]\,dt
+  \approx
+  \int_0^x 2t f'(0)\,dt
+  =
+  x^2 f'(0).
+\]
+Thus the natural limiting value is
+\[
+  	heta	o
+\frac12.
+\]
+The board notes this as a typical use of the integral mean value theorem plus local linearization.
+
+\section[A lower bound involving f double-prime over f]{A lower bound involving $f''/f$}
+
+Another problem assumes
+\[
+  f\in C^2[a,b],\qquad f(x)>0	ext{ on }(a,b),\qquad f(a)=f(b)=0.
+\]
+The blackboard proves an inequality of the form
+\[
+  \int_a^b \left|
+\frac{f''(x)}{f(x)}
+\right|\,dx
+  >
+\frac4{b-a}.
+\]
+The idea is to let $x_0$ be a point where $f$ attains its positive maximum.  By the mean value theorem, there exist
+\[
+  \xi_1\in(a,x_0),\qquad \xi_2\in(x_0,b)
+\]
+such that
+\[
+  f'(\xi_1)=
+\frac{f(x_0)}{x_0-a},\qquad
+  f'(\xi_2)=-
+\frac{f(x_0)}{b-x_0}.
+\]
+Since $f(x)\le f(x_0)$, one has
+\[
+  \int_a^b \left|
+\frac{f''(x)}{f(x)}
+\right|\,dx
+  \ge
+\frac1{f(x_0)}\int_a^b |f''(x)|\,dx.
+\]
+The total variation of $f'$ is at least the drop from $f'(\xi_1)$ to $f'(\xi_2)$, so
+\[
+\frac1{f(x_0)}\int_a^b |f''(x)|\,dx
+  \ge
+\frac1{x_0-a}+
+\frac1{b-x_0}.
+\]
+Finally,
+\[
+\frac1{x_0-a}+
+\frac1{b-x_0}
+  \ge
+\frac4{b-a}.
+\]
+The proof is a good example of turning a global integral estimate into a maximum-point argument.
+
+\section{Symmetry of integrals about the midpoint}
+
+The second page records a common symmetry fact.  If
+\[
+  f(x)=f(a+b-x),
+\]
+then
+\[
+  \int_a^b f(x)\,dx
+  =
+  2\int_a^{(a+b)/2}f(x)\,dx.
+\]
+Indeed, substitute
+\[
+  u=a+b-x
+\]
+in the right half of the integral.  This midpoint symmetry is used repeatedly in the board calculations.
+
+More generally, for any integrable $f$,
+\[
+  \int_a^b f(x)\,dx
+  =
+  \int_a^b f(a+b-x)\,dx,
+\]
+and therefore
+\[
+  \int_a^b f(x)\,dx
+  =
+\frac12\int_a^b [f(x)+f(a+b-x)]\,dx.
+\]
+This averaging trick is useful whenever $f(x)+f(a+b-x)$ simplifies.
+
+\section{Midpoint and trapezoidal error terms}
+
+The board also derives the error term for the midpoint rule.  Let
+\[
+  m=
+\frac{a+b}{2}.
+\]
+Taylor's formula around $m$ gives
+\[
+  f(x)=f(m)+f'(m)(x-m)+
+\frac12f''(\xi_x)(x-m)^2.
+\]
+After integrating, the odd term vanishes, and the second derivative can be pulled out by the integral mean value theorem.  Thus there exists $\xi\in(a,b)$ such that
+\[
+  \int_a^b f(x)\,dx
+  =
+  (b-a)f(m)+
+\frac{(b-a)^3}{24}f''(\xi).
+\]
+
+Similarly, the trapezoidal rule error has the form
+\[
+  \int_a^b f(x)\,dx
+  =
+\frac{b-a}{2}[f(a)+f(b)]
+  -
+\frac{(b-a)^3}{12}f''(\xi)
+\]
+for some $\xi\in(a,b)$.  The board comments that confusing these constants is a common mistake: the midpoint coefficient is $1/24$, while the trapezoidal coefficient is $1/12$ with the opposite sign.
+
+\section{First special integral: a logarithmic arctangent integral}
+
+One board example evaluates
+\[
+  I=\int_0^1
+\frac{\ln(1+x)}{1+x^2}\,dx.
+\]
+Set
+\[
+  x=	an t,\qquad 0\le t\le
+\frac\pi4.
+\]
+Then $dx/(1+x^2)=dt$, and
+\[
+  I=\int_0^{\pi/4}\ln(1+	an t)\,dt.
+\]
+Use the substitution
+\[
+  t\mapsto 
+\frac\pi4-t.
+\]
+Since
+\[
+  1+	an\left(
+\frac\pi4-t
+\right)
+  =
+\frac2{1+	an t},
+\]
+one obtains
+\[
+  I=\int_0^{\pi/4}\left[\ln2-\ln(1+	an t)
+\right]\,dt.
+\]
+Adding the two expressions for $I$ gives
+\[
+  2I=
+\frac\pi4\ln2,
+\]
+hence
+\[
+  I=
+\frac\pi8\ln2.
+\]
+The trick is not the tangent substitution alone; it is pairing the interval by the involution $t\leftrightarrow \pi/4-t$.
+
+\section{Positivity of a Fresnel-type integral}
+
+Another board example proves
+\[
+  \int_0^{\sqrt{2\pi}}\sin x^2\,dx>0.
+\]
+Let
+\[
+  t=x^2,\qquad dx=
+\frac{dt}{2\sqrt t}.
+\]
+Then
+\[
+  \int_0^{\sqrt{2\pi}}\sin x^2\,dx
+  =
+\frac12\int_0^{2\pi}
+\frac{\sin t}{\sqrt t}\,dt.
+\]
+Split the interval into $[0,\pi]$ and $[\pi,2\pi]$.  In the second part use $t=u+\pi$; since $\sin(u+\pi)=-\sin u$, the sum becomes
+\[
+\frac12\int_0^\pi \sin u
+  \left(
+\frac1{\sqrt u}-
+\frac1{\sqrt{u+\pi}}
+\right)\,du.
+\]
+For $u\in(0,\pi)$, both factors are positive, so the integral is positive.
+
+The board circles the comparison of the two weights.  The oscillation alone is not enough; the positive half has larger weight because $1/\sqrt t$ decreases.
+
+\section{A symmetry integral with arcsine}
+
+The lower-left board example evaluates
+\[
+  I=\int_0^1
+\frac{\arcsin\sqrt x}{\sqrt{x(1-x)}}\,dx.
+\]
+There are two neat ways.  First,
+\[
+  d(\arcsin\sqrt x)
+  =
+\frac{dx}{2\sqrt{x(1-x)}}.
+\]
+Hence
+\[
+  I=2\int_0^1 \arcsin\sqrt x\,d(\arcsin\sqrt x)
+  =
+  \left[\arcsin\sqrt x\right]^2\Big|_0^1
+  =
+\frac{\pi^2}{4}.
+\]
+
+The board also uses symmetry:
+\[
+  \arcsin\sqrt x+\arcsin\sqrt{1-x}=
+\frac\pi2.
+\]
+Averaging $x$ and $1-x$ gives
+\[
+  I=
+\frac12\int_0^1
+\frac{\arcsin\sqrt x+\arcsin\sqrt{1-x}}{\sqrt{x(1-x)}}\,dx
+  =
+\frac\pi4\int_0^1
+\frac{dx}{\sqrt{x(1-x)}}.
+\]
+The last integral equals $\pi$, so again $I=\pi^2/4$.
+
+\section{A logarithmic sine integral}
+
+The lower-right board example is
+\[
+  I=\int_0^{\pi/2}\sin x\ln(\sin x)\,dx.
+\]
+Let $u=\cos x$.  Then $du=-\sin x\,dx$ and
+\[
+  I=\int_0^1 \ln\sqrt{1-u^2}\,du
+  =
+\frac12\int_0^1\ln(1-u^2)\,du.
+\]
+Since
+\[
+  \ln(1-u^2)=\ln(1-u)+\ln(1+u),
+\]
+we use
+\[
+  \int_0^1\ln(1-u)\,du=-1,
+\]
+and
+\[
+  \int_0^1\ln(1+u)\,du=2\ln2-1.
+\]
+Therefore
+\[
+  I=\ln2-1.
+\]
+This example trains the habit of choosing $u=\cos x$ when the factor $\sin x\,dx$ appears.
+
+\section[Integrals of 1/(a + b cos x)]{Integrals of \(1/(a+b\cos x)\)}
+
+The final page records two standard results.  If $a>0$ and $|b|<a$, then on the interval $[-\pi/2,\pi/2]$,
+\[
+  \int_{-\pi/2}^{\pi/2}
+\frac{dx}{a+b\cos x}
+  =
+\frac{2}{\sqrt{a^2-b^2}}\arccos
+\frac ba.
+\]
+Using
+\[
+  \arccos
+\frac ba
+  =
+  2\arctan\sqrt{
+\frac{a-b}{a+b}},
+\]
+this can also be written as
+\[
+\frac{4}{\sqrt{a^2-b^2}}
+  \arctan\sqrt{
+\frac{a-b}{a+b}}.
+\]
+
+On the interval $[0,\pi]$, the standard formula is
+\[
+  \int_0^\pi 
+\frac{dx}{a+b\cos x}
+  =
+\frac{\pi}{\sqrt{a^2-b^2}},
+  \qquad a>0,\ |b|<a.
+\]
+The note remarks that this follows directly from the universal tangent half-angle substitution, and that symmetry over the full half-period makes the final result simpler.
+
+\section{Wallis integral and Wallis product}
+
+The last block recalls the Wallis integral
+\[
+  I_n=\int_0^{\pi/2}\sin^n x\,dx.
+\]
+Integration by parts gives the recurrence
+\[
+  I_n=
+\frac{n-1}{n}I_{n-2}\qquad(n\ge2).
+\]
+Indeed,
+\[
+  I_n=\int_0^{\pi/2}\sin^{n-1}x\sin x\,dx,
+\]
+choose
+\[
+  u=\sin^{n-1}x,\qquad dv=\sin x\,dx.
+\]
+The boundary term vanishes and the remaining integral becomes
+\[
+\frac{n-1}{n}I_{n-2}.
+\]
+Comparing even and odd subsequences $I_{2n}$ and $I_{2n+1}$ and letting $n	o\infty$ gives the Wallis product.
+
+\section{Expanded synthesis and advanced context}
+
+This note is about integral problem-solving as pattern recognition.  Convexity gives chord and midpoint inequalities.  Bounded positive functions give product estimates.  Symmetry turns an integral into an average with its reflected version.  Taylor's formula gives quadrature error terms.  Special substitutions, especially $x=	an t$ and $t=x^2$, turn difficult integrals into symmetric or sign-controlled expressions.  Wallis' recurrence shows that integration by parts can convert a family of integrals into a product formula.
+
+
+\paragraph{Expanded synthesis.}
+For this chapter, the elementary material should be read as a study of what remains invariant when coordinates change. The earlier sections (`Convexity and the Hermite--Hadamard inequality`, `Kantorovich-type integral inequality`, `Integral mean value with odd symmetry`, `A lower bound involving $f''/f$`) compute with arrays, bases, pivots, determinants, or eigenvectors; the deeper object is a linear map together with the spaces it acts on. A matrix is a representation of that map after bases have been chosen. This is why formulas such as
+\[
+  A' = P^{-1}AP,\qquad \widetilde A = T^{-1}AS
+\]
+are not cosmetic: they distinguish an intrinsic morphism from a coordinate description.
+
+The structural hierarchy is as follows. Kernels record what a map forgets, images record what it reaches, cokernels record obstructions to solvability, and quotients record information after an equivalence has been imposed. Determinants act on the top exterior power and therefore measure oriented volume; traces are invariant under cyclic rearrangement and become characters in representation theory; adjoints depend on an inner product and lead to self-adjoint spectral theory.
+
+A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.

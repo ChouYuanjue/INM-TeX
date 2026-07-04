@@ -1,0 +1,130 @@
+\notechapter{N-20220803}{Arithmetic and Geometric Sequence Exercises}
+
+\section{A trigonometric opening example}
+
+The first exercise concerns a triangle \(ABC\) such that
+\[
+  \lg(\sin A),\quad \lg(\sin B),\quad \lg(\sin C)
+\]
+form an arithmetic progression, and \(A,B,C\) themselves also form an arithmetic progression.  Since
+\[
+  A+B+C=\pi,
+\]
+if \(A,B,C\) are in arithmetic progression, then
+\[
+  B=\frac\pi3.
+\]
+The logarithmic condition means
+\[
+  2\lg(\sin B)=\lg(\sin A)+\lg(\sin C),
+\]
+so
+\[
+  \sin^2B=\sin A\sin C.
+\]
+Because \(\sin B=\sqrt3/2\), we get
+\[
+  \sin A\sin C=\frac34.
+\]
+Using \(A+C=2\pi/3\), one can analyze
+\[
+  \cos(A-C)=\cos A\cos C+\sin A\sin C.
+\]
+The computation in the page leads to the conclusion that the triangle is equilateral.  The underlying idea is that two independent arithmetic-progressions conditions force symmetry.
+
+\section{Logarithmic sequences}
+
+If
+\[
+  a_n=10+\lg 2^n,
+\]
+then
+\[
+  a_n=10+n\lg2.
+\]
+Hence
+\[
+  a_{n+1}-a_n=\lg2,
+\]
+so \(\{a_n\}\) is an arithmetic progression.
+
+This is a typical use of logarithms: they turn powers into multiples.  A geometric pattern in \(2^n\) becomes an arithmetic pattern after applying \(\lg\).
+
+\section{Recovering terms from partial sums}
+
+If \(S_n\) is the sum of the first \(n\) terms of a sequence, then
+\[
+  a_n=S_n-S_{n-1}.
+\]
+The note uses this in problems involving two arithmetic progressions \(\{a_n\}\), \(\{b_n\}\) whose sums \(S_n,T_n\) satisfy
+\[
+  \frac{S_n}{T_n}=\frac{2n}{3n+1}.
+\]
+For arithmetic progressions,
+\[
+  S_n=\frac n2(a_1+a_n),
+\]
+but the cleaner trick is to use
+\[
+  a_n=S_n-S_{n-1},\qquad b_n=T_n-T_{n-1}.
+\]
+The page obtains
+\[
+  \frac{a_n}{b_n}=\frac{4n-2}{6n-2}=\frac{2n-1}{3n-1}.
+\]
+
+\section{Sums and recurrence relations}
+
+A common type of problem gives a relation between \(S_n\) and \(a_n\).  For example,
+\[
+  S_n=2a_n-2.
+\]
+Then
+\[
+  a_{n+1}=S_{n+1}-S_n=2a_{n+1}-2-(2a_n-2),
+\]
+so
+\[
+  a_{n+1}=2a_n.
+\]
+Thus the sequence is geometric.  This is a useful principle: whenever a problem relates a term to a partial sum, subtract consecutive equations.
+
+\section{Geometric progression products}
+
+If \(\{a_n\}\) is a geometric progression, then
+\[
+  a_m^2=a_{m-r}a_{m+r}.
+\]
+This appears in several exercises.  It follows from
+\[
+  a_n=a_1q^{n-1}.
+\]
+For example,
+\[
+  a_6^2=a_5a_7.
+\]
+The note uses such identities to compute missing terms and ratios from partial information.
+
+\section{A harmonic-looking sequence}
+
+One page studies
+\[
+  a_n=\frac1{1+2}+\frac1{2+3}+\cdots+\frac1{n+n+1}
+\]
+or similar telescoping sums.  The key transformation is
+\[
+  \frac1{k(k+1)}=\frac1k-\frac1{k+1}.
+\]
+Telescoping is the additive analogue of cancellation in products.  When the denominator factors into consecutive terms, always look for a difference of reciprocals.
+
+\section{Expanded synthesis and advanced context}
+
+This note is mostly exercise-driven, but the underlying methods are stable: logarithms convert multiplication into addition, partial sums are inverted by differences, arithmetic progressions have linear terms, geometric progressions have exponential terms, and telescoping makes hidden cancellation explicit.  These are exactly the same patterns that later become finite-difference calculus.
+
+
+\paragraph{Expanded synthesis.}
+The elementary geometric content of this chapter should be read through transformations and invariants. The earlier sections (`A trigonometric opening example`, `Logarithmic sequences`, `Recovering terms from partial sums`, `Sums and recurrence relations`, `Geometric progression products`) may use coordinates, angles, determinants, parametrizations, or integral formulas, but the organizing question is: which quantities survive the transformations naturally associated with the problem? Euclidean geometry preserves distances and angles; affine geometry preserves lines and ratios on a line; projective geometry preserves incidence and cross ratio; differential geometry preserves coordinate-independent objects such as forms, metrics, and orientations.
+
+This perspective separates different layers of a problem. A dot product belongs to metric geometry. A determinant belongs to oriented volume. A cross ratio belongs to projective geometry. A line or surface integral of a differential form belongs to oriented topology. A scalar area integral belongs to the metric-induced measure. Confusing these layers is the source of many errors, especially in vector calculus where $dS$, $F\cdot n\,dS$, $dx\wedge dy$, and boundary orientation look similar but encode different structures.
+
+When returning to the original examples, identify the natural object before computing. If the problem is about concurrence or collinearity, projective or affine tools may be natural. If it is about distance, angle, or orthogonality, metric tools are essential. If it is about flux or circulation, differential forms and orientation explain the signs. The advanced viewpoint makes the elementary solution more disciplined rather than more abstract for its own sake.

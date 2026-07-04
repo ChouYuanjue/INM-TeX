@@ -1,0 +1,297 @@
+\notechapter{N-20230801}{Reading Hitchin: Self-Duality Equations, Higgs Bundles, and Geometric Structures}
+
+\section{Starting point}
+
+This note is a reading reconstruction around Hitchin's paper on the self-duality equations on a Riemann surface.  The main mathematical movement is a dimensional reduction from four-dimensional self-dual Yang--Mills theory to equations on a Riemann surface, producing what are now called Hitchin equations.
+
+Let \(\Sigma\) be a compact Riemann surface, \(E\to\Sigma\) a complex vector bundle, \(A\) a connection, and \(\Phi\) a Higgs field, locally an \(\operatorname{End}(E)\)-valued \((1,0)\)-form.  The Hitchin equations have the schematic form
+\[
+  F_A+[\Phi,\Phi^*]=0,
+  \qquad
+  \bar\partial_A\Phi=0.
+\]
+Here \(F_A\) is the curvature of \(A\), and \(\Phi^*\) is the adjoint of the Higgs field with respect to a Hermitian metric.
+
+\section{Connections and curvature}
+
+A connection \(A\) is a way of differentiating sections of a bundle.  Its curvature is
+\[
+  F_A=dA+A\wedge A,
+\]
+which measures the failure of covariant derivatives to commute.  Gauge transformations act on connections, and the equations are considered modulo this gauge symmetry.
+
+\begin{remark}
+This already explains why the moduli space is not just a solution set.  One must divide by gauge equivalence, so the actual object is a quotient, often with singularities and rich geometric structure.
+\end{remark}
+
+\section{Higgs bundles}
+
+A Higgs bundle over a Riemann surface is roughly a pair
+\[
+  (E,\Phi),
+\]
+where \(E\) is a holomorphic vector bundle and
+\[
+  \Phi:E\to E\otimes K_\Sigma
+\]
+is a holomorphic \(K_\Sigma\)-twisted endomorphism.  The field \(\Phi\) is the Higgs field.
+
+The equation
+\[
+  \bar\partial_A\Phi=0
+\]
+says that \(\Phi\) is holomorphic with respect to the holomorphic structure determined by \(A\).
+
+\section{The moduli space}
+
+The moduli space of solutions to Hitchin's equations is deeply structured.  It carries a hyperkähler metric and admits several interpretations:
+\begin{enumerate}[(i)]
+  \item as a moduli space of solutions to gauge-theoretic PDEs;
+  \item as a moduli space of stable Higgs bundles;
+  \item as a moduli space of flat connections or representations of the fundamental group.
+\end{enumerate}
+
+This is the beginning of non-abelian Hodge theory.  In rank one, Hodge theory relates differential forms, cohomology, and harmonic representatives.  In higher rank, the analogous story involves Higgs bundles, flat connections, and representations.
+
+\section{The Hitchin fibration}
+
+The characteristic polynomial of the Higgs field gives invariant functions.  For example, in rank \(n\), one considers
+\[
+  \operatorname{tr}(\Phi),\quad \operatorname{tr}(\Phi^2),\quad \ldots,\quad \operatorname{tr}(\Phi^n).
+\]
+These define the Hitchin map from the moduli space of Higgs bundles to an affine space of differentials, often called the Hitchin base.
+
+The generic fibers are abelian varieties, related to spectral curves.  Thus the Hitchin system is an algebraically completely integrable system.
+
+\section{Spectral curves}
+
+The spectral curve is defined by the eigenvalue equation of the Higgs field.  Informally, if \(\lambda\) denotes a coordinate on the cotangent direction, then the spectral curve is given by
+\[
+  \det(\lambda-\Phi)=0.
+\]
+It lives inside the total space of the canonical bundle \(K_\Sigma\).  A Higgs bundle can often be reconstructed from line bundle data on its spectral curve.
+
+\begin{remark}
+This is one of the most attractive parts of the theory: a nonabelian problem about vector bundles and Higgs fields is transformed into abelian geometry on a spectral curve.
+\end{remark}
+
+A concrete rank-two model makes the slogan much less vague.  I take \(\Sigma\) to be the genus-two hyperelliptic curve
+\[
+  \Sigma:\quad y^2=(x^2-1)(x^2-4)(x^2-9).
+\]
+This is the promised genus-two surface in a form one can calculate with.  I deliberately do not call it an elliptic curve or a one-dimensional complex torus, since those have genus one.  A basis of holomorphic one-forms is
+\[
+  \omega_0=\frac{dx}{y},\qquad \omega_1=x\frac{dx}{y}.
+\]
+Now set
+\[
+  E=\mathcal O_\Sigma\oplus\mathcal O_\Sigma
+\]
+and choose a local coordinate \(z\) so that quadratic differentials are written as \(Q(z)\,dz^2\).  In companion-matrix form a rank-two Higgs field may be written locally as
+\[
+  \Phi=
+  \begin{pmatrix}
+    0&1\\
+    -Q_2&-Q_1
+  \end{pmatrix}dz,
+\]
+where \(q_1=Q_1dz\in H^0(K)\) and \(q_2=Q_2dz^2\in H^0(K^2)\).  For the simplest trace-free calculation I put \(q_1=0\) and choose the explicit holomorphic quadratic differential
+\[
+  q_2=(x^2-2)\left(\frac{dx}{y}\right)^2\in H^0(\Sigma,K^2).
+\]
+The zeros occur at \(x=\pm\sqrt2\).  Since these are not branch values of the hyperelliptic map, each value of \(x\) gives two points of \(\Sigma\), so \(q_2\) has four simple zeros, exactly as \(\deg K^2=4g-4=4\) predicts for \(g=2\).
+
+The characteristic equation is now just a two-by-two determinant:
+\[
+\begin{aligned}
+  \det(\lambda I-\Phi)
+  &=
+  \det
+  \begin{pmatrix}
+    \lambda&-1\\
+    Q_2&\lambda+Q_1
+  \end{pmatrix}dz^2  \\
+  &=\lambda^2+q_1\lambda+q_2.
+\end{aligned}
+\]
+With \(q_1=0\), the spectral curve \(\widetilde\Sigma\subset\operatorname{Tot}(K)\) is therefore
+\[
+  \eta^2+q_2=0,
+\]
+where \(\eta\) is the tautological one-form on the total space of \(K\).  Equivalently, after absorbing the harmless sign into the name of \(q_2\), one writes the same calculation as \(\eta^2=q_2(z)\).  The projection
+\[
+  \pi:\widetilde\Sigma\to\Sigma
+\]
+is a double cover, branched over the four zeros of \(q_2\).  Riemann--Hurwitz gives
+\[
+  2g(\widetilde\Sigma)-2
+  =2(2g(\Sigma)-2)+4
+  =2\cdot2+4=8,
+\]
+so \(g(\widetilde\Sigma)=5\).
+
+The reconstruction is also concrete.  If \(\mathcal L\) is a line bundle on the spectral curve, then
+\[
+  E=\pi_*\mathcal L.
+\]
+Multiplication by the tautological eigenvalue \(\eta\) gives
+\[
+  \mathcal L\longrightarrow \mathcal L\otimes \pi^*K,
+\]
+and after applying \(\pi_*\) this becomes
+\[
+  \Phi:E=\pi_*\mathcal L\longrightarrow \pi_*(\mathcal L\otimes\pi^*K)
+  \cong E\otimes K.
+\]
+Thus the Higgs field is literally multiplication by the coordinate on the spectral cover.  In the trace-free, fixed-determinant version relevant to this example, the Hitchin base is
+\[
+  H^0(K^2),\qquad \dim H^0(K^2)=3g-3=3,
+\]
+and the generic fiber is the Prym variety
+\[
+  \operatorname{Prym}(\widetilde\Sigma/\Sigma)
+  =\ker\!\left(\operatorname{Nm}:\operatorname{Jac}(\widetilde\Sigma)\to\operatorname{Jac}(\Sigma)\right)^0.
+\]
+If the determinant condition is removed one gets the full Jacobian of the spectral curve instead.  This distinction is worth keeping: ``abelian variety'' is the broad slogan, while ``Prym'' is the sharper answer in the fixed-determinant rank-two case.
+
+\section{Geometric Langlands perspective}
+
+Hitchin moduli spaces appear naturally in the geometric Langlands program.  The Hitchin fibration organizes the moduli space into a structure where duality phenomena become visible.  Mirror symmetry for Hitchin systems is one of the bridges between gauge theory, algebraic geometry, and representation theory.
+
+\section{Summary}
+
+Hitchin's equations sit at a crossroads:
+\[
+\begin{gathered}
+  \text{gauge theory}\quad \text{Riemann surfaces}\quad \text{Higgs bundles}\\
+  \text{integrable systems}\quad \text{geometric Langlands}.
+\end{gathered}
+\]
+The central idea is that reducing self-duality equations to a Riemann surface produces Hitchin's equations.  Their moduli space remembers differential-geometric structure on one side and algebraic-geometric structure on the other.
+
+
+\section{Moment-map reading of the equations}
+
+A useful way to read Hitchin's equations is through symplectic reduction.  The space of pairs \((A,\Phi)\) is infinite-dimensional, and the unitary gauge group acts on it.  The curvature equation
+\[
+  F_A+[\Phi,\Phi^*]=0
+\]
+can be interpreted as a zero moment-map condition for this action.
+
+This viewpoint explains why stability appears.  In many moduli problems, solving a differential equation modulo a compact group is equivalent to imposing an algebraic stability condition modulo a complexified group.  For Higgs bundles, this is the Hitchin--Kobayashi style bridge.
+
+\section{Spectral curves as global eigenvalues}
+
+For a single matrix, eigenvalues are roots of its characteristic polynomial.  A Higgs field is a matrix-valued one-form varying over \(\Sigma\).  The spectral curve is the global version of taking eigenvalues:
+\[
+  \det(\lambda-\Phi)=0.
+\]
+It lives in the total space of the canonical bundle.  Over a generic point of \(\Sigma\), it records eigenvalues of \(\Phi\); globally, these eigenvalues form a branched cover.
+
+This is why the Hitchin fibration is powerful.  The complicated nonabelian data of a Higgs bundle can often be transformed into abelian data: a line bundle on the spectral curve.
+
+\section{Four descriptions to keep together}
+
+The reader should keep four translations active:
+\[
+  \text{PDE solution}\leftrightarrow \text{stable Higgs bundle}
+  \leftrightarrow \text{flat connection}
+  \leftrightarrow \text{representation of }\pi_1(\Sigma).
+\]
+The difficulty of Hitchin's theory is precisely that none of these descriptions is disposable.  The equations are analytic, the moduli problem is algebraic, the spectral curve is geometric, and the flat connection is representation-theoretic.
+
+\section{Source repair: Yang--Mills background}
+
+The uploaded version begins from Yang--Mills theory.  Let \(P\) be a principal \(G\)-bundle over a compact manifold \(M\), and let \(A\) be a connection.  Locally, \(A\) is a Lie-algebra-valued one-form, and its curvature is
+\[
+  F_A=dA+\frac12[A,A].
+\]
+The Yang--Mills functional is
+\[
+  S_{YM}(A)=\int_M \operatorname{tr}(F_A\wedge *F_A).
+\]
+Its Euler--Lagrange equation is
+\[
+  d_A *F_A=0.
+\]
+
+In four dimensions, two-forms decompose into self-dual and anti-self-dual parts:
+\[
+  \omega=\omega^++\omega^- ,\qquad *\omega^\pm=\pm\omega^\pm.
+\]
+A self-dual connection satisfies
+\[
+  F_A=*F_A.
+\]
+Such a connection automatically solves the Yang--Mills equation.  This is the four-dimensional origin of the Hitchin system.
+
+\section{Source repair: dimensional reduction}
+
+Hitchin's equations can be understood as a dimensional reduction of the four-dimensional self-duality equations.  Roughly, one splits the four-dimensional geometry into a two-dimensional Riemann surface direction and two suppressed directions.  Components of the original connection in the suppressed directions become a Higgs field.
+
+The resulting equations on a Riemann surface \(\Sigma\) are
+\[
+  F_A+[\Phi,\Phi^*]=0,
+  \qquad
+  \bar\partial_A\Phi=0.
+\]
+Here \(A\) is a connection on a bundle over \(\Sigma\), \(\Phi\) is an \(\operatorname{End}(E)\otimes K\)-valued Higgs field, and \(K\) is the canonical bundle.
+
+The uploaded note emphasizes that \(\Phi\) is not an arbitrary extra variable.  It is the remnant of the higher-dimensional connection after reduction.
+
+\section{Source repair: gauge invariance}
+
+Under a gauge transformation \(g\), the Higgs field transforms as
+\[
+  \Phi\mapsto g\Phi g^{-1},\qquad
+  \Phi^*\mapsto g\Phi^*g^{-1}.
+\]
+Therefore
+\[
+  [\Phi,\Phi^*]\mapsto g[\Phi,\Phi^*]g^{-1}.
+\]
+This explains why the bracket term is globally meaningful and compatible with quotienting by the gauge group.  The curvature term transforms in the same conjugation pattern, so the first Hitchin equation is gauge invariant.
+
+\section{Source repair: Higgs bundles and stability}
+
+A Higgs bundle is a pair
+\[
+  (E,\Phi),\qquad \Phi\in H^0(\Sigma,\operatorname{End}(E)\otimes K).
+\]
+Stability is measured by slope:
+\[
+  \mu(E)=\frac{\deg E}{\operatorname{rank}E}.
+\]
+For an ordinary vector bundle, stability asks that every proper nonzero subbundle \(F\subset E\) have
+\[
+  \mu(F)<\mu(E).
+\]
+For Higgs bundles one restricts to \(\Phi\)-invariant subbundles.  This condition is essential because the moduli space behaves well only after excluding unstable objects.
+
+This is the algebraic-geometric side of the Hitchin--Kobayashi philosophy: solving differential equations modulo unitary gauge transformations corresponds to imposing stability modulo complex gauge transformations.
+
+\section{Source repair: spectral data and Hitchin fibration}
+
+The spectral curve is defined by the characteristic polynomial of the Higgs field:
+\[
+  \det(\lambda I-\Phi)=\lambda^n+a_1\lambda^{n-1}+\cdots+a_n=0.
+\]
+The coefficients \(a_i\) are sections of powers of the canonical bundle.  This gives the Hitchin map
+\[
+  h:\mathcal M\to \bigoplus_{i=1}^n H^0(\Sigma,K^i).
+\]
+For a generic spectral curve, the fiber of this map is an abelian variety; in the rank-two fixed-determinant case above it is more precisely a Prym variety, while in the unconstrained \(GL_2\) version it is the Jacobian of the spectral curve.
+
+This is the mechanism by which a nonabelian moduli problem becomes an algebraically completely integrable system.  The base records eigenvalue-like data; the fiber records line-bundle-like data on the spectral curve.
+
+\section{Source repair: geometric Langlands and S-duality}
+
+The uploaded note connects Hitchin systems to geometric Langlands.  The rough slogan is that local systems for the Langlands dual group \({}^LG\) correspond to sheaf-theoretic automorphic data on the moduli of \(G\)-bundles.
+
+Hitchin moduli spaces provide the geometric stage on which this duality becomes visible.  In the physical picture developed by Kapustin and Witten, S-duality in four-dimensional supersymmetric Yang--Mills theory becomes a geometric Langlands duality after reduction.  Hitchin's equations are the bridge between the gauge-theoretic and algebro-geometric languages.
+
+\section{Source repair: what remains unclear}
+
+The uploaded text honestly records several points still requiring further study: local Dolbeault-coordinate computations, the precise deformation complex controlling smoothness of the moduli space, the role of stability in making the quotient Hausdorff, and the precise construction of the hyperkaehler structure.
+
+These are not peripheral details.  They are exactly the places where the theory becomes deep: analysis supplies elliptic equations, algebraic geometry supplies stability and spectral curves, and mathematical physics supplies duality intuition.

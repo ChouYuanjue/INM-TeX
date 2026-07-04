@@ -1,0 +1,224 @@
+\notechapter{N-20220728}{Spatial Vectors, Cross Products, and Categorical Products}
+
+\section{Spatial vectors}
+
+The note begins with spatial vectors.  A vector has magnitude and direction.  The zero vector has length \(0\), and a unit vector has length \(1\).  Two vectors are parallel if they lie on parallel or coincident directed lines.  In particular, the zero vector is conventionally regarded as parallel to every vector.
+
+If two nonzero vectors \(\vec a,\vec b\) are collinear, then there exists a nonzero scalar \(\lambda\) such that
+\[
+  \vec a=\lambda\vec b.
+\]
+If \(\vec a,\vec b\) are not collinear, then every vector in their plane can be written as
+\[
+  \vec p=\lambda\vec a+\mu\vec b.
+\]
+If \(\vec i,\vec j,\vec k\) are three non-coplanar vectors, every spatial vector can be written uniquely as
+\[
+  \vec p=x\vec i+y\vec j+z\vec k.
+\]
+This is the vector-space decomposition theorem in geometric form.
+
+\section{Coordinate formulas}
+
+In an orthonormal basis, if
+\[
+  \vec a=(x_a,y_a,z_a),\qquad \vec b=(x_b,y_b,z_b),
+\]
+then
+\[
+  \vec a+\vec b=(x_a+x_b,y_a+y_b,z_a+z_b),
+\]
+\[
+  \lambda\vec a=(\lambda x_a,\lambda y_a,\lambda z_a),
+\]
+\[
+  \vec a\cdot\vec b=x_ax_b+y_ay_b+z_az_b.
+\]
+The angle formula is
+\[
+  \cos(\vec a,
+ec b)=\frac{\vec a\cdot\vec b}{|\vec a|\,|\vec b|}.
+\]
+
+The note marks the dot product as especially important.  The reason is that it turns geometry into algebra: perpendicularity becomes
+\[
+  \vec a\cdot\vec b=0,
+\]
+and projection becomes a scalar multiple determined by a dot product.
+
+\section{Cross product}
+
+The cross product is introduced as a vector perpendicular to both \(\vec a\) and \(\vec b\).  In coordinates,
+\[
+  \vec a\times\vec b=
+  \begin{vmatrix}
+  \vec i&\vec j&\vec k\\
+  x_a&y_a&z_a\\
+  x_b&y_b&z_b
+  \end{vmatrix}.
+\]
+It satisfies
+\[
+  |\vec a\times\vec b|=|\vec a|\,|\vec b|\sin\theta,
+\]
+so its length is the area of the parallelogram spanned by \(\vec a\) and \(\vec b\).
+
+The cross product is anti-commutative:
+\[
+  \vec a\times\vec b=-(\vec b\times\vec a).
+\]
+This is not an algebraic nuisance; it records orientation.
+
+\section{From products to universal properties}
+
+The second half of the note suddenly moves into category theory.  It asks what a product really is.  In set theory, the product \(X\times Y\) is the set of ordered pairs.  But category theory characterizes it by its mapping property.
+
+A product of objects \(X,Y\) is an object \(P\) with maps
+\[
+  \pi_X:P\to X,\qquad \pi_Y:P\to Y
+\]
+such that for every object \(Z\) and maps \(f:Z\to X\), \(g:Z\to Y\), there is a unique map
+\[
+  \langle f,g\rangle:Z\to P
+\]
+with
+\[
+  \pi_X\circ\langle f,g\rangle=f,\qquad
+  \pi_Y\circ\langle f,g\rangle=g.
+\]
+
+\[
+\begin{tikzcd}
+& Z \arrow[ddl,bend right=15,swap,"f"] \arrow[ddr,bend left=15,"g"] \arrow[d,dashed,"{\langle f,g\rangle}"] & \\
+& P \arrow[dl,"\pi_X"] \arrow[dr,swap,"\pi_Y"] & \\
+X && Y
+\end{tikzcd}
+\]
+
+This explains why products are unique up to unique isomorphism.  The point is not the elements of \(P\), but the role it plays.
+
+\section{Categories and groupoids}
+
+A category consists of objects and morphisms, with identity morphisms and associative composition.  Examples include:
+\[
+  \mathbf{Set},\qquad \mathbf{Vect}_k,\qquad \mathbf{Grp}.
+\]
+A group can be viewed as a category with one object in which every morphism is invertible.  A groupoid is a category in which every morphism is invertible, but there may be many objects.
+
+This is why the note places groupoids near groups and categories: a groupoid is a many-object group.  It remembers symmetry, but allows different objects connected by reversible arrows.
+
+
+\section{Cross product geometry}
+
+For vectors \(a,b\in\mathbb R^3\), the cross product \(a	imes b\) is perpendicular to both \(a\) and \(b\), and its magnitude is
+\[
+  \|a	imes b\|=\|a\|\,\|b\|\sin	heta.
+\]
+Thus it measures the area of the parallelogram spanned by \(a\) and \(b\).  The direction is determined by the right-hand rule.
+
+The cross product is not merely a computational formula.  It combines metric information, orientation, and area.  That is why it is special to oriented three-dimensional Euclidean space.
+
+\section{Categorical product versus vector product}
+
+The word ``product'' appears in different senses.  A Cartesian or categorical product is defined by a universal property.  A dot product is a scalar-valued bilinear form.  A cross product is a vector-valued alternating operation.  Keeping these meanings separate prevents confusion: the same English word does not mean the same mathematical structure.
+
+\section{Expanded synthesis and advanced context}
+
+This note connects spatial vectors and categorical products through the word ``structure.''  In vector geometry, a basis decomposes every vector into coordinates.  In category theory, a product decomposes maps into pairs of maps.  Coordinates answer ``what are the components of this vector?''  Universal properties answer ``what data is equivalent to a map into this object?''
+
+
+
+\paragraph{Expanded synthesis.}
+For this chapter, the elementary material should be read as a study of what remains invariant when coordinates change. The earlier sections (`Spatial vectors`, `Coordinate formulas`, `Cross product`, `From products to universal properties`, `Categories and groupoids`) compute with arrays, bases, pivots, determinants, or eigenvectors; the deeper object is a linear map together with the spaces it acts on. A matrix is a representation of that map after bases have been chosen. This is why formulas such as
+\[
+  A' = P^{-1}AP,\qquad \widetilde A = T^{-1}AS
+\]
+are not cosmetic: they distinguish an intrinsic morphism from a coordinate description.
+
+The structural hierarchy is as follows. Kernels record what a map forgets, images record what it reaches, cokernels record obstructions to solvability, and quotients record information after an equivalence has been imposed. Determinants act on the top exterior power and therefore measure oriented volume; traces are invariant under cyclic rearrangement and become characters in representation theory; adjoints depend on an inner product and lead to self-adjoint spectral theory.
+
+A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
+
+
+\section{Elementary-to-advanced bridge: cross product as Hodge dual of wedge product}
+
+The cross product in $\mathbb R^3$ is often introduced by the determinant formula.  The deeper reason it exists is the combination of an inner product, an orientation, and exterior algebra.  First form the wedge product
+\[
+  u\wedge v\in \Lambda^2 \mathbb R^3.
+\]
+This is an oriented area element, not yet a vector.  The Hodge star operator determined by the Euclidean metric and orientation gives an isomorphism
+\[
+  *:\Lambda^2\mathbb R^3\to\Lambda^1\mathbb R^3\cong \mathbb R^3.
+\]
+Then
+\[
+  u\times v=*(u\wedge v).
+\]
+This explains why the cross product is special to three dimensions.  In general dimensions, the wedge product exists, but there is not usually a vector-valued binary cross product.
+
+\section{Elementary-to-advanced bridge: scalar triple product as volume form}
+
+The scalar triple product is
+\[
+  u\cdot(v\times w).
+\]
+In exterior algebra this is the coefficient of the top-degree form:
+\[
+  u\wedge v\wedge w=(u\cdot(v\times w))\,e_1\wedge e_2\wedge e_3.
+\]
+Thus the scalar triple product is oriented volume.  The vector triple product identities are coordinate expressions of algebraic identities involving wedge product, contraction, and the metric.
+
+\section{Elementary-to-advanced bridge: Lie algebra of rotations}
+
+A vector $\omega\in\mathbb R^3$ defines a skew-symmetric matrix $[\omega]_\times$ by
+\[
+  [\omega]_\times v=\omega\times v.
+\]
+Explicitly,
+\[
+  [\omega]_\times=\begin{pmatrix}
+  0&-\omega_3&\omega_2\\
+  \omega_3&0&-\omega_1\\
+  -\omega_2&\omega_1&0
+  \end{pmatrix}.
+\]
+The space of skew-symmetric $3\times3$ matrices is the Lie algebra $\mathfrak{so}(3)$ of the rotation group $SO(3)$.  The cross product therefore encodes infinitesimal rotations.
+
+The elementary right-hand rule is the visible geometric form of orientation in this Lie algebra.
+
+\section{Elementary-to-advanced bridge: categorical product versus vector product}
+
+The original note contrasts categorical products with vector products.  In a category, a product $A\times B$ is characterized by projection maps and a universal property: for every object $X$ with maps $X\to A$ and $X\to B$, there is a unique map $X\to A\times B$ making the diagram commute.
+
+The cross product $u\times v$ is not a categorical product.  It is an operation depending on dimension, metric, and orientation.  This contrast is useful: the same word ``product'' can mean either a universal construction or a geometric bilinear operation.
+
+% Second-pass deepening for waves 2-4: wave 2
+\section{Second-pass deepening: why the cross product is exceptional}
+
+The cross product is a bilinear map
+\[
+  \mathbb R^3\times\mathbb R^3\to\mathbb R^3
+\]
+that is perpendicular to both inputs and has magnitude equal to the area of the parallelogram they span.  Such a product exists in this familiar form essentially because
+\[
+  \Lambda^2\mathbb R^3\cong \mathbb R^3
+\]
+once a metric and orientation are chosen.
+
+In $\mathbb R^2$, a wedge product of two vectors is an area scalar.  In $\mathbb R^4$, a wedge product of two vectors is a genuine $2$-vector with six independent components, not an ordinary vector.  This explains why formulas involving $u\times v$ should not be blindly generalized to higher dimensions.
+
+\section{Second-pass deepening: angular velocity and infinitesimal rotations}
+
+If a rigid body rotates with angular velocity $\omega$, the instantaneous velocity of a point at position $r$ is
+\[
+  v=\omega\times r.
+\]
+In matrix form, this is $v=[\omega]_\times r$, where $[\omega]_\times$ is skew-symmetric.  The exponential
+\[
+  e^{t[\omega]_\times}
+\]
+is a rotation matrix.  Thus the cross product is not just a static area operation; it is the infinitesimal generator of rotations in three-dimensional mechanics.
+
+\section{Second-pass deepening: universal property versus geometric product}
+
+The categorical product $A\times B$ is determined by projections and a universal mapping property.  The vector cross product is determined by metric, orientation, and dimension.  Putting them side by side is pedagogically useful because it prevents a common mistake: the same word ``product'' does not mean the same structure.  In advanced mathematics, understanding a construction means knowing which data it depends on and which universal property or invariance characterizes it.

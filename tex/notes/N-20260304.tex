@@ -1,0 +1,65 @@
+\notechapter{N-20260304}{Point-Set Language in \texorpdfstring{$\mathbb R^n$}{Rn}: Neighborhoods, Open Sets, Closed Sets, and Compactness}
+
+
+\section{Distance and neighborhoods}
+
+For points $P_1=(a_1,\ldots,a_n)$ and $P_2=(b_1,\ldots,b_n)$ in $\mathbb R^n$, the Euclidean distance is
+\[
+  \rho(P_1,P_2)=\sqrt{\sum_{i=1}^n(a_i-b_i)^2}.
+\]
+Given $P_0\in\mathbb R^n$ and $\delta>0$, the open ball is
+\[
+  N_\delta(P_0)=\{P:\ \rho(P,P_0)<\delta\}.
+\]
+
+\section{Interior, exterior, boundary, and accumulation}
+
+Let $E\subseteq\mathbb R^n$.  A point is interior to $E$ if some ball around it is contained in $E$; exterior if some ball is disjoint from $E$; and a boundary point if every ball meets both $E$ and its complement.  A point is an accumulation point if every punctured neighborhood contains a point of $E$.
+
+The closure is $\overline E=E\cup E'$, where $E'$ is the set of accumulation points.  A set is closed iff it contains all its accumulation points, equivalently iff it contains limits of all convergent sequences from the set.
+
+\section{Open, closed, bounded, and compact}
+
+A set is open if every point is interior.  It is closed if its complement is open.  In $\mathbb R^n$, the Heine--Borel theorem says
+\[
+  K\text{ compact}\quad\Longleftrightarrow\quad K\text{ closed and bounded}.
+\]
+Compactness is the hidden reason why continuous functions on closed bounded regions attain maxima and minima.
+
+\section{Connectedness}
+
+A region in elementary multivariable calculus is often an open connected set, possibly together with its boundary.  Connectedness means the set cannot be split into two separated open pieces.  Path-connectedness means any two points can be joined by a continuous curve inside the set.
+
+\section{Expanded synthesis and advanced context}
+
+Limits, continuity, differentiability, extrema, integration over domains, and change of variables all require control over how points approach a set.  Neighborhoods and boundaries are the grammar of multivariable analysis.
+
+
+
+\paragraph{Expanded synthesis.}
+The common theme of this chapter is that an elementary limiting or computational rule becomes powerful only after one specifies the space in which the limiting process takes place. The earlier sections (`Distance and neighborhoods`, `Interior, exterior, boundary, and accumulation`, `Open, closed, bounded, and compact`, `Connectedness`, `Higher viewpoint`) may look like separate techniques, but they all ask the same question: which operations are stable under approximation? A derivative is stable first-order approximation,
+\[
+  f(a+h)=f(a)+L(h)+o(|h|),
+\]
+while an integral is stable accumulation with respect to a measure, and a convergent series is a limit in a chosen norm or topology.
+
+The advanced bridge is functional-analytic. Uniform convergence is convergence in a sup norm; $L^p$ convergence is convergence in an integral norm; differentiability is the existence of a continuous linear approximation; many differential equations are operator equations $L[u]=f$. Theorems such as dominated convergence, the inverse function theorem, the projection theorem in Hilbert spaces, and semigroup existence results are refined answers to the same elementary concern: when may we pass from finite approximations to a genuine limiting object?
+
+To use this viewpoint when rereading the original examples, identify the hidden stability condition. A Taylor expansion asks for control of the remainder. A change of variables asks for differentiability and Jacobian control. Termwise differentiation of a series asks for uniform convergence of derivative series. A differential-equation formula asks whether the operator is invertible under the imposed initial or boundary data. The elementary computation is the visible part; the advanced theory names the hypotheses that make it legitimate.
+
+
+\section{Expanded explanation: why point-set language is needed}
+
+In one-variable calculus, most domains are intervals, so topology is hidden.  In several variables, domains may have holes, corners, boundary pieces, isolated points, or disconnected components.  The language of neighborhoods avoids relying on misleading pictures.
+
+The most important definitions form a chain:
+\[
+  \text{interior}\quad\to\quad\text{open set}\quad\to\quad\text{limit point}\quad\to\quad\text{closed set}\quad\to\quad\text{compact set}.
+\]
+Each word controls a later theorem.
+
+\section{Sequential tests and compactness}
+
+A point $p$ lies in $\overline E$ iff there exists a sequence $(x_n)$ in $E$ with $x_n\to p$.  A set $E$ is closed iff every convergent sequence in $E$ has its limit in $E$.
+
+Compactness is an existence machine.  If $K$ is compact and $f:K\to\mathbb R$ is continuous, then $f$ attains its maximum and minimum.  If $(x_n)$ is a sequence in compact $K$, it has a convergent subsequence.

@@ -1,0 +1,215 @@
+\notechapter{N-20220725}{Permutations, Inversions, and Determinants}
+
+\section{Inversions and signs}
+
+The note begins with inversions of a permutation.  For a permutation
+\[
+  \sigma=(\sigma_1,\ldots,\sigma_n),
+\]
+an inversion is a pair \(i<j\) such that
+\[
+  \sigma_i>\sigma_j.
+\]
+The number of inversions is denoted \(\tau(\sigma)\).  The sign of the permutation is
+\[
+  \operatorname{sgn}(\sigma)=(-1)^{\tau(\sigma)}.
+\]
+For example, for \(426315\), the inversions are counted by checking how many later entries are smaller than each entry.  The note obtains
+\[
+  \tau(426315)=8.
+\]
+
+In determinant expansions, the sign of each term is exactly the sign of a permutation.  Thus a term like
+\[
+  a_{21}a_{53}a_{16}a_{42}a_{65}a_{34}
+\]
+corresponds to a row/column permutation, and its sign is determined by its inversion number.
+
+\section{Definition of determinant}
+
+The determinant of an \(n\times n\) matrix \(A=(a_{ij})\) is
+\[
+  \det A=\sum_{\sigma\in S_n}\operatorname{sgn}(\sigma)
+  a_{1\sigma(1)}a_{2\sigma(2)}\cdots a_{n\sigma(n)}.
+\]
+This formula is not meant for computation in large dimensions.  Its value is conceptual: it explains why row swaps change sign, why repeated rows give zero, and why the determinant is multilinear in rows and columns.
+
+\section{Basic determinant properties}
+
+The note records the following standard properties:
+\begin{enumerate}[(i)]
+  \item Transposition does not change the determinant:
+  \[
+    \det A^T=\det A.
+  \]
+  \item Swapping two rows changes the sign.
+  \item Pulling a scalar out of one row pulls it out of the determinant.
+  \item The determinant is additive in each row separately.
+  \item Adding a multiple of one row to another row does not change the determinant.
+
+\end{enumerate}
+
+From these one immediately gets the zero properties:
+\begin{enumerate}[(i)]
+  \item if a row is zero, then the determinant is zero;
+  \item if two rows are proportional, then the determinant is zero.
+
+\end{enumerate}
+
+\section{Sarrus and triangular matrices}
+
+For a \(3\times3\) matrix, Sarrus' rule gives a convenient visual computation.  But the note also emphasizes that triangular matrices are easier: if \(A\) is upper or lower triangular, then
+\[
+  \det A=a_{11}a_{22}\cdots a_{nn}.
+\]
+This is why row reduction is so powerful.  We use row operations to simplify a determinant into triangular form while tracking sign changes and scalar factors.
+
+\section{Cofactor expansion}
+
+The cofactor of \(a_{ij}\) is
+\[
+  C_{ij}=(-1)^{i+j}M_{ij},
+\]
+where \(M_{ij}\) is the determinant obtained by deleting row \(i\) and column \(j\).  Expanding along row \(i\),
+\[
+  \det A=\sum_{j=1}^n a_{ij}C_{ij}.
+\]
+A page in the note works through determinant computations by choosing rows or columns with many zeros.  This is the main practical advice: do not expand randomly; expand where the determinant is sparse.
+
+\section{A structured determinant}
+
+A common determinant in the note has the form
+\[
+  D_n=\begin{vmatrix}
+  x&a&a&\cdots&a\\
+  a&x&a&\cdots&a\\
+  \vdots&\vdots&\vdots&&\vdots\\
+  a&a&a&\cdots&x
+  \end{vmatrix}.
+\]
+This matrix can be written
+\[
+  D_n=(x-a)I+aJ,
+\]
+where \(J\) is the all-one matrix.  The vector \((1,\ldots,1)\) is an eigenvector with eigenvalue
+\[
+  x+(n-1)a,
+\]
+and any vector whose coordinates sum to \(0\) has eigenvalue
+\[
+  x-a.
+\]
+Therefore
+\[
+  D_n=(x+(n-1)a)(x-a)^{n-1}.
+\]
+The note obtains this by row and column operations; the eigenvalue argument is the higher-level explanation.
+
+
+\section{Why inversions define the sign}
+
+The sign of a permutation records whether the permutation can be built from an even or odd number of swaps.  The inversion number gives a concrete way to compute it:
+\[
+  \operatorname{sgn}(\sigma)=(-1)^{	au(\sigma)}.
+\]
+Swapping two adjacent entries changes the inversion number by exactly one, so the parity changes.  Since every permutation can be sorted by adjacent swaps, this connects inversion parity with determinant sign.
+
+\section{Determinants as alternating volume}
+
+The determinant is multilinear in the columns and changes sign when two columns are exchanged.  Geometrically, it is oriented volume.  If two columns are equal or linearly dependent, the volume collapses to zero.  This explains why the alternating sum over permutations is the correct formula: each term records one way to choose entries from different rows and columns, with orientation determined by the permutation sign.
+
+\section{Expanded synthesis and advanced context}
+
+A determinant measures signed volume.  Row operations are geometric transformations of volume: swapping two basis vectors changes orientation, scaling a row scales volume, and adding a multiple of one row to another shears without changing volume.  The inversion formula, row-operation rules, and eigenvalue tricks are not separate facts; they are three languages for the same alternating multilinear function.
+
+
+
+\paragraph{Expanded synthesis.}
+For this chapter, the elementary material should be read as a study of what remains invariant when coordinates change. The earlier sections (`Inversions and signs`, `Definition of determinant`, `Basic determinant properties`, `Sarrus and triangular matrices`, `Cofactor expansion`) compute with arrays, bases, pivots, determinants, or eigenvectors; the deeper object is a linear map together with the spaces it acts on. A matrix is a representation of that map after bases have been chosen. This is why formulas such as
+\[
+  A' = P^{-1}AP,\qquad \widetilde A = T^{-1}AS
+\]
+are not cosmetic: they distinguish an intrinsic morphism from a coordinate description.
+
+The structural hierarchy is as follows. Kernels record what a map forgets, images record what it reaches, cokernels record obstructions to solvability, and quotients record information after an equivalence has been imposed. Determinants act on the top exterior power and therefore measure oriented volume; traces are invariant under cyclic rearrangement and become characters in representation theory; adjoints depend on an inner product and lead to self-adjoint spectral theory.
+
+A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
+
+
+\section{Elementary-to-advanced bridge: determinant as an alternating multilinear form}
+
+The determinant can be defined as the unique alternating multilinear function
+\[
+  \det:V^n\to k
+\]
+that sends the chosen basis $(e_1,\ldots,e_n)$ to $1$.  Multilinear means linear in each column.  Alternating means the value changes sign when two columns are swapped and becomes zero when two columns are equal.
+
+The permutation formula
+\[
+  \det A=\sum_{\sigma\in S_n}\operatorname{sgn}(\sigma)
+  a_{1\sigma(1)}\cdots a_{n\sigma(n)}
+\]
+is therefore not arbitrary.  It is the coordinate expression of the alternating property.
+
+\section{Elementary-to-advanced bridge: exterior algebra}
+
+Exterior algebra packages alternating products.  The wedge product satisfies
+\[
+  v\wedge w=-w\wedge v,\qquad v\wedge v=0.
+\]
+For $n$ vectors in an $n$-dimensional space,
+\[
+  v_1\wedge\cdots\wedge v_n=(\det[v_1\cdots v_n])\,e_1\wedge\cdots\wedge e_n.
+\]
+Thus determinant is the scalar by which the top exterior power is scaled.
+
+This viewpoint explains why determinants measure oriented volume and why row dependence forces determinant zero: dependent vectors wedge to zero.
+
+\section{Elementary-to-advanced bridge: orientation and determinant line}
+
+The one-dimensional space $\Lambda^n V$ is called the determinant line.  A choice of nonzero element of $\Lambda^n V$ is a choice of volume form; a choice up to positive scalar is an orientation.
+
+A linear map $A:V\to V$ induces a map on the determinant line:
+\[
+  \Lambda^n A:\Lambda^n V\to\Lambda^n V.
+\]
+Since this line is one-dimensional, the induced map is multiplication by a scalar, and that scalar is $\det A$.
+
+The elementary inversion-number definition of the determinant is therefore a combinatorial way to compute the action of a linear map on oriented volume.
+
+% Second-pass deepening for waves 2-4: wave 2
+\section{Second-pass deepening: why signs of permutations are forced}
+
+The determinant is alternating: swapping two columns changes sign.  The sign of a permutation is exactly the bookkeeping device that records how many swaps are needed.  If
+\[
+  \sigma=(i_1,\ldots,i_n),
+\]
+then $\operatorname{sgn}(\sigma)$ is $(-1)^m$, where $m$ is the number of inversions.  The elementary inversion count is therefore not a combinatorial accident; it is the unique homomorphism
+\[
+  S_n\to \{\pm1\}
+\]
+that sends each transposition to $-1$.
+
+This uniqueness explains why every determinant formula has the same sign pattern.  Any alternating multilinear volume function must transform under permutations by this sign character.
+
+\section{Second-pass deepening: minors as exterior coordinates}
+
+The $k\times k$ minors of a matrix describe the induced map on $\Lambda^kV$.  If $A:V\to W$, then
+\[
+  \Lambda^kA:\Lambda^kV\to\Lambda^kW.
+\]
+In bases, the entries of this induced map are the $k\times k$ minors of $A$.
+
+This gives a conceptual meaning to rank tests.  The condition $\operatorname{rank}A<k$ is equivalent to
+\[
+  \Lambda^kA=0,
+\]
+which is equivalent to all $k\times k$ minors vanishing.  Thus minors are not arbitrary subdeterminants; they are coordinates of an exterior-power map.
+
+\section{Second-pass deepening: Cramer's rule from volume ratios}
+
+Cramer's rule replaces one column of $A$ by $b$.  Geometrically, solving $Ax=b$ asks for the coordinates of $b$ in the parallelepiped basis given by the columns of $A$.  The coordinate $x_i$ is the ratio of two oriented volumes:
+\[
+  x_i=\frac{\det A_i(b)}{\det A}.
+\]
+This interpretation makes the formula less mysterious: a coordinate is measured by replacing the corresponding basis vector and comparing volumes.

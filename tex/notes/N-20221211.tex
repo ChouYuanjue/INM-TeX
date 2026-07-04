@@ -1,0 +1,170 @@
+\notechapter{N-20221211}{Derivatives: Definition, Rules, Elementary Functions, and Inverse Trigonometric Derivatives}
+
+\section{Average velocity and instantaneous velocity}
+
+The first page starts from a graph and the idea of velocity.  The average rate of change of $f$ on $[x_0,x_0+\Delta x]$ is
+\[
+  \frac{f(x_0+\Delta x)-f(x_0)}{\Delta x}.
+\]
+As $\Delta x\to0$, the secant line approaches the tangent line if the limit exists.  The instantaneous rate of change is the derivative:
+\[
+  f'(x_0)=\lim_{\Delta x\to0}
+  \frac{f(x_0+\Delta x)-f(x_0)}{\Delta x}.
+\]
+Geometrically, this is the slope of the tangent line.
+
+\section{Derivative notation}
+
+The note lists the notations
+\[
+  f'(x),\qquad y',\qquad \frac{dy}{dx},\qquad \frac{df}{dx}.
+\]
+It also distinguishes the derivative at a point from the derivative function.  The derivative at $x_0$ is a number; the derivative function assigns such a number to each point where the derivative exists.
+
+The tangent line formula is
+\[
+  y-f(x_0)=f'(x_0)(x-x_0).
+\]
+
+\section{Power functions}
+
+For positive integer $n$,
+\[
+  (x^n)'=nx^{n-1}.
+\]
+This follows from
+\[
+  (x+h)^n-x^n
+  =\sum_{k=1}^n \binom nk x^{n-k}h^k,
+\]
+and after dividing by $h$ and taking $h\to0$, only the $k=1$ term remains.
+
+The note extends the formula to rational powers by implicit differentiation.  If
+\[
+  y=x^{m/n},
+\]
+then
+\[
+  y^n=x^m.
+\]
+Differentiating gives
+\[
+  ny^{n-1}y'=mx^{m-1},
+\]
+so
+\[
+  y'=\frac mn x^{m/n-1}.
+\]
+
+\section{Exponential and logarithmic derivatives}
+
+The page records
+\[
+  (a^x)'=a^x\ln a,
+  \qquad
+  (e^x)'=e^x.
+\]
+For logarithms,
+\[
+  (\ln x)'=\frac1x,
+  \qquad
+  (\log_a x)'=\frac1{x\ln a}.
+\]
+A useful derivation uses inverse functions: since $y=\ln x$ means $x=e^y$, differentiating gives
+\[
+  1=e^y y'=xy',
+\]
+so $y'=1/x$.
+
+\section{Trigonometric derivatives}
+
+Using the standard limits and addition formulas,
+\[
+  (\sin x)'=\cos x,\qquad
+  (\cos x)'=-\sin x.
+\]
+Then quotient rule gives
+\[
+  (\tan x)'=\sec^2x,\qquad
+  (\cot x)'=-\csc^2x.
+\]
+The reciprocal functions satisfy
+\[
+  (\sec x)'=\sec x\tan x,\qquad
+  (\csc x)'=-\csc x\cot x.
+\]
+
+\section{Inverse trigonometric derivatives}
+
+For $y=\arcsin x$,
+\[
+  x=\sin y
+\]
+and so
+\[
+  1=\cos y\,y'.
+\]
+Since $\cos y=\sqrt{1-x^2}$ on the principal branch,
+\[
+  (\arcsin x)'=\frac1{\sqrt{1-x^2}}.
+\]
+Similarly,
+\[
+  (\arccos x)'=-\frac1{\sqrt{1-x^2}},\qquad
+  (\arctan x)'=\frac1{1+x^2}.
+\]
+The note also derives inverse secant and inverse cosecant derivatives by drawing a right triangle and expressing the missing side length in terms of $x$.
+
+\section{Examples}
+
+A typical example differentiates
+\[
+  y=\sqrt{x^2+1}.
+\]
+By chain rule,
+\[
+  y'=\frac{x}{\sqrt{x^2+1}}.
+\]
+Another example differentiates a quotient of trigonometric functions.  The handwritten solution usually first rewrites the expression using identities, then differentiates.  This is often simpler than applying quotient rule blindly.
+
+\section{Expanded synthesis and advanced context}
+
+This note builds the derivative table from a few principles: definition by difference quotient, binomial expansion for powers, inverse-function differentiation for logarithms and inverse trigonometric functions, and quotient/chain rules for combinations.  The goal is not memorizing isolated formulas but recognizing which rule creates each formula.
+
+
+
+\paragraph{Expanded synthesis.}
+The common theme of this chapter is that an elementary limiting or computational rule becomes powerful only after one specifies the space in which the limiting process takes place. The earlier sections (`Average velocity and instantaneous velocity`, `Derivative notation`, `Power functions`, `Exponential and logarithmic derivatives`, `Trigonometric derivatives`) may look like separate techniques, but they all ask the same question: which operations are stable under approximation? A derivative is stable first-order approximation,
+\[
+  f(a+h)=f(a)+L(h)+o(|h|),
+\]
+while an integral is stable accumulation with respect to a measure, and a convergent series is a limit in a chosen norm or topology.
+
+The advanced bridge is functional-analytic. Uniform convergence is convergence in a sup norm; $L^p$ convergence is convergence in an integral norm; differentiability is the existence of a continuous linear approximation; many differential equations are operator equations $L[u]=f$. Theorems such as dominated convergence, the inverse function theorem, the projection theorem in Hilbert spaces, and semigroup existence results are refined answers to the same elementary concern: when may we pass from finite approximations to a genuine limiting object?
+
+To use this viewpoint when rereading the original examples, identify the hidden stability condition. A Taylor expansion asks for control of the remainder. A change of variables asks for differentiability and Jacobian control. Termwise differentiation of a series asks for uniform convergence of derivative series. A differential-equation formula asks whether the operator is invertible under the imposed initial or boundary data. The elementary computation is the visible part; the advanced theory names the hypotheses that make it legitimate.
+
+
+\section[Inverse-function view of inverse trig]{Elementary-to-advanced bridge: inverse function theorem behind inverse trigonometric derivatives}
+
+The derivative of an inverse function is often memorized as
+\[
+  (f^{-1})'(y)=\frac1{f'(x)},\qquad y=f(x).
+\]
+The conceptual statement is the inverse function theorem: if $f$ is continuously differentiable near $x_0$ and $f'(x_0)\ne0$, then $f$ has a local inverse near $f(x_0)$, and the inverse is differentiable.
+
+For $y=\arcsin x$, we have $x=\sin y$ on $[-\pi/2,\pi/2]$.  Differentiating gives
+\[
+  1=\cos y\frac{dy}{dx},\qquad \frac{dy}{dx}=\frac1{\cos y}=\frac1{\sqrt{1-x^2}}.
+\]
+The interval restriction is what makes sine locally one-to-one.
+
+\section{Elementary-to-advanced bridge: automatic differentiation and jets}
+
+The product, quotient, and chain rules are the mathematics behind automatic differentiation.  A formula is represented by a computation graph; each node stores a local derivative; the chain rule propagates derivatives through the graph.
+
+Higher derivatives form the language of jets.  The $k$-jet of a one-variable function at $a$ records
+\[
+  j_a^k f=(f(a),f'(a),\ldots,f^{(k)}(a)).
+\]
+The Taylor polynomial is the coordinate expression of this finite derivative data.  Thus the derivative table is the first layer of a general theory of local smooth data.

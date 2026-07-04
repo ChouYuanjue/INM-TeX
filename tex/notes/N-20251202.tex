@@ -1,0 +1,426 @@
+\notechapter{N-20251202}{Linear Algebra Review II: Diagonalization, Inner Products, Quadratic Forms, and More}
+
+
+
+\section{Diagonalizable matrices}
+
+A square matrix $A$ is diagonalizable if it is similar to a diagonal matrix:
+\[
+  P^{-1}AP=D.
+\]
+Equivalently,
+\[
+  AP=PD.
+\]
+If the columns of $P$ are $\alpha_1,\ldots,\alpha_n$ and
+\[
+  D=\operatorname{diag}(\lambda_1,\ldots,\lambda_n),
+\]
+then
+\[
+  A\alpha_i=\lambda_i\alpha_i.
+\]
+Thus the columns of the similarity matrix must be eigenvectors.
+
+The highlighted theorem on the first page is:
+\[
+  A_n	ext{ is diagonalizable}
+  \quad\Longleftrightarrow\quad
+  A_n	ext{ has }n	ext{ linearly independent eigenvectors}.
+\]
+The diagonal entries are the corresponding eigenvalues, in whatever order the eigenvectors are placed in $P$.
+
+\section{Diagonalizability is independent from other properties}
+
+The first page compares diagonalizability with several related but independent properties.
+
+\begin{itemize}
+  \item A matrix can be diagonalizable but not full-rank: the zero matrix is diagonal and hence diagonalizable, but its rank is zero.
+  \item A matrix can be full-rank but not diagonalizable: a Jordan block such as
+  \[
+    \begin{pmatrix}1&1\\0&1\end{pmatrix}
+  \]
+  is invertible but has only one independent eigenvector.
+  \item Repeated eigenvalues do not prevent diagonalization: the identity matrix has a repeated eigenvalue but is already diagonal.
+  \item Nonzero eigenvalues do not guarantee diagonalization: the same Jordan block has nonzero eigenvalue $1$ but is not diagonalizable.
+\end{itemize}
+
+The handwritten point is that determinant, rank, eigenvalue multiplicity, and diagonalizability are different kinds of information.
+
+\section{Algebraic and geometric multiplicity}
+
+Let $\lambda_0$ be a $k$-fold root of the characteristic polynomial.  The eigenspace is
+\[
+  E_{\lambda_0}=\ker(\lambda_0I-A).
+\]
+The number of linearly independent eigenvectors belonging to $\lambda_0$ is
+\[
+  \dim E_{\lambda_0}=n-r(\lambda_0I-A).
+\]
+The note states the inequality
+\[
+  \dim E_{\lambda_0}\le k.
+\]
+In words: geometric multiplicity is at most algebraic multiplicity.
+
+A matrix is diagonalizable iff for every eigenvalue $\lambda_i$ with algebraic multiplicity $k_i$,
+\[
+  \dim E_{\lambda_i}=k_i,
+\]
+or equivalently
+\[
+  r(\lambda_iI-A)=n-k_i.
+\]
+
+\section{Procedure for diagonalization}
+
+The scanned page gives a concrete algorithm:
+
+\begin{enumerate}[(i)]
+  \item Solve the characteristic equation
+  \[
+    |\lambda I-A|=0
+  \]
+  to find eigenvalues $\lambda_1,\ldots,\lambda_m$ with multiplicities $s_1,\ldots,s_m$.
+  \item For each $\lambda_i$, solve
+  \[
+    (\lambda_iI-A)x=0
+  \]
+  to obtain a basis of the eigenspace.
+  \item If the number of independent eigenvectors for some $\lambda_i$ is less than $s_i$, the matrix is not diagonalizable.
+  \item If the total number is $n$, put all eigenvectors into $P$.  Then
+  \[
+    P^{-1}AP=\operatorname{diag}(\lambda_1,\ldots,\lambda_1,\lambda_2,\ldots).
+  \]
+\end{enumerate}
+
+\section{Inner product and vector length}
+
+The next part reviews inner products.  For real vectors
+\[
+  \alpha=(a_1,\ldots,a_n)^T,\qquad
+  \beta=(b_1,\ldots,b_n)^T,
+\]
+the real inner product is
+\[
+  (\alpha,\beta)=a_1b_1+\cdots+a_nb_n=\alpha^T\beta.
+\]
+For complex vectors one uses the Hermitian inner product, with conjugation in one variable.
+
+The length is
+\[
+  \|\alpha\|=\sqrt{(\alpha,\alpha)}.
+\]
+The angle between nonzero real vectors is
+\[
+  \cos\theta=
+\frac{(\alpha,\beta)}{\|\alpha\|\,\|\beta\|}.
+\]
+If
+\[
+  (\alpha,\beta)=0,
+\]
+then the vectors are orthogonal.
+
+\section{Orthogonal and orthonormal systems}
+
+A vector group is orthogonal if every two distinct nonzero vectors are orthogonal.  It is orthonormal if, in addition, every vector has norm $1$.
+
+The note states that a nonzero orthogonal vector group is linearly independent.  The proof is short: if
+\[
+  c_1\alpha_1+\cdots+c_k\alpha_k=0,
+\]
+take inner product with $\alpha_i$.  All cross terms vanish, so
+\[
+  c_i\|\alpha_i\|^2=0,
+\]
+and hence $c_i=0$.
+
+\section{Schmidt orthogonalization}
+
+Given a linearly independent set
+\[
+  \alpha_1,\alpha_2,\ldots,\alpha_n,
+\]
+Schmidt orthogonalization constructs an equivalent orthogonal set
+\[
+  \xi_1,\xi_2,\ldots,\xi_n.
+\]
+The construction is
+\[
+  \xi_1=\alpha_1,
+\]
+\[
+  \xi_2=\alpha_2-
+\frac{(\alpha_2,\xi_1)}{(\xi_1,\xi_1)}\xi_1,
+\]
+and in general
+\[
+  \xi_i=\alpha_i-\sum_{k=1}^{i-1}
+\frac{(\alpha_i,\xi_k)}{(\xi_k,\xi_k)}\xi_k.
+\]
+Then normalize:
+\[
+  \beta_i=
+\frac{\xi_i}{\|\xi_i\|}.
+\]
+The scanned proof checks two things: $\xi_i\ne0$ and $(\xi_i,\xi_k)=0$ for $k<i$.  If $\xi_i=0$, then $\alpha_i$ would be a linear combination of the previous vectors, contradicting independence.
+
+\section{Example of Schmidt orthogonalization}
+
+The example orthogonalizes three vectors in $\mathbb R^4$:
+\[
+  \alpha_1=(1,0,0,1)^T,\quad
+  \alpha_2=(1,1,0,1)^T,\quad
+  \alpha_3=(1,1,1,0)^T.
+\]
+The result after orthogonalization and normalization is displayed as an orthonormal group
+\[
+  \beta_1=
+\frac1{\sqrt2}(1,0,0,1)^T,
+\]
+\[
+  \beta_2=(0,1,0,0)^T,
+\]
+\[
+  \beta_3=
+\frac1{\sqrt6}(1,0,2,-1)^T.
+\]
+The point of the example is not the arithmetic alone; it shows how each new vector is stripped of its projections onto the earlier directions.
+
+\section{QR decomposition}
+
+The note presents the matrix form of Schmidt orthogonalization.  If
+\[
+  A=(\alpha_1,\ldots,\alpha_n)\in\mathbb R^{m\times n},
+  \qquad r(A)=n,
+\]
+then
+\[
+  A=QR,
+\]
+where
+\[
+  Q^TQ=I,
+\]
+and $R$ is an upper triangular invertible matrix.
+
+The columns of $Q$ are the orthonormal vectors produced by Schmidt orthogonalization.  The matrix $R$ records the coefficients expressing the original columns in the orthonormal basis.
+
+\section{Orthogonal matrices}
+
+A real square matrix $A$ is orthogonal if
+\[
+  A^TA=I.
+\]
+Equivalent conditions are:
+\[
+  A^{-1}=A^T,\qquad
+  AA^T=I,
+\]
+the columns of $A$ form an orthonormal basis, and the rows of $A$ form an orthonormal basis.
+
+If $A$ and $B$ are orthogonal matrices of the same order, then $AB$ is also orthogonal:
+\[
+  (AB)^T(AB)=B^TA^TAB=B^TIB=I.
+\]
+If $A$ is orthogonal, then
+\[
+  |A|^2=1,
+\]
+so $|A|=\pm1$.  Orthogonal matrices preserve lengths:
+\[
+  \|A\alpha\|=\|\alpha\|.
+\]
+Therefore their eigenvalues, when real, have absolute value $1$.
+
+\section{Real symmetric matrices}
+
+For a real symmetric matrix $A=A^T$, the note records:
+
+\begin{enumerate}[(i)]
+  \item all eigenvalues are real;
+  \item eigenvectors corresponding to distinct eigenvalues are orthogonal;
+  \item there exists an orthogonal matrix $P$ such that
+  \[
+    P^TAP=D
+  \]
+  is diagonal.
+\end{enumerate}
+
+The proof that eigenvalues are real uses
+\[
+  A\xi=\lambda\xi
+\]
+and the scalar $\overline{\xi}^TA\xi$.  Symmetry forces it to equal its conjugate, hence $\lambda=\overline{\lambda}$.
+
+For orthogonality, if
+\[
+  A\xi_1=\lambda_1\xi_1,\qquad A\xi_2=\lambda_2\xi_2,
+\]
+then symmetry gives
+\[
+  \lambda_2\xi_1^T\xi_2=\xi_1^TA\xi_2=(A\xi_1)^T\xi_2=\lambda_1\xi_1^T\xi_2.
+\]
+If $\lambda_1\ne\lambda_2$, then $\xi_1^T\xi_2=0$.
+
+\section{Quadratic forms}
+
+A quadratic form in variables $x_1,\ldots,x_n$ is
+\[
+  f(x)=x^TAx,
+\]
+where $A$ is symmetric.  By an orthogonal change of variables
+\[
+  x=Py,\qquad P^TP=I,
+\]
+one obtains
+\[
+  f=x^TAx=y^T(P^TAP)y
+  =\lambda_1y_1^2+\cdots+\lambda_ny_n^2.
+\]
+This is the principal-axis form of the quadratic form.
+
+The note distinguishes ordinary diagonalization from orthogonal diagonalization.  For real symmetric matrices, the diagonalizing matrix can be chosen orthogonal, which preserves lengths and angles.  This is why quadratic forms can be geometrically classified by rotations.
+
+\section{Positive definite quadratic forms}
+
+A quadratic form is positive definite if
+\[
+  x^TAx>0\qquad(x\ne0).
+\]
+For a real symmetric matrix, this is equivalent to all eigenvalues being positive.  Another criterion is Sylvester's criterion: all leading principal minors are positive:
+\[
+  \Delta_1>0,\quad \Delta_2>0,\quad \ldots,\quad \Delta_n>0.
+\]
+Negative definiteness and semidefiniteness are treated similarly, with signs or non-strict inequalities.
+
+The page also gives the standard rank and signature language: after a nonsingular linear substitution, a real quadratic form can be reduced to
+\[
+  z_1^2+\cdots+z_p^2-z_{p+1}^2-\cdots-z_r^2.
+\]
+The numbers of positive and negative squares are invariants.
+
+\section{Conic and quadric interpretations}
+
+The later pages connect quadratic forms to second-degree equations.  A conic can be written in matrix form as
+\[
+  ax^2+2bxy+cy^2+dx+ey+f=0.
+\]
+The quadratic part
+\[
+  \begin{pmatrix}x&y\end{pmatrix}
+  \begin{pmatrix}a&b\\b&c\end{pmatrix}
+  \begin{pmatrix}x\\y\end{pmatrix}
+\]
+can be diagonalized by an orthogonal transformation.  Translation then removes linear terms when possible.  This explains why conics are classified by eigenvalues of the quadratic part and by remaining constants.
+
+The scanned diagrams show arrows from original coordinates to rotated and translated coordinate systems.  The mathematical point is that cross terms disappear after choosing principal axes.
+
+\section{Common traps recorded in the notes}
+
+The handwritten comments emphasize several traps:
+
+\begin{itemize}
+  \item diagonalizable does not mean full-rank;
+  \item repeated eigenvalues do not automatically prevent diagonalization;
+  \item a matrix with real eigenvalues need not be diagonalizable unless enough eigenvectors exist;
+  \item for real symmetric matrices, orthogonal diagonalization is stronger and more geometric;
+  \item Schmidt orthogonalization must subtract projections onto all previous orthogonal vectors, not only the immediately previous one;
+  \item positive definiteness is a statement about all nonzero vectors, not only about diagonal entries.
+\end{itemize}
+
+\section{Expanded synthesis and advanced context}
+
+This note links eigenvalue theory and geometry.  Diagonalization decomposes a linear map into independent eigen-directions.  Inner products measure lengths and angles.  Schmidt orthogonalization turns independence into orthogonality.  Orthogonal matrices preserve geometry.  Real symmetric matrices are the ideal case: they have real eigenvalues, orthogonal eigenspaces, and orthogonal diagonalization.  Quadratic forms use this structure to classify conics, extrema, and definiteness.
+
+
+
+\paragraph{Expanded synthesis.}
+For this chapter, the elementary material should be read as a study of what remains invariant when coordinates change. The earlier sections (`Diagonalizable matrices`, `Diagonalizability is independent from other properties`, `Algebraic and geometric multiplicity`, `Procedure for diagonalization`) compute with arrays, bases, pivots, determinants, or eigenvectors; the deeper object is a linear map together with the spaces it acts on. A matrix is a representation of that map after bases have been chosen. This is why formulas such as
+\[
+  A' = P^{-1}AP,\qquad \widetilde A = T^{-1}AS
+\]
+are not cosmetic: they distinguish an intrinsic morphism from a coordinate description.
+
+The structural hierarchy is as follows. Kernels record what a map forgets, images record what it reaches, cokernels record obstructions to solvability, and quotients record information after an equivalence has been imposed. Determinants act on the top exterior power and therefore measure oriented volume; traces are invariant under cyclic rearrangement and become characters in representation theory; adjoints depend on an inner product and lead to self-adjoint spectral theory.
+
+A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
+
+
+\section{Elementary-to-advanced bridge: spectral theorem as the source of orthogonal diagonalization}
+
+The note's real symmetric matrix theorem is the finite-dimensional spectral theorem.  If $A=A^T$, then there exists an orthogonal matrix $Q$ such that
+\[
+  Q^TAQ=\operatorname{diag}(\lambda_1,\ldots,\lambda_n).
+\]
+Equivalently, $\mathbb R^n$ has an orthonormal basis of eigenvectors of $A$.
+
+This theorem is deeper than ordinary diagonalization because the basis can be chosen orthonormal.  Orthogonality preserves lengths and angles, so quadratic forms can be classified geometrically rather than only algebraically.
+
+\section{Elementary-to-advanced bridge: QR decomposition as algorithmic Gram--Schmidt}
+
+Gram--Schmidt turns independent vectors into an orthonormal set.  Written in matrix form, it gives QR decomposition:
+\[
+  A=QR,\qquad Q^TQ=I,\quad R\text{ upper triangular}.
+\]
+In numerical linear algebra, QR is used to solve least-squares problems and compute eigenvalues.  Modified Gram--Schmidt and Householder reflections are introduced because the naive formula can be numerically unstable.
+
+Thus the elementary orthogonalization exercise is not just a hand computation.  It is the conceptual beginning of stable matrix algorithms.
+
+\section{Elementary-to-advanced bridge: Sylvester's law of inertia}
+
+A real quadratic form can be diagonalized by congruence:
+\[
+  x^TAx=y^T(P^TAP)y.
+\]
+Sylvester's law of inertia says that the numbers of positive, negative, and zero squares in a diagonal form are invariant under invertible linear changes of variables.
+
+Therefore a quadratic form has an intrinsic signature
+\[
+  (n_+,n_-,n_0).
+\]
+Positive definiteness means signature $(n,0,0)$.  This explains why completing squares and diagonalizing symmetric matrices lead to the same classification.
+
+\section{Elementary-to-advanced bridge: Hilbert-space projection}
+
+In an inner product space, projection onto a closed subspace is characterized by orthogonality of the error.  In finite dimensions this is ordinary projection.  In Hilbert spaces it becomes the projection theorem: if $M$ is a closed subspace of a Hilbert space $H$, then every $x\in H$ decomposes uniquely as
+\[
+  x=m+m^\perp,\qquad m\in M,\quad m^\perp\in M^\perp.
+\]
+Least squares, Fourier series, and orthogonal diagonalization all rely on this same projection geometry.
+
+% Second-pass deepening for waves 2-4: wave 2 remaining
+\section{Second-pass deepening: orthogonal diagonalization as choosing principal axes}
+
+For a real symmetric matrix $A$, the quadratic form $q(x)=x^TAx$ defines a family of level sets.  Orthogonal diagonalization chooses axes along which the cross terms vanish:
+\[
+  q(x)=\lambda_1y_1^2+\cdots+\lambda_ny_n^2.
+\]
+The eigenvectors are the principal axes, and the eigenvalues are the curvatures or scaling factors along them.
+
+This interpretation unifies conic classification, second-derivative tests, inertia of quadratic forms, and PCA.  In PCA, the covariance matrix is symmetric and positive semidefinite.  Its eigenvectors give directions of maximal variance.
+
+\section{Second-pass deepening: Gram--Schmidt as factorization of coordinates}
+
+Suppose the columns of $A$ are independent vectors $a_1,\ldots,a_n$.  Gram--Schmidt constructs orthonormal vectors $q_1,\ldots,q_n$ and upper-triangular coefficients $r_{ij}$ such that
+\[
+  a_j=\sum_{i\le j}r_{ij}q_i.
+\]
+This is exactly
+\[
+  A=QR.
+\]
+The diagonal entries $r_{jj}$ are the lengths of the components remaining after projecting away earlier directions.
+
+This makes the connection to least squares immediate.  Solving $Ax\approx b$ becomes solving
+\[
+  Rx=Q^Tb,
+\]
+which is stable because $Q$ preserves lengths.
+
+\section{Second-pass deepening: spectral theorem beyond finite dimension}
+
+The finite-dimensional spectral theorem has infinite-dimensional descendants.  A bounded self-adjoint operator on a Hilbert space has a spectral measure.  This lets one define functions of the operator by integration over its spectrum.  Differential operators such as $-d^2/dx^2$ are unbounded.  With suitable domains, however, they are self-adjoint and have eigenfunction expansions.
+
+Thus diagonalizing a symmetric matrix is the first finite version of decomposing an operator into modes.

@@ -1,0 +1,118 @@
+\notechapter{N-20221223}{Homotopy, Simply Connected Spaces, Semigroups, Groups, and Homomorphisms}
+
+\section{Homotopy intuition}
+
+The first part explains homotopy through paths in \(\mathbb C\).  If \(p,q\in\mathbb C\), many paths from \(p\) to \(q\) can be continuously deformed into one another while the endpoints stay fixed.  But in
+\[
+  \mathbb C\setminus\{0\},
+\]
+the missing origin becomes an obstacle.  A path going around the hole one way may not be deformable into a path going the other way without crossing the missing point.
+
+A homotopy between paths \(f_0,f_1:[0,1]\to X\) is a continuous map
+\[
+  F:[0,1]\times[0,1]\to X
+\]
+with \(F(s,0)=f_0(s)\), \(F(s,1)=f_1(s)\).  For fixed-endpoint homotopy, the endpoints remain fixed throughout.
+
+\section{Simply connected spaces}
+
+A path-connected space is simply connected if every loop can be contracted to a point.  The plane \(\mathbb C\) is simply connected; the punctured plane \(\mathbb C\setminus\{0\}\) is not.  This is the fundamental intuition behind algebraic topology: holes can be detected by loops that refuse to shrink.
+
+\section{Semigroups, monoids, and groups}
+
+A semigroup is a set with an associative binary operation.  A monoid is a semigroup with an identity element.  A group is a monoid in which every element has an inverse:
+\[
+  \text{semigroup}\longrightarrow\text{monoid}\longrightarrow\text{group}.
+\]
+A group \(G\) has associativity, identity, and inverses.  If \(ab=ba\) for all \(a,b\in G\), it is abelian.  Examples include \((\mathbb Z,+)\), \(S_n\), and symmetry groups of geometric figures.
+
+\section{Congruence, quotients, and homomorphisms}
+
+A congruence relation on an algebraic structure is an equivalence relation compatible with the operation.  This lets operations descend to equivalence classes.  For groups, normal subgroups play this role for quotient groups.
+
+A group homomorphism \(f:G\to H\) satisfies
+\[
+  f(ab)=f(a)f(b).
+\]
+It automatically gives \(f(e_G)=e_H\) and \(f(a^{-1})=f(a)^{-1}\).  Its kernel
+\[
+  \ker f=\{g\in G:f(g)=e_H\}
+\]
+is a normal subgroup, and the image is a subgroup.
+
+
+\section{Loops and the beginning of the fundamental group}
+
+A loop based at \(x_0\in X\) is a path
+\[
+  \gamma:[0,1]\to X,\qquad \gamma(0)=\gamma(1)=x_0.
+\]
+Two loops are considered equivalent if one can be continuously deformed into the other while keeping the basepoint fixed.  The set of such equivalence classes becomes a group under concatenation:
+\[
+  [\gamma]\cdot[\eta]=[\gamma*\eta].
+\]
+The identity is the constant loop, and the inverse of a loop is the same path traversed backward.
+
+This explains why group theory appears immediately after homotopy in the note.  The algebra is not an unrelated topic; it is the algebra of loops.
+
+\section{Why the punctured plane has nontrivial loops}
+
+In \(\mathbb C\setminus\{0\}\), the loop
+\[
+  \gamma(t)=e^{2\pi i t}
+\]
+winds once around the origin.  It cannot be contracted to a point without crossing the missing origin.  More generally,
+\[
+  \gamma_n(t)=e^{2\pi i n t}
+\]
+winds \(n\) times.  The integer \(n\) is the winding number.  This gives the fundamental group
+\[
+  \pi_1(\mathbb C\setminus\{0\})\cong\mathbb Z.
+\]
+The plane itself has trivial fundamental group because every loop can be shrunk through the missing-free interior.
+
+\section{Homomorphisms as structure-preserving maps}
+
+The algebraic part of the note introduces homomorphisms because topology will soon produce groups naturally.  A homomorphism does not preserve elements individually; it preserves the operation:
+\[
+  f(ab)=f(a)f(b).
+\]
+From this one derives
+\[
+  f(e_G)=e_H,\qquad f(a^{-1})=f(a)^{-1}.
+\]
+The kernel records what the map collapses to the identity:
+\[
+  \ker f=\{g\in G:f(g)=e_H\}.
+\]
+In topology, continuous maps induce homomorphisms on fundamental groups.  Thus a map of spaces becomes a map of algebraic invariants.
+
+\section{Quotients in topology and algebra}
+
+Both quotient spaces and quotient groups follow the same pattern: impose an equivalence relation and then ask whether the structure descends.  For spaces, open sets in the quotient are defined by preimages under the quotient map.  For groups, normal subgroups are exactly what make multiplication of cosets well-defined.
+
+This shared pattern is one of the first conceptual bridges of algebraic topology.  A loop space quotient by homotopy becomes a group; a group quotient by a normal subgroup becomes another group.  In both cases, equivalence classes are not just bookkeeping but new mathematical objects.
+
+\section{Higher viewpoint: from holes to algebra}
+
+The important transition is:
+\[
+  \text{hole in a space}\quad\leadsto\quad\text{nontrivial loop}\quad\leadsto\quad\text{group element}.
+\]
+This is the beginning of algebraic topology.  Instead of trying to draw all possible deformations, we assign algebraic invariants to spaces.  If two spaces have different fundamental groups, they cannot be homeomorphic.
+
+\section{Expanded synthesis and advanced context}
+
+The note looks split between topology and algebra, but the split is exactly the point.  Homotopy studies continuous deformation of paths; groups study composable reversible operations.  The fundamental group combines them: homotopy classes of loops form a group, and that group records holes in the space.
+
+
+\paragraph{Expanded synthesis.}
+For this chapter, the elementary material should be read as a study of what remains invariant when coordinates change. The earlier sections (`Homotopy intuition`, `Simply connected spaces`, `Semigroups, monoids, and groups`, `Congruence, quotients, and homomorphisms`, `Loops and the beginning of the fundamental group`) compute with arrays, bases, pivots, determinants, or eigenvectors; the deeper object is a linear map together with the spaces it acts on. A matrix is a representation of that map after bases have been chosen. This is why formulas such as
+\[
+  A' = P^{-1}AP,\qquad \widetilde A = T^{-1}AS
+\]
+are not cosmetic: they distinguish an intrinsic morphism from a coordinate description.
+
+The structural hierarchy is as follows. Kernels record what a map forgets, images record what it reaches, cokernels record obstructions to solvability, and quotients record information after an equivalence has been imposed. Determinants act on the top exterior power and therefore measure oriented volume; traces are invariant under cyclic rearrangement and become characters in representation theory; adjoints depend on an inner product and lead to self-adjoint spectral theory.
+
+A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.

@@ -1,0 +1,240 @@
+\notechapter{N-20220628}{Techniques of Integration: Partial Fractions, Parts, and Substitution}
+
+\section{Linearity}
+
+The note begins with the linearity of the indefinite integral:
+\[
+  \int (f(x)+g(x)-h(x))\,dx
+  =\int f(x)\,dx+\int g(x)\,dx-\int h(x)\,dx.
+\]
+This is the integration analogue of the linearity of differentiation.
+
+\section{Partial fractions}
+
+The first worked example is
+\[
+  \int\frac{dx}{x^2-a^2}.
+\]
+Since
+\[
+  \frac1{x^2-a^2}=\frac1{(x-a)(x+a)}
+  =\frac1{2a}\left(\frac1{x-a}-\frac1{x+a}\right),
+\]
+we get
+\[
+  \int\frac{dx}{x^2-a^2}
+  =\frac1{2a}\ln\left|\frac{x-a}{x+a}\right|+C.
+\]
+
+A general quadratic denominator is handled by completing the square.  For
+\[
+  \int\frac{mx+n}{x^2+px+q}\,dx,
+\]
+put
+\[
+  t=x+\frac p2,\qquad x^2+px+q=t^2+q-\frac{p^2}{4}.
+\]
+Then write \(mx+n=At+B\).  The integral splits into
+\[
+  A\int\frac{t}{t^2+a^2}\,dt+B\int\frac{dt}{t^2+a^2}
+\]
+or, if the constant term is negative,
+\[
+  A\int\frac{t}{t^2-a^2}\,dt+B\int\frac{dt}{t^2-a^2}.
+\]
+This produces logarithms and arctangents depending on the sign of \(q-p^2/4\).
+
+A page warns about a common partial-fraction mistake: repeated factors must be treated separately.  For example,
+\[
+  \int\frac{3x+5}{x^3-x^2-x+1}\,dx
+\]
+has denominator
+\[
+  x^3-x^2-x+1=(x+1)(x-1)^2.
+\]
+Thus the decomposition must be
+\[
+  \frac{3x+5}{(x+1)(x-1)^2}
+  =
+  \frac{A}{x+1}+\frac{B}{x-1}+\frac{C}{(x-1)^2}.
+\]
+Solving gives
+\[
+  A=\frac12,\qquad B=-\frac12,\qquad C=4,
+\]
+so
+\[
+  \int\frac{3x+5}{x^3-x^2-x+1}\,dx
+  =
+  \frac12\ln|x+1|-
+rac12\ln|x-1|-\frac4{x-1}+C.
+\]
+
+\section{Integration by parts}
+
+The integration-by-parts formula is
+\[
+  \int u\,dv=uv-\int v\,du.
+\]
+For example,
+\[
+  \int \ln x\,dx=x\ln x-x+C.
+\]
+A higher-order version repeatedly integrates by parts:
+\[
+  \int u\,v^{(n+1)}\,dx
+  =
+  u v^{(n)}-u'v^{(n-1)}+\cdots+(-1)^n u^{(n)}v
+  +(-1)^{n+1}\int u^{(n+1)}v\,dx.
+\]
+This is especially useful for
+\[
+  \int P(x)e^x\,dx,\qquad
+  \int P(x)\sin x\,dx,\qquad
+  \int P(x)\cos x\,dx,
+\]
+where \(P\) is a polynomial.
+
+One worked example is
+\[
+  \int(2x^3+3x^2+4x+5)e^x\,dx.
+\]
+Repeated integration by parts gives
+\[
+  e^x(2x^3-3x^2+10x-5)+C.
+\]
+
+\section{Substitution}
+
+The substitution rule is
+\[
+  x=\rho(t),\qquad dx=\rho'(t)\,dt,\qquad
+  \int f(x)\,dx=\int f(\rho(t))\rho'(t)\,dt.
+\]
+
+For instance,
+\[
+  \int \sin^3x\cos x\,dx
+\]
+is solved by setting \(t=\sin x\), giving
+\[
+  \int t^3\,dt=\frac{t^4}{4}+C=\frac{\sin^4x}{4}+C.
+\]
+Similarly,
+\[
+  \int \sin^2x\,dx
+\]
+can be done by the trigonometric identity
+\[
+  \sin^2x=\frac{1-\cos2x}{2},
+\]
+so
+\[
+  \int \sin^2x\,dx=\frac x2-\frac{\sin2x}{4}+C.
+\]
+
+A trigonometric substitution example is
+\[
+  \int\sqrt{a^2-x^2}\,dx.
+\]
+Let \(x=a\sin t\).  Then \(dx=a\cos t\,dt\), and the integral becomes
+\[
+  a^2\int\cos^2t\,dt.
+\]
+Hence
+\[
+  \int\sqrt{a^2-x^2}\,dx
+  =
+  \frac x2\sqrt{a^2-x^2}+\frac{a^2}{2}\arcsin\frac xa+C.
+\]
+
+The standard substitutions are:
+\[
+  \sqrt{a^2-x^2}: x=a\sin t,\qquad
+  \sqrt{a^2+x^2}: x=a\tan t,\qquad
+  \sqrt{x^2-a^2}: x=a\sec t.
+\]
+
+
+\section{Partial fractions as algebra before calculus}
+
+Partial fractions are not an integration trick alone.  They first require algebraic decomposition.  For example, if
+\[
+  \frac{P(x)}{(x-a)(x-b)}=\frac{A}{x-a}+\frac{B}{x-b},
+\]
+then multiplying by the denominator gives an identity of polynomials.  The coefficients \(A,B\) are determined before any integration happens.
+
+This is why one should factor the denominator and compare degrees first.  If the rational function is improper, divide polynomials before decomposing.
+
+\section{Integration by parts as product rule reversed}
+
+Integration by parts comes from
+\[
+  (uv)'=u'v+uv'.
+\]
+Integrating gives
+\[
+  \int u\,dv=uv-\int v\,du.
+\]
+The choice of \(u\) and \(dv\) is guided by which part simplifies after differentiation and which part is easy to integrate.  Logarithms and inverse trigonometric functions often become simpler after differentiation.
+
+\section{Expanded synthesis and advanced context}
+
+The note is an inventory of the classical calculus toolkit.  Partial fractions exploit algebraic factorization; integration by parts exploits the product rule; substitution exploits the chain rule.  In a more advanced language, all three are ways of choosing coordinates and decompositions so that the differential form becomes elementary.
+
+
+\paragraph{Expanded synthesis.}
+For this chapter, the elementary material should be read as a study of what remains invariant when coordinates change. The earlier sections (`Linearity`, `Partial fractions`, `Integration by parts`, `Substitution`, `Partial fractions as algebra before calculus`) compute with arrays, bases, pivots, determinants, or eigenvectors; the deeper object is a linear map together with the spaces it acts on. A matrix is a representation of that map after bases have been chosen. This is why formulas such as
+\[
+  A' = P^{-1}AP,\qquad \widetilde A = T^{-1}AS
+\]
+are not cosmetic: they distinguish an intrinsic morphism from a coordinate description.
+
+The structural hierarchy is as follows. Kernels record what a map forgets, images record what it reaches, cokernels record obstructions to solvability, and quotients record information after an equivalence has been imposed. Determinants act on the top exterior power and therefore measure oriented volume; traces are invariant under cyclic rearrangement and become characters in representation theory; adjoints depend on an inner product and lead to self-adjoint spectral theory.
+
+A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
+
+
+\section{Pedagogical repair: integration as reverse differentiation}
+
+The integration techniques in this note are best remembered as reversed differentiation rules.  Partial fractions reverse the derivative of logarithms and arctangents.  Integration by parts reverses the product rule.  Substitution reverses the chain rule.  Trigonometric substitution is a geometric way of replacing a radical by an identity such as \(1-\sin^2t=\cos^2t\).
+
+A good workflow is therefore: first simplify the algebraic shape of the integrand; next ask which differentiation rule could have produced it; only then choose a technique.  This prevents the common mistake of trying substitution, parts, and partial fractions randomly.
+
+\section{Elementary-to-advanced bridge: substitution as pullback}
+
+The elementary substitution rule
+\[
+  \int f(g(t))g'(t)\,dt=\int f(x)\,dx
+\]
+is the one-dimensional form of pullback.  If $x=g(t)$, then $dx=g'(t)dt$, so the differential form $f(x)dx$ pulls back to
+\[
+  g^*(f(x)dx)=f(g(t))g'(t)dt.
+\]
+The derivative is not an artificial correction factor; it is how lengths are transformed by the map $g$.
+
+In several variables the same principle becomes the Jacobian determinant:
+\[
+  dx\,dy=\left|\frac{\partial(x,y)}{\partial(u,v)}\right|du\,dv.
+\]
+Thus elementary substitution is the first instance of the change-of-variables theorem.
+
+\section{Elementary-to-advanced bridge: integration by parts and adjoints}
+
+Integration by parts comes from the product rule:
+\[
+  \int_a^b u'v\,dx=[uv]_a^b-\int_a^b uv'\,dx.
+\]
+This formula is also the origin of adjoint differential operators.  For $D=d/dx$,
+\[
+  \int_a^b (Du)v\,dx=[uv]_a^b-\int_a^b u(Dv)\,dx.
+\]
+Ignoring boundary terms, $D$ is formally skew-adjoint.  This observation is central in Sturm--Liouville theory, Fourier analysis, and PDEs.
+
+\section{Elementary-to-advanced bridge: partial fractions and residues}
+
+Partial fractions decompose a rational function into simple local pieces around its poles.  In complex analysis, the coefficient of $(z-a)^{-1}$ is the residue, and the residue theorem says
+\[
+  \int_\gamma f(z)\,dz=2\pi i\sum_{a\ inside \gamma}\operatorname{Res}(f,a).
+\]
+Thus the elementary partial-fraction method is a real-variable shadow of a deeper principle: rational functions are controlled by their singularities.

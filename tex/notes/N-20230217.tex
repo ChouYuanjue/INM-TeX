@@ -1,0 +1,249 @@
+\notechapter{N-20230217}{A Brief Note on Tensors II: Tensor Products, Components, and More}
+
+
+\section{Tensor products and bases}
+
+The note continues the tensor discussion.  If $V$ and $W$ are vector spaces with bases
+\[
+  e_1,\ldots,e_m,\qquad f_1,\ldots,f_n,
+\]
+then the tensor product $V\otimes W$ has basis
+\[
+  e_i\otimes f_j,\qquad 1\le i\le m,\ 1\le j\le n.
+\]
+Therefore
+\[
+  \dim(V\otimes W)=\dim V\cdot\dim W.
+\]
+A general tensor in $V\otimes W$ can be written
+\[
+  T=\sum_{i,j}T^{ij}e_i\otimes f_j.
+\]
+The page emphasizes that $e_i\otimes f_j$ should not be confused with ordered pairs.  Tensor product is bilinear and universal for bilinear maps.
+
+\section{Bilinearity}
+
+The tensor product satisfies
+\[
+  (u+v)\otimes w=u\otimes w+v\otimes w,
+\]
+\[
+  u\otimes(w+z)=u\otimes w+u\otimes z,
+\]
+\[
+  (cu)\otimes w=u\otimes(cw)=c(u\otimes w).
+\]
+This is why a bilinear map
+\[
+  B:V\times W\to U
+\]
+can be replaced by a linear map
+\[
+  \widetilde B:V\otimes W\to U
+\]
+with
+\[
+  \widetilde B(v\otimes w)=B(v,w).
+\]
+This universal property is the conceptual definition of tensor product.
+
+\section{Metric, dot product, and components}
+
+The note then returns to geometry.  Let $g_{ij}$ be the metric components in a basis $e_i$:
+\[
+  g_{ij}=e_i\cdot e_j.
+\]
+If
+\[
+  u=u^i e_i,\qquad v=v^j e_j,
+\]
+then
+\[
+  u\cdot v=g_{ij}u^iv^j
+\]
+using Einstein summation convention.
+
+In an orthonormal basis, $g_{ij}=\delta_{ij}$ and this reduces to the usual dot product.  In a non-orthonormal basis, the metric matrix is needed.
+
+\section{Reciprocal basis}
+
+Given a basis $g_1,g_2,g_3$ in Euclidean space, its reciprocal basis $g^1,g^2,g^3$ is defined by
+\[
+  g^i\cdot g_j=\delta^i_j.
+\]
+The handwritten page computes reciprocal bases by solving linear systems or by using cross products.  In three dimensions,
+\[
+  g^1=\frac{g_2\times g_3}{g_1\cdot(g_2\times g_3)},
+\]
+with cyclic formulas for $g^2$ and $g^3$.
+
+The reciprocal basis lets one recover components:
+\[
+  v^i=g^i\cdot v,\qquad
+  v_i=g_i\cdot v.
+\]
+This is the distinction between contravariant and covariant components.
+
+\section{Covariant and contravariant components}
+
+The note stresses that vectors and components are not the same thing.  A vector $v$ is basis-independent, but its coordinate list changes when the basis changes.
+
+Contravariant components $v^i$ are the coefficients in
+\[
+  v=v^i g_i.
+\]
+Covariant components are obtained by lowering an index with the metric:
+\[
+  v_i=g_{ij}v^j.
+\]
+Conversely,
+\[
+  v^i=g^{ij}v_j,
+\]
+where $(g^{ij})$ is the inverse metric matrix.
+
+This is the concrete meaning of raising and lowering indices.
+
+\section{Vector product and Levi-Civita symbol}
+
+The final page introduces the Levi-Civita symbol:
+\[
+  \varepsilon_{ijk}=
+  \begin{cases}
+  1,&(i,j,k)\text{ is an even permutation of }(1,2,3),\\
+  -1,&(i,j,k)\text{ is an odd permutation of }(1,2,3),\\
+  0,&\text{if two indices are equal.}
+  \end{cases}
+\]
+In an orthonormal right-handed basis,
+\[
+  (u\times v)_i=\varepsilon_{ijk}u_jv_k.
+\]
+The note uses this notation to compress determinant and cross-product formulas.
+
+\section{Scalar triple product}
+
+The scalar triple product is
+\[
+  u\cdot(v\times w).
+\]
+It equals the determinant of the matrix with columns $u,v,w$, and it measures oriented volume.  The reciprocal-basis formulas above are built from this quantity because the denominator
+\[
+  g_1\cdot(g_2\times g_3)
+\]
+is the volume of the parallelepiped spanned by the basis vectors.
+
+\section{Expanded synthesis and advanced context}
+
+The note's main lesson is that tensor notation is coordinate bookkeeping with invariant meaning.  Tensor products linearize bilinear operations.  Metrics convert vectors and covectors.  Reciprocal bases separate geometric vectors from their components.  Levi-Civita symbols encode orientation.  The formulas look index-heavy, but they are all ways of protecting geometric meaning under a change of basis.
+
+
+
+\paragraph{Expanded synthesis.}
+For this chapter, the elementary material should be read as a study of what remains invariant when coordinates change. The earlier sections (`Tensor products and bases`, `Bilinearity`, `Metric, dot product, and components`, `Reciprocal basis`, `Covariant and contravariant components`) compute with arrays, bases, pivots, determinants, or eigenvectors; the deeper object is a linear map together with the spaces it acts on. A matrix is a representation of that map after bases have been chosen. This is why formulas such as
+\[
+  A' = P^{-1}AP,\qquad \widetilde A = T^{-1}AS
+\]
+are not cosmetic: they distinguish an intrinsic morphism from a coordinate description.
+
+The structural hierarchy is as follows. Kernels record what a map forgets, images record what it reaches, cokernels record obstructions to solvability, and quotients record information after an equivalence has been imposed. Determinants act on the top exterior power and therefore measure oriented volume; traces are invariant under cyclic rearrangement and become characters in representation theory; adjoints depend on an inner product and lead to self-adjoint spectral theory.
+
+A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
+
+
+\section{Elementary-to-advanced bridge: dual spaces and reciprocal bases}
+
+Given a basis $g_1,g_2,g_3$, the reciprocal basis $g^1,g^2,g^3$ satisfies
+\[
+  g^i\cdot g_j=\delta^i_j.
+\]
+This is a metric identification of vectors with covectors.  Abstractly, the dual basis lives in $V^*$ and is defined by
+\[
+  \gamma^i(g_j)=\delta^i_j.
+\]
+The Euclidean dot product gives an isomorphism
+\[
+  V\to V^*,\qquad v\mapsto (w\mapsto v\cdot w).
+\]
+Under this isomorphism, the covectors $\gamma^i$ correspond to the reciprocal vectors $g^i$.
+
+Thus reciprocal bases are not a computational curiosity; they are dual bases transported through the metric.
+
+\section{Elementary-to-advanced bridge: musical isomorphisms}
+
+In differential geometry, a metric $g$ identifies vector fields and covector fields.  The maps are often denoted by musical symbols:
+\[
+  \flat:TM\to T^*M,\qquad X^\flat(Y)=g(X,Y),
+\]
+\[
+  \sharp:T^*M\to TM.
+\]
+Lowering an index is applying $\flat$; raising an index is applying $\sharp$.
+
+The elementary formulas
+\[
+  v_i=g_{ij}v^j,\qquad v^i=g^{ij}v_j
+\]
+are exactly these operations in coordinates.
+
+\section{Elementary-to-advanced bridge: frames and moving coordinates}
+
+On a manifold, a basis of tangent vectors varying from point to point is a frame.  Reciprocal frames live in the cotangent bundle.  If $e_i$ is a local frame and $\theta^i$ is the dual coframe, then
+\[
+  \theta^i(e_j)=\delta^i_j.
+\]
+Differential forms are built from the coframe, while vector fields are built from the frame.
+
+This generalizes the note's reciprocal basis from one vector space to geometry on curved spaces.
+
+\section{Elementary-to-advanced bridge: continuum mechanics notation}
+
+In continuum mechanics, covariant and contravariant bases appear when coordinates deform with a material body.  The deformation gradient maps reference tangent vectors to current tangent vectors.  Metrics and reciprocal bases are needed because curvilinear coordinate directions are not usually orthonormal.
+
+The tensor notation in the original note is therefore not just abstract algebra.  It is the language needed when coordinates themselves become part of the geometry.
+
+% Second-pass deepening for waves 2-4: wave 2
+\section{Second-pass deepening: metric tensors and Gram matrices}
+
+Given a non-orthonormal basis $g_1,\ldots,g_n$, the metric tensor has components
+\[
+  g_{ij}=g_i\cdot g_j.
+\]
+The inverse matrix $(g^{ij})$ satisfies
+\[
+  g^{ik}g_{kj}=\delta^i_j.
+\]
+The reciprocal basis is
+\[
+  g^i=\sum_j g^{ij}g_j.
+\]
+Then
+\[
+  g^i\cdot g_j=\delta^i_j.
+\]
+This shows exactly how reciprocal bases are computed from the Gram matrix.
+
+\section{Second-pass deepening: covariant and contravariant components}
+
+A vector $v$ may be written as
+\[
+  v=v^ig_i.
+\]
+The coefficients $v^i$ are contravariant components.  The covariant components are
+\[
+  v_i=v\cdot g_i=g_{ij}v^j.
+\]
+Raising and lowering indices uses the metric and its inverse:
+\[
+  v_i=g_{ij}v^j,\qquad v^i=g^{ij}v_j.
+\]
+
+The original reciprocal-basis computations are therefore a concrete finite-dimensional model for tensor index work in geometry and physics.
+
+\section{Second-pass deepening: why tensor products linearize bilinear data}
+
+If $B:V\times W\to k$ is bilinear, it is inconvenient because it has two inputs.  The tensor product turns it into a linear functional
+\[
+  \widetilde B:V\otimes W\to k.
+\]
+This is useful because linear maps are easier to compose, dualize, and represent by matrices.  Many physical quantities, such as stress and inertia, are naturally bilinear before being encoded as tensors.
