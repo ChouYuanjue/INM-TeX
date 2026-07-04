@@ -1,0 +1,138 @@
+\RequirePackage{booktabs}
+% Note-specific style layer for Informal Notes on Mathematics.
+% This file extends the INM-style preamble without rewriting it.
+
+\usepackage{float}
+\usepackage{tabularx}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\usepackage{xparse}
+\usepackage{etoolbox}
+
+% Save todonotes' margin command before defining the requested todo environment.
+\let\inmmargintodo\todo
+\let\todo\relax
+\let\endtodo\relax
+
+\newcommand{\notebadge}[1]{%
+  \tikz[baseline=(badge.base)]\node[
+    rounded corners=3pt,
+    draw=purple!70!black,
+    fill=purple!6,
+    inner xsep=7pt,
+    inner ysep=3pt,
+    line width=.45pt
+  ] (badge) {\sffamily\bfseries\footnotesize\color{purple!70!black} #1};%
+}
+
+\NewDocumentCommand{\notechapter}{m m}{%
+  \cleardoublepage
+  \refstepcounter{chapter}%
+  \setcounter{section}{0}%
+  \setcounter{subsection}{0}%
+  \setcounter{theorem}{0}%
+  \phantomsection
+  \addcontentsline{toc}{chapter}{#1}%
+  \chaptermark{#2}%
+  \markboth{#2}{#2}%
+  \thispagestyle{plain}%
+  \vspace*{0.6em}%
+  \noindent
+  \begin{minipage}[t]{0.66\textwidth}
+    {\usekomafont{chapter}\raggedright #2\par}%
+  \end{minipage}%
+  \hfill
+  \raisebox{0.35em}{\notebadge{#1}}%
+  \par\vspace{0.8em}
+  \noindent{\color{purple!60!black}\rule{\textwidth}{0.7pt}}%
+  \par\vspace{1.0em}%
+}
+
+\tcbset{
+  inm informal box/.style={
+    enhanced,
+    breakable,
+    sharp corners,
+    boxrule=0pt,
+    frame hidden,
+    before skip=9pt,
+    after skip=12pt,
+    left=10pt,
+    right=10pt,
+    top=6pt,
+    bottom=7pt,
+    fonttitle=\sffamily\bfseries
+  }
+}
+
+\newtcolorbox{caution}[1][]{
+  inm informal box,
+  borderline west={3pt}{0pt}{OrangeRed!80!black},
+  colback=OrangeRed!4,
+  title={Caution},
+  coltitle=OrangeRed!80!black,
+  #1
+}
+
+\newtcolorbox{question}[1][]{
+  inm informal box,
+  borderline west={3pt}{0pt}{MidnightBlue},
+  colback=MidnightBlue!4,
+  title={Question},
+  coltitle=MidnightBlue,
+  #1
+}
+
+\newtcolorbox{gap}[1][]{
+  inm informal box,
+  borderline west={3pt}{0pt}{RawSienna!85!black},
+  colback=RawSienna!5,
+  title={Gap},
+  coltitle=RawSienna!85!black,
+  #1
+}
+
+\newtcolorbox{todo}[1][]{
+  inm informal box,
+  borderline west={3pt}{0pt}{RedViolet!80!black},
+  colback=RedViolet!5,
+  title={TODO},
+  coltitle=RedViolet!80!black,
+  #1
+}
+
+% Additional theorem-like environment used by converted notes.
+\declaretheorem[style=thmtheorem,name=Axiom,sibling=theorem]{axiom}
+\tcolorboxenvironment{axiom}{theorem box}
+
+
+% Hyperref anchors for theorem-like environments must include the note chapter;
+% otherwise manually produced note chapters can reuse anchors such as theorem.1.
+\makeatletter
+\@ifundefined{theHtheorem}{}{\renewcommand*{\theHtheorem}{\thechapter.\thesection.\arabic{theorem}}}
+\@ifundefined{theHlemma}{}{\renewcommand*{\theHlemma}{\thechapter.\thesection.\arabic{theorem}}}
+\@ifundefined{theHproposition}{}{\renewcommand*{\theHproposition}{\thechapter.\thesection.\arabic{theorem}}}
+\@ifundefined{theHcorollary}{}{\renewcommand*{\theHcorollary}{\thechapter.\thesection.\arabic{theorem}}}
+\@ifundefined{theHexample}{}{\renewcommand*{\theHexample}{\thechapter.\thesection.\arabic{theorem}}}
+\@ifundefined{theHremark}{}{\renewcommand*{\theHremark}{\thechapter.\thesection.\arabic{theorem}}}
+\@ifundefined{theHques}{}{\renewcommand*{\theHques}{\thechapter.\thesection.\arabic{theorem}}}
+\@ifundefined{theHexercise}{}{\renewcommand*{\theHexercise}{\thechapter.\thesection.\arabic{theorem}}}
+\@ifundefined{theHaxiom}{}{\renewcommand*{\theHaxiom}{\thechapter.\thesection.\arabic{theorem}}}
+\@ifundefined{theHdefinition}{}{\renewcommand*{\theHdefinition}{\thechapter.\thesection.\arabic{theorem}}}
+\@ifundefined{theHclaim}{}{\renewcommand*{\theHclaim}{\thechapter.\thesection.\arabic{theorem}}}
+\@ifundefined{theHfact}{}{\renewcommand*{\theHfact}{\thechapter.\thesection.\arabic{theorem}}}
+\@ifundefined{theHabuse}{}{\renewcommand*{\theHabuse}{\thechapter.\thesection.\arabic{theorem}}}
+\makeatother
+
+
+\makeatletter
+
+% Continuous hidden counters for robust PDF anchors in manually managed note chapters.
+\newcounter{inmfigureanchor}
+\newcounter{inmtableanchor}
+\AtBeginEnvironment{figure}{\stepcounter{inmfigureanchor}}
+\AtBeginEnvironment{table}{\stepcounter{inmtableanchor}}
+\renewcommand*{\theHfigure}{inmfig.\arabic{inmfigureanchor}}
+\renewcommand*{\theHtable}{inmtab.\arabic{inmtableanchor}}
+
+% figure/table PDF anchors are handled by inmfigureanchor/inmtableanchor above.
+\makeatother

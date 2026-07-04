@@ -1,0 +1,43 @@
+\documentclass[11pt,twoside=semi,openright,numbers=noenddot,titlepage=false]{scrbook}
+
+\newcommand{\inmversion}{INM draft \the\year-\twodigits\month-\twodigits\day}
+
+\input{tex/preamble}
+\input{tex/macros}
+\input{tex/Qcircuit.tex}
+\input{tex/note-style.tex}
+
+\title{Informal Notes on Mathematics}
+\subtitle{reorganized English version}
+\author{Runnel Zhang}
+\date{\inmversion}
+
+\begin{document}
+
+\frontmatter
+\maketitle
+
+\IfFileExists{cover-art.png}{%
+  \bgroup
+  \fboxrule=4pt
+  \noindent\fbox{\includegraphics[width=\dimexpr\textwidth-2\fboxsep-2\fboxrule\relax]{cover-art.png}}
+  \egroup
+  \newpage
+}{}
+
+\include{tex/frontmatter/epigraph}
+\include{tex/frontmatter/preface}
+
+\begingroup
+\small
+\sloppy
+\tableofcontents
+\endgroup
+
+\mainmatter
+
+\input{volumes-index}
+
+\backmatter
+
+\end{document}

@@ -1,0 +1,23 @@
+# LaTeX auxiliary files
+*.aux
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.maf
+*.mtc*
+*.out
+*.ptc*
+*.run.xml
+*.synctex.gz
+*.toc
+*.xdv
+*.bbl
+
+# Local extracted text / temporary build output
+inm.txt
+build-log/
+
+# Keep the generated book PDF in the repository
+!inm.pdf
