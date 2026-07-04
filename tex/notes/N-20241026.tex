@@ -1,157 +1,178 @@
-\notechapter{N-20241026}{Zariski Geometry: Varieties, Coordinate Rings, and Sheaves Without Fear}
+\notechapter{N-20241026}{Zariski Geometry: When Functions Become the Space}
 
-\section{The algebra-geometry dictionary}
+\section{Starting from functions, not pictures}
 
-Affine algebraic geometry begins with polynomial equations. Given an ideal
+In elementary geometry, one first draws a space and then studies functions on it. Algebraic geometry often reverses the direction: start with polynomial functions, and let the space be what those functions define.
+
+Given an ideal
 \[
   I\subset k[x_1,\ldots,x_n],
 \]
-its zero set is
+we define the zero set
 \[
   V(I)=\{a\in k^n:f(a)=0\text{ for all }f\in I\}.
 \]
-Conversely, for a set \(X\subset k^n\), the ideal of functions vanishing on it is
+Conversely, a set \(X\subset k^n\) has an ideal of functions vanishing on it:
 \[
   I(X)=\{f:f(x)=0\text{ for all }x\in X\}.
 \]
+This back-and-forth is the first algebra-geometry dictionary.
 
-\[
-\begin{array}{c|c}
-\text{geometry} & \text{algebra}\\
-\hline
-\text{affine variety} & \text{radical ideal}\\
-\text{irreducible variety} & \text{prime ideal}\\
-\text{regular functions} & \text{coordinate ring}\\
-\text{local behavior} & \text{localization / stalks}
-\end{array}
-\]
+\section{Coordinate rings: a space through its functions}
 
-\section{Coordinate rings}
-
-If \(X=V(I)\), its coordinate ring is
+If \(X=V(I)\), the coordinate ring is
 \[
   k[X]=k[x_1,\ldots,x_n]/I(X).
 \]
-This is the ring of polynomial functions on \(X\).
+It is the ring of polynomial functions on \(X\).
 
-Example: for the parabola \(X=V(y-x^2)\),
+For the parabola \(X=V(y-x^2)\),
 \[
   k[X]=k[x,y]/(y-x^2)\cong k[x].
 \]
-The parabola is algebraically the same as a line, even though it is drawn curved in the plane.
+For the hyperbola \(X=V(xy-1)\),
+\[
+  k[X]=k[x,y]/(xy-1)\cong k[x,x^{-1}].
+\]
+The hyperbola is algebraically the affine line with the origin removed. The drawing is curved, but the function ring reveals a simpler identity.
 
-\section{Nullstellensatz as a promise}
+\section{Nullstellensatz: the dictionary becomes reliable}
 
-Over an algebraically closed field, Hilbert's Nullstellensatz says that ideals and algebraic sets match after taking radicals:
+Over an algebraically closed field, Hilbert's Nullstellensatz says
 \[
   I(V(I))=\sqrt I.
 \]
-This tells us that the algebra of polynomial equations remembers the geometry of their common zero set, up to nilpotent information.
+This means that polynomial equations and radical ideals determine each other.
 
-\[
-  \text{radical ideals are the algebraic shadows of affine varieties.}
-\]
+The theorem is not just a technical result. It is a guarantee that algebraic information can faithfully describe geometric zero sets, once nilpotent ambiguity is removed.
 
-\section{The Zariski topology}
+\section{The Zariski topology is coarse on purpose}
 
-Closed sets in the Zariski topology are algebraic sets. This topology is much coarser than the usual Euclidean topology. For example, in \(\mathbb A^1\), proper closed sets are finite sets.
+Closed sets in the Zariski topology are algebraic sets. On the affine line, proper closed sets are finite. Therefore nonempty open sets are very large.
 
-This feels strange at first. But the Zariski topology is designed so that polynomial functions behave naturally. It is not meant to measure physical closeness; it measures algebraic dependence.
+This topology is not designed to model physical closeness. It is designed to model algebraic dependence. If a polynomial vanishes on a large enough open set, it is forced to vanish much more widely than a continuous function would be.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=.45\linewidth]{figures/N-20241026/mumforddrawing.jpg}
-\caption{A useful mental picture: algebraic geometry keeps functions, equations, and shapes tied together.}
+\includegraphics[width=.44\linewidth]{figures/N-20241026/mumforddrawing.jpg}
+\caption{Pictures can guide intuition, but the real geometry is carried by equations and functions.}
 \end{figure}
 
-\section{Regular functions are local}
+\section{Distinguished opens and localization}
 
-On affine space, polynomial functions are regular. On more general open subsets, regular functions may look like fractions
-\[
-  \frac{f}{g},
-\]
-where \(g\) does not vanish on the open set being considered.
+For \(f\in k[X]\), the distinguished open set \(D(f)\) is the region where \(f\ne0\). On this region, \(f\) should be invertible.
 
-This locality is crucial. Geometry is not only about global polynomial formulas; it is about functions that are locally polynomial fractions.
-
-\section{Why sheaves appear}
-
-A sheaf is a device for keeping track of local data and gluing it when the local pieces agree. For regular functions, the sheaf condition says:
-\[
-\begin{array}{c}
-  \text{if functions are defined locally,}\\
-  \text{and they agree on overlaps,}\\
-  \text{then they glue to a unique global function.}
-\end{array}
-\]
-This is not abstract decoration. It is exactly what one expects of functions on a space.
-
-\section{Stalks and germs}
-
-The stalk of a sheaf at a point \(p\) stores the local behavior near \(p\). For regular functions, elements of the stalk are germs: two functions define the same germ if they agree on some neighborhood of \(p\).
-
-The stalk is the algebraic microscope of the variety. It ignores what happens far away and keeps what can be seen arbitrarily close to the point.
-
-%% expanded-on-review
-
-\section{Distinguished opens by example}
-
-In \(\mathbb A^1=\operatorname{Spec}k[x]\), the open set
-\[
-  D(x)=\{\text{points where }x\ne0\}
-\]
-corresponds to allowing \(x\) in denominators. The regular functions on this open set are Laurent polynomials
+For example, in \(\mathbb A^1\), the open set \(D(x)\) has ring of functions
 \[
   k[x,x^{-1}].
 \]
-This is the simplest example of localization.
+This is localization. It is the algebraic operation of allowing denominators that do not vanish on the open set.
 
-In \(\mathbb A^2\), the open set \(D(x)\) removes the \(y\)-axis. On it, \(1/x\) is a perfectly regular function. This is why regular functions cannot be understood only as global polynomials on the whole ambient space.
+This idea is one of the most important technical moves in algebraic geometry: local geometry is controlled by localized rings.
 
-\section{Sheaf gluing in a familiar case}
+\section{Sheaves: local data with a gluing rule}
 
-Cover a space by two open sets \(U\) and \(V\). Suppose we have a regular function \(f_U\) on \(U\) and a regular function \(f_V\) on \(V\). If
+Regular functions are local. A function may be represented by different fractions on different open sets, as long as they agree on overlaps.
+
+A sheaf formalizes this behavior. If a space is covered by opens \(U_i\), and functions \(f_i\) on \(U_i\) agree on every overlap \(U_i\cap U_j\), then they glue to a unique function on the union.
+
+This is not abstraction for its own sake. It is the ordinary behavior of functions, stated carefully enough to work in algebraic geometry.
+
+\section{Stalks: looking through a microscope}
+
+The stalk at a point stores the local behavior near that point. For regular functions, a stalk consists of germs of functions: two functions are the same germ if they agree on some neighborhood of the point.
+
+In algebraic geometry, stalks are often local rings. They are the algebraic microscopes through which one studies smoothness, singularities, and local equations.
+
+
+\section{A local example: two axes crossing}
+
+Consider the curve
 \[
-  f_U|_{U\cap V}=f_V|_{U\cap V},
+  X=V(xy)\subset\mathbb A^2.
 \]
-then the sheaf condition says there is a unique function \(f\) on \(U\cup V\) restricting to both.
-
-This may sound obvious for ordinary functions. That is precisely why it is the correct abstraction. Sheaves formalize the ordinary behavior of local data.
-
-\section{A warning about pictures}
-
-The Zariski topology is too coarse to be drawn faithfully. A line with the Zariski topology is not like a line with the Euclidean topology. Removing finitely many points still leaves a large open set.
-
-So pictures in algebraic geometry should be treated as memory aids, not literal topology. The reliable object is the dictionary between equations, ideals, rings, and local functions.
-
-
-
-\section{One more example: the hyperbola}
-
-Let
+Geometrically it is the union of the two coordinate axes.  Algebraically its coordinate ring is
 \[
-  X=V(xy-1)\subset\mathbb A^2.
+  k[X]=k[x,y]/(xy).
 \]
-Its coordinate ring is
+Away from the origin, each branch looks like an ordinary line.  At the origin, the two branches meet, and the local ring remembers both directions.
+
+On the open set \(D(x)\), the element \(x\) is invertible.  Since \(xy=0\), multiplying by \(x^{-1}\) gives \(y=0\).  Thus on \(D(x)\), only the \(x\)-axis branch remains.  Similarly, on \(D(y)\), only the \(y\)-axis branch remains.
+
+This is a small but useful lesson: localization is not just algebraic manipulation.  It literally focuses attention on the part of the variety where a chosen function does not vanish.
+
+\section{Why the strange topology helps}
+
+The Zariski topology feels strange because its open sets are large.  But large opens are exactly what make polynomial continuation possible.  If two regular functions agree on a nonempty open subset of an irreducible variety, they often must agree much more widely.
+
+This is why the topology is useful for algebraic geometry even though it is poor for measuring distance.  It is built for rigidity, not for analysis.
+
+% substantial-expansion-20260704
+
+\section{Products and unions through rings}
+
+Algebraic operations on rings often reverse geometric operations.  The product of equations gives a union:
 \[
-  k[X]=k[x,y]/(xy-1).
+  V(fg)=V(f)\cup V(g).
 \]
-Since \(xy=1\), the element \(x\) is invertible and \(y=x^{-1}\). Hence
+The sum of ideals gives an intersection:
 \[
-  k[X]\cong k[x,x^{-1}].
+  V(I+J)=V(I)\cap V(J).
 \]
-So the hyperbola is algebraically the affine line with the origin removed. This example is a good reminder that coordinate rings often reveal a simpler shape than the drawing suggests.
+This reversal is a persistent theme.  Geometry and algebra face opposite directions: more equations mean smaller spaces, while larger ideals mean fewer points.
 
+For instance, in \(k[x,y]\), the ideals \((x)\) and \((y)\) define the two coordinate axes.  Their sum \((x,y)\) defines the origin, the intersection of the two axes.
 
-\section{What to remember}
+\section{Radical ideals and forgotten nilpotents}
 
-Zariski geometry is not ordinary geometry with a weird topology. It is geometry rebuilt around polynomial functions.
-
+The ideals \((x)\) and \((x^2)\) have the same classical zero set in \(\mathbb A^1\): both vanish only at \(0\).  But the quotient rings differ:
 \[
-\begin{array}{c}
-  \text{equations define spaces,}\\
-  \text{functions on spaces form rings,}\\
-  \text{local functions form sheaves,}\\
-  \text{stalks record what happens near a point.}
+  k[x]/(x),
+  \qquad
+  k[x]/(x^2).
+\]
+The second ring contains a nonzero nilpotent element.
+
+Classical varieties often pass to radical ideals and forget nilpotents.  Schemes later restore them.  This is one reason the transition from varieties to schemes is not artificial: nilpotent structure is already waiting in simple equations.
+
+\section{Regular functions versus continuous functions}
+
+On a usual topological space, continuous functions are flexible.  They can be changed locally with bump functions.  Regular functions in algebraic geometry are rigid.  They are controlled by polynomial or rational formulas.
+
+This rigidity is why algebraic geometry can extract strong global conclusions from local algebra.  The price is that the topology becomes coarse and unintuitive from an analytic point of view.
+
+\section{Morphisms as pullback of functions}
+
+A map of affine varieties
+\[
+  F:X\to Y
+\]
+induces a pullback of coordinate rings
+\[
+  F^*:k[Y]\to k[X].
+\]
+A function on \(Y\) becomes a function on \(X\) by composition with \(F\).
+
+This reverses arrows:
+\[
+  X\longrightarrow Y
+  \qquad\leadsto\qquad
+  k[Y]\longrightarrow k[X].
+\]
+This arrow reversal is one of the conceptual gates into modern algebraic geometry.  Spaces are studied through their function rings, and maps of spaces become maps of rings in the opposite direction.
+
+\section{A compact dictionary}
+
+The essential translations are:
+\[
+\begin{array}{c|c}
+\text{geometric phrase} & \text{algebraic phrase}\\
+\hline
+\text{zero set} & V(I)\\
+\text{functions on }X & k[X]\\
+\text{remove }f=0 & \text{localize at }f\\
+\text{local behavior at }p & \text{stalk at }p\\
+\text{glue local functions} & \text{sheaf condition}
 \end{array}
 \]
+The point of Zariski geometry is not to make topology strange. It is to let functions define the correct topology for polynomial geometry.

@@ -1,154 +1,244 @@
-\notechapter{N-20240608}{Plane Curves: Equations, Singularities, and Projective Closure}
+\notechapter{N-20240608}{Plane Curves as Algebraic Creatures: Equations, Rings, and Singularities}
 
-\section{Curves as equations}
+\section{The curve is not only the drawing}
 
-A plane algebraic curve is the zero set of a polynomial:
+A plane curve often begins as a picture. Algebraic geometry asks for something more durable: an equation.
+
+Given a polynomial \(f(x,y)\), define
 \[
-  C=V(f)=\{(x,y)\in k^2:f(x,y)=0\}.
+  C=V(f)=\{(x,y):f(x,y)=0\}.
 \]
-This simple definition changes the meaning of geometry. A curve is no longer just a drawn shape; it is controlled by an algebraic equation.
+The drawing of \(C\) may be helpful, but the equation controls its functions, singularities, and intersections.
 
-\[
-\begin{array}{c|c}
-f(x,y) & \text{curve}\\
-\hline
-y-mx-b & \text{line}\\
-x^2+y^2-1 & \text{circle}\\
-y^2-x^3 & \text{cusp}\\
-y^2-x^2(x+1) & \text{nodal cubic}
-\end{array}
-\]
+A curve is therefore a small laboratory where geometry and algebra constantly translate into each other.
 
-\begin{figure}[H]
-\centering
-\includegraphics[width=.55\linewidth]{figures/N-20240608/parabola.pdf}
-\caption{A familiar curve can be treated as an equation, not only as a picture.}
-\end{figure}
+\section{The function ring of a curve}
 
-\section{Coordinate rings}
-
-The coordinate ring of \(C=V(f)\) is
+For \(C=V(f)\), define
 \[
   k[C]=k[x,y]/(f).
 \]
-Two polynomials define the same function on the curve if they differ by a multiple of \(f\). So \(k[C]\) is the algebra of polynomial functions living on the curve.
+This is the coordinate ring of the curve. Two polynomials define the same function on \(C\) if their difference is a multiple of \(f\).
 
-This is one of the main ideas of algebraic geometry:
+For the parabola \(C=V(y-x^2)\),
 \[
-  \text{study a space by studying its functions.}
+  k[C]=k[x,y]/(y-x^2)\cong k[x].
 \]
+So although the parabola is drawn curved, its polynomial function theory is the same as that of a line.
 
-\section{Irreducibility}
+\begin{figure}[H]
+\centering
+\includegraphics[width=.52\linewidth]{figures/N-20240608/parabola.pdf}
+\caption{A parabola is geometrically curved in the plane, but its coordinate ring is as simple as \(k[x]\).}
+\end{figure}
 
-If \(f=gh\), then
+\section{When factorization becomes geometry}
+
+If
+\[
+  f=gh,
+\]
+then
 \[
   V(f)=V(g)\cup V(h).
 \]
-So factorization of polynomials corresponds to decomposition of curves.
-
-For example, \(xy=0\) is the union of the two coordinate axes. It is reducible. A curve given by an irreducible polynomial is a single algebraic piece.
-
-\section{Singular points}
-
-A point \(p=(a,b)\in C\) is singular if
-\[
-  f(a,b)=0,\qquad f_x(a,b)=0,\qquad f_y(a,b)=0.
-\]
-At such a point, the usual tangent line is not well-defined by the linear approximation because the linear part vanishes.
-
-For the cusp \(y^2=x^3\), the origin is singular. For the node \(y^2=x^2(x+1)\), the origin is also singular, but the local shape is different. A cusp has one branch with a sharp turn; a node has two branches crossing.
-
-\section{Tangent cones}
-
-If the lowest-degree nonzero part of \(f\) at a point is \(f_d\), then \(f_d=0\) describes the tangent cone. For a smooth point, this is just one tangent line. For a node, it can be two lines.
+Thus factorization of equations corresponds to decomposition of curves.
 
 Example:
 \[
-  f(x,y)=y^2-x^2-x^3.
+  xy=0
 \]
-The lowest-degree part is
+is the union of the two coordinate axes. The equation is reducible, and the curve is reducible.
+
+This is the first piece of the algebra-geometry dictionary: algebraic factorization can mean geometric splitting.
+
+\section{Smooth points and singular points}
+
+A point \(p=(a,b)\in V(f)\) is singular if
 \[
-  y^2-x^2=(y-x)(y+x),
+  f(a,b)=0,
+  \qquad
+  f_x(a,b)=0,
+  \qquad
+  f_y(a,b)=0.
 \]
-so the tangent cone at the origin consists of the two lines \(y=x\) and \(y=-x\).
+At such a point, the linear part of the equation vanishes. The usual tangent line no longer comes from the first derivative.
 
-\section{Projective closure}
-
-Affine curves can hide points at infinity. To see the whole curve, homogenize the equation. If
+The cusp
 \[
-  f(x,y)=y-x^2,
+  y^2=x^3
 \]
-then the homogenized equation is
+has a singularity at the origin. The node
 \[
-  F(x,y,z)=yz-x^2.
+  y^2=x^2(x+1)
 \]
-The projective closure is \(V(F)\subset\mathbb P^2\). In the chart \(z=1\), we recover the original parabola. On the line at infinity \(z=0\), we get \(-x^2=0\), so \(x=0\), giving the point \([0:1:0]\).
+also has a singularity at the origin, but it looks like two branches crossing. Both are singular, but they are not singular in the same way.
 
-Projective closure is the operation of filling in the missing directions at infinity.
+\section{Tangent cones: the first nonzero shadow}
 
-\section{Bezout as a guiding principle}
-
-A first form of Bezout's theorem says that two projective plane curves of degrees \(m\) and \(n\) meet in \(mn\) points, counted with multiplicity, over an algebraically closed field, provided they have no common component.
-
-Its meaning is that projective geometry restores the correct accounting. Missing intersections at infinity and tangencies are not exceptions; they are counted correctly once the setting is projective and multiplicities are included.
-
-%% expanded-on-review
-
-\section{A coordinate-ring computation}
-
-For the cusp
+When the linear part vanishes, look at the lowest-degree nonzero part of \(f\). If it is \(f_d\), then
 \[
-  C=V(y^2-x^3),
+  f_d=0
 \]
-the coordinate ring is
+is the tangent cone.
+
+For
 \[
-  k[C]=k[x,y]/(y^2-x^3).
+  f(x,y)=y^2-x^2-x^3,
 \]
-A useful parametrization is
+the lowest-degree part is
 \[
-  x=t^2,\qquad y=t^3.
+  y^2-x^2=(y-x)(y+x).
 \]
-This gives a map
+So the tangent cone at the origin consists of the two lines
+\[
+  y=x,
+  \qquad
+  y=-x.
+\]
+This detects the two branches of the node.
+
+\section{The cusp as a ring}
+
+For the cusp \(C=V(y^2-x^3)\), the parametrization
+\[
+  x=t^2,
+  \qquad
+  y=t^3
+\]
+gives a ring map
 \[
   k[x,y]/(y^2-x^3)\longrightarrow k[t],
-  \qquad x\mapsto t^2,\quad y\mapsto t^3.
+  \qquad
+  x\mapsto t^2,
+  \quad
+  y\mapsto t^3.
 \]
-The image is \(k[t^2,t^3]\), not all of \(k[t]\). This algebraic fact remembers the cusp: near the origin the curve is not as smooth as a line.
+Its image is \(k[t^2,t^3]\), not all of \(k[t]\). This failure to become the full polynomial ring reflects the singularity. The cusp is close to a line, but not quite a smooth line.
 
-For the parabola \(y=x^2\), by contrast, the coordinate ring is just \(k[x]\). Algebraically it behaves like a line. This comparison is a good way to feel what singularities do: they make the function ring less simple.
+This example is more memorable than the definition: singularities change the algebra of functions.
 
-\section{Intersection multiplicity by example}
+\section{Intersections: one visible point may count twice}
 
-Consider the line \(y=0\) and the parabola \(y=x^2\). They meet at the origin. Substituting \(y=0\) into \(y=x^2\) gives
+The line \(y=0\) and the parabola \(y=x^2\) meet at the origin. Substituting \(y=0\) into \(y=x^2\) gives
 \[
   x^2=0.
 \]
-So the intersection has multiplicity \(2\). Geometrically, the line is tangent to the parabola.
+The intersection has multiplicity \(2\). Geometrically, the line is tangent to the parabola.
 
-This small example explains why Bezout counts multiplicity. If one only counts visible points, a tangent intersection looks like one point. Algebra sees that the contact is doubled.
+This explains why intersection theory counts multiplicities. A tangent intersection is not the same as a transverse crossing.
 
-\section{Why projective closure changes counting}
+\section{Projective closure repairs missing intersections}
 
-The affine lines \(y=0\) and \(y=1\) do not meet in \(\mathbb A^2\). After homogenizing, they become
+Affine curves may hide points at infinity. Homogenization fills them in. For
 \[
-  y=0,\qquad y-z=0.
+  f(x,y)=y-x^2,
 \]
-In \(\mathbb P^2\), they meet at \([1:0:0]\). Thus projective closure does not add decorative points; it repairs the accounting of intersections.
+the homogenization is
+\[
+  F(x,y,z)=yz-x^2.
+\]
+The projective closure is \(V(F)\subset\mathbb P^2\). In the chart \(z=1\) it is the original parabola. At infinity \(z=0\), it contains the point
+\[
+  [0:1:0].
+\]
 
-This is the same philosophy as projective geometry in the previous note, now applied to polynomial curves.
+This is the same philosophy as projective geometry: complete the affine picture so that geometry stops losing information at the boundary of the chart.
 
+\section{Bezout as a promise of clean accounting}
 
-\section{What to remember}
+A first form of Bezout's theorem says that two projective plane curves of degrees \(m\) and \(n\) meet in \(mn\) points, counted with multiplicity, over an algebraically closed field, provided they have no common component.
 
-Plane curves sit at the meeting point of algebra and geometry:
+One should not first treat this as a formula to memorize. It is a statement that projective geometry and multiplicity create the correct accounting system for intersections.
+
+% substantial-expansion-20260704
+
+\section{Normalization: repairing a singular curve}
+
+The cusp \(y^2=x^3\) is parametrized by
+\[
+  x=t^2,\qquad y=t^3.
+\]
+The parameter line with coordinate \(t\) is smooth.  The map from the line to the cusp is almost one-to-one, but at the cusp it repairs the singularity by replacing the bad point with a smooth parameter.
+
+Algebraically, the coordinate ring of the cusp is
+\[
+  k[t^2,t^3]\subset k[t].
+\]
+Passing to \(k[t]\) is a normalization.  One can think of it as adding the missing function \(t\), which the singular coordinate ring did not contain.
+
+This is a useful slogan:
+\[
+  \text{normalization separates or smooths hidden branches of a curve.}
+\]
+For a node, normalization separates the two crossing branches.  For a cusp, it smooths a single branch with a bad tangent behavior.
+
+\section{Resultants: eliminating a variable}
+
+Intersections can also be studied by eliminating variables.  If two curves are given by
+\[
+  f(x,y)=0,\qquad g(x,y)=0,
+\]
+one may eliminate \(y\) to get a polynomial condition on \(x\).  This is the idea behind the resultant.
+
+For example, intersect
+\[
+  y=x^2,\qquad y=mx+b.
+\]
+Substitution gives
+\[
+  x^2-mx-b=0.
+\]
+The discriminant
+\[
+  m^2+4b
+\]
+tells whether the line meets the parabola in two distinct points, one tangent point, or no real points.  Over an algebraically closed field, the quadratic always has two roots counted with multiplicity.
+
+This elementary calculation is a small preview of Bezout's theorem.
+
+\section{A projective calculation with a line and a conic}
+
+Take the conic
+\[
+  xz-y^2=0
+\]
+and the line
+\[
+  z=0.
+\]
+Substituting \(z=0\) into the conic gives
+\[
+  -y^2=0.
+\]
+Thus \(y=0\), and the intersection point is
+\[
+  [1:0:0].
+\]
+The square indicates multiplicity \(2\).  Geometrically, the line at infinity is tangent to this projective conic.
+
+This example is compact but important: projective closure not only adds the missing point; it also remembers how the curve touches the line at infinity.
+
+\section{Real pictures and algebraically closed accounting}
+
+Over \(\mathbb R\), the circle
+\[
+  x^2+y^2+1=0
+\]
+has no real points.  Over \(\mathbb C\), it has many points.  This is why algebraic geometry often works over algebraically closed fields when stating clean intersection theorems.
+
+Real drawings are valuable, but they can hide complex points.  Bezout's theorem counts in the algebraic world where equations have all their roots.
+
+\section{Takeaway}
+
+Plane curves are the first place where the following translations become tangible:
 \[
 \begin{array}{c|c}
-\text{geometry} & \text{algebra}\\
-\hline
-\text{curve} & \text{polynomial equation}\\
-\text{functions on the curve} & \text{coordinate ring}\\
-\text{decomposition} & \text{factorization}\\
-\text{singular point} & f=f_x=f_y=0\\
-\text{points at infinity} & \text{homogenization}
+\text{equation} & \text{curve}\\
+\text{factorization} & \text{decomposition}\\
+\text{coordinate ring} & \text{functions}\\
+\text{vanishing derivatives} & \text{singularity}\\
+\text{homogenization} & \text{points at infinity}
 \end{array}
 \]
+This is why a curve is more than its graph. It is a geometric object with an algebraic memory.
