@@ -142,7 +142,7 @@ Its inverse is
 \caption{A planar rotation acts linearly on vectors and is represented by \(R_\theta\).}
 \end{figure}
 
-\section{Expanded synthesis and advanced context}
+\section{Beyond the first calculation}
 
 Invertible matrices are automorphisms of finite-dimensional vector spaces.  Gaussian elimination, determinants, adjugates, and block decompositions are different ways to detect or compute the same object: a reversible linear transformation.
 
@@ -159,7 +159,7 @@ The structural hierarchy is as follows. Kernels record what a map forgets, image
 A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
 
 
-\section{Pedagogical repair: inverse as undoing a linear process}
+\section{Inverse as undoing a linear process}
 
 The inverse matrix should be read as an operation that undoes a linear process.  The formula
 \[
@@ -173,7 +173,7 @@ The rotation matrix is a particularly good example because the inverse is visibl
 \]
 This is the first glimpse of orthogonal matrices, where algebraic inverse equals geometric transpose.
 
-\section{Elementary-to-advanced bridge: invertible matrices as a Lie group}
+\section{Invertible matrices as a Lie group}
 
 The set of all invertible $n\times n$ matrices over $\mathbb R$ is
 \[
@@ -191,7 +191,7 @@ The exponential map
 \]
 connects infinitesimal generators to invertible transformations.  Elementary matrix powers and exponentials are thus the entry point to continuous symmetry.
 
-\section{Elementary-to-advanced bridge: determinant as a volume form}
+\section{Determinant as a volume form}
 
 The determinant is not merely a formula for invertibility.  It is the factor by which a linear map scales oriented volume:
 \[
@@ -205,7 +205,7 @@ says that volume scaling composes multiplicatively.
 
 This is why row operations affect determinants in exactly the familiar ways.  Swapping rows reverses orientation, scaling a row scales volume, and adding one row to another shears volume without changing it.
 
-\section{Elementary-to-advanced bridge: polar decomposition}
+\section{Polar decomposition}
 
 Every invertible real matrix has a polar decomposition
 \[
@@ -219,7 +219,7 @@ Geometrically, $P$ stretches along orthogonal principal axes, and $Q$ rotates or
 
 The elementary inverse/rotation examples become clearer through this decomposition.  Orthogonal matrices preserve lengths; positive definite matrices perform anisotropic stretching; a general invertible matrix is both.
 
-\section{Elementary-to-advanced bridge: numerical stability of inverses}
+\section{Numerical stability of inverses}
 
 Although $A^{-1}$ exists when $\det A\ne0$, computing it may be unstable.  The condition number
 \[
@@ -230,7 +230,7 @@ measures how much errors may be amplified.  A tiny determinant is not by itself 
 Thus the elementary criterion $\det A\ne0$ answers existence, while numerical linear algebra asks sensitivity.
 
 % Second-pass deepening for waves 2-4: wave 2
-\section{Second-pass deepening: from row operations to geometry of the general linear group}
+\section{Row operations and the general linear group}
 
 Gaussian elimination writes an invertible matrix as a product of elementary matrices.  Geometrically, elementary matrices are simple transformations: shears, scalings, and swaps.  Thus an invertible linear transformation can be built from elementary geometric moves.  This is the computational skeleton behind the group $GL(n)$.
 
@@ -254,7 +254,7 @@ Orthogonal matrices preserve the inner product, hence all lengths and angles.  T
 \]
 organizes the original examples: rotations are the most rigid, orthogonal maps allow reflections, and invertible maps allow arbitrary linear distortion without collapse.
 
-\section{Second-pass deepening: exponential map and infinitesimal motion}
+\section{Exponential map and infinitesimal motion}
 
 A smooth path $A(t)$ in $GL(n)$ with $A(0)=I$ has derivative $X=A'(0)$, an arbitrary matrix.  Conversely, a matrix $X$ generates the path
 \[

@@ -133,7 +133,7 @@ It equals the determinant of the matrix with columns $u,v,w$, and it measures or
 \]
 is the volume of the parallelepiped spanned by the basis vectors.
 
-\section{Expanded synthesis and advanced context}
+\section{What changes next}
 
 The note's main lesson is that tensor notation is coordinate bookkeeping with invariant meaning.  Tensor products linearize bilinear operations.  Metrics convert vectors and covectors.  Reciprocal bases separate geometric vectors from their components.  Levi-Civita symbols encode orientation.  The formulas look index-heavy, but they are all ways of protecting geometric meaning under a change of basis.
 
@@ -151,7 +151,7 @@ The structural hierarchy is as follows. Kernels record what a map forgets, image
 A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
 
 
-\section{Elementary-to-advanced bridge: dual spaces and reciprocal bases}
+\section{Dual spaces and reciprocal bases}
 
 Given a basis $g_1,g_2,g_3$, the reciprocal basis $g^1,g^2,g^3$ satisfies
 \[
@@ -169,7 +169,7 @@ Under this isomorphism, the covectors $\gamma^i$ correspond to the reciprocal ve
 
 Thus reciprocal bases are not a computational curiosity; they are dual bases transported through the metric.
 
-\section{Elementary-to-advanced bridge: musical isomorphisms}
+\section{Musical isomorphisms}
 
 In differential geometry, a metric $g$ identifies vector fields and covector fields.  The maps are often denoted by musical symbols:
 \[
@@ -186,7 +186,7 @@ The elementary formulas
 \]
 are exactly these operations in coordinates.
 
-\section{Elementary-to-advanced bridge: frames and moving coordinates}
+\section{Frames and moving coordinates}
 
 On a manifold, a basis of tangent vectors varying from point to point is a frame.  Reciprocal frames live in the cotangent bundle.  If $e_i$ is a local frame and $\theta^i$ is the dual coframe, then
 \[
@@ -196,14 +196,14 @@ Differential forms are built from the coframe, while vector fields are built fro
 
 This generalizes the note's reciprocal basis from one vector space to geometry on curved spaces.
 
-\section{Elementary-to-advanced bridge: continuum mechanics notation}
+\section{Continuum mechanics notation}
 
 In continuum mechanics, covariant and contravariant bases appear when coordinates deform with a material body.  The deformation gradient maps reference tangent vectors to current tangent vectors.  Metrics and reciprocal bases are needed because curvilinear coordinate directions are not usually orthonormal.
 
 The tensor notation in the original note is therefore not just abstract algebra.  It is the language needed when coordinates themselves become part of the geometry.
 
 % Second-pass deepening for waves 2-4: wave 2
-\section{Second-pass deepening: metric tensors and Gram matrices}
+\section{Metric tensors and Gram matrices}
 
 Given a non-orthonormal basis $g_1,\ldots,g_n$, the metric tensor has components
 \[
@@ -223,7 +223,7 @@ Then
 \]
 This shows exactly how reciprocal bases are computed from the Gram matrix.
 
-\section{Second-pass deepening: covariant and contravariant components}
+\section{Covariant and contravariant components}
 
 A vector $v$ may be written as
 \[
@@ -240,7 +240,7 @@ Raising and lowering indices uses the metric and its inverse:
 
 The original reciprocal-basis computations are therefore a concrete finite-dimensional model for tensor index work in geometry and physics.
 
-\section{Second-pass deepening: why tensor products linearize bilinear data}
+\section{Why tensor products linearize bilinear data}
 
 If $B:V\times W\to k$ is bilinear, it is inconvenient because it has two inputs.  The tensor product turns it into a linear functional
 \[

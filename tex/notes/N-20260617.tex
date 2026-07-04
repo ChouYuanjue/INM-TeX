@@ -88,7 +88,7 @@ The conceptual endpoint is that Fourier series is linear algebra in the Hilbert 
 \]
 The trigonometric system is an orthogonal basis in an appropriate sense.  Fourier coefficients are coordinates, Parseval's identity is the Pythagorean theorem, and convergence questions ask which topology of function space is being used.
 
-\section{Elementary-to-advanced bridge: Fourier series in Hilbert space}
+\section{Fourier series in Hilbert space}
 
 Let
 \[
@@ -108,7 +108,7 @@ form an orthonormal basis in the Hilbert-space sense.  The Fourier coefficient i
 \]
 Thus Fourier series is orthogonal projection onto an infinite orthonormal basis.
 
-\section{Elementary-to-advanced bridge: Parseval identity}
+\section{Parseval identity}
 
 For $f\in L^2[-\pi,\pi]$, Parseval's identity says
 \[
@@ -118,13 +118,13 @@ This is the Pythagorean theorem in infinite dimensions.  In real sine-cosine not
 
 The elementary coefficient computations in the note are therefore coordinates of a vector in Hilbert space.
 
-\section{Elementary-to-advanced bridge: Gibbs phenomenon}
+\section{Gibbs phenomenon}
 
 At jump discontinuities, Fourier series converges to the midpoint of the jump, but partial sums overshoot near the discontinuity.  The overshoot does not vanish in height as the number of terms grows; it only concentrates closer to the jump.  This is the Gibbs phenomenon.
 
 This explains why Fourier series can converge correctly pointwise while still showing visible oscillations near discontinuities.  It is a warning that convergence mode matters: pointwise, uniform, and $L^2$ convergence behave differently.
 
-\section{Elementary-to-advanced bridge: Sturm--Liouville origin of Fourier bases}
+\section{Sturm--Liouville and Fourier bases}
 
 The functions $\sin nx$ and $\cos nx$ are eigenfunctions of
 \[
@@ -138,7 +138,7 @@ With suitable boundary conditions, this operator is self-adjoint, and its eigenf
 
 Fourier series is therefore one example of Sturm--Liouville expansion.  Other boundary conditions and intervals produce other orthogonal systems.
 
-\section{Elementary-to-advanced bridge: heat and wave equations}
+\section{Heat and wave equations}
 
 For the heat equation on an interval,
 \[
@@ -161,7 +161,7 @@ Fourier modes oscillate in time.
 Thus Fourier series is not only a representation of functions; it diagonalizes differential operators and solves PDEs.
 
 % Second-pass deepening for waves 2-4: wave 4 part 3
-\section{Second-pass deepening: convergence modes of Fourier series}
+\section{Convergence modes of Fourier series}
 
 Fourier series can converge in different senses.  For $f\in L^2$, partial sums converge to $f$ in the $L^2$ norm:
 \[
@@ -171,7 +171,7 @@ For smoother functions, convergence may be pointwise or uniform.  At jumps, Diri
 
 This distinction is essential.  A Fourier series may be excellent for energy approximation while not uniformly accurate near jumps.  Thus the elementary endpoint rules and half-range expansions should always be paired with a statement of the convergence mode.
 
-\section{Second-pass deepening: Fourier transform as the non-periodic limit}
+\section{Fourier transform as the non-periodic limit}
 
 Fourier series decomposes periodic functions into discrete frequencies.  On the real line, the Fourier transform decomposes non-periodic functions into a continuum of frequencies:
 \[
@@ -183,7 +183,7 @@ The inverse transform reconstructs $f$ under suitable hypotheses.  The derivativ
 \]
 This is why Fourier methods solve constant-coefficient differential equations: they diagonalize differentiation.
 
-\section{Second-pass deepening: distributions and weak Fourier series}
+\section{Distributions and weak Fourier series}
 
 Some important objects, such as the Dirac comb
 \[

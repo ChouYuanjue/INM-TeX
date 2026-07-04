@@ -120,7 +120,7 @@ Normality is exactly the condition needed for this product to be well-defined.
 
 The handwritten note draws a circle and a cylinder-like picture, suggesting the intuition that quotienting identifies points and changes the topology.  Algebraic quotient and topological quotient are different constructions, but both create new objects by identifying equivalent elements.
 
-\section{Expanded synthesis and advanced context}
+\section{A bridge outward}
 
 This note moves from extremal planar geometry to polyhedral topology and then to homological algebra.  The bridge is invariant thinking.  A maximal-area triangle is controlled by convex hull geometry.  A polyhedron is controlled by $V-E+F$.  A map of spheres is controlled by degree.  A quotient group is controlled by which elements are declared equivalent.  In each case, the problem becomes manageable after finding the invariant that survives the allowed transformations.
 
@@ -138,7 +138,7 @@ Quotient spaces formalize gluing; products formalize simultaneous coordinates; c
 A quotient exercise is a gluing construction; a compactness exercise is an infinite pigeonhole argument; a homotopy exercise is a controlled deformation; a functorial example says that a construction is compatible with maps. The advanced theory does not add decoration. It explains why the same few operations, such as taking products, quotients, images, kernels, and induced maps, occur throughout topology, algebra, and geometry.
 
 
-\section{Elementary-to-advanced bridge: Euler characteristic}
+\section{Euler characteristic}
 
 Euler's formula for a connected planar graph is
 \[
@@ -156,7 +156,7 @@ where $f_k$ is the number of $k$-simplices.
 
 The important point is invariance: if the triangulation is refined without changing the underlying surface, $\chi$ does not change.  Thus Euler's formula is not only a planar counting trick; it is a topological invariant.
 
-\section{Elementary-to-advanced bridge: homology interpretation of Euler characteristic}
+\section{Euler characteristic and homology}
 
 For a finite simplicial complex, homology groups $H_k$ measure $k$-dimensional holes.  Their dimensions
 \[
@@ -170,7 +170,7 @@ For a sphere, $b_0=1$, $b_2=1$, and all other Betti numbers vanish, so $\chi=2$.
 
 This explains why the same number appears in graph embeddings, triangulations, and surface classification.
 
-\section{Elementary-to-advanced bridge: degree theory}
+\section{Degree theory}
 
 The degree of a map is an integer measuring how many times the domain wraps around the target, counted with orientation.  For a map $f:S^1\to S^1$, the degree is the winding number.  If
 \[
@@ -182,7 +182,7 @@ In higher dimensions, degree theory is used to prove existence theorems.  A nonz
 
 Thus the elementary ``degree'' and quotient-space discussions in the note connect to a robust topological invariant.
 
-\section{Elementary-to-advanced bridge: quotient spaces and identifications}
+\section{Quotient spaces and identifications}
 
 A quotient space is obtained by declaring some points equivalent and treating each equivalence class as one point.  For example, gluing the two ends of an interval gives a circle:
 \[
@@ -193,7 +193,7 @@ Gluing edges of a square can produce a cylinder, Möbius strip, torus, or projec
 The elementary quotient examples are therefore not mere pictures.  They are the language by which topology builds new spaces from old ones.
 
 % Second-pass deepening for waves 2-4: wave 3 A-C part 2
-\section{Second-pass deepening: Euler characteristic as alternating rank}
+\section{Euler characteristic as alternating rank}
 
 For a chain complex
 \[
@@ -207,7 +207,7 @@ This identity is the algebraic reason a count of vertices, edges, and faces equa
 
 For a polyhedral sphere, the chain groups count cells and the homology counts one connected component and one enclosed void.  Hence $\chi=2$.
 
-\section{Second-pass deepening: degree and fixed-point consequences}
+\section{Degree and fixed-point consequences}
 
 Degree theory is not just a way to label maps.  It proves existence.  If a continuous map $f:S^n\to S^n$ has nonzero degree, it is surjective.  Otherwise a missing point would allow the map to contract through $S^n\setminus\{p\}$, whose top homology vanishes, contradicting nonzero degree.
 

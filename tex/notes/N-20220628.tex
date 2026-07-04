@@ -178,7 +178,7 @@ Integrating gives
 \]
 The choice of \(u\) and \(dv\) is guided by which part simplifies after differentiation and which part is easy to integrate.  Logarithms and inverse trigonometric functions often become simpler after differentiation.
 
-\section{Expanded synthesis and advanced context}
+\section{A second lens}
 
 The note is an inventory of the classical calculus toolkit.  Partial fractions exploit algebraic factorization; integration by parts exploits the product rule; substitution exploits the chain rule.  In a more advanced language, all three are ways of choosing coordinates and decompositions so that the differential form becomes elementary.
 
@@ -195,13 +195,13 @@ The structural hierarchy is as follows. Kernels record what a map forgets, image
 A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
 
 
-\section{Pedagogical repair: integration as reverse differentiation}
+\section{Integration as reverse differentiation}
 
 The integration techniques in this note are best remembered as reversed differentiation rules.  Partial fractions reverse the derivative of logarithms and arctangents.  Integration by parts reverses the product rule.  Substitution reverses the chain rule.  Trigonometric substitution is a geometric way of replacing a radical by an identity such as \(1-\sin^2t=\cos^2t\).
 
 A good workflow is therefore: first simplify the algebraic shape of the integrand; next ask which differentiation rule could have produced it; only then choose a technique.  This prevents the common mistake of trying substitution, parts, and partial fractions randomly.
 
-\section{Elementary-to-advanced bridge: substitution as pullback}
+\section{Substitution as pullback}
 
 The elementary substitution rule
 \[
@@ -219,7 +219,7 @@ In several variables the same principle becomes the Jacobian determinant:
 \]
 Thus elementary substitution is the first instance of the change-of-variables theorem.
 
-\section{Elementary-to-advanced bridge: integration by parts and adjoints}
+\section{Integration by parts and adjoints}
 
 Integration by parts comes from the product rule:
 \[
@@ -231,7 +231,7 @@ This formula is also the origin of adjoint differential operators.  For $D=d/dx$
 \]
 Ignoring boundary terms, $D$ is formally skew-adjoint.  This observation is central in Sturm--Liouville theory, Fourier analysis, and PDEs.
 
-\section{Elementary-to-advanced bridge: partial fractions and residues}
+\section{Partial fractions and residues}
 
 Partial fractions decompose a rational function into simple local pieces around its poles.  In complex analysis, the coefficient of $(z-a)^{-1}$ is the residue, and the residue theorem says
 \[

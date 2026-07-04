@@ -549,7 +549,7 @@ Taking absolute values,
 \]
 Since $x_k\ne0$, this contradicts strict diagonal dominance.  Hence $Ax=0$ only has the zero solution and $A$ is invertible.
 
-\section{Expanded synthesis and advanced context}
+\section{Where the idea leads}
 
 This self-review page is not a random list.  Almost every problem asks: can the object be transformed into a standard form without changing the essential quantity?  Determinant problems use row/column operations and block decompositions.  Rank problems use normal forms and null spaces.  Vector-group problems use span equivalence.  Matrix-power problems use eigenvalues, nilpotence, or rank-one structure.  Linear-system problems use the principle that solution sets are affine spaces built from one particular solution plus the null space.
 
@@ -567,7 +567,7 @@ The structural hierarchy is as follows. Kernels record what a map forgets, image
 A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
 
 
-\section{Elementary-to-advanced bridge: rank factorization and normal forms}
+\section{Rank factorization and normal forms}
 
 If $A$ has rank $r$, then it factors as
 \[
@@ -581,7 +581,7 @@ Over a field, elementary row and column operations reduce $A$ to the normal form
 \]
 Over $\mathbb Z$, the analogue is Smith normal form, where divisibility data remain.  This shows why rank is enough over fields but not enough over rings.
 
-\section{Elementary-to-advanced bridge: idempotents as projections}
+\section{Idempotents as projections}
 
 A matrix $P$ satisfying
 \[
@@ -595,7 +595,7 @@ If $P$ is also symmetric, it is an orthogonal projection.  Without symmetry, it 
 
 The note contains several absorption/idempotent problems.  The advanced reading is that these are problems about decomposing a vector space into complementary subspaces.
 
-\section{Elementary-to-advanced bridge: spectral asymptotics of matrix powers}
+\section{Spectral asymptotics of matrix powers}
 
 Many self-review problems ask for $A^n$.  The long-term behavior is governed by eigenvalues and Jordan blocks.  If
 \[
@@ -609,7 +609,7 @@ Thus powers are controlled by exponential factors $\lambda^n$ and polynomial fac
 
 For stochastic-like matrices, the eigenvalue $1$ often gives a limiting projection, while all eigenvalues of modulus less than $1$ decay.  This is the finite-dimensional model of convergence to equilibrium in Markov chains.
 
-\section{Elementary-to-advanced bridge: null spaces and orthogonal complements}
+\section{Null spaces and orthogonal complements}
 
 The identity
 \[
@@ -626,7 +626,7 @@ Indeed,
 This is a Hilbert-space idea in finite-dimensional form: positivity of an inner product turns an algebraic equation into a norm-square equation.
 
 % Second-pass deepening for waves 2-4: wave 2 remaining
-\section{Second-pass deepening: matrix powers, projection components, and stable limits}
+\section{Matrix powers and stable limits}
 
 When computing $A^n$, diagonalization is only one case.  More generally, the behavior of powers is governed by spectral projectors.  If the eigenvalues split into dominant and decaying parts, then $A^n$ often approaches a projection onto the dominant eigenspace after normalization.
 
@@ -640,7 +640,7 @@ for all $n\ge1$.  If $A=P+N$ with $PN=NP=0$ and $N^n\to0$, then
 \]
 This pattern explains many self-review problems where a matrix has a stable part and a nilpotent or contracting part.
 
-\section{Second-pass deepening: row space, column space, and rank factorization}
+\section{Row space, column space, and rank factorization}
 
 A rank factorization $A=BC$ can be constructed by choosing a basis of the column space.  The matrix $B$ embeds the coordinate space of the image into the output; the matrix $C$ records the coordinate functionals that produce those image coordinates from the input.
 
@@ -652,7 +652,7 @@ The map first forgets kernel directions, then identifies the quotient with the i
 
 Thus rank factorization is not just a computational compression.  It is the canonical quotient-image structure written in matrices.
 
-\section{Second-pass deepening: positivity through Gram forms}
+\section{Positivity through Gram forms}
 
 Identities such as $\operatorname{rank}(AA^T)=\operatorname{rank}A$ rely on positivity:
 \[

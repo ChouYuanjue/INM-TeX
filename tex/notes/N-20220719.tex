@@ -103,7 +103,7 @@ A plane can be described by a point \(p_0\) and a normal vector \(n\):
 \]
 This equation is often more useful than a picture.  Parallelism of planes becomes parallelism of normal vectors.  Perpendicularity of a line and a plane becomes parallelism between the line direction and the plane normal.
 
-\section{Expanded synthesis and advanced context}
+\section{The organizing idea}
 
 Solid geometry trains an important habit: always ask what ambient plane contains the objects you are comparing.  Many false arguments in space come from treating skew lines as if they were coplanar.  Later, vector algebra solves this with span and dot products; projective geometry solves it with incidence; linear algebra solves it with subspaces and dimensions.
 
@@ -121,7 +121,7 @@ The structural hierarchy is as follows. Kernels record what a map forgets, image
 A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
 
 
-\section{Elementary-to-advanced bridge: affine geometry behind point-line-plane relations}
+\section{Affine geometry of points, lines, and planes}
 
 Solid geometry often begins with points, lines, and planes.  In affine geometry, a line through points $p,q$ is
 \[
@@ -135,7 +135,7 @@ Incidence questions become linear-dependence questions among direction vectors.
 
 This explains the elementary tests: parallelism is dependence of direction vectors; coplanarity is rank at most two; intersection of planes is solving a linear system.
 
-\section{Elementary-to-advanced bridge: projective completion}
+\section{Projective completion}
 
 Parallel lines do not meet in affine geometry, but they meet at points at infinity in projective geometry.  Projective space $\mathbb P^n$ consists of one-dimensional subspaces of $k^{n+1}$.  A point is written in homogeneous coordinates
 \[
@@ -145,7 +145,7 @@ Affine space sits inside projective space as the chart $x_0\ne0$.
 
 Adding points at infinity makes many incidence theorems cleaner because parallel and intersecting cases become one case.
 
-\section{Elementary-to-advanced bridge: Grassmannians}
+\section{Grassmannians}
 
 The set of all $k$-dimensional linear subspaces of an $n$-dimensional vector space is the Grassmannian
 \[
@@ -155,7 +155,7 @@ Lines through the origin in $k^3$ form $Gr(1,3)=\mathbb P^2$.  Planes through th
 
 Thus the collection of all possible directions of lines and planes is itself a geometric space.  The elementary act of choosing a line direction is a point in a Grassmannian.
 
-\section{Elementary-to-advanced bridge: exterior algebra and incidence}
+\section{Exterior algebra and incidence}
 
 A line direction spanned by $u$ and a plane direction spanned by $v,w$ can be encoded by wedge products:
 \[
@@ -172,7 +172,7 @@ This gives a coordinate-free version of determinant tests for coplanarity.
 The original point-line-plane exercises are exactly the practical computations needed for affine and projective geometry.  Direction vectors become points in Grassmannians; determinant tests become wedge-product incidence; parallel cases become ordinary intersections after projective completion.
 
 % Second-pass deepening for waves 2-4: wave 4 part 1
-\section{Second-pass deepening: incidence via ranks}
+\section{Incidence via ranks}
 
 In three-dimensional analytic geometry, incidence conditions are rank conditions.  Points $P_0,P_1,P_2,P_3$ are coplanar iff the direction vectors
 \[
@@ -182,7 +182,7 @@ are linearly dependent.  Equivalently, the determinant formed by these three vec
 
 A line intersects a plane when the linear system consisting of the line equation and plane equation is solvable.  A line is parallel to a plane when its direction vector lies in the kernel of the plane's normal functional.  These are all linear-algebraic conditions.
 
-\section{Second-pass deepening: projective duality of points and planes}
+\section{Projective duality of points and planes}
 
 In projective three-space, a plane is given by a linear equation
 \[

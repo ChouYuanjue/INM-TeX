@@ -128,7 +128,7 @@ The entries may change completely, but trace, determinant, characteristic polyno
 
 This is the central lesson behind the tensor discussion: coordinate arrays are useful only when we know how they transform.
 
-\section{Expanded synthesis and advanced context}
+\section{A higher-level view}
 
 The note begins with $u\times(v\times w)$ and ends near tensors.  That is a natural progression.  The vector triple product says a coordinate-looking identity is really a geometric projection formula.  The scalar triple product says determinants measure oriented volume.  Tensor language says coordinate arrays must transform correctly if they are to represent genuine objects.  Linear algebra becomes mature when one stops identifying an object with one of its coordinate descriptions.
 
@@ -146,7 +146,7 @@ The structural hierarchy is as follows. Kernels record what a map forgets, image
 A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
 
 
-\section{Elementary-to-advanced bridge: linear maps versus matrices}
+\section{Linear maps versus matrices}
 
 A linear map $T:V\to W$ is independent of coordinates.  A matrix appears only after choosing a basis of $V$ and a basis of $W$.  If $[v]_B$ is the coordinate column of $v$ in basis $B$, then a matrix $A$ represents $T$ by
 \[
@@ -160,7 +160,7 @@ For an endomorphism $T:V\to V$, if $P$ is the transition matrix from a new basis
 \]
 Therefore trace, determinant, rank, and characteristic polynomial are invariants of the linear map, because they survive similarity.
 
-\section{Elementary-to-advanced bridge: diagrams for basis change}
+\section{Diagrams for basis change}
 
 Basis change is easiest to remember as a commuting diagram:
 \[
@@ -174,7 +174,7 @@ Changing the coordinate isomorphism $[\,]_B$ changes the bottom arrow by conjuga
 
 This is a functorial idea: choosing coordinates is an isomorphism from an abstract vector space to $k^n$.  Matrix algebra is the transported version of coordinate-free linear algebra.
 
-\section{Elementary-to-advanced bridge: bilinear maps and tensor products}
+\section{Bilinear maps and tensor products}
 
 A bilinear map
 \[
@@ -193,7 +193,7 @@ Matrix multiplication itself is a contraction of tensors: indices repeated once 
 The original correction from vector triple product to linear maps and matrices is mathematically natural.  Vector identities teach invariant geometric operations; matrix representations teach how invariant maps acquire coordinate arrays.  The bridge between them is tensor language: it records which parts are geometric and which parts are basis-dependent.
 
 % Second-pass deepening for waves 2-4: wave 2
-\section{Second-pass deepening: basis change as naturality of coordinates}
+\section{Basis change as naturality of coordinates}
 
 The note's basis-change formulas become more meaningful when written as isomorphisms.  A basis $B$ is an isomorphism
 \[
@@ -215,7 +215,7 @@ while endomorphisms transform by similarity
 \]
 The first has two independent coordinate changes; the second uses the same space on both sides.
 
-\section{Second-pass deepening: tensors as multilinear natural transformations}
+\section{Tensors as multilinear natural transformations}
 
 A tensor of type $(r,s)$ on a vector space $V$ can be viewed as a multilinear map with $r$ vector outputs and $s$ covector inputs, or equivalently as an element of
 \[

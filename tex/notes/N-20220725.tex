@@ -118,7 +118,7 @@ Swapping two adjacent entries changes the inversion number by exactly one, so th
 
 The determinant is multilinear in the columns and changes sign when two columns are exchanged.  Geometrically, it is oriented volume.  If two columns are equal or linearly dependent, the volume collapses to zero.  This explains why the alternating sum over permutations is the correct formula: each term records one way to choose entries from different rows and columns, with orientation determined by the permutation sign.
 
-\section{Expanded synthesis and advanced context}
+\section{A higher-level view}
 
 A determinant measures signed volume.  Row operations are geometric transformations of volume: swapping two basis vectors changes orientation, scaling a row scales volume, and adding a multiple of one row to another shears without changing volume.  The inversion formula, row-operation rules, and eigenvalue tricks are not separate facts; they are three languages for the same alternating multilinear function.
 
@@ -136,7 +136,7 @@ The structural hierarchy is as follows. Kernels record what a map forgets, image
 A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
 
 
-\section{Elementary-to-advanced bridge: determinant as an alternating multilinear form}
+\section{Determinant as alternating volume}
 
 The determinant can be defined as the unique alternating multilinear function
 \[
@@ -151,7 +151,7 @@ The permutation formula
 \]
 is therefore not arbitrary.  It is the coordinate expression of the alternating property.
 
-\section{Elementary-to-advanced bridge: exterior algebra}
+\section{Exterior algebra}
 
 Exterior algebra packages alternating products.  The wedge product satisfies
 \[
@@ -165,7 +165,7 @@ Thus determinant is the scalar by which the top exterior power is scaled.
 
 This viewpoint explains why determinants measure oriented volume and why row dependence forces determinant zero: dependent vectors wedge to zero.
 
-\section{Elementary-to-advanced bridge: orientation and determinant line}
+\section{Orientation and determinant line}
 
 The one-dimensional space $\Lambda^n V$ is called the determinant line.  A choice of nonzero element of $\Lambda^n V$ is a choice of volume form; a choice up to positive scalar is an orientation.
 
@@ -178,7 +178,7 @@ Since this line is one-dimensional, the induced map is multiplication by a scala
 The elementary inversion-number definition of the determinant is therefore a combinatorial way to compute the action of a linear map on oriented volume.
 
 % Second-pass deepening for waves 2-4: wave 2
-\section{Second-pass deepening: why signs of permutations are forced}
+\section{Why signs of permutations are forced}
 
 The determinant is alternating: swapping two columns changes sign.  The sign of a permutation is exactly the bookkeeping device that records how many swaps are needed.  If
 \[
@@ -192,7 +192,7 @@ that sends each transposition to $-1$.
 
 This uniqueness explains why every determinant formula has the same sign pattern.  Any alternating multilinear volume function must transform under permutations by this sign character.
 
-\section{Second-pass deepening: minors as exterior coordinates}
+\section{Minors as exterior coordinates}
 
 The $k\times k$ minors of a matrix describe the induced map on $\Lambda^kV$.  If $A:V\to W$, then
 \[
@@ -206,7 +206,7 @@ This gives a conceptual meaning to rank tests.  The condition $\operatorname{ran
 \]
 which is equivalent to all $k\times k$ minors vanishing.  Thus minors are not arbitrary subdeterminants; they are coordinates of an exterior-power map.
 
-\section{Second-pass deepening: Cramer's rule from volume ratios}
+\section{Cramer's rule from volume ratios}
 
 Cramer's rule replaces one column of $A$ by $b$.  Geometrically, solving $Ax=b$ asks for the coordinates of $b$ in the parallelepiped basis given by the columns of $A$.  The coordinate $x_i$ is the ratio of two oriented volumes:
 \[

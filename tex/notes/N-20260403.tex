@@ -43,7 +43,7 @@ The annotated source image is better represented as notation rather than as a sc
 \]
 Here \(D\) is the integration region, \(f(x,y)\) is the integrand, and \(d\sigma\) is the area element.  The term \(f(\xi_i,\eta_i)\Delta\sigma_i\) is the contribution of one small cell in a Riemann sum.  The limit says that the mesh size \(\lambda\) tends to zero.
 
-\section{Expanded synthesis and advanced context}
+\section{Further context}
 
 A double integral is the continuous version of adding weighted area elements.  Its most important conceptual move is to separate the integrand from the measure of the region.
 
@@ -79,7 +79,7 @@ The formula
 \]
 for continuous $f$ on connected compact $D$ says that the average value of $f$ is achieved somewhere.  It is the two-dimensional analogue of the one-variable integral mean value theorem.
 
-\section{Elementary-to-advanced bridge: double integrals as measure integrals}
+\section{Double integrals as measure integrals}
 
 A double integral over a plane region $D$ is an integral with respect to two-dimensional Lebesgue measure:
 \[
@@ -93,7 +93,7 @@ Tonelli's theorem says that for nonnegative measurable $f$,
 \]
 without needing prior integrability.  Fubini's theorem gives the same iterated formula for integrable functions.
 
-\section{Elementary-to-advanced bridge: product measures}
+\section{Product measures}
 
 The reason iterated integrals work is product measure.  If $(X,\mu)$ and $(Y,\nu)$ are measure spaces, their product has measure $\mu\times\nu$ satisfying
 \[
@@ -103,7 +103,7 @@ Rectangles generate the product sigma-algebra.  General regions are built from r
 
 Thus the elementary partition of a plane region into small rectangles is the Riemann-sum shadow of product measure.
 
-\section{Elementary-to-advanced bridge: change of variables theorem}
+\section{Change of variables theorem}
 
 For a $C^1$ diffeomorphism $T:U\to V$,
 \[
@@ -118,13 +118,13 @@ The theorem is not merely computational: it says integration is compatible with 
 The original Riemann-sum definition, region splitting, symmetry, and mean-value exercises are all preserved.  The advanced layer says that they belong to measure theory: double integrals use product measure, Fubini/Tonelli justify iterated integration, and change of variables is measure transformation under a differentiable map.
 
 % Second-pass deepening for waves 2-4: wave 4 part 2
-\section{Second-pass deepening: Fubini failures and why hypotheses matter}
+\section{Fubini failures and why hypotheses matter}
 
 For nonnegative functions, Tonelli's theorem allows iterated integration even if the integral is infinite.  For sign-changing functions, Fubini requires integrability of $|f|$.  Without that hypothesis, changing order may change the answer or make one order meaningless.
 
 This matters because elementary calculus often trains order-switching as a geometric skill, but advanced analysis adds a convergence condition.  The region must be described correctly, and the function must be integrable in the appropriate sense.
 
-\section{Second-pass deepening: symmetry as group action on measure}
+\section{Symmetry as group action on measure}
 
 If a region $D$ is invariant under a transformation $g$ and the measure is preserved, then
 \[

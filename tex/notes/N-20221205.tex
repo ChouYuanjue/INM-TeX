@@ -206,7 +206,7 @@ can be proved by deciding whether a distinguished element is chosen.  If it is n
 
 This is the basic style of double counting: count the same collection in two ways.  It is more robust than algebraic manipulation because it explains why the identity is true.
 
-\section{Expanded synthesis and advanced context}
+\section{Conceptual synthesis}
 
 This lecture is not just ``sets and counting.''  It introduces three ways of thinking that remain important everywhere: logical translation, structural counting, and representation switching.  De Morgan turns set algebra into propositional logic; inclusion--exclusion counts by correcting overcounting; binomial coefficients count subsets and coefficients at once.  These are the first signs that combinatorics is both discrete and algebraic.
 
@@ -220,7 +220,7 @@ This perspective separates different layers of a problem. A dot product belongs 
 When returning to the original examples, identify the natural object before computing. If the problem is about concurrence or collinearity, projective or affine tools may be natural. If it is about distance, angle, or orthogonality, metric tools are essential. If it is about flux or circulation, differential forms and orientation explain the signs. The advanced viewpoint makes the elementary solution more disciplined rather than more abstract for its own sake.
 
 
-\section{Elementary-to-advanced bridge: inclusion--exclusion as Möbius inversion}
+\section{Inclusion--exclusion as Möbius inversion}
 
 The original inclusion--exclusion formulas are a special case of Möbius inversion on a poset.  For a finite poset $P$, suppose functions $f,g:P\to R$ satisfy
 \[
@@ -240,7 +240,7 @@ when $A\subseteq B$.  Inclusion--exclusion is precisely Möbius inversion on thi
 
 This gives a structural explanation of the alternating signs: they are not a trick; they are the inverse of the zeta summation operator on the subset poset.
 
-\section{Elementary-to-advanced bridge: incidence algebra}
+\section{Incidence algebra}
 
 The incidence algebra of a finite poset consists of functions $h(x,y)$ defined for $x\le y$, with convolution
 \[
@@ -257,7 +257,7 @@ for $x\le y$.  The Möbius function is its inverse:
 
 Thus counting by inclusion--exclusion is algebra inside the incidence algebra.  This viewpoint unifies subset counting, divisor sums in number theory, and partition-lattice formulas.
 
-\section{Elementary-to-advanced bridge: generating functions}
+\section{Generating functions}
 
 If $a_n$ counts objects of size $n$, the ordinary generating function is
 \[
@@ -273,7 +273,7 @@ Generating functions convert counting problems into algebraic manipulation.  The
   a_n=[x^n]A(x).
 \]
 
-\section{Elementary-to-advanced bridge: probabilistic method}
+\section{Probabilistic method}
 
 The pigeonhole principle says that if the average load is greater than a threshold, some box exceeds the threshold.  The probabilistic method generalizes this: if a random object has positive probability of satisfying a property, then such an object exists.
 
@@ -286,7 +286,7 @@ then there exists an outcome with $X=0$.  This converts existence problems into 
 The elementary counting exercises in the note are therefore the deterministic surface of a broader probabilistic existence method.
 
 % Second-pass deepening for waves 2-4: wave 3 A-C part 1
-\section{Second-pass deepening: inclusion--exclusion beyond finite pictures}
+\section{Inclusion--exclusion beyond finite pictures}
 
 Inclusion--exclusion for three sets says
 \[
@@ -300,7 +300,7 @@ This binomial identity is the local reason the formula works.
 
 The same principle becomes sieve theory in number theory.  To count integers not divisible by any prime in a set $P$, one subtracts multiples of single primes, adds multiples of products of two primes, and so on.  The elementary Venn formula therefore becomes the combinatorial skeleton of the Eratosthenes sieve and its analytic descendants.
 
-\section{Second-pass deepening: generating functions as lossless compression}
+\section{Generating functions as lossless compression}
 
 A generating function stores an entire sequence in one analytic object.  Recurrences become equations, convolution becomes multiplication, and asymptotic behavior can sometimes be read from singularities.  If
 \[

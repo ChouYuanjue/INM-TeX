@@ -33,7 +33,7 @@ For a vector field $F$, the flux integral is
 \]
 with sign determined by orientation.
 
-\section{Expanded synthesis and advanced context}
+\section{The next layer}
 
 First-kind integrals integrate scalar density against geometric measure; second-kind integrals integrate vector fields through oriented curves or surfaces.  The difference is density versus flux.
 
@@ -69,7 +69,7 @@ For surface integrals, the same distinction holds.  The scalar surface integral 
 
 For curves, the geometric element is $|r'(t)|\,dt$.  For surfaces, it is $|r_u\times r_v|\,du\,dv$.  These are the same idea: the derivative of a parametrization tells how much the parameter domain is stretched into the actual geometric object.
 
-\section{Elementary-to-advanced bridge: scalar integrals versus forms}
+\section{Scalar integrals versus forms}
 
 A first-kind line integral
 \[
@@ -89,7 +89,7 @@ uses the metric area element, while a flux integral integrates a two-form or an 
 
 The elementary distinction between first and second kind is therefore the first encounter with the difference between metric measure and oriented differential forms.
 
-\section{Elementary-to-advanced bridge: flux as a two-form}
+\section{Flux as a two-form}
 
 For a vector field $F=(P,Q,R)$ in $\mathbb R^3$, the flux form is
 \[
@@ -107,26 +107,26 @@ This is more than notation.  Differential forms automatically encode orientation
 \]
 The usual cross-product formula is the coordinate expression of this pullback.
 
-\section{Elementary-to-advanced bridge: orientation bundles}
+\section{Orientation bundles}
 
 A surface may or may not admit a globally consistent normal direction.  Orientable surfaces, such as the sphere and torus, do.  The Möbius strip does not.  Flux integrals require an orientation, so they are globally well-defined only on oriented surfaces or after choosing local orientations carefully.
 
 This explains why surface orientation is not a minor sign convention.  It is a topological property of the surface.
 
-\section{Elementary-to-advanced bridge: manifolds with boundary}
+\section{Manifolds with boundary}
 
 A curve or surface used in integration is an example of a manifold.  A parametrized curve is a one-dimensional manifold; a surface is a two-dimensional manifold.  Boundaries appear naturally: a surface patch has boundary curves, and Stokes' theorem relates integration over the boundary to integration over the interior.
 
 Thus the elementary parametrization formulas are local coordinate charts for manifolds.  The advanced language keeps the same computations but removes dependence on a single global parametrization.
 
 % Second-pass deepening for waves 2-4: wave 4 part 2
-\section{Second-pass deepening: parametrization invariance}
+\section{Parametrization invariance}
 
 A well-defined geometric integral should not depend on the chosen parametrization.  For a first-kind line integral, reparametrizing $t=\phi(s)$ changes $|r'(t)|dt$ into $|(r\circ\phi)'(s)|ds$, so the value is unchanged for orientation-preserving reparametrizations.
 
 For a one-form integral, orientation matters.  Reversing the parametrization changes sign.  This is exactly what should happen for work or circulation: traversing a path backward reverses the accumulated oriented effect.
 
-\section{Second-pass deepening: surface normals as choices of orientation}
+\section{Surface normals as choices of orientation}
 
 For a parametrized surface $r(u,v)$, the vector $r_u\times r_v$ depends on the order of parameters.  Swapping $u$ and $v$ reverses orientation.  The flux integral is therefore an integral over an oriented surface, not merely over a set of points.
 

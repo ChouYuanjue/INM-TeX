@@ -109,7 +109,7 @@ This immediately gives Euler's inequality
 \]
 with equality iff the triangle is equilateral.  The proof in the note uses the angle bisector through the incenter, intersections with the circumcircle, and similar triangles to derive a product relation.  The key point is that the inequality is not a random radius estimate; it is the nonnegativity of $d^2$.
 
-\section{Expanded synthesis and advanced context}
+\section{Why the pattern matters}
 
 This chapter is a small map of classical geometry.  Ceva and Menelaus are ratio theorems, almost projective in flavor.  Ptolemy is metric and cyclic.  Simson line turns perpendicular projections into collinearity.  Euler line organizes triangle centers, and Euler's formula links local radii with the global placement of centers.  The proofs constantly switch languages: area, similarity, complex numbers, cyclic angles, and centers.  That switching is the real skill of plane geometry.
 
@@ -127,7 +127,7 @@ The structural hierarchy is as follows. Kernels record what a map forgets, image
 A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
 
 
-\section{Elementary-to-advanced bridge: barycentric coordinates}
+\section{Barycentric coordinates}
 
 For a triangle $ABC$, barycentric coordinates write a point $P$ as
 \[
@@ -137,13 +137,13 @@ The ratios in Ceva and Menelaus are naturally expressed through barycentric coor
 
 Ceva's theorem becomes a product condition on ratios because three cevians are concurrent exactly when their barycentric coordinate equations have a common solution.
 
-\section{Elementary-to-advanced bridge: projective transformations}
+\section{Projective transformations}
 
 Ceva, Menelaus, and many incidence theorems are projective: they remain true under projective transformations.  A projective transformation sends lines to lines and preserves incidence, but not lengths or angles.
 
 This explains why ratio and cross-ratio methods are so powerful.  They use quantities that survive projective changes.  One may move a complicated triangle configuration to a simpler projective position, prove the statement there, and transfer it back.
 
-\section{Elementary-to-advanced bridge: Ptolemy and inversive geometry}
+\section{Ptolemy and inversive geometry}
 
 Ptolemy's theorem characterizes cyclic quadrilaterals:
 \[
@@ -153,7 +153,7 @@ for a cyclic quadrilateral $ABCD$.  Inversive geometry explains why cyclic confi
 
 Many circle theorems, including Simson line configurations, become simpler after an inversion sends one circle to a line or normalizes the circumcircle.
 
-\section{Elementary-to-advanced bridge: elliptic and hyperbolic analogues}
+\section{Elliptic and hyperbolic analogues}
 
 Classical Euclidean triangle geometry has analogues in spherical and hyperbolic geometry.  Ceva-type and Menelaus-type theorems survive with trigonometric replacements.  For example, in spherical geometry, side lengths and angles interact through sine laws rather than linear ratios.
 
@@ -164,19 +164,19 @@ This shows which parts of theorems are affine/projective and which depend on Euc
 The original list of Ceva, Menelaus, Ptolemy, Simson, and Euler-line facts is not just a catalogue.  It spans three geometries: affine ratio geometry, projective incidence geometry, and inversive circle geometry.  The advanced reconstruction should keep the elementary proofs while identifying which invariance principle makes each theorem natural.
 
 % Second-pass deepening for waves 2-4: wave 4 part 1
-\section{Second-pass deepening: Ceva and Menelaus as dual affine statements}
+\section{Ceva and Menelaus as dual affine statements}
 
 Ceva concerns concurrence of cevians; Menelaus concerns collinearity of points on sides.  In barycentric coordinates, these become dual linear-algebraic conditions.  Concurrence means three lines have a common solution.  Collinearity means three points satisfy one linear equation.
 
 This duality is why the product of ratios appears in both theorems, with reciprocal-looking signs.  The elementary ratio-chasing proof is a coordinate proof in the affine\-/projective plane.
 
-\section{Second-pass deepening: Euler line and affine covariance}
+\section{Euler line and affine covariance}
 
 The centroid, circumcenter, orthocenter, and nine-point center belong to metric triangle geometry, but some constructions behave well under affine maps and others do not.  The centroid is affine: it is the average of vertices.  Orthocenter and circumcenter depend on perpendicularity, so they are metric.
 
 The Euler line therefore mixes affine and metric structures.  Understanding which points survive affine transformations clarifies why some triangle centers are more universal than others.
 
-\section{Second-pass deepening: Simson line through projection}
+\section{Simson line through projection}
 
 The Simson line theorem says that projections of a point on the circumcircle onto the three sides of a triangle are collinear.  This can be interpreted through oriented angles and cyclic quadrilaterals, but also through projective degeneration: as a point moves on the circumcircle, a family of pedal triangles degenerates exactly when the point lies on the circumcircle.
 

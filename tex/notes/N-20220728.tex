@@ -122,7 +122,7 @@ The cross product is not merely a computational formula.  It combines metric inf
 
 The word ``product'' appears in different senses.  A Cartesian or categorical product is defined by a universal property.  A dot product is a scalar-valued bilinear form.  A cross product is a vector-valued alternating operation.  Keeping these meanings separate prevents confusion: the same English word does not mean the same mathematical structure.
 
-\section{Expanded synthesis and advanced context}
+\section{What changes next}
 
 This note connects spatial vectors and categorical products through the word ``structure.''  In vector geometry, a basis decomposes every vector into coordinates.  In category theory, a product decomposes maps into pairs of maps.  Coordinates answer ``what are the components of this vector?''  Universal properties answer ``what data is equivalent to a map into this object?''
 
@@ -140,7 +140,7 @@ The structural hierarchy is as follows. Kernels record what a map forgets, image
 A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
 
 
-\section{Elementary-to-advanced bridge: cross product as Hodge dual of wedge product}
+\section{Cross product and Hodge duality}
 
 The cross product in $\mathbb R^3$ is often introduced by the determinant formula.  The deeper reason it exists is the combination of an inner product, an orientation, and exterior algebra.  First form the wedge product
 \[
@@ -156,7 +156,7 @@ Then
 \]
 This explains why the cross product is special to three dimensions.  In general dimensions, the wedge product exists, but there is not usually a vector-valued binary cross product.
 
-\section{Elementary-to-advanced bridge: scalar triple product as volume form}
+\section{Scalar triple product as volume form}
 
 The scalar triple product is
 \[
@@ -168,7 +168,7 @@ In exterior algebra this is the coefficient of the top-degree form:
 \]
 Thus the scalar triple product is oriented volume.  The vector triple product identities are coordinate expressions of algebraic identities involving wedge product, contraction, and the metric.
 
-\section{Elementary-to-advanced bridge: Lie algebra of rotations}
+\section{Lie algebra of rotations}
 
 A vector $\omega\in\mathbb R^3$ defines a skew-symmetric matrix $[\omega]_\times$ by
 \[
@@ -186,14 +186,14 @@ The space of skew-symmetric $3\times3$ matrices is the Lie algebra $\mathfrak{so
 
 The elementary right-hand rule is the visible geometric form of orientation in this Lie algebra.
 
-\section{Elementary-to-advanced bridge: categorical product versus vector product}
+\section{Categorical versus vector products}
 
 The original note contrasts categorical products with vector products.  In a category, a product $A\times B$ is characterized by projection maps and a universal property: for every object $X$ with maps $X\to A$ and $X\to B$, there is a unique map $X\to A\times B$ making the diagram commute.
 
 The cross product $u\times v$ is not a categorical product.  It is an operation depending on dimension, metric, and orientation.  This contrast is useful: the same word ``product'' can mean either a universal construction or a geometric bilinear operation.
 
 % Second-pass deepening for waves 2-4: wave 2
-\section{Second-pass deepening: why the cross product is exceptional}
+\section{Why the cross product is exceptional}
 
 The cross product is a bilinear map
 \[
@@ -207,7 +207,7 @@ once a metric and orientation are chosen.
 
 In $\mathbb R^2$, a wedge product of two vectors is an area scalar.  In $\mathbb R^4$, a wedge product of two vectors is a genuine $2$-vector with six independent components, not an ordinary vector.  This explains why formulas involving $u\times v$ should not be blindly generalized to higher dimensions.
 
-\section{Second-pass deepening: angular velocity and infinitesimal rotations}
+\section{Angular velocity and infinitesimal rotations}
 
 If a rigid body rotates with angular velocity $\omega$, the instantaneous velocity of a point at position $r$ is
 \[
@@ -219,6 +219,6 @@ In matrix form, this is $v=[\omega]_\times r$, where $[\omega]_\times$ is skew-s
 \]
 is a rotation matrix.  Thus the cross product is not just a static area operation; it is the infinitesimal generator of rotations in three-dimensional mechanics.
 
-\section{Second-pass deepening: universal property versus geometric product}
+\section{Universal property versus geometric product}
 
 The categorical product $A\times B$ is determined by projections and a universal mapping property.  The vector cross product is determined by metric, orientation, and dimension.  Putting them side by side is pedagogically useful because it prevents a common mistake: the same word ``product'' does not mean the same structure.  In advanced mathematics, understanding a construction means knowing which data it depends on and which universal property or invariance characterizes it.

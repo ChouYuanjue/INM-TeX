@@ -292,7 +292,7 @@ The note repeatedly warns against applying formulas mechanically.  The important
   \item rank is the robust language for the singular cases where determinants vanish.
 \end{itemize}
 
-\section{Expanded synthesis and advanced context}
+\section{The lesson behind it}
 
 This note is a determinant-method toolbox.  Vandermonde handles power columns; block triangular form factors determinants; Laplace expansion exploits zeros; row and column transformations simplify structure; recursion evaluates patterned determinants; Cramer's rule solves nonsingular systems; rank handles singular systems.  The conceptual progression is from explicit determinant computation to the structural question of linear dependence.
 
@@ -310,7 +310,7 @@ The structural hierarchy is as follows. Kernels record what a map forgets, image
 A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
 
 
-\section{Elementary-to-advanced bridge: determinant through exterior powers}
+\section{Determinant through exterior powers}
 
 The determinant tricks in this note become more coherent through exterior algebra.  A matrix $A:V\to V$ induces a map on the top exterior power:
 \[
@@ -320,7 +320,7 @@ Since $\Lambda^n V$ is one-dimensional, this induced map is multiplication by a 
 
 Laplace expansion, row operations, and block triangular formulas are all coordinate expressions of how $A$ acts on oriented volume.  For instance, if two columns become dependent, their wedge product is zero, so the determinant is zero.
 
-\section{Elementary-to-advanced bridge: Schur complement}
+\section{Schur complement}
 
 For a block matrix
 \[
@@ -338,7 +338,7 @@ is the Schur complement of $A$ in $M$.
 
 This single formula explains many block determinant tricks.  It also appears in Gaussian elimination, conditional covariance matrices, numerical linear algebra, and optimization.
 
-\section{Elementary-to-advanced bridge: matrix determinant lemma}
+\section{Matrix determinant lemma}
 
 A rank-one update has a particularly simple determinant formula:
 \[
@@ -352,7 +352,7 @@ This is useful when a complicated determinant is a simple matrix plus a low-rank
 
 Many contest determinant problems secretly create low-rank updates by adding rows or columns.  The advanced formula names the structure behind the trick.
 
-\section{Elementary-to-advanced bridge: rank varieties}
+\section{Rank varieties}
 
 The condition $\operatorname{rank}A\le r$ is algebraic: it is equivalent to the vanishing of all $(r+1)\times(r+1)$ minors.  Therefore matrices of rank at most $r$ form an algebraic variety in affine space.
 
@@ -367,7 +367,7 @@ The elementary rank/minor criteria are thus equations defining geometric spaces.
 Cramer's rule solves a nonsingular system by ratios of determinants.  Rank criteria handle the singular cases.  The advanced view says: the nonsingular matrices form the open set where the determinant volume form is nonzero; singular matrices lie on the determinantal hypersurface; rank strata describe how badly invertibility fails.
 
 % Second-pass deepening for waves 2-4: wave 2 remaining
-\section{Second-pass deepening: determinant identities as low-rank geometry}
+\section{Determinant identities as low-rank geometry}
 
 Many determinant problems are solved by adding all rows to one row, subtracting rows, or recognizing that a matrix has the form
 \[
@@ -381,7 +381,7 @@ when $D$ is invertible.  If $D$ is diagonal, this turns a large determinant into
 
 Geometrically, a rank-one update changes the image of the unit cube only in one coupled direction.  Most independent volume scaling is still done by $D$; the determinant lemma measures the one additional shear/stretch contribution.
 
-\section{Second-pass deepening: Schur complements and eliminating variables}
+\section{Schur complements and eliminating variables}
 
 Block Gaussian elimination is not merely a determinant shortcut.  If
 \[
@@ -398,7 +398,7 @@ The Schur complement is the effective system after eliminating $x$.
 
 This interpretation connects determinant computation, solving linear systems, conditional covariance in probability, and constrained quadratic optimization.
 
-\section{Second-pass deepening: determinantal varieties and singular loci}
+\section{Determinantal varieties and singular loci}
 
 The rank condition $\operatorname{rank}A\le r$ defines a determinantal variety.  Its equations are all $(r+1)$-minors.  The singular matrices form the hypersurface $\det A=0$, and matrices of lower rank form deeper singular strata inside it.
 

@@ -98,7 +98,7 @@ The note rewrites the alternating sum by separating odd and even denominators:
 \]
 After simplification, this becomes a sum of paired fractions in which a factor \(1979\) appears in the numerator.  The important observation is that \(1979\) is prime and is coprime to the denominators appearing after cancellation, so if the rational number is written in lowest terms, the factor \(1979\) cannot disappear into the denominator.  Hence it must divide \(p\).
 
-\section{Expanded synthesis and advanced context}
+\section{The next abstraction}
 
 Both problems use the same philosophy: do not expand everything.  For power sums, pair symmetric terms.  For congruence sequences, take finite differences.  For rational sums, reorganize the denominator structure so that a prime factor becomes visible.  These are all examples of choosing the right invariant before calculating.
 
@@ -116,7 +116,7 @@ The advanced bridge is functional-analytic. Uniform convergence is convergence i
 To use this viewpoint when rereading the original examples, identify the hidden stability condition. A Taylor expansion asks for control of the remainder. A change of variables asks for differentiability and Jacobian control. Termwise differentiation of a series asks for uniform convergence of derivative series. A differential-equation formula asks whether the operator is invertible under the imposed initial or boundary data. The elementary computation is the visible part; the advanced theory names the hypotheses that make it legitimate.
 
 
-\section{Elementary-to-advanced bridge: finite differences as discrete derivatives}
+\section{Finite differences as derivatives}
 
 The finite difference operator
 \[
@@ -138,7 +138,7 @@ Therefore every integer-valued polynomial can be written as an integer linear co
 \]
 This is much more natural for divisibility than the monomial basis $1,n,n^2,\ldots$.
 
-\section{Elementary-to-advanced bridge: integer-valued polynomials}
+\section{Integer-valued polynomials}
 
 A polynomial $f(x)\in\mathbb Q[x]$ is integer-valued if $f(n)\in\mathbb Z$ for all $n\in\mathbb Z$.  The ring of integer-valued polynomials is
 \[
@@ -152,7 +152,7 @@ over $\mathbb Z$.
 
 This explains why binomial coefficients appear in divisibility identities.  They are the correct integral coordinate system for polynomial functions on integers.
 
-\section{Elementary-to-advanced bridge: p-adic valuation intuition}
+\section{P-adic valuation intuition}
 
 The exponent of a prime $p$ in $n$ is the $p$-adic valuation $v_p(n)$.  It satisfies
 \[
@@ -167,7 +167,7 @@ For factorials, Legendre's formula is
 \]
 This allows precise control of divisibility of binomial coefficients.
 
-\section{Elementary-to-advanced bridge: discrete calculus}
+\section{Discrete calculus}
 
 Summation is inverse to finite difference, just as integration is inverse to differentiation.  If $\Delta F(n)=f(n)$, then
 \[
@@ -176,7 +176,7 @@ Summation is inverse to finite difference, just as integration is inverse to dif
 This is the discrete fundamental theorem of calculus.  Many finite-sum identities in the original note are telescoping identities in disguise.
 
 % Second-pass deepening for waves 2-4: wave 3 A-C part 3
-\section{Second-pass deepening: finite differences and congruences}
+\section{Finite differences and congruences}
 
 If a sequence is defined by polynomial expressions, finite differences lower degree and often expose divisibility.  Suppose $f(n)$ is integer-valued.  Expanding in the binomial basis,
 \[
@@ -186,7 +186,7 @@ makes congruence properties more transparent because $\binom nk$ has built-in di
 
 This is especially useful in problems asking to prove that a certain expression is divisible by $m$ for all integers $n$.  Instead of expanding powers, one may show that the relevant finite differences eventually become multiples of $m$, then rebuild the sequence by summation.
 
-\section{Second-pass deepening: p-adic lifting viewpoint}
+\section{P-adic lifting viewpoint}
 
 Many divisibility exercises become sharper when one tracks $v_p$ separately.  A typical pattern is that a congruence modulo $p$ can be lifted to a congruence modulo $p^k$ under suitable derivative conditions.  This is the idea behind Hensel lifting.
 

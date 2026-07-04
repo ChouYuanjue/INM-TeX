@@ -205,7 +205,7 @@ The polynomial
 \]
 has all elements of \(\mathbb F_{p^n}\) as roots, and it factors over \(\mathbb F_p\) as the product of all monic irreducible polynomials whose degrees divide \(n\).  This is a central organizing fact for finite-field factorization.
 
-\section{Expanded synthesis and advanced context}
+\section{What survives later}
 
 Finite fields turn algebra into arithmetic.  Roots of polynomials become elements of finite extensions, irreducibility becomes a modular phenomenon, and Frobenius gives a canonical symmetry.  This is why finite fields appear in coding theory and cryptography: their algebra is rich but completely finite and computable.
 
@@ -222,7 +222,7 @@ The structural hierarchy is as follows. Kernels record what a map forgets, image
 A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
 
 
-\section{Expanded synthesis and advanced context}
+\section{How the pieces fit}
 
 A finite field is where group theory, ring theory, linear algebra, and number theory meet.  Addition gives a vector space over \(\mathbb F_p\); multiplication gives a cyclic group on nonzero elements; Frobenius gives a canonical symmetry; irreducible polynomials give field extensions.  Polynomial factorization over finite fields is therefore not just a computational task, but a compact model of algebra itself.
 
@@ -240,7 +240,7 @@ The structural hierarchy is as follows. Kernels record what a map forgets, image
 A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
 
 
-\section{Elementary-to-advanced bridge: Frobenius automorphism}
+\section{Frobenius automorphism}
 
 In a finite field of characteristic $p$, the Frobenius map is
 \[
@@ -258,7 +258,7 @@ For $\mathbb F_{p^n}$, the Galois group over $\mathbb F_p$ is cyclic generated b
 \]
 This is the cleanest first example of a Galois group.
 
-\section{Elementary-to-advanced bridge: irreducible-polynomial counting}
+\section{Irreducible-polynomial counting}
 
 Elements of $\mathbb F_{q^n}$ are roots of
 \[
@@ -276,7 +276,7 @@ By Möbius inversion,
 \]
 This is a direct bridge from elementary polynomial factorization to finite-field enumeration.
 
-\section{Elementary-to-advanced bridge: coding theory}
+\section{Coding theory}
 
 Finite fields are the alphabet for many error-correcting codes.  A linear code is a subspace
 \[
@@ -290,7 +290,7 @@ Reed--Solomon codes evaluate low-degree polynomials over finite fields:
 \]
 The fact that a low-degree polynomial cannot have too many roots is exactly what gives error correction.
 
-\section{Elementary-to-advanced bridge: algebraic geometry over finite fields}
+\section{Algebraic geometry over finite fields}
 
 Solving polynomial equations over finite fields leads to algebraic varieties over finite fields.  Counting their points is a central research problem.  The simplest example is a curve $C$ over $\mathbb F_q$, where one studies
 \[
@@ -301,7 +301,7 @@ The Weil bounds relate point counts to topology-like invariants of the curve.
 Thus elementary finite-field polynomial factorization is the first step toward modern arithmetic geometry.
 
 % Second-pass deepening for waves 2-4: wave 3 A-C part 3
-\section{Second-pass deepening: finite fields as vector spaces plus cyclic multiplication}
+\section{Finite fields: vectors and cyclic units}
 
 A finite field $\mathbb F_{p^n}$ is simultaneously an $n$-dimensional vector space over $\mathbb F_p$ and a field.  Its additive structure is
 \[
@@ -311,7 +311,7 @@ while its nonzero multiplicative group is cyclic of order $p^n-1$.
 
 This dual nature explains many finite-field constructions.  Addition is linear algebra; multiplication is encoded by reducing polynomials modulo an irreducible polynomial; Frobenius is both field automorphism and $\mathbb F_p$-linear map.
 
-\section{Second-pass deepening: irreducible polynomials as field-building data}
+\section{Irreducible polynomials as field-building data}
 
 Choosing an irreducible polynomial $f(x)$ of degree $n$ over $\mathbb F_p$ constructs
 \[
