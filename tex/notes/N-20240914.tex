@@ -1,122 +1,55 @@
-\notechapter{N-20240914}{Divisors on Curves: Zeros, Poles, and the Shape of Meromorphic Functions}
+\notechapter{N-20240914}{Divisors on Curves: The Bookkeeping of Zeros, Poles, and Functions}
 
-\section{Why count zeros and poles}
+\section{A ledger for meromorphic functions}
 
-On a Riemann surface, a meromorphic function can have zeros and poles. Instead of listing them informally, we package them into a divisor.
-
-A divisor is a finite formal sum
+A meromorphic function on a compact Riemann surface has zeros and poles. Instead of listing them in prose, we record them in a divisor:
 \[
-  D=\sum_p n_p[p],
+  D=\sum_p n_p[p].
 \]
-where \(n_p\in\mathbb Z\) and only finitely many \(n_p\) are nonzero. Positive coefficients record zeros; negative coefficients record poles.
+Positive coefficients record zeros or permissions. Negative coefficients record poles or debts.
 
-\section{Principal divisors}
-
-For a nonzero meromorphic function \(f\), define its principal divisor by
+This is the central metaphor of the chapter:
 \[
-  (f)=\sum_p \operatorname{ord}_p(f)[p].
+  \text{a divisor is a ledger for allowed behavior at points.}
 \]
-This records all zeros and poles of \(f\), with multiplicity.
 
-On the Riemann sphere, the rational function
+\section{Principal divisors: the ledger of one function}
+
+For a nonzero meromorphic function \(f\), its principal divisor is
 \[
-  f(z)=\frac{(z-a)^2}{z-b}
+  (f)=\sum_p\operatorname{ord}_p(f)[p].
 \]
-has divisor
-\[
-  (f)=2[a]-[b]-[\infty],
-\]
-because the total degree of a principal divisor on a compact Riemann surface is zero.
-
-\section{Degree}
-
-The degree of a divisor is
-\[
-  \deg D=\sum_p n_p.
-\]
-For a principal divisor on a compact Riemann surface,
-\[
-  \deg(f)=0.
-\]
-This says that zeros and poles balance.
-
-\section{Divisors as permissions}
-
-A divisor \(D\) can be read as a rule for allowed poles and required zeros. Define
-\[
-  L(D)=\{f\text{ meromorphic}: (f)+D\ge0\}\cup\{0\}.
-\]
-If \(D\) is positive, it allows poles bounded by \(D\).
-
-On \(\mathbb{CP}^1\), the space \(L(n[\infty])\) consists of polynomials of degree at most \(n\):
-\[
-  L(n[\infty])=\{a_0+a_1z+\cdots+a_nz^n\}.
-\]
-So \(\ell(n[\infty])=n+1\).
-
-\section{Line bundles without panic}
-
-A line bundle is a family of one-dimensional vector spaces varying over a curve. Locally it looks like \(U\times\mathbb C\), but globally the local pieces may be glued with nontrivial transition functions.
-
-Divisors produce line bundles. The line bundle \(\mathcal O(D)\) is designed so that its sections are meromorphic functions obeying the permission rule encoded by \(D\).
-
-This is why divisors are not merely bookkeeping. They control spaces of functions and sections.
-
-\section{The canonical divisor}
-
-Holomorphic \(1\)-forms also have zeros. Their divisor class is called the canonical divisor \(K\). It measures the intrinsic differential geometry of the curve.
-
-For a compact Riemann surface of genus \(g\),
-\[
-  \deg K=2g-2.
-\]
-This number already remembers the topology of the surface.
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=.42\linewidth]{figures/N-20240914/1cycle.pdf}
-\caption{A curve carries both topology and analytic data. Divisors are one way to connect them.}
-\end{figure}
-
-\section{Riemann--Roch as a counting theorem}
-
-The Riemann--Roch theorem says
-\[
-  \ell(D)-\ell(K-D)=\deg D+1-g.
-\]
-This formula should not be read first as a technical spell. It is a counting theorem: it tells us how many meromorphic functions are allowed by a divisor, corrected by topology and differential forms.
-
-For \(X=\mathbb{CP}^1\), \(g=0\), and \(D=n[\infty]\), it gives \(\ell(D)=n+1\), matching polynomials of degree at most \(n\).
-
-\section{Hurwitz in one paragraph}
-
-If \(f:X\to Y\) is a nonconstant holomorphic map of compact Riemann surfaces of degree \(d\), the Hurwitz formula is
-\[
-  2g_X-2=d(2g_Y-2)+\sum_{p\in X}(e_p-1).
-\]
-The integer \(e_p\) is the ramification index at \(p\). The formula says that topology changes under covering maps exactly by the ramification correction.
-
-%% expanded-on-review
-
-\section{Three examples on the Riemann sphere}
-
-On \(\mathbb{CP}^1\), the function \(z-a\) has one zero at \(a\) and one pole at \(\infty\):
+On the Riemann sphere, the function \(z-a\) has divisor
 \[
   (z-a)=[a]-[\infty].
 \]
-The function \(1/(z-a)\) has divisor
+The function
 \[
-  \left(\frac1{z-a}\right)=-[a]+[\infty].
+  \frac{z-a}{z-b}
 \]
-The function \((z-a)/(z-b)\) has divisor
+has divisor
 \[
   \left(\frac{z-a}{z-b}\right)=[a]-[b].
 \]
-These examples are small, but they show the whole idea: a divisor records the balance sheet of zeros and poles.
+Zeros and poles balance:
+\[
+  \deg(f)=0.
+\]
+This is the simplest global constraint on rational functions.
 
-\section{Riemann--Roch on the Projective Line}
+\section{Reading a divisor as permission}
 
-Let \(D=n[\infty]\). The condition \((f)+D\ge0\) says that \(f\) may have a pole at infinity of order at most \(n\), and no other poles. Such functions are exactly polynomials of degree at most \(n\):
+Given a divisor \(D\), define
+\[
+  L(D)=\{f\text{ meromorphic}:(f)+D\ge0\}\cup\{0\}.
+\]
+This is the vector space of functions whose poles are no worse than \(D\) allows.
+
+For example, on \(\mathbb{CP}^1\), take
+\[
+  D=n[\infty].
+\]
+Then \(L(D)\) consists of polynomials of degree at most \(n\):
 \[
   1,z,z^2,\ldots,z^n.
 \]
@@ -124,25 +57,136 @@ So
 \[
   \ell(D)=n+1.
 \]
-Since \(g=0\), Riemann--Roch predicts
+This example should be kept close. It is the friendly face of the general theory.
+
+\section{Line bundles: permission becomes geometry}
+
+A line bundle is a family of one-dimensional vector spaces varying over a curve. Locally it looks like
 \[
-  \ell(D)-\ell(K-D)=n+1.
+  U\times\mathbb C,
 \]
-For \(n\ge0\), the correction term \(\ell(K-D)\) vanishes, and the formula becomes the elementary dimension count above.
+but the local pieces may glue nontrivially.
 
-This is the right way to first meet Riemann--Roch: on the sphere it says something one can already verify by hand.
+A divisor \(D\) determines a line bundle \(\mathcal O(D)\). Its sections are the geometric version of functions satisfying the permission rule encoded by \(D\).
 
-\section{What not to overread}
+Thus divisors are not just notation for zeros and poles. They produce spaces of sections, and those spaces are the objects one can count.
 
-Divisors are not a replacement for geometry. They are a language for one kind of geometric question: which functions or sections can exist with prescribed zeros and poles?
+\section{The canonical divisor}
 
-The danger is to memorize the notation while forgetting the picture. Whenever \(D\) appears, ask what behavior it permits. Whenever \(L(D)\) appears, ask which functions survive those permissions.
-
-
-\section{What to remember}
-
-Divisors turn zeros and poles into algebra. Line bundles turn divisor conditions into spaces of sections. Riemann--Roch tells us how large those spaces are.
-
+Holomorphic \(1\)-forms also have zeros. Their divisor class is called the canonical divisor \(K\). For a compact Riemann surface of genus \(g\),
 \[
-  \text{geometry asks which functions exist, and divisors say what behavior is allowed.}
+  \deg K=2g-2.
 \]
+The formula already links analysis and topology. A differential form knows something about the number of handles of the surface.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.42\linewidth]{figures/N-20240914/1cycle.pdf}
+\caption{A curve is simultaneously analytic and topological; divisors help transfer information between these views.}
+\end{figure}
+
+\section{Riemann--Roch without intimidation}
+
+The theorem says
+\[
+  \ell(D)-\ell(K-D)=\deg D+1-g.
+\]
+It counts the functions allowed by \(D\), with a correction term involving the canonical divisor.
+
+On \(\mathbb{CP}^1\), this becomes the elementary fact that polynomials of degree at most \(n\) form an \((n+1)\)-dimensional space. In that case \(g=0\), and for \(D=n[\infty]\) with \(n\ge0\), the correction term disappears.
+
+So Riemann--Roch is deep, but its first example is not mysterious. It extends a familiar polynomial dimension count to arbitrary compact Riemann surfaces.
+
+\section{Hurwitz as topology with branch points}
+
+If \(f:X\to Y\) is a nonconstant holomorphic map of compact Riemann surfaces of degree \(d\), then
+\[
+  2g_X-2=d(2g_Y-2)+\sum_{p\in X}(e_p-1).
+\]
+The correction term records ramification. Locally, ramification means the map looks like
+\[
+  z\mapsto z^{e_p}.
+\]
+Thus the formula says that global topology changes according to local branching.
+
+% substantial-expansion-20260704
+
+\section{A divisor game on the sphere}
+
+Let us play the simplest possible game.  On \(\mathbb{CP}^1\), ask for meromorphic functions with at most a double pole at infinity and no other poles.  The answer is
+\[
+  L(2[\infty])=\operatorname{span}\{1,z,z^2\}.
+\]
+If we also require a zero at \(0\), we are asking for
+\[
+  L(2[\infty]-[0]).
+\]
+The allowed functions are now
+\[
+  az+bz^2,
+\]
+so the dimension drops from \(3\) to \(2\).
+
+This is how divisors should feel: adding a pole allowance increases freedom, while imposing a zero condition removes freedom.
+
+\section{Degree as a first estimate}
+
+The degree of a divisor
+\[
+  D=\sum_p n_p[p]
+\]
+is
+\[
+  \deg D=\sum_p n_p.
+\]
+A positive degree suggests more allowed poles than required zeros, so one expects more functions.  A negative degree usually means the conditions are too strict.
+
+This intuition is made precise in many cases.  On a compact Riemann surface, if \(\deg D<0\), then
+\[
+  L(D)=0.
+\]
+Indeed, a nonzero meromorphic function has principal divisor of degree \(0\), so \((f)+D\ge0\) would force a nonnegative divisor of negative total degree, impossible.
+
+\section{Canonical divisors through examples}
+
+On \(\mathbb{CP}^1\), the differential \(dz\) has a double pole at infinity.  In the coordinate \(w=1/z\),
+\[
+  dz=-w^{-2}\,dw.
+\]
+Thus the canonical divisor has degree \(-2\), matching
+\[
+  2g-2=-2
+\]
+for genus \(0\).
+
+On a torus, \(g=1\), so \(\deg K=0\).  This matches the existence of a nowhere-vanishing holomorphic differential.  The formula \(\deg K=2g-2\) is therefore not merely symbolic; it reflects the geometry of different surfaces.
+
+\section{Why Riemann--Roch has a correction term}
+
+The naive guess would be that the dimension of \(L(D)\) is roughly
+\[
+  \deg D+1-g.
+\]
+Riemann--Roch says this guess is corrected by
+\[
+  \ell(K-D).
+\]
+This correction measures hidden differentials compatible with the opposite divisor condition.  It is the reason the theorem is both a counting formula and a duality statement.
+
+The formula therefore has two personalities:
+\[
+\begin{array}{c|c}
+\text{counting side} & \ell(D)\text{ counts functions}\\
+\text{duality side} & \ell(K-D)\text{ counts differential obstructions}
+\end{array}
+\]
+
+\section{What not to forget}
+
+Divisors are useful because they turn local analytic behavior into algebraic data. A zero is not merely a point where a function vanishes; it is an entry in a global accounting system. A pole is not merely a blow-up; it is a controlled permission.
+
+The core question behind this chapter is:
+\[
+  \text{given allowed zeros and poles, which functions can exist?}
+\]
+Riemann--Roch is the grand answer to that question.

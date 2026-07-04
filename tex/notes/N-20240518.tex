@@ -1,18 +1,17 @@
-\notechapter{N-20240518}{Projective Geometry: Homogeneous Coordinates, Infinity, and Duality}
+\notechapter{N-20240518}{Projective Geometry as the Art of Removing Exceptions}
 
-\section{Why add points at infinity}
+\section{The annoyance of parallel lines}
 
-In the Euclidean plane, two nonparallel lines meet, but parallel lines do not. Projective geometry removes this exception. Parallel lines meet at a point at infinity.
+Euclidean geometry has a small but persistent exception: two lines meet unless they are parallel. Projective geometry removes the exception by adding points at infinity.
 
-This is not merely a trick for drawing perspective. It makes geometry cleaner: incidence statements no longer need special cases.
+This is not a cosmetic choice. It changes the grammar of geometry. Statements about incidence become cleaner, and perspective drawing becomes natural.
 
-The guiding principle is:
+The guiding sentence is:
 \[
-  \text{projective geometry prefers incidence over distance.}
+  \text{projective geometry sacrifices distance to save incidence.}
 \]
-Lengths and angles are not the basic objects. Points, lines, and their incidence relations are.
 
-\section{The projective line}
+\section{Homogeneous coordinates are ratios}
 
 The projective line over a field \(k\) is
 \[
@@ -22,135 +21,171 @@ where
 \[
   [x:y]=[\lambda x:\lambda y]\qquad(\lambda\ne0).
 \]
-The pair \([x:y]\) is a homogeneous coordinate. It does not describe a point of \(k^2\); it describes a line through the origin in \(k^2\).
+The pair \([x:y]\) is not a point in \(k^2\). It is a line through the origin in \(k^2\).
 
-The affine chart \(y\ne0\) identifies most points with numbers:
-\[
-  [x:y]=[x/y:1].
-\]
-The remaining point is \([1:0]\), the point at infinity.
+When \(y\ne0\), the point becomes \([x/y:1]\). The missing point \([1:0]\) is the point at infinity.
 
-\section{The projective plane}
-
-The projective plane is
+Similarly,
 \[
   \mathbb P^2(k)=\{[x:y:z]:(x,y,z)\ne(0,0,0)\}/\sim.
 \]
-The affine chart \(z\ne0\) gives ordinary coordinates
+The chart \(z\ne0\) is the ordinary affine plane, and the equation \(z=0\) is the line at infinity.
+
+\section{A coordinate scene: where parallel lines meet}
+
+The affine lines
 \[
-  [x:y:z]=[x/z:y/z:1].
+  y=0,
+  \qquad
+  y=1
 \]
-The line at infinity is the set \(z=0\). Thus the affine plane is not discarded. It becomes one chart inside a larger geometry.
-
-\section{Lines and incidence}
-
-A projective line in \(\mathbb P^2\) is given by a homogeneous linear equation
+are parallel. Homogenizing them gives
 \[
-  ax+by+cz=0.
+  y=0,
+  \qquad
+  y-z=0.
 \]
-The coefficients \([a:b:c]\) themselves are homogeneous. Multiplying them by a nonzero scalar gives the same line.
-
-Two distinct projective lines always meet. Algebraically, solving two independent homogeneous linear equations in three variables gives a one-dimensional solution space, hence a projective point.
-
-For example, the affine parallel lines \(y=0\) and \(y=1\) become
+On the line at infinity \(z=0\), both equations force \(y=0\), so the intersection is
 \[
-  y=0,\qquad y-z=0.
+  [1:0:0].
 \]
-At infinity \(z=0\), both contain the point \([1:0:0]\).
-
-\section{Duality}
-
-A point has coordinates \([x:y:z]\). A line has coordinates \([a:b:c]\). Incidence is the equation
-\[
-  ax+by+cz=0.
-\]
-This symmetry suggests projective duality: theorems about points and lines often have dual versions obtained by exchanging the words point and line.
-
-\[
-\begin{array}{c|c}
-\text{statement} & \text{dual statement}\\
-\hline
-\text{two points determine a line} & \text{two lines determine a point}\\
-\text{points lie on a line} & \text{lines pass through a point}
-\end{array}
-\]
-
-\section{Projective transformations}
-
-An invertible linear map \(A:k^3\to k^3\) sends lines through the origin to lines through the origin. Therefore it induces a transformation of \(\mathbb P^2\):
-\[
-  [v]\longmapsto [Av].
-\]
-These are projective transformations.
-
-They preserve incidence, but not distances or angles. This is why circles may become ellipses in perspective drawings, while straight lines remain straight.
-
-\section{Conics projectively}
-
-A conic in the projective plane is given by a homogeneous quadratic equation
-\[
-  X^TAX=0,
-\]
-where \(X=(x,y,z)^T\) and \(A\) is a symmetric matrix. In affine coordinates \(z=1\), this becomes the usual quadratic equation in \(x\) and \(y\).
-
-The projective viewpoint explains why ellipses, parabolas, and hyperbolas belong to one family. They are different affine shadows of projective conics.
-
-%% expanded-on-review
-
-\section{A picture of affine charts}
-
-The projective plane is covered by three standard affine charts:
-\[
-  U_x=\{x\ne0\},\qquad U_y=\{y\ne0\},\qquad U_z=\{z\ne0\}.
-\]
-The usual affine plane is only the chart \(U_z\). Points on the line at infinity are not mysterious; they are simply points that do not appear in this chosen chart.
+Thus projective geometry does not say that parallel lines visibly meet in the affine plane. It says that the affine plane was missing one direction point.
 
 \begin{center}
 \begin{tikzpicture}[scale=0.95]
   \draw[thick] (-3,0) -- (3,0);
-  \draw[thick] (0,-1.7) -- (0,1.7);
-  \draw[very thick,blue] (-2.8,1.1) -- (2.8,1.1);
-  \node at (2.6,1.35) {$z=0$};
-  \node at (2.25,-1.35) {affine chart $z\ne0$};
-  \draw[->] (-2,-1) -- (-.8,.85);
-  \draw[->] (.8,-1) -- (.2,.85);
-  \node at (-2.2,-1.25) {parallel lines};
-  \node at (-.25,1.45) {meet at infinity};
+  \draw[thick] (-3,1) -- (3,1);
+  \draw[dashed,thick] (3.25,-.4) -- (3.25,1.45);
+  \node[right] at (3.25,.5) {point at infinity};
+  \draw[->] (2.55,0) -- (3.15,.42);
+  \draw[->] (2.55,1) -- (3.15,.58);
+  \node at (-1.8,-.35) {$y=0$};
+  \node at (-1.8,1.35) {$y=1$};
 \end{tikzpicture}
 \end{center}
 
-The diagram is deliberately schematic. The line at infinity is not physically above the plane; it is a projective completion of the affine picture.
+The diagram is symbolic: the point at infinity is not an ordinary point far to the right. It is a direction added to complete the incidence relation.
 
-\section{The cross-ratio as a first invariant}
+\section{Duality: points and lines speak the same language}
 
-Projective transformations do not preserve length, angle, or ordinary ratios of distances. But they do preserve one important quantity on a projective line: the cross-ratio.
-
-For four points \(a,b,c,d\) on an affine coordinate line, define
+A line in \(\mathbb P^2\) has equation
 \[
-  [a,b;c,d]=\frac{(c-a)(d-b)}{(c-b)(d-a)}.
+  ax+by+cz=0.
 \]
-This expression is unchanged under projective transformations of \(\mathbb P^1\).
+The coefficients \([a:b:c]\) are homogeneous. Thus lines themselves have projective coordinates.
 
-The point of mentioning it here is not to develop a full theory of projective invariants. It is to show the change in taste: once distances are no longer meaningful, geometry searches for different invariants.
-
-\section{Perspective as projective geometry}
-
-A camera image is not an isometry of the world. It does not preserve lengths. But it sends straight lines to straight lines and preserves incidence. This is why projective geometry is the natural language of perspective.
-
-Parallel railway tracks appear to meet at a vanishing point. In Euclidean geometry this is an illusion. In projective geometry it is exactly what the completed plane says should happen.
-
-
-\section{What to remember}
-
-Projective geometry is not harder because it adds infinity. It is easier because it removes exceptions.
-
+Incidence is the bilinear equation
 \[
-\begin{array}{c|c}
-\text{affine habit} & \text{projective correction}\\
-\hline
-\text{parallel lines do not meet} & \text{they meet at infinity}\\
-\text{coordinates are numbers} & \text{coordinates are ratios}\\
-\text{line equations are separate from points} & \text{points and lines are dual}\\
-\text{conics split into types} & \text{conics are one projective family}
+  ax+by+cz=0.
+\]
+This symmetry produces projective duality: many theorems remain true after swapping point and line.
+
+For instance:
+\[
+  \text{two points determine a line}
+  \quad\longleftrightarrow\quad
+  \text{two lines determine a point}.
+\]
+Projective geometry is full of such paired statements.
+
+\section{Transformations and what survives}
+
+An invertible linear map \(A:k^3\to k^3\) induces a projective transformation
+\[
+  [v]\longmapsto[Av].
+\]
+It preserves incidence but not length or angle. A circle may become an ellipse under a perspective projection, but a line remains a line.
+
+This is the geometric lesson: once one changes the allowed transformations, one changes the invariants. Euclidean geometry cares about distances and angles. Projective geometry cares about incidence, alignment, cross-ratio, and projective equivalence.
+
+\section{A first invariant: the cross-ratio}
+
+For four points \(a,b,c,d\) on a projective line, the cross-ratio is written in an affine coordinate as
+\[
+  [a,b;c,d]
+  =\frac{(c-a)(d-b)}{(c-b)(d-a)}.
+\]
+It is preserved by projective transformations of the line.
+
+This formula is less important here than the role it plays. It is a warning that projective geometry is not invariant-free. It simply has different invariants from Euclidean geometry.
+
+\section{Conics as one projective family}
+
+A projective conic is given by a homogeneous quadratic equation
+\[
+  X^TAX=0,
+  \qquad
+  X=(x,y,z)^T.
+\]
+In the affine chart \(z=1\), it becomes an ordinary quadratic equation in \(x\) and \(y\). Ellipses, parabolas, and hyperbolas are different affine views of projective conics.
+
+This explains why conics look artificially split in elementary analytic geometry. The affine chart cuts a projective object and then classifies the slice.
+
+% substantial-expansion-20260704
+
+\section{The projective plane as all lines through the origin}
+
+There is a concrete model that removes much of the mystery.  A point \([x:y:z]\in\mathbb P^2\) is a line through the origin in \(k^3\).  A projective line in \(\mathbb P^2\) is a plane through the origin in \(k^3\).
+
+Then incidence becomes containment:
+\[
+\begin{array}{c}
+  \text{projective point on projective line}\\
+  \Longleftrightarrow\\
+  \text{line in }k^3\text{ inside plane in }k^3.
+\end{array}
+\]
+This model is often the easiest way to remember why two projective lines meet.  Two planes through the origin in \(k^3\) usually meet in a line through the origin, which is a projective point.
+
+\section{Desargues as a projective-flavored theorem}
+
+Projective geometry is naturally comfortable with theorems about incidence.  Desargues' theorem says roughly: if two triangles are perspective from a point, then the intersections of corresponding sides lie on a line.
+
+The exact diagram is less important here than the type of statement.  It uses points lying on lines, lines meeting at points, and no measurements.  This is projective geometry's native habitat.
+
+One reason projective geometry feels more elegant than Euclidean geometry is that many such incidence theorems survive projection.  A perspective drawing may distort lengths wildly, but it preserves collinearity and concurrence.
+
+\section{Projective transformations in coordinates}
+
+A projective transformation of the projective line is represented by a matrix
+\[
+  \begin{bmatrix}a&b\\c&d\end{bmatrix}
+\]
+with nonzero determinant.  In affine coordinate \(t=x/y\), it acts by a fractional linear transformation
+\[
+  t\longmapsto \frac{at+b}{ct+d}.
+\]
+This explains why the cross-ratio is built from ratios of differences: it is designed to survive these fractional linear transformations.
+
+The point at infinity is not an exception in this formula.  It is exactly what is needed to make the transformation defined as a map of the whole projective line.
+
+\section{The conic as a disguised projective line}
+
+A nonsingular conic is projectively equivalent to \(\mathbb P^1\).  For example, the conic
+\[
+  xz-y^2=0
+\]
+has the parametrization
+\[
+  [s:t]\longmapsto [s^2:st:t^2].
+\]
+This formula sends a point of \(\mathbb P^1\) to a point on the conic, because
+\[
+  s^2t^2-(st)^2=0.
+\]
+So a conic is not merely a quadratic curve; projectively, it behaves like a line wrapped into the plane by quadratic coordinates.
+
+This fact is a useful bridge to later algebraic geometry: parametrizations, homogeneous equations, and projective spaces start to work together.
+
+\section{Final checkpoint}
+
+Projective geometry is not the study of a strange faraway infinity. It is the study of incidence after removing affine exceptions.
+
+The three core moves are:
+\[
+\begin{array}{c}
+\text{replace coordinates by ratios},\\
+\text{add direction points at infinity},\\
+\text{study transformations preserving incidence}.
 \end{array}
 \]
