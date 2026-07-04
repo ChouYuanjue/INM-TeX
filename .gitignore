@@ -14,6 +14,7 @@
 *.toc
 *.xdv
 *.bbl
+*.pre
 
 # Local extracted text / temporary build output
 inm.txt
