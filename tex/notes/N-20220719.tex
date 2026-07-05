@@ -6,6 +6,11 @@ The note starts with a warning: solid geometry is not just plane geometry with o
 
 \section{Basic axioms of incidence}
 
+\begin{axiom}[Plane incidence axioms]
+Two distinct points determine a unique line, and two distinct lines intersect in at most one point.  These axioms encode the basic incidence structure before metric notions such as distance and angle are introduced.
+\end{axiom}
+
+
 The fundamental incidence principles recorded in the note are:
 \begin{enumerate}[(i)]
   \item Through three non-collinear points there is one and only one plane.
@@ -62,6 +67,14 @@ Once a line is perpendicular to a plane, it is perpendicular to every line in th
 
 \section{Projection theorem}
 
+\begin{theorem}[Projection theorem]
+In an inner-product space, the closest point in a subspace \(W\) to a vector \(v\) is the vector \(p\in W\) such that
+\[
+  v-p\perp W.
+\]
+\end{theorem}
+
+
 The note also touches the three-perpendicular theorem.  In one common form: let \(PO\perp\alpha\), let \(AB\subset\alpha\), and let \(OQ\) be the projection of \(PQ\) onto \(\alpha\).  Then perpendicularity of \(PQ\) to a line in space can be detected by perpendicularity of its projection in the plane.  Informally, right angles survive projection when the projection is taken along a perpendicular direction.
 
 \section{A coordinate viewpoint}
@@ -107,19 +120,31 @@ This equation is often more useful than a picture.  Parallelism of planes become
 
 Solid geometry trains an important habit: always ask what ambient plane contains the objects you are comparing.  Many false arguments in space come from treating skew lines as if they were coplanar.  Later, vector algebra solves this with span and dot products; projective geometry solves it with incidence; linear algebra solves it with subspaces and dimensions.
 
+\section{Incidence geometry}
 
+Solid geometry begins with incidence: which points lie on which lines and planes.  Many theorems are consequences of dimension counting.  Two distinct points determine a line; three non-collinear points determine a plane.
 
-\paragraph{Expanded synthesis.}
-For this chapter, the elementary material should be read as a study of what remains invariant when coordinates change. The earlier sections (`Why solid geometry feels different`, `Basic axioms of incidence`, `Relations between two lines`, `A line and a plane`, `Parallel planes and parallel lines`) compute with arrays, bases, pivots, determinants, or eigenvectors; the deeper object is a linear map together with the spaces it acts on. A matrix is a representation of that map after bases have been chosen. This is why formulas such as
+This is the three-dimensional analogue of affine geometry, where parallelism and intersection are primary relations.
+
+\section{Orthogonality as inner-product structure}
+
+Perpendicularity is not merely visual; it depends on an inner product.  In coordinates,
 \[
-  A' = P^{-1}AP,\qquad \widetilde A = T^{-1}AS
+  u\perp v\quad\Longleftrightarrow\quad u\cdot v=0.
 \]
-are not cosmetic: they distinguish an intrinsic morphism from a coordinate description.
+A line perpendicular to a plane is perpendicular to every direction vector in that plane.  This is why normal vectors encode planes efficiently.
 
-The structural hierarchy is as follows. Kernels record what a map forgets, images record what it reaches, cokernels record obstructions to solvability, and quotients record information after an equivalence has been imposed. Determinants act on the top exterior power and therefore measure oriented volume; traces are invariant under cyclic rearrangement and become characters in representation theory; adjoints depend on an inner product and lead to self-adjoint spectral theory.
+\section{Projection as least-distance decomposition}
 
-A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
+Orthogonal projection decomposes a vector into parallel and perpendicular parts:
+\[
+  v=\operatorname{proj}_W v+(v-\operatorname{proj}_W v).
+\]
+The perpendicular part is the shortest error.  This geometric fact later becomes least squares in linear algebra.
 
+\section{Affine incidence plus metric projection}
+
+Solid geometry has two layers: affine incidence/parallelism and metric orthogonality/projection.  Confusing the layers causes many errors.  Lines and planes are affine objects; perpendicularity and distance require inner-product structure.
 
 \section{Affine geometry of points, lines, and planes}
 
@@ -171,7 +196,6 @@ This gives a coordinate-free version of determinant tests for coplanarity.
 
 The original point-line-plane exercises are exactly the practical computations needed for affine and projective geometry.  Direction vectors become points in Grassmannians; determinant tests become wedge-product incidence; parallel cases become ordinary intersections after projective completion.
 
-% Second-pass deepening for waves 2-4: wave 4 part 1
 \section{Incidence via ranks}
 
 In three-dimensional analytic geometry, incidence conditions are rank conditions.  Points $P_0,P_1,P_2,P_3$ are coplanar iff the direction vectors

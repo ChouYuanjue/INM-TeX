@@ -131,40 +131,114 @@ Another example differentiates a quotient of trigonometric functions.  The handw
 
 This note builds the derivative table from a few principles: definition by difference quotient, binomial expansion for powers, inverse-function differentiation for logarithms and inverse trigonometric functions, and quotient/chain rules for combinations.  The goal is not memorizing isolated formulas but recognizing which rule creates each formula.
 
+\section{Derivative as first-order linearization}
 
-
-\paragraph{Expanded synthesis.}
-The common theme of this chapter is that an elementary limiting or computational rule becomes powerful only after one specifies the space in which the limiting process takes place. The earlier sections (`Average velocity and instantaneous velocity`, `Derivative notation`, `Power functions`, `Exponential and logarithmic derivatives`, `Trigonometric derivatives`) may look like separate techniques, but they all ask the same question: which operations are stable under approximation? A derivative is stable first-order approximation,
+The derivative at \(a\) is best read as a first-order approximation:
 \[
-  f(a+h)=f(a)+L(h)+o(|h|),
+  f(a+h)=f(a)+f'(a)h+o(h).
 \]
-while an integral is stable accumulation with respect to a measure, and a convergent series is a limit in a chosen norm or topology.
+The number \(f'(a)\) is the linear map that best approximates the change of \(f\) near \(a\).  In one dimension, linear maps are multiplication by a number, so this viewpoint collapses to the familiar tangent slope.
 
-The advanced bridge is functional-analytic. Uniform convergence is convergence in a sup norm; $L^p$ convergence is convergence in an integral norm; differentiability is the existence of a continuous linear approximation; many differential equations are operator equations $L[u]=f$. Theorems such as dominated convergence, the inverse function theorem, the projection theorem in Hilbert spaces, and semigroup existence results are refined answers to the same elementary concern: when may we pass from finite approximations to a genuine limiting object?
-
-To use this viewpoint when rereading the original examples, identify the hidden stability condition. A Taylor expansion asks for control of the remainder. A change of variables asks for differentiability and Jacobian control. Termwise differentiation of a series asks for uniform convergence of derivative series. A differential-equation formula asks whether the operator is invertible under the imposed initial or boundary data. The elementary computation is the visible part; the advanced theory names the hypotheses that make it legitimate.
-
-
-\section[Inverse-function view of inverse trig]{Elementary-to-advanced bridge: inverse function theorem behind inverse trigonometric derivatives}
-
-The derivative of an inverse function is often memorized as
+This explains why the chain rule has the form it does.  If
 \[
-  (f^{-1})'(y)=\frac1{f'(x)},\qquad y=f(x).
+  f(a+h)=f(a)+f'(a)h+o(h),\qquad
+  g(b+k)=g(b)+g'(b)k+o(k),\quad b=f(a),
 \]
-The conceptual statement is the inverse function theorem: if $f$ is continuously differentiable near $x_0$ and $f'(x_0)\ne0$, then $f$ has a local inverse near $f(x_0)$, and the inverse is differentiable.
-
-For $y=\arcsin x$, we have $x=\sin y$ on $[-\pi/2,\pi/2]$.  Differentiating gives
+then
 \[
-  1=\cos y\frac{dy}{dx},\qquad \frac{dy}{dx}=\frac1{\cos y}=\frac1{\sqrt{1-x^2}}.
+  g(f(a+h))=g(f(a))+g'(f(a))f'(a)h+o(h).
 \]
-The interval restriction is what makes sine locally one-to-one.
+Thus
+\[
+  (g\circ f)'(a)=g'(f(a))f'(a).
+\]
+The chain rule is composition of linear approximations.
 
-\section{Automatic differentiation and jets}
+\section{Inverse trigonometric derivatives and the inverse function theorem}
 
-The product, quotient, and chain rules are the mathematics behind automatic differentiation.  A formula is represented by a computation graph; each node stores a local derivative; the chain rule propagates derivatives through the graph.
+The inverse-function formula
+\[
+  (f^{-1})'(y)=\frac{1}{f'(x)},\qquad y=f(x),
+\]
+is a one-dimensional form of the inverse function theorem.  If \(f\) is continuously differentiable near \(x_0\) and \(f'(x_0)\ne0\), then \(f\) has a local differentiable inverse near \(f(x_0)\).
 
-Higher derivatives form the language of jets.  The $k$-jet of a one-variable function at $a$ records
+For \(y=\arcsin x\), the equation \(x=\sin y\) is inverted only after restricting sine to
+\[
+  [-\pi/2,\pi/2].
+\]
+On this branch, \(\cos y\ge0\), so
+\[
+  1=\cos y\frac{dy}{dx},\qquad
+  \frac{dy}{dx}=\frac{1}{\cos y}=\frac{1}{\sqrt{1-x^2}}.
+\]
+The square root sign is not arbitrary; it comes from the chosen branch of the inverse.
+
+\section{Endpoint blow-up and failure of local invertibility}
+
+The derivative
+\[
+  (\arcsin x)'=\frac{1}{\sqrt{1-x^2}}
+\]
+blows up as \(x\to\pm1\).  Geometrically, near \(y=\pm\pi/2\), the graph of \(\sin y\) has horizontal tangent:
+\[
+  \cos y=0.
+\]
+The inverse function theorem fails exactly where \(f'(y)=0\).  The inverse may still exist globally on a restricted interval, but it is no longer differentiable with a finite derivative at the endpoint.
+
+This is the conceptual reason inverse-trigonometric formulas have domain restrictions and singular denominators.
+
+\section{Logarithm as inverse and as group homomorphism}
+
+The derivative of \(\ln x\) follows from \(x=e^y\):
+\[
+  1=e^y y'=xy',\qquad y'=\frac1x.
+\]
+But \(\ln\) also has a structural meaning:
+\[
+  \ln(xy)=\ln x+\ln y.
+\]
+It converts multiplication in \((0,\infty)\) into addition in \(\mathbb R\).  Its derivative \(1/x\) is the infinitesimal version of multiplicative scaling.
+
+In Lie-group language, \((0,\infty)\) is a one-dimensional Lie group under multiplication, and \(\ln\) identifies it with the additive group \(\mathbb R\).  The elementary derivative formula is the local shadow of this group isomorphism.
+
+\section{Automatic differentiation and computation graphs}
+
+The product, quotient, and chain rules are the mathematical basis of automatic differentiation.  A complicated expression is a computation graph.  Each node knows its local derivative, and the chain rule propagates derivative information through the graph.
+
+For example, if
+\[
+  y=\sqrt{x^2+1},\qquad u=x^2+1,\qquad y=\sqrt u,
+\]
+then
+\[
+  \frac{dy}{dx}=\frac{dy}{du}\frac{du}{dx}=\frac{1}{2\sqrt u}\cdot2x=\frac{x}{\sqrt{x^2+1}}.
+\]
+The ordinary chain-rule computation is already reverse or forward mode automatic differentiation in miniature.
+
+\section{Jets and higher-order local data}
+
+The \(k\)-jet of a function at \(a\) records its derivatives up to order \(k\):
 \[
   j_a^k f=(f(a),f'(a),\ldots,f^{(k)}(a)).
 \]
-The Taylor polynomial is the coordinate expression of this finite derivative data.  Thus the derivative table is the first layer of a general theory of local smooth data.
+The Taylor polynomial is the coordinate expression of this finite local data:
+\[
+  T_kf(a+h)=\sum_{j=0}^k \frac{f^{(j)}(a)}{j!}h^j.
+\]
+The first derivative is therefore not an isolated operation; it is the first nontrivial layer of a tower of local approximations.
+
+\section{Differentials and one-forms}
+
+The notation \(dy/dx\) is sometimes taught as a fraction-like symbol.  A safer advanced interpretation is through differentials.  For \(y=f(x)\),
+\[
+  dy=f'(x)\,dx.
+\]
+Here \(dx\) is the basic one-form on the line, and \(dy\) is its pullback through \(f\).  The chain rule becomes the rule for pulling back one-forms:
+\[
+  (g\circ f)^*(dz)=f^*(g^*(dz)).
+\]
+This gives a structural meaning to the notation without treating infinitesimals as informal numbers.
+
+\section{Derivatives as linearization and pullback}
+
+The derivative table is built from a few structural principles: linear approximation, inverse functions, branch choices, composition, and local Taylor data.  The formulas for powers, logarithms, trigonometric functions, and inverse trigonometric functions are not separate facts; they are examples of how local linear behavior is transported through algebraic operations and inverses.

@@ -187,19 +187,20 @@ The original essay also speculates about topos-theoretic or categorical semantic
 
 The note is best read as a map of mathematical languages for data: topology sees holes, geometry sees coordinates and curvature, measure theory sees distributions, dynamics sees evolution, algebra sees symmetry, and category theory sees structure-preserving translation.  The useful question is not which language is fashionable, but which structure is actually stable under the transformations used by the model.
 
-
-
-\paragraph{Expanded synthesis.}
-The higher-level content of this chapter is the passage from pointwise description to invariant structure. The earlier sections (`Geometric data analysis`, `Manifold hypothesis and embeddings`, `Optimal transport and stochastic dynamics`, `Symmetry, equivariance, and category-like thinking`, `Higher viewpoint`) introduce objects that may be drawn, listed, glued, or computed, but the advanced question is what remains unchanged under the allowed maps. In topology the allowed maps are continuous maps; in category theory they are morphisms preserving the relevant structure; in homology they induce maps between algebraic invariants.
-
-The guiding pattern is
+\section{Backpropagation and differential geometry}
+Backpropagation is reverse-mode differentiation.  Geometrically, forward computation pushes tangent vectors forward, while backpropagation pulls cotangent vectors backward through the computation graph.
+\section{Manifold hypothesis and representation learning}
+The manifold hypothesis says high-dimensional data may concentrate near lower-dimensional geometric structures.  Embeddings, charts, curvature, and local neighborhoods then become relevant to learning representations.
+\section{Symmetry and equivariance}
+If a task has a symmetry group \(G\), an equivariant model satisfies
 \[
-  \text{space or structure}\quad \xrightarrow{\text{allowed maps}}\quad \text{invariant data}.
+f(gx)=g f(x).
 \]
-Quotient spaces formalize gluing; products formalize simultaneous coordinates; compactness formalizes the impossibility of escaping by a limiting process; connectedness formalizes the impossibility of separation; homology converts holes into groups. When a note discusses closure, quotienting, paths, products, or functors, it is already working with this invariant language.
-
-A quotient exercise is a gluing construction; a compactness exercise is an infinite pigeonhole argument; a homotopy exercise is a controlled deformation; a functorial example says that a construction is compatible with maps. The advanced theory does not add decoration. It explains why the same few operations, such as taking products, quotients, images, kernels, and induced maps, occur throughout topology, algebra, and geometry.
-
+This reduces sample complexity by building the correct transformation law into the model.
+\section{Optimal transport and distributions}
+Optimal transport compares probability measures by the cost of moving mass.  It connects geometry, PDE, and machine learning through distances between distributions.
+\section{Mathematical structures for learning systems}
+Pure mathematics contributes language for structure: cotangent pullback for gradients, manifolds for data geometry, equivariance for symmetry, optimal transport for distributions, and category-like compositionality for architectures.
 
 \section{Rebuilt reading path: what pure mathematics contributes}
 
@@ -230,7 +231,7 @@ The homology group is
 \]
 This quotient is the mathematical form of the phrase ``holes that are cycles but not boundaries.''
 
-\section{Optimal transport and stochastic dynamics}
+\section{Wasserstein geometry and stochastic dynamics}
 
 For probability measures $\mu,\nu$ on a metric space,
 \[

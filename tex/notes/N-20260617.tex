@@ -38,6 +38,11 @@ For $a_0$,
 
 \section{Dirichlet convergence theorem}
 
+\begin{theorem}[Dirichlet convergence theorem]
+If a periodic function is piecewise smooth, its Fourier series converges at each point to the average of the left and right limits.
+\end{theorem}
+
+
 Under standard piecewise smooth hypotheses, the Fourier series converges at $x$ to
 \[
   \frac{f(x+0)+f(x-0)}2.
@@ -68,18 +73,99 @@ The coefficients are
   b_n=\frac1l\int_{-l}^{l}f(x)\sin\frac{n\pi x}{l}\,dx.
 \]
 
-\section{Examples preserved from the source}
 
-The original note contains examples of square-wave expansion, a piecewise function with a full Fourier expansion, $f(x)=x$, $f(x)=|x|$, half-range sine expansion, half-range cosine expansion, and a period-$2$ final-type problem.  The method is always the same:
+\section{Concrete coefficient models}
 
-\begin{enumerate}[(i)]
-  \item determine the period and interval;
-  \item use symmetry before integrating;
-  \item compute $a_n,b_n$ by orthogonality;
-  \item state the value of the series at discontinuities using midpoint convergence;
-  \item plug in special $x$ values only after the convergence value is clear.
-\end{enumerate}
+The standard examples are valuable only when they are computed, not merely named.
 
+\subsection{The sawtooth function \texorpdfstring{$f(x)=x$}{f(x)=x}}
+
+On \([-\pi,\pi]\), the function \(f(x)=x\) is odd, so only sine terms occur.  The coefficient is
+\[
+  b_n=\frac{1}{\pi}\int_{-\pi}^{\pi}x\sin nx\,dx
+  =\frac{2}{\pi}\int_0^{\pi}x\sin nx\,dx.
+\]
+Integration by parts gives
+\[
+  \int_0^{\pi}x\sin nx\,dx
+  =-\frac{\pi(-1)^n}{n},
+\]
+so
+\[
+  b_n=2\frac{(-1)^{n+1}}{n}.
+\]
+Hence
+\[
+  x\sim 2\sum_{n=1}^{\infty}(-1)^{n+1}\frac{\sin nx}{n}.
+\]
+At \(x=\pi\), the periodic extension jumps from \(\pi\) to \(-\pi\), so the Fourier series converges to \(0\), not to \(\pi\).
+
+\subsection{The even function \texorpdfstring{$f(x)=|x|$}{f(x)=|x|}}
+
+Since \(|x|\) is even, only cosine terms occur.  One has
+\[
+  a_0=\frac{1}{\pi}\int_{-\pi}^{\pi}|x|\,dx=\pi,
+\]
+and for \(n\ge1\),
+\[
+  a_n=\frac{2}{\pi}\int_0^{\pi}x\cos nx\,dx
+  =\frac{2}{\pi}\frac{(-1)^n-1}{n^2}.
+\]
+Thus only odd \(n\) contribute:
+\[
+  |x|\sim \frac{\pi}{2}-\frac{4}{\pi}\sum_{k=0}^{\infty}\frac{\cos(2k+1)x}{(2k+1)^2}.
+\]
+Putting \(x=0\) gives
+\[
+  0=\frac{\pi}{2}-\frac{4}{\pi}\sum_{k=0}^{\infty}\frac{1}{(2k+1)^2},
+\]
+so
+\[
+  \sum_{k=0}^{\infty}\frac{1}{(2k+1)^2}=\frac{\pi^2}{8}.
+\]
+This is a typical Fourier-series trick: evaluate a function expansion at a point where the convergence value is known.
+
+\subsection{A square wave}
+
+For the \(2\pi\)-periodic square wave equal to \(1\) on \((0,\pi)\) and \(-1\) on \((-\pi,0)\), the function is odd, so
+\[
+  b_n=\frac{2}{\pi}\int_0^{\pi}\sin nx\,dx
+  =\frac{2}{\pi}\frac{1-(-1)^n}{n}.
+\]
+Thus
+\[
+  f(x)\sim \frac{4}{\pi}\left(\sin x+\frac{\sin3x}{3}+\frac{\sin5x}{5}+\cdots\right).
+\]
+At the jump points the series converges to \(0\), the midpoint of the jump.
+
+
+\section{Dirichlet kernel: what partial sums really do}
+
+The \(N\)-th Fourier partial sum is not a vague approximation; it is convolution with the Dirichlet kernel:
+\[
+  S_Nf(x)=\frac{1}{2\pi}\int_{-\pi}^{\pi}f(x-t)D_N(t)\,dt,
+\]
+where
+\[
+  D_N(t)=\sum_{n=-N}^{N}e^{int}=\frac{\sin((N+1/2)t)}{\sin(t/2)}.
+\]
+The kernel has total mass \(2\pi\), but its \(L^1\)-norm grows.  This growth is one reason Fourier partial sums can behave badly near discontinuities.
+
+The Dirichlet convergence theorem is therefore not magic: near a point \(x\), the oscillatory kernel samples values of \(f\) from both sides.  At a jump, the symmetric sampling yields the midpoint \((f(x+0)+f(x-0))/2\).
+
+\section{Fejer means: averaging partial sums improves convergence}
+
+The Cesaro average of Fourier partial sums is
+\[
+  \sigma_Nf=\frac{1}{N+1}\sum_{k=0}^{N}S_kf.
+\]
+It is convolution with the Fejer kernel
+\[
+  F_N(t)=\frac{1}{N+1}\left(\frac{\sin((N+1)t/2)}{\sin(t/2)}\right)^2.
+\]
+Unlike the Dirichlet kernel, \(F_N\ge0\) and has total mass \(2\pi\).  This positivity makes Fejer's theorem work: for continuous periodic \(f\), \(\sigma_Nf\) converges uniformly to \(f\).
+
+This is a concrete lesson about convergence methods.  The same Fourier coefficients can be summed by raw partial sums or by averaged partial sums, and averaging changes the analytic behavior without changing the underlying frequency data.
 \section{Hilbert-space viewpoint}
 
 The conceptual endpoint is that Fourier series is linear algebra in the Hilbert space $L^2[-\pi,\pi]$.  The inner product is
@@ -160,7 +246,7 @@ Fourier modes oscillate in time.
 
 Thus Fourier series is not only a representation of functions; it diagonalizes differential operators and solves PDEs.
 
-% Second-pass deepening for waves 2-4: wave 4 part 3
+% Concrete advanced extension
 \section{Convergence modes of Fourier series}
 
 Fourier series can converge in different senses.  For $f\in L^2$, partial sums converge to $f$ in the $L^2$ norm:
@@ -171,6 +257,30 @@ For smoother functions, convergence may be pointwise or uniform.  At jumps, Diri
 
 This distinction is essential.  A Fourier series may be excellent for energy approximation while not uniformly accurate near jumps.  Thus the elementary endpoint rules and half-range expansions should always be paired with a statement of the convergence mode.
 
+
+\section{Smoothness is decay of coefficients}
+
+Fourier coefficients measure regularity.  If \(f\) is smooth, repeated integration by parts gives decay.  For example, in complex notation,
+\[
+  \widehat f(n)=\frac{1}{2\pi}\int_{-\pi}^{\pi}f(x)e^{-inx}\,dx.
+\]
+If \(f\) is \(C^1\) and periodic with matching endpoint values, then
+\[
+  \widehat f(n)=\frac{1}{in}\frac{1}{2\pi}\int_{-\pi}^{\pi}f'(x)e^{-inx}\,dx,
+\]
+so \(|\widehat f(n)|=O(1/|n|)\) if \(f'\) is integrable.  More derivatives give faster decay.
+
+This explains the difference between the examples above.  The square wave has jumps, so coefficients decay like \(1/n\).  The function \(|x|\) is continuous but has a corner, so its nonzero coefficients decay like \(1/n^2\).  Smoothness in physical space becomes decay in frequency space.
+
+\section{Sobolev norm from Fourier coefficients}
+
+On the circle, Sobolev spaces can be described by Fourier coefficients:
+\[
+  \norm{f}_{H^s}^2=\sum_{n\in\mathbb Z}(1+n^2)^s|\widehat f(n)|^2.
+\]
+Large positive \(s\) demands fast coefficient decay and therefore smoothness.  Negative \(s\) permits rough objects, even distributions.
+
+This is the precise functional-analytic version of the heuristic: high frequencies measure oscillation and roughness.  Fourier series turns differential regularity into weighted square summability.
 \section{Fourier transform as the non-periodic limit}
 
 Fourier series decomposes periodic functions into discrete frequencies.  On the real line, the Fourier transform decomposes non-periodic functions into a continuum of frequencies:

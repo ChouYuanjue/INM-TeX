@@ -1,57 +1,181 @@
-\notechapter{N-20260318}{Polynomial Matrices, Smith Normal Form, and Operator Iteration}
+\notechapter{N-20260318}{Matrix Computation III: Canonical Forms, Localization, and Iteration}
 
+\section{Why canonical forms matter}
+
+Canonical forms explain what a matrix cannot hide under a change of basis.  For computation they answer: how do powers behave, where can eigenvalues be, and which direction dominates an iteration?
 
 \section{Polynomial matrices}
 
-A $\lambda$-matrix is a matrix whose entries are polynomials in $\lambda$.  Elementary row and column operations over the polynomial ring can reduce such matrices to Smith normal form:
+A \(\lambda\)-matrix is a matrix whose entries lie in \(\mathbb C[\lambda]\).  Its rank is the largest order of a minor that is not the zero polynomial.  A square \(\lambda\)-matrix is nonsingular if its determinant is not the zero polynomial.
+
+The elementary operations are row or column exchange, multiplication of a row or column by a nonzero constant, and adding \(\varphi(\lambda)\) times one row or column to another.
+
+\section{Smith normal form}
+
+Every rank \(r\) polynomial matrix is equivalent to
 \[
-  P(\lambda)A(\lambda)Q(\lambda)=\operatorname{diag}(d_1(\lambda),\ldots,d_r(\lambda),0,\ldots,0),
+  \operatorname{diag}(d_1(\lambda),\ldots,d_r(\lambda),0,\ldots,0),
 \]
-where $d_i\mid d_{i+1}$.  The polynomials $d_i$ are invariant factors.
-
-\section{Invariant factors and elementary divisors}
-
-For $A\in\mathbb C^{n\times n}$, the Smith form of $\lambda I-A$ encodes the Jordan structure.  The product of invariant factors is the characteristic polynomial, and the largest invariant factor is the minimal polynomial.  Elementary divisors describe the sizes of Jordan blocks.
-
-\section{Matrix iteration}
-
-To compute $A^n$, one can use diagonalization, Jordan form, Cayley--Hamilton reduction, nilpotent decomposition, or rank-one formulas.  If $A=PDP^{-1}$, then
+where each \(d_i\) is monic and
 \[
-  A^n=PD^nP^{-1}.
+  d_1\mid d_2\mid\cdots\mid d_r.
 \]
-If $A=\lambda I+N$ with $N^k=0$, then
+This is the Smith normal form.
+
+Let \(D_k(\lambda)\) be the monic greatest common divisor of all nonzero \(k\)-minors.  The invariant factors are
 \[
-  A^n=\sum_{j=0}^{k-1}\binom nj \lambda^{n-j}N^j.
+  d_1=D_1,\qquad d_k=\frac{D_k}{D_{k-1}}.
 \]
+Factoring the nonconstant invariant factors gives elementary divisors.
 
-\section{The larger pattern}
+\section{Jordan data from elementary divisors}
 
-Polynomial matrices turn the study of a linear operator into divisibility in $\mathbb C[\lambda]$.  This is the algebraic skeleton behind characteristic polynomials, minimal polynomials, Jordan blocks, and formulas for powers of a matrix.
-
-
-
-\paragraph{Expanded synthesis.}
-For this chapter, the elementary material should be read as a study of what remains invariant when coordinates change. The earlier sections (`Polynomial matrices`, `Invariant factors and elementary divisors`, `Matrix iteration`, `Higher viewpoint`, `Expanded invariant-factor viewpoint`) compute with arrays, bases, pivots, determinants, or eigenvectors; the deeper object is a linear map together with the spaces it acts on. A matrix is a representation of that map after bases have been chosen. This is why formulas such as
+For \(A\in\mathbb C^{n\times n}\), apply Smith form to
 \[
-  A' = P^{-1}AP,\qquad \widetilde A = T^{-1}AS
+  \lambda I-A.
 \]
-are not cosmetic: they distinguish an intrinsic morphism from a coordinate description.
-
-The structural hierarchy is as follows. Kernels record what a map forgets, images record what it reaches, cokernels record obstructions to solvability, and quotients record information after an equivalence has been imposed. Determinants act on the top exterior power and therefore measure oriented volume; traces are invariant under cyclic rearrangement and become characters in representation theory; adjoints depend on an inner product and lead to self-adjoint spectral theory.
-
-A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
-
-
-\section{Expanded invariant-factor viewpoint}
-
-The Smith normal form of $\lambda I-A$ is a bridge between polynomial algebra and matrix similarity.  The invariant factors $d_1|\cdots|d_r$ encode the cyclic decomposition of the vector space as a module over $\mathbb C[\lambda]$ where $\lambda$ acts by $A$.
-
-The characteristic polynomial is the product of the invariant factors; the minimal polynomial is the largest invariant factor.  If the minimal polynomial splits into distinct linear factors, then $A$ is diagonalizable.  If powers such as $(\lambda-\lambda_0)^k$ occur, the exponent records the size of the largest Jordan block for $\lambda_0$.
-
-\section{Computing powers without diagonalization}
-
-Cayley--Hamilton says that $p_A(A)=0$.  Therefore every high power $A^n$ can be reduced to a linear combination of
+An elementary divisor
 \[
-  I,A,\ldots,A^{m-1},
+  (\lambda-\lambda_0)^s
 \]
-where $m$ is at most the degree of the minimal polynomial.  If $A=\lambda I+N$ with $N$ nilpotent, the binomial expansion terminates.  This is the computational meaning of Jordan decomposition.
+corresponds to a Jordan block of size \(s\) for eigenvalue \(\lambda_0\).
+
+Thus Smith form is an algebraic route to Jordan structure.
+
+\section{Jordan chains}
+
+A Jordan block is
+\[
+  J_s(\lambda)=
+  \begin{bmatrix}
+  \lambda&1&&0\\
+  &\lambda&\ddots&\\
+  &&\ddots&1\\
+  0&&&\lambda
+  \end{bmatrix}.
+\]
+If \(A=PJP^{-1}\), the columns in one Jordan chain satisfy
+\[
+  Ap_1=\lambda p_1,\qquad
+  Ap_i=\lambda p_i+p_{i-1}.
+\]
+The later vectors are generalized eigenvectors.
+
+\section{Computing powers}
+
+If \(J=\lambda I+N\) with \(N^s=0\), then
+\[
+  J^k=\sum_{j=0}^{s-1}\binom{k}{j}\lambda^{k-j}N^j.
+\]
+For \(A=PJP^{-1}\),
+\[
+  A^k=PJ^kP^{-1}.
+\]
+Jordan form explains polynomial factors in matrix powers.
+
+\section{Gershgorin discs}
+
+For \(A=(a_{ij})\), define
+\[
+  R_i=\sum_{j\ne i}|a_{ij}|.
+\]
+Every eigenvalue lies in
+\[
+  \bigcup_i \{z\in\mathbb C: |z-a_{ii}|\le R_i\}.
+\]
+Proof: choose \(i\) with \(|x_i|=\max_j|x_j|\) for an eigenvector \(x\).  From \(Ax=\lambda x\),
+\[
+  (\lambda-a_{ii})x_i=\sum_{j\ne i}a_{ij}x_j,
+\]
+so \(|\lambda-a_{ii}|\le R_i\).
+
+\section{Gershgorin figure}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[scale=0.85]
+  \draw[->] (-3.4,0) -- (5.2,0) node[right] {$\operatorname{Re}z$};
+  \draw[->] (0,-2.6) -- (0,3.0) node[above] {$\operatorname{Im}z$};
+  \coordinate (c1) at (-1.4,0.8);
+  \coordinate (c2) at (0.4,1.0);
+  \coordinate (c3) at (3.4,-0.5);
+  \draw[thick] (c1) circle (1.15);
+  \draw[thick] (c2) circle (1.35);
+  \draw[thick] (c3) circle (0.7);
+  \fill (c1) circle (2pt) node[below left] {$a_{11}$};
+  \fill (c2) circle (2pt) node[below right] {$a_{22}$};
+  \fill (c3) circle (2pt) node[below] {$a_{33}$};
+  \draw[dashed] (c1) -- ++(1.15,0) node[midway,below] {$R_1$};
+  \draw[dashed] (c2) -- ++(0,1.35) node[midway,right] {$R_2$};
+  \draw[dashed] (c3) -- ++(0.7,0) node[midway,above] {$R_3$};
+  \node[align=center] at (-0.55,2.55) {overlapping component\\contains two eigenvalues};
+  \node[align=center] at (3.4,-1.75) {separated disc\\contains one eigenvalue};
+  \fill[blue] (-1.0,0.45) circle (1.7pt);
+  \fill[blue] (0.65,1.45) circle (1.7pt);
+  \fill[blue] (3.25,-0.2) circle (1.7pt);
+\end{tikzpicture}
+\caption{Gershgorin discs localize eigenvalues.  A separated component containing one disc contains exactly one eigenvalue.}
+\end{figure}
+
+\section{Separated components and scaling}
+
+If a connected component of the union of Gershgorin discs consists of exactly \(m\) discs and is separated from the others, then it contains exactly \(m\) eigenvalues.
+
+Column Gershgorin discs can be obtained by applying the theorem to \(A^T\).  Diagonal similarity
+\[
+  D^{-1}AD
+\]
+does not change eigenvalues but changes radii, since
+\[
+  (D^{-1}AD)_{ij}=d_i^{-1}a_{ij}d_j.
+\]
+This is a practical way to improve localization.
+
+\section{Power iteration}
+
+If
+\[
+  |\lambda_1|>|\lambda_2|\ge\cdots,
+\]
+and the initial vector has a nonzero component in the dominant eigenvector direction, then
+\[
+  u_{k+1}=\frac{Au_k}{\|Au_k\|}
+\]
+converges toward the dominant eigenvector direction.  The convergence rate is governed by
+\[
+  \left|\frac{\lambda_2}{\lambda_1}\right|.
+\]
+
+\section{Inverse and shifted inverse iteration}
+
+Inverse iteration applies power iteration to \(A^{-1}\), so it finds eigenvalues of small modulus.  Shifted inverse iteration applies inverse iteration to
+\[
+  A-pI.
+\]
+Eigenvalues of \((A-pI)^{-1}\) are
+\[
+  \frac1{\lambda_j-p}.
+\]
+Thus the eigenvalue closest to \(p\) becomes dominant.
+
+\section{Numerical traps}
+
+Shifted inverse iteration requires solving systems with \(A-pI\), which may be nearly singular.  This is why the method can be powerful and unstable at the same time.  Pivoting and residual checks are essential.
+
+Gershgorin discs are cheap localization, not exact computation.  Overlap does not mean eigenvalues are evenly spread through the overlap.
+
+\section{ML-facing interpretation}
+
+Power iteration appears in PageRank, spectral normalization, graph propagation, and monitoring dominant eigenvalue behavior.  State-space and recurrent models depend on polynomial and spectral structure: the minimal polynomial, Jordan blocks, and spectral radius all describe memory and long-run dynamics.
+
+\section{Checklist}
+
+\[
+\begin{array}{c|c}
+\text{Smith form} & \text{invariant factors}\\
+\text{Jordan form} & \text{eigenvalue chains}\\
+\text{Gershgorin} & \text{cheap eigenvalue regions}\\
+\text{power iteration} & \text{dominant eigenvalue}\\
+\text{shifted inverse iteration} & \text{eigenvalue near target}
+\end{array}
+\]

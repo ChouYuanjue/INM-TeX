@@ -146,18 +146,33 @@ Its inverse is
 
 Invertible matrices are automorphisms of finite-dimensional vector spaces.  Gaussian elimination, determinants, adjugates, and block decompositions are different ways to detect or compute the same object: a reversible linear transformation.
 
+\section{Invertibility as isomorphism}
 
-\paragraph{Expanded synthesis.}
-For this chapter, the elementary material should be read as a study of what remains invariant when coordinates change. The earlier sections (`Invertibility`, `The \(2\times2\) formula`, `Diagonal matrices`, `Products of inverses`, `Adjugate formula`) compute with arrays, bases, pivots, determinants, or eigenvectors; the deeper object is a linear map together with the spaces it acts on. A matrix is a representation of that map after bases have been chosen. This is why formulas such as
+A matrix is invertible exactly when the associated linear map is an isomorphism.  This means three equivalent things in finite dimensions:
 \[
-  A' = P^{-1}AP,\qquad \widetilde A = T^{-1}AS
+  \ker A=0,\qquad \operatorname{im}A=V,\qquad \det A\ne0.
 \]
-are not cosmetic: they distinguish an intrinsic morphism from a coordinate description.
+Row reduction tests the same fact by constructing inverse operations.
 
-The structural hierarchy is as follows. Kernels record what a map forgets, images record what it reaches, cokernels record obstructions to solvability, and quotients record information after an equivalence has been imposed. Determinants act on the top exterior power and therefore measure oriented volume; traces are invariant under cyclic rearrangement and become characters in representation theory; adjoints depend on an inner product and lead to self-adjoint spectral theory.
+\section{Adjugate and exterior powers}
 
-A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
+The adjugate formula
+\[
+  A^{-1}=\frac{1}{\det A}\operatorname{adj}(A)
+\]
+comes from cofactors.  Conceptually, determinants describe the action of \(A\) on top exterior power, while cofactors encode how \((n-1)\)-dimensional volume elements transform.
 
+\section{Rotations as orthogonal matrices}
+
+A rotation matrix \(R\) satisfies
+\[
+  R^TR=I,\qquad \det R=1.
+\]
+The first condition preserves lengths and angles; the second preserves orientation.  Thus rotations are the orientation-preserving part of the orthogonal group.
+
+\section{Invertibility, volume, and orthogonal motion}
+
+Inverse formulas, row reduction, adjugates, diagonal matrices, and rotations are all different faces of isomorphism: solve uniquely, preserve or rescale volume, and understand what the map does independently of coordinates.
 
 \section{Inverse as undoing a linear process}
 
@@ -229,7 +244,6 @@ measures how much errors may be amplified.  A tiny determinant is not by itself 
 
 Thus the elementary criterion $\det A\ne0$ answers existence, while numerical linear algebra asks sensitivity.
 
-% Second-pass deepening for waves 2-4: wave 2
 \section{Row operations and the general linear group}
 
 Gaussian elimination writes an invertible matrix as a product of elementary matrices.  Geometrically, elementary matrices are simple transformations: shears, scalings, and swaps.  Thus an invertible linear transformation can be built from elementary geometric moves.  This is the computational skeleton behind the group $GL(n)$.

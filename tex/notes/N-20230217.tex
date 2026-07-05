@@ -137,19 +137,22 @@ is the volume of the parallelepiped spanned by the basis vectors.
 
 The note's main lesson is that tensor notation is coordinate bookkeeping with invariant meaning.  Tensor products linearize bilinear operations.  Metrics convert vectors and covectors.  Reciprocal bases separate geometric vectors from their components.  Levi-Civita symbols encode orientation.  The formulas look index-heavy, but they are all ways of protecting geometric meaning under a change of basis.
 
-
-
-\paragraph{Expanded synthesis.}
-For this chapter, the elementary material should be read as a study of what remains invariant when coordinates change. The earlier sections (`Tensor products and bases`, `Bilinearity`, `Metric, dot product, and components`, `Reciprocal basis`, `Covariant and contravariant components`) compute with arrays, bases, pivots, determinants, or eigenvectors; the deeper object is a linear map together with the spaces it acts on. A matrix is a representation of that map after bases have been chosen. This is why formulas such as
+\section{Tensor product by its universal property}
+The tensor product \(V\otimes W\) is characterized by bilinear maps:
 \[
-  A' = P^{-1}AP,\qquad \widetilde A = T^{-1}AS
+\operatorname{Bil}(V\times W,U)\cong \operatorname{Lin}(V\otimes W,U).
 \]
-are not cosmetic: they distinguish an intrinsic morphism from a coordinate description.
-
-The structural hierarchy is as follows. Kernels record what a map forgets, images record what it reaches, cokernels record obstructions to solvability, and quotients record information after an equivalence has been imposed. Determinants act on the top exterior power and therefore measure oriented volume; traces are invariant under cyclic rearrangement and become characters in representation theory; adjoints depend on an inner product and lead to self-adjoint spectral theory.
-
-A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
-
+It is the linear space that turns bilinear dependence into linear dependence.
+\section{Components under basis change}
+Vectors and covectors transform oppositely under basis change.  This is why indices matter: upper indices follow the basis, lower indices follow the dual basis.  Contractions pair one of each.
+\section{Metric as an index-lowering map}
+An inner product gives an isomorphism
+\[
+V\to V^*,\qquad v\mapsto \langle v,-\rangle.
+\]
+This allows one to lower indices.  Without a metric, vectors and covectors should not be identified.
+\section{Tensor notation as transformation law}
+Tensor notation records multilinearity and transformation behavior.  Tensor products linearize bilinear maps, metrics identify vectors with covectors, and cross products are special metric/orientation constructions.
 
 \section{Dual spaces and reciprocal bases}
 
@@ -202,7 +205,6 @@ In continuum mechanics, covariant and contravariant bases appear when coordinate
 
 The tensor notation in the original note is therefore not just abstract algebra.  It is the language needed when coordinates themselves become part of the geometry.
 
-% Second-pass deepening for waves 2-4: wave 2
 \section{Metric tensors and Gram matrices}
 
 Given a non-orthonormal basis $g_1,\ldots,g_n$, the metric tensor has components
@@ -223,7 +225,7 @@ Then
 \]
 This shows exactly how reciprocal bases are computed from the Gram matrix.
 
-\section{Covariant and contravariant components}
+\section{Covariant and contravariant components from Gram matrices}
 
 A vector $v$ may be written as
 \[

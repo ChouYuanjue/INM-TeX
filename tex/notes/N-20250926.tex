@@ -268,14 +268,27 @@ This is why implementation code often looks much simpler than the theoretical te
 
 The key lesson is that matrix calculus is compressed tensor calculus.  The full derivative of a vector with respect to a matrix is a higher-order object, but backpropagation contracts it immediately with an upstream gradient.  The result is an outer product: error signal times input.  This is the local rule behind every dense neural-network layer.
 
-
-\paragraph{Expanded synthesis.}
-For this chapter, the elementary material should be read as a study of what remains invariant when coordinates change. The earlier sections (`The setting`, `The theoretical tensor`, `Computing the sparse derivative`, `Contraction by the chain rule`, `Why the tensor disappears`) compute with arrays, bases, pivots, determinants, or eigenvectors; the deeper object is a linear map together with the spaces it acts on. A matrix is a representation of that map after bases have been chosen. This is why formulas such as
+\section{Backpropagation as cotangent pullback}
+For a layer \(z=Wx+b\), the forward map sends activations forward, while backpropagation sends covectors backward:
 \[
-  A' = P^{-1}AP,\qquad \widetilde A = T^{-1}AS
+\bar x=W^T\bar z.
 \]
-are not cosmetic: they distinguish an intrinsic morphism from a coordinate description.
-
-The structural hierarchy is as follows. Kernels record what a map forgets, images record what it reaches, cokernels record obstructions to solvability, and quotients record information after an equivalence has been imposed. Determinants act on the top exterior power and therefore measure oriented volume; traces are invariant under cyclic rearrangement and become characters in representation theory; adjoints depend on an inner product and lead to self-adjoint spectral theory.
-
-A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
+This is the pullback on cotangent vectors.
+\section{Why the three-dimensional tensor collapses}
+The derivative of \(z_i=\sum_j W_{ij}x_j+b_i\) with respect to \(W_{ab}\) is
+\[
+\frac{\partial z_i}{\partial W_{ab}}=\delta_{ia}x_b.
+\]
+Contracting with upstream gradient \(\bar z_i\) gives
+\[
+\frac{\partial L}{\partial W_{ab}}=\bar z_a x_b.
+\]
+Thus the huge derivative tensor disappears after contraction, leaving an outer product.
+\section{Batch form}
+For a batch, gradients add over examples:
+\[
+\nabla_W L=\bar Z X^T.
+\]
+This is matrix multiplication as accumulated outer products.
+\section{Backpropagation as sparse tensor contraction}
+Backpropagation is not magic tensor cancellation.  It is cotangent pullback plus contraction of sparse Jacobians, and the familiar weight gradient is the outer product of upstream error with input activation.

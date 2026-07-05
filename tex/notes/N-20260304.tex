@@ -1,65 +1,166 @@
-\notechapter{N-20260304}{Point-Set Language in \texorpdfstring{$\mathbb R^n$}{Rn}: Neighborhoods, Open Sets, Closed Sets, and Compactness}
+\notechapter{N-20260304}{Point-Set Language in \texorpdfstring{$\mathbb R^n$}{Rn}: Neighborhoods, Boundaries, and Compactness}
 
+\section{Why point-set language appears}
 
-\section{Distance and neighborhoods}
+In one-variable calculus, the domain is often an interval, so the topology is mostly hidden.  In several variables, a domain may have holes, corners, isolated points, missing boundary pieces, or several connected components.  Pictures help, but pictures can lie.  The reliable language is the language of balls, neighborhoods, boundary points, and sequences.
 
-For points $P_1=(a_1,\ldots,a_n)$ and $P_2=(b_1,\ldots,b_n)$ in $\mathbb R^n$, the Euclidean distance is
+Throughout this note, points are in \(\mathbb R^n\), and distance means Euclidean distance:
 \[
-  \rho(P_1,P_2)=\sqrt{\sum_{i=1}^n(a_i-b_i)^2}.
-\]
-Given $P_0\in\mathbb R^n$ and $\delta>0$, the open ball is
-\[
-  N_\delta(P_0)=\{P:\ \rho(P,P_0)<\delta\}.
+  \rho(P,Q)=\norm{P-Q}_2
+  =\sqrt{\sum_{i=1}^n(p_i-q_i)^2}.
 \]
 
-\section{Interior, exterior, boundary, and accumulation}
+\section{Balls and neighborhoods}
 
-Let $E\subseteq\mathbb R^n$.  A point is interior to $E$ if some ball around it is contained in $E$; exterior if some ball is disjoint from $E$; and a boundary point if every ball meets both $E$ and its complement.  A point is an accumulation point if every punctured neighborhood contains a point of $E$.
-
-The closure is $\overline E=E\cup E'$, where $E'$ is the set of accumulation points.  A set is closed iff it contains all its accumulation points, equivalently iff it contains limits of all convergent sequences from the set.
-
-\section{Open, closed, bounded, and compact}
-
-A set is open if every point is interior.  It is closed if its complement is open.  In $\mathbb R^n$, the Heine--Borel theorem says
+\begin{definition}
+For \(P_0\in\mathbb R^n\) and \(\delta>0\), the open ball of radius \(\delta\) around \(P_0\) is
 \[
-  K\text{ compact}\quad\Longleftrightarrow\quad K\text{ closed and bounded}.
+  B_\delta(P_0)=\{P\in\mathbb R^n:\rho(P,P_0)<\delta\}.
 \]
-Compactness is the hidden reason why continuous functions on closed bounded regions attain maxima and minima.
+A set \(U\) is a \vocab{neighborhood} of \(P_0\) if it contains some open ball \(B_\delta(P_0)\).
+\end{definition}
 
-\section{Connectedness}
+A neighborhood is the formal version of "all points sufficiently close to \(P_0\)."  This phrase is the engine behind limits, continuity, differentiability, and local extrema.
 
-A region in elementary multivariable calculus is often an open connected set, possibly together with its boundary.  Connectedness means the set cannot be split into two separated open pieces.  Path-connectedness means any two points can be joined by a continuous curve inside the set.
-
-\section{Context and outlook}
-
-Limits, continuity, differentiability, extrema, integration over domains, and change of variables all require control over how points approach a set.  Neighborhoods and boundaries are the grammar of multivariable analysis.
-
-
-
-\paragraph{Expanded synthesis.}
-The common theme of this chapter is that an elementary limiting or computational rule becomes powerful only after one specifies the space in which the limiting process takes place. The earlier sections (`Distance and neighborhoods`, `Interior, exterior, boundary, and accumulation`, `Open, closed, bounded, and compact`, `Connectedness`, `Higher viewpoint`) may look like separate techniques, but they all ask the same question: which operations are stable under approximation? A derivative is stable first-order approximation,
+\begin{example}
+In \(\mathbb R^2\), the disk
 \[
-  f(a+h)=f(a)+L(h)+o(|h|),
+  D=\{(x,y):x^2+y^2<1\}
 \]
-while an integral is stable accumulation with respect to a measure, and a convergent series is a limit in a chosen norm or topology.
-
-The advanced bridge is functional-analytic. Uniform convergence is convergence in a sup norm; $L^p$ convergence is convergence in an integral norm; differentiability is the existence of a continuous linear approximation; many differential equations are operator equations $L[u]=f$. Theorems such as dominated convergence, the inverse function theorem, the projection theorem in Hilbert spaces, and semigroup existence results are refined answers to the same elementary concern: when may we pass from finite approximations to a genuine limiting object?
-
-To use this viewpoint when rereading the original examples, identify the hidden stability condition. A Taylor expansion asks for control of the remainder. A change of variables asks for differentiability and Jacobian control. Termwise differentiation of a series asks for uniform convergence of derivative series. A differential-equation formula asks whether the operator is invertible under the imposed initial or boundary data. The elementary computation is the visible part; the advanced theory names the hypotheses that make it legitimate.
-
-
-\section{Expanded explanation: why point-set language is needed}
-
-In one-variable calculus, most domains are intervals, so topology is hidden.  In several variables, domains may have holes, corners, boundary pieces, isolated points, or disconnected components.  The language of neighborhoods avoids relying on misleading pictures.
-
-The most important definitions form a chain:
+is a neighborhood of \((0,0)\), because it contains \(B_{1/2}(0,0)\).  The punctured disk
 \[
-  \text{interior}\quad\to\quad\text{open set}\quad\to\quad\text{limit point}\quad\to\quad\text{closed set}\quad\to\quad\text{compact set}.
+  D\setminus\{(0,0)\}
 \]
-Each word controls a later theorem.
+is not a neighborhood of \((0,0)\), although every small ball around the origin meets it.
+\end{example}
 
-\section{Sequential tests and compactness}
+\section{Interior, exterior, and boundary}
 
-A point $p$ lies in $\overline E$ iff there exists a sequence $(x_n)$ in $E$ with $x_n\to p$.  A set $E$ is closed iff every convergent sequence in $E$ has its limit in $E$.
+\begin{definition}
+Let \(E\subseteq\mathbb R^n\).  A point \(P\) is
+\begin{enumerate}[(i)]
+  \item an \vocab{interior point} of \(E\) if some ball around \(P\) is contained in \(E\);
+  \item an \vocab{exterior point} of \(E\) if some ball around \(P\) is disjoint from \(E\);
+  \item a \vocab{boundary point} of \(E\) if every ball around \(P\) meets both \(E\) and \(\mathbb R^n\setminus E\).
+\end{enumerate}
+The set of all boundary points is denoted \(\partial E\).
+\end{definition}
 
-Compactness is an existence machine.  If $K$ is compact and $f:K\to\mathbb R$ is continuous, then $f$ attains its maximum and minimum.  If $(x_n)$ is a sequence in compact $K$, it has a convergent subsequence.
+These three classes partition \(\mathbb R^n\).  The boundary is where local membership cannot be decided by zooming in.
+
+\begin{example}
+For
+\[
+  E=\{(x,y):x^2+y^2<1\},
+\]
+the interior is \(E\) itself, the exterior is \(\{(x,y):x^2+y^2>1\}\), and the boundary is the circle
+\[
+  \partial E=\{(x,y):x^2+y^2=1\}.
+\]
+For the closed disk \(\{x^2+y^2\le1\}\), the boundary is the same circle.  Boundary is not the same as "points excluded from the set."
+\end{example}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[scale=1.0]
+  \draw[->] (-2.2,0) -- (2.4,0) node[right] {$x$};
+  \draw[->] (0,-2.0) -- (0,2.2) node[above] {$y$};
+  \draw[thick] (0,0) circle (1.25);
+  \fill (0.35,0.25) circle (2pt) node[below right] {interior};
+  \fill (1.25,0) circle (2pt) node[above right] {boundary};
+  \fill (1.8,1.2) circle (2pt) node[right] {exterior};
+  \draw[dashed] (0.35,0.25) circle (0.34);
+  \draw[dashed] (1.25,0) circle (0.34);
+\end{tikzpicture}
+\caption{Interior points have a small ball inside the set; boundary points never do.}
+\end{figure}
+
+\section{Open and closed sets}
+
+\begin{definition}
+A set \(E\subseteq\mathbb R^n\) is \vocab{open} if every point of \(E\) is an interior point.  It is \vocab{closed} if its complement is open.
+\end{definition}
+
+The two words are not opposites in the everyday sense.  A set can be both open and closed, or neither open nor closed.
+
+\begin{example}
+In \(\mathbb R\), the interval \((0,1)\) is open but not closed, \([0,1]\) is closed but not open, \([0,1)\) is neither open nor closed, and both \(\varnothing\) and \(\mathbb R\) are both open and closed.
+\end{example}
+
+\begin{proposition}
+A set \(E\subseteq\mathbb R^n\) is closed if and only if it contains all its boundary points.
+\end{proposition}
+
+\begin{proof}[Proof skeleton]
+If \(E\) is closed, its complement is open, so no boundary point can lie in the complement; hence every boundary point lies in \(E\).  Conversely, if \(E\) contains all boundary points, then any point outside \(E\) is not an interior point of \(E\) and not a boundary point, so it is exterior.  Thus the complement is open.
+\end{proof}
+
+\section{Accumulation points and closure}
+
+\begin{definition}
+A point \(P\) is an \vocab{accumulation point} of \(E\) if every punctured ball
+\[
+  B_\delta(P)\setminus\{P\}
+\]
+contains a point of \(E\).  The \vocab{closure} of \(E\), denoted \(\overline E\), is the union of \(E\) with all its accumulation points.
+\end{definition}
+
+\begin{proposition}[Sequential test]
+For \(E\subseteq\mathbb R^n\), a point \(P\) lies in \(\overline E\) if and only if there is a sequence \((P_k)\) in \(E\) such that \(P_k\to P\).
+\end{proposition}
+
+\begin{proof}[Proof skeleton]
+If \(P\in\overline E\), choose \(P_k\in E\cap B_{1/k}(P)\), using \(P_k=P\) if \(P\in E\) and necessary.  Then \(P_k\to P\).  Conversely, if \(P_k\in E\) and \(P_k\to P\), then every ball around \(P\) contains some \(P_k\), so \(P\) is in the closure.
+\end{proof}
+
+This gives the most useful closed-set criterion:
+\[
+  E\text{ is closed}\quad\Longleftrightarrow\quad
+  \text{every convergent sequence in }E\text{ has its limit in }E.
+\]
+
+\section{Boundedness and compactness}
+
+\begin{definition}
+A set \(E\subseteq\mathbb R^n\) is \vocab{bounded} if it is contained in some ball \(B_R(0)\).  It is \vocab{compact} if every open cover of \(E\) has a finite subcover.
+\end{definition}
+
+In \(\mathbb R^n\), compactness has a simpler working form.
+
+\begin{theorem}[Heine--Borel]
+A subset \(K\subseteq\mathbb R^n\) is compact if and only if it is closed and bounded.
+\end{theorem}
+
+For computation, compactness is an existence machine.  It makes "largest," "smallest," and "convergent subsequence" statements true.
+
+\begin{theorem}[Extreme value theorem]
+If \(K\subseteq\mathbb R^n\) is compact and \(f:K\to\mathbb R\) is continuous, then \(f\) attains a maximum and a minimum on \(K\).
+\end{theorem}
+
+\begin{example}
+The function \(f(x,y)=x^2+y^2\) has a maximum and a minimum on the closed disk \(x^2+y^2\le1\).  It has a minimum but no maximum on the open disk \(x^2+y^2<1\).  The missing boundary is exactly where the supremum would be reached.
+\end{example}
+
+\section{Connectedness and path-connectedness}
+
+\begin{definition}
+A set \(E\) is \vocab{connected} if it cannot be written as the union of two nonempty separated pieces.  It is \vocab{path-connected} if for any two points \(P,Q\in E\), there is a continuous curve \(\gamma:[0,1]\to E\) with \(\gamma(0)=P\) and \(\gamma(1)=Q\).
+\end{definition}
+
+Path-connectedness implies connectedness.  In the elementary domains of multivariable calculus, the two often coincide, but they are not the same in general.
+
+A \vocab{region} in many calculus texts usually means an open connected subset of \(\mathbb R^n\), sometimes together with a piecewise smooth boundary when integration is involved.
+
+\section{What this vocabulary controls}
+
+The words in this note are not decorative definitions.  They decide which theorems are legal:
+\[
+\begin{array}{c|c}
+\text{open set} & \text{local perturbations stay inside the domain}\\
+\text{closed set} & \text{limits of internal sequences remain inside}\\
+\text{compact set} & \text{continuous functions attain extrema}\\
+\text{boundary} & \text{where constraints and integration surfaces live}\\
+\text{connectedness} & \text{where one can move without jumping}
+\end{array}
+\]
+When later notes discuss limits, tangent planes, extrema, or multiple integrals, these are the hidden hypotheses that make the calculations legitimate.

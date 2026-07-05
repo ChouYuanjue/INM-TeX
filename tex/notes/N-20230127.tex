@@ -116,19 +116,26 @@ contains the cyclotomic factors $\Phi_d(x)$ for divisors $d>1$ of $k+1$.  Replac
 
 The value of this note is the exploration, not only the final condition.  It begins with a correct theorem, tries a direct factorization proof, guesses a generalization, finds that the guess is false, uses computation to see the roots, and finally explains the pattern by complex exponentials.  That is a miniature version of mathematical research: algebraic manipulation, conjecture, counterexample, visualization, and structural explanation.
 
-
-
-\paragraph{Expanded synthesis.}
-For this chapter, the elementary material should be read as a study of what remains invariant when coordinates change. The earlier sections (`The original problem and the first successful method`, `The direct factorization attempt`, `The attempted generalization`, `The computational experiment`, `Explicit root formula`) compute with arrays, bases, pivots, determinants, or eigenvectors; the deeper object is a linear map together with the spaces it acts on. A matrix is a representation of that map after bases have been chosen. This is why formulas such as
+\section{Geometric sums and roots of unity}
+The polynomial
 \[
-  A' = P^{-1}AP,\qquad \widetilde A = T^{-1}AS
+1+x+\cdots+x^m=\frac{x^{m+1}-1}{x-1}
 \]
-are not cosmetic: they distinguish an intrinsic morphism from a coordinate description.
-
-The structural hierarchy is as follows. Kernels record what a map forgets, images record what it reaches, cokernels record obstructions to solvability, and quotients record information after an equivalence has been imposed. Determinants act on the top exterior power and therefore measure oriented volume; traces are invariant under cyclic rearrangement and become characters in representation theory; adjoints depend on an inner product and lead to self-adjoint spectral theory.
-
-A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
-
+has roots among roots of unity except \(1\).  Factorization questions are therefore questions about which roots of unity two polynomials share.
+\section{Cyclotomic organization}
+The factorization
+\[
+x^n-1=\prod_{d\mid n}\Phi_d(x)
+\]
+separates roots by exact order.  Common factors of expressions built from geometric sums can be read by comparing divisibility relations among orders.
+\section{Explicit roots and common factors}
+If roots are written as
+\[
+e^{2\pi i k/n},
+\]
+then common real factors come from conjugate pairs.  A real polynomial factor corresponds to a set of roots closed under complex conjugation.
+\section{Cyclotomic structure behind geometric sums}
+The computational experiments point toward the same structure: geometric-sum factorizations are controlled by roots of unity, cyclotomic polynomials, orders, and conjugation symmetry.
 
 \section{Cyclotomic polynomials}
 
@@ -176,7 +183,6 @@ are research-level descendants of elementary root-of-unity sums.  They connect f
 
 The note's factorization experiments with roots on the complex plane are the concrete beginning of cyclotomic theory.  The advanced bridge is precise: roots of unity form finite cyclic groups, cyclotomic polynomials package primitive roots, and Galois groups act by exponentiation modulo $n$.
 
-% Second-pass deepening for waves 2-4: wave 3 A-C part 3
 \section{Primitive roots and cyclotomic factor tests}
 
 To decide whether a polynomial expression is divisible by $\Phi_n(x)$, it is enough to substitute a primitive $n$-th root of unity $\zeta$ and check whether the expression vanishes.  Because $\Phi_n$ is the minimal polynomial of $\zeta$ over $\mathbb Q$, vanishing at one primitive root forces vanishing at all Galois conjugates.

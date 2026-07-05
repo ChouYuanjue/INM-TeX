@@ -203,19 +203,29 @@ The note is not merely a list of inequality tricks.  It repeatedly uses the same
   \text{radicals}\to\text{norms}.
 \]
 
+\section{Equality cases as structural information}
 
-
-\paragraph{Expanded synthesis.}
-For this chapter, the elementary material should be read as a study of what remains invariant when coordinates change. The earlier sections (`How to read this note`, `A fraction problem with a constraint`, `A weighted square-root comparison`, `Maximizing a radical expression`, `Equality in Cauchy--Schwarz`) compute with arrays, bases, pivots, determinants, or eigenvectors; the deeper object is a linear map together with the spaces it acts on. A matrix is a representation of that map after bases have been chosen. This is why formulas such as
+In inequality problems, equality conditions are not afterthoughts.  They often reveal the correct substitution or normalization.  For Cauchy--Schwarz,
 \[
-  A' = P^{-1}AP,\qquad \widetilde A = T^{-1}AS
+  \left(\sum_i a_i b_i\right)^2=\left(\sum_i a_i^2\right)\left(\sum_i b_i^2\right)
 \]
-are not cosmetic: they distinguish an intrinsic morphism from a coordinate description.
+holds exactly when \(a\) and \(b\) are proportional.  If a proposed solution cannot recover the equality case, it is probably not using the natural structure.
 
-The structural hierarchy is as follows. Kernels record what a map forgets, images record what it reaches, cokernels record obstructions to solvability, and quotients record information after an equivalence has been imposed. Determinants act on the top exterior power and therefore measure oriented volume; traces are invariant under cyclic rearrangement and become characters in representation theory; adjoints depend on an inner product and lead to self-adjoint spectral theory.
+\section{Optimization on constrained domains}
 
-A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
+Many radical or fraction inequalities are optimization problems on a constrained set.  A constraint such as \(x+y+z=1\) suggests compactness if variables are nonnegative.  Then a maximum exists, and one can use convexity, Cauchy, or Lagrange multipliers to locate it.
 
+This separates two tasks: first prove existence or reduce the domain; then identify the inequality that gives the optimum.
+
+\section{Vectors and geometric inequalities}
+
+Vector methods convert algebraic inequalities into length comparisons.  If an expression can be written as a dot product, Cauchy applies.  If it is a sum of lengths, triangle inequality or Minkowski applies.
+
+The power of vectors is that equality becomes a geometric condition: parallel vectors, collinearity, or degenerate triangles.
+
+\section{Equality cases as geometric diagnostics}
+
+The exercise sheet is about choosing the right geometry.  Cauchy handles dot products, AM--GM handles balanced positive products, convexity handles averages, and Lagrange multipliers handle smooth constrained extrema.  Equality cases are the map showing which method is natural.
 
 \section{Equality cases as geometry}
 

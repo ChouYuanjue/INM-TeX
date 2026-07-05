@@ -2,6 +2,15 @@
 
 \section{Why this note is split this way}
 
+Surface integration is where several notations begin to look dangerously similar.  The guiding principle of this note is that every integral should be identified by the geometric object it integrates over and by the degree of the quantity being integrated.  A scalar surface integral measures density against area; a flux integral measures a two-dimensional oriented flow; Gauss turns a two-dimensional boundary flux into a three-dimensional divergence integral; Stokes turns a one-dimensional boundary circulation into a two-dimensional curl integral.
+
+This is not a taxonomy for its own sake.  It is the first place where the general formula
+\[
+  \int_{\partial M}\omega=\int_M d\omega
+\]
+starts to become visible behind vector calculus.
+
+
 
 \section{Four similar-looking integrals}
 
@@ -140,17 +149,67 @@ so
 \]
 For downward orientation, change the sign.
 
-\section{Typical flux examples from the source}
 
-The original long note includes sphere, cone, shifted sphere, rectangular box, and partial-sphere examples.  The common structures are these.
+\section{Model flux computations: closed, capped, singular, and sheeted}
 
-For a sphere with outward orientation, direct parametrization works, but Gauss' theorem is often shorter if the surface is closed.  For a cone with upper orientation, the graph formula or cone parametrization should be used; the sign is the main danger.  For a shifted sphere such as
+The useful flux examples are not a random list of surfaces; they represent four different decisions about orientation and theorem choice.
+
+\subsection{Closed sphere: Gauss beats parametrization}
+
+Let \(F(x,y,z)=(x,y,z)\) and let \(S\) be the sphere \(x^2+y^2+z^2=R^2\) with outward orientation.  Directly, the outward unit normal is \(n=x/R\), so
 \[
-  (x-a)^2+y^2+z^2=R^2,
+  F\cdot n=R,\qquad dS=R^2\sin\varphi\,d\varphi\,d\theta.
 \]
-translation changes the integrand but not the geometric idea.  For a rectangular box, flux splits over six faces unless Gauss' theorem turns it into one volume integral.  For a sphere piece with only $dx\,dy$, the projection to the $xy$-plane and the sign of the normal decide whether the upper and lower sheets add or cancel.
+Hence
+\[
+  \iint_SF\cdot n\,dS=R\cdot4\pi R^2=4\pi R^3.
+\]
+Gauss gives the same answer faster:
+\[
+  \nabla\cdot F=3,\qquad
+  \iiint_{B_R}3\,dV=3\cdot\frac{4}{3}\pi R^3=4\pi R^3.
+\]
+The theorem choice is dictated by closedness of the surface.
+
+\subsection{Open surface: close it and subtract the cap}
+
+For the upper hemisphere \(S\) of radius \(R\), outward orientation, Gauss cannot be applied to \(S\) alone because it is not closed.  Close it by adding the disk \(D\) in the plane \(z=0\).  For \(F=(x,y,z)\), the flux through \(D\) is zero because \(F\cdot n=0\) there.  Therefore the hemisphere flux equals the full closed half-ball flux:
+\[
+  \iint_SF\cdot n\,dS=\iiint_{z\ge0,\ x^2+y^2+z^2\le R^2}3\,dV=2\pi R^3.
+\]
+For another field, the cap flux might not vanish; subtracting it is the whole point of the method.
+
+\subsection{Cone: orientation is the computation}
+
+For the cone \(z=r\), \(0\le r\le a\), use
+\[
+  r(r,\theta)=(r\cos\theta,r\sin\theta,r).
+\]
+Then
+\[
+  r_r\times r_\theta=(-r\cos\theta,-r\sin\theta,r),
+\]
+which has positive \(z\)-component.  Thus it is the upward orientation.  If a problem asks for outward orientation of the cone as the side of a solid below its tip, the sign may be the opposite.  Here the formula is easy; choosing the correct normal is the real work.
+
+\subsection{Two sheets over one projection}
+
+For a sphere cut by projection onto the \(xy\)-plane, upper and lower sheets have opposite normal components.  A flux written as
+\[
+  \iint_S R\,dx\,dy
+\]
+really means integrating the two-form \(R\,dx\wedge dy\).  On the upper sheet, upward orientation contributes \(+R\,dx\,dy\); on the lower sheet, the same geometric outward orientation may contribute \(-R\,dx\,dy\).  Thus sheets may add or cancel depending on the chosen orientation and the component of the flux form.
+
+This is the differential-form reason that projection formulas are dangerous when treated as scalar area formulas.
 
 \section{Gauss theorem}
+
+\begin{theorem}[Gauss divergence theorem]
+For a compact region \(\Omega\) with oriented boundary \(\partial\Omega\),
+\[
+  \int_{\partial\Omega} F\cdot n\,dS=\int_\Omega \nabla\cdot F\,dV.
+\]
+\end{theorem}
+
 
 Let $\Omega$ be a solid with outward boundary $\partial\Omega$.  For $F=(P,Q,R)$,
 \[
@@ -172,6 +231,14 @@ The note includes the important example type where the field is singular at a po
 
 \section{Stokes theorem}
 
+\begin{theorem}[Stokes theorem]
+For an oriented surface \(S\) with boundary \(\partial S\),
+\[
+  \int_{\partial S} F\cdot dr=\int_S (\nabla\times F)\cdot n\,dS.
+\]
+\end{theorem}
+
+
 Let $S$ be an oriented surface with boundary $\partial S$.  Then
 \[
   \oint_{\partial S}F\cdot dr
@@ -191,11 +258,43 @@ The right-hand rule fixes orientation: if the thumb points along $n$, the finger
 
 Use Stokes when the boundary curve is complicated but some spanning surface is simple, or when the curl is much simpler than the original vector field.  The surface can be changed as long as the boundary and orientation are preserved.
 
-\section{Examples preserved from the long note}
 
-For a triangular boundary in a plane, Stokes lets us replace a line integral over three edges by a surface integral over the triangle.  If the curl is constant, the result is just the dot product of the curl with the oriented area vector.
+\section{Stokes model computations: area vector and spanning-surface freedom}
 
-For an elliptical boundary, choose the planar elliptical disk rather than the original curved surface when allowed.  Parameterizing the ellipse directly is usually longer; Stokes rewards choosing the simplest spanning surface.
+\subsection{Triangle in a plane}
+
+Suppose \(\partial S\) is the positively oriented boundary of a triangle with vertices \(A,B,C\), and suppose \(\nabla\times F=c\) is constant.  Stokes gives
+\[
+  \oint_{\partial S}F\cdot dr
+  =\iint_S c\cdot n\,dS
+  =c\cdot \vec A_S,
+\]
+where the oriented area vector is
+\[
+  \vec A_S=\frac{1}{2}(B-A)\times(C-A).
+\]
+So the whole line integral collapses to one vector dot product.  The triangle is not merely a convenient region; it packages orientation and area into \(\vec A_S\).
+
+\subsection{Ellipse as a chosen spanning surface}
+
+If the boundary curve is an ellipse lying in a plane and \(\nabla\times F\) is simple, Stokes lets us choose the planar elliptical disk rather than parameterizing the boundary.  If the ellipse has semiaxes \(a,b\) and unit normal \(n\), then its oriented area vector is
+\[
+  \vec A=\pi ab\,n.
+\]
+When \(\nabla\times F=c\) is constant,
+\[
+  \oint_{\partial S}F\cdot dr=c\cdot(\pi ab\,n).
+\]
+This illustrates the true power of Stokes: the line integral depends on the boundary, but the chosen surface can be any surface spanning it, provided orientation is consistent.
+
+\subsection{Why surface replacement is legal}
+
+If two oriented surfaces \(S_1\) and \(S_2\) have the same boundary, then applying Stokes to the closed surface \(S_1\cup(-S_2)\) gives
+\[
+  \iint_{S_1}(\nabla\times F)\cdot n\,dS
+  -\iint_{S_2}(\nabla\times F)\cdot n\,dS=0,
+\]
+as long as the field is smooth in the region between them.  If there is a singularity between the two surfaces, this argument can fail.  This is the Stokes-side analogue of the singular-source warning in Gauss' theorem.
 
 \section{Decision table}
 
@@ -220,7 +319,44 @@ The high-level statement is the boundary principle:
 \]
 Green, Gauss, and Stokes are all versions of this formula.  The old vector-calculus notation hides the unity; differential forms reveal it.  The derivative $d\omega$ records local change inside a region, and the boundary integral records the accumulated effect at the edge.
 
+
+\section{The de Rham complex behind the vector formulas}
+
+The vector identities become less mysterious if the objects are placed by degree:
+\[
+\begin{array}{c|c|c}
+\text{degree} & \text{form in }\mathbb R^3 & \text{vector-calculus name}\\
+\hline
+0 & f & \text{scalar potential}\\
+1 & P\,dx+Q\,dy+R\,dz & \text{work/circulation form}\\
+2 & P\,dy\wedge dz+Q\,dz\wedge dx+R\,dx\wedge dy & \text{flux form}\\
+3 & g\,dx\wedge dy\wedge dz & \text{volume density}
+\end{array}
+\]
+The exterior derivative moves one row down:
+\[
+  d:
+  \Omega^0\to\Omega^1\to\Omega^2\to\Omega^3.
+\]
+In vector notation, these three moves are gradient, curl, and divergence.  The identities
+\[
+  \nabla\times(\nabla f)=0,\qquad
+  \nabla\cdot(\nabla\times F)=0
+\]
+are both the single identity
+\[
+  d^2=0.
+\]
+This is why conservative fields, curl-free forms, flux through closed surfaces, and singular sources are connected rather than separate topics.
 \section{General Stokes theorem}
+
+\begin{theorem}[General Stokes theorem]
+For a compact oriented manifold \(M\) with boundary and a differential form \(\omega\),
+\[
+  \int_M d\omega=\int_{\partial M}\omega.
+\]
+\end{theorem}
+
 
 The vector-calculus theorems in this note are all cases of the general Stokes theorem.  If $M$ is an oriented smooth manifold with boundary and $\omega$ is a compactly supported differential form of degree one less than $\dim M$, then
 \[
@@ -281,7 +417,7 @@ This extends Stokes' theorem to singular chains, weak surfaces, and geometric me
 
 The elementary surface and curve integrals in the note are therefore the smooth case of a much more flexible integration theory over generalized geometric objects.
 
-% Second-pass deepening for waves 2-4: wave 4 part 3
+% Concrete advanced extension
 \section{Gauss and Stokes as dual local-to-global laws}
 
 Gauss' theorem and Stokes' theorem are both local-to-global principles.  Gauss says that local source density accumulates to boundary flux.  Stokes says that local rotation accumulates to boundary circulation.  In differential-form notation, both are one formula:

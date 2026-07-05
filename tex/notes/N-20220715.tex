@@ -171,21 +171,30 @@ The hard part is not writing the formula, but proving that it again satisfies th
 
 This note is a striking mixture: classical conics and the construction of real addition by Dedekind cuts.  The hidden connection is that both topics turn geometry into algebra.  A conic becomes an equation and a focus-directrix ratio; a real number becomes a cut with algebraic operations.
 
+\section{Conics through affine and projective lenses}
 
-\paragraph{Expanded synthesis.}
-For this chapter, the elementary material should be read as a study of what remains invariant when coordinates change. The earlier sections (`Conic sections`, `Latus rectum and tangent geometry`, `Rational and irrational density`, `Vector spaces`, `Dedekind cuts and order`) compute with arrays, bases, pivots, determinants, or eigenvectors; the deeper object is a linear map together with the spaces it acts on. A matrix is a representation of that map after bases have been chosen. This is why formulas such as
+A conic can be represented by a quadratic equation
 \[
-  A' = P^{-1}AP,\qquad \widetilde A = T^{-1}AS
+  ax^2+bxy+cy^2+dx+ey+f=0.
 \]
-are not cosmetic: they distinguish an intrinsic morphism from a coordinate description.
+Affine transformations preserve conic type up to degeneracy, while projective transformations unify ellipses, parabolas, and hyperbolas as sections of a cone.
 
-The structural hierarchy is as follows. Kernels record what a map forgets, images record what it reaches, cokernels record obstructions to solvability, and quotients record information after an equivalence has been imposed. Determinants act on the top exterior power and therefore measure oriented volume; traces are invariant under cyclic rearrangement and become characters in representation theory; adjoints depend on an inner product and lead to self-adjoint spectral theory.
+The elementary focus-directrix and latus-rectum formulas are metric shadows of a more invariant projective object.
 
-A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
+\section{Density and completion}
 
+The density of \(\mathbb Q\) in \(\mathbb R\) says every real interval contains rationals.  Dedekind cuts use order rather than decimal expansions to construct real numbers.  Addition of cuts must be defined so that order and completeness are preserved.
 
-\section{Conics and cuts as two kinds of construction}
+This is the structural reason the note can move from conics to real-number construction: analytic geometry needs a complete ordered field.
 
-The conic part and the Dedekind-cut part look unrelated, but both are about turning an intuitive geometric object into an exact algebraic definition.  An ellipse is not just a picture; it is the set of points satisfying a focus-distance equation.  A real number is not just a point on a drawn line; it can be encoded as a cut in \(\mathbb Q\).
+\section{Dedekind addition as forced operation}
 
-This is a recurring mathematical move: replace a mental image by a definition that can be manipulated.  Once that is done, one can prove tangent formulas for conics and algebraic laws for real numbers.
+If \(A\) and \(B\) are lower cuts, their sum is
+\[
+  A+B=\{a+b:a\in A,\ b\in B\}.
+\]
+The definition is not arbitrary.  It is forced by wanting the embedding of rationals into cuts to preserve addition and order.
+
+\section{Coordinates, conics, and the completed line}
+
+Conic geometry depends on the coordinate field.  Dedekind cuts explain what the real line is, and projective/affine transformations explain which features of conics survive coordinate changes.

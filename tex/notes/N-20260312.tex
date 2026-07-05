@@ -1,9 +1,16 @@
-\notechapter{N-20260312}{Spectral Radius, Matrix Series, and Numerical Conditioning}
+\notechapter{N-20260312}{Matrix Computation II: Spectral Radius, Stability, and Conditioning}
 
+\section{The long-term question}
+
+A norm measures one-step amplification.  Spectral radius measures long-term exponential behavior.  When a matrix is applied repeatedly,
+\[
+  x,\ Ax,\ A^2x,\ldots,
+\]
+which directions survive is controlled by eigenvalues.
 
 \section{Spectral radius}
 
-For $A\in\mathbb C^{n\times n}$ with eigenvalues $\lambda_1,\ldots,\lambda_n$, the spectral radius is
+For \(A\in\mathbb C^{n\times n}\) with eigenvalues \(\lambda_1,\ldots,\lambda_n\), define
 \[
   \rho(A)=\max_j |\lambda_j|.
 \]
@@ -11,72 +18,163 @@ For any operator norm,
 \[
   \rho(A)\le \|A\|.
 \]
-Indeed, if $Ax=\lambda x$ and $x\ne0$, then $|\lambda|\|x\|=\|Ax\|\le\|A\|\|x\|$.
+Indeed, if \(Ax=\lambda x\), \(x\ne0\), then
+\[
+  |\lambda|\|x\|=\|Ax\|\le \|A\|\|x\|.
+\]
+For normal matrices,
+\[
+  \rho(A)=\|A\|_2.
+\]
 
-\section{Powers and convergence}
+\section{Spectral radius is not a norm}
 
-The long-term behavior of $A^k$ is controlled by $\rho(A)$.  In finite dimension,
+The nonzero nilpotent matrix
+\[
+  N=\begin{bmatrix}0&1\\0&0\end{bmatrix}
+\]
+has \(\rho(N)=0\).  Thus positive definiteness fails.
+
+Let
+\[
+  N_1=\begin{bmatrix}0&1\\0&0\end{bmatrix},\qquad
+  N_2=\begin{bmatrix}0&0\\1&0\end{bmatrix}.
+\]
+Then \(\rho(N_1)=\rho(N_2)=0\), but
+\[
+  \rho(N_1+N_2)=1.
+\]
+So the triangle inequality fails.
+
+Finally, take
+\[
+  E=\begin{bmatrix}0&1\\1&0\end{bmatrix},\qquad
+  F=\begin{bmatrix}1&1\\0&1\end{bmatrix}.
+\]
+Then \(\rho(E)=\rho(F)=1\), while \(\rho(EF)=(1+\sqrt5)/2>1\).  So submultiplicativity fails.
+
+\section{Approximating spectral radius}
+
+For every \(\varepsilon>0\), there exists a matrix norm such that
+\[
+  \|A\|\le \rho(A)+\varepsilon.
+\]
+The proof uses Jordan form.  Write \(P^{-1}AP=J\).  On each Jordan block, conjugate by
+\[
+  D=\operatorname{diag}(1,\delta,\delta^2,\ldots),
+\]
+which shrinks the superdiagonal entries from \(1\) to \(\delta\).  Choosing \(\delta\) small makes the norm of the block close to the modulus of its eigenvalue.
+
+\section{Convergent matrices}
+
+A matrix is convergent if
+\[
+  A^k\to0.
+\]
+The criterion is
 \[
   A^k\to0\quad\Longleftrightarrow\quad \rho(A)<1.
 \]
-The Jordan form explains the borderline cases: a block with eigenvalue $|\lambda|<1$ decays even with polynomial factors, while $|\lambda|\ge1$ prevents decay.
-
-\section{Matrix geometric series}
-
-If $\rho(A)<1$, then
+Necessity follows because eigenvalues of \(A^k\) are \(\lambda^k\).  Sufficiency follows by choosing a norm with \(\|A\|<1\), using the approximation theorem, and then
 \[
-  \sum_{k=0}^\infty A^k=(I-A)^{-1}.
+  \|A^k\|\le \|A\|^k\to0.
 \]
-This is the matrix version of the scalar geometric series.  The condition is not merely $\|A\|<1$ for a particular norm; $\rho(A)<1$ is the intrinsic condition, although a suitable norm can often be chosen with $\|A\|<1$.
 
-\section{Condition number}
+\section{Jordan boundary behavior}
 
-For an invertible matrix $A$, the condition number in a norm is
-\[
-  \kappa(A)=\|A\|\|A^{-1}\|.
-\]
-It measures how much relative error can be amplified when solving $Ax=b$.  In the Euclidean norm,
-\[
-  \kappa_2(A)=\frac{\sigma_{\max}(A)}{\sigma_{\min}(A)}.
-\]
-A large condition number means the problem is intrinsically sensitive, not just that an algorithm is poorly written.
-
-\section{A more structural view}
-
-Spectral radius describes asymptotic dynamics, the matrix geometric series describes stable feedback, and condition number describes sensitivity to perturbation.  These are the linear-algebraic roots of many stability questions in numerical analysis and machine learning.
-
-
-
-\paragraph{Expanded synthesis.}
-For this chapter, the elementary material should be read as a study of what remains invariant when coordinates change. The earlier sections (`Spectral radius`, `Powers and convergence`, `Matrix geometric series`, `Condition number`, `Higher viewpoint`) compute with arrays, bases, pivots, determinants, or eigenvectors; the deeper object is a linear map together with the spaces it acts on. A matrix is a representation of that map after bases have been chosen. This is why formulas such as
-\[
-  A' = P^{-1}AP,\qquad \widetilde A = T^{-1}AS
-\]
-are not cosmetic: they distinguish an intrinsic morphism from a coordinate description.
-
-The structural hierarchy is as follows. Kernels record what a map forgets, images record what it reaches, cokernels record obstructions to solvability, and quotients record information after an equivalence has been imposed. Determinants act on the top exterior power and therefore measure oriented volume; traces are invariant under cyclic rearrangement and become characters in representation theory; adjoints depend on an inner product and lead to self-adjoint spectral theory.
-
-A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
-
-
-\section{Expanded spectral-radius calculus}
-
-The inequality $\rho(A)\le\|A\|$ is only the beginning.  Gelfand's formula says
-\[
-  \rho(A)=\lim_{k\to\infty}\|A^k\|^{1/k}
-\]
-for any matrix norm.  Thus spectral radius is the intrinsic exponential growth rate of powers of $A$.
-
-This explains why $\rho(A)<1$ is the exact condition for $A^k\to0$.  If $A$ has a Jordan block $J=\lambda I+N$, then
+If \(J=\lambda I+N\), \(N^m=0\), then
 \[
   J^k=\sum_{j=0}^{m-1}\binom{k}{j}\lambda^{k-j}N^j.
 \]
-The polynomial factor cannot defeat exponential decay when $|\lambda|<1$, but it matters on the boundary $|\lambda|=1$.
+Polynomial factors cannot defeat exponential decay when \(|\lambda|<1\), but they matter when \(|\lambda|=1\).  This is why the strict inequality \(\rho(A)<1\) is essential.
 
-\section{Conditioning as geometry of inverse maps}
+\section{Neumann series}
 
-Solving $Ax=b$ applies $A^{-1}$ to $b$.  If $A$ sends some unit vector to a very short vector, then $A^{-1}$ must stretch that direction enormously.  In singular-value language,
+If \(\rho(A)<1\), then
 \[
-  \kappa_2(A)=\frac{\sigma_{\max}}{\sigma_{\min}}.
+  \sum_{k=0}^\infty A^k=(I-A)^{-1}.
 \]
-A large condition number means small errors in $b$ may create large errors in $x$.
+This follows from
+\[
+  (I-A)(I+A+\cdots+A^m)=I-A^{m+1}.
+\]
+Neumann series turns a static inverse into repeated feedback accumulation.
+
+\section{Matrix power series}
+
+If \(\sum a_k z^k\) has scalar radius of convergence \(R\), then
+\[
+  \sum a_k A^k
+\]
+converges when \(\rho(A)<R\) and diverges when \(\rho(A)>R\).  Eigenvalues decide whether the matrix lies inside the convergence disk.
+
+\section{Condition number}
+
+For invertible \(A\), define
+\[
+  \kappa(A)=\|A\|\|A^{-1}\|.
+\]
+In the Euclidean norm,
+\[
+  \kappa_2(A)=\frac{\sigma_{\max}(A)}{\sigma_{\min}(A)}.
+\]
+If \(A\) is normal and invertible, then
+\[
+  \kappa_2(A)=\frac{\max |\lambda_j|}{\min |\lambda_j|}.
+\]
+A large condition number means solving \(Ax=b\) is intrinsically sensitive.
+
+\section{Perturbation bound}
+
+If \((A+\delta A)\widehat x=b+\delta b\), then a standard estimate is
+\[
+  \frac{\|x-\widehat x\|}{\|x\|}
+  \le
+  \frac{\kappa(A)}{1-\kappa(A)\frac{\|\delta A\|}{\|A\|}}
+  \left(
+  \frac{\|\delta A\|}{\|A\|}+\frac{\|\delta b\|}{\|b\|}
+  \right),
+\]
+provided
+\[
+  \kappa(A)\frac{\|\delta A\|}{\|A\|}<1.
+\]
+The denominator is part of the theorem, not a decoration.
+
+\section{Ill-conditioned example}
+
+Let
+\[
+  A_\varepsilon=\begin{bmatrix}1&-1\\-1&1+\varepsilon\end{bmatrix}.
+\]
+The eigenvalues are
+\[
+  \lambda_\pm=\frac{2+\varepsilon\pm\sqrt{4+\varepsilon^2}}{2}.
+\]
+For small \(\varepsilon\),
+\[
+  \lambda_+\approx2,\qquad \lambda_-\approx\varepsilon/2,
+\]
+so
+\[
+  \kappa_2(A_\varepsilon)\approx \frac4\varepsilon.
+\]
+The matrix is invertible for \(\varepsilon>0\), but nearly singular when \(\varepsilon\) is small.
+
+\section{Numerical and ML interpretation}
+
+Repeated multiplication appears in recurrent systems, graph propagation, linearized training dynamics, and iterative solvers.  Spectral radius tells whether powers decay or grow asymptotically.  Condition number tells whether solving or inversion amplifies perturbations.
+
+Mixed precision increases the relative size of rounding perturbations.  If the problem is ill-conditioned, those perturbations can become wrong directions.  The safe statement is not that condition number explains all training failures, but that it reveals a basic numerical instability channel.
+
+\section{Checklist}
+
+\[
+\begin{array}{c|c}
+\rho(A) & \text{asymptotic eigenvalue growth}\\
+\|A\| & \text{one-step amplification}\\
+A^k\to0 & \rho(A)<1\\
+(I-A)^{-1} & \sum_{k\ge0}A^k\\
+\kappa(A) & \text{sensitivity of solving}
+\end{array}
+\]

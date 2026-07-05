@@ -169,14 +169,65 @@ Conversely, in metric spaces, complete plus totally bounded implies compact.
 
 This note stages the transition from analysis to topology.  Metrics let us talk about boundedness, convergence, continuity, balls, closed sets, limit points, Cauchy sequences, and completeness.  But later topology keeps only what can be expressed through open sets.  Boundedness and completeness will fail to be topological invariants; continuity and connectedness will survive.
 
+\section{Equivalent metrics and what topology forgets}
 
-\paragraph{Expanded synthesis.}
-The common theme of this chapter is that an elementary limiting or computational rule becomes powerful only after one specifies the space in which the limiting process takes place. The earlier sections (`Why the note starts with metrics`, `Boundedness: diameter and radius`, `Metric spaces`, `Sequences and continuity`, `Standard metrics`) may look like separate techniques, but they all ask the same question: which operations are stable under approximation? A derivative is stable first-order approximation,
+On \(\mathbb R^n\), the usual norms produce different numerical distances but the same open sets.  For instance,
 \[
-  f(a+h)=f(a)+L(h)+o(|h|),
+  \norm{x}_\infty \le \norm{x}_2 \le \sqrt n\norm{x}_\infty.
 \]
-while an integral is stable accumulation with respect to a measure, and a convergent series is a limit in a chosen norm or topology.
+Therefore a ball for one norm contains a smaller ball for the other norm, and the two norms generate the same topology.
 
-The advanced bridge is functional-analytic. Uniform convergence is convergence in a sup norm; $L^p$ convergence is convergence in an integral norm; differentiability is the existence of a continuous linear approximation; many differential equations are operator equations $L[u]=f$. Theorems such as dominated convergence, the inverse function theorem, the projection theorem in Hilbert spaces, and semigroup existence results are refined answers to the same elementary concern: when may we pass from finite approximations to a genuine limiting object?
+This inequality is the concrete mechanism behind the slogan "topology forgets exact metric geometry."  A square ball and a round ball look different, but each can be squeezed inside the other after changing radius.  Thus convergence and continuity agree, while lengths, angles, and diameters do not.
 
-To use this viewpoint when rereading the original examples, identify the hidden stability condition. A Taylor expansion asks for control of the remainder. A change of variables asks for differentiability and Jacobian control. Termwise differentiation of a series asks for uniform convergence of derivative series. A differential-equation formula asks whether the operator is invertible under the imposed initial or boundary data. The elementary computation is the visible part; the advanced theory names the hypotheses that make it legitimate.
+\begin{remark}
+The finite-dimensional hypothesis matters.  In infinite-dimensional function spaces, norms need not be equivalent.  On \(C[0,1]\), the sup norm and the \(L^1\)-norm lead to very different convergence: narrow spikes can have small \(L^1\)-norm but large sup norm.
+\end{remark}
+
+\section{Completion as adding ideal limit points}
+
+The completion of a metric space is not just a larger space containing more points.  It is a controlled way to turn every Cauchy sequence into a convergent sequence.  The construction by Cauchy sequences makes this precise:
+\[
+  \widehat X=\{\text{Cauchy sequences in }X\}/\sim,\qquad
+  (x_n)\sim(y_n)\iff d(x_n,y_n)\to0.
+\]
+The distance between two completed points is
+\[
+  \widehat d([(x_n)],[(y_n)])=\lim_{n\to\infty}d(x_n,y_n).
+\]
+This is well-defined because the two sequences are Cauchy.
+
+For \(\mathbb Q\), a Cauchy sequence of rationals approximating \(\sqrt2\) becomes a genuine point in the completion.  The point is not a preferred decimal expansion; it is the whole equivalence class of rational approximations that close in on the same missing limit.
+
+\section{Uniform structure hidden inside metric topology}
+
+Continuity only cares about open sets.  Cauchy sequences care about more: they need a way to compare two moving points \(x_m\) and \(x_n\).  This information is called a uniform structure.  Two metrics may define the same topology but different Cauchy behavior.
+
+The homeomorphism
+\[
+  (0,1)\to \mathbb R,\qquad x\mapsto \tan \pi(x-1/2)
+\]
+shows the issue.  Topologically the spaces are the same.  But the Euclidean metric on \((0,1)\) sees sequences approaching \(1\) as Cauchy without a limit inside \((0,1)\), while their images in \(\mathbb R\) go to infinity and are not Cauchy.  Thus completeness is not topological; it is uniform/metric.
+
+\section{Compactness through total boundedness}
+
+In metric spaces,
+\[
+  \text{compact}\quad\Longleftrightarrow\quad \text{complete and totally bounded}.
+\]
+This statement is more portable than Heine--Borel.  The two hypotheses do different jobs.  Total boundedness prevents points from spreading out into infinitely many separated regions; completeness prevents Cauchy subsequences from escaping the space.
+
+The contrast with boundedness is useful.  An infinite set with the discrete metric \(d(x,y)=1\) is bounded, because all distances are at most \(1\).  But it is not totally bounded: for \(\varepsilon<1\), every \(\varepsilon\)-ball contains just one point, so no finite family can cover the space.
+
+\section{Baire category as a completeness phenomenon}
+
+Completeness has consequences beyond sequences.  The Baire category theorem says that a complete metric space cannot be written as a countable union of nowhere dense closed sets.  In practice, this means complete spaces are too large to be exhausted by thin pieces.
+
+This theorem explains why complete function spaces are powerful.  Many existence theorems in analysis prove that a desired object lies in a countable intersection of dense open sets.  Completeness then guarantees that the intersection is nonempty and large.  Thus the elementary Cauchy condition eventually becomes a tool for proving generic existence.
+
+\section{Metric spaces through completion and category}
+
+Metric topology is a bridge.  It keeps enough numerical structure to discuss boundedness, Cauchy sequences, total boundedness, and completeness, while already pointing toward open-set topology through balls, neighborhoods, closure, and continuity.  The advanced lesson is to separate three layers:
+\[
+  \text{topological}\quad\subsetneq\quad \text{uniform/metric}\quad\subsetneq\quad \text{geometric}.
+\]
+Continuity lives in the first layer, completeness in the second, and lengths/angles in the third.

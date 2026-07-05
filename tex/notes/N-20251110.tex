@@ -296,19 +296,18 @@ The note repeatedly warns against applying formulas mechanically.  The important
 
 This note is a determinant-method toolbox.  Vandermonde handles power columns; block triangular form factors determinants; Laplace expansion exploits zeros; row and column transformations simplify structure; recursion evaluates patterned determinants; Cramer's rule solves nonsingular systems; rank handles singular systems.  The conceptual progression is from explicit determinant computation to the structural question of linear dependence.
 
-
-
-\paragraph{Expanded synthesis.}
-For this chapter, the elementary material should be read as a study of what remains invariant when coordinates change. The earlier sections (`Cofactor orthogonality`, `Vandermonde determinant`, `Block triangular determinants`, `General Laplace expansion`) compute with arrays, bases, pivots, determinants, or eigenvectors; the deeper object is a linear map together with the spaces it acts on. A matrix is a representation of that map after bases have been chosen. This is why formulas such as
+\section{Determinant as alternating multilinear invariant}
+The determinant is characterized by multilinearity, alternation, and normalization.  This explains row operation rules, cofactor expansion, and why repeated rows give determinant zero.
+\section{Vandermonde and evaluation maps}
+The Vandermonde determinant
 \[
-  A' = P^{-1}AP,\qquad \widetilde A = T^{-1}AS
+\prod_{i<j}(x_j-x_i)
 \]
-are not cosmetic: they distinguish an intrinsic morphism from a coordinate description.
-
-The structural hierarchy is as follows. Kernels record what a map forgets, images record what it reaches, cokernels record obstructions to solvability, and quotients record information after an equivalence has been imposed. Determinants act on the top exterior power and therefore measure oriented volume; traces are invariant under cyclic rearrangement and become characters in representation theory; adjoints depend on an inner product and lead to self-adjoint spectral theory.
-
-A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
-
+measures whether evaluation at distinct points gives independent conditions on polynomials.  If two points coincide, two rows coincide and the determinant vanishes.
+\section{Rank and linear systems}
+Rank measures the number of independent equations or independent output directions.  A system is solvable exactly when the right-hand side lies in the column space.
+\section{Determinants and rank as invariants}
+Determinant tricks, block forms, Vandermonde structures, and rank computations all track the same objects: volume scaling, independence, and solvability.
 
 \section{Determinant through exterior powers}
 
@@ -366,7 +365,6 @@ The elementary rank/minor criteria are thus equations defining geometric spaces.
 
 Cramer's rule solves a nonsingular system by ratios of determinants.  Rank criteria handle the singular cases.  The advanced view says: the nonsingular matrices form the open set where the determinant volume form is nonzero; singular matrices lie on the determinantal hypersurface; rank strata describe how badly invertibility fails.
 
-% Second-pass deepening for waves 2-4: wave 2 remaining
 \section{Determinant identities as low-rank geometry}
 
 Many determinant problems are solved by adding all rows to one row, subtracting rows, or recognizing that a matrix has the form

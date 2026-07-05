@@ -228,14 +228,24 @@ This explains what the bordered Hessian is doing: it is a determinant device for
 
 This note is about the transition from calculus to optimization and differential geometry.  Lagrange multipliers are normal-vector equations.  Hessians are quadratic forms.  Bordered Hessians restrict second variation to tangent directions.  Degenerate cases require higher-order terms.  Inequality constraints lead to KKT theory.  Compactness guarantees global extrema, and Morse theory relates critical points to topology.  The original confusion is productive: it points exactly toward the deeper structure behind the computational rules.
 
+\section{Lagrange multipliers as cotangent annihilators}
 
-\paragraph{Expanded synthesis.}
-For this chapter, the elementary material should be read as a study of what remains invariant when coordinates change. The earlier sections (`Why this note was too compressed before`, `Lagrange multipliers: the basic idea`, `Example: minimizing distance to a line`, `Why the method is valid`, `Hessian matrix and the second derivative test`) compute with arrays, bases, pivots, determinants, or eigenvectors; the deeper object is a linear map together with the spaces it acts on. A matrix is a representation of that map after bases have been chosen. This is why formulas such as
+For constraints \(g_1=\cdots=g_k=0\), the tangent space consists of directions annihilated by all \(dg_i\).  At a constrained extremum,
 \[
-  A' = P^{-1}AP,\qquad \widetilde A = T^{-1}AS
+  df\in \operatorname{span}(dg_1,\ldots,dg_k).
 \]
-are not cosmetic: they distinguish an intrinsic morphism from a coordinate description.
+This is the coordinate-free form of Lagrange multipliers.
 
-The structural hierarchy is as follows. Kernels record what a map forgets, images record what it reaches, cokernels record obstructions to solvability, and quotients record information after an equivalence has been imposed. Determinants act on the top exterior power and therefore measure oriented volume; traces are invariant under cyclic rearrangement and become characters in representation theory; adjoints depend on an inner product and lead to self-adjoint spectral theory.
+\section{Bordered Hessian and restricted second variation}
 
-A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
+The second-order test should be applied only to tangent directions of the constraint.  The bordered Hessian is a coordinate device for computing the quadratic form of the Lagrangian on that tangent space.
+
+If the restricted quadratic form is positive definite, the point is a constrained local minimum; if negative definite, a constrained local maximum.
+
+\section{Degenerate extrema and higher order}
+
+When the second variation has zero directions, the Hessian test is inconclusive.  One must examine higher-order terms or use normal forms.  This is the optimization analogue of a multiple root in algebra: first-order and second-order information may not separate the cases.
+
+\section{First and second variations under constraints}
+
+Constrained extrema are governed by tangent and cotangent spaces.  Multipliers express first-order normality, bordered Hessians test second-order behavior along constraints, and degeneracy signals the need for higher-order local geometry.

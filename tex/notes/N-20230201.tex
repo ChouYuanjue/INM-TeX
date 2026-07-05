@@ -56,28 +56,8 @@ Let \(P\) be an interior point.  Draw a line through \(P\), meeting the shell at
 
 \begin{figure}[H]
 \centering
-\begin{tikzpicture}[scale=1.05]
-  \coordinate (O) at (0,0);
-  \coordinate (P) at (0.75,0);
-  \def\R{2.6}
-  \draw[thick] (O) circle (\R);
-  \draw[fill=black] (O) circle (1.2pt) node[below left] {$O$};
-  \draw[fill=black] (P) circle (1.2pt) node[below] {$P$};
-  \draw[dashed] (O) -- (P);
-  \coordinate (A) at (-2.4,-0.98);
-  \coordinate (B) at (2.55,0.48);
-  \draw[thick] (A) -- (B);
-  \draw[fill=black] (A) circle (1.2pt) node[left] {$A$};
-  \draw[fill=black] (B) circle (1.2pt) node[right] {$B$};
-  \draw[blue!65,thick] (O) -- (A) node[midway,above left] {$R$};
-  \draw[blue!65,thick] (O) -- (B) node[midway,below right] {$R$};
-  \draw[red!70,thick] (P) -- (A) node[midway,below] {$s_A$};
-  \draw[red!70,thick] (P) -- (B) node[midway,above] {$s_B$};
-  \draw[->,gray] (A) -- ($(A)!0.22!(O)$) node[midway,above] {normal};
-  \draw[->,gray] (B) -- ($(B)!0.22!(O)$);
-  \node at (0,-3.05) {A narrow cone from $P$ cuts two opposite patches.};
-\end{tikzpicture}
-\caption{Opposite shell patches seen from an interior point.}
+\includegraphics[width=0.92\textwidth]{figures/N-20230201/01-shell-geometric-method.png}
+\caption{The geometric cancellation proof: the same narrow cone from an interior point cuts two opposite shell patches, and the equal angle geometry supplies the common obliquity factor.}
 \end{figure}
 
 Let
@@ -129,6 +109,12 @@ The force integral is a vector integral.  The potential is scalar, so it is clea
   \ell(\theta)=\sqrt{R^2+r^2-2Rr\cos\theta}
 \]
 from the field point.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{figures/N-20230201/02-shell-integral-method.png}
+\caption{Geometry of the shell integral: the distance $\ell$ from the field point to a surface element and the projection angle used when passing from scalar potential to radial force.}
+\end{figure}
 
 The gravitational potential is
 \[

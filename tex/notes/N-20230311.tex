@@ -230,19 +230,16 @@ The slogan is useful:
 \]
 But the deeper difference is categorical: Riemann integration is built around approximating graphs by rectangles, while Lebesgue integration is built around measurable sets and stable limiting operations.  That is why Lebesgue integration becomes the foundation for modern analysis, probability, PDE, and functional analysis.
 
-
-
-\paragraph{Expanded synthesis.}
-The common theme of this chapter is that an elementary limiting or computational rule becomes powerful only after one specifies the space in which the limiting process takes place. The earlier sections (`Why two theories of integration exist`, `Riemann sums`, `Darboux upper and lower sums`, `A simple integrable discontinuity`, `Dirichlet's function`) may look like separate techniques, but they all ask the same question: which operations are stable under approximation? A derivative is stable first-order approximation,
-\[
-  f(a+h)=f(a)+L(h)+o(|h|),
-\]
-while an integral is stable accumulation with respect to a measure, and a convergent series is a limit in a chosen norm or topology.
-
-The advanced bridge is functional-analytic. Uniform convergence is convergence in a sup norm; $L^p$ convergence is convergence in an integral norm; differentiability is the existence of a continuous linear approximation; many differential equations are operator equations $L[u]=f$. Theorems such as dominated convergence, the inverse function theorem, the projection theorem in Hilbert spaces, and semigroup existence results are refined answers to the same elementary concern: when may we pass from finite approximations to a genuine limiting object?
-
-To use this viewpoint when rereading the original examples, identify the hidden stability condition. A Taylor expansion asks for control of the remainder. A change of variables asks for differentiability and Jacobian control. Termwise differentiation of a series asks for uniform convergence of derivative series. A differential-equation formula asks whether the operator is invertible under the imposed initial or boundary data. The elementary computation is the visible part; the advanced theory names the hypotheses that make it legitimate.
-
+\section{Riemann integration partitions the domain}
+Riemann integration controls oscillation on subintervals of the domain.  A bounded function is Riemann integrable when upper and lower sums can be made arbitrarily close.
+\section{Lebesgue integration partitions the values}
+Lebesgue integration instead measures level sets.  Simple functions approximate by values, and measurable sets replace intervals as the basic pieces.  This is why characteristic functions become fundamental.
+\section{Dirichlet function as separator}
+The function \(\mathbf 1_{\mathbb Q}\) is discontinuous everywhere and not Riemann integrable, but it is Lebesgue integrable with integral zero because \(\mathbb Q\) has measure zero.
+\section{Convergence theorems as exchange principles}
+Dominated convergence and monotone convergence explain when limits and integrals may be interchanged.  These theorems are the practical power of Lebesgue's theory.
+\section{Integration theory through measurable structure}
+Riemann integration manages oscillation on intervals; Lebesgue integration measures sets of values.  The shift from partitions of the domain to measurable level sets is the conceptual upgrade.
 
 \section{Riemann sums and measure spaces}
 
@@ -264,7 +261,7 @@ Nonnegative measurable functions are integrated by approximating from below by s
 
 This preserves the elementary intuition of area, but it makes convergence theorems much stronger.
 
-\section{Convergence theorems}
+\section{Dominated and monotone convergence in practice}
 
 The Riemann integral has difficulty with limits of functions.  Lebesgue theory supplies three central tools.
 

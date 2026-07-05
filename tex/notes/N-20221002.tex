@@ -209,116 +209,116 @@ has all elements of \(\mathbb F_{p^n}\) as roots, and it factors over \(\mathbb 
 
 Finite fields turn algebra into arithmetic.  Roots of polynomials become elements of finite extensions, irreducibility becomes a modular phenomenon, and Frobenius gives a canonical symmetry.  This is why finite fields appear in coding theory and cryptography: their algebra is rich but completely finite and computable.
 
-
-\paragraph{Expanded synthesis.}
-For this chapter, the elementary material should be read as a study of what remains invariant when coordinates change. The earlier sections (`Why finite fields matter`, `Fields`, `Field extensions`, `Constructing finite fields`, `Important properties of finite fields`) compute with arrays, bases, pivots, determinants, or eigenvectors; the deeper object is a linear map together with the spaces it acts on. A matrix is a representation of that map after bases have been chosen. This is why formulas such as
-\[
-  A' = P^{-1}AP,\qquad \widetilde A = T^{-1}AS
-\]
-are not cosmetic: they distinguish an intrinsic morphism from a coordinate description.
-
-The structural hierarchy is as follows. Kernels record what a map forgets, images record what it reaches, cokernels record obstructions to solvability, and quotients record information after an equivalence has been imposed. Determinants act on the top exterior power and therefore measure oriented volume; traces are invariant under cyclic rearrangement and become characters in representation theory; adjoints depend on an inner product and lead to self-adjoint spectral theory.
-
-A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
-
-
 \section{How the pieces fit}
 
-A finite field is where group theory, ring theory, linear algebra, and number theory meet.  Addition gives a vector space over \(\mathbb F_p\); multiplication gives a cyclic group on nonzero elements; Frobenius gives a canonical symmetry; irreducible polynomials give field extensions.  Polynomial factorization over finite fields is therefore not just a computational task, but a compact model of algebra itself.
+A finite field is where group theory, ring theory, linear algebra, and number theory meet.  The additive group of \(\mathbb F_{p^n}\) is an \(n\)-dimensional vector space over \(\mathbb F_p\).  The nonzero elements form a cyclic multiplicative group of order \(p^n-1\).  Polynomial quotients construct the field, and Frobenius supplies a canonical symmetry.
 
-
-
-\paragraph{Expanded synthesis.}
-For this chapter, the elementary material should be read as a study of what remains invariant when coordinates change. The earlier sections (`Why finite fields matter`, `Fields`, `Field extensions`, `Constructing finite fields`, `Important properties of finite fields`) compute with arrays, bases, pivots, determinants, or eigenvectors; the deeper object is a linear map together with the spaces it acts on. A matrix is a representation of that map after bases have been chosen. This is why formulas such as
+Thus a finite field computation often has three simultaneous readings:
 \[
-  A' = P^{-1}AP,\qquad \widetilde A = T^{-1}AS
+\begin{array}{c|c}
+\text{operation} & \text{structure being used}\\
+\hline
+\text{addition} & \mathbb F_p\text{-linear algebra}\\
+\text{multiplication} & \text{cyclic unit group and polynomial reduction}\\
+\text{Frobenius }x\mapsto x^p & \text{Galois symmetry}
+\end{array}
 \]
-are not cosmetic: they distinguish an intrinsic morphism from a coordinate description.
 
-The structural hierarchy is as follows. Kernels record what a map forgets, images record what it reaches, cokernels record obstructions to solvability, and quotients record information after an equivalence has been imposed. Determinants act on the top exterior power and therefore measure oriented volume; traces are invariant under cyclic rearrangement and become characters in representation theory; adjoints depend on an inner product and lead to self-adjoint spectral theory.
+\section{Frobenius and the first Galois group}
 
-A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
-
-
-\section{Frobenius automorphism}
-
-In a finite field of characteristic $p$, the Frobenius map is
+In characteristic \(p\), the Frobenius map
 \[
-  F:x\mapsto x^p.
+  F:x\mapsto x^p
 \]
-It is a field homomorphism because
+is a field homomorphism because
 \[
-  (x+y)^p=x^p+y^p
+  (x+y)^p=x^p+y^p.
 \]
-in characteristic $p$.  In a finite field it is an automorphism.
-
-For $\mathbb F_{p^n}$, the Galois group over $\mathbb F_p$ is cyclic generated by Frobenius:
+In \(\mathbb F_{p^n}\), it is an automorphism, and
 \[
-  \operatorname{Gal}(\mathbb F_{p^n}/\mathbb F_p)=\langle F\rangle,\qquad F^n=1.
+  F^n=1.
 \]
-This is the cleanest first example of a Galois group.
+The Galois group is cyclic:
+\[
+  \operatorname{Gal}(\mathbb F_{p^n}/\mathbb F_p)
+  =\langle F\rangle\cong \mathbb Z/n\mathbb Z.
+\]
+This is the cleanest first example of a Galois group: roots are moved by raising to powers of \(p\), and the fixed field of Frobenius is \(\mathbb F_p\).
 
-\section{Irreducible-polynomial counting}
+\section{Irreducible polynomials and orbit size}
 
-Elements of $\mathbb F_{q^n}$ are roots of
+An element \(\alpha\in\mathbb F_{q^n}\) has conjugates
+\[
+  \alpha,\quad \alpha^q,\quad \alpha^{q^2},\quad\ldots
+\]
+under Frobenius.  Its minimal polynomial over \(\mathbb F_q\) is
+\[
+  \prod_{i=0}^{d-1}(x-\alpha^{q^i}),
+\]
+where \(d\) is the size of the Frobenius orbit.  Thus irreducible polynomials over finite fields are Frobenius orbits in disguise.
+
+This explains why the degrees of irreducible factors of a polynomial are controlled by Frobenius cycles.
+
+\section{Counting irreducible polynomials}
+
+Every element of \(\mathbb F_{q^n}\) is a root of
 \[
   x^{q^n}-x.
 \]
-This polynomial factors over $\mathbb F_q$ as the product of all monic irreducible polynomials whose degrees divide $n$.
-
-Let $N_d$ be the number of monic irreducible polynomials of degree $d$ over $\mathbb F_q$.  Then
+Over \(\mathbb F_q\), this polynomial is the product of all monic irreducible polynomials whose degrees divide \(n\).  If \(N_d\) is the number of monic irreducible polynomials of degree \(d\), then
 \[
-  q^n=\sum_{d\mid n} dN_d.
+  q^n=\sum_{d\mid n}dN_d.
 \]
 By Möbius inversion,
 \[
   N_n=\frac1n\sum_{d\mid n}\mu(d)q^{n/d}.
 \]
-This is a direct bridge from elementary polynomial factorization to finite-field enumeration.
+This formula turns factorization into enumeration.  The factor \(d\) appears because each degree-\(d\) irreducible polynomial contributes \(d\) roots.
 
-\section{Coding theory}
+\section{Square-free and distinct-degree factorization}
 
-Finite fields are the alphabet for many error-correcting codes.  A linear code is a subspace
+Finite-field factorization algorithms exploit Frobenius.  The polynomial
 \[
-  C\subseteq \mathbb F_q^n.
+  x^{q^m}-x
 \]
-The Hamming distance counts positions in which two codewords differ.  A code with large minimum distance can detect and correct errors.
-
-Reed--Solomon codes evaluate low-degree polynomials over finite fields:
+has as roots exactly the elements of \(\mathbb F_{q^m}\).  Therefore
 \[
-  f(x)\mapsto (f(a_1),\ldots,f(a_n)).
+  \gcd(f(x),x^{q^m}-x)
 \]
-The fact that a low-degree polynomial cannot have too many roots is exactly what gives error correction.
+extracts from \(f\) the product of irreducible factors whose degrees divide \(m\).
 
-\section{Algebraic geometry over finite fields}
+This is the idea behind distinct-degree factorization.  First remove repeated factors by checking \(\gcd(f,f')\).  Then use Frobenius powers to separate factors by degree.  Finally use algorithms such as Cantor--Zassenhaus to split equal-degree parts.
 
-Solving polynomial equations over finite fields leads to algebraic varieties over finite fields.  Counting their points is a central research problem.  The simplest example is a curve $C$ over $\mathbb F_q$, where one studies
+\section{Berlekamp's algorithm as linear algebra}
+
+Berlekamp's algorithm turns factorization into a nullspace computation.  Over \(\mathbb F_q\), consider the map on the quotient algebra \(A=\mathbb F_q[x]/(f)\)
 \[
-  |C(\mathbb F_q)|.
+  B:g\mapsto g^q-g.
 \]
-The Weil bounds relate point counts to topology-like invariants of the curve.
+Elements in the kernel satisfy \(g^q=g\), and this kernel contains information about decomposing \(f\) into factors.
 
-Thus elementary finite-field polynomial factorization is the first step toward modern arithmetic geometry.
+Thus the algorithm uses the finite-dimensional \(\mathbb F_q\)-vector space structure of the quotient ring.  This is a concrete instance of a general computational theme: algebraic structure becomes linear algebra after passing to a finite quotient.
 
-% Second-pass deepening for waves 2-4: wave 3 A-C part 3
-\section{Finite fields: vectors and cyclic units}
+\section{Coding theory connection}
 
-A finite field $\mathbb F_{p^n}$ is simultaneously an $n$-dimensional vector space over $\mathbb F_p$ and a field.  Its additive structure is
+Finite fields are essential in coding theory because code symbols can be added, multiplied, and evaluated polynomially.  Reed--Solomon codes evaluate polynomials over \(\mathbb F_q\) at distinct field points:
 \[
-  (\mathbb Z/p\mathbb Z)^n,
+  f\longmapsto (f(a_1),\ldots,f(a_m)).
 \]
-while its nonzero multiplicative group is cyclic of order $p^n-1$.
+A nonzero polynomial of degree \(<k\) has at most \(k-1\) roots, so two different low-degree polynomials cannot agree at too many evaluation points.  This gives error detection and correction.
 
-This dual nature explains many finite-field constructions.  Addition is linear algebra; multiplication is encoded by reducing polynomials modulo an irreducible polynomial; Frobenius is both field automorphism and $\mathbb F_p$-linear map.
+Here the same polynomial-root principle used in factorization becomes a robustness principle for information transmission.
 
-\section{Irreducible polynomials as field-building data}
+\section{Algebraic geometry shadow}
 
-Choosing an irreducible polynomial $f(x)$ of degree $n$ over $\mathbb F_p$ constructs
+The identity
 \[
-  \mathbb F_p[x]/(f(x)).
+  \#\mathbb A^1(\mathbb F_q)=q
 \]
-A root $\alpha$ of $f$ becomes an element of degree $n$, and every field element is represented uniquely as
-\[
-  a_0+a_1\alpha+\cdots+a_{n-1}\alpha^{n-1}.
-\]
-The original factorization exercises are therefore not only about breaking polynomials apart; irreducible polynomials are the atoms from which finite field extensions are built.
+and the polynomial \(x^q-x\) already hint at a larger story: equations over finite fields define finite sets of points, and Frobenius acts on their solutions.  In higher-dimensional algebraic geometry, counting points over \(\mathbb F_{q^n}\) reveals cohomological information.
+
+Thus elementary finite-field polynomial factorization is a first step toward modern arithmetic geometry: finite fields provide a world where algebraic equations, symmetries, and point counts interact exactly.
+
+\section{Frobenius structure behind finite fields}
+
+Finite fields are not just small fields.  They are finite vector spaces, cyclic multiplicative groups, quotient rings, Frobenius dynamical systems, and computational domains all at once.  Irreducible polynomials build extensions; Frobenius organizes roots; gcds with \(x^{q^m}-x\) detect factor degrees; and the same algebra supports coding theory and cryptography.

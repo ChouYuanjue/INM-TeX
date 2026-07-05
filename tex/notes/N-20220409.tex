@@ -153,21 +153,41 @@ is the Schur complement of \(A\) in the block matrix.  It is the block-matrix ve
 
 The note moves from high-order calculus to matrix algebra, but the same mathematical taste appears in both places: the right notation makes the formula intelligible.  Multi-indices organize Faà di Bruno, determinants organize parametric derivatives, and block matrices organize elimination.
 
+\section{Faà di Bruno as chain rule for higher jets}
 
-\paragraph{Expanded synthesis.}
-For this chapter, the elementary material should be read as a study of what remains invariant when coordinates change. The earlier sections (`Motivation`, `Faà di Bruno formula`, `Leibniz's differential notation`, `Parametric derivatives`, `Differentiating determinants`) compute with arrays, bases, pivots, determinants, or eigenvectors; the deeper object is a linear map together with the spaces it acts on. A matrix is a representation of that map after bases have been chosen. This is why formulas such as
+The ordinary chain rule controls first derivatives of a composition.  Faà di Bruno controls all higher derivatives and is naturally expressed through partitions:
 \[
-  A' = P^{-1}AP,\qquad \widetilde A = T^{-1}AS
+  \frac{d^n}{dx^n}f(g(x))=\sum f^{(k)}(g(x))\prod_j \left(\frac{g^{(j)}(x)}{j!}\right)^{m_j}\frac{n!}{\prod_j m_j!}.
 \]
-are not cosmetic: they distinguish an intrinsic morphism from a coordinate description.
+The combinatorics records how \(n\) differentiations are distributed among the inner function.
 
-The structural hierarchy is as follows. Kernels record what a map forgets, images record what it reaches, cokernels record obstructions to solvability, and quotients record information after an equivalence has been imposed. Determinants act on the top exterior power and therefore measure oriented volume; traces are invariant under cyclic rearrangement and become characters in representation theory; adjoints depend on an inner product and lead to self-adjoint spectral theory.
+\section{Leibniz rules and derivations}
 
-A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
+A derivation \(D\) satisfies
+\[
+  D(ab)=D(a)b+aD(b).
+\]
+Higher Leibniz formulas are binomial expansions of repeated derivations:
+\[
+  D^n(ab)=\sum_{k=0}^n\binom nk D^k(a)D^{n-k}(b).
+\]
 
+\section{Matrix multiplication as composition}
 
-\section{High-order formulas are indexing problems}
+Matrix multiplication is the coordinate expression of composing linear maps.  The index formula
+\[
+  (AB)_{ij}=\sum_k A_{ik}B_{kj}
+\]
+contracts the output coordinate of \(B\) with the input coordinate of \(A\).
 
-The common feeling behind Faà di Bruno, determinant differentiation, and block multiplication is that the formula is not hard because of deep ideas, but because the bookkeeping can explode.  The right notation compresses the bookkeeping.
+\section{Schur complements}
 
-Faà di Bruno records partitions of \(n\) differentiations.  Determinant differentiation records the fact that a determinant is multilinear in its rows.  Matrix multiplication records the rule that an intermediate index is summed over.  In each case, the expression becomes natural once we identify what is being varied: derivative slots, rows, or internal indices.
+For a block matrix, the Schur complement
+\[
+  D-CA^{-1}B
+\]
+records what remains after eliminating the variables controlled by \(A\).  It is block Gaussian elimination, and it appears in determinants, inverses, covariance matrices, and constrained quadratic forms.
+
+\section{Composition, derivations, and elimination}
+
+The note links differentiation and linear algebra through composition.  Faà di Bruno is higher chain rule, Leibniz is derivation algebra, matrix multiplication is composition, and Schur complements are elimination in block form.

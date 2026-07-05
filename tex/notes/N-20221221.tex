@@ -42,14 +42,64 @@ A neighborhood of the glued point corresponds upstairs to two half-neighborhoods
 
 Completion adds missing limits.  Homeomorphism forgets metric size.  Embedding preserves a space as a subspace.  Quotient topology glues points together.  These are four ways of changing a space while controlling which structure survives.
 
+\section{Completion and its universal property}
 
-\paragraph{Expanded synthesis.}
-For this chapter, the elementary material should be read as a study of what remains invariant when coordinates change. The earlier sections (`Completion`, `Let the buyer beware`, `Homeomorphisms and embeddings`, `Quotient intuition`, `Higher viewpoint`) compute with arrays, bases, pivots, determinants, or eigenvectors; the deeper object is a linear map together with the spaces it acts on. A matrix is a representation of that map after bases have been chosen. This is why formulas such as
+The completion \(X\hookrightarrow \widehat X\) has a useful universal property.  If \(Y\) is complete and \(f:X\to Y\) is uniformly continuous, then \(f\) extends uniquely to a continuous map
 \[
-  A' = P^{-1}AP,\qquad \widetilde A = T^{-1}AS
+  \widehat f:\widehat X\to Y.
 \]
-are not cosmetic: they distinguish an intrinsic morphism from a coordinate description.
+On a completed point \([(x_n)]\), define
+\[
+  \widehat f([(x_n)])=\lim_{n\to\infty}f(x_n).
+\]
+Uniform continuity ensures that \((f(x_n))\) is Cauchy in \(Y\), and completeness of \(Y\) supplies the limit.
 
-The structural hierarchy is as follows. Kernels record what a map forgets, images record what it reaches, cokernels record obstructions to solvability, and quotients record information after an equivalence has been imposed. Determinants act on the top exterior power and therefore measure oriented volume; traces are invariant under cyclic rearrangement and become characters in representation theory; adjoints depend on an inner product and lead to self-adjoint spectral theory.
+This explains why completion is canonical.  It is not merely "adding some missing points"; it is the best possible way to make Cauchy limits available without changing the original metric information.
 
-A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
+\section{Homeomorphism versus uniform equivalence}
+
+The example \((0,1)\cong\mathbb R\) shows that topology does not preserve boundedness or completeness.  A sharper statement is that the map is a homeomorphism but not a uniform equivalence for the usual metrics.
+
+A uniformly continuous map controls all small distances by one global \(\delta\).  The tangent map
+\[
+  x\mapsto \tan(\pi(x-1/2))
+\]
+blows up near the endpoints.  Points very close to \(1\) can be very close in \((0,1)\) but sent far apart in \(\mathbb R\).  Thus topology sees local neighborhoods, while uniform structure sees global control of closeness.
+
+\section{Continuous bijections that are not homeomorphisms}
+
+A continuous bijection need not be a homeomorphism.  A standard example is
+\[
+  f:[0,2\pi)\to S^1,\qquad f(t)=(\cos t,\sin t).
+\]
+It is continuous and bijective, but its inverse is not continuous at the point \((1,0)\).  Points on the circle approaching \((1,0)\) from below have parameters approaching \(2\pi\), while the point itself has parameter \(0\).
+
+This example explains why the inverse condition in the definition of homeomorphism is not pedantry.  A bijection can preserve points but fail to preserve neighborhoods.
+
+\section{Quotient topology as final topology}
+
+For a quotient map \(q:X\to Y\), the quotient topology on \(Y\) is the strongest topology making \(q\) continuous.  It is characterized by
+\[
+  U\subseteq Y\text{ open}
+  \quad\Longleftrightarrow\quad
+  q^{-1}(U)\text{ open in }X.
+\]
+The universal property is:
+\[
+  f:Y\to Z\text{ is continuous}
+  \quad\Longleftrightarrow\quad
+  f\circ q:X\to Z\text{ is continuous}.
+\]
+This is the correct abstract version of endpoint gluing.  To define a continuous function out of a glued space, define it before gluing and check that it is constant on equivalence classes.
+
+\section{Endpoint gluing and local neighborhoods}
+
+In \([0,1]/(0\sim1)\), a neighborhood of the glued point is not a one-sided interval.  Its preimage is a union of a small interval near \(0\) and a small interval near \(1\):
+\[
+  [0,\varepsilon)\cup(1-\varepsilon,1].
+\]
+This two-sided local structure is why the quotient is a circle.  The topology is doing exactly what the picture suggests: it forces the two endpoints to share neighborhoods after identification.
+
+\section{Completion, gluing, and quotient control}
+
+Completion, homeomorphism, embedding, and quotient are not interchangeable changes of space.  Completion preserves metric Cauchy information while adding limits.  Homeomorphism preserves open-set structure and may forget metric size.  Embedding realizes a topology inside another space.  Quotient topology glues points and controls maps out of the glued space.

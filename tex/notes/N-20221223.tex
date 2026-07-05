@@ -105,14 +105,86 @@ This is the beginning of algebraic topology.  Instead of trying to draw all poss
 
 The note looks split between topology and algebra, but the split is exactly the point.  Homotopy studies continuous deformation of paths; groups study composable reversible operations.  The fundamental group combines them: homotopy classes of loops form a group, and that group records holes in the space.
 
+\section{Concatenation of loops and why homotopy classes form a group}
 
-\paragraph{Expanded synthesis.}
-For this chapter, the elementary material should be read as a study of what remains invariant when coordinates change. The earlier sections (`Homotopy intuition`, `Simply connected spaces`, `Semigroups, monoids, and groups`, `Congruence, quotients, and homomorphisms`, `Loops and the beginning of the fundamental group`) compute with arrays, bases, pivots, determinants, or eigenvectors; the deeper object is a linear map together with the spaces it acts on. A matrix is a representation of that map after bases have been chosen. This is why formulas such as
+Given loops \(\gamma,\eta:[0,1]\to X\) based at \(x_0\), their concatenation is
 \[
-  A' = P^{-1}AP,\qquad \widetilde A = T^{-1}AS
+  (\gamma*\eta)(t)=
+  \begin{cases}
+  \gamma(2t),&0\le t\le\frac12,\\
+  \eta(2t-1),&\frac12\le t\le1.
+  \end{cases}
 \]
-are not cosmetic: they distinguish an intrinsic morphism from a coordinate description.
+This operation is not strictly associative on the nose, because parametrizations differ.  It becomes associative after passing to homotopy classes.  The identity is the constant loop, and the inverse is
+\[
+  \overline{\gamma}(t)=\gamma(1-t).
+\]
+Thus the group structure of \(\pi_1(X,x_0)\) is already a quotient phenomenon: strict path operations become algebraic only after identifying homotopic paths.
 
-The structural hierarchy is as follows. Kernels record what a map forgets, images record what it reaches, cokernels record obstructions to solvability, and quotients record information after an equivalence has been imposed. Determinants act on the top exterior power and therefore measure oriented volume; traces are invariant under cyclic rearrangement and become characters in representation theory; adjoints depend on an inner product and lead to self-adjoint spectral theory.
+\section{The exponential covering and the integer invariant}
 
-A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
+The map
+\[
+  p:\mathbb R\to S^1,\qquad p(t)=e^{2\pi i t}
+\]
+is a covering map.  A loop in \(S^1\) based at \(1\) lifts uniquely to a path in \(\mathbb R\) starting at \(0\).  The endpoint of the lift is an integer, and that integer is the winding number.
+
+This gives a concrete isomorphism
+\[
+  \pi_1(S^1)\cong\mathbb Z.
+\]
+The generator is one counterclockwise turn.  The inverse is one clockwise turn.  Concatenating loops adds winding numbers.
+
+\section{Punctured plane deformation retracts to the circle}
+
+The punctured plane \(\mathbb C\setminus\{0\}\) has the same fundamental group as \(S^1\) because it deformation retracts onto the unit circle:
+\[
+  H(z,t)=\left((1-t)+\frac{t}{|z|}\right)z.
+\]
+At \(t=0\), this is the identity.  At \(t=1\), it sends \(z\) to \(z/|z|\).  The missing origin is exactly what makes this formula possible without crossing \(0\).
+
+Thus
+\[
+  \pi_1(\mathbb C\setminus\{0\})\cong\pi_1(S^1)\cong\mathbb Z.
+\]
+The hole is measured by how many times a loop winds around it.
+
+\section{Functoriality: maps of spaces give homomorphisms}
+
+A continuous based map
+\[
+  f:(X,x_0)\to(Y,y_0)
+\]
+sends a loop \(\gamma\) in \(X\) to the loop \(f\circ\gamma\) in \(Y\).  This respects homotopy and concatenation, so it induces a group homomorphism
+\[
+  f_*:\pi_1(X,x_0)\to\pi_1(Y,y_0).
+\]
+This is the real reason group homomorphisms appear in the same note as homotopy.  Algebraic topology assigns algebraic invariants to spaces and homomorphisms to continuous maps.
+
+\section{Van Kampen as a computation machine}
+
+The Seifert--van Kampen theorem says, roughly, that if a space is built from open pieces \(U\) and \(V\) with path-connected overlap, then \(\pi_1(U\cup V)\) is assembled from \(\pi_1(U)\) and \(\pi_1(V)\), with relations coming from the overlap.
+
+For the figure-eight space \(S^1\vee S^1\), the result is
+\[
+  \pi_1(S^1\vee S^1)\cong F(a,b),
+\]
+the free group on two generators.  The two loops are independent because the wedge point imposes no commutation relation.
+
+\section{Group completion and why inverses matter}
+
+A monoid records composable operations with an identity; a group additionally allows reversal.  Loops are naturally reversible by traversing them backward, so the fundamental group is a group rather than merely a monoid.  In other contexts, one starts with a monoid and formally adds inverses; \(\mathbb N\) under addition completes to \(\mathbb Z\).
+
+This mirrors the topological story: algebraic structures often arise by imposing equivalence relations and adding the formal operations needed to make the intended behavior exact.
+
+\section{Loops, coverings, and algebraic invariants}
+
+The central bridge is:
+\[
+  \text{continuous deformation of loops}
+  \quad\longrightarrow\quad
+  \text{homotopy classes}
+  \quad\longrightarrow\quad
+  \text{group elements}.
+\]
+The punctured plane shows the bridge concretely: a missing point creates winding number, winding number is an integer, and concatenation of loops becomes addition of integers.

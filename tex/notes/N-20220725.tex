@@ -27,6 +27,15 @@ corresponds to a row/column permutation, and its sign is determined by its inver
 
 \section{Definition of determinant}
 
+\begin{definition}[Determinant]
+The determinant is the alternating multilinear function of the columns of a square matrix normalized by
+\[
+  \det I=1.
+\]
+It measures oriented volume scaling.
+\end{definition}
+
+
 The determinant of an \(n\times n\) matrix \(A=(a_{ij})\) is
 \[
   \det A=\sum_{\sigma\in S_n}\operatorname{sgn}(\sigma)
@@ -122,21 +131,35 @@ The determinant is multilinear in the columns and changes sign when two columns 
 
 A determinant measures signed volume.  Row operations are geometric transformations of volume: swapping two basis vectors changes orientation, scaling a row scales volume, and adding a multiple of one row to another shears without changing volume.  The inversion formula, row-operation rules, and eigenvalue tricks are not separate facts; they are three languages for the same alternating multilinear function.
 
+\section{Permutation sign as orientation}
 
-
-\paragraph{Expanded synthesis.}
-For this chapter, the elementary material should be read as a study of what remains invariant when coordinates change. The earlier sections (`Inversions and signs`, `Definition of determinant`, `Basic determinant properties`, `Sarrus and triangular matrices`, `Cofactor expansion`) compute with arrays, bases, pivots, determinants, or eigenvectors; the deeper object is a linear map together with the spaces it acts on. A matrix is a representation of that map after bases have been chosen. This is why formulas such as
+The sign of a permutation records whether it preserves or reverses orientation.  Counting inversions gives
 \[
-  A' = P^{-1}AP,\qquad \widetilde A = T^{-1}AS
+  \operatorname{sgn}(\sigma)=(-1)^{\#\text{ inversions}}.
 \]
-are not cosmetic: they distinguish an intrinsic morphism from a coordinate description.
-
-The structural hierarchy is as follows. Kernels record what a map forgets, images record what it reaches, cokernels record obstructions to solvability, and quotients record information after an equivalence has been imposed. Determinants act on the top exterior power and therefore measure oriented volume; traces are invariant under cyclic rearrangement and become characters in representation theory; adjoints depend on an inner product and lead to self-adjoint spectral theory.
-
-A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
-
+Adjacent swaps reverse orientation, and every permutation is a product of adjacent swaps.
 
 \section{Determinant as alternating volume}
+
+The determinant is the unique alternating multilinear function of the columns normalized by \(\det I=1\).  Geometrically,
+\[
+  |\det A|
+\]
+is the volume-scaling factor of the linear map \(A\), while the sign records orientation.
+
+\section{Exterior algebra viewpoint}
+
+If \(v_1,\ldots,v_n\) are columns, then
+\[
+  v_1\wedge\cdots\wedge v_n=(\det A)e_1\wedge\cdots\wedge e_n.
+\]
+This explains cofactor expansion, row operations, and multiplicativity as statements about top exterior power.
+
+\section{Orientation and volume behind determinants}
+
+Inversions, signs, determinants, cofactors, and structured determinant tricks all measure orientation and volume.  The computational rules are shadows of alternation and exterior algebra.
+
+\section{Exterior algebra meaning of the determinant}
 
 The determinant can be defined as the unique alternating multilinear function
 \[
@@ -177,7 +200,6 @@ Since this line is one-dimensional, the induced map is multiplication by a scala
 
 The elementary inversion-number definition of the determinant is therefore a combinatorial way to compute the action of a linear map on oriented volume.
 
-% Second-pass deepening for waves 2-4: wave 2
 \section{Why signs of permutations are forced}
 
 The determinant is alternating: swapping two columns changes sign.  The sign of a permutation is exactly the bookkeeping device that records how many swaps are needed.  If

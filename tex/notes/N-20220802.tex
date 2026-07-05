@@ -173,15 +173,39 @@ Multiplying the matrices gives the sine and cosine addition formulas.  This expl
 
 Trigonometry is not just a table of identities.  It is the coordinate algebra of the circle.  Radians measure angle by arc length; sine and cosine are coordinates on the unit circle; addition formulas express rotation composition; triangle formulas translate between angle data and side data.  This is why trigonometry becomes natural again in complex numbers, Fourier analysis, rotations, and differential equations.
 
+\section{Radians and the exponential map}
 
+Radians are natural because arc length on the unit circle equals angle.  The map
+\[
+  t\mapsto e^{it}
+\]
+wraps the real line around the circle, and addition of angles becomes multiplication of complex numbers.
 
-\paragraph{Expanded synthesis.}
-The elementary geometric content of this chapter should be read through transformations and invariants. The earlier sections (`Angles and radians`, `Sine, cosine, and tangent`, `Special angles`, `Addition formulas`, `Double-angle and half-angle formulas`) may use coordinates, angles, determinants, parametrizations, or integral formulas, but the organizing question is: which quantities survive the transformations naturally associated with the problem? Euclidean geometry preserves distances and angles; affine geometry preserves lines and ratios on a line; projective geometry preserves incidence and cross ratio; differential geometry preserves coordinate-independent objects such as forms, metrics, and orientations.
+This is the structural source of the addition formulas for sine and cosine.
 
-This perspective separates different layers of a problem. A dot product belongs to metric geometry. A determinant belongs to oriented volume. A cross ratio belongs to projective geometry. A line or surface integral of a differential form belongs to oriented topology. A scalar area integral belongs to the metric-induced measure. Confusing these layers is the source of many errors, especially in vector calculus where $dS$, $F\cdot n\,dS$, $dx\wedge dy$, and boundary orientation look similar but encode different structures.
+\section{Addition formulas from rotation matrices}
 
-When returning to the original examples, identify the natural object before computing. If the problem is about concurrence or collinearity, projective or affine tools may be natural. If it is about distance, angle, or orthogonality, metric tools are essential. If it is about flux or circulation, differential forms and orientation explain the signs. The advanced viewpoint makes the elementary solution more disciplined rather than more abstract for its own sake.
+The rotation matrix
+\[
+  R(t)=\begin{pmatrix}\cos t&-\sin t\\\sin t&\cos t\end{pmatrix}
+\]
+satisfies
+\[
+  R(s+t)=R(s)R(t).
+\]
+Multiplying matrices gives the sine and cosine addition formulas.  Thus the identities express composition of rotations.
 
+\section{Triangle formulas and invariant quantities}
+
+The sine rule and cosine rule relate side lengths and angles.  The cosine rule is an inner-product identity:
+\[
+  c^2=a^2+b^2-2ab\cos C.
+\]
+It is the law of dot products written in triangle language.
+
+\section{Trigonometry as rotation geometry}
+
+Trigonometry is geometry of the circle and rotations.  Radians come from arc length, addition formulas from group composition, graphs from periodicity, and triangle formulas from inner-product geometry.
 
 \section{Trigonometry and rotations}
 
@@ -238,7 +262,6 @@ for $m\ne n$, and similarly for cosines.  This is why Fourier series can decompo
 
 The original trigonometric identities are therefore also algebra of Fourier modes.  Products of sines and cosines correspond to sums of frequencies.
 
-% Second-pass deepening for waves 2-4: wave 4 part 3
 \section{Trigonometric identities as algebra}
 
 The functions $e^{in\theta}$ form characters of the circle group.  Products of trigonometric functions are products of characters, which add frequencies:

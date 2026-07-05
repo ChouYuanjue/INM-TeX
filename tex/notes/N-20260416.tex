@@ -1,133 +1,182 @@
 \notechapter{N-20260416}{Line Integrals and Surface Integrals of the First and Second Kind}
 
+\section{Two meanings of integration on curves}
+
+There are two common line integrals, and they answer different questions.
+
+A first-kind line integral integrates a scalar density along length:
+\[
+  \int_C f\,ds.
+\]
+A second-kind line integral integrates a vector field along an oriented curve:
+\[
+  \int_C P\,dx+Q\,dy+R\,dz=\int_C F\cdot dr.
+\]
+The first is about amount distributed along a curve.  The second is about work or circulation.
 
 \section{Line integrals with respect to arc length}
 
-For a smooth curve $C:r(t)=(x(t),y(t))$, $a\le t\le b$, the first-kind line integral is
+Let \(C\) be parametrized by \(r(t)=(x(t),y(t),z(t))\), \(a\le t\le b\).  Then
 \[
-  \int_C f(x,y)\,ds=\int_a^b f(x(t),y(t))\sqrt{x'(t)^2+y'(t)^2}\,dt.
+  ds=\norm{r'(t)}\,dt,
 \]
-It integrates scalar density along length.
+and
+\[
+  \int_C f\,ds=\int_a^b f(r(t))\norm{r'(t)}\,dt.
+\]
+This integral does not depend on orientation.
+
+\begin{example}
+For the circle \(r(t)=(R\cos t,R\sin t)\), \(0\le t\le2\pi\), and \(f(x,y)=x^2+y^2\),
+\[
+  \int_C f\,ds=\int_0^{2\pi}R^2\cdot R\,dt=2\pi R^3.
+\]
+\end{example}
 
 \section{Line integrals of vector fields}
 
-For a vector field $F=(P,Q)$,
+For \(F=(P,Q,R)\),
 \[
-  \int_C P\,dx+Q\,dy=\int_a^b [P(x(t),y(t))x'(t)+Q(x(t),y(t))y'(t)]\,dt.
+  \int_C F\cdot dr
+  =\int_a^b F(r(t))\cdot r'(t)\,dt.
 \]
-This is work or circulation.  Orientation matters.
-
-\section{Surface integrals}
-
-For a parametrized surface $r(u,v)$,
+In coordinates,
 \[
-  dS=\|r_u\times r_v\|\,du\,dv.
+  \int_C P\,dx+Q\,dy+R\,dz
+  =\int_a^b(Px'(t)+Qy'(t)+Rz'(t))\,dt.
+\]
+Reversing orientation changes the sign.
+
+\begin{example}
+Let \(F=(-y,x)\) and let \(C\) be the unit circle traversed counterclockwise, \(r(t)=(\cos t,\sin t)\).  Then
+\[
+  F(r(t))=(-\sin t,\cos t),\qquad r'(t)=(-\sin t,\cos t),
+\]
+so
+\[
+  \int_C F\cdot dr=\int_0^{2\pi}1\,dt=2\pi.
+\]
+This is circulation around the origin.
+\end{example}
+
+\section{Surface integrals of scalar fields}
+
+Let a surface \(S\) be parametrized by \(r(u,v)\), \((u,v)\in D\).  The surface area element is
+\[
+  dS=\norm{r_u\times r_v}\,du\,dv.
 \]
 The first-kind surface integral is
 \[
-  \iint_S f\,dS=\iint_D f(r(u,v))\|r_u\times r_v\|\,du\,dv.
-\]
-For a vector field $F$, the flux integral is
-\[
-  \iint_S F\cdot n\,dS=\iint_D F(r(u,v))\cdot(r_u\times r_v)\,du\,dv,
-\]
-with sign determined by orientation.
-
-\section{The next layer}
-
-First-kind integrals integrate scalar density against geometric measure; second-kind integrals integrate vector fields through oriented curves or surfaces.  The difference is density versus flux.
-
-
-
-\paragraph{Expanded synthesis.}
-For this chapter, the elementary material should be read as a study of what remains invariant when coordinates change. The earlier sections (`Line integrals with respect to arc length`, `Line integrals of vector fields`, `Surface integrals`, `Higher viewpoint`, `Expanded distinction between first and second kind`) compute with arrays, bases, pivots, determinants, or eigenvectors; the deeper object is a linear map together with the spaces it acts on. A matrix is a representation of that map after bases have been chosen. This is why formulas such as
-\[
-  A' = P^{-1}AP,\qquad \widetilde A = T^{-1}AS
-\]
-are not cosmetic: they distinguish an intrinsic morphism from a coordinate description.
-
-The structural hierarchy is as follows. Kernels record what a map forgets, images record what it reaches, cokernels record obstructions to solvability, and quotients record information after an equivalence has been imposed. Determinants act on the top exterior power and therefore measure oriented volume; traces are invariant under cyclic rearrangement and become characters in representation theory; adjoints depend on an inner product and lead to self-adjoint spectral theory.
-
-A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
-
-
-\section{Expanded distinction between first and second kind}
-
-For line integrals, the first kind
-\[
-  \int_C f\,ds
-\]
-does not depend on orientation.  Reversing the parametrization leaves $ds$ unchanged.  The second kind
-\[
-  \int_C P\,dx+Q\,dy
-\]
-does depend on orientation, because $dx$ and $dy$ change sign.
-
-For surface integrals, the same distinction holds.  The scalar surface integral $\iint_S f\,dS$ has no orientation.  The flux integral $\iint_SF\cdot n\,dS$ requires a choice of normal and changes sign when the normal is reversed.
-
-\section{Parametric formulas as one template}
-
-For curves, the geometric element is $|r'(t)|\,dt$.  For surfaces, it is $|r_u\times r_v|\,du\,dv$.  These are the same idea: the derivative of a parametrization tells how much the parameter domain is stretched into the actual geometric object.
-
-\section{Scalar integrals versus forms}
-
-A first-kind line integral
-\[
-  \int_C f\,ds
-\]
-integrates a scalar density against arclength.  It depends on the metric because $ds$ is a length element.  A second-kind line integral
-\[
-  \int_C P\,dx+Q\,dy+R\,dz
-\]
-integrates a one-form.  It depends on orientation, not directly on arclength.
-
-Similarly, a scalar surface integral
-\[
   \iint_S f\,dS
+  =\iint_D f(r(u,v))\norm{r_u\times r_v}\,du\,dv.
 \]
-uses the metric area element, while a flux integral integrates a two-form or an oriented normal field.  This is why reversing orientation changes flux but not scalar area.
+It integrates scalar density over area and does not require an orientation.
 
-The elementary distinction between first and second kind is therefore the first encounter with the difference between metric measure and oriented differential forms.
+\begin{example}
+For the graph \(z=g(x,y)\), use \(r(x,y)=(x,y,g(x,y))\).  Then
+\[
+  r_x\times r_y=(-g_x,-g_y,1),\qquad
+  dS=\sqrt{1+g_x^2+g_y^2}\,dx\,dy.
+\]
+\end{example}
 
-\section{Flux as a two-form}
+\section{Flux integrals}
 
-For a vector field $F=(P,Q,R)$ in $\mathbb R^3$, the flux form is
+A flux integral measures how much a vector field crosses an oriented surface.  If \(S\) is parametrized by \(r(u,v)\), then
+\[
+  \iint_S F\cdot n\,dS
+  =\iint_D F(r(u,v))\cdot(r_u\times r_v)\,du\,dv,
+\]
+where the direction of \(r_u\times r_v\) determines the orientation.
+
+Reversing the normal reverses the sign.  This is the surface analogue of reversing a line integral of a vector field.
+
+\section{First kind versus second kind}
+
+\[
+\begin{array}{c|c|c}
+\text{object} & \text{first kind} & \text{second kind}\\
+\hline
+\text{curve} & \int_C f\,ds & \int_C F\cdot dr\\
+\text{surface} & \iint_S f\,dS & \iint_S F\cdot n\,dS
+\end{array}
+\]
+
+First-kind integrals use metric size: length or area.  Second-kind integrals use orientation: direction along a curve or normal direction through a surface.
+
+\section{Parametrization invariance}
+
+A geometric integral should not depend on the particular parametrization.  For \(\int_C f\,ds\), reparametrizing a curve changes \(\norm{r'(t)}dt\) in exactly the compensating way.  For \(\int_C F\cdot dr\), orientation-preserving reparametrizations leave the value unchanged, while orientation reversal changes sign.
+
+For surfaces, changing parameters multiplies the area element by the absolute Jacobian in first-kind integrals.  In flux integrals, the sign of the Jacobian records whether the orientation is preserved or reversed.
+
+\section{Differential forms viewpoint}
+
+A vector-field line integral in \(\mathbb R^3\) can be read as the integral of a one-form
+\[
+  \omega=P\,dx+Q\,dy+R\,dz.
+\]
+A flux integral corresponds to the two-form
 \[
   \omega_F=P\,dy\wedge dz+Q\,dz\wedge dx+R\,dx\wedge dy.
 \]
-If $S$ is oriented, then
+Parametrization formulas are pullback formulas for these forms.
+
+This viewpoint explains why orientation is built into second-kind integrals but not into scalar length or area integrals.
+
+\section{Orientability warning}
+
+Flux through a surface requires a consistent choice of normal.  Spheres and tori are orientable; a Möbius strip is not.  On a non-orientable surface, a globally defined flux integral needs extra care or must be treated locally.
+
+\section{Densities versus differential forms}
+
+The first-kind line integral and the second-kind line integral look similar only because both are written with an integral sign.  Their transformation laws are different.
+
+For a curve \(r(t)\), arclength is a density:
 \[
-  \iint_SF\cdot n\,dS=\iint_S \omega_F.
+  ds=\norm{r'(t)}\,dt.
 \]
-The normal-vector formula is a Euclidean translation of this two-form integral.
-
-This is more than notation.  Differential forms automatically encode orientation and pullback under parametrization.  If $r(u,v)$ parametrizes $S$, then
+The absolute value makes it insensitive to orientation.  By contrast, a one-form pulls back as
 \[
-  \iint_S\omega_F=\iint_D r^*\omega_F.
+  r^*(P\,dx+Q\,dy+R\,dz)
+  =(P(r(t))x'(t)+Q(r(t))y'(t)+R(r(t))z'(t))\,dt.
 \]
-The usual cross-product formula is the coordinate expression of this pullback.
+If \(t\) is reversed, \(dt\) changes sign, so the integral changes sign.  This is the exact mathematical distinction between density and form.
 
-\section{Orientation bundles}
+\section{Flux and the Hodge star}
 
-A surface may or may not admit a globally consistent normal direction.  Orientable surfaces, such as the sphere and torus, do.  The Möbius strip does not.  Flux integrals require an orientation, so they are globally well-defined only on oriented surfaces or after choosing local orientations carefully.
+In Euclidean three-space, a vector field \(F=(P,Q,R)\) can be converted into a two-form by the Hodge star:
+\[
+  F\cdot dS
+  \quad\longleftrightarrow\quad
+  \omega_F=P\,dy\wedge dz+Q\,dz\wedge dx+R\,dx\wedge dy.
+\]
+If \(r(u,v)\) parametrizes a surface, then
+\[
+  \iint_S F\cdot n\,dS=\iint_D r^*\omega_F.
+\]
+Expanding this pullback gives exactly the cross-product formula
+\[
+  F(r(u,v))\cdot(r_u\times r_v)\,du\,dv.
+\]
+Thus the vector-calculus formula is not arbitrary: it is the coordinate expression of pulling back a two-form.
 
-This explains why surface orientation is not a minor sign convention.  It is a topological property of the surface.
+\section{Boundary orientation is not a sign convention}
 
-\section{Manifolds with boundary}
+For Stokes-type theorems, the orientation of a boundary is forced by the orientation of the interior.  In the plane, positive orientation means the region stays on the left as one traverses the boundary.  On an oriented surface, the boundary orientation is determined by the right-hand rule.
 
-A curve or surface used in integration is an example of a manifold.  A parametrized curve is a one-dimensional manifold; a surface is a two-dimensional manifold.  Boundaries appear naturally: a surface patch has boundary curves, and Stokes' theorem relates integration over the boundary to integration over the interior.
+This matters because the theorem
+\[
+  \int_{\partial M}\omega=\int_M d\omega
+\]
+can only be correct when the two orientations are compatible.  A wrong sign in a flux or circulation problem is often not a computational accident; it means the boundary orientation and interior orientation were not matched.
 
-Thus the elementary parametrization formulas are local coordinate charts for manifolds.  The advanced language keeps the same computations but removes dependence on a single global parametrization.
+\section{Non-orientability as a real obstruction}
 
-% Second-pass deepening for waves 2-4: wave 4 part 2
-\section{Parametrization invariance}
+A scalar surface integral \(\iint_S f\,dS\) makes sense on a Möbius strip because area does not need a global normal.  A flux integral \(\iint_S F\cdot n\,dS\) needs a consistent normal direction.  The Möbius strip has no such global choice.
 
-A well-defined geometric integral should not depend on the chosen parametrization.  For a first-kind line integral, reparametrizing $t=\phi(s)$ changes $|r'(t)|dt$ into $|(r\circ\phi)'(s)|ds$, so the value is unchanged for orientation-preserving reparametrizations.
+This is a topological obstruction, not a defect of parametrization.  Locally one can always choose a normal; globally the choices may return reversed after going once around the strip.  Vector calculus is already detecting orientability.
 
-For a one-form integral, orientation matters.  Reversing the parametrization changes sign.  This is exactly what should happen for work or circulation: traversing a path backward reverses the accumulated oriented effect.
+\section{What should remain}
 
-\section{Surface normals as choices of orientation}
-
-For a parametrized surface $r(u,v)$, the vector $r_u\times r_v$ depends on the order of parameters.  Swapping $u$ and $v$ reverses orientation.  The flux integral is therefore an integral over an oriented surface, not merely over a set of points.
-
-The elementary cross-product normal formula is the coordinate expression of choosing an orientation on a two-dimensional manifold.
+First-kind integrals integrate scalar densities against geometric measure.  Second-kind integrals integrate oriented effects: work along curves and flux through surfaces.  The formulas with \(\norm{r'}\), \(r_u\times r_v\), and \(F\cdot n\) are all ways of translating geometric measurement back to parameters.

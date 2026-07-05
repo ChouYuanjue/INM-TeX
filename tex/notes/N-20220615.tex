@@ -97,18 +97,33 @@ The problem belongs to the family of olympiad equations where symmetry is more i
 
 This short problem sheet moves between three worlds: quadratic optimization, geometric packing, and symmetric algebra.  The common olympiad skill is to recognize the structure before calculating: a quadratic may have no maximum on an unbounded domain, a packing problem is governed first by area bounds and then by geometry, and a symmetric equation should be attacked through symmetric functions rather than arbitrary expansion.
 
+\section{Coordinate choice and invariants}
 
-\paragraph{Expanded synthesis.}
-For this chapter, the elementary material should be read as a study of what remains invariant when coordinates change. The earlier sections (`What the note contains`, `Problem 1: two distances under a linear constraint`, `Problem 2: a parabola and the square distance to the origin`, `Problem 3: packing unit circles`, `Problem 4: a symmetric Diophantine equation`) compute with arrays, bases, pivots, determinants, or eigenvectors; the deeper object is a linear map together with the spaces it acts on. A matrix is a representation of that map after bases have been chosen. This is why formulas such as
+The olympiad-style coordinate problems are not about coordinates for their own sake.  A good coordinate system preserves the invariant that matters and simplifies the constraint.  For distance problems, squared distance often removes radicals:
 \[
-  A' = P^{-1}AP,\qquad \widetilde A = T^{-1}AS
+  d^2=(x-a)^2+(y-b)^2.
 \]
-are not cosmetic: they distinguish an intrinsic morphism from a coordinate description.
+For symmetry problems, placing the origin at the center makes odd terms cancel.
 
-The structural hierarchy is as follows. Kernels record what a map forgets, images record what it reaches, cokernels record obstructions to solvability, and quotients record information after an equivalence has been imposed. Determinants act on the top exterior power and therefore measure oriented volume; traces are invariant under cyclic rearrangement and become characters in representation theory; adjoints depend on an inner product and lead to self-adjoint spectral theory.
+\section{Packing and density}
 
-A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
+Packing unit circles is an elementary entrance to discrete geometry.  A packing argument usually has two sides: a construction giving a lower bound and an area or distance obstruction giving an upper bound.  In the plane, the optimal infinite equal-circle packing density is
+\[
+  \frac{\pi}{\sqrt{12}}.
+\]
+Even when this theorem is far beyond the exercise, the same local logic appears: disks cannot overlap, so centers must be separated.
 
+\section{Symmetric Diophantine equations}
+
+A symmetric equation in integers should first be rewritten in symmetric variables, such as
+\[
+  u=x+y,\qquad v=xy.
+\]
+This reduces the number of independent expressions and often exposes divisibility or parity obstructions.
+
+\section{Olympiad structure behind coordinates and symmetry}
+
+The sheet trains the olympiad habit of choosing structure before computation: coordinates for constraints, area/distance for packing, symmetry for Diophantine equations, and equality cases for sharpness.
 
 \section{What an olympiad sheet trains}
 
@@ -162,7 +177,6 @@ Many olympiad inequalities about distances to lines or extreme points can be rep
 
 The elementary coordinate transformations, distance formulas, and symmetry placements should be kept exactly because they teach the practical side.  The advanced layer explains what they are doing: reducing a geometric problem by symmetry, encoding constraints algebraically, and optimizing over a convex or compact feasible region.
 
-% Second-pass deepening for waves 2-4: wave 4 part 1
 \section{Coordinate choice as quotienting symmetry}
 
 When an olympiad solution places the origin at a center or aligns an axis with a symmetry line, it is not merely making the algebra shorter.  It is quotienting out irrelevant degrees of freedom.  Translations remove the absolute position of the configuration; rotations remove absolute direction; scaling removes absolute size when the problem is similarity-invariant.

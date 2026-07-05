@@ -162,21 +162,18 @@ This is the philosophical point of constructing \(\mathbb R\): the real line is 
 
 The note moves from the order-completeness of \(\mathbb R\) to the metric-space language of distance and density.  Supremum, Dedekind cuts, nested intervals, and metrics are different ways of making precise the intuition that the real line has no holes.
 
+\section{Supremum as order-completeness}
 
-\paragraph{Expanded synthesis.}
-The higher-level content of this chapter is the passage from pointwise description to invariant structure. The earlier sections (`Large and small positive real numbers`, `The geometric view of the real line`, `Supremum property`, `Nested intervals imply completeness`, `Dedekind cuts`) introduce objects that may be drawn, listed, glued, or computed, but the advanced question is what remains unchanged under the allowed maps. In topology the allowed maps are continuous maps; in category theory they are morphisms preserving the relevant structure; in homology they induce maps between algebraic invariants.
+The supremum property says every nonempty bounded-above set has a least upper bound.  This is the order-theoretic heart of the real line.  It is what makes monotone convergence and intermediate-value reasoning possible.
 
-The guiding pattern is
-\[
-  \text{space or structure}\quad \xrightarrow{\text{allowed maps}}\quad \text{invariant data}.
-\]
-Quotient spaces formalize gluing; products formalize simultaneous coordinates; compactness formalizes the impossibility of escaping by a limiting process; connectedness formalizes the impossibility of separation; homology converts holes into groups. When a note discusses closure, quotienting, paths, products, or functors, it is already working with this invariant language.
+\section{Cauchy completion and metric completion}
 
-A quotient exercise is a gluing construction; a compactness exercise is an infinite pigeonhole argument; a homotopy exercise is a controlled deformation; a functorial example says that a construction is compatible with maps. The advanced theory does not add decoration. It explains why the same few operations, such as taking products, quotients, images, kernels, and induced maps, occur throughout topology, algebra, and geometry.
+A metric space can be completed by adding equivalence classes of Cauchy sequences.  Two Cauchy sequences are equivalent if their distance tends to zero.  The real numbers can be constructed as the completion of \(\mathbb Q\) under the usual metric.
 
+\section{Dedekind cuts versus Cauchy sequences}
 
-\section{The many faces of completeness}
+Dedekind cuts construct reals by filling order gaps; Cauchy completion constructs reals by adding missing limits of Cauchy sequences.  The two constructions produce isomorphic complete ordered fields, but they emphasize different structures: order versus metric.
 
-Supremum, nested intervals, Dedekind cuts, and Cauchy completeness look different at first, but they all express the same intuition: the real line has no holes.  The note is valuable precisely because it touches several versions of this intuition.
+\section{Completeness as the no-gap principle}
 
-The least-upper-bound property is order-theoretic; nested intervals are geometric; Dedekind cuts are constructive; metric completeness is analytic.  Later analysis freely moves among these viewpoints.  A sequence proof may secretly use a supremum; a construction of \(\sqrt2\) may use a cut; a fixed-point theorem may use metric completeness.
+Completeness is the bridge from algebraic number systems to analysis.  Supremum, nested intervals, Dedekind cuts, density, and metric completion are not separate facts; they are equivalent ways of ruling out gaps.

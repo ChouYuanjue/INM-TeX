@@ -147,19 +147,43 @@ Distance and slope are the coordinate versions of length and direction.
 
 This note is about choosing the right inequality language.  Squares prove elementary inequalities.  AM--GM handles fixed products.  Cauchy handles sums of fractions and dot products.  Triangle inequalities handle distances.  Coordinate geometry then translates geometric distance and direction into algebra.  The common habit is to identify the hidden structure before calculating.
 
+\section{Cauchy--Schwarz as projection}
 
-
-\paragraph{Expanded synthesis.}
-For this chapter, the elementary material should be read as a study of what remains invariant when coordinates change. The earlier sections (`Basic inequalities`, `AM--GM`, `Cauchy's inequality`, `Triangle inequality and its variants`, `Worked AM--GM examples`) compute with arrays, bases, pivots, determinants, or eigenvectors; the deeper object is a linear map together with the spaces it acts on. A matrix is a representation of that map after bases have been chosen. This is why formulas such as
+Cauchy's inequality
 \[
-  A' = P^{-1}AP,\qquad \widetilde A = T^{-1}AS
+  \left(\sum_i a_i b_i\right)^2\le \left(\sum_i a_i^2\right)\left(\sum_i b_i^2\right)
 \]
-are not cosmetic: they distinguish an intrinsic morphism from a coordinate description.
+comes from inner-product geometry.  It says
+\[
+  |\langle a,b\rangle|\le \norm a\norm b.
+\]
+Equality holds exactly when the two vectors are linearly dependent.  Many contest equality cases are this geometric statement in coordinates.
 
-The structural hierarchy is as follows. Kernels record what a map forgets, images record what it reaches, cokernels record obstructions to solvability, and quotients record information after an equivalence has been imposed. Determinants act on the top exterior power and therefore measure oriented volume; traces are invariant under cyclic rearrangement and become characters in representation theory; adjoints depend on an inner product and lead to self-adjoint spectral theory.
+\section{Triangle inequality and normed spaces}
 
-A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
+The triangle inequality
+\[
+  \norm{x+y}\le \norm x+\norm y
+\]
+defines the geometry of a normed space.  For Euclidean norm it follows from Cauchy--Schwarz.  For \(L^p\) norms it becomes Minkowski's inequality.
 
+Thus triangle inequality examples are early encounters with metric and norm geometry.
+
+\section{AM--GM and convexity}
+
+The inequality
+\[
+  \frac{x_1+\cdots+x_n}{n}\ge (x_1\cdots x_n)^{1/n}
+\]
+for positive variables follows from concavity of \(\log\):
+\[
+  \log\left(\frac1n\sum_i x_i\right)\ge \frac1n\sum_i\log x_i.
+\]
+The equality condition says all variables are equal, meaning the vector has no spread.
+
+\section{Inequalities as geometry of norms and averages}
+
+The basic inequalities are geometry and convexity in disguise.  Cauchy is projection, triangle inequality is norm structure, AM--GM is concavity of logarithm, and equality cases describe when the relevant geometric object degenerates to one direction or one value.
 
 \section{Normed spaces and triangle inequality}
 
@@ -176,7 +200,7 @@ Minkowski's inequality is the triangle inequality in $L^p$ spaces:
 \]
 Thus a contest-level inequality about square roots and sums is structurally the same statement as the triangle inequality for functions.
 
-\section{Cauchy--Schwarz as projection}
+\section{Cauchy--Schwarz and Gram determinants}
 
 Cauchy--Schwarz says
 \[

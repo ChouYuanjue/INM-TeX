@@ -192,14 +192,103 @@ The repaired version of this note should be read as one continuous story.  First
 
 The central lesson is that algebraic topology is not simply topology plus algebra added later.  The topology is already algebraic as soon as we record how pieces are glued: arrows, labels, words, equivalence classes, and quotient maps are the bridge.
 
+\section{Cellular chain complex of the torus}
 
-\paragraph{Expanded synthesis.}
-For this chapter, the elementary material should be read as a study of what remains invariant when coordinates change. The earlier sections (`What this note is really doing`, `$S^1\times S^1$ as a parametrized torus`, `Disjoint union`, `Wedge sum`, `CW complexes: building spaces by cells`) compute with arrays, bases, pivots, determinants, or eigenvectors; the deeper object is a linear map together with the spaces it acts on. A matrix is a representation of that map after bases have been chosen. This is why formulas such as
+The torus CW structure with one \(0\)-cell, two \(1\)-cells \(a,b\), and one \(2\)-cell gives a cellular chain complex
 \[
-  A' = P^{-1}AP,\qquad \widetilde A = T^{-1}AS
+  0\to C_2\cong\mathbb Z
+  \xrightarrow{\partial_2}
+  C_1\cong\mathbb Z^2
+  \xrightarrow{\partial_1}
+  C_0\cong\mathbb Z\to0.
 \]
-are not cosmetic: they distinguish an intrinsic morphism from a coordinate description.
+Since both ends of each one-cell attach to the single zero-cell, \(\partial_1=0\).  The two-cell is attached by the commutator word
+\[
+  aba^{-1}b^{-1}.
+\]
+In cellular homology, the total exponent of \(a\) is \(1-1=0\), and the total exponent of \(b\) is \(1-1=0\), so \(\partial_2=0\).  Therefore
+\[
+  H_0(T^2)\cong\mathbb Z,\qquad
+  H_1(T^2)\cong\mathbb Z^2,\qquad
+  H_2(T^2)\cong\mathbb Z.
+\]
+The same square diagram that gives the fundamental group also gives homology by linearizing the boundary word.
 
-The structural hierarchy is as follows. Kernels record what a map forgets, images record what it reaches, cokernels record obstructions to solvability, and quotients record information after an equivalence has been imposed. Determinants act on the top exterior power and therefore measure oriented volume; traces are invariant under cyclic rearrangement and become characters in representation theory; adjoints depend on an inner product and lead to self-adjoint spectral theory.
+\section{Klein bottle: same cells, different boundary}
 
-A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
+The Klein bottle has the same cell counts as the torus: one \(0\)-cell, two \(1\)-cells, and one \(2\)-cell.  But the attaching word is different.  With a common convention, it is
+\[
+  aba^{-1}b.
+\]
+The total exponent of \(a\) is \(0\), while the total exponent of \(b\) is \(2\).  Hence the cellular boundary has the form
+\[
+  \partial_2(1)=2b.
+\]
+So
+\[
+  H_1(K)\cong \mathbb Z\oplus \mathbb Z/2\mathbb Z,\qquad
+  H_2(K)=0.
+\]
+The absence of \(H_2\cong\mathbb Z\) is the homological shadow of non-orientability.
+
+\section{Euler characteristic as cell bookkeeping}
+
+For a finite CW complex,
+\[
+  \chi(X)=\sum_k(-1)^k c_k,
+\]
+where \(c_k\) is the number of \(k\)-cells.  The torus and Klein bottle both have
+\[
+  \chi=1-2+1=0.
+\]
+Thus Euler characteristic cannot distinguish them.  Their difference lies not in the number of cells but in the attaching map of the two-cell.  This is the core lesson of CW complexes: cell counts are only the first approximation; attaching maps carry the topology.
+
+\section{Orientability from polygon words}
+
+In polygon schemata, orientability can be read from edge orientations.  For an orientable surface, each label appears once in each direction, as in
+\[
+  aba^{-1}b^{-1}.
+\]
+For a non-orientable surface, some label appears twice with the same direction after normalizing the word, as in projective-plane-type words.
+
+This explains why the torus is orientable and the Klein bottle is not.  The twist in the edge gluing reverses local orientation after going around a loop.
+
+\section{Van Kampen and presentations from gluing}
+
+The one-skeleton of the torus is \(S^1\vee S^1\), whose fundamental group is the free group \(F(a,b)\).  Attaching the two-cell along \(aba^{-1}b^{-1}\) imposes the relation
+\[
+  aba^{-1}b^{-1}=1.
+\]
+Thus
+\[
+  \pi_1(T^2)=\langle a,b\mid aba^{-1}b^{-1}=1\rangle\cong\mathbb Z^2.
+\]
+For the Klein bottle, the attaching word imposes a different relation, giving
+\[
+  \pi_1(K)=\langle a,b\mid aba^{-1}=b^{-1}\rangle.
+\]
+This is the precise algebraic meaning of the arrows on the edge-identification diagram.
+
+\section{Projective spaces through cells}
+
+The quotient descriptions
+\[
+  \mathbb{RP}^n=S^n/(x\sim -x),\qquad
+  \mathbb{CP}^n=S^{2n+1}/S^1
+\]
+are not just definitions.  They explain the CW structures:
+\[
+  \mathbb{RP}^n: \text{one cell in every dimension }0,
+  1,
+  \ldots,n,
+\]
+while
+\[
+  \mathbb{CP}^n: \text{one cell in every even dimension }0,2,
+  \ldots,2n.
+\]
+For \(\mathbb{CP}^n\), this leads to homology groups \(\mathbb Z\) in even degrees and \(0\) in odd degrees.  Thus a quotient construction immediately produces computable algebraic invariants.
+
+\section{Cellular surfaces through homology and presentations}
+
+This note is about turning pictures into algebra.  A product picture gives \(S^1\times S^1\).  A gluing picture gives a quotient.  A CW picture gives chain groups and boundary maps.  A labelled boundary word gives a fundamental-group presentation and, after abelianization, homology.  The advanced lesson is that algebraic topology is not added after the drawings; it is already encoded in the arrows, labels, and attaching maps.

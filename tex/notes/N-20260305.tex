@@ -55,48 +55,38 @@ The diagram is kept because projection and least squares are most transparent wh
 
 Projection is the geometric heart of least squares: the best approximation is characterized not by making the error small in every coordinate, but by making the error orthogonal to every allowed correction direction.
 
+\section{Projection theorem}
 
-
-\paragraph{Expanded synthesis.}
-For this chapter, the elementary material should be read as a study of what remains invariant when coordinates change. The earlier sections (`Projection onto a subspace`, `Projection matrix and least squares`, `Pseudoinverse`, `Higher viewpoint`) compute with arrays, bases, pivots, determinants, or eigenvectors; the deeper object is a linear map together with the spaces it acts on. A matrix is a representation of that map after bases have been chosen. This is why formulas such as
+\begin{theorem}[Projection theorem]
+For a closed subspace \(W\) of an inner-product space and a vector \(y\), the best approximation \(p\in W\) is characterized by
 \[
-  A' = P^{-1}AP,\qquad \widetilde A = T^{-1}AS
+  y-p\perp W.
 \]
-are not cosmetic: they distinguish an intrinsic morphism from a coordinate description.
+\end{theorem}
 
-The structural hierarchy is as follows. Kernels record what a map forgets, images record what it reaches, cokernels record obstructions to solvability, and quotients record information after an equivalence has been imposed. Determinants act on the top exterior power and therefore measure oriented volume; traces are invariant under cyclic rearrangement and become characters in representation theory; adjoints depend on an inner product and lead to self-adjoint spectral theory.
-
-A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
-
-
-\section{Expanded derivation of the normal equations}
-
-The formula for projection should not be memorized before the geometry is clear.  We want $B\lambda$ to be the closest vector in the column space of $B$ to $x$.  This means the error
+For a closed subspace \(W\) of an inner-product space, the best approximation to \(y\) in \(W\) is the point \(p\in W\) such that
 \[
-  e=x-B\lambda
+y-p\perp W.
 \]
-should be perpendicular to every vector in that column space.  Since the columns of $B$ span the space, this is equivalent to
+This orthogonality condition is the geometric core of least squares.
+\section{Normal equations}
+For \(Ax\approx b\), the residual \(b-Ax\) must be orthogonal to the column space of \(A\):
 \[
-  B^T(x-B\lambda)=0.
+A^T(Ax-b)=0.
 \]
 Hence
 \[
-  B^TB\lambda=B^Tx.
+A^TAx=A^Tb.
 \]
-If the columns of $B$ are independent, then $B^TB$ is positive definite and invertible.
-
-\section{Four fundamental subspaces}
-
-Projection is also a doorway to the four-subspace picture.  For a matrix $A$, the column space and left null space are orthogonal complements in the output space:
+\section{Pseudoinverse and singular values}
+The Moore--Penrose pseudoinverse is most transparent through the singular value decomposition.  If
 \[
-  \mathbb R^m=\operatorname{Col}(A)\oplus \operatorname{Null}(A^T).
+A=U\Sigma V^T,
 \]
-Least squares solves $Ax\approx b$ by replacing $b$ with its projection onto $\operatorname{Col}(A)$.  The residual lies in $\operatorname{Null}(A^T)$.
-
-\section{Pseudoinverse and minimum-norm solutions}
-
-When $A$ is not full column rank, there may be many least-squares solutions.  The Moore--Penrose pseudoinverse selects the one with minimum norm.  Through SVD,
+then
 \[
-  A=U\Sigma V^T,\qquad A^+=V\Sigma^+U^T.
+A^+=V\Sigma^+U^T.
 \]
-Small singular values are precisely the directions where inverse problems become unstable.
+Small singular values reveal unstable directions.
+\section{Least squares as projection geometry}
+Least squares is projection geometry.  Normal equations express orthogonality of residuals, the pseudoinverse selects the minimum-norm solution, and SVD exposes the stable and unstable directions of the problem.

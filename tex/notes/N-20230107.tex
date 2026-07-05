@@ -101,10 +101,25 @@ Translations, reflections, scalings, and absolute-value folds act on graphs.  Th
 
 This note is about turning visual transformations into equations.  A center of symmetry is a two-point sum identity; a vertical symmetry line is an evenness identity after translation; absolute values are folds; zero-counting is intersection-counting.  Graph problems become much cleaner when every visual statement is translated into an algebraic invariant.
 
+\section{Graph transformations as group actions}
 
-\paragraph{Expanded synthesis.}
-The elementary geometric content of this chapter should be read through transformations and invariants. The earlier sections (`A note on graph problems`, `Centers of symmetry`, `Symmetry about a line`, `Absolute value transformations`, `Zero counting by graphs`) may use coordinates, angles, determinants, parametrizations, or integral formulas, but the organizing question is: which quantities survive the transformations naturally associated with the problem? Euclidean geometry preserves distances and angles; affine geometry preserves lines and ratios on a line; projective geometry preserves incidence and cross ratio; differential geometry preserves coordinate-independent objects such as forms, metrics, and orientations.
+Translations, reflections, and scalings act on graphs.  For example, replacing \(x\) by \(2a-x\) reflects the graph across the vertical line \(x=a\).  Replacing \(y\) by \(2b-y\) reflects across \(y=b\).
 
-This perspective separates different layers of a problem. A dot product belongs to metric geometry. A determinant belongs to oriented volume. A cross ratio belongs to projective geometry. A line or surface integral of a differential form belongs to oriented topology. A scalar area integral belongs to the metric-induced measure. Confusing these layers is the source of many errors, especially in vector calculus where $dS$, $F\cdot n\,dS$, $dx\wedge dy$, and boundary orientation look similar but encode different structures.
+A center of symmetry \((a,b)\) means the graph is invariant under the half-turn
+\[
+  (x,y)\mapsto(2a-x,2b-y).
+\]
 
-When returning to the original examples, identify the natural object before computing. If the problem is about concurrence or collinearity, projective or affine tools may be natural. If it is about distance, angle, or orthogonality, metric tools are essential. If it is about flux or circulation, differential forms and orientation explain the signs. The advanced viewpoint makes the elementary solution more disciplined rather than more abstract for its own sake.
+\section{Absolute value transformations as folding operations}
+
+The transformation \(y=|f(x)|\) folds the part of the graph below the \(x\)-axis upward.  The transformation \(y=f(|x|)\) reflects the right half across the \(y\)-axis.
+
+These are not arbitrary graph tricks; they are quotient-like operations that identify or fold regions by symmetry.
+
+\section{Zero counting and bifurcation}
+
+When a parameter moves a graph, the number of zeros changes at critical contacts: tangency, endpoint contact, or crossing a corner.  Algebraically, tangency corresponds to a repeated root.
+
+\section{Graph transformations as symmetry operations}
+
+Graph exercises are transformation problems.  Symmetry centers are invariance under half-turns, absolute value folds graphs, and zero-counting changes only at critical contacts.

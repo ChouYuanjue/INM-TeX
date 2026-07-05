@@ -95,12 +95,64 @@ The converse fails in spaces like the topologist's sine curve.  That example is 
 
 Continuity, closure, subspace topology, connectedness, and path-connectedness are open-set notions.  Boundedness and completeness are not.  The note is teaching what topology remembers and what it deliberately forgets.
 
+\section{Continuity as a contravariant test}
 
-\paragraph{Expanded synthesis.}
-For this chapter, the elementary material should be read as a study of what topology remembers when distances are no longer available. The earlier sections (`Re-defining continuity`, `Closed sets and closure`, `Subspaces`, `Connectedness`, `Path-connectedness`) are not algebraic computations. They are tests for how open-set information behaves under pullback, restriction, closure, and decomposition.
+The preimage definition of continuity has a categorical flavor: open sets pull back.  If
+\[
+  X\xrightarrow{f}Y\xrightarrow{g}Z
+\]
+are continuous, then for every open \(W\subseteq Z\),
+\[
+  (g\circ f)^{-1}(W)=f^{-1}(g^{-1}(W))
+\]
+is open in \(X\).  This one-line identity is why continuous maps compose.
 
-The unifying principle is this: continuity pulls open tests backward, closure records unavoidable nearby points, subspace topology restricts the ambient open sets, and connectedness forbids a space from splitting into two separated open pieces.
+Images do not behave this cleanly.  A continuous map may send open sets to non-open sets and closed sets to non-closed sets.  Preimages are the stable operation; topology is built around that stability.
 
-The structural hierarchy is as follows. Kernels record what a map forgets, images record what it reaches, cokernels record obstructions to solvability, and quotients record information after an equivalence has been imposed. Determinants act on the top exterior power and therefore measure oriented volume; traces are invariant under cyclic rearrangement and become characters in representation theory; adjoints depend on an inner product and lead to self-adjoint spectral theory.
+\section{Closure as an operator}
 
-A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
+The closure operation satisfies Kuratowski-style rules:
+\[
+  S\subseteq \overline S,\qquad
+  \overline{\overline S}=\overline S,\qquad
+  \overline{S\cup T}=\overline S\cup\overline T.
+\]
+It also preserves inclusions: if \(S\subseteq T\), then \(\overline S\subseteq\overline T\).
+
+These algebraic properties turn closure into more than a point-set definition.  They let one reason with closure abstractly, without drawing neighborhoods each time.
+
+\section{Why sequences are not enough}
+
+In metric spaces, closure can be detected by sequences.  In arbitrary topological spaces, this may fail.  The replacement notions are nets and filters.  A net is like a sequence whose index set is not necessarily \(\mathbb N\), but any directed set.  This extra flexibility lets nets test all neighborhoods in spaces that are too large or too non-countable for ordinary sequences.
+
+The warning is not meant to make topology harder for its own sake.  It explains exactly which metric-space proof habits are safe and which are not.  Sequential reasoning works in first-countable spaces, including metric spaces, but general topology requires a broader convergence language.
+
+\section{Connectedness as maps to a two-point space}
+
+A space \(X\) is disconnected iff there is a nonconstant continuous map
+\[
+  X\to \{0,1\}
+\]
+where \(\{0,1\}\) has the discrete topology.  Indeed, the preimages of \(0\) and \(1\) are disjoint nonempty clopen sets.
+
+So connectedness can be read as: every continuous discrete-valued function is constant.  This perspective is useful because it turns a separation problem into a mapping problem.
+
+\section{Path components versus connected components}
+
+Path components always lie inside connected components.  Equality holds in many familiar spaces, such as open subsets of \(\mathbb R^n\), because they are locally path-connected.  But equality can fail in pathological spaces such as the topologist's sine curve.
+
+The difference matters conceptually.  Connectedness says the space cannot be split by open sets.  Path-connectedness says points can be joined by a continuous interval.  The first is global and negative; the second is constructive.
+
+\section{Local connectedness as the missing hypothesis}
+
+A space is locally path-connected if every point has a basis of path-connected neighborhoods.  In such spaces, connected components and path components agree, and path components are open.  This is why ordinary geometric regions behave better than arbitrary topological spaces.
+
+Thus the hierarchy is:
+\[
+  \text{path-connected}\Rightarrow\text{connected},
+\]
+but local path-connectedness often lets one recover path information from connectedness.
+
+\section{Continuity, closure, and connectedness}
+
+This note is about what survives after distances disappear.  Continuity is preimage stability, closure is unavoidable nearness, subspace topology is restriction, connectedness is the impossibility of a clopen split, and path-connectedness is reachability by intervals.  The advanced warning is that metric intuition remains useful but not universal: sequences may need nets, and connectedness may not mean path-connectedness.

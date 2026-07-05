@@ -446,14 +446,42 @@ Comparing even and odd subsequences $I_{2n}$ and $I_{2n+1}$ and letting $n	o\inf
 
 This note is about integral problem-solving as pattern recognition.  Convexity gives chord and midpoint inequalities.  Bounded positive functions give product estimates.  Symmetry turns an integral into an average with its reflected version.  Taylor's formula gives quadrature error terms.  Special substitutions, especially $x=	an t$ and $t=x^2$, turn difficult integrals into symmetric or sign-controlled expressions.  Wallis' recurrence shows that integration by parts can convert a family of integrals into a product formula.
 
+\section{Convexity as second-order positivity}
 
-\paragraph{Expanded synthesis.}
-For this chapter, the elementary material should be read as a study of what remains invariant when coordinates change. The earlier sections (`Convexity and the Hermite--Hadamard inequality`, `Kantorovich-type integral inequality`, `Integral mean value with odd symmetry`, `A lower bound involving $f''/f$`) compute with arrays, bases, pivots, determinants, or eigenvectors; the deeper object is a linear map together with the spaces it acts on. A matrix is a representation of that map after bases have been chosen. This is why formulas such as
+For twice differentiable functions, convexity on an interval follows from
 \[
-  A' = P^{-1}AP,\qquad \widetilde A = T^{-1}AS
+  f''(x)\ge0.
 \]
-are not cosmetic: they distinguish an intrinsic morphism from a coordinate description.
+The Hermite--Hadamard inequality
+\[
+  f\left(\frac{a+b}{2}\right)\le \frac1{b-a}\int_a^b f(x)\,dx\le \frac{f(a)+f(b)}2
+\]
+compares midpoint value, average value, and endpoint average for convex functions.
 
-The structural hierarchy is as follows. Kernels record what a map forgets, images record what it reaches, cokernels record obstructions to solvability, and quotients record information after an equivalence has been imposed. Determinants act on the top exterior power and therefore measure oriented volume; traces are invariant under cyclic rearrangement and become characters in representation theory; adjoints depend on an inner product and lead to self-adjoint spectral theory.
+\section{Integral inequalities as weighted averages}
 
-A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
+Many integral inequalities are Jensen-type statements with a probability measure.  If \(w\ge0\) and \(\int w=1\), then
+\[
+  f\left(\int xw(x)\,dx\right)\le \int f(x)w(x)\,dx
+\]
+for convex \(f\).  This is Jensen's inequality in measure form.
+
+\section{Symmetry and cancellation}
+
+Integrals over symmetric intervals often vanish because an odd part cancels:
+\[
+  \int_{-a}^{a} f_{\mathrm{odd}}(x)\,dx=0.
+\]
+More generally, symmetry lets one project a function onto invariant and anti-invariant parts.  This is the same idea behind Fourier even/odd decompositions.
+
+\section{Wallis formula and asymptotic products}
+
+Wallis-type integrals encode asymptotic behavior of products and beta functions.  The recurrence for
+\[
+  I_n=\int_0^{\pi/2}\sin^n x\,dx
+\]
+leads to ratios of products and ultimately to approximations involving \(\pi\).  This is an early bridge from calculus to asymptotic analysis.
+
+\section{Integral inequalities through convexity and asymptotics}
+
+The integral inequalities in this review are not isolated estimates.  They are consequences of convexity, weighted averages, symmetry, error analysis, and asymptotic product behavior.  The advanced habit is to identify which structural feature of the integrand controls the inequality.

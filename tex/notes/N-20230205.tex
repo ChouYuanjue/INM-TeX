@@ -96,19 +96,22 @@ The note's vector identities are training for coordinate-free thinking.  Coordin
 
 This note is a bridge from vector identities to tensorial thinking.  The vector triple product is not a trick; it is a projection formula inside a plane.  The scalar triple product is oriented volume.  Tensors generalize the idea that meaningful quantities must transform correctly under change of basis.
 
-
-
-\paragraph{Expanded synthesis.}
-For this chapter, the elementary material should be read as a study of what remains invariant when coordinates change. The earlier sections (`The vector triple product`, `Scalar triple product`, `Tensors and coordinate changes`, `Why this matters`, `Levi-Civita notation`) compute with arrays, bases, pivots, determinants, or eigenvectors; the deeper object is a linear map together with the spaces it acts on. A matrix is a representation of that map after bases have been chosen. This is why formulas such as
+\section{Vector triple product as projection identity}
+The identity
 \[
-  A' = P^{-1}AP,\qquad \widetilde A = T^{-1}AS
+a\times(b\times c)=b(a\cdot c)-c(a\cdot b)
 \]
-are not cosmetic: they distinguish an intrinsic morphism from a coordinate description.
-
-The structural hierarchy is as follows. Kernels record what a map forgets, images record what it reaches, cokernels record obstructions to solvability, and quotients record information after an equivalence has been imposed. Determinants act on the top exterior power and therefore measure oriented volume; traces are invariant under cyclic rearrangement and become characters in representation theory; adjoints depend on an inner product and lead to self-adjoint spectral theory.
-
-A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
-
+says the result lies in the plane spanned by \(b\) and \(c\).  It is a metric identity because the dot product controls the coefficients.
+\section{Levi-Civita contraction}
+Using \(\varepsilon_{ijk}\), the identity follows from
+\[
+\varepsilon_{i j k}\varepsilon_{k\ell m}=\delta_{i\ell}\delta_{jm}-\delta_{im}\delta_{j\ell}.
+\]
+This is tensor contraction: two antisymmetric symbols collapse into Kronecker deltas.
+\section{Coordinate-free meaning}
+The cross product exists because three-dimensional oriented Euclidean space identifies bivectors with vectors through the Hodge star.  Without metric and orientation, the natural object is \(b\wedge c\), not \(b\times c\).
+\section{Vector identities through tensors and orientation}
+Triple product formulas are not memorized tricks.  They express projection, oriented volume, antisymmetric tensor contraction, and the special Hodge-star geometry of dimension three.
 
 \section{Levi-Civita symbol as a tensor}
 
@@ -144,7 +147,7 @@ Using this, one obtains the vector triple product formula
 \]
 What looks like a clever mnemonic is actually an index contraction identity.
 
-\section{Coordinate-free meaning}
+\section{Coordinate-free meaning of vector identities}
 
 A tensor is not its array of components.  Components change when the basis changes, while the tensorial object remains.  A bilinear form, for instance, is a map
 \[
@@ -158,7 +161,6 @@ The elementary formulas of dot product, cross product, and triple product are th
 
 The original note's identities are not separate facts to memorize.  Dot products come from a metric, cross products come from wedge product plus Hodge star, and triple products come from the volume form.  The tensor notation gives a uniform way to prove and remember all of them.
 
-% Second-pass deepening for waves 2-4: wave 2
 \section{From vector identities to index-free proofs}
 
 The vector triple product

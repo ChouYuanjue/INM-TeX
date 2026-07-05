@@ -143,6 +143,14 @@ This is the seed of residue theory.  The function \(1/z\) is special because it 
 
 \section{Cauchy--Goursat theorem}
 
+\begin{theorem}[Cauchy--Goursat theorem]
+If \(f\) is holomorphic on a simply connected domain \(D\), then for every closed contour \(\gamma\subset D\),
+\[
+  \int_\gamma f(z)\,dz=0.
+\]
+\end{theorem}
+
+
 The last page states the Cauchy--Goursat theorem: if \(f\) is holomorphic on a simply connected domain \(\Omega\), then for every closed contour \(\gamma\) in \(\Omega\),
 \[
   \int_\gamma f(z)\,dz=0.
@@ -182,12 +190,34 @@ The nonzero integral detects the hole at the origin.  This is the geometric hear
 
 The important insight is that complex integration is simultaneously analytic and topological.  Analytic regularity says holomorphic functions have local antiderivative-like behavior.  Topology says singularities and holes can obstruct cancellation.  The integral of \(1/z\) around the unit circle is the prototype: the local function looks harmless away from \(0\), but the loop winds around a missing point and records \(2\pi i\).
 
+\section{Contour integrals as integrals of one-forms}
 
-\paragraph{Expanded synthesis.}
-For this chapter, the elementary material should be read as a study of why complex integration depends on paths, singularities, and holomorphic structure. The earlier sections compare real and complex integrals, introduce contours and parametrization, and reinterpret Riemann sums in the complex plane.
+A complex contour integral
+\[
+  \int_\gamma f(z)\,dz
+\]
+integrates the complex one-form \(f(z)\,dz\) along a parametrized curve.  Under \(z=\gamma(t)\), it becomes
+\[
+  \int_a^b f(\gamma(t))\gamma'(t)\,dt.
+\]
+This is exactly the pullback rule for one-forms.
 
-The deeper object is not a matrix but a differential form on a domain.  The central question is whether its integral depends only on endpoints or also on the chosen path.
+\section{Cauchy theorem and exactness}
 
-The structural hierarchy is as follows. Kernels record what a map forgets, images record what it reaches, cokernels record obstructions to solvability, and quotients record information after an equivalence has been imposed. Determinants act on the top exterior power and therefore measure oriented volume; traces are invariant under cyclic rearrangement and become characters in representation theory; adjoints depend on an inner product and lead to self-adjoint spectral theory.
+If \(f\) has a primitive \(F\), then
+\[
+  \int_\gamma f(z)\,dz=F(\gamma(b))-F(\gamma(a)).
+\]
+Closed-loop integrals vanish.  Cauchy--Goursat says holomorphic functions have this local exactness behavior on suitable domains.
 
-A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
+\section{Residues as obstruction}
+
+For \(f(z)=1/z\), the integral around the unit circle is
+\[
+  \int_{|z|=1}\frac{dz}{z}=2\pi i.
+\]
+There is no global primitive on \(\mathbb C\setminus\{0\}\).  The residue measures the obstruction created by the puncture.
+
+\section{Residues, topology, and exactness}
+
+Complex integration differs from real integration because holomorphicity, topology, and orientation interact.  Contour integrals are one-form integrals; Cauchy theory is exactness; residues measure the failure of exactness around singularities.

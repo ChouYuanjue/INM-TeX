@@ -109,19 +109,14 @@ If one requires bijectivity and $m=n$, the number is
 
 The note is a training page for reading functions flexibly.  A function may be a formula, a graph, a rule on a finite set, or an unknown object constrained by an equation.  Each representation suggests a different method: casework for piecewise definitions, transformations for graphs, counting for finite domains, and substitution for functional equations.
 
-
-
-\paragraph{Expanded synthesis.}
-For this chapter, the elementary material should be read as a study of what remains invariant when coordinates change. The earlier sections (`Continuing the function chapter`, `Piecewise functions`, `Periodicity from functional equations`, `Graph transformations`, `Image of an interval`) compute with arrays, bases, pivots, determinants, or eigenvectors; the deeper object is a linear map together with the spaces it acts on. A matrix is a representation of that map after bases have been chosen. This is why formulas such as
-\[
-  A' = P^{-1}AP,\qquad \widetilde A = T^{-1}AS
-\]
-are not cosmetic: they distinguish an intrinsic morphism from a coordinate description.
-
-The structural hierarchy is as follows. Kernels record what a map forgets, images record what it reaches, cokernels record obstructions to solvability, and quotients record information after an equivalence has been imposed. Determinants act on the top exterior power and therefore measure oriented volume; traces are invariant under cyclic rearrangement and become characters in representation theory; adjoints depend on an inner product and lead to self-adjoint spectral theory.
-
-A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
-
+\section{Piecewise functions as glued maps}
+A piecewise function is built by gluing formulas on regions.  The important checks occur at boundaries: continuity, differentiability, or jump behavior depends on whether the pieces match there.
+\section{Periodicity from generated transformations}
+Relations such as \(f(x+a)=f(x)\) or \(f(c-x)=f(x)\) generate translations and reflections of the line.  The resulting group action partitions the domain into orbits.
+\section{Images of intervals}
+For continuous functions, the image of an interval is an interval.  If the interval is compact, the image is compact, so maxima and minima are attained.  This is the topological reason range problems often reduce to endpoint and critical-point checks.
+\section{Local definitions and global function behavior}
+Piecewise definitions, periodicity, graph transformations, images, and functional equations all ask how local rules glue into global behavior over the domain.
 
 \section{Functional equations as dynamics}
 
@@ -182,7 +177,6 @@ $f(x+T)=f(x)$ & Arbitrary values on a fundamental domain & Periodic structure un
 
 The original piecewise and functional-equation exercises should therefore be read as local training for a general principle: algebraic equations become meaningful only after the allowed regularity class is specified.
 
-% Second-pass deepening for waves 2-4: wave 3 A-C part 2
 \section{Piecewise functions and partitions}
 
 A piecewise function is a function defined after partitioning the domain into regions.  The mathematical issue is not only which formula applies, but how the pieces meet.  Discontinuities occur at boundaries of the partition; differentiability requires matching first-order behavior across boundaries.

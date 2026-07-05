@@ -159,14 +159,27 @@ The proof is not about guessing the point.  It is about showing that once two ci
 
 The page is an excellent example of why directed angles are not merely notation.  They turn many separate configuration cases into one proof.  The deeper geometric message is inversive: circles and lines should be treated as one family of generalized circles, and Miquel configurations are natural incidence phenomena in that family.
 
+\section{Directed angles as projective bookkeeping}
 
-\paragraph{Expanded synthesis.}
-The elementary geometric content of this chapter should be read through transformations and invariants. The earlier sections (`Reflecting the orthocenter`, `The incenter--excenter lemma`, `Directed angles modulo \(180^\circ\)`, `Miquel point of a triangle`, `Directed angles reduce case distinctions`) may use coordinates, angles, determinants, parametrizations, or integral formulas, but the organizing question is: which quantities survive the transformations naturally associated with the problem? Euclidean geometry preserves distances and angles; affine geometry preserves lines and ratios on a line; projective geometry preserves incidence and cross ratio; differential geometry preserves coordinate-independent objects such as forms, metrics, and orientations.
+Directed angles modulo \(180^\circ\) turn many cyclic and collinearity statements into algebraic angle sums.  A statement like
+\[
+  \angle(AB,AC)=\angle(DB,DC)
+\]
+encodes concyclicity without separating acute and obtuse cases.
 
-This perspective separates different layers of a problem. A dot product belongs to metric geometry. A determinant belongs to oriented volume. A cross ratio belongs to projective geometry. A line or surface integral of a differential form belongs to oriented topology. A scalar area integral belongs to the metric-induced measure. Confusing these layers is the source of many errors, especially in vector calculus where $dS$, $F\cdot n\,dS$, $dx\wedge dy$, and boundary orientation look similar but encode different structures.
+This is a first step toward projective thinking: incidence and cross-ratio-type data matter more than metric length.
 
-When returning to the original examples, identify the natural object before computing. If the problem is about concurrence or collinearity, projective or affine tools may be natural. If it is about distance, angle, or orthogonality, metric tools are essential. If it is about flux or circulation, differential forms and orientation explain the signs. The advanced viewpoint makes the elementary solution more disciplined rather than more abstract for its own sake.
+\section{Reflections and isogonal structure}
 
+Reflecting the orthocenter or a line across an angle bisector preserves angle data.  In triangle geometry, many constructions are isogonal: two lines are mirror images with respect to an angle bisector.  This explains why incenter/excenter lemmas naturally produce paired angle equalities.
+
+\section{Miquel point as a compatibility condition}
+
+The Miquel point appears when several cyclic conditions are compatible.  Each quadrilateral supplies a circle; directed angle chasing proves that the remaining circle passes through the same point.  The deeper structure is consistency of local cyclic constraints.
+
+\section{Angle invariants and cyclic compatibility}
+
+The geometry here is controlled by angle invariants.  Directed angles remove cases, reflections preserve angle data, and the Miquel point records when cyclic conditions glue into one global configuration.
 
 \section{Why directed angles are worth learning}
 
@@ -210,7 +223,6 @@ A geometric configuration can be studied up to a symmetry group.  For instance, 
 
 The Miquel point in the note is therefore not merely a special point.  It belongs to a broader practice of understanding which features of a configuration are invariant under allowed transformations.
 
-% Second-pass deepening for waves 2-4: wave 4 part 1
 \section{Miquel configurations and spiral similarity}
 
 A Miquel point is often best understood through spiral similarity.  If two segments $AB$ and $CD$ are seen under equal oriented angles from a point $P$, then $P$ is the center of a spiral similarity sending one segment to the other.  This combines a rotation and a dilation.

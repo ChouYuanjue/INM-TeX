@@ -188,7 +188,7 @@ The summand
 \]
 is the two-dimensional determinant of the consecutive vertex vectors.  Thus the formula computes oriented area by summing triangular pieces based at the origin.  The absolute value at the end forgets orientation and returns ordinary area.
 
-\section{Remainder theorem}
+\section{Evaluation as quotient by x-a}
 
 The polynomial remainder theorem says that the remainder of \(f(x)\) on division by \(x-a\) is \(f(a)\).  Thus \(x-a\) divides \(f(x)\) iff \(f(a)=0\).  This is the simplest root-factor principle and is the foundation for many later factorization arguments.
 
@@ -196,14 +196,38 @@ The polynomial remainder theorem says that the remainder of \(f(x)\) on division
 
 This note connects three determinant-like ideas.  The shoelace formula uses \(2\times2\) determinants to measure area.  The remainder theorem uses evaluation to collapse polynomial division.  Congruences use remainders to collapse integer arithmetic.  In all three cases, the strategy is to replace a complicated object by an invariant that preserves exactly the information needed.
 
+\section{Shoelace as a discrete line integral}
 
-\paragraph{Expanded synthesis.}
-For this chapter, the elementary material should be read as a study of what remains invariant when coordinates change. The earlier sections (`Shoelace formula`, `Why the shoelace formula works`, `A circle-area maximum problem`, `Remainder theorem`, `A polynomial remainder example`) compute with arrays, bases, pivots, determinants, or eigenvectors; the deeper object is a linear map together with the spaces it acts on. A matrix is a representation of that map after bases have been chosen. This is why formulas such as
+The shoelace formula
 \[
-  A' = P^{-1}AP,\qquad \widetilde A = T^{-1}AS
+  \operatorname{Area}=\frac12\left|\sum_i x_i y_{i+1}-x_{i+1}y_i\right|
 \]
-are not cosmetic: they distinguish an intrinsic morphism from a coordinate description.
+can be read as a discrete version of Green's theorem:
+\[
+  \operatorname{Area}(D)=\frac12\int_{\partial D}x\,dy-y\,dx.
+\]
+The polygon formula samples this boundary integral along straight edges.
 
-The structural hierarchy is as follows. Kernels record what a map forgets, images record what it reaches, cokernels record obstructions to solvability, and quotients record information after an equivalence has been imposed. Determinants act on the top exterior power and therefore measure oriented volume; traces are invariant under cyclic rearrangement and become characters in representation theory; adjoints depend on an inner product and lead to self-adjoint spectral theory.
+\section{Remainder theorem and quotient rings}
 
-A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
+The remainder theorem says
+\[
+  f(x)\equiv f(a)\pmod{x-a}.
+\]
+This is evaluation as a quotient map:
+\[
+  k[x]\to k[x]/(x-a)\cong k.
+\]
+So polynomial remainders are quotient algebra in elementary form.
+
+\section{Fermat--Euler and unit groups}
+
+Euler's theorem
+\[
+  a^{\varphi(n)}\equiv1\pmod n
+\]
+for \(\gcd(a,n)=1\) says that the class of \(a\) lies in the finite unit group \((\mathbb Z/n\mathbb Z)^\times\).  Fermat's little theorem is the prime case.
+
+\section{Quotients in area, polynomials, and congruences}
+
+The note links three quotient ideas: polygon area as boundary integral, polynomial remainders as quotient rings, and modular exponentiation as finite unit-group arithmetic.

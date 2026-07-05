@@ -208,10 +208,80 @@ so the function becomes periodic with period \(2\).  This kind of hidden periodi
 
 The page is not just a set of answers.  It teaches a toolbox: domains are legality intersections; ranges use substitution and inequalities; floor functions require interval splitting; Dirichlet's function uses density of rationals and irrationals; parameter problems are tangency/discriminant problems; functional equations reduce values to a fundamental interval; max and min can be represented by absolute values.  The common theme is that a function is not merely a formula but a domain, graph, transformation rule, and set of constraints.
 
+\section{Domains as constraint intersections}
 
-\paragraph{Expanded synthesis.}
-The elementary geometric content of this chapter should be read through transformations and invariants. The earlier sections (`Structure of the exercise sheet`, `Domain problems`, `Floor functions`, `Range problems`, `Dirichlet function`) may use coordinates, angles, determinants, parametrizations, or integral formulas, but the organizing question is: which quantities survive the transformations naturally associated with the problem? Euclidean geometry preserves distances and angles; affine geometry preserves lines and ratios on a line; projective geometry preserves incidence and cross ratio; differential geometry preserves coordinate-independent objects such as forms, metrics, and orientations.
+A domain problem is a constraint-satisfaction problem.  Each operation contributes a legality condition: square roots impose inequalities, logarithms impose positivity, denominators impose nonvanishing, and compositions impose intermediate-domain conditions.  The domain is the intersection of all these constraints.
 
-This perspective separates different layers of a problem. A dot product belongs to metric geometry. A determinant belongs to oriented volume. A cross ratio belongs to projective geometry. A line or surface integral of a differential form belongs to oriented topology. A scalar area integral belongs to the metric-induced measure. Confusing these layers is the source of many errors, especially in vector calculus where $dS$, $F\cdot n\,dS$, $dx\wedge dy$, and boundary orientation look similar but encode different structures.
+This viewpoint prevents a common error: simplifying an expression before recording its original restrictions.  For example, an expression with a denominator may algebraically simplify, but the excluded zeros of the original denominator still matter unless the problem explicitly defines the simplified expression as a new function.
 
-When returning to the original examples, identify the natural object before computing. If the problem is about concurrence or collinearity, projective or affine tools may be natural. If it is about distance, angle, or orthogonality, metric tools are essential. If it is about flux or circulation, differential forms and orientation explain the signs. The advanced viewpoint makes the elementary solution more disciplined rather than more abstract for its own sake.
+\section{Dirichlet function through density and measure}
+
+The Dirichlet function
+\[
+  D(x)=\mathbf 1_{\mathbb Q}(x)
+\]
+is discontinuous at every real number.  At any point \(a\), every neighborhood contains rationals and irrationals, so along rational sequences \(D\) tends to \(1\), while along irrational sequences it tends to \(0\).
+
+It is not Riemann integrable on any interval, because every subinterval has supremum \(1\) and infimum \(0\).  But it is Lebesgue integrable, and its integral is \(0\), since \(\mathbb Q\) has measure zero:
+\[
+  \int_0^1 \mathbf 1_{\mathbb Q}(x)\,dx=0.
+\]
+Thus the same function separates two integration theories: Riemann integration sees oscillation on every interval; Lebesgue integration sees that the exceptional set is small in measure.
+
+\section{Thomae's function as a nearby comparison}
+
+A useful comparison is Thomae's function
+\[
+  T(x)=
+  \begin{cases}
+  \frac1q,&x=\frac pq\text{ in lowest terms},\\
+  0,&x\notin\mathbb Q.
+  \end{cases}
+\]
+It is continuous at every irrational point and discontinuous at every rational point.  Unlike the Dirichlet function, it is Riemann integrable with integral \(0\).
+
+This comparison shows that dense discontinuities alone do not determine integrability.  The size and height distribution of the discontinuities matter.
+
+\section{Parameter problems as bifurcation diagrams}
+
+When a parameter changes the number of solutions, the change occurs at critical values.  Algebraically, these are discriminant-zero cases, endpoint hits, or degeneracies.  Geometrically, they are tangencies or changes in intersection pattern.
+
+For a family \(F(x,b)=0\), a typical critical point satisfies
+\[
+  F(x,b)=0,\qquad \frac{\partial F}{\partial x}(x,b)=0.
+\]
+The first equation says the graph intersects the axis; the second says the intersection is tangent, so two roots can merge or disappear.  This is the elementary version of a bifurcation diagram.
+
+\section{Functional equations as group actions on the domain}
+
+A relation such as
+\[
+  f(x+1)=1-f(x)
+\]
+should be read as an action of the translation group on the input line, together with an action on values.  Applying the shift twice gives
+\[
+  f(x+2)=f(x),
+\]
+so the function descends to a period-two structure after accounting for the value flip.
+
+The interval \([0,1)\) is a fundamental domain: every real input can be moved into it by integer shifts.  The functional equation tells how the value changes during that reduction.  This is the same logic behind periodic functions, modular arithmetic, and covering spaces.
+
+\section{Max, min, and nonsmooth points}
+
+The identity
+\[
+  \max\{u,v\}=\frac{u+v+|u-v|}{2}
+\]
+turns a maximum into an expression involving absolute value.  It also explains where nonsmoothness can occur: at points where \(u=v\), the absolute value has a corner unless the crossing is tangential in a compatible way.
+
+In optimization language, maximum functions are piecewise-smooth.  Their derivatives are governed by the active branch.  At a switching point, one may need one-sided derivatives or subgradients rather than an ordinary derivative.
+
+\section{Ranges as images and compactness}
+
+A range problem asks for the image \(f(D)\).  If \(D\) is compact and \(f\) is continuous, then \(f(D)\) is compact.  In \(\mathbb R\), that means closed and bounded.  This is why many range problems on closed intervals reduce to finding extrema.
+
+If the domain is not compact, endpoints may be missing or infinity may be approached.  Then the range must be described with open or half-open endpoints.  This is not a cosmetic detail: it records whether a value is achieved or only approached.
+
+\section{Function exercises through topology and dynamics}
+
+These function exercises are training a structural habit.  A function is not just a formula; it is a formula together with a domain, a range, transformations, constraints, and possible exceptional sets.  Domain questions are intersections of constraints, range questions are image problems, parameter questions track critical values, and functional equations reduce inputs by a symmetry or group action.

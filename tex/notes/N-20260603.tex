@@ -1,0 +1,109 @@
+\notechapter{N-20260603}{Generalized Inverses, Projections, and Least-Squares Geometry}
+
+\section{Why ordinary inverse is not enough}
+For \(A\in\mathbb C^{m\times n}\), the system \(Ax=b\) may be overdetermined, underdetermined, singular, or rank deficient.  The Moore-Penrose inverse \(A^+\) gives a unified optimal answer.
+
+\section{Four regimes}
+\[
+\begin{array}{c|c|c|c}
+I&m=n&r=n&\text{ordinary inverse}\\
+II&m>n&r=n&\text{least squares}\\
+III&m<n&r=m&\text{minimum norm}\\
+IV&\text{any}&r<\min(m,n)&\text{rank deficient}
+\end{array}
+\]
+
+\section{Penrose equations}
+The Moore-Penrose inverse is the unique \(X\) satisfying
+\[
+  AXA=A,\quad XAX=X,\quad (AX)^H=AX,\quad (XA)^H=XA.
+\]
+It is denoted \(A^+\).
+
+\section{Fifteen generalized inverses}
+Choosing any nonempty subset of the four Penrose equations gives one of \(15\) generalized-inverse classes.  Only the Moore-Penrose inverse is unique for every matrix.
+
+\section{Projection transformations}
+If \(\mathbb C^n=L\oplus M\), the projection onto \(L\) along \(M\) maps \(x=y+z\) to \(y\), where \(y\in L,z\in M\).
+
+\section{Idempotence and orthogonality}
+A matrix is a projection iff
+\[
+  P^2=P.
+\]
+It is an orthogonal projection iff
+\[
+  P^2=P,\qquad P^H=P.
+\]
+
+\section{Column and row-space projections}
+\(AA^+\) is the orthogonal projection onto \(R(A)\).  \(A^+A\) is the orthogonal projection onto \(R(A^H)\).
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[scale=0.95]
+  \draw[->] (-2.8,0) -- (2.8,0) node[right] {$R(A)$};
+  \draw[->] (0,-1.7) -- (0,2.1) node[above] {$R(A)^\perp$};
+  \draw[->,thick] (0,0) -- (1.8,1.2) node[right] {$b$};
+  \draw[->,thick] (0,0) -- (1.8,0) node[below] {$AA^+b$};
+  \draw[dashed] (1.8,0) -- (1.8,1.2);
+\end{tikzpicture}
+\caption{The vector \(AA^+b\) is the orthogonal projection of \(b\) onto the column space.}
+\end{figure}
+
+\section{SVD computation}
+If
+\[
+  A=U\begin{bmatrix}\Sigma&0\\0&0\end{bmatrix}V^H,
+\]
+then
+\[
+  A^+=V\begin{bmatrix}\Sigma^{-1}&0\\0&0\end{bmatrix}U^H.
+\]
+Only nonzero singular values are inverted.
+
+\section{Full-rank computation}
+If \(A=FG\) is a full-rank decomposition, then
+\[
+  A^+=G^H(GG^H)^{-1}(F^HF)^{-1}F^H.
+\]
+
+\section{Greville recursion}
+Greville's method updates \(A_k^+\) when a new column is appended.  It is useful for column-by-column or online data, although numerical stability still requires care.
+
+\section{Iterative approximations}
+Iterative methods for \(A^+\) often require a step size satisfying a condition such as
+\[
+  0<\alpha<\frac{2}{\sigma_{\max}^2}.
+\]
+Convergence is again a spectral-radius issue.
+
+\section{Solvability}
+The system \(Ax=b\) is solvable iff
+\[
+  AA^+b=b.
+\]
+If it is solvable, the general solution is
+\[
+  x=A^+b+(I-A^+A)y.
+\]
+
+\section{Least squares and minimum norm}
+For every \(b\), \(A^+b\) is the least-squares solution minimizing \(\|Ax-b\|_2\).  Among all minimizers, it has minimum \(2\)-norm.
+
+\section{Identities}
+\[
+  (A^+)^+=A,\qquad (A^H)^+=(A^+)^H,\qquad \operatorname{rank}A^+=\operatorname{rank}A.
+\]
+In general, \((AB)^+\ne B^+A^+\) without additional assumptions.
+
+\section{Checklist}
+\[
+\begin{array}{c|c}
+A^+ & \text{Moore-Penrose inverse}\\
+AA^+ & \text{projection onto }R(A)\\
+A^+A & \text{projection onto }R(A^H)\\
+AA^+b=b & \text{solvability}\\
+A^+b & \text{least-squares minimum-norm solution}
+\end{array}
+\]

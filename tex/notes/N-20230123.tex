@@ -139,19 +139,22 @@ In coordinates,
 
 The note develops integration as accumulation in increasingly geometric forms.  Ordinary definite integrals accumulate along a line.  Line integrals accumulate along a curve.  Double and triple integrals accumulate over area and volume.  Coordinate changes require Jacobians.  Dot products, cross products, and differential elements provide the language for physical quantities such as work, flux, and circulation.
 
-
-
-\paragraph{Expanded synthesis.}
-For this chapter, the elementary material should be read as a study of what remains invariant when coordinates change. The earlier sections (`Indefinite and definite integrals`, `Area by slicing`, `Work as an integral`, `Line integrals`, `Green-type intuition`) compute with arrays, bases, pivots, determinants, or eigenvectors; the deeper object is a linear map together with the spaces it acts on. A matrix is a representation of that map after bases have been chosen. This is why formulas such as
+\section{Definite integrals as signed accumulation}
+A definite integral accumulates a density over an oriented interval.  Area is obtained when the density is nonnegative; signed integrals remember orientation and cancellation.
+\section{Line integrals and one-forms}
+A work integral
 \[
-  A' = P^{-1}AP,\qquad \widetilde A = T^{-1}AS
+\int_\gamma F\cdot d r
 \]
-are not cosmetic: they distinguish an intrinsic morphism from a coordinate description.
-
-The structural hierarchy is as follows. Kernels record what a map forgets, images record what it reaches, cokernels record obstructions to solvability, and quotients record information after an equivalence has been imposed. Determinants act on the top exterior power and therefore measure oriented volume; traces are invariant under cyclic rearrangement and become characters in representation theory; adjoints depend on an inner product and lead to self-adjoint spectral theory.
-
-A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
-
+is the integral of the one-form associated with the vector field.  Reparametrization does not change the value when orientation is preserved because the one-form pulls back correctly.
+\section{Green theorem as boundary-to-interior conversion}
+Green's theorem says
+\[
+\oint_{\partial D}P\,dx+Q\,dy=\iint_D(\partial_x Q-\partial_y P)\,dA.
+\]
+It converts circulation around a boundary into curl accumulated over the interior.
+\section{Integration as geometry of forms and fields}
+Definite integrals, work, line integrals, polar/spherical coordinates, and Green-type thinking are all about integrating the correct geometric object: density, one-form, or oriented area form.
 
 \section{Line integrals as pullbacks}
 
@@ -212,7 +215,6 @@ is closed but not exact.  Its integral around the unit circle is $2\pi$.
 
 The elementary line integral around a circle is therefore a measurement of a topological hole.
 
-% Second-pass deepening for waves 2-4: wave 4 part 2
 \section{Work integrals and gauge freedom}
 
 If a force field is conservative, $F=-\nabla V$, then work depends only on endpoints.  The potential $V$ is not unique: adding a constant changes nothing.  This is the simplest form of gauge freedom.  The physically meaningful object is the differential $dV$, not the absolute zero of potential.
