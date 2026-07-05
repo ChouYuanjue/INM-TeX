@@ -182,18 +182,35 @@ The choice of \(u\) and \(dv\) is guided by which part simplifies after differen
 
 The note is an inventory of the classical calculus toolkit.  Partial fractions exploit algebraic factorization; integration by parts exploits the product rule; substitution exploits the chain rule.  In a more advanced language, all three are ways of choosing coordinates and decompositions so that the differential form becomes elementary.
 
+\section{Partial fractions as algebra of poles}
 
-\paragraph{Expanded synthesis.}
-For this chapter, the elementary material should be read as a study of what remains invariant when coordinates change. The earlier sections (`Linearity`, `Partial fractions`, `Integration by parts`, `Substitution`, `Partial fractions as algebra before calculus`) compute with arrays, bases, pivots, determinants, or eigenvectors; the deeper object is a linear map together with the spaces it acts on. A matrix is a representation of that map after bases have been chosen. This is why formulas such as
+Partial fractions decompose a rational function according to its poles.  For example, a factor \((x-a)^m\) contributes terms
 \[
-  A' = P^{-1}AP,\qquad \widetilde A = T^{-1}AS
+  \frac{c_1}{x-a}+\frac{c_2}{(x-a)^2}+\cdots+\frac{c_m}{(x-a)^m}.
 \]
-are not cosmetic: they distinguish an intrinsic morphism from a coordinate description.
+This is the real-variable shadow of meromorphic function theory, where principal parts record local behavior near poles.
 
-The structural hierarchy is as follows. Kernels record what a map forgets, images record what it reaches, cokernels record obstructions to solvability, and quotients record information after an equivalence has been imposed. Determinants act on the top exterior power and therefore measure oriented volume; traces are invariant under cyclic rearrangement and become characters in representation theory; adjoints depend on an inner product and lead to self-adjoint spectral theory.
+\section{Integration by parts as adjointness}
 
-A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
+The formula
+\[
+  \int_a^b u\,v'=uv\big|_a^b-\int_a^b u'v
+\]
+transfers a derivative from one factor to another.  In operator language, differentiation is skew-adjoint up to boundary terms.  This viewpoint becomes central in Fourier analysis, weak derivatives, and PDE.
 
+\section{Substitution as pullback of one-forms}
+
+For \(x=\phi(t)\), substitution says
+\[
+  \int f(x)\,dx=\int f(\phi(t))\phi'(t)\,dt.
+\]
+The invariant object is the one-form \(f(x)\,dx\).  Under the map \(\phi\), it pulls back to \(f(\phi(t))\phi'(t)\,dt\).
+
+This explains why the derivative factor is necessary: integration is coordinate-independent only when the differential transforms correctly.
+
+\section{Integration techniques as structural transformations}
+
+The standard integration techniques are structural transformations.  Partial fractions isolate poles, integration by parts moves derivatives with boundary terms, and substitution pulls back differential forms.  The goal is not formula memorization but recognizing which structure simplifies the integrand.
 
 \section{Integration as reverse differentiation}
 

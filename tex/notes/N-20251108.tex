@@ -178,19 +178,17 @@ This is a useful preview: linear algebra already contains many category-theoreti
 
 This note links computational linear algebra with structural thinking.  Row reduction gives the null space; the minus-one trick packages free-variable substitution.  Linear maps become matrices only after choosing bases.  Basis change explains why the same map can have different matrices.  Kernel and image describe what a map destroys and what it reaches.  These ideas are also the language behind machine-learning embeddings, where vectors need not be arrows but still live in vector spaces with meaningful linear structure.
 
-
-
-\paragraph{Expanded synthesis.}
-For this chapter, the elementary material should be read as a study of what remains invariant when coordinates change. The earlier sections (`Vectors beyond arrows`, `The minus-one trick`, `Example of the trick`, `Linear mappings`, `Complex numbers as a real vector space`) compute with arrays, bases, pivots, determinants, or eigenvectors; the deeper object is a linear map together with the spaces it acts on. A matrix is a representation of that map after bases have been chosen. This is why formulas such as
+\section{Vectors as elements of a linear structure}
+A vector is not essentially an arrow; it is an element of a vector space.  Coordinates appear only after choosing a basis.  The same vector has different coordinate columns in different bases.
+\section{The minus-one trick as affine shift}
+Adding a coordinate equal to \(-1\) or \(1\) often turns affine expressions into linear ones.  This is the homogeneous-coordinate idea: translations become matrix operations in one higher dimension.
+\section{Kernel-image factorization}
+For a linear map \(T:V\to W\), the kernel records lost directions and the image records reachable directions.  Rank-nullity says
 \[
-  A' = P^{-1}AP,\qquad \widetilde A = T^{-1}AS
+\dim V=\dim\ker T+\dim\operatorname{im}T.
 \]
-are not cosmetic: they distinguish an intrinsic morphism from a coordinate description.
-
-The structural hierarchy is as follows. Kernels record what a map forgets, images record what it reaches, cokernels record obstructions to solvability, and quotients record information after an equivalence has been imposed. Determinants act on the top exterior power and therefore measure oriented volume; traces are invariant under cyclic rearrangement and become characters in representation theory; adjoints depend on an inner product and lead to self-adjoint spectral theory.
-
-A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
-
+\section{Coordinates, kernels, and affine linearization}
+The review should distinguish vectors from coordinates, affine maps from linear maps, and a matrix from the linear transformation it represents.  Kernel, image, and basis change are the structural core.
 
 \section{Exact sequences behind rank-nullity}
 
@@ -234,7 +232,6 @@ Thus kernel measures non-uniqueness, while cokernel measures obstruction to exis
 
 The minus-one trick, basis conversion, and kernel/image computations in the note are all examples of one structure: a linear map forgets some directions, preserves some information, and may fail to reach some outputs.  Exact sequences and quotients express this without depending on a chosen matrix.
 
-% Second-pass deepening for waves 2-4: wave 2
 \section{Row reduction as choosing a splitting}
 
 When a matrix is row-reduced, the pivot variables are expressed in terms of free variables.  Abstractly, this chooses a splitting of the domain into a complement of the kernel plus the kernel:

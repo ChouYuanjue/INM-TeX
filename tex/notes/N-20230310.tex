@@ -291,14 +291,32 @@ This note shows how the derivative becomes more than a tangent slope.  It gives 
 \]
 Thus calculus becomes a proof technology for analysis and inequalities.
 
+\section{Derivative as local linear approximation}
 
-\paragraph{Expanded synthesis.}
-The common theme of this chapter is that an elementary limiting or computational rule becomes powerful only after one specifies the space in which the limiting process takes place. The earlier sections (`The derivative from secants to tangents`, `Derivative notation and local definition`, `Rules of differentiation`, `Elementary derivative formulas`, `Extrema, Fermat's lemma, and critical points`) may look like separate techniques, but they all ask the same question: which operations are stable under approximation? A derivative is stable first-order approximation,
+The derivative is the coefficient of the best first-order model:
 \[
-  f(a+h)=f(a)+L(h)+o(|h|),
+  f(a+h)=f(a)+f'(a)h+o(h).
 \]
-while an integral is stable accumulation with respect to a measure, and a convergent series is a limit in a chosen norm or topology.
+This viewpoint explains the product, quotient, and chain rules: they are rules for composing and multiplying first-order approximations.
 
-The advanced bridge is functional-analytic. Uniform convergence is convergence in a sup norm; $L^p$ convergence is convergence in an integral norm; differentiability is the existence of a continuous linear approximation; many differential equations are operator equations $L[u]=f$. Theorems such as dominated convergence, the inverse function theorem, the projection theorem in Hilbert spaces, and semigroup existence results are refined answers to the same elementary concern: when may we pass from finite approximations to a genuine limiting object?
+In several variables the same idea becomes the Fréchet derivative, a linear map rather than a single number.
 
-To use this viewpoint when rereading the original examples, identify the hidden stability condition. A Taylor expansion asks for control of the remainder. A change of variables asks for differentiability and Jacobian control. Termwise differentiation of a series asks for uniform convergence of derivative series. A differential-equation formula asks whether the operator is invertible under the imposed initial or boundary data. The elementary computation is the visible part; the advanced theory names the hypotheses that make it legitimate.
+\section{Extrema and first variation}
+
+Fermat's lemma says that if \(f\) has a local extremum at an interior point and is differentiable there, then \(f'(a)=0\).  The derivative is the first variation; if a small positive and negative move are both allowed, the linear term must vanish.
+
+Second derivative tests then study the next nonzero term in the local expansion.
+
+\section{Young, Holder, and convex duality}
+
+Young's inequality
+\[
+  ab\le \frac{a^p}{p}+\frac{b^q}{q},\qquad \frac1p+\frac1q=1,
+\]
+is a convex-duality statement.  It is the pointwise engine behind Holder's inequality.  Minkowski then gives the triangle inequality for \(L^p\) norms.
+
+Thus the inequality part of the note connects differential calculus to convex analysis and normed spaces.
+
+\section{Local linearity and convex control}
+
+The chapter links two central ideas: derivatives provide local linear models, and inequalities describe convex or norm geometry.  Tangents, extrema, Young--Holder--Minkowski, and Jensen all express how local or averaged information controls global behavior.

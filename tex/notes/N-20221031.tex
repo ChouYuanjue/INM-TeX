@@ -87,6 +87,14 @@ The note's red proof makes the descent explicit: the remainders strictly decreas
 
 \section{Bezout theorem}
 
+\begin{theorem}[Bezout identity]
+For integers \(a,b\), there exist integers \(x,y\) such that
+\[
+  ax+by=\gcd(a,b).
+\]
+\end{theorem}
+
+
 Bezout's theorem says that if $a,b\in\mathbb Z$ are not both zero, then there exist $s,t\in\mathbb Z$ such that
 \[
   as+bt=(a,b).
@@ -102,6 +110,11 @@ A key special case is:
 This is the form most often used in proofs.
 
 \section{Gauss lemma and divisibility consequences}
+
+\begin{lemma}[Gauss lemma]
+If \(p\) is prime and \(p\mid ab\), then \(p\mid a\) or \(p\mid b\).
+\end{lemma}
+
 
 The next page proves Euclid's lemma or Gauss's lemma:
 \[
@@ -176,15 +189,34 @@ The repeated methods are:
 
 The note develops number theory from one simple relation: divisibility.  The division algorithm gives remainders; remainders give the Euclidean algorithm; the Euclidean algorithm gives Bezout; Bezout gives Gauss's lemma; Gauss's lemma supports prime factorization and congruence arguments.  This chain is the backbone of elementary number theory.
 
+\section{Division algorithm as normal form}
+
+For integers \(a,b\) with \(b>0\), division gives
+\[
+  a=qb+r,\qquad 0\le r<b.
+\]
+The remainder \(r\) is a normal form for the congruence class of \(a\) modulo \(b\).
+
+\section{Euclidean algorithm and invariant gcd}
+
+The key invariant is
+\[
+  \gcd(a,b)=\gcd(b,a-qb).
+\]
+Each Euclidean step preserves the gcd while reducing size.  Back-substitution then expresses the gcd as a Bezout combination.
+
+\section{Gauss lemma and prime ideals}
+
+\begin{lemma}[Gauss lemma, ideal form]
+For a prime \(p\), the ideal \((p)\subset\mathbb Z\) is prime; equivalently, \(p\mid ab\) implies \(p\mid a\) or \(p\mid b\).
+\end{lemma}
 
 
-\paragraph{Expanded synthesis.}
-The elementary geometric content of this chapter should be read through transformations and invariants. The earlier sections (`Divisibility`, `Division algorithm`, `Greatest common divisor and least common multiple`, `Euclidean algorithm`, `Bezout theorem`) may use coordinates, angles, determinants, parametrizations, or integral formulas, but the organizing question is: which quantities survive the transformations naturally associated with the problem? Euclidean geometry preserves distances and angles; affine geometry preserves lines and ratios on a line; projective geometry preserves incidence and cross ratio; differential geometry preserves coordinate-independent objects such as forms, metrics, and orientations.
+Gauss's lemma says if \(p\) is prime and \(p\mid ab\), then \(p\mid a\) or \(p\mid b\).  In ideal language, \((p)\) is a prime ideal of \(\mathbb Z\).  This is the algebraic property that makes unique factorization work.
 
-This perspective separates different layers of a problem. A dot product belongs to metric geometry. A determinant belongs to oriented volume. A cross ratio belongs to projective geometry. A line or surface integral of a differential form belongs to oriented topology. A scalar area integral belongs to the metric-induced measure. Confusing these layers is the source of many errors, especially in vector calculus where $dS$, $F\cdot n\,dS$, $dx\wedge dy$, and boundary orientation look similar but encode different structures.
+\section{Normal forms, gcd invariants, and prime divisibility}
 
-When returning to the original examples, identify the natural object before computing. If the problem is about concurrence or collinearity, projective or affine tools may be natural. If it is about distance, angle, or orthogonality, metric tools are essential. If it is about flux or circulation, differential forms and orientation explain the signs. The advanced viewpoint makes the elementary solution more disciplined rather than more abstract for its own sake.
-
+Divisibility, gcd, Bezout, congruence, and primes form one system.  Remainders are quotient normal forms, the Euclidean algorithm preserves gcd, and prime divisibility is the ideal-theoretic foundation of unique factorization.
 
 \section{\texorpdfstring{$\mathbb Z$}{Z} as a PID}
 
@@ -239,7 +271,6 @@ The Chinese remainder theorem is therefore not simply a trick for solving congru
 
 This decomposition explains why arithmetic functions and congruence problems split prime by prime.
 
-% Second-pass deepening for waves 2-4: wave 3 A-C part 3
 \section{Solving congruences by image and kernel}
 
 Multiplication by $a$ defines a group homomorphism

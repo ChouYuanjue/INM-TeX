@@ -328,14 +328,28 @@ This note is a calculus foundation review.  The chain of ideas is:
 \]
 The handwritten comments are mostly warnings: do not confuse small constants with infinitesimals; do not multiply infinitely many infinitesimals naively; do not prove nonexistence of a limit without constructing incompatible approaches; do not use equivalent infinitesimals outside their valid algebraic context.
 
+\section{Limits through filters and sequences}
 
-\paragraph{Expanded synthesis.}
-The common theme of this chapter is that an elementary limiting or computational rule becomes powerful only after one specifies the space in which the limiting process takes place. The earlier sections (`Cauchy--Schwarz and Minkowski`, `Neighborhood notation`, `Trigonometric identities`, `Hyperbolic functions`) may look like separate techniques, but they all ask the same question: which operations are stable under approximation? A derivative is stable first-order approximation,
+The epsilon--\(N\) definition says that eventually all terms lie in every prescribed neighborhood.  In metric spaces, sequences are enough to test limits.  In general topological spaces, nets and filters replace sequences.
+
+This explains the Heine criterion: for functions between metric spaces, a limit exists iff every convergent sequence approaching the point has the corresponding image limit.
+
+\section{Hyperbolic functions and exponential coordinates}
+
+The hyperbolic functions
 \[
-  f(a+h)=f(a)+L(h)+o(|h|),
+  \cosh x=\frac{e^x+e^{-x}}2,\qquad \sinh x=\frac{e^x-e^{-x}}2
 \]
-while an integral is stable accumulation with respect to a measure, and a convergent series is a limit in a chosen norm or topology.
+parametrize the hyperbola
+\[
+  \cosh^2 x-\sinh^2 x=1.
+\]
+They are to Lorentzian geometry what sine and cosine are to Euclidean circle geometry.
 
-The advanced bridge is functional-analytic. Uniform convergence is convergence in a sup norm; $L^p$ convergence is convergence in an integral norm; differentiability is the existence of a continuous linear approximation; many differential equations are operator equations $L[u]=f$. Theorems such as dominated convergence, the inverse function theorem, the projection theorem in Hilbert spaces, and semigroup existence results are refined answers to the same elementary concern: when may we pass from finite approximations to a genuine limiting object?
+\section{Cauchy--Schwarz, Minkowski, and normed spaces}
 
-To use this viewpoint when rereading the original examples, identify the hidden stability condition. A Taylor expansion asks for control of the remainder. A change of variables asks for differentiability and Jacobian control. Termwise differentiation of a series asks for uniform convergence of derivative series. A differential-equation formula asks whether the operator is invertible under the imposed initial or boundary data. The elementary computation is the visible part; the advanced theory names the hypotheses that make it legitimate.
+Cauchy--Schwarz gives inner-product control, while Minkowski gives the triangle inequality for norms.  These inequalities are the finite-dimensional entrance to Banach and Hilbert spaces, where convergence, projection, and approximation become geometric.
+
+\section{Calculus review through limits and norm geometry}
+
+The review topics are connected by structure: limits are neighborhood statements, trigonometric and hyperbolic identities come from group/exponential parametrizations, and inequalities express norm or inner-product geometry.

@@ -22,6 +22,11 @@ Cross out multiples of these primes.  The remaining numbers are prime.
 
 \section{Euclid's theorem}
 
+\begin{theorem}[Euclid's theorem]
+There are infinitely many prime numbers.
+\end{theorem}
+
+
 Euclid's theorem says that there are infinitely many primes.  Suppose the primes were
 \[
   p_1,p_2,\ldots,p_k.
@@ -53,6 +58,11 @@ then $p$ divides at least one factor.  This is proved by induction from the two-
 The note also records the contrapositive: if $p$ divides none of the factors, then it does not divide their product.
 
 \section{Fundamental theorem of arithmetic}
+
+\begin{theorem}[Fundamental theorem of arithmetic]
+Every integer greater than \(1\) has a unique prime factorization, up to the order of the prime factors.
+\end{theorem}
+
 
 Every integer $n>1$ can be written uniquely as
 \[
@@ -130,19 +140,26 @@ Once the period is known, the exponent can be reduced modulo the period.
 
 This note is a transition from divisibility to arithmetic structure.  Prime factorization turns every positive integer into exponent data.  Divisor counting and divisor sums become products over primes.  Congruences turn equality into equality up to remainders.  Together, these tools make large integer problems finite and computable.
 
-
-
-\paragraph{Expanded synthesis.}
-The number-theoretic content of this chapter is arithmetic seen through algebraic structure. The earlier sections discuss primes, Euclid's theorem, prime divisibility, unique factorization, and perfect or square numbers. On the surface they compute divisibility, congruences, residues, factorizations, and finite-field examples. The deeper language is ideals, quotient rings, unit groups, valuations, and field extensions.
-
-Divisibility in $\mathbb Z$ is containment of principal ideals; congruence modulo $n$ is equality inside the quotient ring $\mathbb Z/n\mathbb Z$; invertibility modulo $n$ means being a unit; the Chinese remainder theorem is a product decomposition of quotient rings. Prime factorization supplies coordinates through valuations:
+\section{Prime exponents and valuations}
+For a prime \(p\), the exponent \(v_p(n)\) turns divisibility into arithmetic:
 \[
-  n=\prod_p p^{v_p(n)}.
+a\mid b \quad\Longleftrightarrow\quad v_p(a)\le v_p(b)\text{ for all }p.
 \]
-Gcd and lcm are coordinatewise minimum and maximum in these valuation coordinates.
-
-This algebraic reading explains why elementary tricks scale upward. Euclidean algorithms become the theory of Euclidean domains and PIDs; divisor sums become Dirichlet convolution and Euler products; roots of unity become cyclotomic fields and Galois actions; finite polynomial arithmetic becomes finite-field theory. The original computations should therefore be kept as the algorithmic core, while the advanced language identifies the structure that makes the algorithms work.
-
+Legendre's formula gives
+\[
+v_p(n!)=\sum_{k\ge1}\left\lfloor \frac n{p^k}\right\rfloor.
+\]
+It counts multiples of \(p\), then multiples of \(p^2\), and so on.
+\section{Divisor functions as multiplicative functions}
+If \(n=\prod p_i^{e_i}\), then
+\[
+d(n)=\prod_i(e_i+1),\qquad \sigma(n)=\prod_i\frac{p_i^{e_i+1}-1}{p_i-1}.
+\]
+These formulas hold because choosing a divisor is choosing each prime exponent independently.  This is multiplicativity coming from unique factorization.
+\section{Congruences and finite groups}
+Reduced residue classes modulo \(n\) form the unit group \((\mathbb Z/n\mathbb Z)^\times\).  Euler's theorem is the statement that every element of this finite group has order dividing the group size.
+\section{Prime coordinates and finite unit groups}
+Prime factorization supplies coordinates, divisor functions multiply across primes, factorial valuations count prime powers, and congruence problems become group theory in finite unit groups.
 
 \section{Arithmetic functions and convolution}
 
@@ -228,7 +245,6 @@ then multiplicative functions are determined by their values on prime powers.  F
 \]
 This is why divisor-function formulas are products over primes.  Elementary prime factorization is already a coordinate system for arithmetic functions.
 
-% Second-pass deepening for waves 2-4: wave 3 A-C part 3
 \section{Euler products and prime independence}
 
 The Euler product

@@ -126,19 +126,29 @@ The word ``product'' appears in different senses.  A Cartesian or categorical pr
 
 This note connects spatial vectors and categorical products through the word ``structure.''  In vector geometry, a basis decomposes every vector into coordinates.  In category theory, a product decomposes maps into pairs of maps.  Coordinates answer ``what are the components of this vector?''  Universal properties answer ``what data is equivalent to a map into this object?''
 
+\section{Cross product from the Hodge star}
 
-
-\paragraph{Expanded synthesis.}
-For this chapter, the elementary material should be read as a study of what remains invariant when coordinates change. The earlier sections (`Spatial vectors`, `Coordinate formulas`, `Cross product`, `From products to universal properties`, `Categories and groupoids`) compute with arrays, bases, pivots, determinants, or eigenvectors; the deeper object is a linear map together with the spaces it acts on. A matrix is a representation of that map after bases have been chosen. This is why formulas such as
+In oriented Euclidean three-space, the cross product is defined by
 \[
-  A' = P^{-1}AP,\qquad \widetilde A = T^{-1}AS
+  u\times v=* (u\wedge v).
 \]
-are not cosmetic: they distinguish an intrinsic morphism from a coordinate description.
+The wedge product records the oriented parallelogram spanned by \(u,v\), and the Hodge star turns that oriented area element into a vector perpendicular to the plane.
 
-The structural hierarchy is as follows. Kernels record what a map forgets, images record what it reaches, cokernels record obstructions to solvability, and quotients record information after an equivalence has been imposed. Determinants act on the top exterior power and therefore measure oriented volume; traces are invariant under cyclic rearrangement and become characters in representation theory; adjoints depend on an inner product and lead to self-adjoint spectral theory.
+\section{Scalar triple product and volume}
 
-A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
+The scalar triple product
+\[
+  u\cdot(v\times w)
+\]
+is the oriented volume of the parallelepiped.  Algebraically it is a determinant; geometrically it measures whether three vectors form a positively oriented basis.
 
+\section{Universal products versus vector products}
+
+The categorical product \(X\times Y\) is characterized by projections and a universal property.  The vector cross product is not a categorical product; it is a metric-and-orientation-dependent operation special to dimension three.
+
+\section{Metric, orientation, and universal products}
+
+Spatial vector operations separate three structures: affine addition of vectors, Euclidean metric via dot product, and orientation via determinant/Hodge star.  Categorical products belong to universal mapping properties, not to the cross product operation.
 
 \section{Cross product and Hodge duality}
 
@@ -192,7 +202,6 @@ The original note contrasts categorical products with vector products.  In a cat
 
 The cross product $u\times v$ is not a categorical product.  It is an operation depending on dimension, metric, and orientation.  This contrast is useful: the same word ``product'' can mean either a universal construction or a geometric bilinear operation.
 
-% Second-pass deepening for waves 2-4: wave 2
 \section{Why the cross product is exceptional}
 
 The cross product is a bilinear map

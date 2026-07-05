@@ -24,9 +24,9 @@ Thus the columns of the similarity matrix must be eigenvectors.
 
 The highlighted theorem on the first page is:
 \[
-  A_n	ext{ is diagonalizable}
+  A_n\text{ is diagonalizable}
   \quad\Longleftrightarrow\quad
-  A_n	ext{ has }n	ext{ linearly independent eigenvectors}.
+  A_n\text{ has }n\text{ linearly independent eigenvectors}.
 \]
 The diagonal entries are the corresponding eigenvalues, in whatever order the eigenvectors are placed in $P$.
 
@@ -334,21 +334,23 @@ The handwritten comments emphasize several traps:
 
 This note links eigenvalue theory and geometry.  Diagonalization decomposes a linear map into independent eigen-directions.  Inner products measure lengths and angles.  Schmidt orthogonalization turns independence into orthogonality.  Orthogonal matrices preserve geometry.  Real symmetric matrices are the ideal case: they have real eigenvalues, orthogonal eigenspaces, and orthogonal diagonalization.  Quadratic forms use this structure to classify conics, extrema, and definiteness.
 
-
-
-\paragraph{Expanded synthesis.}
-For this chapter, the elementary material should be read as a study of what remains invariant when coordinates change. The earlier sections (`Diagonalizable matrices`, `Diagonalizability is independent from other properties`, `Algebraic and geometric multiplicity`, `Procedure for diagonalization`) compute with arrays, bases, pivots, determinants, or eigenvectors; the deeper object is a linear map together with the spaces it acts on. A matrix is a representation of that map after bases have been chosen. This is why formulas such as
-\[
-  A' = P^{-1}AP,\qquad \widetilde A = T^{-1}AS
-\]
-are not cosmetic: they distinguish an intrinsic morphism from a coordinate description.
-
-The structural hierarchy is as follows. Kernels record what a map forgets, images record what it reaches, cokernels record obstructions to solvability, and quotients record information after an equivalence has been imposed. Determinants act on the top exterior power and therefore measure oriented volume; traces are invariant under cyclic rearrangement and become characters in representation theory; adjoints depend on an inner product and lead to self-adjoint spectral theory.
-
-A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
-
+\section{Diagonalization as decomposition into invariant lines}
+A matrix is diagonalizable when the space decomposes as a direct sum of eigenspaces.  In that basis, the operator acts by independent scalings.
+\section{Algebraic versus geometric multiplicity}
+The algebraic multiplicity counts root multiplicity in the characteristic polynomial; geometric multiplicity counts eigenvector directions.  Defect occurs when there are not enough independent eigenvectors.
+\section{Inner products and orthogonal projection}
+An inner product adds metric geometry to linear algebra.  Orthogonal projection is the best approximation in a subspace, and Gram--Schmidt constructs orthonormal coordinates adapted to that metric.
+\section{Quadratic forms and spectral theorem}
+Real symmetric matrices define quadratic forms and are orthogonally diagonalizable.  Positive definiteness is positivity of all eigenvalues.
+\section{Spectral decomposition and quadratic geometry}
+Diagonalization, inner products, orthogonality, and quadratic forms are one story: decompose the space into independent directions, preferably orthogonal ones when a metric is present.
 
 \section{Spectral theorem and orthogonal bases}
+
+\begin{theorem}[Spectral theorem, finite-dimensional real form]
+Every real symmetric matrix is orthogonally diagonalizable.  Equivalently, it has an orthonormal basis of eigenvectors and real eigenvalues.
+\end{theorem}
+
 
 The note's real symmetric matrix theorem is the finite-dimensional spectral theorem.  If $A=A^T$, then there exists an orthogonal matrix $Q$ such that
 \[
@@ -390,7 +392,6 @@ In an inner product space, projection onto a closed subspace is characterized by
 \]
 Least squares, Fourier series, and orthogonal diagonalization all rely on this same projection geometry.
 
-% Second-pass deepening for waves 2-4: wave 2 remaining
 \section{Orthogonal diagonalization and axes}
 
 For a real symmetric matrix $A$, the quadratic form $q(x)=x^TAx$ defines a family of level sets.  Orthogonal diagonalization chooses axes along which the cross terms vanish:
@@ -420,6 +421,11 @@ This makes the connection to least squares immediate.  Solving $Ax\approx b$ bec
 which is stable because $Q$ preserves lengths.
 
 \section{Spectral theorem beyond finite dimension}
+
+\begin{remark}
+In infinite-dimensional Hilbert spaces, the spectral theorem is no longer only a statement about eigenvectors; it is formulated through projection-valued measures or functional calculus for self-adjoint operators.
+\end{remark}
+
 
 The finite-dimensional spectral theorem has infinite-dimensional descendants.  A bounded self-adjoint operator on a Hilbert space has a spectral measure.  This lets one define functions of the operator by integration over its spectrum.  Differential operators such as $-d^2/dx^2$ are unbounded.  With suitable domains, however, they are self-adjoint and have eigenfunction expansions.
 

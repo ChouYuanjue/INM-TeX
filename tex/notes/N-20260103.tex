@@ -553,19 +553,18 @@ Since $x_k\ne0$, this contradicts strict diagonal dominance.  Hence $Ax=0$ only 
 
 This self-review page is not a random list.  Almost every problem asks: can the object be transformed into a standard form without changing the essential quantity?  Determinant problems use row/column operations and block decompositions.  Rank problems use normal forms and null spaces.  Vector-group problems use span equivalence.  Matrix-power problems use eigenvalues, nilpotence, or rank-one structure.  Linear-system problems use the principle that solution sets are affine spaces built from one particular solution plus the null space.
 
-
-
-\paragraph{Expanded synthesis.}
-For this chapter, the elementary material should be read as a study of what remains invariant when coordinates change. The earlier sections (`Determinant expansion and cofactors`, `Recursive determinants`, `Circulant-style determinant`, `Cancellation through orthogonal matrices`) compute with arrays, bases, pivots, determinants, or eigenvectors; the deeper object is a linear map together with the spaces it acts on. A matrix is a representation of that map after bases have been chosen. This is why formulas such as
+\section{Determinant tricks as invariant-preserving transformations}
+Row and column operations are useful because their effect on determinant is controlled.  The art is to simplify the matrix while tracking whether the determinant is preserved, multiplied, or sign-changed.
+\section{Block determinants and Schur complements}
+For a block matrix with invertible \(A\), elimination gives the Schur complement
 \[
-  A' = P^{-1}AP,\qquad \widetilde A = T^{-1}AS
+D-CA^{-1}B.
 \]
-are not cosmetic: they distinguish an intrinsic morphism from a coordinate description.
-
-The structural hierarchy is as follows. Kernels record what a map forgets, images record what it reaches, cokernels record obstructions to solvability, and quotients record information after an equivalence has been imposed. Determinants act on the top exterior power and therefore measure oriented volume; traces are invariant under cyclic rearrangement and become characters in representation theory; adjoints depend on an inner product and lead to self-adjoint spectral theory.
-
-A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
-
+This reduces determinant and inverse computations by eliminating variables blockwise.
+\section{Matrix powers and minimal polynomials}
+High powers of a matrix are controlled by the minimal polynomial.  Cayley--Hamilton lets one reduce \(A^n\) to a combination of lower powers.
+\section{Matrix tricks from invariants and polynomials}
+Determinant tricks, recursive determinants, block simplification, rank decompositions, and matrix powers all exploit invariants under controlled transformations and polynomial relations of matrices.
 
 \section{Rank factorization and normal forms}
 
@@ -625,7 +624,6 @@ Indeed,
 \]
 This is a Hilbert-space idea in finite-dimensional form: positivity of an inner product turns an algebraic equation into a norm-square equation.
 
-% Second-pass deepening for waves 2-4: wave 2 remaining
 \section{Matrix powers and stable limits}
 
 When computing $A^n$, diagonalization is only one case.  More generally, the behavior of powers is governed by spectral projectors.  If the eigenvalues split into dominant and decaying parts, then $A^n$ often approaches a projection onto the dominant eigenspace after normalization.

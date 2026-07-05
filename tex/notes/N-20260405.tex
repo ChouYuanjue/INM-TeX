@@ -1,151 +1,228 @@
-\notechapter{N-20260405}{Computing Double Integrals: Fubini, Polar Coordinates, and Change of Variables}
+\notechapter{N-20260405}{Computing Double Integrals: Slicing, Polar Coordinates, and Change of Variables}
 
+\section{The real task: describe the region}
 
-\section{Iterated integrals}
+In double-integral problems, the hard part is usually not the antiderivative.  It is translating a plane region into inequalities.  Once the region is described correctly, Fubini's theorem turns the double integral into ordinary one-variable integration.
 
-If a plane region is vertically simple,
+\begin{definition}
+A region \(D\) is \vocab{vertically simple} if it has the form
 \[
-  D=\{(x,y):a\le x\le b,\ \varphi_1(x)\le y\le \varphi_2(x)\},
+  D=\{(x,y):a\le x\le b,\ \varphi_1(x)\le y\le \varphi_2(x)\}.
 \]
-then Fubini's theorem gives
+It is \vocab{horizontally simple} if it has the form
 \[
-  \iint_D f(x,y)\,dA=
-  \int_a^b\int_{\varphi_1(x)}^{\varphi_2(x)}f(x,y)\,dy\,dx.
+  D=\{(x,y):c\le y\le d,\ \psi_1(y)\le x\le \psi_2(y)\}.
 \]
-If the region is horizontally simple, reverse the order.  The main work is not integrating; it is describing $D$ correctly.
+\end{definition}
 
-\section{Changing the order}
-
-Changing order means re-describing the same region with the other variable outermost.  A reliable method is: draw the projection interval, write lower and upper bounds, and split the region if a single formula cannot describe it.
-
-\section{Polar coordinates}
-
-For rotational or radial regions,
+For a vertically simple region,
 \[
-  x=r\cos\theta,\qquad y=r\sin\theta,\qquad dA=r\,dr\,d\theta.
+  \iint_D f(x,y)\,dA
+  =\int_a^b\int_{\varphi_1(x)}^{\varphi_2(x)}f(x,y)\,dy\,dx.
 \]
-The factor $r$ is the Jacobian.  It is the area scaling of the map $(r,\theta)\mapsto(x,y)$.
-
-\section{General change of variables}
-
-For a $C^1$ one-to-one transformation
+For a horizontally simple region,
 \[
-  x=x(u,v),\qquad y=y(u,v),
+  \iint_D f(x,y)\,dA
+  =\int_c^d\int_{\psi_1(y)}^{\psi_2(y)}f(x,y)\,dx\,dy.
 \]
-the formula is
+
+\section{Changing the order of integration}
+
+Changing order means describing the same set with the other variable outermost.
+
+\begin{example}
+Consider
 \[
-  \iint_D f(x,y)\,dx\,dy=
-  \iint_{D'} f(x(u,v),y(u,v))
-  \left|\frac{\partial(x,y)}{\partial(u,v)}\right|\,du\,dv.
+  I=\int_0^1\int_{x^2}^{x} f(x,y)\,dy\,dx.
 \]
-The determinant is the local area multiplier.  This is the conceptual reason every coordinate transformation carries a Jacobian.
-
-\section{The conceptual payoff}
-
-Double-integral computation is a problem of choosing coordinates that make the region and integrand simple at the same time.  Fubini slices the region; polar coordinates exploit rotation; general change of variables is local linearization of area.
-
-
-
-\paragraph{Expanded synthesis.}
-For this chapter, the elementary material should be read as a study of what remains invariant when coordinates change. The earlier sections (`Iterated integrals`, `Changing the order`, `Polar coordinates`, `General change of variables`, `Higher viewpoint`) compute with arrays, bases, pivots, determinants, or eigenvectors; the deeper object is a linear map together with the spaces it acts on. A matrix is a representation of that map after bases have been chosen. This is why formulas such as
+The region is
 \[
-  A' = P^{-1}AP,\qquad \widetilde A = T^{-1}AS
+  0\le x\le1,\qquad x^2\le y\le x.
 \]
-are not cosmetic: they distinguish an intrinsic morphism from a coordinate description.
-
-The structural hierarchy is as follows. Kernels record what a map forgets, images record what it reaches, cokernels record obstructions to solvability, and quotients record information after an equivalence has been imposed. Determinants act on the top exterior power and therefore measure oriented volume; traces are invariant under cyclic rearrangement and become characters in representation theory; adjoints depend on an inner product and lead to self-adjoint spectral theory.
-
-A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
-
-
-\section{Expanded order-changing method}
-
-To change an integral order, never start by manipulating symbols.  Start from the region.  For example, if
-\[
-  0\le x\le1,\qquad x^2\le y\le x,
-\]
-then the projection on the $y$-axis is $0\le y\le1$, and the horizontal slice satisfies
+For a horizontal slice, \(0\le y\le1\), and the inequalities become
 \[
   y\le x\le \sqrt y.
 \]
 Thus
 \[
-  \int_0^1\int_{x^2}^{x}f(x,y)\,dy\,dx
-  =
-  \int_0^1\int_y^{\sqrt y}f(x,y)\,dx\,dy.
+  I=\int_0^1\int_y^{\sqrt y}f(x,y)\,dx\,dy.
 \]
-The method is always geometric: inequalities must be solved as a description of the same set.
+\end{example}
 
-\section{Jacobian as local area determinant}
-
-For $T(u,v)=(x(u,v),y(u,v))$, the derivative matrix
+A reliable order-changing workflow is:
 \[
-  DT=\begin{pmatrix}x_u&x_v\\y_u&y_v\end{pmatrix}
+\begin{array}{ll}
+1. & \text{write the original region as inequalities;}\\
+2. & \text{draw or infer its projection on the new outer axis;}\\
+3. & \text{solve the old inequalities for the new inner variable;}\\
+4. & \text{split the region if one pair of bounds is not enough.}
+\end{array}
 \]
-sends a tiny $du\,dv$ rectangle to an approximate parallelogram.  Its area is multiplied by $|\det DT|$.  This is why the absolute value of the Jacobian appears in change of variables.
 
-\section{Jacobian as determinant of a pullback}
+\section{Polar coordinates}
 
-For a coordinate change
+Polar coordinates are useful when circles, disks, sectors, or expressions \(x^2+y^2\) appear:
+\[
+  x=r\cos\theta,\qquad y=r\sin\theta,\qquad r\ge0.
+\]
+The area element is
+\[
+  dA=r\,dr\,d\theta.
+\]
+The factor \(r\) is not a decoration; it is the Jacobian determinant of the map \((r,\theta)\mapsto(x,y)\).
+
+\begin{example}
+For the upper half disk \(x^2+y^2\le4\), \(y\ge0\), the polar description is
+\[
+  0\le r\le2,\qquad 0\le\theta\le\pi.
+\]
+Therefore
+\[
+  \iint_D (x^2+y^2)\,dA
+  =\int_0^{\pi}\int_0^2 r^2\cdot r\,dr\,d\theta
+  =\pi\cdot4=4\pi.
+\]
+\end{example}
+
+\section{Jacobian as local area scaling}
+
+Let
+\[
+  T(u,v)=(x(u,v),y(u,v)).
+\]
+The derivative matrix is
+\[
+  DT=
+  \begin{pmatrix}
+  x_u&x_v\\
+  y_u&y_v
+  \end{pmatrix}.
+\]
+A tiny rectangle in the \((u,v)\)-plane is sent approximately to a parallelogram spanned by the two columns of \(DT\).  Its area is multiplied by
+\[
+  |\det DT|=
+  \left|\frac{\partial(x,y)}{\partial(u,v)}\right|.
+\]
+
+\begin{theorem}[Change of variables]
+Let \(T:D'\to D\) be a one-to-one \(C^1\) change of variables, except possibly on harmless boundary pieces, and suppose its Jacobian does not vanish in the interior.  Then
+\[
+  \iint_D f(x,y)\,dx\,dy
+  =\iint_{D'} f(x(u,v),y(u,v))
+  \left|\frac{\partial(x,y)}{\partial(u,v)}\right|\,du\,dv.
+\]
+\end{theorem}
+
+\section{Why the absolute value appears}
+
+For scalar area, orientation is irrelevant.  A coordinate map may preserve or reverse orientation, but both cases scale ordinary area by a positive factor.  Hence the absolute value.
+
+For oriented forms, the sign is kept:
+\[
+  dx\wedge dy
+  =\det\frac{\partial(x,y)}{\partial(u,v)}\,du\wedge dv.
+\]
+This explains the difference between scalar area integrals and oriented circulation or flux formulas.
+
+\section{A linear change example}
+
+\begin{example}
+Let
+\[
+  x=u+v,\qquad y=u-v.
+\]
+Then
+\[
+  \frac{\partial(x,y)}{\partial(u,v)}=
+  \det\begin{pmatrix}1&1\\1&-1\end{pmatrix}=-2.
+\]
+Thus \(dA=2\,du\,dv\).  If a diamond-shaped region in the \((x,y)\)-plane is hard to describe but becomes a rectangle in \((u,v)\)-coordinates, this coordinate change turns geometric complexity into a constant Jacobian.
+\end{example}
+
+\section{Choosing coordinates}
+
+The best coordinate system simplifies both the integrand and the boundary.
+
+\[
+\begin{array}{c|c|c}
+\text{signal in problem} & \text{candidate coordinates} & \text{reason}\\
+\hline
+x^2+y^2 & \text{polar} & \text{radial expression}\\
+\text{circle or sector} & \text{polar} & \text{simple bounds}\\
+\text{parallelogram} & \text{linear change} & \text{constant Jacobian}\\
+\text{curved family of level sets} & \text{adapted variables} & \text{region straightens}
+\end{array}
+\]
+
+\section{Coarea preview}
+
+Slicing a region vertically means integrating over fibers \(x=\text{constant}\) and then integrating over \(x\).  The same idea survives in more advanced form as the coarea formula: integrate first over level sets, then over the parameter labeling the level sets.  Ordinary order-changing is the two-dimensional classroom version of this principle.
+
+\section{Exterior algebra proof of the Jacobian factor}
+
+The Jacobian determinant is not merely a remembered formula.  It is the coefficient by which a coordinate change pulls back the oriented area form.
+
+For
 \[
   x=x(u,v),\qquad y=y(u,v),
 \]
-the differential forms transform as
+we have
 \[
-  dx=x_u\,du+x_v\,dv,\qquad dy=y_u\,du+y_v\,dv.
+  dx=x_u\,du+x_v\,dv,\qquad
+  dy=y_u\,du+y_v\,dv.
 \]
-Taking the wedge product gives
+Taking wedge products,
 \[
-  dx\wedge dy=(x_uy_v-x_vy_u)\,du\wedge dv.
+\begin{aligned}
+  dx\wedge dy
+  &=(x_u\,du+x_v\,dv)\wedge(y_u\,du+y_v\,dv)\\
+  &=(x_u y_v-x_vy_u)\,du\wedge dv.
+\end{aligned}
 \]
 Thus
 \[
   dx\wedge dy=\det\frac{\partial(x,y)}{\partial(u,v)}\,du\wedge dv.
 \]
-The Jacobian is the coefficient by which the coordinate change pulls back the area form.
+Scalar area forgets orientation, so it uses the absolute value.  Oriented integration keeps the sign.  This is why the same determinant appears both in change of variables and in Green/Stokes type formulas.
 
-This is the differential-form version of the elementary change-of-variables formula.
+\section{Polar coordinates as a singular chart}
 
-\section{Coarea formula preview}
-
-Changing variables is one way to decompose integration.  The coarea formula is a more advanced generalization.  For a smooth map $F:\mathbb R^n\to\mathbb R^k$, it relates an integral over the domain to integrals over level sets of $F$:
+The polar map
 \[
-  \int_{\mathbb R^n} g(x)J_F(x)\,dx
-  =\int_{\mathbb R^k}\left(\int_{F^{-1}(y)} g\,d\mathcal H^{n-k}\right)dy.
+  T(r,\theta)=(r\cos\theta,r\sin\theta)
 \]
-For $k=1$, this decomposes volume by level surfaces.
+has Jacobian \(r\).  It is not one-to-one globally: all values of \(\theta\) represent the origin when \(r=0\), and \(\theta\) is periodic.  Calculus usually ignores this because the bad set has area zero, but geometrically it matters.
 
-The elementary method of slicing a region vertically or horizontally is a simple coarea idea: integrate first over fibers, then over the parameter indexing the fibers.
+This is the first hint that coordinates are local.  On a manifold, one generally cannot describe everything by one global coordinate chart.  Spherical coordinates have the same issue at the poles; longitude is not defined there.  Integration survives because measure-zero coordinate singularities do not affect scalar integrals, while topology remembers them.
 
-\section{Orientation and absolute value}
+\section{Coarea formula in the simplest radial case}
 
-In ordinary area integrals, the absolute value of the Jacobian appears:
+Changing variables is not the only way to decompose an integral.  The coarea formula decomposes a domain by level sets.  For the distance function
 \[
-  dA=|J|\,du\,dv.
+  r(x,y)=\sqrt{x^2+y^2},\qquad |\nabla r|=1\quad((x,y)\ne0),
 \]
-For oriented forms, the sign is retained:
+coarea says, informally,
 \[
-  dx\wedge dy=J\,du\wedge dv.
+  \int_{\mathbb R^2} g(x,y)\,dA
+  =\int_0^\infty \left(\int_{r^{-1}(t)} g\,dS\right)dt.
 \]
-This distinction explains why flux integrals and Green/Stokes formulas care about orientation, while scalar area integrals do not.
-
-\section{Returning to order changes}
-
-Changing integration order is not a syntactic operation on bounds; it is a choice of projection and fibers.  General change of variables replaces rectangular fibers by smooth coordinate fibers.  The original exercises teach the finite-dimensional geometry needed for the more general integration theorems.
-
-% Second-pass deepening for waves 2-4: wave 4 part 2
-\section{Change of variables as local linearization}
-
-At a point $u$, the differentiable map $T$ is approximated by its derivative
+If \(g(x,y)=h(r)\) is radial, the inner integral over the circle of radius \(t\) is \(2\pi t h(t)\), so
 \[
-  T(u+h)=T(u)+DT(u)h+o(|h|).
+  \int_{\mathbb R^2} h(r)\,dA
+  =\int_0^\infty 2\pi t h(t)\,dt.
 \]
-Small squares in parameter space become approximate parallelograms in physical space.  The determinant $\det DT(u)$ measures their oriented area scaling.
+This is the polar-coordinate formula reinterpreted as integration over level curves of \(r\).  The elementary formula \(dA=r\,dr\,d\theta\) and the advanced coarea formula are describing the same geometry from two sides.
 
-This is why the Jacobian appears locally and is then integrated globally.  The change-of-variables theorem is the accumulation of infinitely many local linear approximations.
+\section{When a clever substitution is actually a quotient}
 
-\section{Singular coordinate systems}
+Sometimes a change of variables collapses a family of curves into a coordinate.  For example, the variables
+\[
+  u=x+y,\qquad v=x-y
+\]
+are adapted to diagonal lines.  A region bounded by lines \(x+y=\text{constant}\) and \(x-y=\text{constant}\) becomes a rectangle in \((u,v)\)-space.  This is not just a trick: the new variables are invariants of two transverse foliations of the plane.
 
-Polar coordinates fail to be one-to-one at the origin and are periodic in $\theta$.  Spherical coordinates have singularities at the poles.  These singularities usually do not harm integrals because they occur on sets of measure zero, but they matter for topology and vector fields.
+In harder problems, one chooses variables because level sets of the integrand or boundary are natural.  The computation succeeds when the coordinate fibers match the geometry already present in the problem.
 
-This explains why coordinate formulas must be used with awareness of domains.  A coordinate system may be excellent for integration but poor for global topology.
+\section{What should remain}
+
+Fubini is a slicing theorem, polar coordinates are a coordinate change with Jacobian \(r\), and the general change-of-variables theorem says that integration respects smooth coordinate changes after local area distortion is included.  Bounds are geometry, not syntax.

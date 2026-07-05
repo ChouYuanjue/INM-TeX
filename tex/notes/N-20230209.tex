@@ -132,19 +132,22 @@ This is the central lesson behind the tensor discussion: coordinate arrays are u
 
 The note begins with $u\times(v\times w)$ and ends near tensors.  That is a natural progression.  The vector triple product says a coordinate-looking identity is really a geometric projection formula.  The scalar triple product says determinants measure oriented volume.  Tensor language says coordinate arrays must transform correctly if they are to represent genuine objects.  Linear algebra becomes mature when one stops identifying an object with one of its coordinate descriptions.
 
-
-
-\paragraph{Expanded synthesis.}
-For this chapter, the elementary material should be read as a study of what remains invariant when coordinates change. The earlier sections (`What the page is trying to prove`, `Geometric proof of the vector triple product`, `A determinant check`, `Scalar triple product and volume`, `From vectors to tensors`) compute with arrays, bases, pivots, determinants, or eigenvectors; the deeper object is a linear map together with the spaces it acts on. A matrix is a representation of that map after bases have been chosen. This is why formulas such as
+\section{Determinants and volume forms}
+The scalar triple product is a determinant:
 \[
-  A' = P^{-1}AP,\qquad \widetilde A = T^{-1}AS
+a\cdot(b\times c)=\det(a,b,c).
 \]
-are not cosmetic: they distinguish an intrinsic morphism from a coordinate description.
-
-The structural hierarchy is as follows. Kernels record what a map forgets, images record what it reaches, cokernels record obstructions to solvability, and quotients record information after an equivalence has been imposed. Determinants act on the top exterior power and therefore measure oriented volume; traces are invariant under cyclic rearrangement and become characters in representation theory; adjoints depend on an inner product and lead to self-adjoint spectral theory.
-
-A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
-
+It evaluates the Euclidean volume form on three vectors and records orientation.
+\section{Linear maps and matrix representations}
+A matrix represents a linear map after bases are chosen.  Under change of basis, the matrix changes but the underlying map does not.  Similarity transformations describe the same endomorphism in a new coordinate system.
+\section{Symmetric and skew parts}
+Every square matrix decomposes as
+\[
+A=\frac{A+A^T}{2}+\frac{A-A^T}{2}.
+\]
+The symmetric part is tied to quadratic forms; the skew-symmetric part in three dimensions corresponds to cross-product generators of rotations.
+\section{Coordinate-free geometry behind matrices}
+The vector identities, determinant checks, and tensor intuition all separate intrinsic geometry from coordinates: volume forms, linear maps, symmetric quadratic data, and skew rotational data.
 
 \section{Linear maps versus matrices}
 
@@ -192,7 +195,6 @@ Matrix multiplication itself is a contraction of tensors: indices repeated once 
 
 The original correction from vector triple product to linear maps and matrices is mathematically natural.  Vector identities teach invariant geometric operations; matrix representations teach how invariant maps acquire coordinate arrays.  The bridge between them is tensor language: it records which parts are geometric and which parts are basis-dependent.
 
-% Second-pass deepening for waves 2-4: wave 2
 \section{Basis change as naturality of coordinates}
 
 The note's basis-change formulas become more meaningful when written as isomorphisms.  A basis $B$ is an isomorphism

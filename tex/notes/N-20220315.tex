@@ -158,25 +158,36 @@ This form reveals the vertex, minimum or maximum value, and symmetry axis.  It i
 
 The three examples are connected by the same idea: reduce a complicated statement to a structural condition.  The axis of a quadratic, the tangency of two graphs, and the Lagrange multiplier equations are all ways of saying that an extremum occurs when a first-order freedom disappears.
 
+\section{Tangency as multiplicity}
 
-\paragraph{Expanded synthesis.}
-For this chapter, the elementary material should be read as a study of what remains invariant when coordinates change. The earlier sections (`A scattered algebraic note`, `A quadratic with parameters`, `A parabola and a hyperbola`, `A constrained extremum`, `Tangency as a double-root condition`) compute with arrays, bases, pivots, determinants, or eigenvectors; the deeper object is a linear map together with the spaces it acts on. A matrix is a representation of that map after bases have been chosen. This is why formulas such as
+A line is tangent to a curve when the intersection equation has a repeated root.  If a family is written as
 \[
-  A' = P^{-1}AP,\qquad \widetilde A = T^{-1}AS
+  F(x,t)=0,
 \]
-are not cosmetic: they distinguish an intrinsic morphism from a coordinate description.
-
-The structural hierarchy is as follows. Kernels record what a map forgets, images record what it reaches, cokernels record obstructions to solvability, and quotients record information after an equivalence has been imposed. Determinants act on the top exterior power and therefore measure oriented volume; traces are invariant under cyclic rearrangement and become characters in representation theory; adjoints depend on an inner product and lead to self-adjoint spectral theory.
-
-A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
-
-
-\section{What these exercises were really training}
-
-A useful way to reread this note is not as three unrelated problems, but as three appearances of the same principle: an extremum is usually where one degree of freedom has been used up.  In the quadratic problem, the hidden freedom is the position of the axis.  In the parabola--hyperbola problem, the hidden freedom is whether the two graphs cross twice or merely touch.  In the constrained problem \(x^2+y^3=2\), the hidden freedom is the tangent direction along the curve.
-
-For the constrained extremum, one should not memorize Lagrange multipliers as a black box.  The geometric sentence is: at an extremum of \(f\) restricted to \(g=0\), the level curve of \(f\) is tangent to the constraint curve.  Algebraically this is
+then a tangency or transition value often satisfies
 \[
-  \nabla f=\lambda\nabla g.
+  F(x,t)=0,\qquad \frac{\partial F}{\partial x}(x,t)=0.
 \]
-This explains why the multiplier equations feel like ``parallel gradient'' equations.  The formula is not a trick; it is the analytic translation of tangency.
+For a quadratic, this is the discriminant condition \(\Delta=0\).  The same idea persists for higher-degree equations: a repeated root is detected by a common factor of \(F\) and \(F_x\).
+
+\section{Constrained extrema and normal directions}
+
+For a constraint \(g(x,y)=0\), the Lagrange multiplier condition
+\[
+  \nabla f=\lambda \nabla g
+\]
+says that at an interior constrained extremum, the gradient of \(f\) has no component tangent to the constraint curve.  Equivalently, the differential \(df\) vanishes on the tangent space of the constraint.
+
+This is the coordinate-free meaning of the method: extrema occur where the objective's first-order change is normal to every allowed first-order motion.
+
+\section{Degeneracy and second-order data}
+
+After first derivatives vanish, the next question is second-order behavior.  For an unconstrained two-variable function, the Hessian quadratic form determines the local model:
+\[
+  f(a+h)=f(a)+\frac12 h^T H_f(a)h+o(\norm h^2).
+\]
+For constrained problems, the Hessian must be restricted to tangent directions.  Degenerate cases occur when this quadratic form has zero directions, forcing higher-order analysis.
+
+\section{Multiplicity, normality, and local geometry}
+
+Quadratic parameter problems, tangency, and constrained extrema are one theme: detect where the number or type of solutions changes.  Algebra sees this as multiplicity or discriminant zero; geometry sees it as tangency; optimization sees it as vanishing first variation plus second-order testing.

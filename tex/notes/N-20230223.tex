@@ -117,14 +117,34 @@ The note's blue comment says that proving the determinant is a cosine expression
 
 This note is about recognizing when a problem should be treated as trigonometry, algebra, or linear algebra.  A failed determinant trick reveals hidden constraints.  Sum-to-product formulas solve the angle system more naturally.  Multiple-angle identities come from De Moivre's formula.  Tridiagonal determinants satisfy the same recurrence as Chebyshev polynomials.  The common theme is that recurrence relations are a bridge between trigonometry and matrices.
 
+\section{Trigonometric systems as algebraic systems}
 
-\paragraph{Expanded synthesis.}
-For this chapter, the elementary material should be read as a study of what remains invariant when coordinates change. The earlier sections (`Correcting a trigonometric mistake`, `A trigonometric system`, `A rational-parametrization idea`, `A direct algebraic route`, `Multiple-angle formulas`) compute with arrays, bases, pivots, determinants, or eigenvectors; the deeper object is a linear map together with the spaces it acts on. A matrix is a representation of that map after bases have been chosen. This is why formulas such as
+A trigonometric system can often be converted into algebra by setting
 \[
-  A' = P^{-1}AP,\qquad \widetilde A = T^{-1}AS
+  u=\cos x,\qquad v=\sin x,\qquad u^2+v^2=1.
 \]
-are not cosmetic: they distinguish an intrinsic morphism from a coordinate description.
+This turns identities into polynomial relations on the unit circle.  The constraint must always be kept; otherwise extraneous algebraic solutions appear.
 
-The structural hierarchy is as follows. Kernels record what a map forgets, images record what it reaches, cokernels record obstructions to solvability, and quotients record information after an equivalence has been imposed. Determinants act on the top exterior power and therefore measure oriented volume; traces are invariant under cyclic rearrangement and become characters in representation theory; adjoints depend on an inner product and lead to self-adjoint spectral theory.
+\section{Rational parametrization of the circle}
 
-A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
+The substitution
+\[
+  t=\tan\frac x2,\qquad \cos x=\frac{1-t^2}{1+t^2},\qquad \sin x=\frac{2t}{1+t^2}
+\]
+rationally parametrizes the unit circle except one point.  It turns many trigonometric equations into rational equations.
+
+\section{Multiple-angle formulas and Chebyshev polynomials}
+
+The identity
+\[
+  \cos(nx)=T_n(\cos x)
+\]
+defines the Chebyshev polynomial \(T_n\).  Thus multiple-angle formulas are polynomial dynamics on the interval \([-1,1]\).
+
+\section{Determinant recurrences}
+
+A determinant recurrence often comes from expanding along a row or column.  The resulting sequence is commonly governed by a second-order linear recurrence, whose characteristic roots explain closed forms.
+
+\section{Trigonometry through algebraic parametrization}
+
+The note joins trigonometry and algebra: systems become polynomial constraints, half-angle substitution gives rational parametrization, multiple angles give Chebyshev polynomials, and determinant recurrences reveal linear recurrence structure.

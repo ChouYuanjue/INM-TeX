@@ -132,14 +132,34 @@ Many elementary recurrence proofs use the theorem: a monotone bounded real seque
 
 The important common thread is change of coordinates.  A Möbius recurrence becomes geometric after measuring position relative to fixed points.  A repeated fixed point becomes arithmetic after taking a reciprocal.  A Dedekind cut becomes a real number after using order-theoretic structure.  A subset becomes a metric space after inheriting distance.  The mathematical move is the same: choose the representation in which the structure becomes visible.
 
+\section{Fixed points and stability}
 
-\paragraph{Expanded synthesis.}
-The common theme of this chapter is that an elementary limiting or computational rule becomes powerful only after one specifies the space in which the limiting process takes place. The earlier sections (`Fixed-point iteration`, `Möbius recurrences`, `Example`, `Second-order linear recurrences`, `Dedekind cuts and metric exercises`) may look like separate techniques, but they all ask the same question: which operations are stable under approximation? A derivative is stable first-order approximation,
+For an iteration \(x_{n+1}=F(x_n)\), a fixed point satisfies \(F(x_*)=x_*\).  The behavior near \(x_*\) is controlled by \(F'(x_*)\) in one dimension: if \(|F'(x_*)|<1\), the fixed point is locally attracting.
+
+\section{Möbius recurrences and matrices}
+
+A recurrence of the form
 \[
-  f(a+h)=f(a)+L(h)+o(|h|),
+  x_{n+1}=\frac{ax_n+b}{cx_n+d}
 \]
-while an integral is stable accumulation with respect to a measure, and a convergent series is a limit in a chosen norm or topology.
+is a fractional-linear transformation.  It corresponds to the matrix
+\[
+  \begin{pmatrix}a&b\\c&d\end{pmatrix}
+\]
+acting on the projective line.  Iterating the recurrence corresponds to taking powers of this matrix.
 
-The advanced bridge is functional-analytic. Uniform convergence is convergence in a sup norm; $L^p$ convergence is convergence in an integral norm; differentiability is the existence of a continuous linear approximation; many differential equations are operator equations $L[u]=f$. Theorems such as dominated convergence, the inverse function theorem, the projection theorem in Hilbert spaces, and semigroup existence results are refined answers to the same elementary concern: when may we pass from finite approximations to a genuine limiting object?
+\section{Second-order recurrences}
 
-To use this viewpoint when rereading the original examples, identify the hidden stability condition. A Taylor expansion asks for control of the remainder. A change of variables asks for differentiability and Jacobian control. Termwise differentiation of a series asks for uniform convergence of derivative series. A differential-equation formula asks whether the operator is invertible under the imposed initial or boundary data. The elementary computation is the visible part; the advanced theory names the hypotheses that make it legitimate.
+A linear recurrence
+\[
+  a_{n+2}=pa_{n+1}+qa_n
+\]
+is governed by the characteristic equation
+\[
+  \lambda^2=p\lambda+q.
+\]
+Distinct roots give combinations of geometric sequences.  This is diagonalization of the shift dynamics.
+
+\section{Recurrences as one-dimensional dynamics}
+
+Nonlinear and linear recurrences are dynamical systems.  Fixed points organize stability, Möbius recurrences are projective matrix dynamics, and second-order linear recurrences are solved by eigenvalue methods.

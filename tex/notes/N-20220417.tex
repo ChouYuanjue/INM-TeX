@@ -184,18 +184,35 @@ Many inequality problems become easier once one identifies the likely equality c
 
 The note is really about choosing the right inequality language.  AM--GM is local and elementary; Muirhead is symmetric and algebraic; Hölder is functional and norm-like; Jensen and Karamata are convex-geometric.  A good inequality proof often consists of recognizing which language matches the structure of the expression.
 
+\section{Inequalities as convexity statements}
 
-\paragraph{Expanded synthesis.}
-The number-theoretic content of this chapter is best understood as arithmetic seen through algebraic structure. The earlier sections (`Proof strategies`, `Cyclic and symmetric sums`, `AM--GM`, `Muirhead's inequality`, `Power means`) compute divisibility, congruences, residues, prime factorizations, or finite-field examples. The deeper language is ideals, quotient rings, unit groups, valuations, and field extensions.
-
-Divisibility in $\mathbb Z$ is containment of principal ideals; congruence modulo $n$ is equality inside the quotient ring $\mathbb Z/n\mathbb Z$; invertibility modulo $n$ means being a unit; the Chinese remainder theorem is a product decomposition of quotient rings. Prime factorization supplies coordinates through valuations:
+Many classical inequalities are consequences of convexity.  Jensen's inequality says that for convex \(f\),
 \[
-  n=\prod_p p^{v_p(n)}.
+  f\left(\sum_i \lambda_i x_i\right)\le \sum_i \lambda_i f(x_i),\qquad \lambda_i\ge0,\quad \sum_i\lambda_i=1.
 \]
-Gcd and lcm are coordinatewise minimum and maximum in these valuation coordinates.
+AM--GM follows by applying concavity of \(\log x\), or convexity of \(-\log x\).  Power mean inequalities follow from comparing convex powers.
 
-This algebraic reading explains why elementary tricks scale upward. Euclidean algorithms become the theory of Euclidean domains and PIDs; divisor sums become Dirichlet convolution and Euler products; roots of unity become cyclotomic fields and Galois actions; finite polynomial arithmetic becomes finite-field theory. The original computations should therefore be kept as the algorithmic core, while the advanced language identifies the structure that makes the algorithms work.
+\section{Majorization and Karamata}
 
+Muirhead and Karamata are organized by majorization.  A vector \(x\) majorizes \(y\) when partial sums of decreasing rearrangements of \(x\) dominate those of \(y\), with equal total sum.  Karamata says convex functions respect this order:
+\[
+  x\succ y\quad\Rightarrow\quad \sum_i f(x_i)\ge\sum_i f(y_i).
+\]
+This turns many symmetric inequalities into statements about how spread out a vector is.
+
+\section{Holder as norm geometry}
+
+Holder's inequality
+\[
+  \sum_i |a_i b_i|\le \left(\sum_i |a_i|^p\right)^{1/p}\left(\sum_i |b_i|^q\right)^{1/q},\qquad \frac1p+\frac1q=1,
+\]
+is a statement about dual norms.  Cauchy--Schwarz is the case \(p=q=2\), where inner-product geometry gives orthogonal projection.
+
+Thus inequalities are not isolated tricks; they describe geometry of convex bodies and normed spaces.
+
+\section{Convexity, duality, and equality cases}
+
+AM--GM, Cauchy, Holder, Jensen, Muirhead, and Karamata form a hierarchy.  The elementary technique is choosing the right inequality; the advanced structure is convexity, duality, majorization, and equality-case geometry.
 
 \section{Inequality methods as choice of language}
 

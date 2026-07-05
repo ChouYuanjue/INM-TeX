@@ -14,6 +14,11 @@ Then Simson line and Euler line enter as richer configurations involving circles
 
 \section{Ceva's theorem}
 
+\begin{theorem}[Ceva's theorem]
+For points on the sides of a triangle, the corresponding cevians are concurrent exactly when the signed product of the three side ratios is \(1\).
+\end{theorem}
+
+
 Let $D,E,F$ lie on $BC,CA,AB$ or their extensions in triangle $ABC$.  Ceva's theorem says that $AD,BE,CF$ are concurrent iff
 \[
   \frac{BD}{DC}\cdot \frac{CE}{EA}\cdot \frac{AF}{FB}=1
@@ -39,6 +44,11 @@ The inverse theorem is often the useful direction: if the product of ratios is $
 
 \section{Menelaus' theorem}
 
+\begin{theorem}[Menelaus' theorem]
+For points on the three sidelines of a triangle, the points are collinear exactly when the signed product of the three side ratios is \(-1\).
+\end{theorem}
+
+
 Menelaus is the collinearity counterpart of Ceva.  If a line meets the sidelines of triangle $ABC$ at $D,E,F$, then
 \[
   \frac{AE}{EC}\cdot \frac{CD}{DB}\cdot \frac{BF}{FA}=1
@@ -50,6 +60,14 @@ The proof in the original note draws a parallel through a vertex.  For instance,
 The memory rule is useful but not enough: Ceva and Menelaus look similar, so one must remember what they prove.  Ceva: three cevians concurrent.  Menelaus: three points collinear.
 
 \section{Ptolemy's theorem}
+
+\begin{theorem}[Ptolemy's theorem]
+For a cyclic quadrilateral with side lengths \(a,b,c,d\) and diagonals \(e,f\),
+\[
+  ef=ac+bd.
+\]
+\end{theorem}
+
 
 For a cyclic quadrilateral $ABCD$, Ptolemy's theorem states
 \[
@@ -113,19 +131,14 @@ with equality iff the triangle is equilateral.  The proof in the note uses the a
 
 This chapter is a small map of classical geometry.  Ceva and Menelaus are ratio theorems, almost projective in flavor.  Ptolemy is metric and cyclic.  Simson line turns perpendicular projections into collinearity.  Euler line organizes triangle centers, and Euler's formula links local radii with the global placement of centers.  The proofs constantly switch languages: area, similarity, complex numbers, cyclic angles, and centers.  That switching is the real skill of plane geometry.
 
-
-
-\paragraph{Expanded synthesis.}
-For this chapter, the elementary material should be read as a study of what remains invariant when coordinates change. The earlier sections (`Why this geometry chapter matters`, `Ceva's theorem`, `Menelaus' theorem`, `Ptolemy's theorem`, `Generalized Ptolemy inequality`) compute with arrays, bases, pivots, determinants, or eigenvectors; the deeper object is a linear map together with the spaces it acts on. A matrix is a representation of that map after bases have been chosen. This is why formulas such as
-\[
-  A' = P^{-1}AP,\qquad \widetilde A = T^{-1}AS
-\]
-are not cosmetic: they distinguish an intrinsic morphism from a coordinate description.
-
-The structural hierarchy is as follows. Kernels record what a map forgets, images record what it reaches, cokernels record obstructions to solvability, and quotients record information after an equivalence has been imposed. Determinants act on the top exterior power and therefore measure oriented volume; traces are invariant under cyclic rearrangement and become characters in representation theory; adjoints depend on an inner product and lead to self-adjoint spectral theory.
-
-A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
-
+\section{Ceva and Menelaus as projective incidence}
+Ceva and Menelaus are ratio theorems about concurrence and collinearity.  Their natural setting is projective geometry, where incidence is fundamental and ratios arise after choosing coordinates on lines.
+\section{Ptolemy and cyclic geometry}
+Ptolemy's theorem characterizes cyclic quadrilaterals in Euclidean geometry.  It can be read through inversion or through chord lengths on the circle.  The equality case in Ptolemy's inequality is exactly cyclicity.
+\section{Simson and Euler lines as configuration invariants}
+The Simson line and Euler line record hidden alignment in triangle configurations.  They are not isolated miracles; they show that special triangle centers and projections satisfy rigid incidence relations.
+\section{Classical triangle invariants}
+Classical triangle geometry is a study of invariants: ratios for incidence, cyclicity for Ptolemy, projections for Simson, and affine/metric center relations for Euler-type lines.
 
 \section{Barycentric coordinates}
 
@@ -163,7 +176,6 @@ This shows which parts of theorems are affine/projective and which depend on Euc
 
 The original list of Ceva, Menelaus, Ptolemy, Simson, and Euler-line facts is not just a catalogue.  It spans three geometries: affine ratio geometry, projective incidence geometry, and inversive circle geometry.  The advanced reconstruction should keep the elementary proofs while identifying which invariance principle makes each theorem natural.
 
-% Second-pass deepening for waves 2-4: wave 4 part 1
 \section{Ceva and Menelaus as dual affine statements}
 
 Ceva concerns concurrence of cevians; Menelaus concerns collinearity of points on sides.  In barycentric coordinates, these become dual linear-algebraic conditions.  Concurrence means three lines have a common solution.  Collinearity means three points satisfy one linear equation.

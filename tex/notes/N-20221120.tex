@@ -2,6 +2,15 @@
 
 \section{Definition and nonsingularity}
 
+\begin{definition}[Elliptic curve in Weierstrass form]
+An elliptic curve over a field is a nonsingular cubic curve with a chosen base point.  In Weierstrass form it is written as
+\[
+  y^2=x^3+ax+b,
+\]
+with discriminant nonzero.
+\end{definition}
+
+
 An elliptic curve in short Weierstrass form is the set of solutions
 \[
   E:y^2=x^3+ax+b
@@ -188,14 +197,16 @@ The note's cryptographic motivation should therefore be understood as a computat
 
 This note is a good meeting point of algebraic geometry and cryptography.  A cubic equation becomes a smooth curve; smoothness is a discriminant condition; a geometric chord construction becomes a group operation; projective geometry supplies the identity element; finite fields turn the group into a computational object.  The remarkable fact is that a picture of a cubic curve encodes a serious algebraic group.
 
-
-\paragraph{Expanded synthesis.}
-The common theme of this chapter is that an elementary limiting or computational rule becomes powerful only after one specifies the space in which the limiting process takes place. The earlier sections (`Definition and nonsingularity`, `Why the discriminant appears`, `Cryptographic motivation`, `Geometric addition law`, `Algebraic formula`) may look like separate techniques, but they all ask the same question: which operations are stable under approximation? A derivative is stable first-order approximation,
+\section{Nonsingularity and the discriminant}
+An elliptic curve in Weierstrass form must be nonsingular.  The discriminant condition prevents cusps and self-intersections.  Geometrically, nonsingularity ensures that every point has a well-defined tangent line, which is needed for the group law.
+\section{The group law as divisor arithmetic}
+The chord-and-tangent rule says that three collinear intersection points add to zero.  Behind the picture is divisor theory: rational functions have divisors of zeros and poles whose total degree is zero.  The group law on the curve packages this linear equivalence relation.
+\section{Associativity and geometry}
+Associativity is visually nontrivial because the chord construction depends on intermediate points.  Algebraically it follows from the structure of the Picard group of degree-zero divisor classes:
 \[
-  f(a+h)=f(a)+L(h)+o(|h|),
+E\cong \operatorname{Pic}^0(E).
 \]
-while an integral is stable accumulation with respect to a measure, and a convergent series is a limit in a chosen norm or topology.
-
-The advanced bridge is functional-analytic. Uniform convergence is convergence in a sup norm; $L^p$ convergence is convergence in an integral norm; differentiability is the existence of a continuous linear approximation; many differential equations are operator equations $L[u]=f$. Theorems such as dominated convergence, the inverse function theorem, the projection theorem in Hilbert spaces, and semigroup existence results are refined answers to the same elementary concern: when may we pass from finite approximations to a genuine limiting object?
-
-To use this viewpoint when rereading the original examples, identify the hidden stability condition. A Taylor expansion asks for control of the remainder. A change of variables asks for differentiability and Jacobian control. Termwise differentiation of a series asks for uniform convergence of derivative series. A differential-equation formula asks whether the operator is invertible under the imposed initial or boundary data. The elementary computation is the visible part; the advanced theory names the hypotheses that make it legitimate.
+\section{Cryptographic meaning}
+Elliptic-curve cryptography uses the difficulty of recovering \(n\) from \(Q=nP\).  The geometry supplies a finite abelian group over \(\mathbb F_q\), and arithmetic security depends on the discrete logarithm problem in that group.
+\section{Elliptic curves as geometry with a group law}
+Elliptic curves are not merely cubic equations.  Nonsingularity gives tangent geometry, chord-and-tangent gives a group, divisor theory explains associativity, and finite-field points make the group computationally useful.

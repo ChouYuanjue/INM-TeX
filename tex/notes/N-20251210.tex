@@ -28,12 +28,12 @@ The page records the compact criterion:
 \[
   (x-x_0)f'(x)>0
   \quad\Longrightarrow\quad
-  f(x_0)	ext{ is a local minimum},
+  f(x_0)\text{ is a local minimum},
 \]
 \[
   (x-x_0)f'(x)<0
   \quad\Longrightarrow\quad
-  f(x_0)	ext{ is a local maximum}.
+  f(x_0)\text{ is a local maximum}.
 \]
 
 \section{Second derivative test}
@@ -44,10 +44,10 @@ If
 \]
 then
 \[
-  f''(x_0)>0\quad\Longrightarrow\quad x_0	ext{ is a local minimum},
+  f''(x_0)>0\quad\Longrightarrow\quad x_0\text{ is a local minimum},
 \]
 \[
-  f''(x_0)<0\quad\Longrightarrow\quad x_0	ext{ is a local maximum}.
+  f''(x_0)<0\quad\Longrightarrow\quad x_0\text{ is a local maximum}.
 \]
 The handwritten note adds the mnemonic that $f''>0$ looks like a smile and $f''<0$ looks like a frown.
 
@@ -84,7 +84,7 @@ Then $x=x_0$ is a vertical asymptote.
 A horizontal asymptote occurs when
 \[
   \lim_{x\to+\infty}f(x)=c
-  \quad	ext{or}\quad
+  \quad\text{or}\quad
   \lim_{x\to-\infty}f(x)=c.
 \]
 Then $y=c$ is a horizontal asymptote.
@@ -365,6 +365,14 @@ If $f\le g$, then
 
 \section{Integral mean value theorem}
 
+\begin{theorem}[Integral mean value theorem]
+If \(f\) is continuous on \([a,b]\), then there exists \(c\in[a,b]\) such that
+\[
+  \int_a^b f(x)\,dx=f(c)(b-a).
+\]
+\end{theorem}
+
+
 If $f$ is continuous on $[a,b]$, then there exists $\xi\in[a,b]$ such that
 \[
   \int_a^b f(x)\,dx=f(\xi)(b-a).
@@ -440,14 +448,32 @@ converges iff $p<1$.
 
 This note connects derivative information with the global shape of a curve, then connects antiderivatives with accumulation.  Derivatives decide monotonicity, extrema, concavity, inflection points, and asymptotes.  Integration methods reduce complicated antiderivatives to known forms.  Definite integrals turn limits of sums into area, volume, length, and average value.  The same calculus ideas are being used both for qualitative geometry and quantitative computation.
 
+\section{Monotonicity and derivative sign}
 
-\paragraph{Expanded synthesis.}
-For this chapter, the elementary material should be read as a study of what remains invariant when coordinates change. The earlier sections (`Strict monotonicity from the derivative`, `First derivative test for extrema`, `Second derivative test`, `Concavity and inflection points`) compute with arrays, bases, pivots, determinants, or eigenvectors; the deeper object is a linear map together with the spaces it acts on. A matrix is a representation of that map after bases have been chosen. This is why formulas such as
+If \(f'\ge0\) on an interval, the mean value theorem gives
 \[
-  A' = P^{-1}AP,\qquad \widetilde A = T^{-1}AS
+  f(y)-f(x)=f'(c)(y-x)\ge0\qquad (x<y).
 \]
-are not cosmetic: they distinguish an intrinsic morphism from a coordinate description.
+So monotonicity is not a separate rule; it is a global consequence of local derivative sign.
 
-The structural hierarchy is as follows. Kernels record what a map forgets, images record what it reaches, cokernels record obstructions to solvability, and quotients record information after an equivalence has been imposed. Determinants act on the top exterior power and therefore measure oriented volume; traces are invariant under cyclic rearrangement and become characters in representation theory; adjoints depend on an inner product and lead to self-adjoint spectral theory.
+Strict monotonicity needs care: \(f'>0\) everywhere is sufficient, but not necessary.  Functions can be strictly increasing even when the derivative vanishes at isolated or many points.
 
-A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
+\section{Convexity and supporting lines}
+
+Convexity can be read geometrically: the graph lies below chords and above supporting tangent lines.  If \(f\) is differentiable and convex, then
+\[
+  f(y)\ge f(x)+f'(x)(y-x).
+\]
+This inequality is the foundation of many optimization methods.
+
+\section{Integration methods as inverse rules}
+
+Substitution reverses the chain rule, integration by parts reverses the product rule, and partial fractions use algebraic decomposition before integration.  These methods are not unrelated tricks; each integration technique recognizes which differentiation rule produced the integrand.
+
+\section{Error terms and numerical integration}
+
+Midpoint and trapezoidal error formulas depend on second derivatives.  They express how curvature controls the difference between an integral and a simple area approximation.  In numerical analysis, this becomes a systematic study of quadrature rules and convergence rates.
+
+\section{Local derivative data and global shape}
+
+Curve sketching, monotonicity, extrema, concavity, asymptotes, integration methods, and numerical errors all use derivatives to convert local information into global shape or accumulated quantity.

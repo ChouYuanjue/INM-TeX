@@ -81,14 +81,37 @@ provided the denominators are nonzero.  This is why trying to prove tangent firs
 
 The same formulas have three interpretations: geometry says sine is signed area, linear algebra says rotations compose by matrix multiplication, and complex analysis says rotations are multiplication by unit complex numbers.  The formulas are memorable once they are seen as structure-preservation laws rather than isolated identities.
 
+\section{Rotation proof as the structural proof}
 
-\paragraph{Expanded synthesis.}
-For this chapter, the elementary material should be read as a study of what remains invariant when coordinates change. The earlier sections (`Motivation`, `Sine difference formula by geometry`, `Rotation-matrix proof`, `Euler formula proof`, `Tangent formula`) compute with arrays, bases, pivots, determinants, or eigenvectors; the deeper object is a linear map together with the spaces it acts on. A matrix is a representation of that map after bases have been chosen. This is why formulas such as
+The cleanest proof of trigonometric addition formulas is the identity
 \[
-  A' = P^{-1}AP,\qquad \widetilde A = T^{-1}AS
+  R(a+b)=R(a)R(b)
 \]
-are not cosmetic: they distinguish an intrinsic morphism from a coordinate description.
+for plane rotations.  Matrix multiplication gives
+\[
+  \cos(a+b)=\cos a\cos b-\sin a\sin b,
+\]
+\[
+  \sin(a+b)=\sin a\cos b+\cos a\sin b.
+\]
+This proof shows that the formulas express composition of rotations.
 
-The structural hierarchy is as follows. Kernels record what a map forgets, images record what it reaches, cokernels record obstructions to solvability, and quotients record information after an equivalence has been imposed. Determinants act on the top exterior power and therefore measure oriented volume; traces are invariant under cyclic rearrangement and become characters in representation theory; adjoints depend on an inner product and lead to self-adjoint spectral theory.
+\section{Euler formula and characters}
 
-A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
+Euler's formula
+\[
+  e^{i(a+b)}=e^{ia}e^{ib}
+\]
+gives the same identities by comparing real and imaginary parts.  The map \(t\mapsto e^{it}\) is a character from the additive group of real angles to the multiplicative circle group.
+
+\section{Tangent formula as projective coordinate}
+
+Tangent is the slope coordinate on the unit circle, where defined.  The formula
+\[
+  \tan(a+b)=\frac{\tan a+\tan b}{1-\tan a\tan b}
+\]
+is the induced fractional-linear rule for slopes under rotation.
+
+\section{Addition formulas as rotation composition}
+
+The many proofs of addition formulas are different coordinate expressions of one fact: rotations form a group.  Geometry, matrices, complex exponentials, and tangent slopes all encode the same composition law.

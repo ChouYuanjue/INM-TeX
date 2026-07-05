@@ -252,19 +252,37 @@ is constant.  This is a standard way to convert circle intersection geometry int
 
 Analytic geometry is not merely a bag of formulas.  Each formula has a vector meaning: slope is direction, \(Ax+By+C=0\) encodes a normal vector, distance to a line is projection onto that normal vector, and circle equations are completed squares.  The more one sees these meanings, the less one needs to memorize.
 
+\section{Lines as affine equations}
 
-
-\paragraph{Expanded synthesis.}
-For this chapter, the elementary material should be read as a study of what remains invariant when coordinates change. The earlier sections (`Line formulas`, `Parallel and perpendicular lines`, `Direction and normal vectors`, `Angles, distances, and parallel lines`, `Circle equations`) compute with arrays, bases, pivots, determinants, or eigenvectors; the deeper object is a linear map together with the spaces it acts on. A matrix is a representation of that map after bases have been chosen. This is why formulas such as
+A line in the plane is an affine equation
 \[
-  A' = P^{-1}AP,\qquad \widetilde A = T^{-1}AS
+  ax+by+c=0.
 \]
-are not cosmetic: they distinguish an intrinsic morphism from a coordinate description.
+The vector \((a,b)\) is normal to the line.  Parallelism means proportional normal vectors; perpendicularity means the direction vector of one line is proportional to the normal vector of the other.
 
-The structural hierarchy is as follows. Kernels record what a map forgets, images record what it reaches, cokernels record obstructions to solvability, and quotients record information after an equivalence has been imposed. Determinants act on the top exterior power and therefore measure oriented volume; traces are invariant under cyclic rearrangement and become characters in representation theory; adjoints depend on an inner product and lead to self-adjoint spectral theory.
+This turns many line problems into vector algebra.
 
-A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
+\section{Circles and quadratic forms}
 
+A circle has equation
+\[
+  (x-a)^2+(y-b)^2=r^2.
+\]
+Completing the square reveals the center and radius.  More general second-degree equations are conics, and their classification depends on the quadratic part.
+
+Thus circle problems are the simplest non-linear quadratic geometry.
+
+\section{Fractional-linear transformations}
+
+A fractional-linear expression
+\[
+  y=\frac{ax+b}{cx+d}
+\]
+is a Möbius transformation on the projective line when \(ad-bc\ne0\).  Range problems for such expressions are often solved by inverting the equation and detecting excluded values.
+
+\section{Analytic geometry through algebraic invariants}
+
+Analytic geometry translates geometric relations into algebraic invariants: normal vectors for lines, quadratic forms for circles/conics, and fractional-linear maps for rational range problems.
 
 \section{Conics as quadratic forms}
 
@@ -318,7 +336,6 @@ This gives an advanced interpretation of tangents and chord relations.
 
 The original formulas for lines, circles, and conics remain the computational core.  The advanced layer says: lines are affine/projective objects, conics are quadratic forms, coordinate changes are group actions, and tangents/polars come from bilinear algebra.
 
-% Second-pass deepening for waves 2-4: wave 4 part 1
 \section{Distance formulas as dual norms}
 
 The distance from a point $x_0$ to a line

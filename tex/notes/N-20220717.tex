@@ -239,14 +239,29 @@ The note's first group examples should be read as abstraction from repeated oper
 
 This note is valuable because it places recurrences and groups next to each other.  A recurrence is about repeatedly applying an operation; a group is about operations that can be composed and undone.  Both topics are early appearances of the same general idea: mathematics often studies not isolated objects, but transformations and their iterates.
 
+\section{Recurrences as iteration of maps}
 
-\paragraph{Expanded synthesis.}
-For this chapter, the elementary material should be read as a study of what remains invariant when coordinates change. The earlier sections (`A beginning point: recursive definitions`, `Arithmetic progressions`, `Determining an arithmetic progression`, `Geometric progressions`, `Converting recurrences`) compute with arrays, bases, pivots, determinants, or eigenvectors; the deeper object is a linear map together with the spaces it acts on. A matrix is a representation of that map after bases have been chosen. This is why formulas such as
+A recurrence \(a_{n+1}=F(a_n)\) is iteration of a map.  Arithmetic progressions iterate a translation, and geometric progressions iterate a scaling.  Their closed forms are orbit formulas:
 \[
-  A' = P^{-1}AP,\qquad \widetilde A = T^{-1}AS
+  a_n=a_1+(n-1)d,\qquad a_n=a_1q^{n-1}.
 \]
-are not cosmetic: they distinguish an intrinsic morphism from a coordinate description.
 
-The structural hierarchy is as follows. Kernels record what a map forgets, images record what it reaches, cokernels record obstructions to solvability, and quotients record information after an equivalence has been imposed. Determinants act on the top exterior power and therefore measure oriented volume; traces are invariant under cyclic rearrangement and become characters in representation theory; adjoints depend on an inner product and lead to self-adjoint spectral theory.
+\section{First-order linear recurrences}
 
-A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
+A recurrence
+\[
+  a_{n+1}=ra_n+b
+\]
+has a fixed point \(a_*=b/(1-r)\) when \(r\ne1\).  Subtracting the fixed point gives
+\[
+  a_{n+1}-a_*=r(a_n-a_*).
+\]
+This turns an affine recurrence into a geometric progression.
+
+\section{Groups behind repeated operations}
+
+Groups formalize reversible repeated operations.  Integers under addition record repeated translation; nonzero real numbers under multiplication record repeated scaling.  The recurrence examples are therefore early examples of group actions on a set.
+
+\section{Sequences as orbits of operations}
+
+Sequences become clearer as dynamics.  Arithmetic and geometric progressions are translation and scaling orbits, affine recurrences become geometric after shifting to a fixed point, and groups record the reversible operations behind iteration.

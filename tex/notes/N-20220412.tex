@@ -167,43 +167,38 @@ For $p=2$ this is the Frobenius norm; for $p=1$ it is the nuclear norm.  These n
 
 Thus rank, trace, Hermitian adjoint, and transpose are all pieces of a larger operator-theoretic vocabulary.
 
-% Second-pass deepening for waves 2-4: wave 2
-\section{Rank-nullity as a statement about information}
+\section{Indices as tensor bookkeeping}
 
-For a linear map $A:V\to W$, the kernel is the information lost by the map and the image is the information that remains visible.  Rank-nullity says
+The Kronecker delta \(\delta_i^j\) is the coordinate symbol for the identity map.  Einstein summation records contractions, such as
 \[
-  \dim V=\dim\ker A+\dim\operatorname{im}A.
+  y_i=A_i^{\ j}x_j.
 \]
-This is not just a dimension formula; it is an accounting law for information under a linear transformation.
+The repeated index is summed because a linear map consumes one coordinate direction and produces another.
 
-The transpose gives the dual accounting.  The row space of a matrix consists of linear functionals on the input.  The null space consists of vectors annihilated by all those functionals.  Thus
+\section{Transpose as pullback on dual spaces}
+
+For \(A:V\to W\), the dual map is
 \[
-  \operatorname{Null}(A)=\operatorname{Row}(A)^\perp.
+  A^*:W^*\to V^*,\qquad A^*(\varphi)=\varphi\circ A.
 \]
-Similarly,
+In bases, this is represented by the transpose.  Hermitian conjugate adds complex conjugation because complex inner products are conjugate-linear in one argument.
+
+\section{Trace as contraction}
+
+The trace
 \[
-  \operatorname{Null}(A^T)=\operatorname{Col}(A)^\perp.
+  \operatorname{tr}(A)=A_i^{\ i}
 \]
-These four subspaces are the geometric meaning of row reduction.
+is the contraction of one upper and one lower index.  It is invariant under change of basis because it is not really a coordinate sum; it is the categorical trace of an endomorphism in finite-dimensional vector spaces.
 
-\section{Trace and representation characters}
+\section{Rank and factorization}
 
-If a group $G$ acts linearly on a vector space $V$, each group element gives a matrix $\rho(g)$.  The character of this representation is
+Rank is the dimension of the image.  A rank-\(r\) map factors through an \(r\)-dimensional space:
 \[
-  \chi_\rho(g)=\operatorname{tr}(\rho(g)).
+  V\twoheadrightarrow \operatorname{im}A\hookrightarrow W.
 \]
-Trace becomes a class function: conjugate group elements have the same trace because trace is invariant under similarity.  Thus the elementary identity
-\[
-  \operatorname{tr}(P^{-1}AP)=\operatorname{tr}(A)
-\]
-is the reason characters can classify representations of finite groups.
+This explains why rank measures the true number of independent output directions.
 
-This gives a research-level continuation of a basic matrix statistic.  Trace is not only the sum of diagonal entries; it is the observable that remains after changing basis.
+\section{Coordinate indices as intrinsic linear algebra}
 
-\section{Adjoints and energy}
-
-For a Hermitian matrix $A$, the quadratic form
-\[
-  \langle Ax,x\rangle
-\]
-is real.  In quantum mechanics, Hermitian operators represent observables; in PDE, self-adjoint differential operators have real spectra; in numerical linear algebra, symmetric matrices admit stable orthogonal diagonalization.  The elementary condition $A^*=A$ therefore encodes a deep compatibility between algebra and geometry: the operator can be studied by orthogonal eigenmodes.
+Indices, transpose, Hermitian conjugate, rank, and trace are coordinate shadows of intrinsic operations: duality, contraction, image factorization, and inner-product-dependent adjoints.

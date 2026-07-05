@@ -30,6 +30,11 @@ where \(x\sim y\) iff \(y-x\in\mathbb Z\).  This is the real line wrapped around
 
 \section{Definition of quotient topology}
 
+\begin{definition}[Quotient topology]
+Given a surjective map \(q:X\to Y\), the quotient topology on \(Y\) declares \(U\subseteq Y\) open exactly when \(q^{-1}(U)\) is open in \(X\).
+\end{definition}
+
+
 Let \(q:X\to X/{\sim}\) be the quotient map.  A set \(U\subseteq X/{\sim}\) is open iff
 \[
   q^{-1}(U)\text{ is open in }X.
@@ -94,14 +99,68 @@ Both definitions are forced by continuity requirements rather than by pictures.
 
 Quotient topology and product topology are dual-looking constructions.  A quotient identifies points and defines open sets by pulling back along the quotient map.  A product combines spaces and defines open sets by rectangles from the two factors.  Both are examples of topology being controlled by maps rather than by drawings alone.
 
+\section{Saturated sets and quotient openness}
 
-\paragraph{Expanded synthesis.}
-For this chapter, the elementary material should be read as a study of what remains invariant when coordinates change. The earlier sections (`Interval modulo endpoints`, `More quotient spaces`, `Definition of quotient topology`, `Product topology`, `Universal property of quotient topology`) compute with arrays, bases, pivots, determinants, or eigenvectors; the deeper object is a linear map together with the spaces it acts on. A matrix is a representation of that map after bases have been chosen. This is why formulas such as
+For a quotient map \(q:X\to Y\), a subset \(A\subseteq X\) is saturated if it is a union of equivalence classes, equivalently
 \[
-  A' = P^{-1}AP,\qquad \widetilde A = T^{-1}AS
+  A=q^{-1}(q(A)).
 \]
-are not cosmetic: they distinguish an intrinsic morphism from a coordinate description.
+Open sets in \(Y\) correspond exactly to saturated open sets in \(X\).  This is a practical way to test quotient topology: first check that the upstairs set is open, then check that it contains whole equivalence classes.
 
-The structural hierarchy is as follows. Kernels record what a map forgets, images record what it reaches, cokernels record obstructions to solvability, and quotients record information after an equivalence has been imposed. Determinants act on the top exterior power and therefore measure oriented volume; traces are invariant under cyclic rearrangement and become characters in representation theory; adjoints depend on an inner product and lead to self-adjoint spectral theory.
+Endpoint gluing works because neighborhoods near the glued point have saturated preimages containing pieces near both endpoints.  A one-sided interval near only one endpoint is not saturated, so it does not define a neighborhood downstairs.
 
-A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
+\section{Quotients can destroy Hausdorffness}
+
+Not every quotient of a nice space is nice.  For example, identify all rational numbers in \(\mathbb R\) to one point and all irrational numbers to another point.  The quotient has two points, but the preimage of either singleton is dense in \(\mathbb R\), so the two quotient points cannot be separated by disjoint open neighborhoods.
+
+This warning matters because quotient pictures can be misleading.  The quotient topology is defined by preimages, and sometimes that produces spaces with poor separation properties.
+
+\section{Product topology and the mapping property}
+
+The product topology is characterized by a universal property dual to the quotient one.  A map
+\[
+  h:Z\to X\times Y
+\]
+is continuous iff both coordinate maps
+\[
+  \pi_X\circ h:Z\to X,\qquad \pi_Y\circ h:Z\to Y
+\]
+are continuous.  This is why the product topology is the coarsest topology making the projections continuous.
+
+Thus product and quotient are both controlled by maps:
+\[
+\begin{array}{c|c|c}
+\text{construction} & \text{distinguished map} & \text{continuity test}\\
+\hline
+\text{quotient} & q:X\to X/{\sim} & f\text{ out of quotient via }f\circ q\\
+\text{product} & \pi_X,\pi_Y & h\text{ into product via coordinates}
+\end{array}
+\]
+
+\section{From squares to surfaces through edge words}
+
+The quotient square diagrams can be encoded algebraically.  A torus has boundary word
+\[
+  aba^{-1}b^{-1},
+\]
+while a Klein bottle has a word of the form
+\[
+  aba^{-1}b.
+\]
+The arrows in the picture determine whether a generator appears as \(a\) or \(a^{-1}\).  This is already the language of CW complexes and fundamental-group presentations.
+
+So the square gluing is not merely visual.  It tells us how a two-cell is attached to a one-skeleton, and the attaching word becomes a relation in the fundamental group.
+
+\section{Products and quotients need not commute blindly}
+
+Although \((\mathbb R/\mathbb Z)\times(\mathbb R/\mathbb Z)\) gives the torus, one should not assume products and quotients always interact without hypotheses.  The map
+\[
+  X\times Y\to (X/{\sim})\times(Y/{\approx})
+\]
+passes through the quotient by the product equivalence relation, but whether the resulting topology behaves as expected depends on the quotient maps and spaces involved.
+
+This is another reason universal properties are safer than pictures: they tell us which maps are actually continuous and which topology is being imposed.
+
+\section{Products, quotients, and gluing data}
+
+Quotient topology is about gluing while controlling maps out of the glued space.  Product topology is about pairing spaces while controlling maps into the product.  Endpoint identification, \(\mathbb R/\mathbb Z\), torus gluings, and square diagrams are not separate examples; they are the same principle expressed through equivalence classes, saturated sets, and universal properties.

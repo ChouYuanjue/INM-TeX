@@ -122,18 +122,31 @@ Examples from the page include:
 
 These exercises are elementary, but they encode the essential algebraic habit: do not prove vector-space properties from scratch every time.  Once \(F^n\), function spaces, and sequence spaces are known vector spaces, subspace tests reduce many problems to checking the zero vector and closure under linear combinations.
 
+\section{Vector spaces as modules over fields}
 
-\paragraph{Expanded synthesis.}
-For this chapter, the elementary material should be read as a study of what remains invariant when coordinates change. The earlier sections (`Complex arithmetic`, `Field axioms in \(\mathbb C\)`, `Vector space identities`, `A non-example with infinity`, `Subspaces`) compute with arrays, bases, pivots, determinants, or eigenvectors; the deeper object is a linear map together with the spaces it acts on. A matrix is a representation of that map after bases have been chosen. This is why formulas such as
+The exercises over \(\mathbb R\) and \(\mathbb C\) show that scalar choice matters.  A complex vector space is automatically a real vector space of twice the dimension, but not every real linear map is complex linear.  Complex linearity requires compatibility with multiplication by \(i\):
 \[
-  A' = P^{-1}AP,\qquad \widetilde A = T^{-1}AS
+  T(iv)=iT(v).
 \]
-are not cosmetic: they distinguish an intrinsic morphism from a coordinate description.
 
-The structural hierarchy is as follows. Kernels record what a map forgets, images record what it reaches, cokernels record obstructions to solvability, and quotients record information after an equivalence has been imposed. Determinants act on the top exterior power and therefore measure oriented volume; traces are invariant under cyclic rearrangement and become characters in representation theory; adjoints depend on an inner product and lead to self-adjoint spectral theory.
+\section{Subspaces and quotient spaces}
 
-A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
+A subspace is closed under linear combinations.  Once a subspace \(W\subseteq V\) is chosen, the quotient \(V/W\) records vectors modulo the information in \(W\).  Kernels and images naturally lead to quotients through the first isomorphism theorem:
+\[
+  V/\ker T\cong \operatorname{im}T.
+\]
 
+\section{Complex numbers as real linear algebra}
+
+Multiplication by \(a+bi\) on \(\mathbb C\) is the real linear map with matrix
+\[
+  \begin{pmatrix}a&-b\\b&a\end{pmatrix}.
+\]
+Its determinant is \(a^2+b^2\), the squared modulus.  Thus field multiplication already contains rotation-scaling geometry.
+
+\section{Linear structure across real and complex scalars}
+
+Basic vector-space exercises train structural distinctions: field versus vector space, real versus complex linearity, subspace versus quotient, and coordinate matrix versus intrinsic linear map.
 
 \section{How to read basic vector-space exercises}
 
@@ -143,7 +156,7 @@ The purpose of these exercises is not to check axioms forever.  The real skill i
 \]
 The examples \(f'(2)=b\), \(x_3=5x_4+b\), and sequences converging to zero are all testing the same issue: affine conditions usually fail to be subspaces unless the constant term is zero.  In later linear algebra this becomes the distinction between a linear subspace and an affine translate.
 
-\section{Vector spaces as modules over fields}
+\section{Beyond real and complex scalar structures}
 
 The elementary note introduces vector spaces through closure under addition and scalar multiplication.  The reason this structure is so rigid is that the scalars form a field.  A vector space over a field $k$ is a module over $k$, and field scalars make every linearly independent set extend to a basis.  This is why every finite-dimensional vector space has a dimension and why all bases have the same number of vectors.
 
@@ -187,7 +200,6 @@ This distinction becomes essential for tensors, differential forms, gradients, a
 
 Subspaces, bases, linear independence, and dimension are not merely bookkeeping.  They are the field-module case of a broader algebraic story.  Quotients explain constraints; duals explain coordinates; modules explain why vector spaces are the friendly special case.  The original exercises train the stable finite-dimensional core from which these advanced notions grow.
 
-% Second-pass deepening for waves 2-4: wave 2
 \section{Why fields make linear algebra work}
 
 A useful way to reread the original vector-space exercises is to ask which steps secretly use division.  When we prove that a nonzero vector can be rescaled, that a pivot can be normalized to $1$, or that a linearly independent list can be extended to a basis, we use the fact that every nonzero scalar has an inverse.  This is exactly the field condition.

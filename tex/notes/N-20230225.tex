@@ -222,14 +222,11 @@ Thus the safe habit is: use transfer for first-order statements about standard s
 
 Nonstandard analysis is a model-theoretic enlargement of the real line.  It does not replace epsilon-delta analysis; it gives an equivalent language for many arguments.  The standard real continuum has no infinitesimals, but a sufficiently rich extension can contain them while preserving first-order real algebra and order facts by transfer.  The decimal example is a good gateway because it separates completed infinite limits from hyperfinite approximations.
 
-
-\paragraph{Expanded synthesis.}
-The common theme of this chapter is that an elementary limiting or computational rule becomes powerful only after one specifies the space in which the limiting process takes place. The earlier sections (`Why this topic appears`, `The real-number proof`, `Hyperreal numbers`, `Infinitesimals and finite hyperreals`, `Hyperfinite strings of nines`) may look like separate techniques, but they all ask the same question: which operations are stable under approximation? A derivative is stable first-order approximation,
-\[
-  f(a+h)=f(a)+L(h)+o(|h|),
-\]
-while an integral is stable accumulation with respect to a measure, and a convergent series is a limit in a chosen norm or topology.
-
-The advanced bridge is functional-analytic. Uniform convergence is convergence in a sup norm; $L^p$ convergence is convergence in an integral norm; differentiability is the existence of a continuous linear approximation; many differential equations are operator equations $L[u]=f$. Theorems such as dominated convergence, the inverse function theorem, the projection theorem in Hilbert spaces, and semigroup existence results are refined answers to the same elementary concern: when may we pass from finite approximations to a genuine limiting object?
-
-To use this viewpoint when rereading the original examples, identify the hidden stability condition. A Taylor expansion asks for control of the remainder. A change of variables asks for differentiability and Jacobian control. Termwise differentiation of a series asks for uniform convergence of derivative series. A differential-equation formula asks whether the operator is invertible under the imposed initial or boundary data. The elementary computation is the visible part; the advanced theory names the hypotheses that make it legitimate.
+\section{Real equality and limiting process}
+The identity \(0.999\ldots=1\) in the real numbers follows because the difference after \(n\) digits is \(10^{-n}\), and this tends to zero.  Equality is a statement in the completed real number system.
+\section{Hyperreals and infinitesimal remainders}
+In a hyperreal extension, a hyperfinite decimal with \(H\) nines differs from \(1\) by \(10^{-H}\), a positive infinitesimal when \(H\) is infinite.  Its standard part is still \(1\).
+\section{Transfer and caution}
+The transfer principle lets first-order statements move between reals and hyperreals.  But one must distinguish finite hyperreal approximations, standard real limits, and standard-part projection.
+\section{Decimals, limits, and infinitesimal models}
+The decimal question is really about completion and interpretation.  In \(\mathbb R\), the infinite decimal denotes a limit; in hyperreals, hyperfinite truncations may differ infinitesimally while having the same standard part.

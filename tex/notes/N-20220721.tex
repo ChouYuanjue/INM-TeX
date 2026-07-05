@@ -112,14 +112,34 @@ This identity is one of the reasons that substitutions by cosines appear in olym
 
 This note looks like probability followed by inequalities, but both topics are about choosing the right sample space.  In probability, the sample space is literal: events are subsets of \(\Omega\).  In inequalities, the ``sample space'' is the domain allowed by the constraint.  A good substitution changes that domain into something more natural, just as choosing a good probability model turns a counting problem into a set problem.
 
+\section{Conditional probability as changing measure}
 
-\paragraph{Expanded synthesis.}
-The higher-level content of this chapter is the passage from pointwise description to invariant structure. The earlier sections (`Random experiments and sample spaces`, `Classical model and Venn diagrams`, `Conditional probability`, `A transition to substitution tricks`, `A classical symmetric equation`) introduce objects that may be drawn, listed, glued, or computed, but the advanced question is what remains unchanged under the allowed maps. In topology the allowed maps are continuous maps; in category theory they are morphisms preserving the relevant structure; in homology they induce maps between algebraic invariants.
-
-The guiding pattern is
+Conditional probability is not just a formula.  It changes the universe from \(\Omega\) to the event \(B\):
 \[
-  \text{space or structure}\quad \xrightarrow{\text{allowed maps}}\quad \text{invariant data}.
+  \mathbb P(A\mid B)=\frac{\mathbb P(A\cap B)}{\mathbb P(B)}.
 \]
-Quotient spaces formalize gluing; products formalize simultaneous coordinates; compactness formalizes the impossibility of escaping by a limiting process; connectedness formalizes the impossibility of separation; homology converts holes into groups. When a note discusses closure, quotienting, paths, products, or functors, it is already working with this invariant language.
+The denominator renormalizes the measure so that \(B\) has probability \(1\).
 
-A quotient exercise is a gluing construction; a compactness exercise is an infinite pigeonhole argument; a homotopy exercise is a controlled deformation; a functorial example says that a construction is compatible with maps. The advanced theory does not add decoration. It explains why the same few operations, such as taking products, quotients, images, kernels, and induced maps, occur throughout topology, algebra, and geometry.
+This is why Venn diagrams help: conditioning restricts attention to one region and rescales its area.
+
+\section{Bayes formula and inverse problems}
+
+Bayes' formula
+\[
+  \mathbb P(A_i\mid B)=\frac{\mathbb P(B\mid A_i)\mathbb P(A_i)}{\sum_j \mathbb P(B\mid A_j)\mathbb P(A_j)}
+\]
+turns likelihoods into posterior probabilities.  It is a finite version of inference: update prior weights after observing evidence.
+
+The formula is especially useful when \(B\) is easier to compute conditional on each case \(A_i\) than directly.
+
+\section{Inequality substitutions as coordinate choices}
+
+The substitution tricks in the inequality part should be read as coordinate changes.  Symmetric expressions often simplify under
+\[
+  u=x+y,\qquad v=xy,
+\]
+or under trigonometric substitutions that encode constraints.  The good substitution is the one that turns the constraint into a simple domain.
+
+\section{Changing measures and changing coordinates}
+
+Probability and inequality substitutions share a habit: change the viewpoint before computing.  Conditioning changes the measure; Bayes reverses conditional information; substitutions choose coordinates adapted to the constraint.

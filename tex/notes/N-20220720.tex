@@ -115,14 +115,88 @@ The addition principle applies to disjoint alternatives.  The multiplication pri
 
 Elementary counting is a first meeting with combinatorial species and generating functions.  Addition corresponds to disjoint union, multiplication corresponds to Cartesian product, and binomial coefficients are the coefficients of a generating function.  This is why the binomial theorem is not just algebra: it is also a counting machine.
 
+\section{Counting principles as operations on combinatorial classes}
 
-\paragraph{Expanded synthesis.}
-The number-theoretic content of this chapter is best understood as arithmetic seen through algebraic structure. The earlier sections (`Counting principles`, `A divisibility example`, `Permutations and combinations`, `Binomial theorem`, `Polynomial coefficients`) compute divisibility, congruences, residues, prime factorizations, or finite-field examples. The deeper language is ideals, quotient rings, unit groups, valuations, and field extensions.
-
-Divisibility in $\mathbb Z$ is containment of principal ideals; congruence modulo $n$ is equality inside the quotient ring $\mathbb Z/n\mathbb Z$; invertibility modulo $n$ means being a unit; the Chinese remainder theorem is a product decomposition of quotient rings. Prime factorization supplies coordinates through valuations:
+The addition and multiplication principles are not merely classroom rules.  They are the first operations on combinatorial classes.  If \(\mathcal A\) and \(\mathcal B\) are disjoint classes, then
 \[
-  n=\prod_p p^{v_p(n)}.
+  |\mathcal A\sqcup\mathcal B|=|\mathcal A|+|\mathcal B|.
 \]
-Gcd and lcm are coordinatewise minimum and maximum in these valuation coordinates.
+If an object is built by choosing one object from \(\mathcal A\) and one from \(\mathcal B\), then
+\[
+  |\mathcal A\times\mathcal B|=|\mathcal A||\mathcal B|.
+\]
+Thus addition corresponds to disjoint union, and multiplication corresponds to Cartesian product.
 
-This algebraic reading explains why elementary tricks scale upward. Euclidean algorithms become the theory of Euclidean domains and PIDs; divisor sums become Dirichlet convolution and Euler products; roots of unity become cyclotomic fields and Galois actions; finite polynomial arithmetic becomes finite-field theory. The original computations should therefore be kept as the algorithmic core, while the advanced language identifies the structure that makes the algorithms work.
+This viewpoint is useful because it explains why formulas should follow from constructions.  Before computing a number, identify whether the object is a disjoint alternative, a staged product, a quotient by symmetry, or a coefficient in a generating function.
+
+\section{Inclusion--exclusion as Möbius inversion}
+
+The formula
+\[
+  |A\cup B|=|A|+|B|-|A\cap B|
+\]
+is a small instance of Möbius inversion on the Boolean lattice.  For a finite family \(A_1,\ldots,A_n\), the number of elements lying in at least one \(A_i\) is
+\[
+  \left|\bigcup_{i=1}^n A_i\right|
+  =\sum_{\varnothing\ne S\subseteq[n]}(-1)^{|S|+1}
+  \left|\bigcap_{i\in S}A_i\right|.
+\]
+The alternating signs are the Möbius function of the subset poset:
+\[
+  \mu(S,T)=(-1)^{|T|-|S|}.
+\]
+So inclusion--exclusion is not a trick for Venn diagrams; it is inversion of the operation that replaces exact membership data by cumulative membership data.
+
+\section{Indicator functions and probability language}
+
+For a finite universe \(U\), a set \(A\subseteq U\) has indicator function
+\[
+  \mathbf 1_A(x)=
+  \begin{cases}
+  1,&x\in A,\\
+  0,&x\notin A.
+  \end{cases}
+\]
+Then
+\[
+  |A|=\sum_{x\in U}\mathbf 1_A(x).
+\]
+The two-set inclusion--exclusion identity is the pointwise identity
+\[
+  \mathbf 1_{A\cup B}=\mathbf 1_A+\mathbf 1_B-\mathbf 1_A\mathbf 1_B.
+\]
+Summing over \(U\) gives the cardinality formula.
+
+This is also the beginning of probability.  If \(X\) is uniformly chosen from \(U\), then
+\[
+  \mathbb P(X\in A)=\frac{|A|}{|U|}=\mathbb E[\mathbf 1_A(X)].
+\]
+Counting and expectation become the same operation after normalization.
+
+\section{Generating functions for binomial identities}
+
+The binomial theorem says
+\[
+  (1+x)^n=\sum_{k=0}^n\binom nkx^k.
+\]
+The coefficient of \(x^k\) counts subsets of size \(k\).  Differentiating and setting \(x=1\) gives
+\[
+  \sum_{k=0}^n k\binom nk=n2^{n-1},
+\]
+which counts pairs \((S,s)\) where \(S\subseteq[n]\) and \(s\in S\): choose \(s\) first, then choose the rest of \(S\).
+
+This illustrates the right use of generating functions: algebraic operations on series encode operations on counted objects.
+
+\section{Counting up to symmetry: Burnside's lemma}
+
+If a finite group \(G\) acts on a finite set \(X\), the number of orbits is
+\[
+  |X/G|=\frac1{|G|}\sum_{g\in G}|\operatorname{Fix}(g)|.
+\]
+This is Burnside's lemma.  It explains why one cannot always divide by the number of symmetries: objects with nontrivial stabilizers have smaller orbits.
+
+Elementary examples include necklaces, colorings of polygons, and arrangements considered up to rotation or reflection.  The advanced lesson is that symmetry changes the unit of counting from elements to orbits.
+
+\section{Counting through structure and symmetry}
+
+The counting principles become powerful when read structurally.  Addition is disjoint union, multiplication is product, inclusion--exclusion is Möbius inversion, binomial coefficients are generating-function coefficients, and symmetry counting is orbit counting.  The elementary skill is to decide which structure the problem is really using before doing arithmetic.

@@ -35,6 +35,11 @@ This gives a vector proof of the cosine subtraction formula.
 
 \section{Field axioms}
 
+\begin{axiom}[Field axioms]
+A field is a set \(F\) with operations \(+\) and \(\cdot\) such that \((F,+)\) is an abelian group, \((F\setminus\{0\},\cdot)\) is an abelian group, and multiplication distributes over addition.
+\end{axiom}
+
+
 The second page moves to the algebraic structure of the real numbers.  The field axioms are:
 \begin{enumerate}[(F1)]
   \item \(x+(y+z)=(x+y)+z\);
@@ -68,6 +73,14 @@ The Archimedean axiom says that for every \(x>0\) and every \(y\), there exists 
 A typical consequence is that every interval \((0,a)\) with \(a>0\) is nonempty: choose \(n\) so large that \(n>a^{-1}\), then \(1/n<a\).
 
 \section{Elementary consequences of the order axioms}
+
+\begin{proposition}[Consequences of an ordered field]
+In an ordered field, addition preserves order and multiplication by a positive element preserves order.  In particular, squares are nonnegative:
+\[
+  x^2\ge0.
+\]
+\end{proposition}
+
 
 The page records several exercises:
 \begin{enumerate}[(i)]
@@ -140,25 +153,18 @@ A plane vector \((x,y)\) packages a displacement into two real numbers.  Vector 
 
 The note moves from computational vector exercises to the axiomatic construction of the real line.  The important conceptual shift is that familiar formulas are only the visible part of an axiomatic structure.  A rigorous real-number theory must explain why rational numbers embed, why intervals contain points, and why irrational numbers such as \(\sqrt2\) can exist.
 
+\section{Ordered fields and what they cannot prove}
 
-\paragraph{Expanded synthesis.}
-For this chapter, the elementary material should be read as a study of what remains invariant when coordinates change. The earlier sections (`Plane vectors`, `Field axioms`, `Ordered fields`, `Elementary consequences of the order axioms`, `Embedding \(\mathbb Q\) into \(\mathbb R\)`) compute with arrays, bases, pivots, determinants, or eigenvectors; the deeper object is a linear map together with the spaces it acts on. A matrix is a representation of that map after bases have been chosen. This is why formulas such as
-\[
-  A' = P^{-1}AP,\qquad \widetilde A = T^{-1}AS
-\]
-are not cosmetic: they distinguish an intrinsic morphism from a coordinate description.
+An ordered field supports algebra and order, but not necessarily completeness.  The rationals satisfy the ordered-field axioms but have gaps.  Thus many analytic theorems need more than order and algebra.
 
-The structural hierarchy is as follows. Kernels record what a map forgets, images record what it reaches, cokernels record obstructions to solvability, and quotients record information after an equivalence has been imposed. Determinants act on the top exterior power and therefore measure oriented volume; traces are invariant under cyclic rearrangement and become characters in representation theory; adjoints depend on an inner product and lead to self-adjoint spectral theory.
+\section{Archimedean property and density}
 
-A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
+In the real numbers, the Archimedean property says no positive infinitesimal exists inside \(\mathbb R\): for every \(x\), some integer \(n\) satisfies \(n>x\).  This leads to density of rationals and helps connect arithmetic approximations with the geometry of the line.
 
+\section{Completeness as the real-number axiom}
 
-\section{From coordinates to axioms}
+The supremum property, nested intervals, Cauchy completeness, and Dedekind completeness are equivalent ways of saying that the real line has no gaps.  This is the feature that turns ordered algebra into analysis.
 
-This note jumps from vectors to field/order axioms.  The bridge is that coordinates only work because the scalars behave well.  When we write
-\[
-  (x,y)+(z,w)=(x+z,y+w),
-\]
-we are silently using the field structure of \(\mathbb R\).  When we compare lengths or prove inequalities, we are using the ordered-field structure.  When we take limits or talk about intervals containing points, we need completeness.
+\section{From ordered algebra to the real line}
 
-So the lesson is not merely that \(\mathbb R\) has many axioms.  It is that every familiar calculation depends on a layer of structure: algebra, order, and completeness.
+Vectors need linear structure; ordered fields need compatibility between addition, multiplication, and order; the real numbers need completeness.  The early axioms are not formal decoration: each one supports a different layer of geometry and analysis.

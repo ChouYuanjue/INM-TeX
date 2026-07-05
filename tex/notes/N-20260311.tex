@@ -1,73 +1,189 @@
-\notechapter{N-20260311}{Metrics, Norms, Cauchy Sequences, and Completeness}
+\notechapter{N-20260311}{Matrix Computation I: Norms, Operators, and Numerical Size}
 
+\section{Why size matters}
 
-\section{Metric spaces}
+Matrix computation starts from a simple question: how large can an error become after a linear operation acts on it?  A vector norm measures the size of data; a matrix norm measures the size of an operator.  In machine learning language, these are the quantities behind amplification, Lipschitz constants, gradient growth, and numerical stability.
 
-A metric on a nonempty set $X$ is a function $d:X\times X\to[0,\infty)$ satisfying positivity, symmetry, and the triangle inequality:
+A matrix is an operator
 \[
-  d(x,y)=0\Leftrightarrow x=y,\qquad d(x,y)=d(y,x),\qquad d(x,z)\le d(x,y)+d(y,z).
+  x\longmapsto Ax.
 \]
-The pair $(X,d)$ is a metric space.  This definition abstracts the part of Euclidean geometry needed for convergence and continuity.
-
-\section{Norms}
-
-A norm on a vector space $V$ satisfies
+To control it we need both
 \[
-  \|x\|=0\Leftrightarrow x=0,\qquad \|\lambda x\|=|\lambda|\|x\|,\qquad \|x+y\|\le\|x\|+\|y\|.
-\]
-Every norm gives a metric by $d(x,y)=\|x-y\|$.  Important examples on $\mathbb R^n$ include
-\[
-  \|x\|_1=\sum_i|x_i|,\qquad
-  \|x\|_2=\sqrt{\sum_i x_i^2},\qquad
-  \|x\|_\infty=\max_i|x_i|.
+  \text{vector size}\qquad\text{and}\qquad\text{operator size}.
 \]
 
-\section{Equivalence and completeness}
+\section{Metrics and completeness}
 
-On a finite-dimensional vector space all norms are equivalent.  Hence convergence and continuity do not depend on the chosen norm.  In infinite dimensions this fails and becomes a central issue of functional analysis.
-
-A sequence is Cauchy if
+A metric on a set \(X\) is a function \(d:X\times X\to[0,\infty)\) satisfying positivity, symmetry, and the triangle inequality.  It defines convergence.  A sequence is Cauchy if
 \[
-  \forall \varepsilon>0,\ \exists N,\ m,n>N\Rightarrow d(x_m,x_n)<\varepsilon.
+  \forall \varepsilon>0,\ \exists N,
+  \quad m,n>N\Rightarrow d(x_m,x_n)<\varepsilon.
 \]
-A metric space is complete if every Cauchy sequence converges in it.  A complete normed vector space is a Banach space.
+A metric space is complete if every Cauchy sequence converges in it.  Completeness means that limiting procedures stay inside the space.
 
-\section{Beyond the first calculation}
+The discrete metric is a useful warning: not every metric expresses the geometry we want.  For numerical work, metrics induced by norms are the central examples.
 
-Metrics tell us what it means for points to be close.  Norms tell us what it means for vectors to be small.  Completeness says that limiting procedures stay inside the space.  These are the exact structures needed for approximation arguments.
+\section{Normed vector spaces}
 
-
-
-\paragraph{Expanded synthesis.}
-For this chapter, the elementary material should be read as a study of what remains invariant when coordinates change. The earlier sections (`Metric spaces`, `Norms`, `Equivalence and completeness`, `Higher viewpoint`, `Expanded comparison with finite-dimensional intuition`) compute with arrays, bases, pivots, determinants, or eigenvectors; the deeper object is a linear map together with the spaces it acts on. A matrix is a representation of that map after bases have been chosen. This is why formulas such as
+A norm satisfies
 \[
-  A' = P^{-1}AP,\qquad \widetilde A = T^{-1}AS
+  \|x\|=0\Leftrightarrow x=0,\qquad
+  \|\alpha x\|=|\alpha|\|x\|,\qquad
+  \|x+y\|\le \|x\|+\|y\|.
 \]
-are not cosmetic: they distinguish an intrinsic morphism from a coordinate description.
-
-The structural hierarchy is as follows. Kernels record what a map forgets, images record what it reaches, cokernels record obstructions to solvability, and quotients record information after an equivalence has been imposed. Determinants act on the top exterior power and therefore measure oriented volume; traces are invariant under cyclic rearrangement and become characters in representation theory; adjoints depend on an inner product and lead to self-adjoint spectral theory.
-
-A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
-
-
-\section{Expanded comparison with finite-dimensional intuition}
-
-In $\mathbb R^n$, different norms produce the same convergent sequences, but they emphasize different shapes.  The $1$-norm has diamond-shaped balls, the Euclidean norm has round balls, and the $\infty$-norm has cubes.  Equivalence of norms says these shapes trap each other up to constant rescaling.
-
-In infinite-dimensional spaces this fails.  On $C[0,1]$, the norm
+It induces the metric
 \[
-  \|f\|_\infty=\max_{x\in[0,1]}|f(x)|
+  d(x,y)=\|x-y\|.
 \]
-controls uniform error, while
-\[
-  \|f\|_1=\int_0^1 |f(x)|\,dx
-\]
-allows tall narrow spikes to be small.  Thus convergence depends on the norm.
+A complete normed vector space is a Banach space.
 
-\section{Completeness and fixed points}
-
-Completeness is not only a definition.  The Banach fixed-point theorem says that if $(X,d)$ is complete and $T:X\to X$ satisfies
+In finite dimension, all norms are equivalent: for two norms \(\|\cdot\|_a,\|\cdot\|_b\), there exist constants \(c,C>0\) such that
 \[
-  d(Tx,Ty)\le qd(x,y),\qquad 0<q<1,
+  c\|x\|_a\le \|x\|_b\le C\|x\|_a.
 \]
-then $T$ has a unique fixed point.  Iterating $x_{n+1}=T(x_n)$ converges to it.  This theorem is the conceptual backbone of many existence-and-uniqueness arguments.
+Thus finite-dimensional convergence does not depend on the chosen norm, although numerical constants do.
+
+\section{Standard vector norms}
+
+For \(x=(x_1,\ldots,x_n)^T\),
+\[
+  \|x\|_1=\sum_i |x_i|,\qquad
+  \|x\|_2=\left(\sum_i |x_i|^2\right)^{1/2},\qquad
+  \|x\|_\infty=\max_i |x_i|.
+\]
+More generally,
+\[
+  \|x\|_p=\left(\sum_i |x_i|^p\right)^{1/p},\qquad 1\le p<\infty.
+\]
+As \(p\to\infty\),
+\[
+  \|x\|_p\to\|x\|_\infty.
+\]
+Holder's inequality gives
+\[
+  \sum_i |x_i y_i|\le \|x\|_p\|y\|_q,\qquad \frac1p+\frac1q=1,
+\]
+and Minkowski's inequality gives the triangle inequality for \(p\)-norms.
+
+\section{Matrix norms}
+
+A matrix norm satisfies the norm axioms and, for computation, should also be submultiplicative:
+\[
+  \|AB\|\le \|A\|\|B\|.
+\]
+This is what allows repeated operations to be bounded:
+\[
+  \|A^k\|\le \|A\|^k.
+\]
+Entrywise examples include
+\[
+  m_1(A)=\sum_{i,j}|a_{ij}|,\qquad
+  \|A\|_F=\left(\sum_{i,j}|a_{ij}|^2\right)^{1/2}.
+\]
+The Frobenius norm also satisfies
+\[
+  \|A\|_F^2=\operatorname{tr}(A^H A).
+\]
+
+\section{Unitary invariance}
+
+A matrix \(U\) is unitary if \(U^HU=I\).  It preserves Euclidean length:
+\[
+  \|Ux\|_2=\|x\|_2.
+\]
+The Frobenius norm is unitarily invariant:
+\[
+  \|UAV\|_F=\|A\|_F
+\]
+for unitary \(U,V\).  This follows from cyclic invariance of trace:
+\[
+  \|UAV\|_F^2=\operatorname{tr}(V^HA^HAV)=\operatorname{tr}(A^HA).
+\]
+Unitary transformations are changes of orthonormal coordinates, not changes of size.
+
+\section{Induced norms}
+
+Given vector norms on domain and codomain, the induced matrix norm is
+\[
+  \|A\|=\max_{x\ne0}\frac{\|Ax\|}{\|x\|}
+  =\max_{\|x\|=1}\|Ax\|.
+\]
+It is the maximal amplification factor of \(A\).  The standard formulas are
+\[
+  \|A\|_1=\max_j\sum_i |a_{ij}|,\qquad
+  \|A\|_\infty=\max_i\sum_j |a_{ij}|,
+\]
+and
+\[
+  \|A\|_2=\sigma_{\max}(A)=\sqrt{\lambda_{\max}(A^H A)}.
+\]
+The \(2\)-norm is the spectral norm.
+
+\section{Normal matrices}
+
+A matrix is Hermitian if \(A^H=A\), skew-Hermitian if \(A^H=-A\), and normal if
+\[
+  A^HA=AA^H.
+\]
+Normal matrices are unitarily diagonalizable.  If
+\[
+  A=U\Lambda U^H,
+\]
+then
+\[
+  \|A\|_2=\max_i |\lambda_i|.
+\]
+For nonnormal matrices, eigenvalues may seriously underestimate transient amplification.
+
+\section{Compatibility}
+
+A vector norm and a matrix norm are compatible if
+\[
+  \|Ax\|\le \|A\|\|x\|.
+\]
+Every induced matrix norm is compatible with the vector norm that induces it.  Compatibility is the bridge from operator size to error propagation:
+\[
+  \|A(x+\delta x)-Ax\|\le \|A\|\|\delta x\|.
+\]
+
+\section{Worked constrained maxima}
+
+Let
+\[
+  A=\begin{bmatrix}1&1&0\\1&1&0\\0&0&2\end{bmatrix}.
+\]
+Then \(A\) is Hermitian with eigenvalues \(2,2,0\).  Hence
+\[
+  \|A\|_2=2.
+\]
+The column sums are all \(2\), so \(\|A\|_1=2\).  Therefore
+\[
+  \max_{\|x\|_1=4}\|Ax\|_1=8.
+\]
+If \(U\) is unitary and \(\|Ux\|_2=3\), then \(\|x\|_2=3\), hence
+\[
+  \max_{\|Ux\|_2=3}\|Ax\|_2=6.
+\]
+The method is: translate the constraint into a norm ball and apply the induced norm.
+
+\section{ML-facing interpretation}
+
+A linear layer has Lipschitz constant at most \(\|W\|_2\) in Euclidean norm.  A stack obeys
+\[
+  \|W_L\cdots W_1\|_2\le \prod_{\ell=1}^L\|W_\ell\|_2.
+\]
+This inequality is crude but important: moderate layerwise amplification can accumulate over depth.  Spectral normalization, orthogonal initialization, residual scaling, and weight decay are all connected to the same numerical question: how large can a perturbation become?
+
+\section{Checklist}
+
+\[
+\begin{array}{c|c}
+\text{metric} & \text{closeness}\\
+\text{norm} & \text{vector size}\\
+\text{matrix norm} & \text{matrix size}\\
+\text{induced norm} & \text{maximal amplification}\\
+\text{Frobenius norm} & \text{entrywise Euclidean size}\\
+\text{spectral norm} & \text{largest singular value}
+\end{array}
+\]

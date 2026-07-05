@@ -210,21 +210,30 @@ Combining conditions gives
 
 The page is a concentrated exercise in the algebraic method for conics: substitute a line into a conic, read the discriminant, and interpret the result geometrically.  The only subtlety is that different conics behave differently: for ellipses, one intersection usually signals tangency; for hyperbolas, a line parallel to an asymptotic direction can produce a single finite intersection without being tangent.
 
+\section{Tangency via discriminants}
 
-\paragraph{Expanded synthesis.}
-For this chapter, the elementary material should be read as a study of what remains invariant when coordinates change. The earlier sections (`Line and ellipse`, `Tangents from a point to an ellipse`, `Line and hyperbola`, `Parabola tangent through a point`, `A parabola and a circle`) compute with arrays, bases, pivots, determinants, or eigenvectors; the deeper object is a linear map together with the spaces it acts on. A matrix is a representation of that map after bases have been chosen. This is why formulas such as
+A line intersecting a conic usually produces a quadratic equation in the line parameter.  Tangency occurs when the quadratic has a repeated root:
 \[
-  A' = P^{-1}AP,\qquad \widetilde A = T^{-1}AS
+  \Delta=0.
 \]
-are not cosmetic: they distinguish an intrinsic morphism from a coordinate description.
+This converts a geometric contact condition into algebra.  It is the same multiplicity idea that appears in polynomial factorization.
 
-The structural hierarchy is as follows. Kernels record what a map forgets, images record what it reaches, cokernels record obstructions to solvability, and quotients record information after an equivalence has been imposed. Determinants act on the top exterior power and therefore measure oriented volume; traces are invariant under cyclic rearrangement and become characters in representation theory; adjoints depend on an inner product and lead to self-adjoint spectral theory.
+\section{Polarity with respect to a conic}
 
-A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
+For a nondegenerate conic, a point outside the conic determines a polar line through its contact points with tangents.  In matrix form, if the conic is
+\[
+  X^TAX=0,
+\]
+then the polar of \(P\) is
+\[
+  P^TAX=0.
+\]
+This gives a projective explanation of many tangent-chord relations.
 
+\section{Area constraints and affine invariance}
 
-\section{Discriminants as geometric detectors}
+Some ellipse problems impose an area or quadrilateral condition.  Area changes by the determinant of an affine map.  Therefore one can often transform an ellipse to a circle, solve the symmetric problem, then transform back with the determinant factor.
 
-A line intersecting a conic becomes a quadratic equation after substitution.  The discriminant is therefore a geometric detector: positive means two intersections, zero often means tangency, and negative means no real intersection.  The word ``often'' matters because hyperbolas have asymptotic directions; a line can meet a hyperbola in only one finite point without being tangent.
+\section{Tangency, polarity, and affine normalization}
 
-This is why the same algebraic method must still be interpreted geometrically.  Solving equations gives candidates, but the conic type tells us what those candidates mean.
+Line-conic exercises are controlled by three ideas: intersection multiplicity, polar duality, and affine normalization.  The computations are coordinate expressions of these invariant geometric mechanisms.

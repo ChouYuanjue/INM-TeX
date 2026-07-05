@@ -180,51 +180,34 @@ For every inequality, the equality condition is part of the theorem.  In Cauchy-
 
 This page is best read as a map rather than a list.  Bernoulli comes from convexity of powers.  Power means organize all classical means.  Cauchy is inner-product geometry.  Minkowski is the triangle inequality.  Chebyshev is monotone correlation.  Jensen is convexity.  Young and Hölder are the algebra of dual exponents.  Once one sees these meanings, choosing the right inequality becomes much less arbitrary.
 
+\section{The hierarchy of means}
 
-
-\paragraph{Expanded synthesis.}
-For this chapter, the elementary material should be read as a study of how inequalities preserve order under algebraic transformation. The earlier sections discuss Bernoulli's inequality, power means, Cauchy--Schwarz, Minkowski, and a three-variable inequality. They do not mainly compute matrices; they compare quantities under convexity, norm structure, and averaging.
-
-The deeper object is an order relation compatible with algebraic operations.  The point of each proof is to transform the expression without losing the direction of the inequality.
-
-The structural hierarchy is as follows. Kernels record what a map forgets, images record what it reaches, cokernels record obstructions to solvability, and quotients record information after an equivalence has been imposed. Determinants act on the top exterior power and therefore measure oriented volume; traces are invariant under cyclic rearrangement and become characters in representation theory; adjoints depend on an inner product and lead to self-adjoint spectral theory.
-
-A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
-
-
-\section{Hölder and Minkowski in measure spaces}
-
-The finite-sum inequalities in the original note extend directly to measure spaces.  If $1<p,q<\infty$ and $1/p+1/q=1$, Hölder's inequality says
+Power means form a scale:
 \[
-  \int |fg|\,d\mu\le \left(\int |f|^p\,d\mu\right)^{1/p}
-  \left(\int |g|^q\,d\mu\right)^{1/q}.
+  M_r(x)=\left(\frac1n\sum_i x_i^r\right)^{1/r}.
 \]
-Minkowski's inequality says
+For positive variables, \(M_r\le M_s\) when \(r<s\).  The arithmetic, geometric, and harmonic means are special points on this scale.
+
+This hierarchy organizes many inequalities: instead of proving each comparison separately, one proves monotonicity of the mean parameter.
+
+\section{Convex order and Jensen}
+
+Jensen's inequality is the central convexity principle:
 \[
-  \|f+g\|_p\le \|f\|_p+\|g\|_p.
+  f(\mathbb E X)\le \mathbb E f(X)
 \]
-Thus $L^p$ spaces are normed spaces.  For $p=2$, $L^2$ is a Hilbert space with inner product
+for convex \(f\).  In finite form this is the weighted inequality.  It tells us that spreading a variable increases the expectation of a convex function.
+
+This idea connects Jensen, Karamata, and variance-type estimates.
+
+\section{Minkowski and norm geometry}
+
+Minkowski's inequality is the triangle inequality in \(L^p\):
 \[
-  \langle f,g\rangle=\int f\overline g\,d\mu.
+  \left(\sum_i |x_i+y_i|^p\right)^{1/p}\le \left(\sum_i |x_i|^p\right)^{1/p}+\left(\sum_i |y_i|^p\right)^{1/p}.
 \]
+It is not merely an algebraic estimate; it says \(\ell^p\) is a normed vector space.
 
-\section{Young's inequality and duality}
+\section{Classical inequalities in one convex landscape}
 
-Young's inequality for conjugate exponents is
-\[
-  ab\le \frac{a^p}{p}+\frac{b^q}{q},\qquad a,b\ge0,\quad \frac1p+\frac1q=1.
-\]
-It is the pointwise engine behind Hölder.  From a convex-analysis viewpoint, it is the Fenchel inequality for the convex function $\phi(a)=a^p/p$ and its Legendre dual $\phi^*(b)=b^q/q$.
-
-This shows that many inequalities are duality statements.  Cauchy--Schwarz is Hilbert-space duality; Hölder is $L^p$--$L^q$ duality; Jensen is convexity under expectation.
-
-\section{Convolution inequality}
-
-Young's convolution inequality says, under suitable exponent conditions,
-\[
-  \|f*g\|_r\le \|f\|_p\|g\|_q,\qquad
-  1+\frac1r=\frac1p+\frac1q.
-\]
-This is an advanced descendant of Hölder and Minkowski.  It controls smoothing operators, PDE estimates, and harmonic analysis.
-
-The classical inequality map in the original note is therefore a small finite-dimensional visible part of a much larger landscape of norm estimates for functions and operators.
+Classical inequalities are best organized by structure: Bernoulli by convexity of powers, Cauchy and Holder by dual norms, Minkowski by norm geometry, Jensen by convex expectation, and Karamata by majorization.  The named inequalities are landmarks in one landscape.

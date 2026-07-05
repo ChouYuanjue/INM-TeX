@@ -102,92 +102,81 @@ After simplification, this becomes a sum of paired fractions in which a factor \
 
 Both problems use the same philosophy: do not expand everything.  For power sums, pair symmetric terms.  For congruence sequences, take finite differences.  For rational sums, reorganize the denominator structure so that a prime factor becomes visible.  These are all examples of choosing the right invariant before calculating.
 
-
-
-\paragraph{Expanded synthesis.}
-The common theme of this chapter is that an elementary limiting or computational rule becomes powerful only after one specifies the space in which the limiting process takes place. The earlier sections (`A general odd-power divisibility principle`, `A divisibility problem with \(512\)`, `Why finite differences work`, `An alternating harmonic numerator`, `Higher viewpoint`) may look like separate techniques, but they all ask the same question: which operations are stable under approximation? A derivative is stable first-order approximation,
-\[
-  f(a+h)=f(a)+L(h)+o(|h|),
-\]
-while an integral is stable accumulation with respect to a measure, and a convergent series is a limit in a chosen norm or topology.
-
-The advanced bridge is functional-analytic. Uniform convergence is convergence in a sup norm; $L^p$ convergence is convergence in an integral norm; differentiability is the existence of a continuous linear approximation; many differential equations are operator equations $L[u]=f$. Theorems such as dominated convergence, the inverse function theorem, the projection theorem in Hilbert spaces, and semigroup existence results are refined answers to the same elementary concern: when may we pass from finite approximations to a genuine limiting object?
-
-To use this viewpoint when rereading the original examples, identify the hidden stability condition. A Taylor expansion asks for control of the remainder. A change of variables asks for differentiability and Jacobian control. Termwise differentiation of a series asks for uniform convergence of derivative series. A differential-equation formula asks whether the operator is invertible under the imposed initial or boundary data. The elementary computation is the visible part; the advanced theory names the hypotheses that make it legitimate.
-
-
-\section{Finite differences as derivatives}
+\section{Finite differences as discrete derivatives}
 
 The finite difference operator
 \[
   \Delta f(n)=f(n+1)-f(n)
 \]
-is the discrete analogue of the derivative.  For a polynomial of degree $d$,
+is the discrete analogue of differentiation.  If \(m\mid f(1)\) and \(m\mid \Delta f(n)\) for every \(n\), then
+\[
+  f(n)=f(1)+\sum_{j=1}^{n-1}\Delta f(j)
+\]
+is divisible by \(m\).  This is induction written as a discrete fundamental theorem of calculus.
+
+For a polynomial of degree \(d\),
 \[
   \Delta^{d+1}f=0.
 \]
-This is why finite-difference tables detect polynomial behavior.
+So finite differences lower polynomial complexity in exactly the way derivatives do.
 
-The binomial basis is adapted to this operator:
+\section{The binomial basis and integer-valued polynomials}
+
+The binomial polynomials
 \[
-  \Delta \binom nk=\binom n{k-1}.
+  \binom x0,\quad \binom x1,\quad \binom x2,\quad\ldots
 \]
-Therefore every integer-valued polynomial can be written as an integer linear combination of binomial coefficients:
+are adapted to finite differences:
 \[
-  f(n)=\sum_k c_k\binom nk,\qquad c_k\in\mathbb Z.
+  \Delta\binom xk=\binom x{k-1}.
 \]
-This is much more natural for divisibility than the monomial basis $1,n,n^2,\ldots$.
-
-\section{Integer-valued polynomials}
-
-A polynomial $f(x)\in\mathbb Q[x]$ is integer-valued if $f(n)\in\mathbb Z$ for all $n\in\mathbb Z$.  The ring of integer-valued polynomials is
+A classical theorem says that every integer-valued polynomial has a unique expansion
 \[
-  \operatorname{Int}(\mathbb Z)=\{f\in\mathbb Q[x]:f(\mathbb Z)\subseteq\mathbb Z\}.
+  f(x)=\sum_k c_k\binom xk,\qquad c_k\in\mathbb Z.
 \]
-A classical theorem says that it has basis
+This basis is often better than the monomial basis \(1,x,x^2,\ldots\) when proving divisibility for all integers.
+
+The reason is simple: \(\binom nk\) is automatically integral for integer \(n\), and finite differences act on it cleanly.
+
+\section{Pairing as group symmetry}
+
+In odd-power sums, the pairing
 \[
-  \binom x0,\ \binom x1,\ \binom x2,\ \ldots
+  j\longleftrightarrow m-j
 \]
-over $\mathbb Z$.
-
-This explains why binomial coefficients appear in divisibility identities.  They are the correct integral coordinate system for polynomial functions on integers.
-
-\section{P-adic valuation intuition}
-
-The exponent of a prime $p$ in $n$ is the $p$-adic valuation $v_p(n)$.  It satisfies
+is an action of a two-element symmetry group on residue classes modulo \(m\).  If \(r\) is odd, then
 \[
-  v_p(ab)=v_p(a)+v_p(b),\qquad
-  v_p(a+b)\ge \min(v_p(a),v_p(b)).
+  (m-j)^r\equiv -j^r\pmod m,
 \]
-Many divisibility problems become simple after translating them into inequalities involving $v_p$.
+so each orbit contributes zero modulo \(m\), except possibly fixed points.
 
-For factorials, Legendre's formula is
+Thus the cancellation is not a lucky trick.  It is orbit cancellation under the involution \(j\mapsto m-j\).  Similar symmetry arguments appear in character sums and finite group actions.
+
+\section{P-adic valuation and lifting intuition}
+
+For a prime \(p\), \(v_p(N)\) records the exponent of \(p\) dividing \(N\).  Divisibility by \(p^k\) becomes the inequality
 \[
-  v_p(n!)=\sum_{k\ge1}\left\lfloor \frac n{p^k}\right\rfloor.
+  v_p(N)\ge k.
 \]
-This allows precise control of divisibility of binomial coefficients.
+In problems such as proving divisibility by \(512=2^9\), the real task is to track how many factors of \(2\) are gained at each finite-difference step.
 
-\section{Discrete calculus}
+The deeper principle is lifting.  A congruence modulo \(p\) may sometimes be lifted to a congruence modulo higher powers \(p^k\).  Hensel lifting is the systematic version of this idea.  Even when the theorem is not invoked, the intuition is valuable: prime-power divisibility is controlled locally and incrementally.
 
-Summation is inverse to finite difference, just as integration is inverse to differentiation.  If $\Delta F(n)=f(n)$, then
+\section{Alternating harmonic sums and denominator control}
+
+For rational sums, the numerator after reduction depends on which prime factors can survive cancellation with the denominator.  If a prime \(p\) appears in the numerator of a common-denominator expression and is coprime to the denominator after simplification, then \(p\) must remain in the reduced numerator.
+
+This is a valuation statement.  Writing a rational number as \(A/B\), one compares \(v_p(A)\) and \(v_p(B)\).  Reduction cancels the smaller valuation from both sides.  If \(v_p(B)=0\) and \(v_p(A)>0\), then the reduced numerator is still divisible by \(p\).
+
+\section{Discrete summation by parts}
+
+There is also a discrete analogue of integration by parts.  For sequences \(a_n,b_n\), one form is
 \[
-  \sum_{n=a}^{b-1} f(n)=F(b)-F(a).
+  \sum_{n=m}^{N-1}a_n\Delta b_n
+  =a_Nb_N-a_mb_m-\sum_{n=m}^{N-1}b_{n+1}\Delta a_n.
 \]
-This is the discrete fundamental theorem of calculus.  Many finite-sum identities in the original note are telescoping identities in disguise.
+This technique turns products inside sums into boundary terms plus a simpler sum.  It is the natural extension of telescoping and finite differences.
 
-% Second-pass deepening for waves 2-4: wave 3 A-C part 3
-\section{Finite differences and congruences}
+\section{Discrete calculus and local divisibility}
 
-If a sequence is defined by polynomial expressions, finite differences lower degree and often expose divisibility.  Suppose $f(n)$ is integer-valued.  Expanding in the binomial basis,
-\[
-  f(n)=\sum_k c_k\binom nk,
-\]
-makes congruence properties more transparent because $\binom nk$ has built-in divisibility and integrality behavior.
-
-This is especially useful in problems asking to prove that a certain expression is divisible by $m$ for all integers $n$.  Instead of expanding powers, one may show that the relevant finite differences eventually become multiples of $m$, then rebuild the sequence by summation.
-
-\section{P-adic lifting viewpoint}
-
-Many divisibility exercises become sharper when one tracks $v_p$ separately.  A typical pattern is that a congruence modulo $p$ can be lifted to a congruence modulo $p^k$ under suitable derivative conditions.  This is the idea behind Hensel lifting.
-
-Even when the full theorem is not needed, the intuition is useful: prime-power divisibility is controlled locally at each prime, and repeated finite-difference or binomial expansions measure how divisibility improves with powers.
+The note's divisibility tricks are forms of discrete calculus and local arithmetic.  Finite differences lower complexity, telescoping keeps boundary terms, pairing exploits symmetry, valuations measure prime-power divisibility, and rational-sum arguments track which primes can cancel.  The correct invariant is usually not the whole expression, but its difference, orbit pairing, or valuation.

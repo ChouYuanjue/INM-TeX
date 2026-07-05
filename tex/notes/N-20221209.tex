@@ -115,94 +115,98 @@ if the rule is monotone.  If the universe is finite, an increasing chain must ev
 
 The exercises are elementary, but they are training the language of discrete mathematics.  Floor functions partition the real line into strips; binomial coefficients count choices; discriminants detect existence; recursive set definitions invite induction; incidence counting turns membership questions into arithmetic.  The high-level skill is always the same: replace notation by a structure that can actually be counted.
 
-
-
-\paragraph{Expanded synthesis.}
-For this chapter, the elementary material should be read as a study of what remains invariant when coordinates change. The earlier sections (`What this page is doing`, `A floor-function example`, `A binomial counting identity`, `Solving a system by discriminants`, `A prime-number exercise`) compute with arrays, bases, pivots, determinants, or eigenvectors; the deeper object is a linear map together with the spaces it acts on. A matrix is a representation of that map after bases have been chosen. This is why formulas such as
-\[
-  A' = P^{-1}AP,\qquad \widetilde A = T^{-1}AS
-\]
-are not cosmetic: they distinguish an intrinsic morphism from a coordinate description.
-
-The structural hierarchy is as follows. Kernels record what a map forgets, images record what it reaches, cokernels record obstructions to solvability, and quotients record information after an equivalence has been imposed. Determinants act on the top exterior power and therefore measure oriented volume; traces are invariant under cyclic rearrangement and become characters in representation theory; adjoints depend on an inner product and lead to self-adjoint spectral theory.
-
-A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
-
-
-\section{Finite differences and degree}
-
-Many binomial and floor-sum exercises can be clarified by finite differences.  For a sequence $a(n)$, define
-\[
-  \Delta a(n)=a(n+1)-a(n).
-\]
-If $a(n)$ is a polynomial of degree $d$, then $\Delta a(n)$ has degree $d-1$, and
-\[
-  \Delta^{d+1}a(n)=0.
-\]
-This is the discrete analogue of differentiating a polynomial until it vanishes.
-
-The binomial coefficient basis is especially natural:
-\[
-  \Delta \binom nk=\binom n{k-1}.
-\]
-Therefore integer-valued polynomials are naturally expanded in the basis
-\[
-  \binom n0,\ \binom n1,\ \binom n2,\ \ldots.
-\]
-
-This explains why binomial sums repeatedly appear in discrete counting problems: they are the coordinate system in which finite difference is simplest.
-
-\section{Polynomial method}
-
-The polynomial method proves combinatorial statements by constructing a polynomial with too many roots or with controlled degree.  The elementary fact is: a nonzero polynomial of degree $d$ over a field has at most $d$ roots.  In several variables, one uses more refined versions involving degree and vanishing on grids.
-
-For example, if a polynomial $P(x)$ of degree at most $n-1$ vanishes at $n$ distinct points, then $P=0$.  Lagrange interpolation gives the exact reconstruction formula:
-\[
-  P(x)=\sum_{i=1}^n P(a_i)\prod_{j\ne i}\frac{x-a_j}{a_i-a_j}.
-\]
-Counting information can therefore be encoded into polynomial values.
-
-This is a research-level extension of elementary identities: prove a combinatorial impossibility by forcing a polynomial to be zero while one coefficient or value remains nonzero.
-
-\section{Burnside's lemma}
-
-When the note counts objects with symmetry, the advanced principle is group action.  If a finite group $G$ acts on a finite set $X$, the number of orbits is
-\[
-  |X/G|=\frac1{|G|}\sum_{g\in G}|\operatorname{Fix}(g)|.
-\]
-This is Burnside's lemma.
-
-It explains why counting up to rotation or reflection requires averaging fixed points rather than simply dividing by the number of symmetries.  Some objects have nontrivial stabilizers, so not every orbit has the same size.
-
-\section{Returning to the original exercises}
-
-Floor sums, binomial identities, and symmetry counts are not separate genres.  Finite differences handle discrete polynomial behavior; the polynomial method turns combinatorics into algebra; group actions handle symmetry.  These are three advanced continuations of the elementary counting toolkit.
-
-% Second-pass deepening for waves 2-4: wave 3 A-C part 1
 \section{Floor functions as lattice-point counts}
 
 A floor expression such as
 \[
   \left\lfloor \frac{an+b}{m}\right\rfloor
 \]
-counts how many integer thresholds have been crossed.  Sums of floor functions often count lattice points below a line.  For example,
+counts how many integer thresholds lie below a rational expression.  Sums of floor functions often count lattice points below a line.  For instance,
 \[
   \sum_{k=0}^{m-1}\left\lfloor \frac{ak}{m}\right\rfloor
 \]
 counts integer points under a rational-slope diagonal in a rectangle.
 
-This links elementary floor identities to Ehrhart theory, where one counts lattice points in dilates of polytopes:
+This links elementary floor exercises to Ehrhart theory, where one studies
 \[
-  L_P(n)=|nP\cap\mathbb Z^d|.
+  L_P(n)=|nP\cap\mathbb Z^d|
 \]
-For integral polytopes, $L_P(n)$ is a polynomial in $n$.  Thus floor-sum exercises are one-dimensional shadows of lattice-point enumeration.
+for a polytope \(P\).  For integral polytopes, \(L_P(n)\) is a polynomial in \(n\).  Floor-sum exercises are one-dimensional shadows of lattice-point enumeration.
 
-\section{Group actions as corrected division}
+\section{Finite differences and binomial basis}
 
-When counting objects up to symmetry, naive division by $|G|$ fails if some objects have symmetry.  Burnside's lemma repairs this by averaging fixed points.  This idea should be tied back to elementary examples: necklaces, colorings of polygons, and arrangements under rotation/reflection.
+For a sequence \(a(n)\), define
+\[
+  \Delta a(n)=a(n+1)-a(n).
+\]
+If \(a(n)\) is a polynomial of degree \(d\), then \(\Delta a\) has degree \(d-1\), and
+\[
+  \Delta^{d+1}a(n)=0.
+\]
+The binomial basis is adapted to this:
+\[
+  \Delta\binom nk=\binom n{k-1}.
+\]
+Thus integer-valued polynomials are naturally expressed in the basis
+\[
+  \binom n0,\quad \binom n1,\quad \binom n2,\quad\ldots
+\]
+rather than ordinary powers.  This explains why binomial coefficients repeatedly appear in discrete counting formulas.
 
-The orbit-stabilizer theorem explains the correction:
+\section{Recursive set construction and fixed points}
+
+A recursive set construction such as
+\[
+  S_{k+1}=F(S_k)
+\]
+should first be checked for monotonicity.  If \(S_k\subseteq S_{k+1}\) inside a finite universe, then the chain
+\[
+  S_0\subseteq S_1\subseteq S_2\subseteq\cdots
+\]
+must stabilize.  The final set is a fixed point:
+\[
+  F(S)=S.
+\]
+This is the finite version of closure-operator and fixed-point thinking.
+
+\section{Incidence counting}
+
+If a problem asks how many sets contain a fixed element, it often helps to count incidence pairs:
+\[
+  I=\{(x,A):x\in A\}.
+\]
+Counting by \(x\) gives
+\[
+  |I|=\sum_x \#\{A:x\in A\},
+\]
+while counting by \(A\) gives
+\[
+  |I|=\sum_A |A|.
+\]
+Equating the two is double counting.  Many intersection and membership problems are incidence problems in disguise.
+
+\section{Polynomial method}
+
+The polynomial method proves combinatorial facts by encoding conditions into polynomial vanishing.  The elementary fact is that a nonzero polynomial of degree \(d\) over a field has at most \(d\) roots.  If a low-degree polynomial is forced to vanish at too many points, it must be the zero polynomial.
+
+Lagrange interpolation gives an explicit reconstruction formula:
+\[
+  P(x)=\sum_{i=1}^n P(a_i)\prod_{j\ne i}\frac{x-a_j}{a_i-a_j}.
+\]
+This is the advanced extension of discriminant and coefficient arguments: existence questions can be turned into degree and vanishing constraints.
+
+\section{Group actions and corrected division}
+
+When counting objects up to symmetry, one must account for stabilizers.  If a finite group \(G\) acts on \(X\), orbit-stabilizer says
 \[
   |Gx|=\frac{|G|}{|\operatorname{Stab}(x)|}.
 \]
-Objects with larger stabilizers have smaller orbits and must be weighted correctly.  This is why symmetry counting is more subtle than ordinary counting.
+Burnside's lemma says
+\[
+  |X/G|=\frac1{|G|}\sum_{g\in G}|\operatorname{Fix}(g)|.
+\]
+This is why symmetry counting cannot always be done by simply dividing by \(|G|\).
+
+\section{Counting by lattices, incidences, and symmetries}
+
+The exercises train translation.  Floor functions translate to lattice-point counts, binomial identities to finite differences and coefficient extraction, recursive set definitions to fixed points, membership counts to incidence pairs, and symmetry counts to group actions.  The mature solution first finds the structure being counted, then chooses the appropriate algebraic language.

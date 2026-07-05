@@ -81,6 +81,11 @@ This is Bézout's identity.
 
 \section{Fundamental theorem of arithmetic}
 
+\begin{theorem}[Fundamental theorem of arithmetic]
+Every integer \(n>1\) can be written as a product of primes, and this factorization is unique up to the order of the factors.
+\end{theorem}
+
+
 Every integer \(n>1\) factors uniquely into primes:
 \[
   n=p_1^{\alpha_1}p_2^{\alpha_2}\cdots p_k^{\alpha_k}.
@@ -122,19 +127,33 @@ For a prime \(p\),
 
 This note is a compact bridge from elementary arithmetic to algebra.  The Euclidean algorithm is not just a computation; it is an algorithmic proof that \(\mathbb Z\) is a Euclidean domain.  Bézout identity says ideals in \(\mathbb Z\) are principal.  Unique factorization says primes control divisibility.  The Euler function prepares the way for the multiplicative group \((\mathbb Z/n\mathbb Z)^\times\), where number theory becomes group theory.
 
+\section{Well-ordering and Euclidean domains}
 
+The well-ordering principle makes the division algorithm possible in \(\mathbb Z\).  The Euclidean algorithm works because each step strictly decreases a nonnegative remainder.  This pattern generalizes to Euclidean domains.
 
-\paragraph{Expanded synthesis.}
-The higher-level content of this chapter is the passage from pointwise description to invariant structure. The earlier sections (`The well-ordering principle`, `Divisibility, gcd, and lcm`, `Division algorithm`, `Euclidean algorithm`, `Example`) introduce objects that may be drawn, listed, glued, or computed, but the advanced question is what remains unchanged under the allowed maps. In topology the allowed maps are continuous maps; in category theory they are morphisms preserving the relevant structure; in homology they induce maps between algebraic invariants.
+\section{Bezout and principal ideals}
 
-The guiding pattern is
+The gcd of \(a\) and \(b\) is the positive generator of the ideal
 \[
-  \text{space or structure}\quad \xrightarrow{\text{allowed maps}}\quad \text{invariant data}.
+  (a)+(b)=\{ax+by:x,y\in\mathbb Z\}.
 \]
-Quotient spaces formalize gluing; products formalize simultaneous coordinates; compactness formalizes the impossibility of escaping by a limiting process; connectedness formalizes the impossibility of separation; homology converts holes into groups. When a note discusses closure, quotienting, paths, products, or functors, it is already working with this invariant language.
+Bezout's identity says the gcd is an integer linear combination of \(a\) and \(b\).
 
-A quotient exercise is a gluing construction; a compactness exercise is an infinite pigeonhole argument; a homotopy exercise is a controlled deformation; a functorial example says that a construction is compatible with maps. The advanced theory does not add decoration. It explains why the same few operations, such as taking products, quotients, images, kernels, and induced maps, occur throughout topology, algebra, and geometry.
+\section{Euler function and unit groups}
 
+Euler's function counts units modulo \(n\):
+\[
+  \varphi(n)=|(\mathbb Z/n\mathbb Z)^\times|.
+\]
+Euler's theorem is Lagrange's theorem in this finite group:
+\[
+  a^{\varphi(n)}\equiv1\pmod n
+\]
+whenever \(\gcd(a,n)=1\).
+
+\section{Euclidean arithmetic as ideals and unit groups}
+
+Integer arithmetic is organized by order, ideals, and groups.  Well-ordering drives division, Euclidean algorithms compute ideal generators, unique factorization gives valuations, and Euler's theorem is group theory modulo \(n\).
 
 \section{Euclidean domains}
 
@@ -186,7 +205,6 @@ A function $f(n)$ is multiplicative if $f(mn)=f(m)f(n)$ whenever $\gcd(m,n)=1$. 
 
 The reason is again Chinese remaindering or prime factorization: arithmetic data often decomposes independently over primes.  This is the elementary beginning of Euler products and analytic number theory.
 
-% Second-pass deepening for waves 2-4: wave 3 A-C part 3
 \section{Euclidean algorithm and ideals}
 
 The Euclidean algorithm does more than compute a gcd.  It constructs coefficients $x,y$ such that

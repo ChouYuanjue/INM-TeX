@@ -127,14 +127,64 @@ This note is about finite structure.  Set problems use inclusion--exclusion and 
 \]
 A mature solution must know which stage it is in.  Guessing a pattern is not proving it; constructing an example is not proving optimality; verifying a few cases is not induction.
 
+\section{Construction versus upper bound}
 
-\paragraph{Expanded synthesis.}
-The number-theoretic content of this chapter is best understood as arithmetic seen through algebraic structure. The earlier sections (`A set-counting problem`, `A modular arithmetic construction`, `Why not every construction is finished`, `Sequence exercises`, `Mathematical induction`) compute divisibility, congruences, residues, prime factorizations, or finite-field examples. The deeper language is ideals, quotient rings, unit groups, valuations, and field extensions.
+A combinatorial extremal problem has two halves.  A construction proves a lower bound: it shows that at least \(N\) objects are possible.  An upper bound proves that no construction can exceed \(N\).  Only when the two match is the extremal value determined.
 
-Divisibility in $\mathbb Z$ is containment of principal ideals; congruence modulo $n$ is equality inside the quotient ring $\mathbb Z/n\mathbb Z$; invertibility modulo $n$ means being a unit; the Chinese remainder theorem is a product decomposition of quotient rings. Prime factorization supplies coordinates through valuations:
+The note's "problem reserved" comments are therefore mathematically honest.  Producing a residue-class construction is not the same as proving optimality.  The missing step is usually an invariant, counting argument, or compression method that forbids larger examples.
+
+\section{Residue classes as finite quotient spaces}
+
+When a construction is governed by residues modulo \(m\), the natural universe is
 \[
-  n=\prod_p p^{v_p(n)}.
+  \mathbb Z/m\mathbb Z.
 \]
-Gcd and lcm are coordinatewise minimum and maximum in these valuation coordinates.
+A set of integers with forbidden differences becomes a subset of this finite cyclic group with forbidden difference set \(D\).  Equivalently, it is an independent set in the Cayley graph whose edges connect residues differing by elements of \(D\).
 
-This algebraic reading explains why elementary tricks scale upward. Euclidean algorithms become the theory of Euclidean domains and PIDs; divisor sums become Dirichlet convolution and Euler products; roots of unity become cyclotomic fields and Galois actions; finite polynomial arithmetic becomes finite-field theory. The original computations should therefore be kept as the algorithmic core, while the advanced language identifies the structure that makes the algorithms work.
+This transforms a long integer-checking problem into a finite graph problem on residues.  The allowed residues are not a random pattern; they form a configuration avoiding forbidden differences in a quotient group.
+
+\section{Induction as well-founded recursion}
+
+Ordinary induction works because \(\mathbb N\) is well-ordered.  To prove \(P(n)\) for all \(n\), it is enough to prove a base case and a step \(P(n)\Rightarrow P(n+1)\).  Strong induction uses the stronger hypothesis that all smaller cases are known.
+
+The common generalization is well-founded induction.  If every nonempty set of objects has a minimal element under a relation \(<\), then one may prove \(P(x)\) by assuming \(P(y)\) for all \(y<x\).  This is why induction works on integers, trees, expressions, and recursively defined sets.
+
+\section{Finite differences in divisibility induction}
+
+Many divisibility inductions become cleaner with finite differences.  If
+\[
+  f(n+1)-f(n)
+\]
+is divisible by \(m\) for all \(n\), and \(f(n_0)\) is divisible by \(m\), then every later \(f(n)\) is divisible by \(m\).  This is the discrete fundamental theorem of calculus:
+\[
+  f(n)=f(n_0)+\sum_{k=n_0}^{n-1}(f(k+1)-f(k)).
+\]
+So induction is often just summing a difference identity.
+
+\section{Floor functions and lattice points}
+
+A floor expression records how many integer thresholds have been crossed.  Sums such as
+\[
+  \sum_{k=0}^{m-1}\left\lfloor \frac{ak+b}{m}\right\rfloor
+\]
+count lattice points under a rational-slope line.  This connects floor-function exercises to lattice-point enumeration.
+
+In higher dimensions, Ehrhart theory studies
+\[
+  L_P(n)=|nP\cap\mathbb Z^d|,
+\]
+the number of lattice points in dilates of a polytope.  For integral polytopes, \(L_P(n)\) is a polynomial in \(n\).  Thus one-variable floor sums are small shadows of a general theory.
+
+\section{Pigeonhole and averaging}
+
+Many finite counting arguments are averaging arguments.  If \(N\) objects are distributed among \(r\) boxes, then some box has at least
+\[
+  \left\lceil \frac Nr\right\rceil
+\]
+objects.  This is the quantitative pigeonhole principle.
+
+In extremal problems, one often defines boxes by residues, intervals, or local configurations, then proves that too many objects force a forbidden collision inside one box.
+
+\section{Finite structure from quotients and induction}
+
+The note's finite examples are unified by quotienting and persistence.  Modular constructions live in finite quotient groups, induction proves that a pattern persists, finite differences turn induction into summation, floor functions count lattice points, and extremal constructions require matching lower and upper bounds.

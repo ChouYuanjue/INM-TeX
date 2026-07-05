@@ -429,19 +429,24 @@ This gives a homogeneous linear system in $t$.  The source row-reduces the syste
 
 This note is a review of how eigenvalues and bases organize linear algebra.  Polynomial identities for matrices become scalar identities on eigenvalues.  Diagonalization translates operators into independent directions.  Real symmetric matrices make the translation orthogonal and geometric.  Positive definiteness is tested by eigenvalues, principal minors, or congruence.  Change of basis problems are solved by writing both bases in a common reference basis and multiplying the corresponding coordinate matrices.
 
-
-
-\paragraph{Expanded synthesis.}
-For this chapter, the elementary material should be read as a study of what remains invariant when coordinates change. The earlier sections (`Eigenvalues of matrix functions`, `No real eigenvector from a quadratic relation`, `Independence of eigenvectors`, `Real symmetric reconstruction from eigenvalues`) compute with arrays, bases, pivots, determinants, or eigenvectors; the deeper object is a linear map together with the spaces it acts on. A matrix is a representation of that map after bases have been chosen. This is why formulas such as
+\section{Eigenvalues through functional calculus}
+If \(Av=\lambda v\), then for a polynomial \(p\),
 \[
-  A' = P^{-1}AP,\qquad \widetilde A = T^{-1}AS
+p(A)v=p(\lambda)v.
 \]
-are not cosmetic: they distinguish an intrinsic morphism from a coordinate description.
-
-The structural hierarchy is as follows. Kernels record what a map forgets, images record what it reaches, cokernels record obstructions to solvability, and quotients record information after an equivalence has been imposed. Determinants act on the top exterior power and therefore measure oriented volume; traces are invariant under cyclic rearrangement and become characters in representation theory; adjoints depend on an inner product and lead to self-adjoint spectral theory.
-
-A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
-
+This is why eigenvalues of matrix functions can often be read from eigenvalues of the matrix.
+\section{Similarity invariants}
+Trace, determinant, characteristic polynomial, and eigenvalues are invariant under similarity.  They depend on the linear operator, not the chosen basis.
+\section{Positive definiteness and quadratic geometry}
+A symmetric matrix \(A\) is positive definite exactly when
+\[
+x^TAx>0\quad(x\ne0).
+\]
+Spectrally, this means all eigenvalues are positive.  Geometrically, its level sets are ellipsoids.
+\section{Row-sum eigenvectors and invariant aggregate directions}
+If every row sum equals \(c\), then the all-ones vector is an eigenvector with eigenvalue \(c\).  This is a symmetry-reduction trick: a common aggregate direction is preserved.
+\section{Spectral geometry of positive matrices}
+Eigenvalue tricks work because invariant subspaces, similarity invariants, spectral functions, and quadratic-form geometry constrain what a matrix can do independent of coordinates.
 
 \section{Functional calculus for matrices}
 
@@ -517,7 +522,6 @@ The function $t\mapsto t^{-1}$ reverses order on positive definite matrices:
 \]
 This kind of phenomenon explains why matrix inequalities are subtler than scalar inequalities, even when the notation looks similar.
 
-% Second-pass deepening for waves 2-4: wave 2 remaining
 \section{Positive definite matrices and ellipsoids}
 
 A symmetric positive definite matrix $A$ defines an ellipsoid

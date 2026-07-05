@@ -313,19 +313,34 @@ The transformation-centered view naturally leads to modern geometry:
   \item category theory abstracts the entire pattern by treating structure-preserving maps as primary.
 \end{enumerate}
 
+\section{Erlangen viewpoint}
 
-\paragraph{Expanded synthesis.}
-For this chapter, the elementary material should be read as a study of what remains invariant when coordinates change. The earlier sections (`The organizing question`, `Affine transformations`, `Conics in matrix form`, `Projective geometry`, `Cross-ratio`) compute with arrays, bases, pivots, determinants, or eigenvectors; the deeper object is a linear map together with the spaces it acts on. A matrix is a representation of that map after bases have been chosen. This is why formulas such as
+The Erlangen program studies geometry through transformation groups.  Euclidean geometry preserves distances and angles, affine geometry preserves lines and ratios on parallel directions, and projective geometry preserves incidence and cross-ratio.
+
+A problem about conics should first ask: which transformation group is natural here?
+
+\section{Conics as quadratic forms}
+
+In homogeneous coordinates, a conic is
 \[
-  A' = P^{-1}AP,\qquad \widetilde A = T^{-1}AS
+  X^TAX=0.
 \]
-are not cosmetic: they distinguish an intrinsic morphism from a coordinate description.
+A projective change of coordinates sends \(A\) to a congruent matrix.  Tangents and dual conics are then expressed by the bilinear form associated with \(A\).
 
-The structural hierarchy is as follows. Kernels record what a map forgets, images record what it reaches, cokernels record obstructions to solvability, and quotients record information after an equivalence has been imposed. Determinants act on the top exterior power and therefore measure oriented volume; traces are invariant under cyclic rearrangement and become characters in representation theory; adjoints depend on an inner product and lead to self-adjoint spectral theory.
+This explains why matrix form is not just computational convenience; it is the coordinate expression of projective geometry.
 
-A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
+\section{Cross-ratio and projective invariance}
 
+The cross-ratio
+\[
+  (a,b;c,d)=\frac{(c-a)(d-b)}{(c-b)(d-a)}
+\]
+is invariant under projective transformations of the line.  It is the fundamental numerical invariant of four collinear points.
 
-\section{Summary map}
+\section{Inversion and conformal geometry}
 
-The lesson of this chapter is that conic sections are not merely curves from analytic geometry.  They are testing grounds for different geometries.  Under Euclidean transformations, their metric shape matters.  Under affine transformations, many metric distinctions disappear.  Under projective transformations, nondegenerate conics become essentially one object.  The Erlangen program turns this into a general principle: to understand a geometry, identify its transformations and study what they leave invariant.
+Circle inversion preserves generalized circles and angles, but not distances.  It belongs naturally to conformal geometry, where angle is the invariant and length may change.
+
+\section{Geometry classified by transformation invariants}
+
+Transformations of conics are best understood by invariants: Euclidean metric data, affine ratios, projective incidence/cross-ratio, duality, and conformal angle preservation under inversion.

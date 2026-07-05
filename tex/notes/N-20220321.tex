@@ -50,6 +50,12 @@ So the particle initially moves upward.  A moment later the position vector has 
 \caption{For \(Z(t)=e^{it}\), multiplication by \(i\) rotates the position vector by \(90^\circ\), giving the tangent velocity.}
 \end{figure}
 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.88\textwidth]{figures/N-20220321/fig-02.png}
+\caption{Original geometric picture for \(Z'(t)=iZ(t)\): the velocity is obtained by multiplying the current position by \(i\), so the motion follows the unit circle from the initial position \(1\).}
+\end{figure}
+
 \section{Roots and angles}
 
 The same geometric viewpoint is useful for roots in the complex plane.  A root of unity is best understood not merely as a solution of an equation, but as a point on the unit circle with a specified angle.
@@ -119,6 +125,12 @@ Therefore divisibility holds precisely when \(n\not\equiv0\pmod3\).
 \caption{Primitive third roots of unity on the unit circle.  Divisibility by \(x^2+x+1\) is checked by evaluating at \(\omega\) and \(\omega^2\).}
 \end{figure}
 
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{figures/N-20220321/fig-03.png}
+\caption{Original root-of-unity plots: increasing the number of roots fills the unit circle more densely, while highlighted roots show how special powers or congruence classes are read geometrically.}
+\end{figure}
+
 \section{Closing perspective}
 
 The two ideas in this note are connected by geometry.  The derivative of \(e^{it}\) says that motion on the unit circle is governed by rotation by \(i\).  The divisibility theorem says that evaluating a polynomial at roots of unity turns algebra into angle arithmetic.
@@ -167,19 +179,36 @@ Geometrically, the three vectors form an equilateral triangle centered at the or
 
 This note is a prelude to complex analysis because it already contains three central ideas: complex multiplication is geometry, exponentials solve differential equations, and roots of unity connect algebraic equations with symmetry.  Later topics such as residues, Fourier analysis, cyclotomic polynomials, and covering maps all reuse this same unit-circle picture.
 
+\section{Roots of unity as a finite symmetry group}
 
-
-\paragraph{Expanded synthesis.}
-For this chapter, the elementary material should be read as a study of what remains invariant when coordinates change. The earlier sections (`The complex exponential as motion`, `Roots and angles`, `A divisibility result`, `Summary`, `Why multiplication by \(i\) is rotation`) compute with arrays, bases, pivots, determinants, or eigenvectors; the deeper object is a linear map together with the spaces it acts on. A matrix is a representation of that map after bases have been chosen. This is why formulas such as
+The \(n\)-th roots of unity form a cyclic group
 \[
-  A' = P^{-1}AP,\qquad \widetilde A = T^{-1}AS
+  \mu_n=\{z\in\mathbb C:z^n=1\}=
+  \{e^{2\pi ik/n}:0\le k<n\}.
 \]
-are not cosmetic: they distinguish an intrinsic morphism from a coordinate description.
+Multiplication corresponds to addition of exponents modulo \(n\).  Thus roots of unity are not just solutions of an equation; they are the rotational symmetries of a regular \(n\)-gon.
 
-The structural hierarchy is as follows. Kernels record what a map forgets, images record what it reaches, cokernels record obstructions to solvability, and quotients record information after an equivalence has been imposed. Determinants act on the top exterior power and therefore measure oriented volume; traces are invariant under cyclic rearrangement and become characters in representation theory; adjoints depend on an inner product and lead to self-adjoint spectral theory.
+\section{Cyclotomic factorization}
 
-A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
+The factorization
+\[
+  x^n-1=\prod_{d\mid n}\Phi_d(x)
+\]
+separates roots of unity by exact order.  The polynomial \(\Phi_n\) collects primitive \(n\)-th roots.  This is the algebraic form of decomposing rotations by their period.
 
+Such factorization explains why divisibility problems involving \(x^n-1\) often reduce to order and gcd computations.
+
+\section{Fourier viewpoint}
+
+Roots of unity also underlie the discrete Fourier transform.  For a sequence \((a_0,\ldots,a_{n-1})\), the transform evaluates the polynomial
+\[
+  A(x)=\sum_{k=0}^{n-1}a_kx^k
+\]
+at roots of unity.  Orthogonality of characters gives inversion.
+
+\section{Cyclic symmetry on the unit circle}
+
+Motion on the unit circle, roots of unity, and divisibility of cyclotomic expressions are one story: the circle group has finite cyclic subgroups, and algebra records their periods through cyclotomic polynomials and Fourier characters.
 
 \section{Roots of unity as characters}
 
@@ -237,7 +266,6 @@ The elementary root powers $\zeta_n^a$ become field automorphisms when $a$ is in
 
 Thus roots of unity are simultaneously geometry of the circle, Fourier basis functions, and algebraic numbers with arithmetic symmetries.
 
-% Second-pass deepening for waves 2-4: wave 4 part 3
 \section{Finite Fourier analysis from roots of unity}
 
 The orthogonality identity

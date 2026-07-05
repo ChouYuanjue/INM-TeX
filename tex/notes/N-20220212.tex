@@ -320,14 +320,30 @@ A pole is simply a point mapped to \(\infty\).  This viewpoint turns singulariti
 
 The main transition in the note is from topology to complex geometry.  A topological surface only knows neighborhoods up to homeomorphism.  A smooth surface knows differentiable coordinate changes.  A Riemann surface knows holomorphic coordinate changes, so complex analysis can be done intrinsically.  This is why Riemann surfaces are simultaneously one-dimensional complex manifolds and two-dimensional real manifolds.
 
+\section{Complex structure is stronger than topology}
 
-\paragraph{Expanded synthesis.}
-The common theme of this chapter is that an elementary limiting or computational rule becomes powerful only after one specifies the space in which the limiting process takes place. The earlier sections (`Structure beyond topology`, `From smooth structure to complex structure`, `Definition of a Riemann surface`, `Examples`, `Holomorphic maps between Riemann surfaces`) may look like separate techniques, but they all ask the same question: which operations are stable under approximation? A derivative is stable first-order approximation,
+A Riemann surface is topological dimension two but complex dimension one.  The complex charts have holomorphic transition maps, so local coordinates remember angle and orientation.  This is why every holomorphic map between Riemann surfaces is far more rigid than a continuous map.
+
+\section{Meromorphic functions and branched coverings}
+
+A nonconstant meromorphic function on a compact Riemann surface is a holomorphic map to the Riemann sphere:
 \[
-  f(a+h)=f(a)+L(h)+o(|h|),
+  f:X\to\mathbb P^1(\mathbb C).
 \]
-while an integral is stable accumulation with respect to a measure, and a convergent series is a limit in a chosen norm or topology.
+Its degree counts preimages with multiplicity.  Branch points are where local behavior looks like
+\[
+  z\mapsto z^e.
+\]
+The integer \(e\) records ramification.
 
-The advanced bridge is functional-analytic. Uniform convergence is convergence in a sup norm; $L^p$ convergence is convergence in an integral norm; differentiability is the existence of a continuous linear approximation; many differential equations are operator equations $L[u]=f$. Theorems such as dominated convergence, the inverse function theorem, the projection theorem in Hilbert spaces, and semigroup existence results are refined answers to the same elementary concern: when may we pass from finite approximations to a genuine limiting object?
+\section{Riemann--Hurwitz}
 
-To use this viewpoint when rereading the original examples, identify the hidden stability condition. A Taylor expansion asks for control of the remainder. A change of variables asks for differentiability and Jacobian control. Termwise differentiation of a series asks for uniform convergence of derivative series. A differential-equation formula asks whether the operator is invertible under the imposed initial or boundary data. The elementary computation is the visible part; the advanced theory names the hypotheses that make it legitimate.
+For a holomorphic map \(f:X\to Y\) of degree \(d\), Riemann--Hurwitz says
+\[
+  2g_X-2=d(2g_Y-2)+\sum_{p\in X}(e_p-1).
+\]
+This formula ties topology, degree, and branching into one invariant statement.
+
+\section{Complex curves through topology and ramification}
+
+Riemann surfaces are where topology, complex analysis, and algebraic geometry first coincide.  Holomorphic charts give rigidity, meromorphic functions give maps to the sphere, divisors record zeros and poles, and ramification translates analytic multiplicity into topological genus.

@@ -1,64 +1,170 @@
-\notechapter{N-20260314}{A Cookbook for Multivariable Topology, Limits, and Differential Computations}
+\notechapter{N-20260314}{A Problem-Solving Guide for Multivariable Limits and Local Geometry}
 
+\section{Purpose of this guide}
+
+This note is a compact problem-solving companion to the previous multivariable calculus notes.  It should not replace the definitions.  Its job is to say what to try first, what each method proves, and where each method fails.
 
 \section{Classifying points relative to a set}
 
-For a set $G\subseteq\mathbb R^n$, classify a point $P$ by inspecting small balls around it.  If some ball lies inside $G$, $P$ is interior.  If some ball is disjoint from $G$, $P$ is exterior.  If every ball meets both $G$ and $G^c$, $P$ is a boundary point.  This is the fastest way to understand open, closed, and neither-open-nor-closed examples.
+For a set \(G\subseteq\mathbb R^n\), classify a point \(P\) by inspecting small balls around it:
+\[
+\begin{array}{c|c}
+\text{classification} & \text{ball test}\\
+\hline
+\text{interior} & \exists r>0,\ B_r(P)\subseteq G\\
+\text{exterior} & \exists r>0,\ B_r(P)\cap G=\varnothing\\
+\text{boundary} & \forall r>0,\ B_r(P)\cap G\ne\varnothing
+\text{ and }B_r(P)\cap G^c\ne\varnothing
+\end{array}
+\]
 
-\section{Limits}
+\begin{example}
+For
+\[
+  G=\{(x,y):0<x^2+y^2<1\},
+\]
+the origin is not in \(G\), but it is a boundary point.  Every ball around the origin contains points with \(0<x^2+y^2<1\), and also contains the origin itself, which lies outside \(G\).
+\end{example}
 
-To prove a multivariable limit, dominate the expression by a function of $r=\|x-a\|$ going to zero.  To disprove it, use two paths.  Polar coordinates are useful near the origin because they separate radial size from angular dependence:
+\section{Limit templates}
+
+To prove a limit at the origin, try to convert the expression into polar form
 \[
   x=r\cos\theta,\qquad y=r\sin\theta.
 \]
-If a candidate expression becomes $r^\alpha g(\theta)$ with bounded $g$ and $\alpha>0$, the limit is zero.
-
-\section{Differentiability and tangent objects}
-
-The standard hierarchy is
+If the expression becomes
 \[
-  C^1\Rightarrow\text{differentiable}\Rightarrow\text{continuous}\Rightarrow\text{directional limits behave well in value}.
+  r^\alpha g(\theta)
 \]
-The reverse implications usually fail.  Tangent lines, normal lines, and tangent planes are all first-order approximations.  For $F(x,y,z)=0$, the normal vector is $\nabla F$; for $z=f(x,y)$, the tangent plane comes from the differential $dz=f_xdx+f_ydy$.
+where \(\alpha>0\) and \(g\) is bounded, then the limit is \(0\).
 
-\section{A useful afterword}
-
-A cookbook is useful only if it remembers why the recipes work.  The recipes here are all forms of one idea: replace a complicated local object by its simplest stable approximation, either a ball for topology, a radial estimate for limits, or a linear map for differentiability.
-
-
-
-\paragraph{Expanded synthesis.}
-For this chapter, the elementary material should be read as a study of what remains invariant when coordinates change. The earlier sections (`Classifying points relative to a set`, `Limits`, `Differentiability and tangent objects`, `Higher viewpoint`, `Expanded cookbook with failure modes`) compute with arrays, bases, pivots, determinants, or eigenvectors; the deeper object is a linear map together with the spaces it acts on. A matrix is a representation of that map after bases have been chosen. This is why formulas such as
+\begin{example}
+For
 \[
-  A' = P^{-1}AP,\qquad \widetilde A = T^{-1}AS
+  f(x,y)=\frac{x^2y}{x^2+y^2},
 \]
-are not cosmetic: they distinguish an intrinsic morphism from a coordinate description.
-
-The structural hierarchy is as follows. Kernels record what a map forgets, images record what it reaches, cokernels record obstructions to solvability, and quotients record information after an equivalence has been imposed. Determinants act on the top exterior power and therefore measure oriented volume; traces are invariant under cyclic rearrangement and become characters in representation theory; adjoints depend on an inner product and lead to self-adjoint spectral theory.
-
-A useful way to return to the computations is to ask, for every formula, which invariant it is measuring. Row reduction measures rank and kernel; diagonalization measures decomposition into invariant subspaces; Gram--Schmidt measures orthogonal projection; positive definiteness measures ellipsoid geometry; tensor notation measures how components transform. The elementary methods are therefore the finite-dimensional laboratory in which duality, quotienting, functoriality, and spectral decomposition can be seen clearly.
-
-
-\section{Expanded cookbook with failure modes}
-
-A cookbook is useful only when each recipe includes its failure mode.
-
-For limits, path testing can disprove a limit but cannot prove it unless all paths are covered by an estimate.  For continuity, partial continuity in each variable is necessary but insufficient.  For differentiability, existence of all directional derivatives is also insufficient unless they assemble into a linear approximation.
-
-\section{Practical limit templates}
-
-Near the origin, convert to polar coordinates when the expression is homogeneous or nearly homogeneous.  If
+we have
 \[
-  f(r\cos\theta,r\sin\theta)=r^\alpha g(\theta)
+  f(r\cos\theta,r\sin\theta)
+  =r\cos^2\theta\sin\theta.
 \]
-with $\alpha>0$ and bounded $g$, then the limit is zero.  If $g(\theta)$ remains in the limit with no decaying factor, the limit depends on direction.
+Since \(|\cos^2\theta\sin\theta|\le1\), the limit is \(0\).
+\end{example}
 
-For rational expressions, compare total degrees.  If the numerator has strictly higher degree than the denominator and the denominator is comparable to a power of $r$, the limit is often zero.  But cancellations and anisotropic denominators require care.
+To disprove a limit, find paths giving different values.  The common path choices are:
+\[
+  y=0,\quad x=0,\quad y=mx,\quad y=x^2,\quad x=y^2.
+\]
+
+\begin{caution}
+Path testing can disprove a limit, but it usually cannot prove one.  Even checking every straight line is not enough, because a curved path may still detect different behavior.
+\end{caution}
+
+\section{Degree comparison for rational expressions}
+
+For rational expressions near the origin, compare the lowest total degrees of numerator and denominator only after checking whether the denominator is comparable to a power of \(r\).  The estimate
+\[
+  x^2+y^2=r^2
+\]
+is reliable.  The expression \(x^4+y^2\), however, is anisotropic: along \(y=x^2\), the two terms have the same size.
+
+\begin{example}
+The function
+\[
+  f(x,y)=\frac{x^2y}{x^4+y^2}
+\]
+looks as if the numerator has degree \(3\) and the denominator has degree \(2\), but the denominator changes scale depending on direction.  Along \(y=x^2\), the limit is \(1/2\).  Degree-counting alone fails.
+\end{example}
+
+\section{Differentiability checklist}
+
+For a scalar function \(f(x,y)\), use the following hierarchy:
+\[
+  C^1\Longrightarrow\text{differentiable}\Longrightarrow\text{continuous}.
+\]
+Partial derivatives alone do not imply continuity.  Directional derivatives in every direction alone do not imply differentiability.
+
+To prove differentiability at \(a\), the definition asks for
+\[
+  f(a+h)=f(a)+L(h)+o(\norm h).
+\]
+The candidate linear map is usually
+\[
+  L(h)=\nabla f(a)\cdot h.
+\]
+Then one must estimate the remainder.
 
 \section{Tangent and normal templates}
 
-For $z=f(x,y)$, use the graph formula.  For $F(x,y,z)=0$, use the gradient.  For a space curve given as the intersection of $F=0$ and $G=0$, the tangent direction is
+For a graph \(z=f(x,y)\), the tangent plane at \((x_0,y_0,z_0)\) is
 \[
-  \nabla F\times \nabla G.
+  z-z_0=f_x(x_0,y_0)(x-x_0)+f_y(x_0,y_0)(y-y_0).
 \]
-This follows because the tangent vector must be perpendicular to both normals.
+For an implicit surface \(F(x,y,z)=0\), the normal vector is \(\nabla F\), and the tangent plane is
+\[
+  \nabla F(P_0)\cdot(P-P_0)=0.
+\]
+For a space curve given by the intersection
+\[
+  F(x,y,z)=0,\qquad G(x,y,z)=0,
+\]
+a tangent direction is
+\[
+  \nabla F(P_0)\times\nabla G(P_0),
+\]
+provided the two normals are not parallel.
+
+\begin{example}
+The curve
+\[
+  x^2+y^2+z^2=1,\qquad z=x
+\]
+at a point \(P_0\) has tangent direction
+\[
+  \nabla(x^2+y^2+z^2-1)(P_0)
+  \times
+  \nabla(z-x)(P_0).
+\]
+This works because the curve lies on both surfaces, so its tangent vector must be perpendicular to both surface normals.
+\end{example}
+
+\section{Local extrema template}
+
+For an unconstrained interior extremum of a differentiable function, first solve
+\[
+  \nabla f=0.
+\]
+Then classify candidates using the Hessian when possible.  For two variables,
+\[
+  H=\begin{pmatrix}A&B\\B&C\end{pmatrix},
+  \qquad D=AC-B^2.
+\]
+At a critical point,
+\[
+\begin{array}{c|c}
+\text{condition} & \text{classification}\\
+\hline
+D>0,\ A>0 & \text{local minimum}\\
+D>0,\ A<0 & \text{local maximum}\\
+D<0 & \text{saddle}\\
+D=0 & \text{inconclusive}
+\end{array}
+\]
+
+For a constraint \(g(x,y)=0\), first try
+\[
+  \nabla f=\lambda\nabla g.
+\]
+Geometrically, the level curve of \(f\) is tangent to the constraint curve at a constrained extremum.
+
+\section{Common failure modes}
+
+\begin{enumerate}[(i)]
+  \item Checking axes proves almost nothing about a two-variable limit.
+  \item Checking all lines still may not prove a limit.
+  \item Existence of partial derivatives is not differentiability.
+  \item The Hessian test classifies only critical points, and it is inconclusive when \(D=0\).
+  \item Lagrange multipliers require checking regularity and comparing all candidate points, including boundary or endpoint cases when the constraint has them.
+\end{enumerate}
+
+The common idea is local replacement: balls replace vague closeness, radial estimates replace path guessing, and linear maps replace nonlinear functions to first order.
