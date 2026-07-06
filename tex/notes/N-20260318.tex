@@ -168,14 +168,20 @@ Gershgorin discs are cheap localization, not exact computation.  Overlap does no
 
 Power iteration appears in PageRank, spectral normalization, graph propagation, and monitoring dominant eigenvalue behavior.  State-space and recurrent models depend on polynomial and spectral structure: the minimal polynomial, Jordan blocks, and spectral radius all describe memory and long-run dynamics.
 
-\section{Checklist}
+\section{Choosing an eigenvalue tool}
 
-\[
-\begin{array}{c|c}
-\text{Smith form} & \text{invariant factors}\\
-\text{Jordan form} & \text{eigenvalue chains}\\
-\text{Gershgorin} & \text{cheap eigenvalue regions}\\
-\text{power iteration} & \text{dominant eigenvalue}\\
-\text{shifted inverse iteration} & \text{eigenvalue near target}
-\end{array}
-\]
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{@{}lYY@{}}
+\toprule
+Tool & What it exposes & When to use it\\
+\midrule
+Smith form & invariant factors & module or integer-structure questions\\
+Jordan form & eigenvalue chains & powers, nilpotent parts, generalized eigenvectors\\
+Gershgorin & discs containing eigenvalues & quick localization before computation\\
+Power iteration & dominant eigenpair & one eigenvalue separated in modulus\\
+Shifted inverse iteration & eigenvalue near a target & refining a chosen spectral region\\
+\bottomrule
+\end{tabularx}
+\end{center}
+The order matters in practice.  Gershgorin gives a cheap first picture of where eigenvalues can be and can sometimes separate clusters.  Power iteration is then useful only if the dominant eigenvalue is separated and the starting vector has a component in its eigendirection.  Shifted inverse iteration reverses the question: after a target \(\mu\) has been chosen, solving \((A-\mu I)y=x\) amplifies the eigendirection whose eigenvalue is closest to \(\mu\).  The numerical traps in the note are exactly the failure modes of these assumptions: poor separation, defective eigenspaces, or a shift that makes the linear solve unstable.

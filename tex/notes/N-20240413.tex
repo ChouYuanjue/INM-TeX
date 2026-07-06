@@ -244,9 +244,9 @@ So the local-linear story is not the end of geometry.  It is the first layer.  T
 \]
 Those questions require connections, metrics, and curvature.  But without the tangent-space layer, none of them can even be stated cleanly.
 
-\section{Margin summary}
+\section{How the local-linear picture is used}
 
-The thread of the chapter is short but important:
+The usable chain from the chapter is
 \[
 \begin{array}{c}
 \text{derivative} \longrightarrow
@@ -255,4 +255,6 @@ The thread of the chapter is short but important:
 \text{manifold calculus}.
 \end{array}
 \]
-The point is not to collect formulas. The point is to acquire the habit of replacing a curved question by its local linear model.
+In a calculation this chain has a definite order.  First choose a chart or a defining equation.  Then replace the nonlinear object by its first-order part: for a parametrized surface this means differentiating the parametrization; for a level set \(F^{-1}(c)\) this means studying \(dF_p\).  The tangent space is the kernel of the linear constraint when the manifold is cut out by equations, and it is the span of coordinate velocity vectors when the manifold is parametrized.
+
+The stereographic-projection example and the regular-value criterion are two versions of the same habit.  A chart lets one compute on \(\mathbb R^n\); a regular value tells one that the kernel of a derivative has the expected dimension.  Curvature, connections, and metrics will later add second-order and comparison data, but the first check remains the same: before asking how a manifold bends, identify the tangent space in which the infinitesimal question lives.

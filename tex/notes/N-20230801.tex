@@ -290,8 +290,18 @@ The uploaded note connects Hitchin systems to geometric Langlands.  The rough sl
 
 Hitchin moduli spaces provide the geometric stage on which this duality becomes visible.  In the physical picture developed by Kapustin and Witten, S-duality in four-dimensional supersymmetric Yang--Mills theory becomes a geometric Langlands duality after reduction.  Hitchin's equations are the bridge between the gauge-theoretic and algebro-geometric languages.
 
-\section{Source repair: what remains unclear}
+\section{Source repair: local work still missing}
 
-The uploaded text honestly records several points still requiring further study: local Dolbeault-coordinate computations, the precise deformation complex controlling smoothness of the moduli space, the role of stability in making the quotient Hausdorff, and the precise construction of the hyperkaehler structure.
+The uploaded text names the right objects, but several parts still need to be made local and computable before the story is really understood.
+\begin{enumerate}[(i)]
+  \item In a local holomorphic coordinate \(z\), Hitchin's equations should be written in terms of a connection form, a Higgs field \(\varphi\,dz\), and the adjoint \(\varphi^*\,d\bar z\).  Without this coordinate calculation, the equation \(F_A+[\varphi,\varphi^*]=0\) remains only symbolic.
+  \item The tangent space to the moduli problem is controlled by a deformation complex.  The missing calculation is to identify infinitesimal gauge transformations, infinitesimal deformations of \((A,\varphi)\), and the linearized equations in one complex.
+  \item Stability is not just a label attached to Higgs bundles.  It is the condition that removes bad orbit-closure behavior, so it is the algebro-geometric replacement for asking the gauge quotient to have reasonable points.
+  \item The spectral curve construction should be checked in low rank by writing
+  \[
+    \det(\eta-\\varphi)=0
+  \]
+  inside the total space of the canonical bundle.  This makes the Hitchin base concrete: its coordinates are the coefficients of the characteristic polynomial.
+\end{enumerate}
 
-These are not peripheral details.  They are exactly the places where the theory becomes deep: analysis supplies elliptic equations, algebraic geometry supplies stability and spectral curves, and mathematical physics supplies duality intuition.
+A good next pass through this topic should therefore not try to memorize the whole nonabelian Hodge correspondence at once.  It should work through one rank-two example, compute the characteristic polynomial of a Higgs field, locate the spectral curve, and then match the deformation complex with the expected dimension of the moduli space.

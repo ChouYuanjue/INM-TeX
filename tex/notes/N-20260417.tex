@@ -221,6 +221,17 @@ Stokes' theorem connects them:
 \]
 If one applies this again, both sides become zero for structural reasons.  Thus Green's theorem is not an isolated vector-calculus trick; it is the two-dimensional visible face of a chain/cochain duality.
 
-\section{What should remain}
+\section{What Green's theorem checks in practice}
 
-Green's theorem is not just a formula for evaluating line integrals.  It is the planar Stokes theorem.  It explains why local curl accumulates into boundary circulation, why internal boundaries cancel, and why topology matters for conservative fields.
+Green's theorem converts a boundary integral into an area integral:
+\[
+  \oint_{\partial D} P\,dx+Q\,dy
+  =\iint_D \left(\frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y}\right)dA.
+\]
+In a computation this requires more than recognizing the formula.  The boundary must be positively oriented, the vector field must be defined on a region containing \(D\), and holes in the domain must be accounted for by extra boundary components with the correct orientation.
+
+The punctured-plane example explains why this check matters.  The form
+\[
+  \omega=\frac{-y\,dx+x\,dy}{x^2+y^2}
+\]
+is closed away from the origin, but its integral around \(S^1\) is nonzero, so it is not globally exact on \(\mathbb R^2\setminus\{0\}\).  Green's theorem, the identity \(d^2=0\), and the cancellation of internal boundaries are therefore three views of the same mechanism: local derivative data controls boundary circulation only after the topology of the region has been included.

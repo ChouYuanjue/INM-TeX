@@ -118,36 +118,31 @@ Examples from the page include:
   \item The complex sequences converging to \(0\) form a subspace of \(\mathbb C^\infty\).
 \end{enumerate}
 
+
 \section{Bridge to later ideas}
 
-These exercises are elementary, but they encode the essential algebraic habit: do not prove vector-space properties from scratch every time.  Once \(F^n\), function spaces, and sequence spaces are known vector spaces, subspace tests reduce many problems to checking the zero vector and closure under linear combinations.
+These exercises are elementary, but they encode several structural distinctions that reappear throughout algebra and geometry.
 
-\section{Vector spaces as modules over fields}
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{@{}lY@{}}
+\toprule
+Elementary exercise & Later structure\\
+\midrule
+checking closure under linear combinations & subspaces and kernels\\
+conditions like \(x_3=5x_4+b\) & linear subspace versus affine translate\\
+real versus complex scalar multiplication & scalar restriction and complex linearity\\
+solving constraints with free variables & quotients and cosets of kernels\\
+coordinates of vectors & dual basis and linear functionals\\
+\bottomrule
+\end{tabularx}
+\end{center}
 
-The exercises over \(\mathbb R\) and \(\mathbb C\) show that scalar choice matters.  A complex vector space is automatically a real vector space of twice the dimension, but not every real linear map is complex linear.  Complex linearity requires compatibility with multiplication by \(i\):
+For example, multiplication by \(a+bi\) on \(\mathbb C\), viewed as a real vector space, is represented by
 \[
-  T(iv)=iT(v).
+  \begin{pmatrix}a&-b\\ b&a\end{pmatrix}.
 \]
-
-\section{Subspaces and quotient spaces}
-
-A subspace is closed under linear combinations.  Once a subspace \(W\subseteq V\) is chosen, the quotient \(V/W\) records vectors modulo the information in \(W\).  Kernels and images naturally lead to quotients through the first isomorphism theorem:
-\[
-  V/\ker T\cong \operatorname{im}T.
-\]
-
-\section{Complex numbers as real linear algebra}
-
-Multiplication by \(a+bi\) on \(\mathbb C\) is the real linear map with matrix
-\[
-  \begin{pmatrix}a&-b\\b&a\end{pmatrix}.
-\]
-Its determinant is \(a^2+b^2\), the squared modulus.  Thus field multiplication already contains rotation-scaling geometry.
-
-\section{Linear structure across real and complex scalars}
-
-Basic vector-space exercises train structural distinctions: field versus vector space, real versus complex linearity, subspace versus quotient, and coordinate matrix versus intrinsic linear map.
-
+Its determinant is \(a^2+b^2\), the squared modulus.  Thus complex scalar multiplication already contains the geometry of rotation and scaling.
 \section{How to read basic vector-space exercises}
 
 The purpose of these exercises is not to check axioms forever.  The real skill is to recognize when an object is already known to be a vector space and when a proposed subset passes the subspace test.  The fastest mental template is:

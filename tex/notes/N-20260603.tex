@@ -97,13 +97,16 @@ For every \(b\), \(A^+b\) is the least-squares solution minimizing \(\|Ax-b\|_2\
 \]
 In general, \((AB)^+\ne B^+A^+\) without additional assumptions.
 
-\section{Checklist}
+\section{Reading the Moore--Penrose inverse geometrically}
 \[
-\begin{array}{c|c}
-A^+ & \text{Moore-Penrose inverse}\\
-AA^+ & \text{projection onto }R(A)\\
-A^+A & \text{projection onto }R(A^H)\\
-AA^+b=b & \text{solvability}\\
-A^+b & \text{least-squares minimum-norm solution}
+\begin{array}{c|c|c}
+\text{expression} & \text{geometric meaning} & \text{use}\\
+\hline
+A^+ & \text{inverse on nonzero singular directions} & \text{canonical generalized inverse}\\
+AA^+ & \text{orthogonal projection onto }R(A) & \text{test the reachable part of }b\\
+A^+A & \text{orthogonal projection onto }R(A^H) & \text{remove the null-space ambiguity}\\
+AA^+b=b & b\in R(A) & \text{exact solvability}\\
+A^+b & \text{minimum-norm least-squares vector} & \text{canonical approximate solution}
 \end{array}
 \]
+The SVD formula makes the construction explicit: invert the nonzero singular values and leave the zero singular directions untouched.  If \(b\) is in the column space, \(A^+b\) solves \(Ax=b\) and chooses the solution orthogonal to \(N(A)\).  If \(b\) is not in the column space, \(AA^+b\) is the closest reachable vector in \(R(A)\), so \(A^+b\) solves the least-squares problem with minimum norm among all least-squares solutions.  This also explains why \((AB)^+=B^+A^+\) is not generally safe: the projection geometry of the two factors need not line up.

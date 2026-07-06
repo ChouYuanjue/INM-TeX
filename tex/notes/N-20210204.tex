@@ -166,6 +166,12 @@ For (ii), if \(h\) exists and \(f\circ h=1_B\), then every \(b\in B\) equals \(f
 The last choice of one element from each fibre is exactly where the Axiom of Choice may enter.  The original note itself flags this point in a footnote, and it will reappear in the later note on choice and cardinal numbers.
 \end{caution}
 
-\section{What remains from this note}
+\section{Set-level bookkeeping behind functions}
 
-The route is simple but important: naive collections lead to Russell's class; power sets and indexed families give the first working constructions; functions are then organized by images, inverse images, and one-sided inverses.  The main gap is not computational but foundational: one has to keep track of when a class is actually a set.
+The calculations in this note are elementary only after the ambient set has been fixed.  Russell's class shows why the notation
+\[
+  \{x\mid P(x)\}
+\]
+cannot be used without asking whether the collection is actually a set.  Once a set \(A\) is available, the usual constructions are safe: subsets live in \(\mathcal P(A)\), indexed unions and intersections are formed from a family \((A_i)_{i\in I}\), and membership proofs reduce identities such as De Morgan's laws to quantifier manipulations.
+
+For functions the same bookkeeping reappears in a more operational form.  The inverse image \(f^{-1}(T)\) is always defined for \(T\subseteq B\), while the image \(f(S)\) depends on the part of the domain actually hit.  Injectivity is detected by a left inverse \(g\circ f=1_A\); surjectivity is detected by a right inverse \(f\circ h=1_B\).  The construction of \(g\) for an injection uses only a single default element of \(A\), whereas the construction of \(h\) for a surjection asks for one chosen element from each fibre \(f^{-1}(b)\).  That fibre-by-fibre choice is the exact point to remember when the later notes discuss the Axiom of Choice and cardinal comparison.

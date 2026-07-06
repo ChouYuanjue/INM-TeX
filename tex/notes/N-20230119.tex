@@ -131,14 +131,42 @@ with equality iff the triangle is equilateral.  The proof in the note uses the a
 
 This chapter is a small map of classical geometry.  Ceva and Menelaus are ratio theorems, almost projective in flavor.  Ptolemy is metric and cyclic.  Simson line turns perpendicular projections into collinearity.  Euler line organizes triangle centers, and Euler's formula links local radii with the global placement of centers.  The proofs constantly switch languages: area, similarity, complex numbers, cyclic angles, and centers.  That switching is the real skill of plane geometry.
 
-\section{Ceva and Menelaus as projective incidence}
-Ceva and Menelaus are ratio theorems about concurrence and collinearity.  Their natural setting is projective geometry, where incidence is fundamental and ratios arise after choosing coordinates on lines.
-\section{Ptolemy and cyclic geometry}
-Ptolemy's theorem characterizes cyclic quadrilaterals in Euclidean geometry.  It can be read through inversion or through chord lengths on the circle.  The equality case in Ptolemy's inequality is exactly cyclicity.
-\section{Simson and Euler lines as configuration invariants}
-The Simson line and Euler line record hidden alignment in triangle configurations.  They are not isolated miracles; they show that special triangle centers and projections satisfy rigid incidence relations.
-\section{Classical triangle invariants}
-Classical triangle geometry is a study of invariants: ratios for incidence, cyclicity for Ptolemy, projections for Simson, and affine/metric center relations for Euler-type lines.
+\section{An invariant map for the theorem list}
+
+The theorems in this chapter are not all of the same type.  Each belongs to a different invariance principle.
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{@{}lYY@{}}
+\toprule
+Theorem & Main structure & What is invariant or detected\\
+\midrule
+Ceva & affine/projective incidence & concurrence of cevians through side ratios\\
+Menelaus & affine/projective incidence & collinearity of side points through signed ratios\\
+Ptolemy & cyclic metric geometry & cyclicity through a length identity\\
+Simson line & cyclic projection geometry & collinearity from perpendicular projections\\
+Euler line & mixed affine/metric geometry & alignment of centroid, circumcenter, orthocenter\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\begin{remark}[Why this classification matters]
+A geometric theorem becomes easier to use when one knows which transformations preserve it.  Incidence statements survive projective transformations.  Ratio statements survive affine changes on a line or projective normalization after coordinates are chosen.  Perpendicularity, circumcenters, and orthocenters depend on the Euclidean metric and therefore do not survive arbitrary affine or projective transformations.
+\end{remark}
+
+\begin{proposition}[Mixed nature of the Euler line]
+The centroid is affine in the vertices, while the circumcenter and orthocenter depend on perpendicularity.  Therefore the Euler line is not a purely affine theorem and not a purely projective theorem.
+\end{proposition}
+
+\begin{proof}
+The centroid has the coordinate expression
+\[
+  G=\frac{A+B+C}{3},
+\]
+so affine maps send the centroid of \(ABC\) to the centroid of the image triangle.  By contrast, the circumcenter is defined using perpendicular bisectors, and the orthocenter is defined using altitudes.  Perpendicularity is not preserved by a general affine transformation.  Hence the Euler line mixes an affine point with metric points.
+\end{proof}
+
+This map keeps the elementary proofs in place while explaining why different tools appear.  Area ratios prove Ceva, similar triangles prove Menelaus, the triangle inequality in the complex plane proves Ptolemy's inequality, cyclic angles prove Simson, and metric center relations prove Euler-type formulas.
 
 \section{Barycentric coordinates}
 

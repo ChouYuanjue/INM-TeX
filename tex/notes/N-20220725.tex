@@ -115,122 +115,66 @@ Therefore
 The note obtains this by row and column operations; the eigenvalue argument is the higher-level explanation.
 
 
-\section{Why inversions define the sign}
+\section{The determinant line and exterior powers}
 
-The sign of a permutation records whether the permutation can be built from an even or odd number of swaps.  The inversion number gives a concrete way to compute it:
+The previous computational rules all point to one structure.  Let \(V\) be an \(n\)-dimensional vector space.  The top exterior power
 \[
-  \operatorname{sgn}(\sigma)=(-1)^{	au(\sigma)}.
+  \Lambda^n V
 \]
-Swapping two adjacent entries changes the inversion number by exactly one, so the parity changes.  Since every permutation can be sorted by adjacent swaps, this connects inversion parity with determinant sign.
+is one-dimensional and is called the determinant line.  A nonzero element of this line is a volume form; a choice up to positive scalar is an orientation.
 
-\section{Determinants as alternating volume}
-
-The determinant is multilinear in the columns and changes sign when two columns are exchanged.  Geometrically, it is oriented volume.  If two columns are equal or linearly dependent, the volume collapses to zero.  This explains why the alternating sum over permutations is the correct formula: each term records one way to choose entries from different rows and columns, with orientation determined by the permutation sign.
-
-\section{A higher-level view}
-
-A determinant measures signed volume.  Row operations are geometric transformations of volume: swapping two basis vectors changes orientation, scaling a row scales volume, and adding a multiple of one row to another shears without changing volume.  The inversion formula, row-operation rules, and eigenvalue tricks are not separate facts; they are three languages for the same alternating multilinear function.
-
-\section{Permutation sign as orientation}
-
-The sign of a permutation records whether it preserves or reverses orientation.  Counting inversions gives
+\begin{definition}[Determinant via the top exterior power]
+For a linear map \(A:V\to V\), the induced map
 \[
-  \operatorname{sgn}(\sigma)=(-1)^{\#\text{ inversions}}.
+  \Lambda^n A:\Lambda^n V\to\Lambda^n V
 \]
-Adjacent swaps reverse orientation, and every permutation is a product of adjacent swaps.
+acts on a one-dimensional space, hence is multiplication by a scalar.  That scalar is \(\det A\).
+\end{definition}
 
-\section{Determinant as alternating volume}
-
-The determinant is the unique alternating multilinear function of the columns normalized by \(\det I=1\).  Geometrically,
+In a basis \(e_1,\ldots,e_n\), if the columns of \(A\) are \(v_1,\ldots,v_n\), then
 \[
-  |\det A|
+  v_1\wedge\cdots\wedge v_n
+  =(\det A)e_1\wedge\cdots\wedge e_n.
 \]
-is the volume-scaling factor of the linear map \(A\), while the sign records orientation.
+This single identity explains the main determinant rules:
+\begin{enumerate}[(i)]
+  \item multilinearity comes from multilinearity of the wedge product;
+  \item repeated or dependent columns wedge to zero;
+  \item swapping two columns changes the sign;
+  \item multiplicativity follows from \(\Lambda^n(AB)=(\Lambda^n A)(\Lambda^n B)\).
+\end{enumerate}
 
-\section{Exterior algebra viewpoint}
+\section{Why permutation signs are forced}
 
-If \(v_1,\ldots,v_n\) are columns, then
+The sign of a permutation is not an arbitrary convention.  It is the unique homomorphism
 \[
-  v_1\wedge\cdots\wedge v_n=(\det A)e_1\wedge\cdots\wedge e_n.
+  S_n\longrightarrow \{\pm1\}
 \]
-This explains cofactor expansion, row operations, and multiplicativity as statements about top exterior power.
-
-\section{Orientation and volume behind determinants}
-
-Inversions, signs, determinants, cofactors, and structured determinant tricks all measure orientation and volume.  The computational rules are shadows of alternation and exterior algebra.
-
-\section{Exterior algebra meaning of the determinant}
-
-The determinant can be defined as the unique alternating multilinear function
+that sends every transposition to \(-1\).  The inversion number gives a concrete formula:
 \[
-  \det:V^n\to k
+  \operatorname{sgn}(\sigma)=(-1)^{\#\text{ inversions of }\sigma}.
 \]
-that sends the chosen basis $(e_1,\ldots,e_n)$ to $1$.  Multilinear means linear in each column.  Alternating means the value changes sign when two columns are swapped and becomes zero when two columns are equal.
-
-The permutation formula
-\[
-  \det A=\sum_{\sigma\in S_n}\operatorname{sgn}(\sigma)
-  a_{1\sigma(1)}\cdots a_{n\sigma(n)}
-\]
-is therefore not arbitrary.  It is the coordinate expression of the alternating property.
-
-\section{Exterior algebra}
-
-Exterior algebra packages alternating products.  The wedge product satisfies
-\[
-  v\wedge w=-w\wedge v,\qquad v\wedge v=0.
-\]
-For $n$ vectors in an $n$-dimensional space,
-\[
-  v_1\wedge\cdots\wedge v_n=(\det[v_1\cdots v_n])\,e_1\wedge\cdots\wedge e_n.
-\]
-Thus determinant is the scalar by which the top exterior power is scaled.
-
-This viewpoint explains why determinants measure oriented volume and why row dependence forces determinant zero: dependent vectors wedge to zero.
-
-\section{Orientation and determinant line}
-
-The one-dimensional space $\Lambda^n V$ is called the determinant line.  A choice of nonzero element of $\Lambda^n V$ is a choice of volume form; a choice up to positive scalar is an orientation.
-
-A linear map $A:V\to V$ induces a map on the determinant line:
-\[
-  \Lambda^n A:\Lambda^n V\to\Lambda^n V.
-\]
-Since this line is one-dimensional, the induced map is multiplication by a scalar, and that scalar is $\det A$.
-
-The elementary inversion-number definition of the determinant is therefore a combinatorial way to compute the action of a linear map on oriented volume.
-
-\section{Why signs of permutations are forced}
-
-The determinant is alternating: swapping two columns changes sign.  The sign of a permutation is exactly the bookkeeping device that records how many swaps are needed.  If
-\[
-  \sigma=(i_1,\ldots,i_n),
-\]
-then $\operatorname{sgn}(\sigma)$ is $(-1)^m$, where $m$ is the number of inversions.  The elementary inversion count is therefore not a combinatorial accident; it is the unique homomorphism
-\[
-  S_n\to \{\pm1\}
-\]
-that sends each transposition to $-1$.
-
-This uniqueness explains why every determinant formula has the same sign pattern.  Any alternating multilinear volume function must transform under permutations by this sign character.
+Because the determinant is alternating, permuting the columns by \(\sigma\) must multiply the volume form by this sign.  This is why the Leibniz formula has exactly the sign pattern it has.
 
 \section{Minors as exterior coordinates}
 
-The $k\times k$ minors of a matrix describe the induced map on $\Lambda^kV$.  If $A:V\to W$, then
+The same exterior-power viewpoint also explains minors.  If \(A:V\to W\), then
 \[
-  \Lambda^kA:\Lambda^kV\to\Lambda^kW.
+  \Lambda^kA:\Lambda^kV\to\Lambda^kW
 \]
-In bases, the entries of this induced map are the $k\times k$ minors of $A$.
-
-This gives a conceptual meaning to rank tests.  The condition $\operatorname{rank}A<k$ is equivalent to
+is represented, in the induced exterior bases, by the \(k\times k\) minors of \(A\).  Therefore
 \[
-  \Lambda^kA=0,
+  \operatorname{rank}A<k
+  \quad\Longleftrightarrow\quad
+  \Lambda^kA=0
+  \quad\Longleftrightarrow\quad
+  \text{all }k\times k\text{ minors vanish}.
 \]
-which is equivalent to all $k\times k$ minors vanishing.  Thus minors are not arbitrary subdeterminants; they are coordinates of an exterior-power map.
+Thus minors are not arbitrary subdeterminants; they are coordinates of an exterior-power map.
 
 \section{Cramer's rule from volume ratios}
 
-Cramer's rule replaces one column of $A$ by $b$.  Geometrically, solving $Ax=b$ asks for the coordinates of $b$ in the parallelepiped basis given by the columns of $A$.  The coordinate $x_i$ is the ratio of two oriented volumes:
+Cramer's rule replaces one column of \(A\) by \(b\).  Geometrically, solving \(Ax=b\) asks for the coordinates of \(b\) in the parallelepiped basis given by the columns of \(A\).  The coordinate \(x_i\) is the ratio of two oriented volumes:
 \[
   x_i=\frac{\det A_i(b)}{\det A}.
 \]

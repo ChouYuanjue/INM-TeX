@@ -143,62 +143,24 @@ while parallelism is
 \]
 Distance and slope are the coordinate versions of length and direction.
 
-\section{What the example reveals}
 
-This note is about choosing the right inequality language.  Squares prove elementary inequalities.  AM--GM handles fixed products.  Cauchy handles sums of fractions and dot products.  Triangle inequalities handle distances.  Coordinate geometry then translates geometric distance and direction into algebra.  The common habit is to identify the hidden structure before calculating.
+\section{What the examples reveal: three structures}
 
-\section{Cauchy--Schwarz as projection}
+This note is about choosing the right inequality language.  Squares prove elementary inequalities, AM--GM handles fixed products, Cauchy handles dot products and sums of fractions, and triangle inequalities handle distances.  The advanced version of the same habit is to identify the structure behind the inequality before calculating.
 
-Cauchy's inequality
-\[
-  \left(\sum_i a_i b_i\right)^2\le \left(\sum_i a_i^2\right)\left(\sum_i b_i^2\right)
-\]
-comes from inner-product geometry.  It says
-\[
-  |\langle a,b\rangle|\le \norm a\norm b.
-\]
-Equality holds exactly when the two vectors are linearly dependent.  Many contest equality cases are this geometric statement in coordinates.
-
-\section{Triangle inequality and normed spaces}
-
-The triangle inequality
-\[
-  \norm{x+y}\le \norm x+\norm y
-\]
-defines the geometry of a normed space.  For Euclidean norm it follows from Cauchy--Schwarz.  For \(L^p\) norms it becomes Minkowski's inequality.
-
-Thus triangle inequality examples are early encounters with metric and norm geometry.
-
-\section{AM--GM and convexity}
-
-The inequality
-\[
-  \frac{x_1+\cdots+x_n}{n}\ge (x_1\cdots x_n)^{1/n}
-\]
-for positive variables follows from concavity of \(\log\):
-\[
-  \log\left(\frac1n\sum_i x_i\right)\ge \frac1n\sum_i\log x_i.
-\]
-The equality condition says all variables are equal, meaning the vector has no spread.
-
-\section{Inequalities as geometry of norms and averages}
-
-The basic inequalities are geometry and convexity in disguise.  Cauchy is projection, triangle inequality is norm structure, AM--GM is concavity of logarithm, and equality cases describe when the relevant geometric object degenerates to one direction or one value.
-
-\section{Normed spaces and triangle inequality}
-
-The triangle inequality in the original note is the defining feature of a norm.  A normed vector space is a vector space with a function $\|\cdot\|$ satisfying positivity, homogeneity, and
-\[
-  \|x+y\|\le \|x\|+\|y\|.
-\]
-The usual absolute value, Euclidean length, and sup norm are all instances.
-
-Minkowski's inequality is the triangle inequality in $L^p$ spaces:
-\[
-  \|f+g\|_p\le \|f\|_p+\|g\|_p,\qquad
-  \|f\|_p=\left(\int |f|^p\right)^{1/p}.
-\]
-Thus a contest-level inequality about square roots and sums is structurally the same statement as the triangle inequality for functions.
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{@{}lYY@{}}
+\toprule
+Elementary inequality & Higher structure & Equality meaning\\
+\midrule
+Cauchy--Schwarz & inner product / projection / Gram matrix & vectors are dependent\\
+Triangle inequality & normed vector space & same direction in strictly convex cases\\
+AM--GM & convexity or concavity of \(\log\) & all variables equal\\
+Positive square & positive semidefinite cone & quadratic form degenerates\\
+\bottomrule
+\end{tabularx}
+\end{center}
 
 \section{Cauchy--Schwarz and Gram determinants}
 
@@ -206,11 +168,19 @@ Cauchy--Schwarz says
 \[
   |\langle x,y\rangle|\le \|x\|\|y\|.
 \]
-In an inner product space, it follows from the nonnegativity of
+It follows from the nonnegativity of
 \[
-  \|x-ty\|^2\ge0.
+  \|x-ty\|^2\ge0
 \]
-The equality case says that $x$ and $y$ are linearly dependent.  Geometrically, Cauchy--Schwarz bounds the length of a projection.
+or, equivalently, from positivity of the Gram matrix
+\[
+  G(x,y)=
+  \begin{pmatrix}
+  \langle x,x\rangle&\langle x,y\rangle\\
+  \langle y,x\rangle&\langle y,y\rangle
+  \end{pmatrix}.
+\]
+The inequality \(\det G(x,y)\ge0\) is exactly Cauchy--Schwarz.  Equality means \(G\) has rank one, i.e. the two vectors are linearly dependent.
 
 In Hilbert spaces, the same inequality controls Fourier coefficients:
 \[
@@ -218,17 +188,30 @@ In Hilbert spaces, the same inequality controls Fourier coefficients:
 \]
 This is why an inequality first met in finite sums becomes indispensable in functional analysis.
 
-\section{Convex cones and equality cases}
+\section{Triangle inequality and normed spaces}
 
-Many inequalities describe a cone of possible values.  For instance, the set of positive semidefinite matrices is a convex cone:
+The triangle inequality
 \[
-  A\succeq0\quad\Longleftrightarrow\quad x^TAx\ge0\text{ for all }x.
+  \|x+y\|\le \|x\|+\|y\|
 \]
-Cauchy--Schwarz can be read as positivity of the Gram matrix
+defines the geometry of a normed vector space.  The usual absolute value, Euclidean length, sup norm, and \(L^p\) norms are all instances.  Minkowski's inequality is precisely the triangle inequality in \(L^p\):
 \[
-  \begin{pmatrix}
-  \langle x,x\rangle&\langle x,y\rangle\\
-  \langle y,x\rangle&\langle y,y\rangle
-  \end{pmatrix}.
+  \|f+g\|_p\le \|f\|_p+\|g\|_p,
+  \qquad
+  \|f\|_p=\left(\int |f|^p\right)^{1/p}.
 \]
-Its determinant is nonnegative, giving the inequality.  Equality means the Gram matrix has rank one, i.e. the vectors are dependent.
+Thus a contest-level inequality about square roots and sums is structurally the same statement as the triangle inequality for functions.
+
+\section{AM--GM, convexity, and cones}
+
+For positive variables, AM--GM follows from concavity of \(\log\):
+\[
+  \log\left(\frac1n\sum_i x_i\right)\ge \frac1n\sum_i\log x_i.
+\]
+The equality condition says all variables are equal, meaning there is no spread.
+
+Many inequalities also describe membership in a convex cone.  For instance,
+\[
+  A\succeq0\quad\Longleftrightarrow\quad x^TAx\ge0\text{ for all }x
+\]
+defines the cone of positive semidefinite matrices.  Basic ``square is nonnegative'' arguments are the one-dimensional shadow of this cone viewpoint.

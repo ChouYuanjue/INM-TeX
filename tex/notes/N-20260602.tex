@@ -100,13 +100,20 @@ SVD says that \(A\) rotates, stretches along orthogonal axes, and rotates again.
 \caption{SVD describes the image of the unit ball as an ellipsoid.}
 \end{figure}
 
-\section{Checklist}
-\[
-\begin{array}{c|c}
-LU & \text{general square systems}\\
-PA=LU & \text{pivoted stability}\\
-A=LL^H & \text{positive definite systems}\\
-A=FG & \text{rank structure}\\
-A=U\Sigma V^H & \text{singular directions}
-\end{array}
-\]
+\section{Which decomposition matches the matrix}
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{@{}lYY@{}}
+\toprule
+Decomposition & Hypothesis or signal & What it gives\\
+\midrule
+\(LU\) & square system without severe pivot trouble & triangular solves\\
+\(PA=LU\) & row exchanges needed & stable Gaussian elimination\\
+\(A=LL^H\) & Hermitian positive definite & fast symmetric solve\\
+\(A=FG\) & \(\operatorname{rank}A=r\) & factorization through an \(r\)-dimensional space\\
+\(A=U\Sigma V^H\) & arbitrary rectangular matrix & singular directions and rank profile\\
+\bottomrule
+\end{tabularx}
+\end{center}
+The choice should be driven by structure rather than by habit.  Cholesky is inappropriate without positive definiteness; ordinary LU may need pivoting when a small or zero pivot appears; a full-rank decomposition records the actual dimension through which the linear map factors.  The SVD is the most geometric option: it says that the unit ball is rotated, stretched by the singular values, and rotated again.  This is why the nonzero singular values detect rank and why small singular values signal directions in which solving or inversion will be unstable.

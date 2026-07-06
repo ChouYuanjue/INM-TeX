@@ -177,6 +177,8 @@ A scalar surface integral \(\iint_S f\,dS\) makes sense on a Möbius strip becau
 
 This is a topological obstruction, not a defect of parametrization.  Locally one can always choose a normal; globally the choices may return reversed after going once around the strip.  Vector calculus is already detecting orientability.
 
-\section{What should remain}
+\section{What the parametrization is responsible for}
 
-First-kind integrals integrate scalar densities against geometric measure.  Second-kind integrals integrate oriented effects: work along curves and flux through surfaces.  The formulas with \(\norm{r'}\), \(r_u\times r_v\), and \(F\cdot n\) are all ways of translating geometric measurement back to parameters.
+First-kind integrals integrate scalar densities against geometric measure.  For a curve this means that the parametrization contributes the speed \(\norm{r'(t)}\); for a surface it contributes the area factor \(\norm{r_u\times r_v}\).  Changing parameters should not change the value, because these factors exactly compensate for stretching or compressing the parameter domain.
+
+Second-kind integrals keep orientation.  A line integral of work uses the directed tangent displacement \(dr\), and a flux integral uses the oriented normal vector \(r_u\times r_v\) or a chosen unit normal \(n\).  This is why reversing orientation changes the sign of work and flux but not the sign of scalar length or area.  The Möbius-strip example marks the boundary of the usual formula: scalar surface area is still meaningful, but a global flux integral is not available until a consistent normal direction has been chosen.

@@ -280,6 +280,6 @@ The standard factorization
   \xrightarrow{\sim}
   \operatorname{Im}(f)\hookrightarrow B
 \]
-turns a morphism into three conceptual pieces: discard the input killed by \(f\), identify the remaining effective input with the actual output, and include that output in the codomain.
+turns a morphism into three conceptual pieces: quotient out the part of the input killed by \(f\), identify the remaining effective input with the subobject actually reached in \(B\), and then include that subobject in the codomain.
 
-That is the main point: category theory does not merely rename kernel and image.  It explains them by the maps they universally receive or universally induce.
+For vector spaces this says exactly the familiar rank--nullity picture: \(A/\ker f\) is isomorphic to \(\operatorname{im}f\).  For modules and abelian groups the same statement is the first isomorphism theorem.  The categorical formulation is useful because it records which part of the argument is universal and which part depends on being in an abelian category: the comparison map \(\operatorname{Coim}(f)\to\operatorname{Im}(f)\) is an isomorphism in the safe models listed above, but it should not be assumed in an arbitrary category with kernels and cokernels.

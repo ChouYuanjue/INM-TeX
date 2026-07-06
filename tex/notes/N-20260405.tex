@@ -154,9 +154,25 @@ x^2+y^2 & \text{polar} & \text{radial expression}\\
 \end{array}
 \]
 
-\section{Coarea preview}
+\section{Slicing as pushforward of area}
 
-Slicing a region vertically means integrating over fibers \(x=\text{constant}\) and then integrating over \(x\).  The same idea survives in more advanced form as the coarea formula: integrate first over level sets, then over the parameter labeling the level sets.  Ordinary order-changing is the two-dimensional classroom version of this principle.
+Slicing a region vertically means integrating over fibers \(x=\text{constant}\) and then integrating over \(x\).  In measure language, the map
+\[
+  \pi_x:D\to\mathbb R,\qquad (x,y)\mapsto x
+\]
+pushes area measure on \(D\) down to a measure on the \(x\)-axis.  The inner integral computes the contribution of each fiber, and the outer integral adds the fibers.
+
+This viewpoint separates three related operations:
+\[
+\begin{array}{c|c|c}
+\text{operation} & \text{map used} & \text{geometric effect}\\
+\hline
+\text{Fubini slicing} & (x,y)\mapsto x & \text{integrate over fibers}\\
+\text{change of variables} & (u,v)\mapsto(x,y) & \text{pull back area by a chart}\\
+\text{coarea} & F(x,y)\mapsto t & \text{integrate over level sets}
+\end{array}
+\]
+Ordinary order-changing is the classroom version of this general fiber-integration principle.
 
 \section{Exterior algebra proof of the Jacobian factor}
 
@@ -223,6 +239,8 @@ are adapted to diagonal lines.  A region bounded by lines \(x+y=\text{constant}\
 
 In harder problems, one chooses variables because level sets of the integrand or boundary are natural.  The computation succeeds when the coordinate fibers match the geometry already present in the problem.
 
-\section{What should remain}
+\section{How a change of variables earns its bounds}
 
-Fubini is a slicing theorem, polar coordinates are a coordinate change with Jacobian \(r\), and the general change-of-variables theorem says that integration respects smooth coordinate changes after local area distortion is included.  Bounds are geometry, not syntax.
+Fubini should be read as a slicing statement: a two-dimensional region is decomposed into one-dimensional fibres over a projection.  A change of variables is stronger: it replaces the region by a coordinate domain and pays for the replacement with a Jacobian determinant.  In polar coordinates this payment is the familiar factor \(r\), because a small rectangle in \((r,\theta)\)-space becomes an annular sector whose area is approximately \(r\,dr\,d\theta\).
+
+The examples show how to decide whether a substitution is natural.  Linear maps are useful when the boundary lines are already expressed by linear combinations such as \(x+y\) and \(x-y\).  Polar coordinates are useful when the boundary or integrand is organized by distance from a point.  More generally, the variables should be chosen so that level curves of the new coordinates match the visible families of curves in the problem.  After that choice, the bounds are obtained by drawing the image region in the new variables; they are not copied from the old coordinates by syntax.

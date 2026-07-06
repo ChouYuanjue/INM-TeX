@@ -175,15 +175,21 @@ A linear layer has Lipschitz constant at most \(\|W\|_2\) in Euclidean norm.  A 
 \]
 This inequality is crude but important: moderate layerwise amplification can accumulate over depth.  Spectral normalization, orthogonal initialization, residual scaling, and weight decay are all connected to the same numerical question: how large can a perturbation become?
 
-\section{Checklist}
+\section{What each norm is measuring}
 
 \[
-\begin{array}{c|c}
-\text{metric} & \text{closeness}\\
-\text{norm} & \text{vector size}\\
-\text{matrix norm} & \text{matrix size}\\
-\text{induced norm} & \text{maximal amplification}\\
-\text{Frobenius norm} & \text{entrywise Euclidean size}\\
-\text{spectral norm} & \text{largest singular value}
+\begin{array}{c|c|c}
+\text{object} & \text{what it measures} & \text{typical use}\\
+\hline
+\text{metric} & \text{distance between two points} & \text{convergence and continuity}\\
+\text{vector norm} & \text{size of one vector} & \text{error magnitude}\\
+\text{induced matrix norm} & \max_{x\ne0}\|Ax\|/\|x\| & \text{worst-case amplification}\\
+\text{Frobenius norm} & \sqrt{\sum_{ij}|a_{ij}|^2} & \text{entrywise energy}\\
+\text{spectral norm} & \sigma_{\max}(A) & \text{Euclidean Lipschitz bound}
 \end{array}
 \]
+The worked constrained-maximum examples explain the difference between Frobenius and spectral size.  Frobenius norm counts all entries at once, while the spectral norm asks for the single input direction that is stretched the most.  In the linear-layer interpretation, \(\|W\|_2\) is therefore the relevant bound for adversarial or perturbation amplification, whereas \(\|W\|_F\) is a global weight-size penalty.  The inequality
+\[
+  \|W_L\cdots W_1\|_2\le \prod_{\ell=1}^L\|W_\ell\|_2
+\]
+should be read as a warning about composition: even if each layer is controlled separately, the product controls how errors can accumulate through the whole map.

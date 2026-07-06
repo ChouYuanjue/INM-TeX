@@ -136,15 +136,24 @@ On the ball centered at the origin,
 because the region is symmetric under \(x\mapsto -x\), while the integrand changes sign.
 \end{example}
 
-\section{Volume forms and Jacobians}
+\section{Three ways to understand volume factors}
 
-For a coordinate map \(T(u,v,w)=(x,y,z)\),
-\[
-  dx\wedge dy\wedge dz
-  =\det\frac{\partial(x,y,z)}{\partial(u,v,w)}
-  \,du\wedge dv\wedge dw.
-\]
-For scalar volume integration, one uses the absolute value of this determinant.  Cylindrical and spherical volume elements are special cases of this formula.
+The Jacobian factors in cylindrical and spherical coordinates can be read in three compatible ways.
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{@{}lY@{}}
+\toprule
+Viewpoint & What it explains\\
+\midrule
+linear approximation & \(DT\) sends a small box to a parallelepiped\\
+volume form & \(dx\wedge dy\wedge dz\) pulls back by \(\det DT\)\\
+metric tensor & volume density is \(\sqrt{\det g}\) in curvilinear coordinates\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+For scalar volume, orientation is forgotten and one uses \(|\det DT|\).  For oriented integration, the sign is kept.  Cylindrical and spherical volume elements are special cases of these principles.
 
 \section{Toward divergence theorem}
 
@@ -221,6 +230,12 @@ Scalar volume uses \(|\det DT|\), but oriented integration keeps \(\det DT\).  T
 
 Triple integrals are therefore the scalar shadow of a more structured object: integration of top-degree forms.
 
-\section{What should remain}
+\section{How the solid determines the coordinates}
 
-A triple integral is weighted volume.  Rectangular coordinates slice by graphs; cylindrical coordinates adapt to axial symmetry; spherical coordinates adapt to distance from the origin.  Every coordinate formula is a Jacobian formula, and every successful setup begins with the geometry of the solid.
+A triple integral is weighted volume, but the coordinate system decides how that volume is sliced.  Rectangular coordinates are best when the solid is bounded by graphs over coordinate planes.  Cylindrical coordinates are best when the projection to the \(xy\)-plane is circular or when the integrand depends on \(x^2+y^2\).  Spherical coordinates are best when the boundary is organized by distance from the origin or by cones through the origin.
+
+The volume factors are not separate formulas to memorize.  They are Jacobians:
+\[
+  dV=dx\,dy\,dz,\qquad dV=r\,dr\,d\theta\,dz,\qquad dV=\rho^2\sin\varphi\,d\rho\,d\varphi\,d\theta.
+\]
+The metric-tensor and volume-form derivations explain why these factors appear and why orientation matters once one passes from scalar volume to Stokes-type formulas.  In a computation the safe order is therefore: describe the solid geometrically, choose coordinates whose coordinate surfaces match that description, compute or recall the Jacobian, and only then write the iterated bounds.
