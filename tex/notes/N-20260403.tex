@@ -246,6 +246,12 @@ The pushforward measure \(f_*\mathbb P\) on \(\mathbb R\) records how much area 
 
 This interpretation is useful later: integration can be studied either by integrating over the original region or by pushing measure forward through a function and integrating over its values.
 
-\section{What should remain}
+\section{How the double-integral setup is checked}
 
-A double integral is a limit of weighted area sums.  Linearity and additivity come from finite sums.  Symmetry comes from measure-preserving transformations.  The mean value theorem says that the integral is an average times area.  Fubini, Tonelli, and change of variables are the advanced tools that explain when the familiar computations are legitimate.
+A double integral begins as a limit of weighted area sums, so the first data to identify are the region \(D\), the area element, and the function being averaged over that region.  Linearity and additivity come directly from cutting the region into pieces; this is why splitting a domain along a change in boundary formula is legitimate rather than cosmetic.
+
+The examples in this note give three practical tests.  If the region has a symmetry and the integrand is odd under that symmetry, the corresponding contribution vanishes because the area measure is preserved.  If the question asks for an average value, rewrite
+\[
+  \iint_D f\,dA= f_{\mathrm{avg}}\operatorname{area}(D)
+\]
+and check connectedness and continuity before invoking the mean value theorem.  If the computation is rearranged by Fubini or by a change of variables, the real issue is not the order of symbols but whether the slices describe the same region and whether the Jacobian accounts for area distortion.  This is the point at which Tonelli, Fubini, and change of variables turn the geometric setup into a justified calculation.

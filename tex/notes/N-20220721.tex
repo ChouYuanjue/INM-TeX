@@ -142,4 +142,63 @@ or under trigonometric substitutions that encode constraints.  The good substitu
 
 \section{Changing measures and changing coordinates}
 
-Probability and inequality substitutions share a habit: change the viewpoint before computing.  Conditioning changes the measure; Bayes reverses conditional information; substitutions choose coordinates adapted to the constraint.
+Probability and inequality substitutions share a habit: change the viewpoint before computing.  Conditioning changes the measure; Bayes reverses conditional information; substitutions choose coordinates adapted to the constraint.  This last sentence is worth making more precise, because it is the higher-level bridge hidden inside the elementary examples.
+
+\begin{definition}[Conditioning as a new probability measure]
+Let \((\Omega,\mathcal F,\mathbb P)\) be a probability space and let \(B\in\mathcal F\) satisfy \(\mathbb P(B)>0\).  The conditional probability given \(B\) is the probability measure
+\[
+  \mathbb P_B(A)=\mathbb P(A\mid B)
+  =\frac{\mathbb P(A\cap B)}{\mathbb P(B)}.
+\]
+Equivalently,
+\[
+  \mathbb P_B(A)=\int_A \frac{\mathbf 1_B}{\mathbb P(B)}\,d\mathbb P.
+\]
+Thus \(\mathbb P_B\) is absolutely continuous with respect to \(\mathbb P\), with Radon--Nikodym derivative
+\[
+  \frac{d\mathbb P_B}{d\mathbb P}=\frac{\mathbf 1_B}{\mathbb P(B)}.
+\]
+\end{definition}
+
+This is the clean meaning of the phrase ``conditioning changes the measure''.  The set \(\Omega\) may stay formally the same, but the weights assigned to its parts have changed.  Everything outside \(B\) receives weight zero, and the mass inside \(B\) is rescaled so that the total mass is again one.
+
+\begin{proposition}[Conditional expectation as integration in the new measure]
+For every integrable random variable \(X\),
+\[
+  \mathbb E[X\mid B]
+  =\int_{\Omega}X\,d\mathbb P_B
+  =\frac{1}{\mathbb P(B)}\int_B X\,d\mathbb P.
+\]
+\end{proposition}
+
+\begin{proof}
+By the definition of \(\mathbb P_B\) and its density with respect to \(\mathbb P\),
+\[
+  \int_{\Omega}X\,d\mathbb P_B
+  =\int_{\Omega}X\frac{\mathbf 1_B}{\mathbb P(B)}\,d\mathbb P
+  =\frac{1}{\mathbb P(B)}\int_B X\,d\mathbb P.
+\]
+This is precisely the usual formula for conditional expectation on the event \(B\).
+\end{proof}
+
+Bayes' formula is also clearer from this viewpoint.  Suppose \(A_1,\ldots,A_n\) form a partition of \(\Omega\).  After observing \(B\), the old weights \(\mathbb P(A_i)\) are replaced by
+\[
+  \mathbb P_B(A_i)
+  =\frac{\mathbb P(B\mid A_i)\mathbb P(A_i)}{\sum_j\mathbb P(B\mid A_j)\mathbb P(A_j)}.
+\]
+The numerator is the old weight multiplied by the likelihood of the observation.  The denominator is just the normalization which makes the new weights add to one.  So Bayes' formula is not a trick for reversing arrows; it is a reweighting rule.
+
+The same pattern appears in substitutions for inequalities.  A substitution changes how we integrate, compare, or optimize over a domain.  If \(T:U\to V\) is a change of variables, then a function on \(V\) can be pulled back to \(U\) by
+\[
+  f\longmapsto f\circ T.
+\]
+For integrals, the measure also changes through the Jacobian:
+\[
+  \int_V f(y)\,dy
+  =\int_U f(T(x))\,\left|\det DT(x)\right|\,dx.
+\]
+For inequalities, even when no explicit integral is present, the same philosophy remains: choose coordinates in which the constraint and the symmetry become visible.
+
+\begin{remark}[The shared template]
+Conditioning replaces \(\mathbb P\) by the weighted measure \(\mathbb P_B\).  Bayes' formula replaces prior weights by posterior weights.  A substitution replaces the original coordinates by coordinates adapted to the constraint.  In all three cases, the computation becomes easier because the background viewpoint has changed before the algebra begins.
+\end{remark}

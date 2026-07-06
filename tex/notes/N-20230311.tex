@@ -237,7 +237,81 @@ Lebesgue integration instead measures level sets.  Simple functions approximate 
 \section{Dirichlet function as separator}
 The function \(\mathbf 1_{\mathbb Q}\) is discontinuous everywhere and not Riemann integrable, but it is Lebesgue integrable with integral zero because \(\mathbb Q\) has measure zero.
 \section{Convergence theorems as exchange principles}
-Dominated convergence and monotone convergence explain when limits and integrals may be interchanged.  These theorems are the practical power of Lebesgue's theory.
+
+The central question behind the convergence theorems is not only whether a limit exists.  It is whether the following exchange is legal:
+\[
+  \int \lim_{n\to\infty} f_n\,d\mu
+  \stackrel{?}{=}
+  \lim_{n\to\infty}\int f_n\,d\mu.
+\]
+Lebesgue theory gives precise hypotheses under which this exchange is safe.
+
+\begin{theorem}[Monotone convergence, informal reading]
+If \(0\le f_1\le f_2\le\cdots\) and \(f_n\to f\), then
+\[
+  \int f_n\,d\mu\longrightarrow \int f\,d\mu.
+\]
+The intuition is that positive mass is only accumulating upward; no cancellation or escaping negative part is hidden.
+\end{theorem}
+
+\begin{theorem}[Dominated convergence, informal reading]
+If \(f_n\to f\) pointwise and there is an integrable function \(g\) such that
+\[
+  |f_n|\le g
+\]
+for all \(n\), then
+\[
+  \int f_n\,d\mu\longrightarrow \int f\,d\mu.
+\]
+The dominating function prevents mass from escaping to infinity or concentrating in narrower and narrower spikes.
+\end{theorem}
+
+Fatou's lemma is the one-sided safety rule:
+\[
+  \int \liminf_{n\to\infty} f_n\,d\mu
+  \le
+  \liminf_{n\to\infty}\int f_n\,d\mu
+  \qquad (f_n\ge0).
+\]
+It says that, for nonnegative functions, the integral of the limiting lower mass cannot exceed the limiting lower integrals.
+
+\begin{example}[Escaping mass]
+On \(\mathbb R\), let
+\[
+  f_n=\mathbf 1_{[n,n+1]}.
+\]
+Then \(f_n(x)\to0\) for every fixed \(x\), but
+\[
+  \int_{\mathbb R} f_n\,dx=1
+\]
+for all \(n\).  Therefore
+\[
+  \int \lim f_n\,dx=0
+  \ne
+  1=\lim \int f_n\,dx.
+\]
+The mass has not disappeared; it has escaped to infinity.  Dominated convergence fails because no single integrable \(g\) can dominate all these translated bumps.
+\end{example}
+
+\begin{example}[Concentrating mass]
+On \([0,1]\), let
+\[
+  f_n=n\mathbf 1_{[0,1/n]}.
+\]
+Then \(f_n(x)\to0\) for every \(x>0\), but
+\[
+  \int_0^1 f_n(x)\,dx=1.
+\]
+The mass concentrates into a narrower spike near \(0\).  Again, pointwise convergence alone is too weak to justify exchanging limit and integral.
+\end{example}
+
+\begin{remark}[Probability language]
+In probability, the same question is whether
+\[
+  \mathbb E[\lim X_n]=\lim\mathbb E[X_n]
+\]
+is legal.  Monotone convergence, Fatou's lemma, and dominated convergence are therefore not abstract measure-theory decorations; they are rules for passing limits through expectations.
+\end{remark}
 \section{Integration theory through measurable structure}
 Riemann integration manages oscillation on intervals; Lebesgue integration measures sets of values.  The shift from partitions of the domain to measurable level sets is the conceptual upgrade.
 
@@ -263,22 +337,19 @@ This preserves the elementary intuition of area, but it makes convergence theore
 
 \section{Dominated and monotone convergence in practice}
 
-The Riemann integral has difficulty with limits of functions.  Lebesgue theory supplies three central tools.
+The three convergence tools should be read as three different controls on a limiting process.
 
-Monotone convergence theorem: if $0\le f_n\uparrow f$, then
 \[
-  \int f_n\,d\mu\to \int f\,d\mu.
-\]
-Fatou's lemma:
-\[
-  \int \liminf f_n\,d\mu\le \liminf \int f_n\,d\mu
-\]
-for nonnegative $f_n$.  Dominated convergence theorem: if $f_n\to f$ pointwise and $|f_n|\le g$ for some integrable $g$, then
-\[
-  \int f_n\,d\mu\to \int f\,d\mu.
+\begin{array}{c|c|c}
+\text{tool} & \text{hypothesis} & \text{what it prevents}\\
+\hline
+\text{MCT} & 0\le f_n\uparrow f & \text{loss by cancellation}\\
+\text{Fatou} & f_n\ge0 & \text{overestimating the limiting lower mass}\\
+\text{DCT} & |f_n|\le g\in L^1 & \text{escape or concentration of mass}
+\end{array}
 \]
 
-These theorems explain why Lebesgue integration is the natural language of probability, Fourier analysis, and PDEs: it allows limiting procedures to pass through integrals under precise hypotheses.
+This is why Lebesgue integration is the natural language of probability, Fourier analysis, and PDEs.  These subjects constantly form limiting objects: limits of random variables, limits of Fourier partial sums, weak or strong limits of approximate solutions.  The integral must be stable enough to survive those passages to the limit.
 
 \section{Lp spaces and duality}
 

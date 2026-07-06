@@ -157,16 +157,17 @@ The term \(b\epsilon\) is invisible if one only looks at ordinary points, becaus
 
 This is the simplest model of a dual number.  It is also a first hint of why tangent vectors and infinitesimal thickenings are naturally scheme-theoretic.
 
-\section{Tour summary}
+\section{Reading \texorpdfstring{$\operatorname{Spec}R$}{Spec R} in examples}
 
-The safe mental model is:
+The dictionary from this note should be used with actual rings in mind:
 \[
 \begin{array}{c|c}
-\operatorname{Spec}R & \text{prime ideals as points}\\
-D(f) & \text{where }f\text{ is invertible}\\
-R_f & \text{functions on }D(f)\\
-R_{\mathfrak p} & \text{functions near }\mathfrak p\\
-\text{nilpotents} & \text{infinitesimal structure}
+\operatorname{Spec}R & \text{prime ideals, including non-maximal ones}\\
+D(f) & \text{the part where }f\text{ becomes invertible}\\
+R_f & \text{functions allowed to divide by powers of }f\\
+R_{\mathfrak p} & \text{functions near the prime }\mathfrak p\\
+\kappa(\mathfrak p) & \text{the residue field visible at }\mathfrak p\\
+\text{nilpotents} & \text{infinitesimal information not seen by closed points}
 \end{array}
 \]
-Scheme theory is not a rejection of geometry. It is geometry with enough algebraic memory to see generic points, arithmetic points, and infinitesimal points at the same time.
+For \(\operatorname{Spec}\mathbb Z\), the generic point \((0)\) and the closed points \((p)\) are both needed: localizing at \((p)\) records arithmetic near one prime, while the generic point records information over \(\mathbb Q\).  For \(k[\epsilon]/(\epsilon^2)\), there is only one underlying prime, but the function \(a+b\epsilon\) still contains a first-order term.  These two examples explain why schemes keep more than the set of maximal ideals: they retain specialization, residue fields, and nilpotent thickening.

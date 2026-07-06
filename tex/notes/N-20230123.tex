@@ -135,26 +135,34 @@ In coordinates,
   \end{vmatrix}.
 \]
 
-\section{After the examples}
+\section{After the examples: what object is being integrated?}
 
-The note develops integration as accumulation in increasingly geometric forms.  Ordinary definite integrals accumulate along a line.  Line integrals accumulate along a curve.  Double and triple integrals accumulate over area and volume.  Coordinate changes require Jacobians.  Dot products, cross products, and differential elements provide the language for physical quantities such as work, flux, and circulation.
+The examples develop integration as accumulation over different geometric objects.  The clean way to organize them is not by dimension alone, but by the type of object being integrated.
 
-\section{Definite integrals as signed accumulation}
-A definite integral accumulates a density over an oriented interval.  Area is obtained when the density is nonnegative; signed integrals remember orientation and cancellation.
-\section{Line integrals and one-forms}
-A work integral
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{@{}lYY@{}}
+\toprule
+Integral & Object being integrated & Geometric meaning\\
+\midrule
+\(\int_a^b f(x)\,dx\) & density on an oriented interval & signed accumulation\\
+\(\int_C f\,ds\) & scalar density along a curve & mass/length-weighted accumulation\\
+\(\int_C P\,dx+Q\,dy\) & one-form & work or circulation\\
+\(\iint_D f\,dA\) & area density & accumulation over a region\\
+\(\iiint_\Omega f\,dV\) & volume density & weighted volume or mass\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+This table prevents a common confusion.  A line integral of \(f\,ds\) and a work integral \(P\,dx+Q\,dy\) both run along a curve, but they integrate different geometric objects.  The first uses arclength and ignores orientation; the second is a pullback of a one-form and changes sign when the orientation is reversed.
+
+Green's theorem then becomes a boundary-to-interior conversion:
 \[
-\int_\gamma F\cdot d r
+\oint_{\partial D}P\,dx+Q\,dy
+=
+\iint_D(\partial_x Q-\partial_y P)\,dA.
 \]
-is the integral of the one-form associated with the vector field.  Reparametrization does not change the value when orientation is preserved because the one-form pulls back correctly.
-\section{Green theorem as boundary-to-interior conversion}
-Green's theorem says
-\[
-\oint_{\partial D}P\,dx+Q\,dy=\iint_D(\partial_x Q-\partial_y P)\,dA.
-\]
-It converts circulation around a boundary into curl accumulated over the interior.
-\section{Integration as geometry of forms and fields}
-Definite integrals, work, line integrals, polar/spherical coordinates, and Green-type thinking are all about integrating the correct geometric object: density, one-form, or oriented area form.
+It says that circulation around the boundary is curl accumulated over the interior.
 
 \section{Line integrals as pullbacks}
 

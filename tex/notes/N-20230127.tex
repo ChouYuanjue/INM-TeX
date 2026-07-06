@@ -48,17 +48,43 @@ is divisible by
 \[
   1+x+x^2+\cdots+x^k
 \]
-whenever $n$ is not a multiple of $k+1$.  The author first guesses yes, then uses roots of unity to test the guess.
+whenever \(n\) is not a multiple of \(k+1\).  This first guess is too weak.  The correct condition is coprimality.
 
-Let $\xi$ be a nontrivial $(k+1)$-st root of unity.  We need
+\begin{theorem}[Root-of-unity test for the generalization]
+Over a field of characteristic zero,
 \[
-  1+\xi^n+\xi^{2n}+\cdots+\xi^{kn}=0
+  1+x+x^2+\cdots+x^k
+  \quad\text{divides}\quad
+  1+x^n+x^{2n}+\cdots+x^{kn}
 \]
-for every such $\xi$.  The geometric sum vanishes if $\xi^n\ne1$.  Thus the required condition is that no nontrivial $(k+1)$-st root becomes $1$ after raising to the $n$th power.  This is equivalent to
+if and only if
 \[
   \gcd(n,k+1)=1.
 \]
-So the first guess $n\not\equiv0\pmod{k+1}$ is too weak.  For example, $n$ can be nonzero modulo $k+1$ but still share a nontrivial common divisor with $k+1$.
+\end{theorem}
+
+\begin{proof}
+The roots of
+\[
+  1+x+x^2+\cdots+x^k=\frac{x^{k+1}-1}{x-1}
+\]
+are exactly the nontrivial \((k+1)\)-st roots of unity.  Let \(\xi\ne1\) satisfy \(\xi^{k+1}=1\).  We need
+\[
+  1+\xi^n+\xi^{2n}+\cdots+\xi^{kn}=0
+\]
+for every such \(\xi\).
+
+This is a geometric sum.  It vanishes exactly when \(\xi^n\) is a nontrivial \((k+1)\)-st root of unity.  Therefore the map
+\[
+  \xi\longmapsto \xi^n
+\]
+must send every nontrivial \((k+1)\)-st root to another nontrivial \((k+1)\)-st root.  Equivalently, the power map on the cyclic group \(\mu_{k+1}\) must have trivial kernel.  This happens exactly when \(n\) is invertible modulo \(k+1\), i.e.
+\[
+  \gcd(n,k+1)=1.
+\]
+\end{proof}
+
+The original false guess \(n\not\equiv0\pmod{k+1}\) fails because a nonzero residue may still not be invertible.  For instance, modulo \(6\), the residue \(2\) is nonzero but the map \(z\mapsto z^2\) has a nontrivial kernel on sixth roots of unity.
 
 \section{The computational experiment}
 
@@ -116,26 +142,24 @@ contains the cyclotomic factors $\Phi_d(x)$ for divisors $d>1$ of $k+1$.  Replac
 
 The value of this note is the exploration, not only the final condition.  It begins with a correct theorem, tries a direct factorization proof, guesses a generalization, finds that the guess is false, uses computation to see the roots, and finally explains the pattern by complex exponentials.  That is a miniature version of mathematical research: algebraic manipulation, conjecture, counterexample, visualization, and structural explanation.
 
-\section{Geometric sums and roots of unity}
-The polynomial
+\section{Cyclotomic summary of the experiment}
+
+The computational pictures, the failed generalization, and the final divisibility criterion all express one group-theoretic fact: roots of unity form finite cyclic groups, and power maps on cyclic groups are controlled by greatest common divisors.
+
+\begin{remark}[From roots to factors]
+A rational polynomial divisibility statement can be checked on all Galois conjugate roots.  For roots of unity, the conjugates of a primitive \(m\)-th root are
 \[
-1+x+\cdots+x^m=\frac{x^{m+1}-1}{x-1}
+  \zeta_m\longmapsto \zeta_m^a,
+  \qquad a\in(\mathbb Z/m\mathbb Z)^\times.
 \]
-has roots among roots of unity except \(1\).  Factorization questions are therefore questions about which roots of unity two polynomials share.
-\section{Cyclotomic organization}
-The factorization
+Thus a common factor is not merely one common complex root; it is a conjugation-stable set of common roots.
+\end{remark}
+
+The cyclotomic factorization
 \[
-x^n-1=\prod_{d\mid n}\Phi_d(x)
+  x^m-1=\prod_{d\mid m}\Phi_d(x)
 \]
-separates roots by exact order.  Common factors of expressions built from geometric sums can be read by comparing divisibility relations among orders.
-\section{Explicit roots and common factors}
-If roots are written as
-\[
-e^{2\pi i k/n},
-\]
-then common real factors come from conjugate pairs.  A real polynomial factor corresponds to a set of roots closed under complex conjugation.
-\section{Cyclotomic structure behind geometric sums}
-The computational experiments point toward the same structure: geometric-sum factorizations are controlled by roots of unity, cyclotomic polynomials, orders, and conjugation symmetry.
+separates roots by exact order.  Geometric sums select all nontrivial roots of a given order divisor, while substitutions \(x\mapsto x^n\) pull those root conditions back along the power map.  This is the structural explanation of the root plots in the original experiment.
 
 \section{Cyclotomic polynomials}
 

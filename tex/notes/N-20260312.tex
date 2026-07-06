@@ -167,14 +167,19 @@ Repeated multiplication appears in recurrent systems, graph propagation, lineari
 
 Mixed precision increases the relative size of rounding perturbations.  If the problem is ill-conditioned, those perturbations can become wrong directions.  The safe statement is not that condition number explains all training failures, but that it reveals a basic numerical instability channel.
 
-\section{Checklist}
+\section{Power growth, inversion, and sensitivity}
 
 \[
-\begin{array}{c|c}
-\rho(A) & \text{asymptotic eigenvalue growth}\\
-\|A\| & \text{one-step amplification}\\
-A^k\to0 & \rho(A)<1\\
-(I-A)^{-1} & \sum_{k\ge0}A^k\\
-\kappa(A) & \text{sensitivity of solving}
+\begin{array}{c|c|c}
+\text{quantity} & \text{meaning} & \text{where it appears}\\
+\hline
+\rho(A) & \text{asymptotic eigenvalue growth} & A^k\text{ and stability}\\
+\|A\| & \text{one-step amplification} & \text{single perturbation bound}\\
+A^k\to0 & \rho(A)<1 & \text{decaying iteration}\\
+(I-A)^{-1} & \sum_{k\ge0}A^k & \text{Neumann series}\\
+\kappa(A) & \|A\|\|A^{-1}\| & \text{sensitivity of solving}
 \end{array}
 \]
+The distinction between \(\rho(A)\) and \(\|A\|\) is the main computational point here.  A norm controls what can happen in one step, while the spectral radius controls the eventual behavior of powers.  Jordan blocks explain why the boundary case \(\rho(A)=1\) is delicate: polynomial growth can remain even when all eigenvalues have modulus one.
+
+For solving \(Ax=b\), the condition number measures how much relative error can be magnified by inversion.  The ill-conditioned example is therefore not a numerical accident; it shows that a small perturbation in \(b\) can point in a direction where \(A^{-1}\) is large.  This is the same instability channel that appears in iterative dynamics and mixed-precision computations.

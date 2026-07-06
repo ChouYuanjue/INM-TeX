@@ -232,21 +232,29 @@ This is the first reason the word ``deformation'' is appropriate.  The ring stru
 The full theta-link belongs to later notes.  But the route can already be drawn.
 
 \begin{center}
-\begin{tikzpicture}[scale=0.95,>=stealth]
-  \node[draw,rounded corners,align=center,minimum width=3.4cm,minimum height=0.9cm] at (0,0) (A) {Diophantine\ inequalities};
-  \node[draw,rounded corners,align=center,minimum width=3.4cm,minimum height=0.9cm] at (0,-1.45) (B) {elliptic curve\ bad reduction};
-  \node[draw,rounded corners,align=center,minimum width=3.4cm,minimum height=0.9cm] at (0,-2.9) (C) {idele \(q_E\)\ and \(\deg q_E\)};
-  \node[draw,rounded corners,align=center,minimum width=3.4cm,minimum height=0.9cm] at (5.0,-2.9) (D) {arithmetic\ fundamental groups};
-  \node[draw,rounded corners,align=center,minimum width=3.4cm,minimum height=0.9cm] at (5.0,-1.45) (E) {mono-anabelian\ reconstruction};
-  \node[draw,rounded corners,align=center,minimum width=3.4cm,minimum height=0.9cm] at (5.0,0) (F) {theta/log\ deformation};
-  \node[draw,rounded corners,align=center,minimum width=3.4cm,minimum height=0.9cm] at (2.5,1.35) (G) {log-volume\ bound};
-  \draw[->] (A) -- (B);
-  \draw[->] (B) -- (C);
-  \draw[->] (C) -- (D);
-  \draw[->] (D) -- (E);
-  \draw[->] (E) -- (F);
-  \draw[->] (F) -- (G);
-  \draw[->] (G) -- (A);
+\begin{tikzpicture}[
+  >=stealth,
+  routebox/.style={draw,rounded corners,align=center,text width=6.1cm,minimum height=0.72cm,font=\small},
+  route/.style={->,thick}
+]
+  \node[routebox] (A) at (0,0) {Diophantine inequalities};
+  \node[routebox] (B) at (0,-1.12) {elliptic-curve bad reduction};
+  \node[routebox] (C) at (0,-2.24) {idele \(q_E\) and normalised degree \(\deg q_E\)};
+  \node[routebox] (D) at (0,-3.36) {arithmetic fundamental groups};
+  \node[routebox] (E) at (0,-4.48) {mono-anabelian reconstruction};
+  \node[routebox] (F) at (0,-5.60) {theta/log deformation};
+  \node[routebox] (G) at (0,-6.72) {log-volume bound};
+
+  \draw[route] (A) -- (B);
+  \draw[route] (B) -- (C);
+  \draw[route] (C) -- (D);
+  \draw[route] (D) -- (E);
+  \draw[route] (E) -- (F);
+  \draw[route] (F) -- (G);
+  \draw[route,densely dashed]
+    (G.east) .. controls +(2.0,0) and +(2.0,0) ..
+    node[right,font=\scriptsize,align=center] {returns as\ a bound}
+    (A.east);
 \end{tikzpicture}
 \end{center}
 

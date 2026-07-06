@@ -137,15 +137,21 @@ It decreases the quadratic energy, but may be slow when \(\kappa(A)\) is large.
 \caption{Linear systems can be solved by factorization, iteration, or minimization.}
 \end{figure}
 
-\section{Checklist}
-\[
-\begin{array}{c|c}
-\text{Gauss} & \text{triangularize}\\
-\text{pivoting} & \text{avoid small pivots}\\
-\text{Cholesky} & \text{positive definite}\\
-\text{chasing} & \text{tridiagonal}\\
-\text{iteration} & \rho(B)<1\\
-\text{SOR} & 0<\alpha<2\text{ for SPD}\\
-\text{steepest descent} & \text{quadratic minimization}
-\end{array}
-\]
+\section{How the linear-system method is selected}
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{@{}lYY@{}}
+\toprule
+Method & Structure used & Warning\\
+\midrule
+Gaussian elimination & general dense system & watch pivot size\\
+Partial pivoting & row exchange freedom & controls unstable pivots\\
+Cholesky & Hermitian positive definite \(A\) & fails without positivity\\
+Chasing method & tridiagonal sparsity & do not destroy the band structure\\
+Jacobi/Gauss--Seidel & \(x^{(k+1)}=Bx^{(k)}+c\) & need \(\rho(B)<1\)\\
+SOR & relaxed Gauss--Seidel & \(0<\alpha<2\) for SPD convergence\\
+Steepest descent & \(\min \frac12x^TAx-b^Tx\) & zigzags when \(\kappa(A)\) is large\\
+\bottomrule
+\end{tabularx}
+\end{center}
+Direct methods spend work to factor the matrix and then solve triangular systems; they are preferred when the factorization is affordable or reused for many right-hand sides.  Iterative methods are chosen when the matrix is large or sparse, but their convergence is a spectral question about the iteration matrix.  The optimization viewpoint is available for symmetric positive definite systems because solving \(Ax=b\) is equivalent to minimizing a quadratic.  Thus the method map at the end of the note is not a menu of names: it asks what structure the matrix has and which failure mode is most dangerous.

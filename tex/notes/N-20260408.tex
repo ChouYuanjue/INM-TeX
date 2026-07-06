@@ -182,6 +182,12 @@ means that \(\Omega\) is being decomposed into one-dimensional fibres parallel t
 
 This language sounds advanced, but it is exactly what the pictures are doing.  A good diagram shows which family of slices has the simplest geometry.
 
-\section{What should remain}
+\section{Reconstructing the solid before integrating}
 
-Spatial integration is geometric bookkeeping.  The same solid can be sliced in different directions, and each order of integration is a different description of the same set.  The safest method is always: reconstruct the solid, choose the projection, write bounds, and only then compute.
+For the problems in this note, the integral sign is less important than the solid it describes.  An order such as
+\[
+  dz\,dy\,dx
+\]
+means that vertical line fibres are being placed over a region in the \(xy\)-plane.  Changing the order means choosing a different family of fibres, so the projection may change and the projected region may need to be split.
+
+A reliable setup has four checks.  First draw or describe the solid independently of the given bounds.  Second choose the projection plane whose shadow has the simplest boundary.  Third write the inner bounds as the entrance and exit points of a fibre through the solid.  Fourth check whether the shadow changes formula across the projection; if it does, split the integral.  The layer-cake and Cavalieri interpretations are useful because they keep the same discipline: volume is assembled from slices, and each slice must correspond to an actual cross-section of the solid.

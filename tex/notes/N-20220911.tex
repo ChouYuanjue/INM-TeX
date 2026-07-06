@@ -174,11 +174,34 @@ For fixed \(\mu\), this is a line through the point \((0,3)\).  The range of \(\
 \[
   |x|+|y|\le1.
 \]
-The boundary slopes give
+
+\begin{definition}[Pencil of lines]
+A pencil of lines through a fixed point \(P\) is the family of all lines passing through \(P\).  Choosing a slope, or another one-dimensional parameter, gives a coordinate on most of this pencil.
+\end{definition}
+
+Here the fixed point is \(P=(0,3)\).  The parameter \(\mu\) is not a random fraction; it is a coordinate on the pencil of lines through \(P\).  The range problem asks:
+\[
+  \text{which lines in this pencil meet the diamond?}
+\]
+
+Because the diamond is convex and \(P\) lies outside it, the extreme values of \(\mu\) occur at the two supporting lines from \(P\) to the diamond.  These supporting lines touch the diamond at its upper-left and upper-right vertices:
+\[
+  (-1,0),\qquad (1,0).
+\]
+Their parameters are
+\[
+  \mu=\frac{-1}{0-3}=\frac13,
+  \qquad
+  \mu=\frac{1}{0-3}=-\frac13.
+\]
+Therefore
 \[
   \mu\in\left[-\frac13,\frac13\right].
 \]
-The note draws the diamond because the range is easier to see as a family of lines than as an algebraic fraction.
+
+\begin{remark}[Why this is not only a trick]
+The algebraic fraction becomes transparent after dualizing the problem: points \((x,y)\) in the diamond are replaced by lines through \(P=(0,3)\).  The range is an interval because the diamond is convex, and the endpoints are supporting lines.  This is a first glimpse of projective and convex dual thinking inside analytic geometry.
+\end{remark}
 
 \section{A graph-slope counting problem}
 

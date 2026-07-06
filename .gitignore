@@ -20,6 +20,7 @@
 # Local extracted text / temporary build output
 inm.txt
 build-log/
+single-pdfs/
 
 # Keep the generated book PDF in the repository
 !inm.pdf

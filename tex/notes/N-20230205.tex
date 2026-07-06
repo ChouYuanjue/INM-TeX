@@ -1,4 +1,4 @@
-\notechapter{N-20230205}{Vector Triple Product, Tensors, and Coordinate-Free Thinking}
+\notechapter{N-20230205}{Vector Triple Product, Exterior Algebra, and the Hodge Star}
 
 \section{The vector triple product}
 
@@ -27,19 +27,27 @@ It equals the signed volume of the parallelepiped spanned by \(u,v,w\).  It is a
 
 The note uses this to justify identities involving cross products and dot products.  The recurring geometric idea is that determinants measure oriented volume.
 
-\section{Tensors and coordinate changes}
+\section{From vector identities to exterior algebra}
 
-The second part turns to tensor language.  A vector has components that change when the basis changes.  Covectors change by the inverse transpose.  A tensor keeps track of how multiple vector and covector slots transform.
+This note should not try to become a general tensor-calculus note.  Its natural center is narrower and cleaner: the familiar three-dimensional vector identities are shadows of the metric, the volume form, wedge product, contraction, and the Hodge star.
 
-The page contains calculations with matrices such as
+\begin{definition}[Bivectors and the wedge product]
+For vectors \(u,v\) in a vector space \(V\), the wedge product \(u\wedge v\) is an alternating two-vector.  It records the oriented area element spanned by \(u\) and \(v\), not a third vector perpendicular to them.
+\end{definition}
+
+In a three-dimensional oriented Euclidean space, the metric and orientation identify bivectors with vectors.  This identification is the Hodge star:
 \[
-  A^{-1},\qquad A^T,\qquad A^{-T}.
+  \star:\Lambda^2 V\longrightarrow V.
 \]
-The point is that a coordinate expression is not the object itself.  The object is what remains invariant when coordinates change.
+The cross product is then
+\[
+  u\times v=\star(u\wedge v).
+\]
+Thus the cross product is not the primitive operation.  The primitive operation is the oriented area element \(u\wedge v\); the cross product appears only after choosing both a metric and an orientation.
 
-\section{Why this matters}
-
-Vector calculus formulas are often memorized in coordinates, but tensor thinking explains which formulas are intrinsic.  Dot product, cross product, determinant, and triple product are all examples of operations that have coordinate formulas but geometric meanings.
+\begin{remark}[Why dimension three is special]
+In dimension \(3\), bivectors and vectors both have dimension \(3\), so the Hodge star can identify them.  In other dimensions, \(\Lambda^2 V\) and \(V\) usually have different dimensions, and there is no ordinary vector-valued cross product with the same properties.
+\end{remark}
 
 
 \section{Levi-Civita notation}
@@ -94,24 +102,25 @@ The note's vector identities are training for coordinate-free thinking.  Coordin
 
 \section{The hidden structure}
 
-This note is a bridge from vector identities to tensorial thinking.  The vector triple product is not a trick; it is a projection formula inside a plane.  The scalar triple product is oriented volume.  Tensors generalize the idea that meaningful quantities must transform correctly under change of basis.
+The vector triple product is a projection identity; the scalar triple product is a volume form; the cross product is a Hodge-star translation of an oriented area element.  These three statements give the structural content of the note.
 
-\section{Vector triple product as projection identity}
-The identity
+\begin{proposition}[Cross product from wedge product and Hodge star]
+In an oriented Euclidean three-dimensional vector space,
 \[
-a\times(b\times c)=b(a\cdot c)-c(a\cdot b)
+  a\times b=\star(a\wedge b).
 \]
-says the result lies in the plane spanned by \(b\) and \(c\).  It is a metric identity because the dot product controls the coefficients.
-\section{Levi-Civita contraction}
-Using \(\varepsilon_{ijk}\), the identity follows from
+Consequently,
 \[
-\varepsilon_{i j k}\varepsilon_{k\ell m}=\delta_{i\ell}\delta_{jm}-\delta_{im}\delta_{j\ell}.
+  c\cdot(a\times b)=\operatorname{vol}(c,a,b),
 \]
-This is tensor contraction: two antisymmetric symbols collapse into Kronecker deltas.
-\section{Coordinate-free meaning}
-The cross product exists because three-dimensional oriented Euclidean space identifies bivectors with vectors through the Hodge star.  Without metric and orientation, the natural object is \(b\wedge c\), not \(b\times c\).
-\section{Vector identities through tensors and orientation}
-Triple product formulas are not memorized tricks.  They express projection, oriented volume, antisymmetric tensor contraction, and the special Hodge-star geometry of dimension three.
+where \(\operatorname{vol}\) is the oriented volume form.
+\end{proposition}
+
+\begin{proof}
+The Hodge star is defined so that pairing a vector \(c\) with \(\star(a\wedge b)\) gives the oriented volume of \(c,a,b\).  In the standard oriented orthonormal basis, this is exactly the usual determinant formula for \(c\cdot(a\times b)\).  Therefore \(\star(a\wedge b)\) has the same defining inner products as \(a\times b\).
+\end{proof}
+
+This is the right high-level stopping point for the present note.  General basis-change rules and tensor representations belong more naturally to the following linear-map note.
 
 \section{Levi-Civita symbol as a tensor}
 

@@ -229,16 +229,16 @@ has no real points.  Over \(\mathbb C\), it has many points.  This is why algebr
 
 Real drawings are valuable, but they can hide complex points.  Bezout's theorem counts in the algebraic world where equations have all their roots.
 
-\section{Takeaway}
+\section{How to read a plane curve from its equation}
 
-Plane curves are the first place where the following translations become tangible:
+For the examples in this note, the useful dictionary is concrete:
 \[
 \begin{array}{c|c}
-\text{equation} & \text{curve}\\
-\text{factorization} & \text{decomposition}\\
-\text{coordinate ring} & \text{functions}\\
-\text{vanishing derivatives} & \text{singularity}\\
-\text{homogenization} & \text{points at infinity}
+\text{equation} & \text{zero set being studied}\\
+\text{factorization} & \text{decomposition into components}\\
+\text{coordinate ring} & \text{polynomial functions restricted to the curve}\\
+\text{vanishing of }F_x,F_y & \text{possible singular point}\\
+\text{homogenization} & \text{points added on the line at infinity}
 \end{array}
 \]
-This is why a curve is more than its graph. It is a geometric object with an algebraic memory.
+Thus a quick analysis of a plane curve should not stop after drawing its real graph.  One first factors the polynomial if possible, then solves \(F=F_x=F_y=0\) to find singularities, and finally homogenizes if an intersection count looks wrong in the affine plane.  The line--conic example shows why this last step matters: an intersection can disappear to infinity, and over \(\mathbb R\) it can also be hidden by the absence of real points.  Bezout's theorem becomes reliable only after the curve is viewed projectively and, when necessary, over an algebraically closed field.

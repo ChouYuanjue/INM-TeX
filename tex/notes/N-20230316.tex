@@ -162,14 +162,12 @@ Meir--Keeler's theorem weakens the fixed contraction constant.  Instead of requi
 
 \section{Source repair: Brouwer and Schauder}
 
-Brouwer's theorem says that a continuous map from a closed ball in finite-dimensional Euclidean space to itself has a fixed point.  It gives existence but not uniqueness, and it does not give the Banach iteration estimate.
+Brouwer's theorem says that a continuous map from a closed ball in finite-dimensional Euclidean space to itself has a fixed point.  It gives existence but not uniqueness, and it does not give the Banach iteration estimate.  For example, a rotation of a disk or a map that folds a ball into itself may have fixed points for topological reasons even though no distance is uniformly decreased.
 
-Schauder's theorem is an infinite-dimensional analogue: compact continuous maps on suitable closed convex sets have fixed points.  This is important in differential and integral equations, where solutions are often obtained as fixed points of compact operators.
+Schauder's theorem is the infinite-dimensional version most relevant to analysis: a compact continuous map on a closed convex bounded subset of a Banach space has a fixed point under the usual hypotheses.  In applications to integral and differential equations, the compactness often comes from smoothing or compact embedding: one first rewrites the equation as \(u=T(u)\), then proves that \(T\) maps a convex set into itself and that the image is relatively compact.
 
-The contrast is useful:
+Thus the final comparison is not just a slogan about ``existence''.  In Banach's theorem one proves
 \[
-  \text{Banach: contraction }\Rightarrow\text{ unique fixed point and iteration},
+  d(x_{n+1},x_n)\le q^n d(x_1,x_0),
 \]
-\[
-  \text{Brouwer/Schauder: compactness and convexity }\Rightarrow\text{ existence only}.
-\]
+so the iterates themselves locate the unique fixed point and give an error estimate.  In Brouwer--Schauder arguments the proof usually supplies no canonical iteration and no uniqueness: two different solutions may exist, and an approximating sequence needs an independent compactness or degree argument.  When reading a fixed-point theorem later, the first diagnostic question should therefore be whether the hypothesis is metric contraction, compactness/convexity, or a mixture such as Krasnoselskii's decomposition \(T=A+B\).

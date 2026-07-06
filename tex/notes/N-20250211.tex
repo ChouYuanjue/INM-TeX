@@ -313,34 +313,39 @@ The transformation-centered view naturally leads to modern geometry:
   \item category theory abstracts the entire pattern by treating structure-preserving maps as primary.
 \end{enumerate}
 
-\section{Erlangen viewpoint}
+\section{How to choose the right geometry}
 
-The Erlangen program studies geometry through transformation groups.  Euclidean geometry preserves distances and angles, affine geometry preserves lines and ratios on parallel directions, and projective geometry preserves incidence and cross-ratio.
+The Erlangen viewpoint becomes useful only when it tells us which tools are allowed.  For conic problems, a practical guide is:
 
-A problem about conics should first ask: which transformation group is natural here?
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{@{}lYY@{}}
+\toprule
+Question being asked & Natural geometry & Reason\\
+\midrule
+length, angle, focus, eccentricity & Euclidean/similarity & metric data is essential\\
+midpoints, parallelism, area ratios & affine & affine maps preserve barycentric structure\\
+incidence, tangency, conic equivalence & projective & the line at infinity may move\\
+cross-ratio or four points on a line & projective & cross-ratio is projectively invariant\\
+angle with generalized circles & conformal/inversive & inversion preserves angles and generalized circles\\
+\bottomrule
+\end{tabularx}
+\end{center}
 
-\section{Conics as quadratic forms}
+\begin{remark}[A common mistake]
+Saying that two conics are projectively equivalent does not mean they are the same in Euclidean or affine geometry.  A parabola and a circle may be projectively equivalent, but the projective map can move the line at infinity.  Once that happens, affine notions such as parallelism and the distinction between ellipse/parabola/hyperbola need not be preserved.
+\end{remark}
 
-In homogeneous coordinates, a conic is
+\section{Using the transformation group in a conic problem}
+
+A conic in homogeneous coordinates is
 \[
   X^TAX=0.
 \]
-A projective change of coordinates sends \(A\) to a congruent matrix.  Tangents and dual conics are then expressed by the bilinear form associated with \(A\).
-
-This explains why matrix form is not just computational convenience; it is the coordinate expression of projective geometry.
-
-\section{Cross-ratio and projective invariance}
-
-The cross-ratio
+If the problem asks only for incidence or tangency, one may use a projective change of coordinates; algebraically this replaces \(A\) by a congruent matrix \(P^TAP\).  The tangent at a point \(X\) is read from the bilinear form as
 \[
-  (a,b;c,d)=\frac{(c-a)(d-b)}{(c-b)(d-a)}
+  X^TAY=0,
 \]
-is invariant under projective transformations of the line.  It is the fundamental numerical invariant of four collinear points.
+so the same matrix controls the conic, its tangent lines, and the pole--polar correspondence.
 
-\section{Inversion and conformal geometry}
-
-Circle inversion preserves generalized circles and angles, but not distances.  It belongs naturally to conformal geometry, where angle is the invariant and length may change.
-
-\section{Geometry classified by transformation invariants}
-
-Transformations of conics are best understood by invariants: Euclidean metric data, affine ratios, projective incidence/cross-ratio, duality, and conformal angle preservation under inversion.
+The restrictions become important when the question contains metric words.  A projective map may send a circle to a parabola because it can move the line at infinity, so it does not preserve Euclidean length, angle, focus, or eccentricity.  An affine map keeps parallelism and ratios on parallel lines but may change angles.  Inversion and conformal maps preserve angles and generalized circles, but not distances.  Thus in an actual problem the first step is to mark which data must survive: cross-ratio and incidence suggest projective coordinates; parallelism suggests affine coordinates; angles with circles suggest inversive geometry; lengths force a Euclidean or similarity argument.

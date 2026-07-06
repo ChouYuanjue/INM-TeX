@@ -180,8 +180,51 @@ This note links computational linear algebra with structural thinking.  Row redu
 
 \section{Vectors as elements of a linear structure}
 A vector is not essentially an arrow; it is an element of a vector space.  Coordinates appear only after choosing a basis.  The same vector has different coordinate columns in different bases.
-\section{The minus-one trick as affine shift}
-Adding a coordinate equal to \(-1\) or \(1\) often turns affine expressions into linear ones.  This is the homogeneous-coordinate idea: translations become matrix operations in one higher dimension.
+\section{The minus-one trick as a kernel graph}
+
+The phrase ``minus-one trick'' should be understood carefully.  In this note it is not primarily a homogeneous-coordinate trick and it is not an affine shift.  It is a compact way of reading the kernel of a row-reduced homogeneous system.
+
+\begin{proposition}[Kernel graph form of an RREF system]
+After possibly reordering variables, suppose a homogeneous system has row-reduced matrix
+\[
+  \begin{bmatrix} I_r&A\end{bmatrix}.
+\]
+Write the unknown vector as
+\[
+  x=(x_p,x_f),
+\]
+where \(x_p\in k^r\) are pivot variables and \(x_f\in k^{n-r}\) are free variables.  Then the solution space is
+\[
+  \ker\begin{bmatrix} I_r&A\end{bmatrix}
+  =
+  \left\{
+  \begin{pmatrix}-Au\\ u\end{pmatrix}
+  :u\in k^{n-r}
+  \right\}.
+\]
+Thus the kernel is the graph of the linear map
+\[
+  u\longmapsto -Au.
+\]
+\end{proposition}
+
+\begin{proof}
+The equation is
+\[
+  x_p+A x_f=0.
+\]
+Hence \(x_p=-A x_f\).  If we write \(u=x_f\), every solution has the displayed form, and every displayed vector clearly satisfies the equation.
+\end{proof}
+
+The inserted \(-1\) rows in the practical trick are a bookkeeping device for the free variables.  Choosing \(u=e_j\), the \(j\)-th standard basis vector of the free-variable space, gives one kernel basis vector:
+\[
+  \begin{pmatrix}-Ae_j\\ e_j\end{pmatrix}.
+\]
+So the trick is best read as a way of writing the graph basis of a kernel.
+
+\begin{remark}[Do not confuse two uses of extra coordinates]
+Homogeneous coordinates do turn affine transformations into linear transformations one dimension higher.  That is a real and useful idea.  But the minus-one trick in this row-reduction context is different: it does not linearize an affine map; it packages the free-variable choices in a homogeneous linear system.
+\end{remark}
 \section{Kernel-image factorization}
 For a linear map \(T:V\to W\), the kernel records lost directions and the image records reachable directions.  Rank-nullity says
 \[
