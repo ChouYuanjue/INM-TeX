@@ -1,204 +1,480 @@
-\notechapter{N-20220412}{Linear Algebra Continued: Indices, Rank, Transpose, Hermitian Conjugate, and Trace}
+\notechapter{N-20220412}{Indices, Dual Maps, Adjoints, Trace, and Singular Values}
 
-\section{Unit vectors and Kronecker delta}
+\section{Indices carry type information before they abbreviate sums}
 
-This note follows the previous linear algebra material and collects notation that will be useful later.
-
-\begin{definition}
-A unit vector is a vector of length \(1\).  I write such a vector as \(\mathbf v\) when the direction matters more than its magnitude.
-\end{definition}
-
-\begin{definition}[Kronecker delta]
-The Kronecker delta is
+Let \(V\) have basis \(e_1,\ldots,e_n\), with dual basis \(e^1,\ldots,e^n\).  The Kronecker delta is
 \[
-  \delta_{ij}=\begin{cases}
-  1,&i=j,\\
-  0,&i\neq j.
+  \delta_i^{\ j}
+  =
+  \begin{cases}
+    1,&i=j,\\
+    0,&i\ne j.
   \end{cases}
 \]
-Thus the matrix \((\delta_{ij})\) is the identity matrix:
+It is the coordinate representation of the identity map:
 \[
-  (\delta_{ij})=
-  \begin{pmatrix}
-  1&0&0\\
-  0&1&0\\
-  0&0&1
-  \end{pmatrix}.
+  I(e_j)=e_i\delta_i^{\ j}=e_j.
 \]
-\end{definition}
-
-\section{Einstein summation convention}
-
-\begin{definition}
-Einstein summation convention says that when an index is repeated exactly twice in a term, summation over that index is understood:
+The position of an index records which kind of slot it occupies.  A vector has components \(x^j\), a covector has components \(\alpha_i\), and contraction pairs one of each type:
 \[
-  x_iy_i=\sum_i x_iy_i.
+  \alpha(x)=\alpha_i x^i.
 \]
-A repeated index is called a dummy index, and its name does not matter:
+
+Einstein convention suppresses the summation sign when an index occurs once upstairs and once downstairs:
 \[
-  x_iy_i=x_jy_j=x_ky_k.
+  \alpha_i x^i
+  =\sum_i\alpha_i x^i.
 \]
-\end{definition}
-
-The basic rules are:
-\begin{enumerate}[(i)]
-  \item an index appearing once is a free index;
-  \item an index appearing twice is summed over;
-  \item an index appearing three or more times in one term is not allowed.
-\end{enumerate}
-
-\section{Rank}
-
-\begin{definition}
-The column rank of a matrix is the maximal number of linearly independent columns.  The row rank is the maximal number of linearly independent rows.  These two numbers are equal, and their common value is the rank of the matrix.
-\end{definition}
-
-Gaussian elimination is the standard way to compute rank: reduce the matrix to row echelon form and count the nonzero rows.
-
-
-\section{Transpose and Hermitian conjugate}
-
-\begin{definition}
-If \(A\) is an \(m\times n\) matrix, its transpose \(A^T\) is the \(n\times m\) matrix defined by
+An index that survives once in every term is free and determines the output type.  A repeated index is dummy and may be renamed.  Expressions such as
 \[
-  (A^T)_{ij}=A_{ji}.
+  A_i^{\ j}x^i
 \]
-\end{definition}
+are ill typed if \(i\) is intended to be the output index, because it occurs twice while \(j\) remains unmatched.  Index notation is valuable precisely because many algebraic mistakes become visible as type errors.
 
-\begin{definition}
-The Hermitian conjugate of \(A\) is
+\section{Matrix multiplication is contraction of an output with an input}
+
+Let
 \[
-  A^*=(A^T)^{\overline{\phantom{x}}}=\overline{A}^{\,T}.
+  B:U\to V,
+  \qquad
+  A:V\to W.
 \]
-It satisfies
+Choose bases and write
 \[
-  (AB)^*=B^*A^*.
+  B(e_k)=B_j^{\ k}v_j,
+  \qquad
+  A(v_j)=A_i^{\ j}w_i.
 \]
-Indeed,
+Then
 \[
-  (AB)^*=\overline{(AB)}^T=(\overline A\,\overline B)^T=\overline B^T\overline A^T=B^*A^*.
+\begin{aligned}
+  (A\circ B)(e_k)
+  &=B_j^{\ k}A(v_j)\\
+  &=A_i^{\ j}B_j^{\ k}w_i.
+\end{aligned}
 \]
-\end{definition}
-
-\begin{definition}
-A matrix is symmetric if
+Thus
 \[
-  A^T=A.
+  (AB)_i^{\ k}=A_i^{\ j}B_j^{\ k}.
 \]
-A matrix is Hermitian if
+The repeated index \(j\) is the intermediate vector-space direction that is produced by \(B\) and consumed by \(A\).
+
+The identity tensor acts neutrally because
 \[
-  A^*=A.
+  A_i^{\ j}\delta_j^{\ k}=A_i^{\ k},
+  \qquad
+  \delta_i^{\ j}A_j^{\ k}=A_i^{\ k}.
 \]
-A matrix is skew-Hermitian if
+Trace is another contraction:
 \[
-  A^*=-A.
+  \operatorname{tr}A=A_i^{\ i}.
 \]
-In a skew-Hermitian matrix, the diagonal entries are purely imaginary.
-\end{definition}
+Matrix multiplication and trace are therefore not unrelated recipes; both pair an output index with a compatible input index.
 
+\section{A change of basis transforms both indices and leaves contractions unchanged}
 
-\section{Trace}
-
-\begin{definition}
-The trace of an \(n\times n\) matrix \(A\) is the sum of its diagonal entries:
+Let \(P\) be the change-of-basis matrix, so coordinate columns satisfy
 \[
-  \operatorname{tr}(A)=\sum_i A_{ii}.
+  [x]_{\mathrm{old}}=P[x]_{\mathrm{new}}.
 \]
-In Einstein notation this is simply
+An endomorphism matrix transforms by similarity:
 \[
-  \operatorname{tr}(A)=A_{ii}.
+  A'=P^{-1}AP.
 \]
-\end{definition}
-
-
-\section{A more structural view}
-
-The common theme is index notation.  The Kronecker delta represents the identity, repeated indices encode summation, and matrix operations such as transpose, adjoint, and trace become compact when written with indices.
-
-\section{Transpose and dual maps}
-
-If $A:V\to W$ is a linear map, the dual map is
+In indices,
 \[
-  A^*:W^*\to V^*,\qquad A^*(\varphi)=\varphi\circ A.
+  A'_i{}^{j}
+  =(P^{-1})_i{}^{r}
+   A_r{}^{s}P_s{}^{j}.
 \]
-In bases, this dual map is represented by the transpose matrix.  This explains why transposition reverses order:
+Contracting the free indices gives
+\[
+\begin{aligned}
+  A'_i{}^{i}
+  &=(P^{-1})_i{}^{r}
+    A_r{}^{s}P_s{}^{i}\\
+  &=A_r{}^{s}
+    P_s{}^{i}(P^{-1})_i{}^{r}\\
+  &=A_r{}^{s}\delta_s{}^{r}\\
+  &=A_r{}^{r}.
+\end{aligned}
+\]
+Hence
+\[
+  \operatorname{tr}(P^{-1}AP)
+  =\operatorname{tr}A.
+\]
+The diagonal sum is invariant because it is a complete contraction: the basis-change matrix and its inverse cancel along the closed index loop.
+
+By contrast, an individual diagonal entry \(A_i{}^i\) with \(i\) fixed is not invariant.  Only the sum over the repeated index has intrinsic meaning.
+
+\section{Transpose is the matrix of the dual map}
+
+Let
+\[
+  A:V\to W
+\]
+and define the dual map
+\[
+  A^\vee:W^*\to V^*,
+  \qquad
+  A^\vee(\varphi)=\varphi\circ A.
+\]
+Choose bases \(e_j\) of \(V\) and \(f_i\) of \(W\), with
+\[
+  A(e_j)=\sum_i A_{ij}f_i.
+\]
+For the dual basis vector \(f^i\),
+\[
+\begin{aligned}
+  A^\vee(f^i)(e_j)
+  &=f^i(Ae_j)\\
+  &=A_{ij}.
+\end{aligned}
+\]
+Therefore
+\[
+  A^\vee(f^i)=\sum_jA_{ij}e^j.
+\]
+The matrix of \(A^\vee\) has entry \(A_{ij}\) in row \(j\), column \(i\), so it is
+\[
+  [A^\vee]=A^T.
+\]
+
+The reversal law now follows without entry manipulation.  For
+\[
+  U\xrightarrow{B}V\xrightarrow{A}W,
+\]
+one has
+\[
+  (A\circ B)^\vee
+  =B^\vee\circ A^\vee.
+\]
+In matrices,
 \[
   (AB)^T=B^TA^T.
 \]
-Composition of maps reverses when pulled back to functionals.
+Transposition reverses order because a functional is pulled backward through a composite map.
 
-The elementary transpose is therefore not just flipping a matrix; it is the coordinate form of passing from vectors to covectors.
+\section{An adjoint is a dual map returned to vectors by an inner product}
 
-\section{Hermitian adjoints in Hilbert spaces}
-
-In an inner product space, the adjoint $A^*$ is defined by
+The transpose needs only vector spaces and duality.  An adjoint additionally needs inner products.  Let
 \[
-  \langle Ax,y\rangle=\langle x,A^*y\rangle.
+  A:V\to W
 \]
-Over $\mathbb C$, its matrix is the conjugate transpose.  A Hermitian matrix satisfies $A=A^*$ and has real eigenvalues.  A unitary matrix satisfies $A^*A=I$ and preserves the inner product.
-
-The elementary real symmetric matrix is thus the real finite-dimensional case of self-adjoint operators.  This becomes central in quantum mechanics, Fourier analysis, and spectral theory.
-
-\section{Trace as invariant}
-
-The trace is the sum of diagonal entries:
+be a linear map between finite-dimensional complex inner-product spaces.  The adjoint
 \[
-  \operatorname{tr}A=\sum_i a_{ii}.
+  A^\dagger:W\to V
 \]
-It is invariant under similarity because
+is characterized by
 \[
-  \operatorname{tr}(P^{-1}AP)=\operatorname{tr}(APP^{-1})=\operatorname{tr}A.
+  \langle Ax,y\rangle_W
+  =\langle x,A^\dagger y\rangle_V.
 \]
-The cyclic rule
+Riesz representation identifies each covector with a unique vector, so the adjoint is the composite
 \[
-  \operatorname{tr}(AB)=\operatorname{tr}(BA)
+  W\xrightarrow{\text{Riesz}}W^*
+  \xrightarrow{A^\vee}V^*
+  \xrightarrow{\text{Riesz}^{-1}}V.
 \]
-is the key identity.
 
-In category-theoretic language, trace abstracts the idea of closing an input-output wire.  In finite-dimensional vector spaces, that abstract trace reduces to the familiar matrix trace.  This is why traces appear in representation theory, statistical mechanics, and index theory.
-
-\section{Schatten norms}
-
-Rank counts nonzero singular values, while trace and determinant combine eigenvalues.  A unified family of matrix norms uses singular values:
+In orthonormal bases,
 \[
-  \|A\|_{S_p}=\left(\sum_i \sigma_i(A)^p\right)^{1/p}.
+  [A^\dagger]=\overline A^{\,T}=A^*.
 \]
-For $p=2$ this is the Frobenius norm; for $p=1$ it is the nuclear norm.  These norms are finite-dimensional models of operator ideals.
-
-Thus rank, trace, Hermitian adjoint, and transpose are all pieces of a larger operator-theoretic vocabulary.
-
-\section{Indices as tensor bookkeeping}
-
-The Kronecker delta \(\delta_i^j\) is the coordinate symbol for the identity map.  Einstein summation records contractions, such as
+The operations should be kept distinct:
 \[
-  y_i=A_i^{\ j}x_j.
+\begin{array}{c|c}
+\text{operation}&\text{matrix}\\ \hline
+\text{transpose}&A^T\\
+\text{entrywise conjugate}&\overline A\\
+\text{conjugate transpose}&\overline A^{\,T}\\
+\text{adjoint in orthonormal bases}&A^*.
+\end{array}
 \]
-The repeated index is summed because a linear map consumes one coordinate direction and produces another.
+Over \(\mathbb R\), conjugation disappears and the adjoint matrix in orthonormal bases is the transpose.
 
-\section{Transpose as pullback on dual spaces}
+\section{In nonorthonormal coordinates the Gram matrices enter the adjoint}
 
-For \(A:V\to W\), the dual map is
+Suppose the chosen bases have Gram matrices
 \[
-  A^*:W^*\to V^*,\qquad A^*(\varphi)=\varphi\circ A.
+  G_V=(\langle e_i,e_j\rangle_V),
+  \qquad
+  G_W=(\langle f_i,f_j\rangle_W).
 \]
-In bases, this is represented by the transpose.  Hermitian conjugate adds complex conjugation because complex inner products are conjugate-linear in one argument.
-
-\section{Trace as contraction}
-
-The trace
+For coordinate columns,
 \[
-  \operatorname{tr}(A)=A_i^{\ i}
+  \langle x,z\rangle_V=x^*G_Vz,
+  \qquad
+  \langle y,w\rangle_W=y^*G_Ww.
 \]
-is the contraction of one upper and one lower index.  It is invariant under change of basis because it is not really a coordinate sum; it is the categorical trace of an endomorphism in finite-dimensional vector spaces.
-
-\section{Rank and factorization}
-
-Rank is the dimension of the image.  A rank-\(r\) map factors through an \(r\)-dimensional space:
+The defining identity for the adjoint becomes
 \[
-  V\twoheadrightarrow \operatorname{im}A\hookrightarrow W.
+  x^*A^*G_Wy
+  =x^*G_V[A^\dagger]y
 \]
-This explains why rank measures the true number of independent output directions.
+for all \(x,y\).  Hence
+\[
+  \boxed{
+  [A^\dagger]
+  =G_V^{-1}A^*G_W.}
+\]
+The formula \(A^\dagger=A^*\) is therefore a feature of orthonormal coordinates, not the definition of adjointness.
 
-\section{Coordinate indices as intrinsic linear algebra}
+For example, on \(\mathbb R^2\) use the inner product with
+\[
+  G=
+  \begin{pmatrix}
+    1&0\\
+    0&4
+  \end{pmatrix}
+\]
+and the linear map
+\[
+  A=
+  \begin{pmatrix}
+    0&1\\
+    1&0
+  \end{pmatrix}.
+\]
+Although \(A^T=A\), its adjoint in this metric is
+\[
+\begin{aligned}
+  A^\dagger
+  &=G^{-1}A^TG\\
+  &=
+  \begin{pmatrix}
+    0&4\\
+    1/4&0
+  \end{pmatrix}.
+\end{aligned}
+\]
+The coordinate swap is not self-adjoint when the second coordinate has four times the metric weight.
 
-Indices, transpose, Hermitian conjugate, rank, and trace are coordinate shadows of intrinsic operations: duality, contraction, image factorization, and inner-product-dependent adjoints.
+\section{Rank is the dimension of the image and the size of a minimal factorization}
+
+For
+\[
+  A:V\to W,
+\]
+define
+\[
+  \operatorname{rank}A=\dim\operatorname{im}A.
+\]
+The first isomorphism theorem gives
+\[
+  V/\ker A\cong\operatorname{im}A.
+\]
+Thus rank is the dimension of the effective quotient after directions killed by \(A\) have been removed.
+
+If \(\operatorname{rank}A=r\), choose a basis of the column space and place it in a matrix
+\[
+  B\in k^{m\times r}.
+\]
+Express every column of \(A\) in that basis and collect the coordinates in
+\[
+  C\in k^{r\times n}.
+\]
+Then
+\[
+  A=BC,
+  \qquad
+  \operatorname{rank}B
+  =\operatorname{rank}C=r.
+\]
+Conversely, any factorization through an \(r\)-dimensional space has rank at most \(r\).  Hence rank is the smallest intermediate dimension through which the map can factor.
+
+This factorization also proves equality of row and column rank.  Since \(A=BC\), every row of \(A\) is a linear combination of rows of \(C\), so
+\[
+  \operatorname{row}(A)
+  \subseteq\operatorname{row}(C).
+\]
+Because \(B\) has full column rank, it has a left inverse \(L\) with
+\[
+  LB=I_r.
+\]
+Hence
+\[
+  C=LA,
+\]
+so every row of \(C\) is a linear combination of rows of \(A\).  Thus
+\[
+  \operatorname{row}(A)
+  =\operatorname{row}(C),
+\]
+and its dimension is \(r\), the same as the column rank.
+
+\section{Trace is contraction, and cyclicity is a legal index relabelling}
+
+For endomorphisms \(A,B\),
+\[
+\begin{aligned}
+  \operatorname{tr}(AB)
+  &=(AB)_i{}^i\\
+  &=A_i{}^jB_j{}^i\\
+  &=B_j{}^iA_i{}^j\\
+  &=\operatorname{tr}(BA).
+\end{aligned}
+\]
+The middle equality only renames dummy indices and commutes scalar entries.  Consequently,
+\[
+  \operatorname{tr}(P^{-1}AP)
+  =\operatorname{tr}(APP^{-1})
+  =\operatorname{tr}A.
+\]
+
+For a rank-one operator
+\[
+  A=uv^*,
+\]
+one has
+\[
+  \boxed{
+  \operatorname{tr}(uv^*)=v^*u.}
+\]
+Indeed,
+\[
+  (uv^*)_{ij}=u_i\overline{v_j},
+\]
+so
+\[
+  \operatorname{tr}(uv^*)
+  =\sum_i u_i\overline{v_i}
+  =v^*u.
+\]
+If \(u\) is a unit vector, the orthogonal projector onto its span is \(P=uu^*\), and
+\[
+  \operatorname{tr}P=1.
+\]
+More generally, an orthogonal projector has eigenvalues \(0,1\), hence
+\[
+  \operatorname{tr}P=\operatorname{rank}P.
+\]
+Trace counts the dimension of a projected subspace because it sums the projector's surviving modes.
+
+\section{The Hilbert--Schmidt inner product leads to Schatten norms}
+
+Matrices themselves form an inner-product space with
+\[
+  \langle A,B\rangle_{HS}
+  =\operatorname{tr}(A^*B).
+\]
+Its norm is the Frobenius norm:
+\[
+\begin{aligned}
+  \|A\|_F^2
+  &=\operatorname{tr}(A^*A)\\
+  &=\sum_{i,j}|a_{ij}|^2.
+\end{aligned}
+\]
+If the singular values of \(A\) are
+\[
+  \sigma_1(A),\ldots,\sigma_r(A),
+\]
+then the Schatten norms are
+\[
+  \|A\|_{S_p}
+  =
+  \left(
+  \sum_i\sigma_i(A)^p
+  \right)^{1/p},
+  \qquad1\le p<\infty,
+\]
+and
+\[
+  \|A\|_{S_\infty}=\max_i\sigma_i(A).
+\]
+The three common cases are
+\[
+  \|A\|_{S_1}=\text{nuclear norm},
+  \qquad
+  \|A\|_{S_2}=\|A\|_F,
+  \qquad
+  \|A\|_{S_\infty}=\|A\|_{op}.
+\]
+
+For
+\[
+  A=
+  \begin{pmatrix}
+    0&3\\
+    4&0
+  \end{pmatrix},
+\]
+one has
+\[
+  A^*A=
+  \begin{pmatrix}
+    16&0\\
+    0&9
+  \end{pmatrix},
+\]
+so the singular values are \(4,3\).  Therefore
+\[
+  \|A\|_{S_1}=7,
+  \qquad
+  \|A\|_{S_2}=5,
+  \qquad
+  \|A\|_{S_\infty}=4.
+\]
+Rank counts how many singular values are nonzero; Schatten norms measure their size with different emphases.
+
+The Hilbert--Schmidt product also gives the estimate
+\[
+  |\operatorname{tr}(A^*B)|
+  \le\|A\|_F\|B\|_F,
+\]
+which is ordinary Cauchy--Schwarz applied in the matrix space.
+
+\section{Categorical trace closes an output wire into an input wire}
+
+Let \(V\) be finite dimensional with basis \(e_i\) and dual basis \(e^i\).  The coevaluation map is
+\[
+  \operatorname{coev}:k\to V\otimes V^*,
+  \qquad
+  1\longmapsto\sum_i e_i\otimes e^i.
+\]
+The evaluation map is
+\[
+  \operatorname{ev}:V^*\otimes V\to k,
+  \qquad
+  \varphi\otimes v\longmapsto\varphi(v).
+\]
+For an endomorphism \(A:V\to V\), compose
+\[
+  k
+  \xrightarrow{\operatorname{coev}}
+  V\otimes V^*
+  \xrightarrow{A\otimes I}
+  V\otimes V^*
+  \xrightarrow{\tau}
+  V^*\otimes V
+  \xrightarrow{\operatorname{ev}}
+  k,
+\]
+where \(\tau(v\otimes\varphi)=\varphi\otimes v\).  Acting on \(1\), the composite gives
+\[
+\begin{aligned}
+  1
+  &\longmapsto
+  \sum_i e_i\otimes e^i\\
+  &\longmapsto
+  \sum_i Ae_i\otimes e^i\\
+  &\longmapsto
+  \sum_i e^i\otimes Ae_i\\
+  &\longmapsto
+  \sum_i e^i(Ae_i).
+\end{aligned}
+\]
+If
+\[
+  Ae_i=A_j{}^i e_j,
+\]
+then
+\[
+  \sum_i e^i(Ae_i)
+  =\sum_iA_i{}^i
+  =\operatorname{tr}A.
+\]
+
+The abstract operation of closing an output back into an input reproduces the ordinary matrix trace exactly.  Basis invariance is built into the evaluation--coevaluation pairing, while the coordinate calculation reveals the same contraction \(A_i{}^i\) encountered at the beginning of the chapter.

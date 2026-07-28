@@ -1,294 +1,685 @@
-\notechapter{N-20221031}{Divisibility, Euclidean Algorithm, Greatest Common Divisor, Bezout, and Congruences}
+\notechapter{N-20221031}{Congruences and Integer Linear Algebra: From Residue Classes to Smith Normal Form}
 
-\section{Divisibility}
+\section{A remainder is a coordinate on a quotient}
 
-The first page begins with divisibility.  For integers $a,b$, with $a\ne0$, we write
+The division algorithm assigns to every integer \(a\) a unique remainder
 \[
-  a\mid b
+  r\in\{0,1,\ldots,n-1\}
 \]
-if there exists $k\in\mathbb Z$ such that
+when divided by a positive integer \(n\).  Two integers have the same remainder exactly when their difference is divisible by \(n\):
 \[
-  b=ak.
+  a\equiv b\pmod n
+  \quad\Longleftrightarrow\quad
+  n\mid(a-b).
 \]
-If no such integer exists, we write $a\nmid b$.
 
-The basic properties recorded in the note are:
+Congruence is therefore not approximate equality.  It is equality in the quotient ring
+\[
+  \mathbb Z/n\mathbb Z.
+\]
+The remainder is a chosen representative, or normal form, for the residue class.
+
+Addition and multiplication descend to the quotient because replacing an integer by a congruent one does not change the resulting class:
+\[
+  a\equiv a',
+  \qquad
+  b\equiv b'\pmod n
+\]
+implies
+\[
+  a+b\equiv a'+b',
+  \qquad
+  ab\equiv a'b'\pmod n.
+\]
+The quotient remembers arithmetic while forgetting multiples of \(n\).
+
+This chapter begins where the preceding Euclidean-arithmetic note ended.  Bézout identities and modular inverses will be used as tools, but the main questions are now different: which residue classes can a linear map reach, how do several moduli fit together, and what replaces row reduction when equations must be solved over the integers rather than over a field?
+
+\section{A linear congruence is an image problem}
+
+Consider
+\[
+  ax\equiv b\pmod n.
+\]
+Multiplication by \(a\) defines a group homomorphism
+\[
+  m_a:\mathbb Z/n\mathbb Z
+  \longrightarrow
+  \mathbb Z/n\mathbb Z,
+  \qquad
+  [x]\longmapsto[ax].
+\]
+The congruence asks whether \([b]\) lies in the image of this map.
+
+Let
+\[
+  d=\gcd(a,n).
+\]
+Every value \(ax\) is divisible by \(d\) modulo \(n\), so solvability requires
+\[
+  d\mid b.
+\]
+Conversely, suppose \(b=db'\), and write
+\[
+  a=da',
+  \qquad
+  n=dn'.
+\]
+Then \(\gcd(a',n')=1\), so \(a'\) has an inverse modulo \(n'\).  The reduced congruence
+\[
+  a'x\equiv b'\pmod{n'}
+\]
+has a solution, and hence so does the original one.
+
+Thus
+\[
+  \boxed{
+  ax\equiv b\pmod n
+  \text{ is solvable }
+  \Longleftrightarrow
+  \gcd(a,n)\mid b.}
+\]
+
+The kernel explains the number of solutions.  We have
+\[
+  ax\equiv0\pmod n
+\]
+exactly when
+\[
+  n'\mid x.
+\]
+Modulo \(n=dn'\), this gives the \(d\) classes
+\[
+  0,n',2n',\ldots,(d-1)n'.
+\]
+Therefore
+\[
+  |\ker m_a|=d.
+\]
+By the finite-group version of rank--nullity,
+\[
+  |\operatorname{im}m_a|=\frac nd.
+\]
+Whenever \([b]\) lies in the image, its fibre is a coset of the kernel and contains exactly \(d\) solutions modulo \(n\).
+
+This is the structural form of the elementary theorem: divisibility decides existence, and the kernel decides multiplicity.
+
+\section{A complete congruence calculation}
+
+Solve
+\[
+  14x\equiv8\pmod{30}.
+\]
+Since
+\[
+  \gcd(14,30)=2
+\]
+and \(2\mid8\), solutions exist.  Divide the entire congruence and modulus by \(2\):
+\[
+  7x\equiv4\pmod{15}.
+\]
+The inverse of \(7\) modulo \(15\) is \(13\), because
+\[
+  7\cdot13=91\equiv1\pmod{15}.
+\]
+Therefore
+\[
+  x\equiv13\cdot4
+  \equiv52
+  \equiv7\pmod{15}.
+\]
+
+This describes one class modulo \(15\), but the original modulus was \(30\).  Lifting back gives
+\[
+  x\equiv7
+  \qquad\text{or}\qquad
+  x\equiv22\pmod{30}.
+\]
+There are exactly two solutions, as predicted by
+\[
+  d=\gcd(14,30)=2.
+\]
+A direct check gives
+\[
+  14\cdot7=98\equiv8\pmod{30},
+\]
+\[
+  14\cdot22=308\equiv8\pmod{30}.
+\]
+
+The calculation illustrates the general procedure:
+
 \begin{enumerate}[(i)]
-  \item $a\mid a$ and $a\mid0$;
-  \item if $a\mid b$ and $b\mid a$, then $a=\pm b$;
-  \item if $a\mid b$ and $b\mid c$, then $a\mid c$;
-  \item if $a\mid b$ and $a\mid c$, then $a\mid bx+cy$ for all integers $x,y$;
-  \item if $a\mid b$, then $ac\mid bc$ for every integer $c$.
+  \item compute \(d=\gcd(a,n)\);
+  \item test whether \(d\mid b\);
+  \item divide by \(d\), producing a coefficient invertible modulo \(n/d\);
+  \item solve the reduced congruence;
+  \item lift its single class modulo \(n/d\) to \(d\) classes modulo \(n\).
 \end{enumerate}
 
-The handwritten proofs repeatedly use the definition.  For instance, if $b=am$ and $c=an$, then
-\[
-  bx+cy=a(mx+ny),
-\]
-so $a\mid bx+cy$.
+\section{The Chinese remainder theorem glues local coordinates}
 
-\section{Division algorithm}
+Suppose \(m,n\) are coprime.  The map
+\[
+  \Phi:\mathbb Z/mn\mathbb Z
+  \longrightarrow
+  \mathbb Z/m\mathbb Z
+  \times
+  \mathbb Z/n\mathbb Z,
+\]
+\[
+  [x]_{mn}\longmapsto([x]_m,[x]_n)
+\]
+is a ring homomorphism.
 
-The division algorithm says: if $a,b\in\mathbb Z$ and $b>0$, then there exist unique integers $q,r$ such that
-\[
-  a=bq+r,\qquad 0\le r<b.
-\]
-The note calls attention to uniqueness.  If
-\[
-  a=bq+r=bq'+r',\qquad 0\le r,r'<b,
-\]
-then
-\[
-  b(q-q')=r'-r.
-\]
-The right side has absolute value less than $b$, while the left side is a multiple of $b$.  Therefore $r=r'$ and then $q=q'$.
+Its kernel consists of classes divisible by both \(m\) and \(n\).  Coprimality implies that such an integer is divisible by \(mn\), so the kernel is zero.  Both rings contain \(mn\) elements, hence the injective map is also surjective.
 
-\section{Greatest common divisor and least common multiple}
-
-The greatest common divisor is written
+Therefore
 \[
-  (a,b),
-\]
-and the least common multiple is written
-\[
-  [a,b].
-\]
-The note records the identity
-\[
-  (a,b)[a,b]=|ab|.
-\]
-It also records useful gcd properties:
-\[
-  (a,1)=1,\qquad (a,0)=|a|,\qquad (a,a)=|a|,
-\]
-\[
-  (a,b)=(b,a)=(ta,tb)/|t|,
-\]
-and most importantly the Euclidean step
-\[
-  (a,b)=(a-b,b),
-\]
-or more generally
-\[
-  (a,b)=(a-qb,b).
+  \boxed{
+  \mathbb Z/mn\mathbb Z
+  \cong
+  \mathbb Z/m\mathbb Z
+  \times
+  \mathbb Z/n\mathbb Z.}
 \]
 
-The proof of the Euclidean step is inclusion both ways.  Any common divisor of $a$ and $b$ divides $a-qb$.  Conversely, any common divisor of $a-qb$ and $b$ divides $a$.
+This is the Chinese remainder theorem.  It does not merely promise a solution to simultaneous congruences; it says that arithmetic modulo a product of coprime moduli is equivalent to independent arithmetic in each factor.
 
-\section{Euclidean algorithm}
-
-Repeatedly applying
+The isomorphism can be made constructive.  Choose Bézout coefficients
 \[
-  (a,b)=(b,r),\qquad a=bq+r,
+  um+vn=1.
 \]
-produces the Euclidean algorithm.  The last nonzero remainder is the gcd.
-
-The note's red proof makes the descent explicit: the remainders strictly decrease and remain nonnegative, so the process must terminate.  This is not just an algorithm; it is a proof that the gcd can be computed by repeated division.
-
-\section{Bezout theorem}
-
-\begin{theorem}[Bezout identity]
-For integers \(a,b\), there exist integers \(x,y\) such that
+Then
 \[
-  ax+by=\gcd(a,b).
+  e_m=vn
 \]
+satisfies
+\[
+  e_m\equiv1\pmod m,
+  \qquad
+  e_m\equiv0\pmod n,
+\]
+while
+\[
+  e_n=um
+\]
+satisfies the opposite conditions.  The solution to
+\[
+  x\equiv a\pmod m,
+  \qquad
+  x\equiv b\pmod n
+\]
+is
+\[
+  x\equiv ae_m+be_n\pmod{mn}.
+\]
+The elements \(e_m,e_n\) are orthogonal idempotents:
+\[
+  e_m^2=e_m,
+  \qquad
+  e_n^2=e_n,
+  \qquad
+  e_me_n=0,
+  \qquad
+  e_m+e_n=1
+\]
+in \(\mathbb Z/mn\mathbb Z\).  They project onto the two ring factors.
+
+\section{A three-modulus reconstruction}
+
+Solve
+\[
+  x\equiv2\pmod3,
+  \qquad
+  x\equiv3\pmod5,
+  \qquad
+  x\equiv2\pmod7.
+\]
+The moduli are pairwise coprime, so there is a unique solution modulo
+\[
+  3\cdot5\cdot7=105.
+\]
+
+Set
+\[
+  N_1=35,
+  \qquad
+  N_2=21,
+  \qquad
+  N_3=15.
+\]
+We need inverses of these partial products in the corresponding moduli:
+\[
+  35\equiv2\pmod3,
+  \qquad
+  2^{-1}\equiv2\pmod3,
+\]
+\[
+  21\equiv1\pmod5,
+  \qquad
+  1^{-1}\equiv1\pmod5,
+\]
+\[
+  15\equiv1\pmod7,
+  \qquad
+  1^{-1}\equiv1\pmod7.
+\]
+Hence
+\[
+  x
+  \equiv
+  2\cdot35\cdot2
+  +3\cdot21\cdot1
+  +2\cdot15\cdot1
+  \pmod{105}.
+\]
+The right side is
+\[
+  140+63+30=233,
+\]
+so
+\[
+  \boxed{x\equiv23\pmod{105}.}
+\]
+Indeed,
+\[
+  23\equiv2\pmod3,
+  \qquad
+  23\equiv3\pmod5,
+  \qquad
+  23\equiv2\pmod7.
+\]
+
+The reconstruction is a weighted sum of local answers.  Each weight equals \(1\) in one component and \(0\) in all the others.
+
+\section{When moduli are not coprime}
+
+Consider
+\[
+  x\equiv a\pmod m,
+  \qquad
+  x\equiv b\pmod n.
+\]
+If a solution exists, then
+\[
+  a-b
+  =(a-x)+(x-b)
+\]
+is divisible by
+\[
+  d=\gcd(m,n).
+\]
+Thus a necessary condition is
+\[
+  a\equiv b\pmod d.
+\]
+It is also sufficient.  Write
+\[
+  a-b=dc,
+  \qquad
+  m=dm',
+  \qquad
+  n=dn'
+\]
+with \(\gcd(m',n')=1\).  Searching for \(x=a+mt\), the second congruence becomes
+\[
+  m't\equiv-c\pmod{n'},
+\]
+which is solvable because \(m'\) is invertible modulo \(n'\).
+
+Therefore
+\[
+  \boxed{
+  \begin{aligned}
+  x&\equiv a\pmod m,\\
+  x&\equiv b\pmod n
+  \end{aligned}
+  \text{ is solvable }
+  \Longleftrightarrow
+  a\equiv b\pmod{\gcd(m,n)}.}
+\]
+When solvable, the solution is unique modulo
+\[
+  \operatorname{lcm}(m,n).
+\]
+
+The coprime CRT is the clean product decomposition.  The general version is a compatibility-and-gluing theorem: local data must agree on the overlap measured by the gcd.
+
+\section{Integer row reduction needs a stricter notion of invertibility}
+
+Over \(\mathbb R\), Gaussian elimination allows multiplication of a row by any nonzero real number.  Over \(\mathbb Z\), this can destroy the integer lattice.  Dividing a row by \(2\), for example, is invertible over \(\mathbb Q\) but not as a map
+\[
+  \mathbb Z^m\longrightarrow\mathbb Z^m.
+\]
+
+The correct coordinate changes are unimodular matrices: integer matrices \(U\) with
+\[
+  \det U=\pm1.
+\]
+Their inverses also have integer entries.  The elementary unimodular operations are:
+
+\begin{enumerate}[(i)]
+  \item exchange two rows or two columns;
+  \item add an integer multiple of one row or column to another;
+  \item multiply a row or column by \(-1\).
+\end{enumerate}
+
+These operations change bases of the domain or codomain lattice without changing the underlying homomorphism up to integer coordinates.
+
+This is the essential difference between linear algebra over a field and linear algebra over \(\mathbb Z\).  Rank records the dimension after rational or real scalars are allowed, but it forgets divisibility information inside the lattice.
+
+For example, the maps
+\[
+  [2]:\mathbb Z\to\mathbb Z
+  \qquad\text{and}\qquad
+  [3]:\mathbb Z\to\mathbb Z
+\]
+both have rank \(1\), yet their images have indices \(2\) and \(3\), and their cokernels are
+\[
+  \mathbb Z/2\mathbb Z
+  \qquad\text{and}\qquad
+  \mathbb Z/3\mathbb Z.
+\]
+An integer normal form must remember these indices.
+
+\section{Smith normal form diagonalizes divisibility}
+
+\begin{theorem}[Smith normal form]
+For every integer matrix \(A\in\mathbb Z^{m\times n}\), there exist unimodular matrices
+\[
+  P\in GL_m(\mathbb Z),
+  \qquad
+  Q\in GL_n(\mathbb Z)
+\]
+such that
+\[
+  PAQ
+  =
+  \operatorname{diag}(d_1,\ldots,d_r,0,\ldots,0),
+\]
+where
+\[
+  d_i>0,
+  \qquad
+  d_1\mid d_2\mid\cdots\mid d_r.
+\]
+The nonzero numbers \(d_i\) are uniquely determined by \(A\).
 \end{theorem}
 
+The algorithm repeatedly uses gcd and Bézout operations on rows and columns.  A nonzero entry is moved to the upper-left corner.  Euclidean combinations reduce it until it divides every entry in its row and column.  One then clears that row and column and continues on the remaining submatrix.  If the divisibility chain fails, adjacent diagonal entries are adjusted by another Bézout step.
 
-Bezout's theorem says that if $a,b\in\mathbb Z$ are not both zero, then there exist $s,t\in\mathbb Z$ such that
+Thus Smith reduction is the matrix-sized descendant of the Euclidean algorithm.  A single gcd becomes a sequence of invariant factors.
+
+The determinantal divisors provide an intrinsic description.  Let \(\Delta_k\) be the positive gcd of all \(k\times k\) minors, with \(\Delta_0=1\).  Then
 \[
-  as+bt=(a,b).
+  d_k=\frac{\Delta_k}{\Delta_{k-1}}.
 \]
-The note proves this by induction on $a+b$ and also implicitly through the Euclidean algorithm.  When the gcd is obtained as the last nonzero remainder, one substitutes backward to express that remainder as an integer linear combination of $a$ and $b$.
-
-A key special case is:
+In particular,
 \[
-  (a,b)=1
-  \quad\Longleftrightarrow\quad
-  \exists s,t\in\mathbb Z,\ as+bt=1.
+  d_1=\gcd\{a_{ij}\},
 \]
-This is the form most often used in proofs.
-
-\section{Gauss lemma and divisibility consequences}
-
-\begin{lemma}[Gauss lemma]
-If \(p\) is prime and \(p\mid ab\), then \(p\mid a\) or \(p\mid b\).
-\end{lemma}
-
-
-The next page proves Euclid's lemma or Gauss's lemma:
+and for a full-rank square matrix,
 \[
-  (a,b)=1,\quad a\mid bc
-  \quad\Longrightarrow\quad
-  a\mid c.
+  d_1d_2\cdots d_n=|\det A|.
 \]
-Using Bezout, choose $s,t$ such that
+The invariant factors are therefore encoded in the gcds of minors.
+
+\section{A complete Smith reduction}
+
+Take
 \[
-  as+bt=1.
+  A=
+  \begin{bmatrix}
+    2&4\\
+    6&8
+  \end{bmatrix}.
 \]
-Multiplying by $c$ gives
+Apply the integer row operation
 \[
-  asc+btc=c.
-\]
-Since $a\mid asc$ and $a\mid bc$ implies $a\mid btc$, we get $a\mid c$.
-
-This is the standard tool behind unique factorization and many modular arguments.
-
-\section{Prime numbers}
-
-A prime number $p$ satisfies: if
-\[
-  p\mid ab,
-\]
-then
-\[
-  p\mid a\quad\text{or}\quad p\mid b.
-\]
-This follows from Gauss's lemma.  If $p\nmid a$, then $(p,a)=1$, so from $p\mid ab$ we get $p\mid b$.
-
-The note also uses the property repeatedly in exercises involving prime powers and factorization.
-
-\section{Congruences}
-
-For an integer $m>0$, write
-\[
-  a\equiv b\pmod m
-\]
-if $m\mid(a-b)$.  Congruence is compatible with addition and multiplication:
-\[
-  a\equiv b,\quad c\equiv d\pmod m
-  \quad\Longrightarrow\quad
-  a+c\equiv b+d\pmod m,
+  R_2\leftarrow R_2-3R_1:
 \]
 \[
-  ac\equiv bd\pmod m.
+  \begin{bmatrix}
+    2&4\\
+    6&8
+  \end{bmatrix}
+  \longrightarrow
+  \begin{bmatrix}
+    2&4\\
+    0&-4
+  \end{bmatrix}.
 \]
-The handwritten examples include reductions of powers modulo $m$ and using congruences to rule out equations.
-
-\section{Exercises and common methods}
-
-The printed exercise pages ask one to prove identities such as
+Then
 \[
-  (a,b)=(a-b,b),\qquad
-  (a^m-1,a^n-1)=a^{(m,n)}-1,
+  C_2\leftarrow C_2-2C_1
 \]
-and divisibility statements involving expressions like
+gives
 \[
-  2^{2n+1}+1,\qquad 3^{2n}-1.
+  \begin{bmatrix}
+    2&0\\
+    0&-4
+  \end{bmatrix}.
 \]
-The repeated methods are:
-\begin{enumerate}[(i)]
-  \item apply the Euclidean algorithm to gcd expressions;
-  \item use Bezout when coprimality appears;
-  \item factor expressions like $x^m-y^m$;
-  \item reduce powers modulo a suitable modulus;
-  \item use prime factorization when divisor functions appear.
-\end{enumerate}
-
-\section{From example to method}
-
-The note develops number theory from one simple relation: divisibility.  The division algorithm gives remainders; remainders give the Euclidean algorithm; the Euclidean algorithm gives Bezout; Bezout gives Gauss's lemma; Gauss's lemma supports prime factorization and congruence arguments.  This chain is the backbone of elementary number theory.
-
-\section{Division algorithm as normal form}
-
-For integers \(a,b\) with \(b>0\), division gives
+Finally change the sign of the second row:
 \[
-  a=qb+r,\qquad 0\le r<b.
+  \boxed{
+  PAQ=
+  \begin{bmatrix}
+    2&0\\
+    0&4
+  \end{bmatrix}.}
 \]
-The remainder \(r\) is a normal form for the congruence class of \(a\) modulo \(b\).
-
-\section{Euclidean algorithm and invariant gcd}
-
-The key invariant is
+One choice is
 \[
-  \gcd(a,b)=\gcd(b,a-qb).
+  P=
+  \begin{bmatrix}
+    1&0\\
+    3&-1
+  \end{bmatrix},
+  \qquad
+  Q=
+  \begin{bmatrix}
+    1&-2\\
+    0&1
+  \end{bmatrix}.
 \]
-Each Euclidean step preserves the gcd while reducing size.  Back-substitution then expresses the gcd as a Bezout combination.
+Both determinants are \(-1\) or \(1\), so both matrices are unimodular.
 
-\section{Gauss lemma and prime ideals}
-
-\begin{lemma}[Gauss lemma, ideal form]
-For a prime \(p\), the ideal \((p)\subset\mathbb Z\) is prime; equivalently, \(p\mid ab\) implies \(p\mid a\) or \(p\mid b\).
-\end{lemma}
-
-
-Gauss's lemma says if \(p\) is prime and \(p\mid ab\), then \(p\mid a\) or \(p\mid b\).  In ideal language, \((p)\) is a prime ideal of \(\mathbb Z\).  This is the algebraic property that makes unique factorization work.
-
-\section{Normal forms, gcd invariants, and prime divisibility}
-
-Divisibility, gcd, Bezout, congruence, and primes form one system.  Remainders are quotient normal forms, the Euclidean algorithm preserves gcd, and prime divisibility is the ideal-theoretic foundation of unique factorization.
-
-\section{\texorpdfstring{$\mathbb Z$}{Z} as a PID}
-
-The full chain of gcd, lcm, Bezout identity, congruence, and modular inverse is unified by the fact that $\mathbb Z$ is a principal ideal domain.  Every ideal is of the form
+The invariant factors are \(2,4\).  They also follow from minors:
 \[
-  (n)=n\mathbb Z.
+  \Delta_1=\gcd(2,4,6,8)=2,
 \]
-For two integers,
 \[
-  (a)+(b)=(\gcd(a,b)),\qquad
-  (a)\cap(b)=(\operatorname{lcm}(a,b)).
+  \Delta_2=|\det A|=8,
 \]
-This gives a structural proof of many gcd-lcm identities.
-
-For example,
+so
 \[
-  \gcd(a,b)\operatorname{lcm}(a,b)=|ab|
+  d_1=2,
+  \qquad
+  d_2=\frac82=4.
 \]
-is the numerical reflection of how prime valuations take minima and maxima.
 
-\section{Modular inverses as units}
+Over \(\mathbb Q\), the matrix is simply invertible.  Over \(\mathbb Z\), the diagonal entries reveal exactly how its image sits inside \(\mathbb Z^2\).
 
-The congruence equation
+\section{Integer systems reduce to divisibility tests}
+
+Consider
 \[
-  ax\equiv1\pmod n
+  Ax=b,
+  \qquad
+  A\in\mathbb Z^{m\times n},
+  \quad
+  x\in\mathbb Z^n.
 \]
-asks whether the residue class of $a$ is a unit in the ring $\mathbb Z/n\mathbb Z$.  It has a solution iff $\gcd(a,n)=1$.
+If
+\[
+  PAQ=D
+\]
+is Smith normal form, set
+\[
+  y=Q^{-1}x,
+  \qquad
+  c=Pb.
+\]
+Since \(P,Q\) are unimodular, \(x\) is integral exactly when \(y\) is integral.  The system becomes
+\[
+  Dy=c.
+\]
+For
+\[
+  D=\operatorname{diag}(d_1,\ldots,d_r,0,\ldots,0),
+\]
+integer solvability is equivalent to
+\[
+  d_i\mid c_i
+  \qquad(1\le i\le r)
+\]
+and
+\[
+  c_i=0
+  \qquad(i>r).
+\]
 
-More generally,
+The normal form separates the problem into independent one-dimensional divisibility conditions.  This is the matrix analogue of the criterion
 \[
   ax\equiv b\pmod n
+  \quad\Longleftrightarrow\quad
+  \gcd(a,n)\mid b.
 \]
-has a solution iff $\gcd(a,n)\mid b$.  This is because the image of multiplication by $a$ on $\mathbb Z/n\mathbb Z$ has size $n/\gcd(a,n)$ and consists exactly of multiples of that gcd class.
 
-\section{Smith normal form over integers}
-
-Linear equations over $\mathbb Z$ require more than rank.  For an integer matrix $A$, Smith normal form says there exist unimodular integer matrices $P,Q$ such that
-\[
-  PAQ=\operatorname{diag}(d_1,\ldots,d_r,0,\ldots,0),\qquad d_i\mid d_{i+1}.
-\]
-This diagonal form solves integer linear systems and classifies finitely generated abelian groups.
-
-Thus gcd and Bezout operations are the $1\times1$ and row-column-operation shadows of Smith normal form.
-
-\section{CRT as product decomposition}
-
-When $m,n$ are coprime,
-\[
-  \mathbb Z/mn\mathbb Z\cong \mathbb Z/m\mathbb Z\times \mathbb Z/n\mathbb Z.
-\]
-The Chinese remainder theorem is therefore not simply a trick for solving congruences.  It says the quotient ring modulo a product of coprime moduli decomposes as a product of quotient rings.
-
-This decomposition explains why arithmetic functions and congruence problems split prime by prime.
-
-\section{Solving congruences by image and kernel}
-
-Multiplication by $a$ defines a group homomorphism
-\[
-  m_a:\mathbb Z/n\mathbb Z\to\mathbb Z/n\mathbb Z,\qquad x\mapsto ax.
-\]
-The congruence $ax\equiv b\pmod n$ asks whether $b$ lies in the image of this map.  The kernel has size $\gcd(a,n)$, so the image has size $n/\gcd(a,n)$.
-
-The solvability condition $\gcd(a,n)\mid b$ is therefore rank-nullity for a finite abelian group.  Once solvable, there are exactly $\gcd(a,n)$ solutions modulo $n$.
-
-\section{Smith normal form and congruences}
-
-A system of integer linear equations
+For the example matrix, solving
 \[
   Ax=b
 \]
-can be simplified by invertible integer row and column operations.  Smith normal form diagonalizes $A$ into invariant factors $d_i$.  The system reduces to independent divisibility conditions
+reduces after multiplication by \(P\) to
 \[
-  d_i y_i=c_i.
+  2y_1=c_1,
+  \qquad
+  4y_2=c_2.
 \]
-Thus the one-variable congruence theorem is the first case of a full normal-form theory for homomorphisms of finitely generated abelian groups.
+The right-hand side must therefore land in the sublattice
+\[
+  2\mathbb Z\oplus4\mathbb Z.
+\]
+Smith form does not merely decide solvability; it displays the obstruction.
+
+\section{The cokernel records what the map cannot reach}
+
+For an integer matrix
+\[
+  A:\mathbb Z^n\longrightarrow\mathbb Z^m,
+\]
+define the cokernel
+\[
+  \operatorname{coker}A
+  =\mathbb Z^m/A\mathbb Z^n.
+\]
+Two target vectors represent the same cokernel class when their difference lies in the image of \(A\).  The group measures the failure of surjectivity over the integer lattice.
+
+Smith normal form gives
+\[
+  \operatorname{coker}A
+  \cong
+  \mathbb Z/d_1\mathbb Z
+  \oplus\cdots\oplus
+  \mathbb Z/d_r\mathbb Z
+  \oplus
+  \mathbb Z^{m-r}.
+\]
+For
+\[
+  A=
+  \begin{bmatrix}
+    2&4\\
+    6&8
+  \end{bmatrix},
+\]
+we obtain
+\[
+  \operatorname{coker}A
+  \cong
+  \mathbb Z/2\mathbb Z
+  \oplus
+  \mathbb Z/4\mathbb Z.
+\]
+Its order is
+\[
+  2\cdot4=8=|\det A|.
+\]
+Geometrically, the image lattice has index \(8\) in \(\mathbb Z^2\).  A fundamental parallelogram for the image has area \(8\), matching the determinant.
+
+This is the finite-index lattice meaning of the determinant.  Over \(\mathbb R\), \(|\det A|\) is a volume-scaling factor.  Over \(\mathbb Z\), for a nonsingular integer matrix, it is also the number of residue classes left after quotienting by the image.
+
+\section{Finite abelian groups inherit the same normal form}
+
+Every finitely generated abelian group has a presentation
+\[
+  G\cong\mathbb Z^m/A\mathbb Z^n
+\]
+for some integer matrix \(A\).  Smith normal form yields
+\[
+  G
+  \cong
+  \mathbb Z^{m-r}
+  \oplus
+  \mathbb Z/d_1\mathbb Z
+  \oplus\cdots\oplus
+  \mathbb Z/d_r\mathbb Z,
+\]
+with
+\[
+  d_1\mid d_2\mid\cdots\mid d_r.
+\]
+This is the invariant-factor form of the classification theorem for finitely generated abelian groups.
+
+The CRT reappears inside this classification.  If \(a,b\) are coprime, then
+\[
+  \mathbb Z/ab\mathbb Z
+  \cong
+  \mathbb Z/a\mathbb Z
+  \oplus
+  \mathbb Z/b\mathbb Z.
+\]
+Factoring each invariant factor into prime powers gives the elementary-divisor form of the same group.
+
+Thus CRT and Smith normal form are not separate tricks.  Both decompose arithmetic objects into independent pieces, one by splitting coprime moduli and the other by diagonalizing an integer homomorphism.
+
+\section{Congruence systems are Smith problems in finite disguise}
+
+A system
+\[
+  Ax\equiv b\pmod n
+\]
+can be rewritten as an integer equation
+\[
+  Ax-ny=b
+\]
+with an auxiliary integer vector \(y\).  Equivalently,
+\[
+  \begin{bmatrix}A&-nI\end{bmatrix}
+  \begin{bmatrix}x\\y\end{bmatrix}
+  =b.
+\]
+Smith normal form of this enlarged integer matrix gives complete solvability conditions and parametrizes all solutions.
+
+Alternatively, reduce \(A\) by unimodular row and column operations and interpret those operations modulo \(n\).  The system becomes a collection of scalar congruences
+\[
+  d_i z_i\equiv c_i\pmod n.
+\]
+Each one is decided by
+\[
+  \gcd(d_i,n)\mid c_i.
+\]
+
+The one-variable congruence theorem is therefore not an isolated result.  It is the first diagonal component of a general normal-form theory for homomorphisms between finitely generated modules.
+
+Over a field, rank and reduced row echelon form answer most elementary questions about a linear map.  Over \(\mathbb Z\), division is restricted, so the lattice retains divisibility information that rank cannot see.  The scalar congruence theorem, CRT, unimodular reduction, Smith normal form, cokernels, and the classification of finitely generated abelian groups are therefore successive stages of one problem: deciding what an integer homomorphism can reach and what discrete obstruction remains.  The passage from
+\[
+  ax\equiv b\pmod n
+\]
+to
+\[
+  d_i z_i\equiv c_i\pmod n
+\]
+is the matrix form of the same image-and-kernel calculation, while the invariant factors record the obstruction permanently in the quotient group.

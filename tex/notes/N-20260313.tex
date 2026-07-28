@@ -192,6 +192,40 @@ F(x,u)=0 & q\times p,\ q\times q & F_x,F_u
 \]
 The formulas work because the linear maps have compatible domains and codomains.
 
-\section{What to carry forward}
+\section{Singular linearization marks the boundary of implicit solvability}
 
-The chain rule says that local linear approximations compose.  Total differentials are the notation for those approximations.  Implicit differentiation says that a constraint can be solved by inverting the linearized constraint in the unknown directions.
+The invertibility condition in the implicit function theorem cannot simply be omitted.  Consider
+\[
+  F(x,y)=y^2-x.
+\]
+At the origin,
+\[
+  F(0,0)=0,
+  \qquad
+  F_y(0,0)=0.
+\]
+The zero set is
+\[
+  x=y^2,
+\]
+or, for \(x\ge0\), the two branches
+\[
+  y=\sqrt{x},
+  \qquad
+  y=-\sqrt{x}.
+\]
+No neighborhood of the origin in the zero set is the graph of a single function \(y=u(x)\), and the two branch derivatives become unbounded as \(x\downarrow0\).  The formal formula
+\[
+  u'(x)=-\frac{F_x}{F_y}=\frac1{2y}
+\]
+therefore signals its own breakdown at \(y=0\).
+
+The same zero set can be solved smoothly in the other direction:
+\[
+  x=y^2,
+\]
+because
+\[
+  F_x(0,0)=-1\ne0.
+\]
+Implicit solvability is directional.  The Jacobian block that is invertible determines which variables may be expressed as functions of the others.

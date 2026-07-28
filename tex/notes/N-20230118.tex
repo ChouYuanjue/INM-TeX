@@ -1,127 +1,279 @@
-\notechapter{N-20230118}{Combinatorics: Pigeonhole Principle, Subsets, Binomial Sums, and Helly-Type Ideas}
+\notechapter{N-20230118}{Local Information, Global Structure: Pigeonhole, Ramsey, Radon, and Helly}
 
-\section{Pigeonhole principle}
+\section{Pigeonhole is an averaging theorem with a design problem hidden inside}
 
-The note begins with the pigeonhole principle.  If $n+1$ objects are put into $n$ boxes, then some box contains at least two objects.  More generally, if $N$ objects are placed into $k$ boxes, then some box contains at least
+If \(N\) objects are placed into \(r\) boxes, some box contains at least
 \[
-  \left\lceil \frac Nk \right\rceil
+  \left\lceil\frac Nr\right\rceil
 \]
-objects.
+objects.  The proof is the contrapositive: if every box held at most \(q\) objects, the total would be at most \(rq\).
 
-The handwritten examples use this principle to force coincidences: same remainder, same subset size, same color, or same interval.  The key is to decide what the boxes are.  Often the boxes are congruence classes modulo $m$ or possible values of a sum.
-
-\section{Subsets and binomial coefficients}
-
-For $[n]=\{1,2,\ldots,n\}$, the number of $k$-element subsets is
+The theorem is easy; choosing the boxes is the real work.  Suppose nine elements are each recorded by membership in three sets \(A,B,C\).  Every element receives a bit pattern
 \[
-  \binom nk.
+  (\mathbf1_A(x),\mathbf1_B(x),\mathbf1_C(x))
+  \in\{0,1\}^3.
 \]
-The note uses the identity
+There are only
 \[
-  \sum_{k=0}^n \binom nk=2^n
+  2^3=8
 \]
-to count all subsets.  It also uses
+possible patterns.  Among nine elements, two have the same pattern and therefore belong to exactly the same subcollection of \(A,B,C\).
+
+The conclusion is not merely “two objects coincide.”  A carefully chosen finite state space forces two complicated objects to become indistinguishable with respect to all recorded tests.
+
+\section{Partial sums turn a divisibility problem into a finite-state collision}
+
+Let \(a_1,\ldots,a_n\) be integers.  There is always a nonempty consecutive block whose sum is divisible by \(n\).
+
+Consider the partial sums
 \[
-  \sum_{k=0}^n k\binom nk=n2^{n-1}.
+  s_k=a_1+\cdots+a_k,
+  \qquad k=1,\ldots,n,
 \]
-This identity counts pairs $(A,a)$ where $A\subseteq[n]$ and $a\in A$.  Choose $a$ first in $n$ ways, then choose the rest of $A$ freely in $2^{n-1}$ ways.
-
-\section{Binomial identities by double counting}
-
-The handwritten page contains identities of the type
+and reduce them modulo \(n\).  If some
 \[
-  \sum_j \binom aj\binom b{n-j}=\binom{a+b}{n}.
+  s_k\equiv0\pmod n,
 \]
-This is Vandermonde's identity.  The combinatorial proof is to choose $n$ objects from two groups of sizes $a$ and $b$.  If $j$ objects are chosen from the first group, then $n-j$ are chosen from the second.
-
-The note marks this as a better proof than manipulating factorials, because it explains why the identity is true.
-
-\section{A subset-sum style example}
-
-One example lists several subsets $A_i$ of a finite set and asks for a conclusion about intersections or unions.  The general method is to encode each element by the list of sets containing it.  If there are too many subsets or too many incidences, two elements must share a pattern, or some intersection must be nonempty.
-
-This is a typical pigeonhole principle application: the objects are elements or subsets, and the boxes are possible membership patterns.
-
-\section{Generating functions}
-
-The page also uses generating functions for binomial sums.  The coefficient of $x^r$ in
+then \(a_1+\cdots+a_k\) is the required block.  Otherwise the \(n\) partial sums occupy only the \(n-1\) nonzero residue classes, so two satisfy
 \[
-  (1+x)^n
+  s_i\equiv s_j\pmod n,
+  \qquad i<j.
 \]
-is $\binom nr$.  The coefficient of $x^r$ in
+Subtracting gives
 \[
-  (1+x)^a(1+x)^b=(1+x)^{a+b}
+  a_{i+1}+\cdots+a_j
+  =s_j-s_i
+  \equiv0\pmod n.
 \]
-gives Vandermonde's identity.
 
-This is the algebraic version of double counting.  The combinatorial story and the generating-function coefficient extraction are two descriptions of the same structure.
+The objects are partial histories, the boxes are residue states, and a collision cancels the common prefix.  This pattern appears throughout additive combinatorics and automata: encode a running process in finitely many states, then use repetition to extract a structured segment.
 
-\section{Helly-type remark}
+\section{Repeated pigeonhole becomes sequential compactness on an interval}
 
-The last page mentions Helly's theorem.  In the plane, Helly's theorem says that for a finite family of convex sets, if every three of them have nonempty intersection, then the whole family has nonempty intersection.  The note does not prove the full theorem, but it points toward the idea that local intersection data can force global intersection.
-
-This belongs naturally after the pigeonhole and subset examples: it is another local-to-global principle, now in convex geometry rather than finite counting.
-
-\section{The next layer}
-
-The note is about forcing structure from too many objects and too few possibilities.  The pigeonhole principle forces repetition.  Binomial coefficients count choices.  Double counting proves identities by counting the same set twice.  Generating functions package these identities algebraically.  Helly-type theorems show that similar local-to-global principles also appear in geometry.
-
-\section{Pigeonhole as averaging}
-The pigeonhole principle is the statement that an average forces at least one large value.  If \(N\) objects occupy \(r\) boxes, some box contains at least \(\lceil N/r\rceil\) objects.
-\section{Generating functions and subset sums}
-Subset-counting problems are naturally encoded by
+Let \((x_n)\) be an infinite sequence in \([0,1]\).  Divide the interval into two closed halves.  At least one half contains infinitely many terms; call it \(I_1\).  Divide \(I_1\) into two halves and choose one, \(I_2\), that again contains infinitely many terms.  Continuing gives nested intervals
 \[
-\prod_{i=1}^n(1+x^{a_i}).
+  I_1\supset I_2\supset I_3\supset\cdots
 \]
-The coefficient of \(x^m\) counts subsets with sum \(m\).  This turns subset-sum counting into coefficient extraction.
-\section{Helly-type thinking}
-Helly's theorem says that for convex sets in \(\mathbb R^d\), global intersection can be tested by subfamilies of size \(d+1\).  This is the geometric analogue of reducing a global condition to small local tests.
-\section{Finite compactness principles in combinatorics}
-Pigeonhole, binomial sums, subset sums, generating functions, and Helly-type ideas are all compactness principles for finite configurations: too much local data forces a global structure.
+with
+\[
+  |I_k|=2^{-k}.
+\]
+Choose indices
+\[
+  n_1<n_2<\cdots
+\]
+so that
+\[
+  x_{n_k}\in I_k.
+\]
+The nested interval theorem gives a unique point
+\[
+  x\in\bigcap_{k=1}^\infty I_k.
+\]
+For \(j\ge k\), both \(x_{n_j}\) and \(x\) lie in \(I_k\), so
+\[
+  |x_{n_j}-x|\le2^{-k}.
+\]
+Hence
+\[
+  x_{n_j}\to x.
+\]
 
-\section{Pigeonhole as compactness principle}
+This is Bolzano--Weierstrass on \([0,1]\).  The infinite conclusion is built by iterating a finite pigeonhole step at finer and finer scales.  In a compact metric space, finite covers by small balls play the role of interval subdivisions.
 
-The finite pigeonhole principle says that too many objects placed into too few boxes force repetition.  A compactness version says that if infinitely many points lie in a compact metric space, then some subsequence converges.  In $[0,1]$, this is Bolzano--Weierstrass.
+\section{Ramsey theory forces a pattern, not merely a repeated label}
 
-The proof is a repeated pigeonhole argument: divide the interval into finitely many pieces, choose one containing infinitely many points, subdivide again, and continue.  The nested intervals shrink to a point.
+Color every edge of the complete graph \(K_6\) red or blue.  Choose a vertex \(v\).  Among the five edges incident to \(v\), at least three have the same color; suppose
+\[
+  va,vb,vc
+\]
+are red.
 
-Thus compactness is an infinite pigeonhole principle.  This is why elementary pigeonhole arguments often foreshadow topology and analysis.
+If any of
+\[
+  ab,bc,ca
+\]
+is red, that edge together with \(v\) forms a red triangle.  If none is red, then all three are blue and \(abc\) is a blue triangle.  Thus every red--blue coloring of \(K_6\) contains a monochromatic triangle:
+\[
+  R(3,3)\le6.
+\]
 
-\section{Ramsey theory}
+The bound is sharp.  Color the edges of a five-cycle red and its five diagonals blue.  The red graph is a cycle and has no triangle; the blue graph is another five-cycle and also has no triangle.  Therefore
+\[
+  R(3,3)>5,
+\]
+so
+\[
+  \boxed{R(3,3)=6.}
+\]
 
-Ramsey theory says that sufficiently large structures contain ordered substructures.  The simplest theorem is: for every $r,s$, there exists $R(r,s)$ such that every red-blue coloring of the edges of $K_{R(r,s)}$ contains either a red $K_r$ or a blue $K_s$.
+Pigeonhole forced three edges of one color around a vertex.  The graph structure then amplified that local repetition into a monochromatic triangle.  Ramsey theory studies how large an ambient configuration must be before a specified organized substructure becomes unavoidable.
 
-The pigeonhole principle is the smallest Ramsey theorem.  It guarantees equality of colors or boxes; Ramsey theory guarantees large monochromatic patterns.
+\section{Intervals give the one-dimensional Helly theorem}
 
-This connects elementary ``two objects must share a property'' problems with a research field studying unavoidable order inside large disorder.
+Let
+\[
+  I_i=[a_i,b_i]
+  \qquad(i=1,\ldots,m)
+\]
+be closed intervals, and assume every pair intersects.  Set
+\[
+  a=\max_i a_i,
+  \qquad
+  b=\min_i b_i.
+\]
+Choose indices \(p,q\) with
+\[
+  a=a_p,
+  \qquad
+  b=b_q.
+\]
+Since \(I_p\cap I_q\ne\varnothing\),
+\[
+  a_p\le b_q,
+\]
+so \(a\le b\).  Every interval contains the segment \([a,b]\), and therefore
+\[
+  \bigcap_{i=1}^m I_i\ne\varnothing.
+\]
 
-\section{Helly theorem}
+Pairwise intersection is enough in one dimension because the order lets one reduce all left endpoints to their maximum and all right endpoints to their minimum.  In higher dimensions there is no total order of boundaries; convexity and affine dependence replace it.
 
-\begin{theorem}[Helly's theorem]
-For a finite family of convex subsets of \(\mathbb R^d\), if every \(d+1\) of them have nonempty intersection, then the whole family has nonempty intersection.
+\section{Radon's theorem is an affine dependence split into two convex combinations}
+
+\begin{theorem}[Radon]
+Any \(d+2\) points in \(\mathbb R^d\) can be partitioned into two disjoint sets whose convex hulls intersect.
 \end{theorem}
 
+Let the points be \(p_1,\ldots,p_{d+2}\).  The lifted vectors
+\[
+  (p_i,1)\in\mathbb R^{d+1}
+\]
+are linearly dependent, so there are scalars \(\lambda_i\), not all zero, with
+\[
+  \sum_i\lambda_i p_i=0,
+  \qquad
+  \sum_i\lambda_i=0.
+\]
+Let
+\[
+  I=\{i:\lambda_i>0\},
+  \qquad
+  J=\{i:\lambda_i<0\}.
+\]
+Both are nonempty.  Put
+\[
+  s=\sum_{i\in I}\lambda_i
+  =-\sum_{j\in J}\lambda_j>0.
+\]
+Then
+\[
+  \sum_{i\in I}\frac{\lambda_i}{s}p_i
+  =
+  \sum_{j\in J}\frac{-\lambda_j}{s}p_j.
+\]
+Both sides are convex combinations.  Their common value lies in
+\[
+  \operatorname{conv}\{p_i:i\in I\}
+  \cap
+  \operatorname{conv}\{p_j:j\in J\}.
+\]
 
-Helly's theorem in $\mathbb R^d$ says that for a finite family of convex sets, if every $d+1$ of them have nonempty intersection, then the whole family has nonempty intersection.
+The Radon partition is the geometric form of a minimal affine dependence.  In oriented-matroid language, such a signed dependence is the prototype of a circuit.
 
-For $d=1$, this says that if intervals pairwise intersect, then all intervals intersect.  That case is a strong one-dimensional pigeonhole-like fact.  In higher dimensions, convexity replaces linear order.
+\section{Helly's theorem follows by applying Radon to carefully chosen witnesses}
 
-The original Helly-type ideas are therefore not just clever geometry.  They are the finite-dimensional form of a general intersection principle.
+\begin{theorem}[Finite Helly]
+Let \(C_1,\ldots,C_m\) be convex subsets of \(\mathbb R^d\), with \(m\ge d+1\).  If every \(d+1\) of them have nonempty intersection, then
+\[
+  \bigcap_{i=1}^mC_i\ne\varnothing.
+\]
+\end{theorem}
 
-\section{Fractional and topological Helly}
+We prove the theorem by induction on \(m\).  The case \(m=d+1\) is the hypothesis.  Assume \(m>d+1\) and the result holds for \(m-1\) sets.
 
-Fractional Helly theorems weaken the condition: if a positive fraction of all small subfamilies intersect, then a large subfamily has common intersection.  Topological Helly theorems replace convexity by conditions on homology or contractibility of intersections.
+For each \(i=1,\ldots,d+2\), the family obtained by omitting \(C_i\) has \(m-1\) members and still satisfies the local intersection hypothesis.  By induction, choose
+\[
+  x_i\in\bigcap_{j\ne i}C_j.
+\]
+Apply Radon's theorem to \(x_1,\ldots,x_{d+2}\).  There is a partition
+\[
+  I\sqcup J=[d+2]
+\]
+and a point
+\[
+  x\in\operatorname{conv}\{x_i:i\in I\}
+  \cap
+  \operatorname{conv}\{x_j:j\in J\}.
+\]
 
-This is a research-level continuation of the elementary principle: local intersection data can force global intersection.  The advanced theory asks exactly how much local data is enough and what kind of geometry can replace convexity.
+Fix a set \(C_k\).  If \(k\in I\), then every \(x_j\) with \(j\in J\) belongs to \(C_k\), because \(j\ne k\).  Convexity gives
+\[
+  x\in C_k.
+\]
+If \(k\in J\), use the convex hull indexed by \(I\).  If \(k>d+2\), every \(x_i\) lies in \(C_k\).  Thus \(x\) belongs to every \(C_k\), completing the induction.
 
-\section{Local-to-global intersection principles}
+The proof shows exactly where the number \(d+1\) comes from: Radon's affine dependence begins at \(d+2\) points.
 
-Helly's theorem is powerful because it turns local intersection data into global intersection.  In $\mathbb R^d$, checking every $d+1$ members of a finite convex family suffices.  The number $d+1$ is not arbitrary: it is the size at which affine dependence begins, by Radon's theorem.
+\section{Carathéodory reduces a large convex representation to \texorpdfstring{$d+1$}{d+1} points}
 
-Radon's theorem says that any $d+2$ points in $\mathbb R^d$ can be partitioned into two sets whose convex hulls intersect.  Helly's theorem can be proved from Radon's theorem.  This links elementary convex geometry to the combinatorics of affine dependence.
+\begin{theorem}[Carathéodory]
+If \(x\in\operatorname{conv}S\subset\mathbb R^d\), then \(x\) lies in the convex hull of at most \(d+1\) points of \(S\).
+\end{theorem}
 
-\section{Ramsey as structured inevitability}
+Write
+\[
+  x=\sum_{i=1}^m\alpha_i p_i,
+  \qquad
+  \alpha_i>0,
+  \qquad
+  \sum_i\alpha_i=1,
+\]
+with \(m>d+1\).  The points are affinely dependent, so there are \(\lambda_i\), not all zero, satisfying
+\[
+  \sum_i\lambda_i p_i=0,
+  \qquad
+  \sum_i\lambda_i=0.
+\]
+After changing all signs if necessary, some \(\lambda_i>0\).  Let
+\[
+  t=\min_{\lambda_i>0}\frac{\alpha_i}{\lambda_i}.
+\]
+Then the new coefficients
+\[
+  \alpha_i'=\alpha_i-t\lambda_i
+\]
+remain nonnegative, still sum to one, and give the same point \(x\).  At least one coefficient becomes zero.  Repeating removes points until at most \(d+1\) remain.
 
-Pigeonhole says repetition is inevitable.  Ramsey says organized substructure is inevitable.  The shift from repetition to substructure is the main conceptual jump.  In graph terms, edge colorings of large complete graphs must contain large monochromatic complete subgraphs.
+Helly compresses an intersection certificate to small subfamilies.  The preceding convex-hull theorem compresses a representation to at most \(d+1\) points.  Both reductions are driven by affine dependence.
 
-This point should be connected back to the original exercises: whenever an argument says ``among many objects, two must share a property,'' one can ask the Ramsey-level question, ``among sufficiently many objects, must a whole structured subset share the property?''
+\section{Fractional Helly tolerates failed local tests}
+
+The ordinary Helly theorem assumes that every \((d+1)\)-tuple intersects.  Fractional Helly allows failures.
+
+For each \(d\) and \(\alpha>0\), there is \(\beta=\beta(d,\alpha)>0\) such that the following holds.  If at least an \(\alpha\)-fraction of the \((d+1)\)-tuples in a family of \(n\) convex sets in \(\mathbb R^d\) have nonempty intersection, then some point belongs to at least \(\beta n\) members of the family.  One may take
+\[
+  \beta
+  =1-(1-\alpha)^{1/(d+1)}.
+\]
+
+In one dimension, the sets are intervals.  Intersecting pairs are edges of an interval graph, while intervals containing a common point form a clique.  If a positive fraction of all pairs intersect, the theorem guarantees a clique containing a positive fraction of all intervals.  Thus numerous local successes cannot be dispersed arbitrarily; they concentrate around a common witness.
+
+The conclusion is weaker than total intersection but robust under noise.  It is an extremal version of Helly rather than a different slogan about local-to-global behavior.
+
+\section{The nerve records exactly which subfamilies intersect}
+
+For a finite family \(\mathcal F=\{U_i\}_{i\in I}\), its nerve is the simplicial complex
+\[
+  N(\mathcal F)
+  =\{J\subseteq I:\bigcap_{j\in J}U_j\ne\varnothing\}.
+\]
+Vertices represent sets, edges represent pairwise intersections, triangles represent triple intersections, and higher simplices represent higher common intersections.
+
+Take three open disks arranged in a ring so that every pair intersects but the triple intersection is empty.  The nerve consists of three vertices and three edges but no filled triangle.  It is the boundary of a triangle, homotopy equivalent to a circle.  The union of the disks also has a central hole.
+
+The nerve theorem makes this precise: if every nonempty finite intersection in the family is contractible, then the union is homotopy equivalent to the nerve.  Such a family is called a good cover.
+
+A topological Helly theorem follows under acyclicity hypotheses.  For a finite family of open subsets of \(\mathbb R^d\), assume every nonempty finite intersection is contractible, or more generally has the required vanishing reduced homology.  If every \(d+1\) members intersect, then the whole family intersects.  Convex sets satisfy the hypotheses because every nonempty convex intersection is contractible.
+
+The three-disk ring explains what the topology is detecting.  Pairwise data alone allow a one-dimensional hole; filling the triple intersection fills the missing simplex in the nerve.  Topological Helly theorems control which holes an intersection pattern could create in dimension \(d\), replacing linear convexity by precise homological conditions.

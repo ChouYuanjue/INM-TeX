@@ -1,119 +1,284 @@
-\notechapter{N-20230314}{Category Theory Continued: Free and Forgetful Functors, Concrete Categories, and Group Actions}
+\notechapter{N-20230314}{Free Constructions, Adjunctions, Concrete Categories, and Group Actions}
 
-\section{Free and forgetful functors}
+\section{A free object solves an extension problem}
 
-The first page discusses free and forgetful functors.  These words are often used informally before one learns the general adjunction language.  The basic pattern is simple: a forgetful functor removes structure, while a free functor freely adds structure.
-
-For example, the forgetful functor
+Let \(S\) be a set.  The free group \(F(S)\) consists of reduced words
 \[
-  U:\mathbf{Vect}_k\to\mathbf{Set}
+  s_1^{\varepsilon_1}s_2^{\varepsilon_2}\cdots s_n^{\varepsilon_n},
+  \qquad
+  s_i\in S,
+  \quad
+  \varepsilon_i\in\{1,-1\},
 \]
-sends a vector space to its underlying set and a linear map to its underlying function.  Similarly,
-\[
-  \mathbf{Grp}\to\mathbf{Set},\qquad
-  \mathbf{CRing}\to\mathbf{Set}
-\]
-forget group or ring structure.  There is also a forgetful functor
-\[
-  \mathbf{CRing}\to\mathbf{Grp}
-\]
-that sends a commutative ring $R$ to its additive abelian group $(R,+)$.
+with multiplication given by concatenation followed by cancellation of adjacent pairs \(ss^{-1}\) and \(s^{-1}s\).  The empty word is the identity.
 
-A free functor goes in the opposite direction.  The free vector space functor
+There is a canonical function
 \[
-  F:\mathbf{Set}\to\mathbf{Vect}_k
+  \eta_S:S\to U(F(S)),
+  \qquad
+  s\longmapsto [s],
 \]
-sends a set $S$ to the vector space with basis $S$.  A function $f:S\to T$ induces a linear map $F(S)\to F(T)$ by sending the basis vector $s$ to the basis vector $f(s)$ and extending linearly.
+where \(U:\mathbf{Grp}\to\mathbf{Set}\) forgets the group structure.
 
-The slogan is:
+The point of \(F(S)\) is not merely its word construction.  It satisfies a universal property.
+
+\begin{theorem}[Universal property of the free group]
+For every group \(G\) and every function \(f:S\to U(G)\), there is a unique group homomorphism
 \[
-\begin{gathered}
-  \text{free} = \text{add the least structure needed},\\
-  \text{forgetful} = \text{discard structure but keep underlying data}.
-\end{gathered}
+  \widetilde f:F(S)\to G
+\]
+such that
+\[
+  U(\widetilde f)\circ\eta_S=f.
+\]
+\end{theorem}
+
+\begin{proof}
+Define
+\[
+  \widetilde f
+  \left(s_1^{\varepsilon_1}\cdots s_n^{\varepsilon_n}\right)
+  =f(s_1)^{\varepsilon_1}\cdots f(s_n)^{\varepsilon_n}.
+\]
+Cancelling \(ss^{-1}\) in a word does not change this value, so the formula is well defined.  Concatenation becomes multiplication, hence \(\widetilde f\) is a homomorphism.  Any homomorphism agreeing with \(f\) on the generators must take every word to the displayed product, proving uniqueness.
+\end{proof}
+
+The free vector space has the same pattern.  For a set \(S\), let
+\[
+  k^{(S)}=
+  \left\{a:S\to k:\operatorname{supp}(a)\text{ finite}\right\}.
+\]
+A function \(S\to U(V)\) extends uniquely to a linear map \(k^{(S)}\to V\).  The construction changes, but the universal problem is identical.
+
+\section{The universal property is a natural Hom-set bijection}
+
+The extension theorem gives a bijection
+\[
+  \Phi_{S,G}:
+  \operatorname{Hom}_{\mathbf{Grp}}(F(S),G)
+  \longrightarrow
+  \operatorname{Hom}_{\mathbf{Set}}(S,U(G)),
+\]
+with
+\[
+  \Phi_{S,G}(\varphi)=U(\varphi)\circ\eta_S.
+\]
+Its inverse sends a function \(f:S\to U(G)\) to its unique extension \(\widetilde f\).
+
+This bijection is natural in both variables.  If \(a:S'\to S\), then
+\[
+  \Phi_{S',G}(\varphi\circ F(a))
+  =\Phi_{S,G}(\varphi)\circ a.
+\]
+Indeed, both functions send \(s'\) to \(\varphi([a(s')])\).
+
+If \(b:G\to H\) is a group homomorphism, then
+\[
+  \Phi_{S,H}(b\circ\varphi)
+  =U(b)\circ\Phi_{S,G}(\varphi).
+\]
+Thus the family \(\Phi_{S,G}\) is not a collection of accidental bijections.  It is a natural isomorphism
+\[
+  \boxed{
+  \operatorname{Hom}_{\mathbf{Grp}}(F(-),-)
+  \cong
+  \operatorname{Hom}_{\mathbf{Set}}(-,U(-)).}
+\]
+This is the adjunction
+\[
+  F\dashv U.
 \]
 
-\section{Faithful and full functors}
+\section{Unit and counit encode the same adjunction}
 
-For a functor $F:\mathcal A\to\mathcal B$, each pair of objects $A_1,A_2$ gives a map on hom-sets:
+The unit of the adjunction is the natural transformation
 \[
-  F:\operatorname{Hom}_{\mathcal A}(A_1,A_2)
+  \eta:\operatorname{Id}_{\mathbf{Set}}\Rightarrow UF,
+\]
+whose component \(\eta_S\) inserts each element as a one-letter word.
+
+The counit is
+\[
+  \varepsilon:FU\Rightarrow\operatorname{Id}_{\mathbf{Grp}}.
+\]
+For a group \(G\),
+\[
+  \varepsilon_G:F(U(G))\to G
+\]
+evaluates a word in the underlying elements of \(G\):
+\[
+  \varepsilon_G(g_1^{\varepsilon_1}\cdots g_n^{\varepsilon_n})
+  =g_1^{\varepsilon_1}\cdots g_n^{\varepsilon_n}
+  \quad\text{in }G.
+\]
+
+The triangle identities are
+\[
+  \varepsilon_{F(S)}\circ F(\eta_S)
+  =\operatorname{id}_{F(S)},
+\]
+and
+\[
+  U(\varepsilon_G)\circ\eta_{U(G)}
+  =\operatorname{id}_{U(G)}.
+\]
+The second identity sends \(g\in G\) to the one-letter word \([g]\), then evaluates it back to \(g\).  For the first, a generator \([s]\in F(S)\) is sent by \(F(\eta_S)\) to the one-letter word whose letter is itself the word \([s]\); evaluation removes the outer layer.  Since both sides are homomorphisms and agree on generators, they agree everywhere.
+
+The Hom-set bijection and the unit--counit description determine one another.  For example, given \(f:S\to U(G)\), its adjunct is
+\[
+  F(S)\xrightarrow{F(f)}F(U(G))
+  \xrightarrow{\varepsilon_G}G.
+\]
+
+\section{Full and faithful describe maps on arrows, not objects}
+
+For a functor \(T:\mathcal C\to\mathcal D\), each pair \(X,Y\) gives
+\[
+  T_{X,Y}:
+  \operatorname{Hom}_{\mathcal C}(X,Y)
   \to
-  \operatorname{Hom}_{\mathcal B}(F(A_1),F(A_2)).
+  \operatorname{Hom}_{\mathcal D}(T(X),T(Y)).
 \]
-The functor is faithful if this map is injective for every pair of objects.  It is full if this map is surjective for every pair.
+The functor is faithful if every \(T_{X,Y}\) is injective, full if every \(T_{X,Y}\) is surjective, and fully faithful if both hold.
 
-Faithful means that distinct arrows remain distinct after applying $F$.  Full means that every arrow between the images comes from an arrow upstairs.  A forgetful functor is often faithful but not full.  For instance, not every function between underlying sets of groups is a group homomorphism.
-
-\section{Concrete categories}
-
-A concrete category is a category equipped with a faithful functor to $\mathbf{Set}$:
+The forgetful functor
 \[
-  U:\mathcal A\to\mathbf{Set}.
+  U:\mathbf{Grp}\to\mathbf{Set}
 \]
-This means every object has an underlying set and every arrow has an underlying function, in a way that does not collapse distinct arrows.
+is faithful: two group homomorphisms with the same underlying function are equal.  It is not full: an arbitrary function between underlying sets need not preserve multiplication.
 
-The handwritten note is careful here: many familiar categories are concrete, such as groups, rings, vector spaces, and topological spaces.  But the word “concrete” is extra structure, not just a vibe.  It depends on choosing a faithful functor to sets.
-
-\section{Functors out of a one-object group category}
-
-Let $G$ be a group and let $\mathcal G$ be its associated one-object category.  There is one object $*$, and
+The inclusion
 \[
-  \operatorname{Hom}_{\mathcal G}(*,*)=G.
+  I:\mathbf{Ab}\hookrightarrow\mathbf{Grp}
 \]
-Consider a functor
+is fully faithful.  A homomorphism between abelian groups is already a morphism in \(\mathbf{Ab}\), so no arrows are lost or added.
+
+Fullness and faithfulness do not assert that every object of \(\mathcal D\) is in the image.  That additional condition, up to isomorphism, is essential surjectivity.  A fully faithful and essentially surjective functor is an equivalence of categories.
+
+\section{A concrete category includes a chosen faithful underlying-set functor}
+
+A concrete category is a pair
 \[
-  F:\mathcal G\to\mathbf{Set}.
+  (\mathcal C,U),
+  \qquad
+  U:\mathcal C\to\mathbf{Set}
+  \text{ faithful}.
 \]
-The object $*$ is sent to a set
+Groups, rings, vector spaces, and topological spaces carry familiar choices of \(U\).  Faithfulness ensures that morphisms can be distinguished by their underlying functions.
+
+The functor \(U\) is part of the structure.  Saying that an object ``has underlying elements'' is not enough to specify how arrows are represented as functions.  A category may admit several inequivalent concrete realizations, and a categorical construction should not silently depend on one unless it is named.
+
+For \(\mathbf{Top}\), the usual forgetful functor is faithful but not full: many set maps are not continuous.  The same pattern appears in \(\mathbf{Grp}\).  Concreteness records access to elements; it does not say that all set-theoretic functions are allowed morphisms.
+
+\section{A group is a one-object category}
+
+Given a group \(G\), form the category \(BG\) with one object \(*\) and
 \[
-  S=F(*).
+  \operatorname{Hom}_{BG}(*,*)=G.
 \]
-Each group element $g\in G$, regarded as an arrow $*:\to*$, is sent to a function
+Composition is group multiplication, and every arrow is invertible.
+
+A functor
 \[
-  F(g):S\to S.
+  X:BG\to\mathbf{Set}
 \]
-Since functors preserve identity and composition,
+chooses a set \(X(*)\), written simply \(X\), and for each \(g\in G\) a function
 \[
-  F(e)=\operatorname{id}_S,\qquad
-  F(gh)=F(g)\circ F(h)
+  X(g):X\to X.
 \]
-up to the convention of left or right actions.  This is exactly a group action of $G$ on $S$.
-
-Thus:
+Functoriality says
 \[
-  \text{functor }\mathcal G\to\mathbf{Set}
-  \quad\Longleftrightarrow\quad
-  \text{a }G\text{-set}.
+  X(e)=\operatorname{id}_X,
+  \qquad
+  X(gh)=X(g)\circ X(h).
 \]
-This is an early example of category theory turning algebra into actions that preserve structure.
-
-\section{Functors between one-object group categories}
-
-If $G$ and $H$ are groups and $\mathcal G,\mathcal H$ their one-object categories, then a functor
+With the convention
 \[
-  F:\mathcal G\to\mathcal H
+  g\cdot x=X(g)(x),
 \]
-must send the unique object of $\mathcal G$ to the unique object of $\mathcal H$.  On arrows, it gives a function
+these are exactly the axioms of a left \(G\)-action:
 \[
-  G\to H.
+  e\cdot x=x,
+  \qquad
+  (gh)\cdot x=g\cdot(h\cdot x).
 \]
-Functoriality requires
+Therefore
 \[
-  F(gh)=F(g)F(h),\qquad F(e_G)=e_H.
+  \boxed{
+  \operatorname{Fun}(BG,\mathbf{Set})
+  \cong
+  G\text{-}\mathbf{Set}.}
 \]
-So functors $\mathcal G\to\mathcal H$ are exactly group homomorphisms $G\to H$.
 
-This shows again that functoriality is not an extra decoration.  It is exactly the condition that algebraic composition is preserved.
+A functor \(BG\to BH\) is exactly a group homomorphism \(G\to H\), because there is only one possible object map and functoriality is preservation of multiplication and identity.
 
-\section{Why the note says “learn algebra first”}
+\section{Natural transformations are equivariant maps}
 
-The handwritten page remarks that one should learn enough algebra before pushing further.  That is reasonable: the example of a group as a one-object category is conceptually simple only if one already understands group operations, homomorphisms, and group actions.  Without those, the category-theoretic formulation can feel like empty abstraction.
+Let \(X,Y:BG\to\mathbf{Set}\) be two actions.  A natural transformation
+\[
+  \alpha:X\Rightarrow Y
+\]
+has one component
+\[
+  \alpha_*:X\to Y.
+\]
+For each \(g\in G\), naturality is the commutative square
+\[
+\begin{tikzcd}
+X \arrow[r,"X(g)"] \arrow[d,"\alpha_*"']
+  & X \arrow[d,"\alpha_*"] \\
+Y \arrow[r,"Y(g)"']
+  & Y.
+\end{tikzcd}
+\]
+Elementwise,
+\[
+  \alpha_*(g\cdot x)=g\cdot\alpha_*(x).
+\]
+Thus natural transformations between action functors are exactly equivariant maps.  The category \(G\text{-}\mathbf{Set}\) is therefore not merely analogous to a functor category; it is one.
 
-The actual learning path is circular in a productive way.  Algebra supplies examples for category theory; category theory then reorganizes algebra.
+The same idea gives representations.  Functors
+\[
+  BG\to\mathbf{Vect}_k
+\]
+are linear representations of \(G\), and natural transformations are intertwining linear maps.
 
-\section{Looking ahead: natural transformations}
+\section{An adjunction generates a monad by adding and flattening structure}
 
-The final handwritten comment says that natural transformations are coming next.  This is the right next step.  If functors are structure-preserving maps between categories, then natural transformations are structure-preserving maps between functors.
+From \(F\dashv U\) one obtains the endofunctor
+\[
+  T=UF:\mathbf{Set}\to\mathbf{Set}.
+\]
+The unit is \(\eta:\operatorname{Id}\Rightarrow T\).  The multiplication
+\[
+  \mu=U\varepsilon_F:T^2\Rightarrow T
+\]
+flattens a word whose letters are themselves words into one word.
 
-In the group-action example, a natural transformation between two functors $\mathcal G\to\mathbf{Set}$ is a function between the underlying $G$-sets that commutes with the $G$-action.  In other words, it is an equivariant map.  This is the categorical reason natural transformations are not optional: they are the morphisms between representations of the same structure.
+The free-monoid version is especially transparent.  Let
+\[
+  T(S)=\coprod_{n\ge0}S^n
+\]
+be the set of finite lists in \(S\).  Then
+\[
+  \eta_S(s)=[s],
+\]
+and
+\[
+  \mu_S([[s_{11},\ldots,s_{1k_1}],\ldots,[s_{m1},\ldots,s_{mk_m}]])
+\]
+is the single concatenated list
+\[
+  [s_{11},\ldots,s_{1k_1},\ldots,s_{m1},\ldots,s_{mk_m}].
+\]
+The monad laws say that inserting singleton brackets and then flattening does nothing, and that flattening three nested levels is independent of the order of flattening.  These are the unit and associativity laws of substitution.
+
+Free constructions, group actions, and monads are therefore connected by one recurring mechanism:
+\[
+  \text{universal extension}
+  \longleftrightarrow
+  \text{natural Hom-bijection}
+  \longleftrightarrow
+  \text{unit/counit and substitution}.
+\]
+The abstraction is useful because it records not only what objects are built, but why every map out of them is forced.

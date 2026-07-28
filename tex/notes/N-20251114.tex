@@ -221,18 +221,23 @@ A one-universe reading tries to place all theaters into a single background in w
 
 The logical structure of the comparison can be summarized as follows:
 \begin{center}
-\begin{tikzpicture}[>=stealth,scale=0.72,transform shape]
-  \node[draw,rounded corners,align=center,minimum width=2.6cm,minimum height=0.75cm] (T0) at (0,0) {Theater \(0\)};
-  \node[draw,rounded corners,align=center,minimum width=2.6cm,minimum height=0.75cm] (T1) at (4.4,0) {Theater \(1\)};
-  \node[draw,rounded corners,align=center,minimum width=2.7cm,minimum height=0.75cm] (R0) at (0,-1.7) {reconstructed\ ring data};
-  \node[draw,rounded corners,align=center,minimum width=2.7cm,minimum height=0.75cm] (R1) at (4.4,-1.7) {reconstructed\ ring data};
-  \node[draw,rounded corners,align=center,minimum width=3.0cm,minimum height=0.75cm] (S) at (2.2,-3.25) {log-shell /\ indeterminacy};
-  \draw[->] (T0) -- node[above] {theta-link} (T1);
-  \draw[->] (T0) -- node[left] {mono-anabelian} (R0);
-  \draw[->] (T1) -- node[right] {mono-anabelian} (R1);
-  \draw[->] (R0) -- node[below left] {log-link} (S);
-  \draw[->] (R1) -- node[below right] {log-link} (S);
-  \draw[dashed,->] (R0) -- node[above] {not ring iso} (R1);
+\begin{tikzpicture}[
+  >=stealth,
+  nodebox/.style={draw,rounded corners,align=center,minimum height=0.78cm,font=\small},
+  edgelabel/.style={fill=white,inner sep=1.5pt,font=\scriptsize}
+]
+  \node[nodebox,minimum width=2.7cm] (T0) at (-3.1,0) {Theater \(0\)};
+  \node[nodebox,minimum width=2.7cm] (T1) at ( 3.1,0) {Theater \(1\)};
+  \node[nodebox,minimum width=3.0cm] (R0) at (-3.1,-2.0) {reconstructed\\ring data};
+  \node[nodebox,minimum width=3.0cm] (R1) at ( 3.1,-2.0) {reconstructed\\ring data};
+  \node[nodebox,minimum width=3.4cm] (S)  at ( 0,-4.0) {log-shell /\\indeterminacy};
+
+  \draw[->] (T0) -- node[edgelabel,above] {theta-link} (T1);
+  \draw[->] (T0) -- node[edgelabel,left] {mono-anabelian} (R0);
+  \draw[->] (T1) -- node[edgelabel,right] {mono-anabelian} (R1);
+  \draw[->] (R0) -- node[edgelabel,below left,pos=0.58] {log-link} (S);
+  \draw[->] (R1) -- node[edgelabel,below right,pos=0.58] {log-link} (S);
+  \draw[dashed,->] (R0) -- node[edgelabel,above] {not a ring isomorphism} (R1);
 \end{tikzpicture}
 \end{center}
 The dashed arrow is the temptation that the theory resists.  The comparison does not proceed by declaring the two reconstructed rings equal.  It proceeds by controlling how their relevant images sit inside the logarithmic and theta-theoretic structures.

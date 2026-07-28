@@ -1,118 +1,367 @@
-\notechapter{N-20220723}{Roots of Unity, Decagons, and Cyclotomic Divisibility}
+\notechapter{N-20220723}{Polygon Motions and Roots of Unity: Modular Hops, Chords, and Vanishing Sums}
 
-\section{The ant on a decagon}
+\section{The ant on a decagon is a modular-arithmetic problem}
 
-The first problem features an ant standing on vertex \(1\) of a regular decagon.  It hops \(1\) space at a time for \(10\) hops, then \(2\) spaces at a time for \(10\) hops, and so on until it hops \(10\) spaces at a time for \(10\) hops.
+Label the vertices of a regular decagon by
+\[
+  0,1,\ldots,9
+\]
+in counterclockwise order.  Moving forward by \(k\) vertices sends a position \(j\) to
+\[
+  j+k\pmod{10}.
+\]
+Only the residue class of the total displacement matters.
 
-Modulo \(10\), doing \(10\) hops of length \(k\) moves the ant by
+Suppose an ant makes ten jumps of length \(1\), then ten jumps of length \(2\), and continues in this way through ten jumps of length \(10\).  One block of ten jumps of length \(k\) changes the vertex label by
 \[
   10k\equiv0\pmod{10}.
 \]
-Thus after each block of ten hops, the ant returns to the same vertex.  Since it starts at vertex \(1\), it ends at vertex \(1\).  This is the most elementary roots-of-unity idea: motion around a regular polygon is arithmetic modulo the number of vertices.
+Therefore every block returns the ant to its starting vertex.  If it begins at vertex \(1\), it finishes at vertex \(1\).
 
-\section{Roots of unity}
+The point is not specific to ten sides.
 
-For a positive integer \(n\), the \(n\)-th roots of unity are the complex solutions of
+\begin{proposition}[A full block on a regular polygon]
+On a regular \(N\)-gon, any block of \(N\) equal jumps returns to the starting vertex.
+\end{proposition}
+
+\begin{proof}
+If each jump advances by \(k\) vertices, the total displacement is \(Nk\), and
 \[
-  z^n=1.
+  Nk\equiv0\pmod N.
 \]
-They are
-\[
-  U_n=\left\{e^{2\pi ik/n}:k=0,1,\ldots,n-1\right\}.
-\]
-Geometrically, these are the vertices of a regular \(n\)-gon on the unit circle.
+\end{proof}
 
-If \(n\) is even, \(z^n=1\) has two real roots, \(1\) and \(-1\).  If \(n\) is odd, the only real root is \(1\).
+For an arbitrary list of jump lengths \(k_1,\ldots,k_m\), the final vertex is
+\[
+  j_0+k_1+\cdots+k_m\pmod N.
+\]
+A geometric hopping problem has become addition in the cyclic group \(\mathbb Z/N\mathbb Z\).
 
-The example
-\[
-  \left(\frac{-1+i\sqrt3}{2}\right)^3
-\]
-is easiest in polar form.  Since
-\[
-  \frac{-1+i\sqrt3}{2}=\cos\frac{2\pi}{3}+i\sin\frac{2\pi}{3},
-\]
-its cube is
-\[
-  \cos 2\pi+i\sin 2\pi=1.
-\]
+\section{The greatest common divisor determines the orbit}
 
-\section[The polynomial x\textasciicircum{}2n + x\textasciicircum{}n + 1]{The polynomial \(x^{2n}+x^n+1\)}
-
-The note includes a Math StackExchange question about when
+Repeated jumps of a fixed length \(k\) produce the orbit
 \[
-  x^2+x+1
+  j,
+  \quad j+k,
+  \quad j+2k,
+  \quad \ldots
+  \pmod N.
 \]
-divides
+The ant returns after the least positive integer \(t\) satisfying
 \[
-  x^{2n}+x^n+1.
+  tk\equiv0\pmod N.
 \]
-Let \(\omega\) be a primitive third root of unity.  Then
+Write
 \[
-  \omega^2+\omega+1=0.
+  d=\gcd(N,k),
+  \qquad
+  N=dN_0,
+  \qquad
+  k=dk_0,
 \]
-The polynomial \(x^2+x+1\) divides \(x^{2n}+x^n+1\) iff both \(\omega\) and \(\omega^2\) are roots of the latter.  Now
+with \(\gcd(N_0,k_0)=1\).  The condition \(N\mid tk\) becomes
 \[
-  \omega^{2n}+\omega^n+1=0
+  N_0\mid tk_0.
 \]
-iff \(\omega^n\) is a nontrivial third root of unity.  This happens iff
+Since \(k_0\) is invertible modulo \(N_0\), the smallest possible \(t\) is \(N_0\).  Hence the orbit length is
 \[
-  n\not\equiv0\pmod3.
+  \boxed{\frac{N}{\gcd(N,k)}.}
 \]
 
-\section{A broader pattern}
-
-The natural generalization is
+On a decagon, jumps of length \(4\) visit
 \[
-  1+x^n+x^{2n}+\cdots+x^{kn}
+  0,4,8,2,6,0.
 \]
-and the divisor
+There are five distinct vertices because
 \[
-  1+x+x^2+\cdots+x^k=\frac{x^{k+1}-1}{x-1}.
+  \frac{10}{\gcd(10,4)}=5.
 \]
-The roots of the divisor are the nontrivial \((k+1)\)-st roots of unity.  If \(\zeta^{k+1}=1\) and \(\zeta\ne1\), then
+Jumps of length \(3\) visit all ten vertices because \(3\) is coprime to \(10\).
+
+Thus a fixed jump length visits every vertex exactly when
 \[
-  1+\zeta^n+\cdots+\zeta^{kn}=0
+  \gcd(N,k)=1.
 \]
-provided \(\zeta^n\ne1\).  If the map
+This is the first appearance of a general principle: multiplication by \(k\) permutes residue classes modulo \(N\) exactly when \(k\) is invertible modulo \(N\).
+
+\section{Roots of unity place the polygon on the complex plane}
+
+Let
 \[
-  \zeta\mapsto\zeta^n
+  \zeta_N=e^{2\pi i/N}.
 \]
-permutes the nontrivial \((k+1)\)-st roots, which occurs when
+The \(N\)-th roots of unity are
 \[
-  \gcd(n,k+1)=1,
+  \mu_N
+  =\{1,\zeta_N,\zeta_N^2,\ldots,\zeta_N^{N-1}\}.
 \]
-then divisibility follows.
-
-\section{Cyclotomic viewpoint}
-
-The polynomial \(x^m-1\) factors as
+They satisfy
 \[
-  x^m-1=\prod_{d\mid m}\Phi_d(x),
+  z^N=1
 \]
-where \(\Phi_d\) is the \(d\)-th cyclotomic polynomial.  The quotient
+and form the vertices of a regular \(N\)-gon on the unit circle.
+
+Vertex \(j\) is represented by \(\zeta_N^j\).  A jump of \(k\) vertices is multiplication by
 \[
-  \frac{x^{k+1}-1}{x-1}
+  \zeta_N^k:
+  \qquad
+  \zeta_N^j\longmapsto\zeta_N^{j+k}.
 \]
-is the product of cyclotomic factors \(\Phi_d(x)\) for \(d\mid k+1\), \(d>1\).  Divisibility questions of this type are therefore really questions about how exponentiation acts on roots of unity.
-
-\section{Why this is more than a trick}
-
-The note's handwritten comment says that this is not merely about solving a problem.  That is exactly right.  Roots of unity turn algebra into geometry: powers become rotations, divisibility becomes vanishing on polygons, and congruences become angle arithmetic.  This is the same philosophy behind Fourier analysis, cyclic groups, and cyclotomic fields.
-
-
-\section{Roots of unity viewpoint}
-
-A regular decagon is naturally encoded by the tenth roots of unity:
+After \(m\) such jumps, the point is
 \[
-  \zeta^k=e^{2\pi i k/10},\qquad k=0,1,\ldots,9.
+  \zeta_N^{j+mk}.
 \]
-Moving by \(m\) vertices is multiplication by \(\zeta^m\).  After ten such moves, the total displacement is multiplication by \((\zeta^m)^{10}=1\).  This explains why the ant returns after each block of ten equal jumps.
+Returning to the starting point means
+\[
+  \zeta_N^{mk}=1,
+\]
+which is the same congruence
+\[
+  mk\equiv0\pmod N.
+\]
+The complex and modular descriptions are two coordinate systems for the same cyclic motion.
 
-The advantage of this model is that a geometric hopping problem becomes modular arithmetic in \(\mathbb Z/10\mathbb Z\).
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[scale=2.05,>=Stealth]
+  \draw[thick] (0,0) circle (1);
+  \foreach \j in {0,...,9}{
+    \coordinate (P\j) at ({cos(36*\j)},{sin(36*\j)});
+    \fill (P\j) circle (0.7pt);
+    \node at ({1.14*cos(36*\j)},{1.14*sin(36*\j)}) {\scriptsize \j};
+  }
+  \draw[->,thick] (P0) to[bend left=18] (P3);
+  \draw[->,thick] (P3) to[bend left=18] (P6);
+  \node at (0,-1.34) {\small Multiplication by \(\zeta_{10}^3\) advances three vertices.};
+\end{tikzpicture}
+\caption{A regular decagon encoded by the tenth roots of unity.}
+\end{figure}
 
-\section{Cyclotomic divisibility}
+\section{Power maps have a visible kernel and image}
 
-The same roots of unity explain polynomial divisibility.  To show that a polynomial \(Q(x)\) divides \(P(x)\), one may show that every root of \(Q\) is also a root of \(P\), provided \(Q\) has no repeated roots and the field is appropriate.
+For an integer \(m\), consider the power map
+\[
+  p_m:\mu_N\to\mu_N,
+  \qquad
+  p_m(z)=z^m.
+\]
+In exponent coordinates it is multiplication by \(m\):
+\[
+  \zeta_N^j\longmapsto\zeta_N^{mj}.
+\]
+The kernel consists of exponents satisfying
+\[
+  mj\equiv0\pmod N.
+\]
+There are exactly \(\gcd(m,N)\) such residue classes.  Therefore
+\[
+  |\ker p_m|=\gcd(m,N).
+\]
+Since \(|\mu_N|=N\), the image has size
+\[
+  |\operatorname{im}p_m|
+  =\frac{N}{\gcd(m,N)}.
+\]
 
-For example, divisibility by \(x^2+x+1\) can be checked at primitive third roots of unity.  This is often cleaner than expanding and factoring by force.
+Consequently, the following conditions are equivalent:
+\[
+\begin{aligned}
+&\gcd(m,N)=1,\\
+&p_m\text{ is injective},\\
+&p_m\text{ is surjective},\\
+&p_m\text{ permutes the vertices of the regular }N\text{-gon}.
+\end{aligned}
+\]
+For example, squaring permutes the vertices of a regular pentagon, but not those of a regular hexagon.  On \(\mu_6\), both \(1\) and \(-1\) square to \(1\), so the map has a nontrivial kernel.
+
+This power-map viewpoint simultaneously explains orbit lengths, vertex permutations, and many elementary root-of-unity sums.
+
+\section{The sum of the vertices is zero}
+
+Let \(\zeta=\zeta_N\) with \(N>1\).  The sum of all vertices is
+\[
+  1+\zeta+\zeta^2+\cdots+\zeta^{N-1}.
+\]
+Multiplying by \(\zeta-1\) gives
+\[
+  (\zeta-1)(1+\zeta+\cdots+\zeta^{N-1})
+  =\zeta^N-1=0.
+\]
+Since \(\zeta\neq1\),
+\[
+  \boxed{1+\zeta+\cdots+\zeta^{N-1}=0.}
+\]
+Geometrically, the centroid of a regular polygon centered at the origin is the origin.
+
+More generally, for any integer \(m\),
+\[
+  \sum_{j=0}^{N-1}\zeta^{mj}
+  =
+  \begin{cases}
+  N,&N\mid m,\\
+  0,&N\nmid m.
+  \end{cases}
+\]
+If \(N\nmid m\), the ratio \(\zeta^m\) is not \(1\), so the sum is a finite geometric series:
+\[
+  \sum_{j=0}^{N-1}\zeta^{mj}
+  =\frac{(\zeta^m)^N-1}{\zeta^m-1}=0.
+\]
+If \(N\mid m\), every summand equals \(1\).
+
+The case \(d=\gcd(m,N)>1\) has a useful geometric interpretation.  The list
+\[
+  1,\zeta^m,\zeta^{2m},\ldots
+\]
+traces a smaller regular polygon with \(N/d\) vertices, each vertex repeated \(d\) times when \(j\) runs through a complete set of residues modulo \(N\).  Its vector sum is still zero unless the polygon has only one vertex.
+
+\section{Orthogonality is a vanishing polygon sum}
+
+For integers \(r,s\),
+\[
+\begin{aligned}
+\sum_{j=0}^{N-1}
+\zeta_N^{rj}\overline{\zeta_N^{sj}}
+&=\sum_{j=0}^{N-1}\zeta_N^{(r-s)j}\\
+&=
+\begin{cases}
+N,&r\equiv s\pmod N,\\
+0,&r\not\equiv s\pmod N.
+\end{cases}
+\end{aligned}
+\]
+The vectors
+\[
+  (1,\zeta_N^r,\zeta_N^{2r},\ldots,\zeta_N^{(N-1)r})
+\]
+are therefore mutually orthogonal for distinct residues \(r\pmod N\).
+
+This is the elementary core of the discrete Fourier transform.  Fourier orthogonality is not an unrelated analytic miracle: it is the statement that a nontrivial regular polygon has vector sum zero.
+
+As a quick application, let \(c_0,\ldots,c_{N-1}\) be complex numbers and define
+\[
+  \widehat c_r
+  =\sum_{j=0}^{N-1}c_j\zeta_N^{-rj}.
+\]
+Then orthogonality gives the inversion formula
+\[
+  c_j=\frac1N\sum_{r=0}^{N-1}\widehat c_r\zeta_N^{rj}.
+\]
+The proof is only a double sum followed by the vanishing identity above.
+
+\section{Chord lengths depend only on modular distance}
+
+The distance between vertices \(a\) and \(b\) on the unit circle is
+\[
+  |\zeta_N^a-\zeta_N^b|.
+\]
+Factor out \(\zeta_N^b\), whose absolute value is one:
+\[
+  |\zeta_N^a-\zeta_N^b|
+  =|\zeta_N^{a-b}-1|.
+\]
+Using
+\[
+  e^{i\theta}-1
+  =2i e^{i\theta/2}\sin\frac\theta2,
+\]
+we obtain
+\[
+  \boxed{
+  |\zeta_N^a-\zeta_N^b|
+  =2\left|\sin\frac{\pi(a-b)}{N}\right|.}
+\]
+Thus chord length depends only on the difference \(a-b\pmod N\), exactly as rotational symmetry predicts.
+
+For a unit circumradius decagon, the side length is
+\[
+  2\sin\frac{\pi}{10},
+\]
+the chord spanning two edges has length
+\[
+  2\sin\frac{2\pi}{10},
+\]
+and opposite vertices are distance
+\[
+  2\sin\frac{5\pi}{10}=2.
+\]
+The same modular difference that controls hopping also controls Euclidean distance on the polygon.
+
+\section{The roots of \texorpdfstring{$z^N-1$}{zN-1} form the polygon}
+
+The polynomial
+\[
+  z^N-1
+\]
+has the \(N\) roots
+\[
+  1,\zeta_N,\ldots,\zeta_N^{N-1}.
+\]
+They are distinct because the derivative
+\[
+  Nz^{N-1}
+\]
+does not vanish at a root of unity.  Hence
+\[
+  z^N-1=\prod_{j=0}^{N-1}(z-\zeta_N^j).
+\]
+
+Complex conjugation reflects the polygon across the real axis:
+\[
+  \overline{\zeta_N^j}=\zeta_N^{-j}=\zeta_N^{N-j}.
+\]
+Therefore nonreal roots occur in conjugate pairs.  If \(N\) is odd, \(1\) is the only real root.  If \(N\) is even, the real roots are \(1\) and \(-1\).
+
+For instance,
+\[
+  \omega=\frac{-1+i\sqrt3}{2}
+  =e^{2\pi i/3}
+\]
+is a nontrivial cubic root of unity, so
+\[
+  \omega^3=1
+\]
+and
+\[
+  1+\omega+\omega^2=0.
+\]
+This single equilateral-triangle identity is enough to solve a basic polynomial-divisibility problem.
+
+\section{One elementary divisibility test}
+
+Let
+\[
+  P_n(x)=x^{2n}+x^n+1
+\]
+and
+\[
+  Q(x)=x^2+x+1.
+\]
+The roots of \(Q\) are \(\omega\) and \(\omega^2\), where \(\omega^3=1\) and \(\omega\neq1\).  Since the roots are distinct,
+\[
+  Q(x)\mid P_n(x)
+\]
+exactly when both roots of \(Q\) are roots of \(P_n\).
+
+At \(x=\omega\),
+\[
+  P_n(\omega)=\omega^{2n}+\omega^n+1.
+\]
+If \(n\equiv0\pmod3\), then \(\omega^n=1\) and
+\[
+  P_n(\omega)=3\neq0.
+\]
+If \(n\equiv1\) or \(2\pmod3\), then \(\omega^n\) is one of the two nontrivial cubic roots, and
+\[
+  1+\omega^n+\omega^{2n}=0.
+\]
+The same argument applies to \(\omega^2\).  Therefore
+\[
+  \boxed{
+  x^2+x+1\mid x^{2n}+x^n+1
+  \quad\Longleftrightarrow\quad
+  3\nmid n.}
+\]
+
+The proof is elementary: polynomial divisibility is checked on the two vertices of an equilateral triangle, and exponent reduction is arithmetic modulo three.
+

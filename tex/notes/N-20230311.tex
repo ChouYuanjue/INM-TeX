@@ -1,372 +1,487 @@
-\notechapter{N-20230311}{Riemann Integration and Lebesgue Integration: From Partitions of the Domain to Partitions of Values}
+\notechapter{N-20230311}{From Oscillation to Stable Limits: Riemann and Lebesgue Integration}
 
-\section{Why two theories of integration exist}
+\section{The difficult question is whether integration survives a limit}
 
-This note compares Riemann integration and Lebesgue integration.  A compressed summary such as “Riemann cuts the $x$-axis; Lebesgue cuts the $y$-axis” is memorable, but it is not enough.  The real issue is what kinds of limiting processes the integral is supposed to tolerate.
-
-Riemann integration works beautifully for continuous functions and many functions with mild discontinuities.  But once functions oscillate too much, especially when rational and irrational points behave differently, the Riemann approach becomes rigid.  Lebesgue integration was designed to handle limits of functions more naturally, especially in analysis, probability, and Fourier theory.
-
-\section{Riemann sums}
-
-Let $f:[a,b]\to\mathbb R$ be bounded.  A partition is a finite sequence
+For a single continuous function on a compact interval, integration is rarely mysterious.  The difficulty appears when analysis constructs a function as a limit:
 \[
-  P:a=x_0<x_1<\cdots<x_n=b.
+  f_n(x)\longrightarrow f(x).
 \]
-Choose a sample point $\xi_i\in[x_{i-1},x_i]$ in each subinterval.  The Riemann sum is
+One then wants to exchange two limiting operations:
 \[
-  \sum_{i=1}^n f(\xi_i)\Delta x_i,
-  \qquad
-  \Delta x_i=x_i-x_{i-1}.
-\]
-If all such sums approach the same limit as the mesh
-\[
-  \|P\|=\max_i \Delta x_i
-\]
-tends to zero, that limit is the Riemann integral.
-
-The geometric picture is rectangles under a graph.  But the definition is not simply about drawing rectangles; it says that the total contribution should stabilize no matter how the sample points are chosen, once the partition is sufficiently fine.
-
-\section{Darboux upper and lower sums}
-
-A cleaner equivalent formulation is Darboux integration.  On each interval $[x_{i-1},x_i]$, define
-\[
-  M_i=\sup_{x\in[x_{i-1},x_i]} f(x),
-  \qquad
-  m_i=\inf_{x\in[x_{i-1},x_i]} f(x).
-\]
-The upper and lower sums are
-\[
-  U(P,f)=\sum_i M_i\Delta x_i,
-  \qquad
-  L(P,f)=\sum_i m_i\Delta x_i.
-\]
-Then
-\[
-  f\text{ is Riemann integrable}
-  \quad\Longleftrightarrow\quad
-  \inf_P U(P,f)=\sup_P L(P,f).
-\]
-The common value is the integral.
-
-This formulation explains why discontinuities matter.  If a function oscillates wildly on every interval, then $M_i-m_i$ remains large no matter how small the interval is, and the upper and lower sums cannot meet.
-
-\section{A simple integrable discontinuity}
-
-Consider
-\[
-  f(x)=\begin{cases}
-  1,&x=c,\\
-  0,&x\ne c
-  \end{cases}
-\]
-on $[a,b]$.  This function is discontinuous at one point, but it is Riemann integrable with integral zero.  Indeed, the lower sums are all zero.  For any partition, only one subinterval can contain $c$, and the contribution to the upper sum from that subinterval can be made arbitrarily small.
-
-Thus Riemann integration tolerates finite discontinuities.  More generally, a bounded function is Riemann integrable iff its set of discontinuities has Lebesgue measure zero.  This theorem already hints that measure theory is hiding behind Riemann integration.
-
-\section{Dirichlet's function}
-
-The Dirichlet function is
-\[
-  1_{\mathbb Q}(x)=\begin{cases}
-  1,&x\in\mathbb Q,\\
-  0,&x\notin\mathbb Q.
-  \end{cases}
-\]
-On every nonempty interval there are rational and irrational numbers.  Therefore on every subinterval,
-\[
-  M_i=1,
-  \qquad
-  m_i=0.
-\]
-Hence
-\[
-  U(P,f)=b-a,
-  \qquad
-  L(P,f)=0
-\]
-for every partition.  The upper and lower integrals never meet, so the function is not Riemann integrable.
-
-Lebesgue integration handles this example immediately: since $\mathbb Q$ is countable and has measure zero,
-\[
-  \int_{[a,b]}1_{\mathbb Q}\,dx=0.
-\]
-This one example explains much of the motivation for Lebesgue's theory.
-
-\section{The Lebesgue idea}
-
-Riemann integration partitions the domain into small intervals and asks how the function behaves on each interval.  Lebesgue integration partitions according to values.  For a nonnegative simple function
-\[
-  s=\sum_{j=1}^m a_j1_{E_j},
-\]
-where the $E_j$ are measurable and disjoint, define
-\[
-  \int s\,d\mu=\sum_{j=1}^m a_j\mu(E_j).
-\]
-For a nonnegative measurable function $f$, define
-\[
-  \int f\,d\mu=\sup\left\{\int s\,d\mu:s\le f,\ s\text{ simple}\right\}.
-\]
-For a general integrable function, write
-\[
-  f=f^+-f^-.
-\]
-If both $\int f^+$ and $\int f^-$ are finite, define
-\[
-  \int f=\int f^+-\int f^-.
-\]
-
-The construction is less pictorial than Riemann sums, but more robust.  It counts how much space is occupied by each range of values.
-
-\section{Characteristic functions and sets}
-
-The Lebesgue integral turns set measure into function integration:
-\[
-  \int 1_E\,d\mu=\mu(E).
-\]
-This is conceptually important.  Sets become functions, and measuring a set becomes integrating its indicator.  Probability theory uses exactly this viewpoint: expectation is integration, and probabilities are integrals of indicators.
-
-For the Dirichlet function,
-\[
-  1_{\mathbb Q\cap[a,b]}
-\]
-has integral zero because the rationals are countable.  For the Thomae function, which is discontinuous at every rational and continuous at every irrational, the function is still Riemann integrable because its discontinuity set is countable.  Lebesgue theory makes such examples easier to organize.
-
-\section{Convergence theorems}
-
-The major advantage of Lebesgue integration is not merely that it integrates more functions.  It has powerful limit theorems.
-
-The Monotone Convergence Theorem says: if
-\[
-  0\le f_1\le f_2\le\cdots,
-  \qquad
-  f_n\to f,
-\]
-then
-\[
-  \int f\,d\mu=\lim_{n\to\infty}\int f_n\,d\mu.
-\]
-The Dominated Convergence Theorem says: if $f_n\to f$ pointwise, and $|f_n|\le g$ for an integrable $g$, then
-\[
-  \lim_{n\to\infty}\int f_n\,d\mu=\int f\,d\mu.
-\]
-These are theorems Riemann integration cannot match in such generality.  They explain why Lebesgue integration becomes the standard language of modern analysis.
-
-\section{Improper Riemann integrals versus Lebesgue integrals}
-
-A subtle point: some improper Riemann integrals converge conditionally but are not Lebesgue integrable.  For example,
-\[
-  \int_1^\infty \frac{\sin x}{x}\,dx
-\]
-converges as an improper integral, but
-\[
-  \int_1^\infty \left|\frac{\sin x}{x}\right|dx
-\]
-diverges.  Lebesgue integrability of a signed function requires integrability of the absolute value.  Thus Lebesgue integration is not simply “more permissive”; it is more structurally consistent with normed function spaces such as $L^1$.
-
-\section{Comparison table}
-
-\begin{center}
-\small
-\begin{tabularx}{\textwidth}{@{}lYY@{}}
-\toprule
-Aspect & Riemann & Lebesgue \\
-\midrule
-Partition & Domain intervals & Value levels and measurable sets \\
-Basic object & Bounded functions on intervals & Measurable functions \\
-Bad example & $1_{\mathbb Q}$ not integrable & Integral is $0$ \\
-Limit theorems & Limited & MCT, Fatou, DCT \\
-Natural space & Continuous functions and elementary calculus & $L^p$ spaces, probability, Fourier analysis \\
-\bottomrule
-\end{tabularx}
-\end{center}
-
-
-\section{Source repair: the measure-space starting point}
-
-The uploaded note explicitly starts the Lebesgue construction from a measure space
-\[
-  (X,\mathcal M,\mu),
-\]
-where \(\mathcal M\) is a \(\sigma\)-algebra and \(\mu\) is a measure.  A function \(f:X\to\mathbb R\) is measurable if sets such as
-\[
-  \{x\in X:f(x)>\alpha\}
-\]
-belong to \(\mathcal M\) for every real \(\alpha\).  This is the point at which the theory leaves elementary calculus: before integrating, one must decide which subsets are measurable.
-
-\section{Source repair: simple functions as building blocks}
-
-The uploaded text defines a nonnegative simple function by
-\[
-  \varphi(x)=\sum_{i=1}^n a_i\chi_{A_i}(x),
-\]
-and sets
-\[
-  \int_X \varphi\,d\mu=\sum_{i=1}^n a_i\mu(A_i).
-\]
-For a nonnegative measurable function,
-\[
-  \int_X f\,d\mu
-  =\sup\left\{\int_X\varphi\,d\mu:0\le\varphi\le f,\ \varphi\text{ simple}\right\}.
-\]
-This is the formal version of cutting by values.  Instead of approximating the domain by small intervals, we approximate the function from below by simple measurable functions.
-
-\section{Source repair: probability viewpoint}
-
-The source also points toward probability.  A random variable is a measurable function, and expectation is an integral:
-\[
-  \mathbb E[X]=\int_\Omega X\,d\mathbb P.
-\]
-Events are measured by probabilities, and indicators satisfy
-\[
-  \mathbb E[1_A]=\mathbb P(A).
-\]
-This makes the Lebesgue framework the natural language of modern probability, not only a generalization of calculus.
-
-\section{A note on scope}
-
-The slogan is useful:
-\[
-  \text{Riemann cuts the domain; Lebesgue cuts by values.}
-\]
-But the deeper difference is categorical: Riemann integration is built around approximating graphs by rectangles, while Lebesgue integration is built around measurable sets and stable limiting operations.  That is why Lebesgue integration becomes the foundation for modern analysis, probability, PDE, and functional analysis.
-
-\section{Riemann integration partitions the domain}
-Riemann integration controls oscillation on subintervals of the domain.  A bounded function is Riemann integrable when upper and lower sums can be made arbitrarily close.
-\section{Lebesgue integration partitions the values}
-Lebesgue integration instead measures level sets.  Simple functions approximate by values, and measurable sets replace intervals as the basic pieces.  This is why characteristic functions become fundamental.
-\section{Dirichlet function as separator}
-The function \(\mathbf 1_{\mathbb Q}\) is discontinuous everywhere and not Riemann integrable, but it is Lebesgue integrable with integral zero because \(\mathbb Q\) has measure zero.
-\section{Convergence theorems as exchange principles}
-
-The central question behind the convergence theorems is not only whether a limit exists.  It is whether the following exchange is legal:
-\[
-  \int \lim_{n\to\infty} f_n\,d\mu
+  \int \lim_{n\to\infty}f_n\,d\mu
   \stackrel{?}{=}
   \lim_{n\to\infty}\int f_n\,d\mu.
 \]
-Lebesgue theory gives precise hypotheses under which this exchange is safe.
+Pointwise convergence alone does not justify this exchange.  A sequence may carry a fixed amount of area farther and farther away, or compress it into narrower and taller spikes.
 
-\begin{theorem}[Monotone convergence, informal reading]
-If \(0\le f_1\le f_2\le\cdots\) and \(f_n\to f\), then
+Riemann integration begins by controlling oscillation on small intervals.  Lebesgue integration changes the basic pieces from intervals to measurable sets and builds the integral so that monotone approximation is automatic.  The two theories therefore differ less in the picture of rectangles than in the limiting processes they are designed to support.
+
+\section{Riemann integration controls oscillation on intervals}
+
+Let \(f:[a,b]\to\mathbb R\) be bounded and let
 \[
-  \int f_n\,d\mu\longrightarrow \int f\,d\mu.
+  P:a=x_0<x_1<\cdots<x_m=b
 \]
-The intuition is that positive mass is only accumulating upward; no cancellation or escaping negative part is hidden.
-\end{theorem}
+be a partition.  On \(I_i=[x_{i-1},x_i]\), define
+\[
+  M_i=\sup_{x\in I_i}f(x),
+  \qquad
+  m_i=\inf_{x\in I_i}f(x).
+\]
+The upper and lower Darboux sums are
+\[
+  U(P,f)=\sum_{i=1}^m M_i|I_i|,
+  \qquad
+  L(P,f)=\sum_{i=1}^m m_i|I_i|.
+\]
+Their difference is
+\[
+  U(P,f)-L(P,f)
+  =\sum_{i=1}^m \omega(f;I_i)|I_i|,
+\]
+where
+\[
+  \omega(f;I_i)=M_i-m_i
+\]
+is the oscillation of \(f\) on the interval.
 
-\begin{theorem}[Dominated convergence, informal reading]
-If \(f_n\to f\) pointwise and there is an integrable function \(g\) such that
+The Darboux criterion says
+\[
+  f\text{ is Riemann integrable}
+  \quad\Longleftrightarrow\quad
+  \forall\varepsilon>0\ \exists P:
+  U(P,f)-L(P,f)<\varepsilon.
+\]
+Thus the theory succeeds when intervals on which the function oscillates substantially can be made to have small total length.
+
+A function may have discontinuities and still satisfy this condition.  If
+\[
+  f(x)=
+  \begin{cases}
+    1,&x=c,\\
+    0,&x\ne c,
+  \end{cases}
+\]
+then every lower sum is \(0\).  Only one interval of a partition contains \(c\), and its length can be made arbitrarily small, so the upper sums also approach \(0\).
+
+\section{Dense oscillation defeats every interval partition}
+
+Consider the Dirichlet function on \([a,b]\):
+\[
+  D(x)=\mathbf1_{\mathbb Q}(x).
+\]
+Every nonempty interval contains rational and irrational points.  Hence on every partition interval,
+\[
+  \sup D=1,
+  \qquad
+  \inf D=0.
+\]
+Therefore
+\[
+  U(P,D)=b-a,
+  \qquad
+  L(P,D)=0
+\]
+for every partition.  No refinement reduces the oscillation gap.
+
+The Thomae function gives a subtler comparison.  Define on \([0,1]\)
+\[
+  T(x)=
+  \begin{cases}
+    1/q,&x=p/q\text{ in lowest terms},\\
+    0,&x\notin\mathbb Q.
+  \end{cases}
+\]
+It is discontinuous at every rational and continuous at every irrational.  Nevertheless it is Riemann integrable with integral \(0\).
+
+Fix \(\varepsilon>0\).  There are only finitely many reduced fractions in \([0,1]\) with denominator at most \(2/\varepsilon\).  Cover these finitely many points by intervals of total length less than \(\varepsilon/2\).  Outside those intervals,
+\[
+  T(x)<\frac{\varepsilon}{2}.
+\]
+A partition adapted to the cover has upper sum bounded by
+\[
+  1\cdot\frac{\varepsilon}{2}
+  +\frac{\varepsilon}{2}\cdot1
+  =\varepsilon.
+\]
+Thus dense discontinuities alone are not the obstruction; what matters is the size and strength of the oscillation.
+
+Lebesgue's criterion makes this exact: a bounded function on \([a,b]\) is Riemann integrable if and only if its set of discontinuities has Lebesgue measure zero.  The theorem is stated using measure because the Riemann criterion was already measuring how much interval length supports persistent oscillation.
+
+\section{Measure spaces decide which sets may be counted}
+
+Lebesgue integration begins with a measure space
+\[
+  (X,\mathcal M,\mu).
+\]
+The sigma-algebra \(\mathcal M\) specifies the measurable subsets of \(X\), and the measure assigns sizes to them.  Countable additivity means that for pairwise disjoint measurable sets \(E_k\),
+\[
+  \mu\left(\bigcup_{k=1}^{\infty}E_k\right)
+  =\sum_{k=1}^{\infty}\mu(E_k).
+\]
+
+A function \(f:X\to\overline{\mathbb R}\) is measurable when sets of the form
+\[
+  \{x:f(x)>t\}
+\]
+are measurable for every real \(t\).  This condition ensures that the regions on which the function lies in a prescribed range have a defined size.
+
+Indicator functions connect sets and functions:
+\[
+  \int_X\mathbf1_E\,d\mu=\mu(E).
+\]
+For the Dirichlet function on an interval,
+\[
+  D=\mathbf1_{\mathbb Q\cap[a,b]}.
+\]
+Since the rationals are countable and every singleton has Lebesgue measure zero,
+\[
+  \mu(\mathbb Q\cap[a,b])=0.
+\]
+Therefore
+\[
+  \int_a^b D(x)\,dx=0.
+\]
+The function that defeats every interval partition becomes simple once its exceptional set can be measured directly.
+
+\section{Simple functions build the nonnegative integral from below}
+
+A nonnegative simple function has the form
+\[
+  s=\sum_{j=1}^r a_j\mathbf1_{E_j},
+  \qquad
+  a_j\ge0,
+\]
+where the measurable sets \(E_j\) are pairwise disjoint.  Define
+\[
+  \int_X s\,d\mu
+  =\sum_{j=1}^r a_j\mu(E_j).
+\]
+
+For a nonnegative measurable function \(f\), define
+\[
+  \boxed{
+  \int_X f\,d\mu
+  =\sup\left\{
+    \int_Xs\,d\mu:
+    0\le s\le f,\ s\text{ simple}
+  \right\}.}
+\]
+The integral is therefore designed around monotone approximation from below.
+
+For example, on \([0,1]\), let
+\[
+  s_n(x)=2^{-n}\lfloor2^n x\rfloor.
+\]
+Then \(s_n\) is simple,
+\[
+  0\le s_n(x)\le x,
+  \qquad
+  s_n(x)\uparrow x.
+\]
+Its integral is
+\[
+\begin{aligned}
+  \int_0^1s_n(x)\,dx
+  &=\sum_{k=0}^{2^n-1}
+    \frac{k}{2^n}\cdot\frac1{2^n}\\
+  &=\frac{2^n(2^n-1)}{2\cdot2^{2n}}\\
+  &=\frac12-\frac1{2^{n+1}}.
+\end{aligned}
+\]
+Taking the supremum gives
+\[
+  \int_0^1x\,dx=\frac12.
+\]
+Here the value is not imported from Riemann integration; it follows directly from measurable step approximations.
+
+For a real-valued measurable function, write
+\[
+  f=f^+-f^-,
+  \qquad
+  f^+=\max(f,0),
+  \qquad
+  f^-=\max(-f,0).
+\]
+The function is Lebesgue integrable when
+\[
+  \int f^+<\infty,
+  \qquad
+  \int f^-<\infty,
+\]
+or equivalently when \(\int|f|<\infty\).
+
+\section{Monotone convergence is built into the definition}
+
+Suppose
+\[
+  0\le f_1\le f_2\le\cdots,
+  \qquad
+  f_n(x)\to f(x).
+\]
+Since \(f_n\le f\), monotonicity gives
+\[
+  \lim_{n\to\infty}\int f_n\,d\mu
+  \le\int f\,d\mu.
+\]
+For the reverse inequality, take a simple function \(0\le s\le f\) and a number \(0<c<1\).  Define
+\[
+  E_n=\{x:f_n(x)\ge c s(x)\}.
+\]
+The sets \(E_n\) increase and cover the region on which \(s>0\).  Hence
+\[
+  \int f_n\,d\mu
+  \ge c\int_{E_n}s\,d\mu
+  \longrightarrow c\int s\,d\mu.
+\]
+Letting \(c\uparrow1\) and then taking the supremum over all simple \(s\le f\) yields
+\[
+  \boxed{
+  \int f\,d\mu
+  =\lim_{n\to\infty}\int f_n\,d\mu.}
+\]
+This is the Monotone Convergence Theorem.
+
+The proof works because nonnegative mass only accumulates.  No positive and negative parts can cancel, and no contribution already present in \(f_n\) is later removed.
+
+\section{Fatou and dominated convergence control general limits}
+
+For nonnegative measurable functions \(f_n\), define
+\[
+  g_k(x)=\inf_{n\ge k}f_n(x).
+\]
+Then
+\[
+  g_k\uparrow\liminf_{n\to\infty}f_n.
+\]
+Monotone convergence gives
+\[
+  \int\liminf f_n\,d\mu
+  =\lim_{k\to\infty}\int g_k\,d\mu.
+\]
+Since \(g_k\le f_n\) for every \(n\ge k\),
+\[
+  \int g_k\,d\mu
+  \le\inf_{n\ge k}\int f_n\,d\mu.
+\]
+Therefore
+\[
+  \boxed{
+  \int\liminf f_n\,d\mu
+  \le\liminf_{n\to\infty}\int f_n\,d\mu.}
+\]
+This is Fatou's lemma.
+
+Now suppose \(f_n\to f\) almost everywhere and
 \[
   |f_n|\le g
 \]
-for all \(n\), then
+for some integrable \(g\).  Apply Fatou to the nonnegative sequences
 \[
-  \int f_n\,d\mu\longrightarrow \int f\,d\mu.
+  g+f_n
+  \quad\text{and}\quad
+  g-f_n.
 \]
-The dominating function prevents mass from escaping to infinity or concentrating in narrower and narrower spikes.
-\end{theorem}
-
-Fatou's lemma is the one-sided safety rule:
+The first gives
 \[
-  \int \liminf_{n\to\infty} f_n\,d\mu
-  \le
-  \liminf_{n\to\infty}\int f_n\,d\mu
-  \qquad (f_n\ge0).
+  \int g+\int f
+  \le\int g+\liminf\int f_n,
 \]
-It says that, for nonnegative functions, the integral of the limiting lower mass cannot exceed the limiting lower integrals.
+so
+\[
+  \int f\le\liminf\int f_n.
+\]
+The second gives
+\[
+  \int g-\int f
+  \le\int g-\limsup\int f_n,
+\]
+so
+\[
+  \limsup\int f_n\le\int f.
+\]
+Consequently,
+\[
+  \boxed{
+  \lim_{n\to\infty}\int f_n\,d\mu
+  =\int f\,d\mu.}
+\]
+This is the Dominated Convergence Theorem.
 
-\begin{example}[Escaping mass]
+A basic example is
+\[
+  f_n(x)=x^n
+  \qquad(0\le x\le1).
+\]
+Then \(f_n(x)\to0\) for every \(x<1\), and the exceptional point \(x=1\) has measure zero.  Since \(|f_n|\le1\), dominated convergence gives
+\[
+  \int_0^1x^n\,dx\longrightarrow0,
+\]
+consistent with the exact value \(1/(n+1)\).
+
+\section{Escape and concentration explain why domination is needed}
+
 On \(\mathbb R\), let
 \[
-  f_n=\mathbf 1_{[n,n+1]}.
+  f_n=\mathbf1_{[n,n+1]}.
 \]
-Then \(f_n(x)\to0\) for every fixed \(x\), but
+For each fixed \(x\), eventually \(x\notin[n,n+1]\), so
 \[
-  \int_{\mathbb R} f_n\,dx=1
+  f_n(x)	o0.
 \]
-for all \(n\).  Therefore
+Yet
 \[
-  \int \lim f_n\,dx=0
-  \ne
-  1=\lim \int f_n\,dx.
+  \int_{\mathbb R}f_n\,dx=1
 \]
-The mass has not disappeared; it has escaped to infinity.  Dominated convergence fails because no single integrable \(g\) can dominate all these translated bumps.
-\end{example}
+for every \(n\).  The mass has escaped to infinity.  No single integrable function can dominate all translated indicators.
 
-\begin{example}[Concentrating mass]
 On \([0,1]\), let
 \[
-  f_n=n\mathbf 1_{[0,1/n]}.
+  h_n=n\mathbf1_{[0,1/n]}.
 \]
-Then \(f_n(x)\to0\) for every \(x>0\), but
+Then \(h_n(x)	o0\) for every \(x>0\), but
 \[
-  \int_0^1 f_n(x)\,dx=1.
+  \int_0^1h_n\,dx=1.
 \]
-The mass concentrates into a narrower spike near \(0\).  Again, pointwise convergence alone is too weak to justify exchanging limit and integral.
-\end{example}
+The mass has concentrated near \(0\).  Any pointwise dominating function would need to be at least of order \(1/x\) near zero and therefore could not be integrable.
 
-\begin{remark}[Probability language]
-In probability, the same question is whether
+These examples show what the hypothesis \(|f_n|\le g\in L^1\) prevents.  It supplies a fixed integrable envelope that forbids both translation of unit mass to infinity and compression of unit mass into arbitrarily narrow spikes.
+
+\section{Improper convergence and Lebesgue integrability are different}
+
+The improper integral
 \[
-  \mathbb E[\lim X_n]=\lim\mathbb E[X_n]
+  \int_1^{\infty}\frac{\sin x}{x}\,dx
 \]
-is legal.  Monotone convergence, Fatou's lemma, and dominated convergence are therefore not abstract measure-theory decorations; they are rules for passing limits through expectations.
-\end{remark}
-\section{Integration theory through measurable structure}
-Riemann integration manages oscillation on intervals; Lebesgue integration measures sets of values.  The shift from partitions of the domain to measurable level sets is the conceptual upgrade.
-
-\section{Riemann sums and measure spaces}
-
-The Riemann integral begins with partitions of intervals and rectangles.  Lebesgue integration changes the organizing principle: instead of cutting the domain into small intervals first, it studies the size of sets on which the function takes certain values.  A measure space is a triple
+converges by cancellation.  Integration by parts on \([1,R]\) gives
 \[
-  (X,\mathcal A,\mu),
+  \int_1^R\frac{\sin x}{x}\,dx
+  =\left[-\frac{\cos x}{x}\right]_1^R
+   -\int_1^R\frac{\cos x}{x^2}\,dx.
 \]
-where $\mathcal A$ is a sigma-algebra of measurable sets and $\mu$ assigns sizes to those sets.
+The boundary term has a limit and the remaining integral converges absolutely.
 
-A simple function has the form
+However,
 \[
-  s=\sum_{j=1}^m c_j\mathbf 1_{E_j}.
+  \int_1^{\infty}\frac{|\sin x|}{x}\,dx=\infty.
 \]
-Its integral is defined by
+Indeed, on a fixed positive fraction of each period, \(|\sin x|\) is bounded below by a positive constant, and the resulting comparison is with the harmonic series.
+
+Thus \(\sin x/x\) is not Lebesgue integrable on \([1,\infty)\), because Lebesgue integrability of a signed function requires
 \[
-  \int s\,d\mu=\sum_{j=1}^m c_j\mu(E_j).
+  \int|f|<\infty.
 \]
-Nonnegative measurable functions are integrated by approximating from below by simple functions, and general integrable functions are handled by positive and negative parts.
+This is not a weakness.  Absolute integrability makes the integral insensitive to rearrangement and places the function in a normed space.  Conditional improper integration preserves cancellation along a specified exhaustion of the domain, which is a different structure.
 
-This preserves the elementary intuition of area, but it makes convergence theorems much stronger.
+\section{The spaces \texorpdfstring{$L^p$}{Lp} record quantitative integrability}
 
-\section{Dominated and monotone convergence in practice}
-
-The three convergence tools should be read as three different controls on a limiting process.
-
+For \(1\le p<\infty\), define
 \[
-\begin{array}{c|c|c}
-\text{tool} & \text{hypothesis} & \text{what it prevents}\\
-\hline
-\text{MCT} & 0\le f_n\uparrow f & \text{loss by cancellation}\\
-\text{Fatou} & f_n\ge0 & \text{overestimating the limiting lower mass}\\
-\text{DCT} & |f_n|\le g\in L^1 & \text{escape or concentration of mass}
-\end{array}
-\]
-
-This is why Lebesgue integration is the natural language of probability, Fourier analysis, and PDEs.  These subjects constantly form limiting objects: limits of random variables, limits of Fourier partial sums, weak or strong limits of approximate solutions.  The integral must be stable enough to survive those passages to the limit.
-
-\section{Lp spaces and duality}
-
-For $1\le p<\infty$, define
-\[
-  L^p(X)=\{f:\ \int |f|^p\,d\mu<\infty\}/\sim,
+  L^p(X)=
+  \left\{f:\int_X|f|^p\,d\mu<\infty\right\}/\!\sim,
 \]
 where functions equal almost everywhere are identified.  The norm is
 \[
-  \|f\|_p=\left(\int |f|^p\,d\mu\right)^{1/p}.
+  \|f\|_p=\left(\int_X|f|^p\,d\mu\right)^{1/p}.
 \]
-Hölder's inequality says that if $1/p+1/q=1$, then
+
+The quotient by almost-everywhere equality is forced by integration: changing a function on a null set changes neither its integral nor its \(L^p\) norm.  The Dirichlet function and the zero function therefore represent the same element of \(L^p([a,b])\).
+
+If \(1/p+1/q=1\), Hölder's inequality gives
 \[
-  \int |fg|\,d\mu\le \|f\|_p\|g\|_q.
+  \int_X|fg|\,d\mu
+  \le\|f\|_p\|g\|_q.
 \]
-Thus integration becomes a pairing between function spaces.  The elementary integral $\int fg$ is now a duality bracket, and inequalities become statements about bounded linear functionals.
+Thus the integral defines a continuous pairing between \(L^p\) and \(L^q\).  In the case \(p=q=2\),
+\[
+  \langle f,g\rangle=\int_Xf\overline g\,d\mu
+\]
+is an inner product, and integration becomes part of Hilbert-space geometry.
 
-\section{Returning to the original Riemann examples}
+Dominated convergence also has a norm interpretation.  If \(f_n\to f\) almost everywhere and \(|f_n|\le g\in L^p\), then
+\[
+  |f_n-f|^p\le(2g)^p.
+\]
+Applying dominated convergence to \(|f_n-f|^p\) yields
+\[
+  \|f_n-f\|_p	o0.
+\]
+A pointwise limit has become convergence in a function-space norm because one integrable envelope controls the entire sequence.
 
-Darboux sums, Riemann sums, and step-function pictures remain valuable because they teach integral as accumulation.  The advanced reconstruction does not erase them.  It explains why later mathematics replaces intervals by measurable sets, pointwise equality by almost-everywhere equality, and ordinary convergence by modes of convergence suitable for passing limits through integrals.
+\section{Probability reveals the role of uniform integrability}
+
+A probability space is a measure space
+\[
+  (\Omega,\mathcal F,\mathbb P)
+\]
+with \(\mathbb P(\Omega)=1\).  A random variable is a measurable function, and expectation is integration:
+\[
+  \mathbb E[X]=\int_{\Omega}X\,d\mathbb P.
+\]
+For an event \(A\),
+\[
+  \mathbb E[\mathbf1_A]=\mathbb P(A).
+\]
+
+Suppose \(X_n\to X\) almost surely and \(|X_n|\le Y\) with \(\mathbb E[Y]<\infty\).  Dominated convergence gives
+\[
+  \mathbb E[X_n]\to\mathbb E[X].
+\]
+A single dominating random variable is sufficient, but it is stronger than necessary.  What the proof really needs is uniform control of the tails.
+
+A family \(\{X_n\}\subset L^1\) is \emph{uniformly integrable} if
+\[
+  \lim_{K\to\infty}
+  \sup_n
+  \mathbb E\left[
+    |X_n|\mathbf1_{\{|X_n|>K\}}
+  \right]
+  =0.
+\]
+This condition says that no member of the family can hide a fixed amount of expected mass at arbitrarily large values.
+
+Domination implies uniform integrability.  If \(|X_n|\le Y\in L^1\), then
+\[
+  \{|X_n|>K\}\subseteq\{Y>K\},
+\]
+and therefore
+\[
+\begin{aligned}
+  \mathbb E\left[
+    |X_n|\mathbf1_{\{|X_n|>K\}}
+  \right]
+  &\le
+  \mathbb E\left[
+    Y\mathbf1_{\{Y>K\}}
+  \right].
+\end{aligned}
+\]
+The right-hand side tends to zero by dominated convergence and is independent of \(n\).
+
+The concentrating sequence
+\[
+  X_n=n\mathbf1_{(0,1/n]}
+\]
+on \((0,1]\) converges almost surely to zero, but
+\[
+  \mathbb E[X_n]=1.
+\]
+It is not uniformly integrable.  For any fixed \(K\), choose \(n>K\).  Then \(|X_n|>K\) on its whole support, so
+\[
+  \mathbb E\left[
+    |X_n|\mathbf1_{\{|X_n|>K\}}
+  \right]=1.
+\]
+The supremum over \(n\) never decreases.  Uniform integrability detects exactly the mass concentration that pointwise convergence misses.
+
+Vitali's convergence theorem gives the corresponding exchange principle: if \(X_n\to X\) in probability and \(\{X_n\}\) is uniformly integrable, then
+\[
+  \mathbb E|X_n-X|\to0.
+\]
+In particular,
+\[
+  \mathbb E[X_n]\to\mathbb E[X].
+\]
+The mechanism is a bounded-tail decomposition.  Choose \(K\) so that the large-value tails contribute little uniformly.  On the region where \(|X_n|\) and \(|X|\) are at most \(K\), convergence in probability controls the integral after separating the set on which \(|X_n-X|\) exceeds a small threshold.  The tails are then controlled by uniform integrability.
+
+The development has therefore returned to the question that motivated the two integration theories.  Riemann integration controls spatial oscillation well enough to integrate a single bounded function on an interval.  Lebesgue integration reorganizes the construction around measurable sets and monotone approximation, making precise when limits may pass through integrals, norms, and expectations.  Dominated convergence supplies one fixed envelope; uniform integrability isolates the more general tail condition that the exchange actually requires.

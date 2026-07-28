@@ -184,13 +184,14 @@ The mathematical tradeoff is that the family is restricted.  We do not choose ar
 The two directions can be displayed together:
 
 \begin{center}
-\begin{tikzpicture}[>=stealth,node distance=2.2cm]
+\begin{tikzpicture}[>=stealth,node distance=3.0cm]
   \node[draw,circle,minimum size=0.9cm] (z) {$z$};
   \node[draw,circle,minimum size=0.9cm,right of=z] (x) {$x$};
-  \draw[->,thick] (z) -- node[above] {$p_\theta(x\mid z)$} (x);
-  \draw[->,thick,bend left=35] (x) to node[below] {$q_\phi(z\mid x)$} (z);
-  \node[below of=z,node distance=1.0cm] {latent};
-  \node[below of=x,node distance=1.0cm] {observed};
+  \draw[->,thick] (z) -- node[fill=white,inner sep=1pt,above] {$p_\theta(x\mid z)$} (x);
+  \draw[->,thick,bend left=38] (x) to
+    node[fill=white,inner sep=1pt,below=2pt] {$q_\phi(z\mid x)$} (z);
+  \node at ($(z)+(0,-1.35)$) {latent};
+  \node at ($(x)+(0,-1.35)$) {observed};
 \end{tikzpicture}
 \end{center}
 

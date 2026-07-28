@@ -1,228 +1,592 @@
-\notechapter{N-20230127}{Factorization of \texorpdfstring{$\sum_{i=0}^k x^{in}$}{sum x^{in}}: Roots of Unity, False Generalization, and Cyclotomic Structure}
+\notechapter{N-20230127}{Cyclotomic Pullbacks: Exact Orders, Galois Conjugacy, and Polynomial Divisibility}
 
-\section{The original problem and the first successful method}
+\section{A plausible generalization fails for a precise reason}
 
-The paper begins with the factorization of
+Write
 \[
-  x^{2n}+x^n+1
+  H_m(x)=1+x+x^2+\cdots+x^{m-1}
+  =\frac{x^m-1}{x-1}.
 \]
-by
+The elementary problem
 \[
-  x^2+x+1.
+  x^2+x+1\mid x^{2n}+x^n+1
 \]
-Let $\omega$ be a primitive cubic root of unity.  Then
+is the case
 \[
-  \omega^2+\omega+1=0,\qquad \omega^3=1,\qquad \omega\ne1.
+  H_3(x)\mid H_3(x^n).
 \]
-The polynomial $x^2+x+1$ divides $x^{2n}+x^n+1$ iff both $\omega$ and $\omega^2$ are roots.  Substituting $x=\omega$ gives
+For \(m=3\), the answer is simply \(3\nmid n\).  It is tempting to guess that, for general \(m\),
 \[
-  \omega^{2n}+\omega^n+1.
+  H_m(x)\mid H_m(x^n)
+  \quad\text{whenever}\quad
+  m\nmid n.
 \]
-This is zero exactly when $\omega^n$ is a nontrivial cubic root of unity.  Therefore the divisibility holds iff
-\[
-  n\not\equiv0\pmod3.
-\]
-This proof is short because roots of unity convert a divisibility question into an exponent congruence question.
+The guess is false.
 
-\section{The direct factorization attempt}
-
-The note then tries to prove the same statement by direct algebra.  Since
+Take \(m=6\) and \(n=2\).  Although \(6\nmid2\), the number \(-1\) is a root of
 \[
-  x^{2n}+x^n+1=\frac{x^{3n}-1}{x^n-1},
+  H_6(x)=1+x+\cdots+x^5,
 \]
-one can try to factor numerator and denominator using difference of squares or cubes.  For example, when $n=2$,
+because
 \[
-  x^4+x^2+1=(x^2+x+1)(x^2-x+1).
+  1-1+1-1+1-1=0.
 \]
-When $n=4$, one obtains several quadratic-looking factors, including again $x^2+x+1$.
-
-But when $n$ changes parity or becomes divisible by $3$, the algebraic route splits into cases.  The original article carefully lists cases such as $n=3m\pm1$ and tracks which geometric-series quotients appear.  The lesson is that direct factorization can prove the theorem, but it obscures the simple reason: the exponent map $z\mapsto z^n$ acts on the three roots of unity.
-
-\section{The attempted generalization}
-
-The natural next question is whether
+But
 \[
-  1+x^n+x^{2n}+\cdots+x^{kn}
+  H_6((-1)^2)=H_6(1)=6,
 \]
-is divisible by
+so \(-1\) is not a root of \(H_6(x^2)\).  Therefore
 \[
-  1+x+x^2+\cdots+x^k
+  H_6(x)\nmid H_6(x^2).
 \]
-whenever \(n\) is not a multiple of \(k+1\).  This first guess is too weak.  The correct condition is coprimality.
 
-\begin{theorem}[Root-of-unity test for the generalization]
-Over a field of characteristic zero,
+The failed guess looked only at the order \(m\) itself.  The polynomial \(H_m\), however, contains every nontrivial \(m\)-th root of unity, including roots whose exact orders are proper divisors of \(m\).  In the counterexample, the troublesome root has order \(2\), and \(2\mid n\).  The correct question is therefore not merely whether \(m\) divides \(n\), but how the map
 \[
-  1+x+x^2+\cdots+x^k
-  \quad\text{divides}\quad
-  1+x^n+x^{2n}+\cdots+x^{kn}
+  z\longmapsto z^n
 \]
-if and only if
+changes the exact order of every root of unity involved.
+
+\section{Taking powers changes order by a greatest common divisor}
+
+Let \(\zeta\) be a root of unity of exact order \(d\).  Thus
 \[
-  \gcd(n,k+1)=1.
+  \zeta^d=1
+\]
+and no smaller positive power of \(\zeta\) equals \(1\).
+
+\begin{theorem}[Order after taking a power]
+For every positive integer \(n\),
+\[
+  \operatorname{ord}(\zeta^n)
+  =\frac{d}{\gcd(d,n)}.
 \]
 \end{theorem}
 
 \begin{proof}
-The roots of
+Set
 \[
-  1+x+x^2+\cdots+x^k=\frac{x^{k+1}-1}{x-1}
+  g=\gcd(d,n),
+  \qquad
+  d=gd_0,
+  \qquad
+  n=gn_0,
 \]
-are exactly the nontrivial \((k+1)\)-st roots of unity.  Let \(\xi\ne1\) satisfy \(\xi^{k+1}=1\).  We need
+where \(\gcd(d_0,n_0)=1\).  Then
 \[
-  1+\xi^n+\xi^{2n}+\cdots+\xi^{kn}=0
+  (\zeta^n)^{d_0}
+  =\zeta^{g n_0 d_0}
+  =\zeta^{n_0d}=1,
 \]
-for every such \(\xi\).
+so the order of \(\zeta^n\) divides \(d_0\).
 
-This is a geometric sum.  It vanishes exactly when \(\xi^n\) is a nontrivial \((k+1)\)-st root of unity.  Therefore the map
+Conversely, if \((\zeta^n)^r=1\), then \(d\mid nr\).  After dividing by \(g\),
 \[
-  \xi\longmapsto \xi^n
+  d_0\mid n_0r.
 \]
-must send every nontrivial \((k+1)\)-st root to another nontrivial \((k+1)\)-st root.  Equivalently, the power map on the cyclic group \(\mu_{k+1}\) must have trivial kernel.  This happens exactly when \(n\) is invertible modulo \(k+1\), i.e.
-\[
-  \gcd(n,k+1)=1.
-\]
+Since \(d_0\) and \(n_0\) are coprime, Euclid's lemma gives \(d_0\mid r\).  Hence no smaller positive exponent than \(d_0\) can kill \(\zeta^n\).
 \end{proof}
 
-The original false guess \(n\not\equiv0\pmod{k+1}\) fails because a nonzero residue may still not be invertible.  For instance, modulo \(6\), the residue \(2\) is nonzero but the map \(z\mapsto z^2\) has a nontrivial kernel on sixth roots of unity.
+This formula explains several phenomena at once.  If \(\gcd(d,n)=1\), taking the \(n\)-th power preserves exact order.  If \(d\mid n\), it collapses the root all the way to \(1\).  Between these extremes, the order decreases by exactly the common factor.
 
-\section{The computational experiment}
-
-The note then turns to MATLAB.  It computes roots of
+For example, let \(\zeta\) have order \(12\).  Then
 \[
-  x^{kn}+x^{(k-1)n}+\cdots+x^n+1=0
+  \operatorname{ord}(\zeta^8)
+  =\frac{12}{\gcd(12,8)}
+  =3.
 \]
-for different values of $n$ and plots them in the complex plane, sometimes using a third coordinate to record $n$.  This is not just decoration.  The picture reveals periodicity in the arguments of the roots.
+Thus the eighth-power map sends primitive twelfth roots to primitive cubic roots.  It neither preserves all twelve vertices nor collapses them to one point; it folds the twelve-cycle onto a three-cycle.
 
-The observed pattern is: the roots lie on the unit circle, their arguments are fractions of $2\pi$, and as $n$ varies the same angular patterns repeat.  For $k=2$, the pattern has two angles per block; for $k=3$, three angles per block; in general, the $(k+1)$-st-root structure controls the blocks.
+\section{The correct divisibility criterion}
 
-This experimental section is important because it records a genuine mathematical process: a false conjecture is tested, numerical pictures suggest the right invariant, and then the invariant is expressed exactly by roots of unity.
-
-\section{Explicit root formula}
-
-The equation
+The roots of \(H_m(x)\) are precisely the nontrivial \(m\)-th roots of unity.  Indeed,
 \[
-  1+x^n+x^{2n}+\cdots+x^{kn}=0
+  (x-1)H_m(x)=x^m-1,
 \]
-can be rewritten as
+and \(x=1\) is the only \(m\)-th root removed by the quotient.
+
+Now let \(\zeta\neq1\) satisfy \(\zeta^m=1\).  Then
 \[
-  \frac{x^{n(k+1)}-1}{x^n-1}=0.
+  H_m(\zeta^n)=0
 \]
-Thus the roots are those $n(k+1)$-st roots of unity whose $n$th power is not $1$.  Equivalently,
+exactly when \(\zeta^n\) is still a nontrivial \(m\)-th root of unity.  It is automatically an \(m\)-th root because
 \[
-  x=\exp\left(\frac{2\pi i}{n(k+1)}(r(k+1)+m)\right),
+  (\zeta^n)^m=(\zeta^m)^n=1.
 \]
-where $r=0,\ldots,n-1$ and $m=1,\ldots,k$.  This gives exactly $kn$ roots, as expected from the degree.
+The only possible failure is \(\zeta^n=1\).
 
-The original note writes these roots as products of exponentials:
+\begin{theorem}[General geometric-sum divisibility]
+For positive integers \(m,n\),
 \[
-  e^{2\pi i r/n}e^{2\pi i m/(n(k+1))}.
+  H_m(x)\mid H_m(x^n)
+  \quad\Longleftrightarrow\quad
+  \gcd(m,n)=1.
 \]
-Substituting into the polynomial gives a finite geometric sum whose ratio is a nontrivial $(k+1)$-st root of unity, hence the sum is zero.
+\end{theorem}
 
-\section{Common real factors}
-
-The final theorem concerns common real-coefficient factors among these polynomials as $n$ varies.  Since complex roots come in conjugate pairs, a set of roots stable under conjugation gives a real polynomial factor.  When $d=\gcd(n,k+1)>1$, some of the angular positions line up across different $n$, producing common roots and hence common real factors.
-
-This is the cyclotomic viewpoint in disguise.  The polynomial
+\begin{proof}
+Assume first that \(\gcd(m,n)=1\).  Every root \(\zeta\) of \(H_m\) has exact order \(d>1\) dividing \(m\).  Therefore \(\gcd(d,n)=1\), and the order formula gives
 \[
-  x^m-1
+  \operatorname{ord}(\zeta^n)=d>1.
 \]
-factors as
+Hence \(H_m(\zeta^n)=0\).  Every root of \(H_m\) is a root of \(H_m(x^n)\), and the roots of \(H_m\) are simple, so divisibility follows.
+
+Conversely, suppose
 \[
-  x^m-1=\prod_{d\mid m}\Phi_d(x),
+  g=\gcd(m,n)>1.
 \]
-and the geometric sum
+Choose a primitive \(g\)-th root of unity \(\eta\).  Since \(g\mid m\), the number \(\eta\neq1\) is a root of \(H_m\).  Since \(g\mid n\),
 \[
-  1+x+\cdots+x^k=\frac{x^{k+1}-1}{x-1}
+  \eta^n=1,
 \]
-contains the cyclotomic factors $\Phi_d(x)$ for divisors $d>1$ of $k+1$.  Replacing $x$ by $x^n$ pulls these cyclotomic conditions back along the power map.
-
-\section{The organizing idea}
-
-The value of this note is the exploration, not only the final condition.  It begins with a correct theorem, tries a direct factorization proof, guesses a generalization, finds that the guess is false, uses computation to see the roots, and finally explains the pattern by complex exponentials.  That is a miniature version of mathematical research: algebraic manipulation, conjecture, counterexample, visualization, and structural explanation.
-
-\section{Cyclotomic summary of the experiment}
-
-The computational pictures, the failed generalization, and the final divisibility criterion all express one group-theoretic fact: roots of unity form finite cyclic groups, and power maps on cyclic groups are controlled by greatest common divisors.
-
-\begin{remark}[From roots to factors]
-A rational polynomial divisibility statement can be checked on all Galois conjugate roots.  For roots of unity, the conjugates of a primitive \(m\)-th root are
+and therefore
 \[
-  \zeta_m\longmapsto \zeta_m^a,
-  \qquad a\in(\mathbb Z/m\mathbb Z)^\times.
+  H_m(\eta^n)=H_m(1)=m\neq0.
 \]
-Thus a common factor is not merely one common complex root; it is a conjugation-stable set of common roots.
-\end{remark}
+Thus divisibility fails.
+\end{proof}
 
-The cyclotomic factorization
+The condition is stronger than \(m\nmid n\) because every nontrivial divisor of \(m\) matters.  Coprimality guarantees that the power map is an automorphism of the entire cyclic group of \(m\)-th roots, not merely that a primitive \(m\)-th root avoids collapsing to \(1\).
+
+\section{The exact common factor is stronger information}
+
+When full divisibility fails, the two polynomials may still share a substantial factor.  Exact orders identify it completely.
+
+Let \(\zeta\) have exact order \(d\), where \(d\mid m\) and \(d>1\).  Then \(\zeta\) is a root of \(H_m(x^n)\) precisely when
 \[
-  x^m-1=\prod_{d\mid m}\Phi_d(x)
+  \zeta^n\neq1.
 \]
-separates roots by exact order.  Geometric sums select all nontrivial roots of a given order divisor, while substitutions \(x\mapsto x^n\) pull those root conditions back along the power map.  This is the structural explanation of the root plots in the original experiment.
-
-\section{Cyclotomic polynomials}
-
-The roots of $x^n-1$ are the $n$-th roots of unity.  The primitive $n$-th roots are those with exact order $n$.  The cyclotomic polynomial is
+By the order formula, this is equivalent to
 \[
-  \Phi_n(x)=\prod_{\substack{1\le k\le n\\ \gcd(k,n)=1}}(x-e^{2\pi i k/n}).
+  d\nmid n.
 \]
-It has degree $\varphi(n)$ and integer coefficients.
+Thus the roots shared by \(H_m(x)\) and \(H_m(x^n)\) are exactly the roots whose exact orders divide \(m\) but do not divide \(n\).
 
+To turn this root description into a polynomial formula, group roots by exact order.  Denote by \(\Phi_d(x)\) the polynomial whose roots are the primitive \(d\)-th roots of unity.  Then
+\[
+  H_m(x)=\prod_{\substack{d\mid m\\d>1}}\Phi_d(x).
+\]
+Consequently,
+\[
+  \boxed{
+  \gcd\bigl(H_m(x),H_m(x^n)\bigr)
+  =
+  \prod_{\substack{d\mid m,\ d>1\\d\nmid n}}
+  \Phi_d(x).}
+\]
+The gcd is taken monic in \(\mathbb Q[x]\).
+
+For \(m=6\) and \(n=4\),
+\[
+  H_6(x)=\Phi_2(x)\Phi_3(x)\Phi_6(x).
+\]
+The relevant orders are \(2,3,6\).  Since \(2\mid4\) but \(3\nmid4\) and \(6\nmid4\),
+\[
+  \gcd\bigl(H_6(x),H_6(x^4)\bigr)
+  =\Phi_3(x)\Phi_6(x).
+\]
+Using
+\[
+  \Phi_3(x)=x^2+x+1,
+  \qquad
+  \Phi_6(x)=x^2-x+1,
+\]
+we obtain
+\[
+  \gcd\bigl(H_6(x),H_6(x^4)\bigr)
+  =x^4+x^2+1.
+\]
+The factor is neither trivial nor all of \(H_6\).  It records exactly which order strata survive the fourth-power map.
+
+\section{Why one primitive root forces an entire rational factor}
+
+A root test over \(\mathbb C\) becomes a divisibility statement over \(\mathbb Q\) only because primitive roots come in algebraically inseparable families.
+
+Let
+\[
+  \zeta_d=e^{2\pi i/d}
+\]
+be a primitive \(d\)-th root of unity.  Its powers
+\[
+  \zeta_d^a,
+  \qquad
+  a\in(\mathbb Z/d\mathbb Z)^\times,
+\]
+are exactly the other primitive \(d\)-th roots.  The polynomial
+\[
+  \Phi_d(x)
+  =
+  \prod_{a\in(\mathbb Z/d\mathbb Z)^\times}
+  (x-\zeta_d^a)
+\]
+is the \(d\)-th cyclotomic polynomial.
+
+A fundamental theorem says that \(\Phi_d(x)\) lies in \(\mathbb Z[x]\) and is irreducible over \(\mathbb Q\).  Therefore it is the minimal polynomial of \(\zeta_d\) over \(\mathbb Q\).  If a rational polynomial \(P(x)\) satisfies
+\[
+  P(\zeta_d)=0,
+\]
+then polynomial division by the minimal polynomial forces
+\[
+  \Phi_d(x)\mid P(x).
+\]
+Indeed, write
+\[
+  P(x)=Q(x)\Phi_d(x)+R(x),
+  \qquad
+  \deg R<\deg\Phi_d.
+\]
+Evaluating at \(\zeta_d\) gives \(R(\zeta_d)=0\).  Minimality implies \(R=0\).
+
+The field
+\[
+  \mathbb Q(\zeta_d)
+\]
+is the cyclotomic field generated by \(\zeta_d\).  Every automorphism fixing \(\mathbb Q\) is determined by
+\[
+  \zeta_d\longmapsto\zeta_d^a
+\]
+for a unit \(a\bmod d\), and every such choice occurs.  Thus
+\[
+  \operatorname{Gal}(\mathbb Q(\zeta_d)/\mathbb Q)
+  \cong(\mathbb Z/d\mathbb Z)^\times.
+\]
+If \(P\in\mathbb Q[x]\) vanishes at one primitive root, applying these automorphisms shows that it vanishes at every Galois conjugate primitive root.  The minimal-polynomial proof and the Galois proof are two descriptions of the same rigidity.
+
+For \(d=5\), the primitive roots are
+\[
+  \zeta_5,\zeta_5^2,\zeta_5^3,\zeta_5^4,
+\]
+and
+\[
+  \Phi_5(x)=x^4+x^3+x^2+x+1.
+\]
+A rational polynomial cannot vanish at \(\zeta_5\) alone; it must contain the whole four-root orbit as a factor.
+
+\section{Cyclotomic polynomials separate roots by exact order}
+
+Every \(m\)-th root of unity has a unique exact order \(d\) dividing \(m\).  Partitioning the roots of \(x^m-1\) by exact order gives
+\[
+  \boxed{x^m-1=\prod_{d\mid m}\Phi_d(x).}
+\]
+The factors are pairwise coprime because their roots have different exact orders.
+
+Taking degrees yields
+\[
+  m=\sum_{d\mid m}\deg\Phi_d.
+\]
+Since the primitive \(d\)-th roots are indexed by the units modulo \(d\),
+\[
+  \deg\Phi_d=\varphi(d),
+\]
+so the degree identity becomes the familiar divisor sum
+\[
+  \sum_{d\mid m}\varphi(d)=m.
+\]
+The arithmetic identity counts elements of a cyclic group by exact order, while the polynomial identity groups roots by the same invariant.
+
+For \(m=12\), the divisors are
+\[
+  1,2,3,4,6,12.
+\]
 The factorization is
 \[
-  x^n-1=\prod_{d\mid n}\Phi_d(x).
+\begin{aligned}
+x^{12}-1
+={}&\Phi_1(x)\Phi_2(x)\Phi_3(x)
+\Phi_4(x)\Phi_6(x)\Phi_{12}(x)\\
+={}&(x-1)(x+1)(x^2+x+1)(x^2+1)\\
+&\cdot(x^2-x+1)(x^4-x^2+1).
+\end{aligned}
 \]
-This identity is the structural version of many elementary root-of-unity factorization exercises.
-
-\section{Galois action on roots of unity}
-
-The field $\mathbb Q(\zeta_n)$ generated by a primitive root of unity $\zeta_n$ is the $n$-th cyclotomic field.  Its Galois group is
+The degrees
 \[
-  \operatorname{Gal}(\mathbb Q(\zeta_n)/\mathbb Q)\cong(\mathbb Z/n\mathbb Z)^\times.
+  1+1+2+2+2+4=12
 \]
-An element $a\in(\mathbb Z/n\mathbb Z)^\times$ acts by
+match the twelve roots.  The factor \(\Phi_{12}\) contains exactly the roots of order twelve, not all roots whose orders merely divide twelve.
+
+This exact-order separation is what the original geometric-sum problem needs.  The polynomial \(H_m\) contains every \(\Phi_d\) with \(d\mid m\), \(d>1\), and the power map acts differently on each such stratum.
+
+\section{Substitution pulls cyclotomic factors back along a power map}
+
+To understand \(\Phi_r(x^n)\), ask which roots \(x\) have the property that \(x^n\) has exact order \(r\).  Suppose \(x\) has exact order \(s\).  The order formula says
 \[
-  \zeta_n\mapsto \zeta_n^a.
+  \frac{s}{\gcd(s,n)}=r.
 \]
-Thus the same reduced residue system that appears in elementary number theory controls the symmetries of roots of unity.
-
-\section{Resultants and common roots}
-
-Two polynomials have a common root exactly when their resultant is zero.  For example, studying when a cyclotomic polynomial divides another expression can be reframed as asking which roots are common.
-
-The elementary method says: substitute a primitive root $\omega$ and check whether the expression vanishes.  The algebraic version says: divisibility is detected by vanishing on all Galois conjugate roots, or by a resultant condition.
-
-\section{Finite fields and character sums}
-
-Roots of unity also appear in finite fields.  The multiplicative group $\mathbb F_q^\times$ is cyclic of order $q-1$.  Therefore roots of $x^n=1$ in $\mathbb F_q$ are controlled by $\gcd(n,q-1)$.
-
-Character sums such as
+Write \(s=rd\).  The condition becomes
 \[
-  \sum_{x\in\mathbb F_q}\chi(x)\psi(f(x))
+  \gcd(rd,n)=d.
 \]
-are research-level descendants of elementary root-of-unity sums.  They connect finite fields, Fourier analysis on finite groups, and algebraic geometry.
+This forces \(d\mid n\), and after writing \(n=dq\), it becomes
+\[
+  \gcd(r,q)=1.
+\]
+Therefore the possible exact orders of roots of \(\Phi_r(x^n)\) are
+\[
+  rd
+  \quad\text{with}\quad
+  d\mid n
+  \quad\text{and}\quad
+  \gcd\left(r,\frac nd\right)=1.
+\]
 
-\section{Returning to the original experiments}
+\begin{theorem}[Cyclotomic pullback formula]
+For positive integers \(r,n\),
+\[
+  \boxed{
+  \Phi_r(x^n)
+  =
+  \prod_{\substack{d\mid n\\
+  \gcd(r,n/d)=1}}
+  \Phi_{rd}(x).}
+\]
+\end{theorem}
 
-The note's factorization experiments with roots on the complex plane are the concrete beginning of cyclotomic theory.  The advanced bridge is precise: roots of unity form finite cyclic groups, cyclotomic polynomials package primitive roots, and Galois groups act by exponentiation modulo $n$.
+\begin{proof}
+The root analysis above shows that both sides have exactly the same roots, grouped by the exact order \(rd\).  All these roots are simple because \(x^{rn}-1\) has no repeated roots in characteristic zero.  Both sides are monic, so equality follows.
+\end{proof}
 
-\section{Primitive roots and cyclotomic factor tests}
+Take \(r=3\) and \(n=4\).  Every divisor \(d\) of \(4\) satisfies
+\[
+  \gcd\left(3,\frac4d\right)=1,
+\]
+so
+\[
+  \Phi_3(x^4)
+  =\Phi_3(x)\Phi_6(x)\Phi_{12}(x).
+\]
+Indeed,
+\[
+  x^8+x^4+1
+  =(x^2+x+1)(x^2-x+1)(x^4-x^2+1).
+\]
+The three factors correspond to roots of exact orders \(3,6,12\), all of which become primitive cubic roots after taking fourth powers.
 
-To decide whether a polynomial expression is divisible by $\Phi_n(x)$, it is enough to substitute a primitive $n$-th root of unity $\zeta$ and check whether the expression vanishes.  Because $\Phi_n$ is the minimal polynomial of $\zeta$ over $\mathbb Q$, vanishing at one primitive root forces vanishing at all Galois conjugates.
+By contrast,
+\[
+  \Phi_2(x^4)=x^4+1=\Phi_8(x).
+\]
+Only \(d=4\) contributes because
+\[
+  \gcd(2,4/d)=1
+\]
+holds only when \(d=4\).  An eighth root of exact order eight becomes \(-1\) after the fourth power, while roots of orders two or four collapse to \(1\) instead.
 
-This explains why root-of-unity substitution is not just a clever complex-number trick.  It is a minimal-polynomial test.
+\section{Möbius inversion reconstructs the exact-order factor}
 
-\section{Cyclotomic identities through Möbius inversion}
-
-From
+The identity
 \[
   x^n-1=\prod_{d\mid n}\Phi_d(x)
 \]
-one obtains
-\[
-  \Phi_n(x)=\prod_{d\mid n}(x^d-1)^{\mu(n/d)}.
-\]
-This is Möbius inversion on the divisor lattice.  The alternating exponents in this formula are the same inclusion--exclusion pattern seen in counting and arithmetic functions.
+expresses an ``order divides \(n\)'' object as a product of ``exact order \(d\)'' objects.  Möbius inversion reverses this divisor aggregation.
 
-Thus the note's factorization experiments sit at an intersection of complex roots, integer polynomials, Galois symmetry, and Möbius inversion.
+Recall the Möbius function:
+\[
+  \mu(n)=
+  \begin{cases}
+  1,&n=1,\\
+  0,&n\text{ is divisible by a square},\\
+  (-1)^k,&n\text{ is a product of }k\text{ distinct primes}.
+  \end{cases}
+\]
+Its key property is
+\[
+  \sum_{d\mid n}\mu(d)
+  =
+  \begin{cases}
+  1,&n=1,\\
+  0,&n>1.
+  \end{cases}
+\]
+Multiplicative Möbius inversion gives
+\[
+  \boxed{
+  \Phi_n(x)
+  =\prod_{d\mid n}(x^d-1)^{\mu(n/d)}.}
+\]
+Although negative exponents appear, the total expression is a polynomial because it is obtained by inverting the already established cyclotomic factorization.
+
+The cancellation can be checked factor by factor.  Substitute
+\[
+  x^d-1=\prod_{e\mid d}\Phi_e(x)
+\]
+into the right-hand side.  The exponent of a fixed \(\Phi_e(x)\) becomes
+\[
+  \sum_{\substack{d\mid n\\e\mid d}}
+  \mu(n/d).
+\]
+Writing \(d=eq\), this is
+\[
+  \sum_{q\mid n/e}\mu\left(\frac{n/e}{q}\right),
+\]
+which equals \(1\) when \(e=n\) and \(0\) otherwise.  Every unwanted exact-order factor cancels.
+
+For \(n=12\), the nonzero values of \(\mu(12/d)\) occur for
+\[
+  d=2,4,6,12.
+\]
+Thus
+\[
+  \Phi_{12}(x)
+  =\frac{(x^{12}-1)(x^2-1)}{(x^6-1)(x^4-1)}.
+\]
+Using
+\[
+  x^{12}-1=(x^6-1)(x^6+1)
+\]
+and
+\[
+  x^4-1=(x^2-1)(x^2+1),
+\]
+we obtain
+\[
+  \Phi_{12}(x)
+  =\frac{x^6+1}{x^2+1}
+  =x^4-x^2+1.
+\]
+The formula extracts the primitive twelfth roots from all lower-order roots by inclusion--exclusion on the divisor lattice.
+
+\section{The root plots have an exact formula, not merely a pattern}
+
+Consider
+\[
+  H_m(x^n)
+  =1+x^n+x^{2n}+\cdots+x^{(m-1)n}.
+\]
+Using the geometric-series identity,
+\[
+  H_m(x^n)
+  =\frac{x^{mn}-1}{x^n-1}.
+\]
+Hence its roots are the \(mn\)-th roots of unity that are not \(n\)-th roots of unity.
+
+Let
+\[
+  \xi=e^{2\pi i/(mn)}.
+\]
+Every root has the form
+\[
+  \xi^q,
+  \qquad
+  0\leq q<mn,
+\]
+subject to
+\[
+  m\nmid q.
+\]
+Indeed,
+\[
+  (\xi^q)^n=e^{2\pi iq/m}=1
+\]
+exactly when \(m\mid q\).  Therefore
+\[
+  \boxed{
+  \operatorname{Roots}(H_m(x^n))
+  =\left\{
+  e^{2\pi iq/(mn)}:
+  0\leq q<mn,\ m\nmid q
+  \right\}.}
+\]
+There are \(mn-n=n(m-1)\) such roots, matching the degree.
+
+For \(m=6,n=4\), the roots are the twenty fourth roots of unity except
+\[
+  1,i,-1,-i,
+\]
+which are precisely the fourth roots of unity.  A plot therefore shows a regular twenty-four-gon with every sixth vertex removed.  The missing pattern is not numerical noise; it is the denominator \(x^4-1\) in
+\[
+  \frac{x^{24}-1}{x^4-1}.
+\]
+
+The exact orders present in the plot can be read from the cyclotomic pullback formula.  Since
+\[
+  H_m(x^n)
+  =\prod_{\substack{r\mid m\\r>1}}\Phi_r(x^n),
+\]
+each factor \(\Phi_r(x^n)\) splits into the order strata \(rd\) permitted by
+\[
+  d\mid n,
+  \qquad
+  \gcd(r,n/d)=1.
+\]
+Thus the visual rings of angles, the algebraic factorization, and the arithmetic of exact orders are the same data in three forms.
+
+Over \(\mathbb R\), conjugate roots pair into quadratic factors.  If \(\theta\notin\{0,\pi\}\), then
+\[
+  (x-e^{i\theta})(x-e^{-i\theta})
+  =x^2-2\cos\theta\,x+1.
+\]
+For example,
+\[
+  \Phi_5(x)
+  =\bigl(x^2-2\cos(2\pi/5)x+1\bigr)
+   \bigl(x^2-2\cos(4\pi/5)x+1\bigr).
+\]
+The individual quadratic coefficients lie in \(\mathbb Q(\sqrt5)\), while their product lies in \(\mathbb Z[x]\).  This is the real shadow of the Galois orbit of primitive fifth roots.
+
+\section{Resultants distinguish sharing a root from containing a factor}
+
+The divisibility question asks whether every root of \(H_m\) remains a root after the substitution \(x\mapsto x^n\).  A weaker question asks whether the two polynomials share at least one root.  The resultant detects exactly this weaker condition.
+
+If \(P(x)\) is monic with roots \(\alpha_1,\ldots,\alpha_r\), define
+\[
+  \operatorname{Res}(P,Q)
+  =\prod_{j=1}^{r}Q(\alpha_j).
+\]
+Equivalently, the resultant is the determinant of the Sylvester matrix of \(P\) and \(Q\).  The product formula shows
+\[
+  \operatorname{Res}(P,Q)=0
+  \quad\Longleftrightarrow\quad
+  P,Q\text{ have a common root over }\mathbb C.
+\]
+
+Apply this to
+\[
+  P(x)=H_m(x),
+  \qquad
+  Q(x)=H_m(x^n).
+\]
+If \(m\nmid n\), choose a divisor-order stratum that survives.  In fact, a primitive \(m\)-th root \(\zeta\) satisfies
+\[
+  \zeta^n\neq1
+\]
+whenever \(m\nmid n\), so
+\[
+  H_m(\zeta^n)=0.
+\]
+Thus the resultant is zero.
+
+If \(m\mid n\), then every nontrivial \(m\)-th root \(\zeta\) satisfies
+\[
+  \zeta^n=1,
+\]
+so
+\[
+  H_m(\zeta^n)=H_m(1)=m.
+\]
+Since \(H_m\) has \(m-1\) roots,
+\[
+  \operatorname{Res}\bigl(H_m(x),H_m(x^n)\bigr)
+  =m^{m-1}.
+\]
+Therefore
+\[
+  \boxed{
+  \operatorname{Res}\bigl(H_m(x),H_m(x^n)\bigr)
+  =
+  \begin{cases}
+  0,&m\nmid n,\\
+  m^{m-1},&m\mid n.
+  \end{cases}}
+\]
+
+This result sharply separates three levels of interaction:
+\[
+\begin{array}{c|c}
+\text{condition}&\text{polynomial consequence}\\ \hline
+m\mid n&\gcd(H_m,H_m(x^n))=1,\\
+1<\gcd(m,n)<m&\text{a proper nontrivial common factor may remain},\\
+\gcd(m,n)=1&H_m(x)\mid H_m(x^n).
+\end{array}
+\]
+The resultant detects whether the gcd is nontrivial; the exact-order factorization determines the gcd itself; the power-map automorphism criterion determines when the entire divisor survives.
+
+The original factorization problem has therefore grown without changing its central question.  A false congruence guess forced us to track exact orders.  Exact orders forced a decomposition into cyclotomic factors.  Rational divisibility forced us to understand minimal polynomials and Galois conjugacy.  Pulling those factors through \(x\mapsto x^n\) led to a precise factorization theorem, while Möbius inversion reconstructed each exact-order piece.  Finally, the resultant clarified the difference between one surviving orbit and all surviving orbits.  Each new object entered because the previous language could no longer state the next question precisely.

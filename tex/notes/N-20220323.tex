@@ -1,106 +1,291 @@
-\notechapter{N-20220323}{Complex Differentiability and the Rigidity of Holomorphic Functions}
+\notechapter{N-20220323}{Complex Differentiability, Cauchy--Riemann Equations, and Holomorphic Rigidity}
 
-\section{Why complex analysis feels different}
+\section{One difference quotient must survive every planar direction}
 
-Real analysis contains many pathological examples:
-\begin{enumerate}[(i)]
-  \item the Cantor function is continuous, has derivative zero almost everywhere, yet is not constant;
-  \item the Weierstrass function is continuous everywhere and differentiable nowhere;
-  \item a function may have many derivatives but fail at the next derivative;
-  \item a smooth real function may have a Taylor series that does not recover the function.
-\end{enumerate}
-
-For example,
+Let \(U\subseteq\mathbb C\) be open and let \(f:U\to\mathbb C\).  The complex derivative at \(z_0\in U\) is
 \[
-  f(x)=
+  f'(z_0)
+  =\lim_{h\to0}
+  \frac{f(z_0+h)-f(z_0)}{h},
+\]
+provided the limit exists.  The increment \(h\) approaches zero through the whole plane.  This is much stronger than asking for two one-sided real limits.
+
+Write
+\[
+  z=x+iy,
+  \qquad
+  f(z)=u(x,y)+iv(x,y).
+\]
+If \(f\) is complex differentiable at \(z_0=x_0+iy_0\), then the quotient has the same limit along the real and imaginary axes.
+
+Along \(h=t\in\mathbb R\),
+\[
+  f'(z_0)
+  =u_x(x_0,y_0)+iv_x(x_0,y_0).
+\]
+Along \(h=it\),
+\[
+\begin{aligned}
+  f'(z_0)
+  &=\lim_{t\to0}
+  \frac{u(x_0,y_0+t)-u(x_0,y_0)
+  +i\bigl(v(x_0,y_0+t)-v(x_0,y_0)\bigr)}{it}\\
+  &=v_y(x_0,y_0)-iu_y(x_0,y_0).
+\end{aligned}
+\]
+Equality gives the Cauchy--Riemann equations
+\[
+  \boxed{u_x=v_y,
+  \qquad
+  u_y=-v_x.}
+\]
+The derivative can then be written in either form:
+\[
+  f'=u_x+iv_x=v_y-iu_y.
+\]
+
+\section{Cauchy--Riemann is sufficient under real differentiability}
+
+The equations alone at one point do not automatically imply complex differentiability.  A clean sufficient hypothesis is real differentiability.
+
+\begin{proposition}
+Suppose \(u,v:\mathbb R^2\to\mathbb R\) are differentiable at \((x_0,y_0)\) and satisfy the Cauchy--Riemann equations there.  Then \(f=u+iv\) is complex differentiable at \(z_0=x_0+iy_0\).
+\end{proposition}
+
+\begin{proof}
+Let \(h=\Delta x+i\Delta y\).  Real differentiability gives
+\[
+\begin{aligned}
+  \Delta u&=u_x\Delta x+u_y\Delta y+r_1(h),\\
+  \Delta v&=v_x\Delta x+v_y\Delta y+r_2(h),
+\end{aligned}
+\]
+where
+\[
+  \frac{|r_1(h)|+|r_2(h)|}{|h|}\to0.
+\]
+Using \(u_x=v_y\) and \(u_y=-v_x\),
+\[
+\begin{aligned}
+  \Delta f
+  &=\Delta u+i\Delta v\\
+  &=(u_x+iv_x)(\Delta x+i\Delta y)
+  +r_1(h)+ir_2(h).
+\end{aligned}
+\]
+Hence
+\[
+  \frac{\Delta f}{h}
+  =u_x+iv_x+
+  \frac{r_1(h)+ir_2(h)}{h}
+  \longrightarrow u_x+iv_x.
+\]
+\end{proof}
+
+If the first partial derivatives are continuous in a neighborhood, real differentiability is automatic.  Thus the familiar \(C^1\) version is:
+\[
+  f\text{ holomorphic}
+  \quad\Longleftrightarrow\quad
+  u_x=v_y,
+  \quad
+  u_y=-v_x.
+\]
+
+\section{Wirtinger derivatives isolate the holomorphic part}
+
+Define
+\[
+  \partial_z
+  =\frac12\left(\partial_x-i\partial_y\right),
+  \qquad
+  \partial_{\bar z}
+  =\frac12\left(\partial_x+i\partial_y\right).
+\]
+Since
+\[
+  x=\frac{z+\bar z}{2},
+  \qquad
+  y=\frac{z-\bar z}{2i},
+\]
+these operators treat \(z\) and \(\bar z\) as formally independent coordinates:
+\[
+  \partial_z z=1,
+  \quad
+  \partial_z\bar z=0,
+  \quad
+  \partial_{\bar z}z=0,
+  \quad
+  \partial_{\bar z}\bar z=1.
+\]
+For \(f=u+iv\),
+\[
+  2\partial_{\bar z}f
+  =(u_x-v_y)+i(v_x+u_y).
+\]
+Therefore the Cauchy--Riemann equations are exactly
+\[
+  \boxed{\partial_{\bar z}f=0.}
+\]
+Under real differentiability, this is equivalent to holomorphicity.
+
+The operator \(\partial_{\bar z}\) measures failure of holomorphicity.  For example,
+\[
+  \partial_{\bar z}\bar z=1,
+\]
+so \(\bar z\) is nowhere holomorphic.  Also
+\[
+  |z|^2=z\bar z,
+  \qquad
+  \partial_{\bar z}|z|^2=z.
+\]
+Hence \(|z|^2\) is complex differentiable only at \(z=0\), and it is not holomorphic on any neighborhood of that point.
+
+\section{The Jacobian must be a rotation followed by a scaling}
+
+The real derivative of \(f=u+iv\) is the Jacobian matrix
+\[
+  Df=
+  \begin{pmatrix}
+  u_x&u_y\\
+  v_x&v_y
+  \end{pmatrix}.
+\]
+Under the Cauchy--Riemann equations,
+\[
+  Df=
+  \begin{pmatrix}
+  a&-b\\
+  b&a
+  \end{pmatrix},
+  \qquad
+  a=u_x,
+  \quad
+  b=v_x.
+\]
+This is precisely the real matrix of multiplication by
+\[
+  f'(z_0)=a+ib.
+\]
+If \(f'(z_0)\ne0\), write
+\[
+  f'(z_0)=\rho e^{i\theta}.
+\]
+Then
+\[
+  Df(z_0)=
+  \rho
+  \begin{pmatrix}
+  \cos\theta&-\sin\theta\\
+  \sin\theta&\cos\theta
+  \end{pmatrix}.
+\]
+Infinitesimally, \(f\) scales every direction by \(\rho\) and rotates every direction by \(\theta\).  Thus a holomorphic map with nonzero derivative preserves oriented angles.  This is the local meaning of conformality.
+
+At a critical point \(f'(z_0)=0\), the first-order map collapses.  For instance, \(f(z)=z^m\) near \(0\) multiplies angles by \(m\) but has zero linear part when \(m\ge2\).
+
+\section{Cauchy's integral formula turns boundary values into derivatives}
+
+The rigidity of holomorphic functions does not follow from the Cauchy--Riemann equations alone by a short algebraic argument.  The decisive analytic input is Cauchy's integral formula.
+
+If \(f\) is holomorphic on a neighborhood of the closed disk
+\[
+  \overline{D(a,R)},
+\]
+then for \(|z-a|<R\),
+\[
+  \boxed{
+  f(z)=\frac{1}{2\pi i}
+  \int_{|\zeta-a|=R}
+  \frac{f(\zeta)}{\zeta-z}\,d\zeta.}
+\]
+Differentiating under the integral sign gives
+\[
+  f^{(n)}(z)
+  =\frac{n!}{2\pi i}
+  \int_{|\zeta-a|=R}
+  \frac{f(\zeta)}{(\zeta-z)^{n+1}}\,d\zeta.
+\]
+One complex derivative therefore forces derivatives of every order.
+
+The same formula yields the Cauchy estimate.  If
+\[
+  M_R=\max_{|\zeta-a|=R}|f(\zeta)|,
+\]
+then
+\[
+  |f^{(n)}(a)|
+  \le \frac{n!M_R}{R^n}.
+\]
+Boundary control becomes quantitative control of all derivatives in the interior.
+
+\section{Holomorphic functions are analytic}
+
+For \(|z-a|<R\), expand the kernel as a geometric series:
+\[
+\begin{aligned}
+  \frac{1}{\zeta-z}
+  &=\frac{1}{\zeta-a}
+  \frac{1}{1-\frac{z-a}{\zeta-a}}\\
+  &=\sum_{n=0}^{\infty}
+  \frac{(z-a)^n}{(\zeta-a)^{n+1}}.
+\end{aligned}
+\]
+The series converges uniformly on the integration circle for \(|z-a|<R\).  Substitution into Cauchy's formula gives
+\[
+  f(z)=\sum_{n=0}^{\infty}c_n(z-a)^n,
+\]
+where
+\[
+  c_n=
+  \frac{1}{2\pi i}
+  \int_{|\zeta-a|=R}
+  \frac{f(\zeta)}{(\zeta-a)^{n+1}}\,d\zeta
+  =\frac{f^{(n)}(a)}{n!}.
+\]
+Thus
+\[
+  \boxed{
+  f(z)=\sum_{n=0}^{\infty}
+  \frac{f^{(n)}(a)}{n!}(z-a)^n.}
+\]
+Holomorphicity implies analyticity.  This is the sharp contrast with smooth real functions such as
+\[
+  g(x)=
   \begin{cases}
-    e^{-1/x},&x>0,\\
-    0,&x\le0
+  e^{-1/x^2},&x\ne0,\\
+  0,&x=0,
   \end{cases}
 \]
-is smooth, but its Taylor series at \(0\) is identically zero and therefore does not equal \(f\) for \(x>0\).
+whose Taylor series at \(0\) vanishes identically although the function does not.
 
-Complex analysis is much more rigid.  Holomorphic functions behave as if a tiny amount of local data can determine a large amount of global behavior.
+\section{Zeros are isolated unless the whole function vanishes}
 
-\section{Complex derivative}
-
-\begin{definition}
-Let \(U\subseteq\mathbb C\) and \(f:U\to\mathbb C\).  The derivative of \(f\) at \(z_0\in U\) is
+Suppose \(f\) is holomorphic near \(a\) and not identically zero.  Its Taylor series has a first nonzero coefficient:
 \[
-  f'(z_0)=\lim_{h\to0}\frac{f(z_0+h)-f(z_0)}{h},
-\]
-provided the limit exists.
-\end{definition}
-
-The key difference from real differentiability is that \(h\) approaches \(0\) through the complex plane, not merely from the left and right along a line.  The quotient must have the same limit from every direction.
-
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=0.80\textwidth]{figures/N-20220323/fig-01.png}
-  \caption{In complex differentiability, the increment approaches from all directions in the plane.}
-\end{figure}
-
-\begin{definition}
-A function \(f:U\to\mathbb C\) is holomorphic if it is complex differentiable at every point of \(U\).  If \(U=\mathbb C\), then \(f\) is called entire.
-\end{definition}
-
-\section{Basic examples}
-
-\begin{example}
-Every polynomial
-\[
-  a_nz^n+a_{n-1}z^{n-1}+\cdots+a_0
-\]
-is holomorphic.
-\end{example}
-
-\begin{example}
-The complex exponential is holomorphic.  In real and imaginary parts,
-\[
-  e^{x+iy}=e^x(\cos y+i\sin y).
-\]
-\end{example}
-
-\begin{example}
-The trigonometric functions extend holomorphically to the complex plane by
-\[
-  \cos z=\frac{e^{iz}+e^{-iz}}{2},
+  f(z)=c_m(z-a)^m+c_{m+1}(z-a)^{m+1}+\cdots,
   \qquad
-  \sin z=\frac{e^{iz}-e^{-iz}}{2i}.
+  c_m\ne0.
 \]
-\end{example}
-
-\section{Closure properties}
-
-Holomorphic functions are closed under the usual operations:
-\begin{enumerate}[(i)]
-  \item sums of holomorphic functions are holomorphic;
-  \item products of holomorphic functions are holomorphic;
-  \item quotients are holomorphic wherever the denominator is nonzero;
-  \item compositions of holomorphic functions are holomorphic.
-\end{enumerate}
-
-\begin{remark}
-This resembles real calculus formally, but the consequences are stronger.  Complex differentiability is a much more restrictive condition than real differentiability.
-\end{remark}
-
-\section{The main intuition}
-
-The main point of this note is that complex differentiability is not merely ordinary differentiability with complex numbers inserted.  Requiring the difference quotient to approach the same value from every complex direction forces strong compatibility conditions, later expressed by the Cauchy--Riemann equations.
-
-\begin{remark}
-The next step should be to derive the Cauchy--Riemann equations and then explain why holomorphic functions are analytic.  This will make precise the slogan that complex functions are rigid.
-\end{remark}
-
-
-\section{Complex versus real differentiability}
-
-A complex function \(f(z)=u(x,y)+iv(x,y)\) is real differentiable as a map \(\mathbb R^2\to\mathbb R^2\) if it has a real linear approximation.  It is complex differentiable if that linear approximation is multiplication by a complex number.  This extra requirement forces the Cauchy--Riemann equations:
+Factor
 \[
-  u_x=v_y,\qquad u_y=-v_x.
+  f(z)=(z-a)^m g(z),
+  \qquad
+  g(a)=c_m\ne0.
 \]
-Thus holomorphic functions are far more rigid than arbitrary differentiable two-variable functions.
+By continuity, \(g\) is nonzero near \(a\), so \(a\) is an isolated zero of multiplicity \(m\).
 
-\section{Local power series intuition}
+This proves the identity theorem.  If two holomorphic functions agree on a set with a limit point inside a connected domain, their difference has non-isolated zeros and must vanish identically.
 
-Once a function is holomorphic on a disk, it is represented by a power series there.  This is the source of many surprising consequences: holomorphic functions are infinitely differentiable, zeros are isolated unless the function is identically zero, and values on small sets can determine the function globally.
+The chain of rigidity is now explicit:
+\[
+\begin{aligned}
+  \partial_{\bar z}f=0
+  &\longrightarrow
+  \text{Cauchy formula}
+  \longrightarrow
+  \text{power series},\\
+  &\longrightarrow
+  \text{isolated zeros and unique continuation}.
+\end{aligned}
+\]
+The operator \(\partial_{\bar z}\) is the local differential equation; Cauchy's formula supplies the global analytic mechanism that makes its solutions rigid.
