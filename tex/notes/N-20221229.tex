@@ -1,8 +1,8 @@
 \notechapter{N-20221229}{Algebraic Topology and Algebra: Products, Wedge Sums, CW Complexes, Cosets, and Surface Gluings}
 
-\section{What this note is really doing}
+\section{From quotient pictures to algebraic invariants}
 
-This note is a working page where several threads meet: the torus as $(\mathbb R/\mathbb Z)^2$, the product $S^1\times S^1$, disjoint union and wedge sum, CW complexes, the algebra of cosets, and the square/polygon gluing pictures for surfaces.  The original page should not be compressed into a list of definitions.  Its real movement is: topology suggests quotient pictures; quotient pictures resemble congruence classes; congruence classes lead to cosets; then the topological quotient of a square returns as the torus and Klein bottle.
+Several threads meet in one progression: the torus as $(\mathbb R/\mathbb Z)^2$, the product $S^1\times S^1$, disjoint unions and wedge sums, CW complexes, cosets, and polygonal gluing descriptions of surfaces.  Topology suggests quotient pictures; quotient pictures resemble congruence classes; congruence classes lead to cosets; and square quotients return as the torus and Klein bottle.
 
 The top margin says that there is another intuitive understanding of
 \[
@@ -26,7 +26,7 @@ Write a point of the first circle as an angle $\theta$, and a point of the secon
 \]
 This realizes $S^1\times S^1\to T^2$.  The first angle decides where the circular cross-section is placed around the central hole; the second decides where we are on that cross-section.
 
-The handwritten picture tries to choose a point $A$ and decompose it into two circle parameters.  That is exactly the right intuition, but the invariant statement is cleaner: the torus is the space of ordered pairs of circle-points, then realized geometrically by the map above.
+A point $A$ may be decomposed into two circle parameters, but the invariant statement is cleaner: the torus is the space of ordered pairs of circle-points, realized geometrically by the map above.
 
 \section{Disjoint union}
 
@@ -102,7 +102,7 @@ The commutativity of $\mathbb Z^2$ is encoded by the boundary word of the square
 
 \section{Cosets as algebraic quotients}
 
-The algebra excerpt in the original pages is not random.  It is the algebraic analogue of quotienting.  If $H$ is a subgroup of $G$, right congruence modulo $H$ is
+Cosets are the algebraic analogue of quotienting.  If $H$ is a subgroup of $G$, right congruence modulo $H$ is
 \[
   a\equiv_r b \pmod H
   \quad\Longleftrightarrow\quad
@@ -153,7 +153,7 @@ while an orientable surface of genus $g$ has a boundary word of the form
 \caption{Polygon schemata and surface gluings: topology encoded by labelled boundary words.}
 \end{figure}
 
-The handwritten comment says these diagrams took a long time to understand.  That is exactly right.  The picture compresses several ideas: cut a surface into a polygon, label the boundary, glue equal labels, and read the labels as algebraic generators and relations.
+The picture compresses several ideas at once: cut a surface into a polygon, label the boundary, glue equal labels, and read those labels as algebraic generators and relations.
 
 \section{Projective spaces as quotient spaces}
 
@@ -188,7 +188,7 @@ This is the reason algebraic topology can turn pictures into group presentations
 
 \section{Further context}
 
-The repaired version of this note should be read as one continuous story.  First, $S^1\times S^1$ parametrizes the torus.  Second, a square with opposite sides identified gives the same torus as a quotient.  Third, disjoint union and wedge sum explain how spaces can be combined before quotienting.  Fourth, CW complexes systematize this by attaching cells.  Fifth, cosets provide the algebraic analogue of quotienting.  Finally, torus, Klein bottle, and polygon schemata show that a whole surface can be encoded by a boundary word.
+The constructions form one continuous story.  The product $S^1\times S^1$ parametrizes the torus; opposite-side identification realizes it as a quotient; disjoint union and wedge sum combine spaces before quotienting; CW complexes systematize attachment; cosets supply the algebraic analogue; and polygon schemata encode whole surfaces by boundary words.
 
 The central lesson is that algebraic topology is not simply topology plus algebra added later.  The topology is already algebraic as soon as we record how pieces are glued: arrows, labels, words, equivalence classes, and quotient maps are the bridge.
 
@@ -291,4 +291,4 @@ For \(\mathbb{CP}^n\), this leads to homology groups \(\mathbb Z\) in even degre
 
 \section{Cellular surfaces through homology and presentations}
 
-This note is about turning pictures into algebra.  A product picture gives \(S^1\times S^1\).  A gluing picture gives a quotient.  A CW picture gives chain groups and boundary maps.  A labelled boundary word gives a fundamental-group presentation and, after abelianization, homology.  The advanced lesson is that algebraic topology is not added after the drawings; it is already encoded in the arrows, labels, and attaching maps.
+Pictures become algebra through structure-preserving translations.  A product picture gives \(S^1\times S^1\), a gluing picture gives a quotient, a CW picture gives chain groups and boundary maps, and a labelled boundary word gives a fundamental-group presentation and homology after abelianization.  Algebraic topology is already encoded in arrows, labels, and attaching maps.

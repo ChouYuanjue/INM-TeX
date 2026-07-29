@@ -1,8 +1,8 @@
 \notechapter{N-20220501}{Lagrange Multipliers, Hessians, Bordered Hessians, and Degenerate Extrema}
 
-\section{Why this note was too compressed before}
+\section{The full problem of constrained extrema}
 
-The note is not just “Lagrange multipliers plus Hessian.”  It is a long reflection on how to decide extrema of multivariable functions.  It contains the method, the derivation, examples, doubts, bordered Hessian, degeneracy, higher-order tests, numerical methods, MATLAB, and links to optimization theory.  The repaired version preserves that exploration.
+Constrained optimization is not merely “Lagrange multipliers plus Hessian.”  A complete treatment must explain the multiplier geometrically, derive the stationarity condition, handle bordered Hessians and singular constraints, examine higher-order degeneracy, and connect the theory with numerical optimization.
 
 \section{Lagrange multipliers: the basic idea}
 
@@ -34,7 +34,7 @@ Equivalently,
 \]
 Geometrically, at a constrained extremum, the level surface of $f$ is tangent to the constraint surface.  Therefore their normal directions are parallel.  This explains why gradients are proportional.
 
-The original Chinese note says that this method is both surprising and confusing: surprising because it transforms a constrained problem into a stationarity system, confusing because the multiplier seems to appear out of nowhere.  The geometric explanation removes much of the mystery: $\lambda$ is the scalar measuring how the two normal vectors compare.
+The method can seem surprising because it turns a constrained problem into a stationarity system, and confusing because the multiplier appears to come from nowhere.  Geometrically, $\lambda$ is simply the scalar comparing the two normal vectors.
 
 \section{Example: minimizing distance to a line}
 
@@ -60,7 +60,7 @@ The equations are
 \]
 The first two give $x=y$, and therefore $x=y=1/2$.  This is the closest point of the line $x+y=1$ to the origin.
 
-The note remarks that this example is simple but educational.  For nonlinear constraints, the stationarity system can become hard to solve; in practice one may need numerical methods such as Newton iteration.  The Lagrange method gives equations, not automatic closed forms.
+The example is simple but instructive.  For nonlinear constraints, the stationarity system can become hard to solve, and numerical methods such as Newton iteration may be necessary.  Lagrange multipliers produce equations, not automatic closed forms.
 
 \section{Why the method is valid}
 
@@ -83,7 +83,7 @@ For several constraints $g_1=\cdots=g_m=0$, the condition becomes
 \]
 assuming the constraint gradients are independent.
 
-This is where the note's later warning about singular constraints enters: if the gradients of constraints are linearly dependent, the usual bordered-Hessian test may fail.
+This is why singular constraints require care: if the constraint gradients are linearly dependent, the usual bordered-Hessian test may fail.
 
 \section{Hessian matrix and the second derivative test}
 
@@ -111,11 +111,11 @@ when the gradient term vanishes.  Thus the sign of the quadratic form controls t
 
 For a real symmetric matrix, positive definiteness can be tested by eigenvalues or by leading principal minors.  Sylvester's criterion says that $A$ is positive definite iff all leading principal minors are positive.  Negative definiteness has alternating signs.  Eigenvalues give an equivalent test: positive definite means all eigenvalues are positive; indefinite means there are both positive and negative eigenvalues.
 
-The note explicitly connects this to linear algebra.  A Hessian is not just an array of second derivatives; it is a quadratic form.  The eigenvectors are principal directions of curvature, and the eigenvalues measure curvature along those directions.
+This is a direct linear-algebra connection.  A Hessian is not just an array of second derivatives; it is a quadratic form.  Its eigenvectors are principal directions of curvature, and its eigenvalues measure curvature along those directions.
 
 \section{Bordered Hessian}
 
-For constrained extrema, the ordinary Hessian of $f$ alone is not enough because we are only allowed to move along directions tangent to the constraint.  The note introduces the bordered Hessian as a way to add constraint-gradient information to the second derivative test.
+For constrained extrema, the ordinary Hessian of $f$ alone is not enough because admissible motion is restricted to directions tangent to the constraint.  The bordered Hessian incorporates constraint-gradient information into the second derivative test.
 
 For constraints $g_i(x)=0$, define the Lagrangian
 \[
@@ -157,7 +157,7 @@ This tangent-space calculation is often clearer than memorizing signs of bordere
 
 \section{Degenerate cases and higher-order tests}
 
-The note explicitly worries about cases where the Hessian is singular or the bordered Hessian test is inconclusive.  In such cases, second-order information is not enough.  One must examine higher-order Taylor terms:
+When the Hessian is singular or the bordered-Hessian test is inconclusive, second-order information is not enough.  One must examine higher-order Taylor terms:
 \[
   f(x_0+h)=f(x_0)+P_k(h)+o(\|h\|^k),
 \]
@@ -167,13 +167,13 @@ A standard example is $f(x,y)=x^4+y^4$, whose Hessian at the origin is zero, but
 
 \section{Saddle points and geometric visualization}
 
-A saddle point is a critical point that is neither a local maximum nor a local minimum.  If the Hessian has both positive and negative eigenvalues, then some directions curve upward and others downward.  The note suggests using contour plots to detect saddle behavior.  This is a good habit: level curves reveal local shape far more clearly than raw formulas.
+A saddle point is a critical point that is neither a local maximum nor a local minimum.  If the Hessian has both positive and negative eigenvalues, then some directions curve upward and others downward.  Contour plots are useful for detecting saddle behavior because level curves reveal local shape far more clearly than raw formulas.
 
 The classical picture is $f(x,y)=x^2-y^2$.  Along the $x$-axis it increases; along the $y$-axis it decreases.  The origin is therefore a saddle.
 
 \section{Optimization beyond equality constraints}
 
-The note mentions Kuhn--Tucker conditions, penalty methods, and interior-point methods.  These belong to constrained optimization with inequalities.  If constraints include
+Kuhn--Tucker conditions, penalty methods, and interior-point methods belong to constrained optimization with inequalities.  If constraints include
 \[
   h_j(x)\le0,
 \]
@@ -193,13 +193,13 @@ Interior-point methods keep the iterate inside the feasible region using barrier
 
 \section{Global topology and extrema}
 
-The note speculates about global topology.  This is not random.  Local Hessian information tells us what happens near a critical point, but global existence of maxima and minima depends on compactness.  A continuous function on a compact set attains maximum and minimum.  Thus topology enters before calculus even begins.
+Global topology enters naturally.  Local Hessian information controls a neighborhood of a critical point, while global existence of maxima and minima depends on compactness.  A continuous function on a compact set attains maximum and minimum.  Thus topology enters before calculus even begins.
 
-There are also deeper links: Morse theory studies how critical points of smooth functions reflect the topology of a manifold.  The Hessian at a nondegenerate critical point gives the Morse index, and the collection of critical points helps reconstruct the space.  This is the high-level version of the note's intuition that extrema are connected with global structure.
+There are also deeper links: Morse theory studies how critical points of smooth functions reflect the topology of a manifold.  The Hessian at a nondegenerate critical point gives the Morse index, and the collection of critical points helps reconstruct the space.  This is the high-level form of the principle that extrema are connected with global structure.
 
 \section{Computation and MATLAB}
 
-The note ends with computational reflection.  For high-dimensional functions, one can use symbolic or numerical software to compute gradients, Hessians, eigenvalues, and bordered Hessians.  A typical workflow is:
+For high-dimensional functions, symbolic or numerical software can compute gradients, Hessians, eigenvalues, and bordered Hessians.  A typical workflow is:
 \begin{enumerate}[(i)]
   \item define $f$ and constraints $g_i$;
   \item solve $\nabla f=\sum \lambda_i\nabla g_i$ together with $g_i=0$;
@@ -207,7 +207,7 @@ The note ends with computational reflection.  For high-dimensional functions, on
   \item restrict to the tangent space or use a bordered Hessian;
   \item inspect eigenvalues or determinant signs.
 \end{enumerate}
-The note's MATLAB idea is therefore mathematically meaningful: computation is not replacing theory, but automating the linear algebra after the theoretical conditions have been derived.
+This computational workflow is mathematically meaningful: software does not replace theory, but automates the linear algebra after the theoretical conditions have been derived.
 
 
 \section{Second variation on the tangent space}
@@ -226,7 +226,7 @@ This explains what the bordered Hessian is doing: it is a determinant device for
 
 \section{From constrained extrema to second variation and Morse data}
 
-This note is about the transition from calculus to optimization and differential geometry.  Lagrange multipliers are normal-vector equations.  Hessians are quadratic forms.  Bordered Hessians restrict second variation to tangent directions.  Degenerate cases require higher-order terms.  Inequality constraints lead to KKT theory.  Compactness guarantees global extrema, and Morse theory relates critical points to topology.  The original confusion is productive: it points exactly toward the deeper structure behind the computational rules.
+The transition from calculus to optimization and differential geometry is structural.  Lagrange multipliers are normal-vector equations; Hessians are quadratic forms; bordered Hessians restrict second variation to tangent directions; degenerate cases require higher-order terms; inequality constraints lead to KKT theory; compactness guarantees global extrema; and Morse theory relates critical points to topology.
 
 \section{Lagrange multipliers as cotangent annihilators}
 

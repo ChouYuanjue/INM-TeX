@@ -2,7 +2,7 @@
 
 \section{A general odd-power divisibility principle}
 
-The page begins with a useful theorem: for odd \(r\), the sum
+For odd \(r\), the sum
 \[
   1^r+2^r+\cdots+k^r
 \]
@@ -18,7 +18,7 @@ is divisible by \(k+1\), because
 \[
   k+1-j\equiv -j\pmod{k+1}.
 \]
-A second argument handles the factor \(k\) or the remaining factor according to parity.  The handwritten note records the right high-level method in blue: pairing, oddness, and treating the whole expression rather than each term separately.
+A second argument handles the factor \(k\) or the remaining factor according to parity.  The high-level method is pairing, exploiting oddness, and treating the whole expression rather than each term separately.
 
 \section[A divisibility problem with 512]{A divisibility problem with \(512\)}
 
@@ -30,7 +30,7 @@ Set
 \[
   f(n)=3^{2n}-32n^2+24n-1.
 \]
-The note uses finite differences.  Since \(512\mid f(1)\), it is enough to show
+Finite differences are effective here.  Since \(512\mid f(1)\), it is enough to show
 \[
   512\mid f(n+1)-f(n)
 \]
@@ -91,7 +91,7 @@ where \(p,q\) are coprime positive integers, and one must prove
 \[
   1979\mid p.
 \]
-The note rewrites the alternating sum by separating odd and even denominators:
+Separate the odd and even denominators in the alternating sum:
 \[
   1+\frac13+\cdots+\frac1{1319}
   -2\left(\frac12+\frac14+\cdots+\frac1{1318}\right).
@@ -179,4 +179,4 @@ This technique turns products inside sums into boundary terms plus a simpler sum
 
 \section{Discrete calculus and local divisibility}
 
-The note's divisibility tricks are forms of discrete calculus and local arithmetic.  Finite differences lower complexity, telescoping keeps boundary terms, pairing exploits symmetry, valuations measure prime-power divisibility, and rational-sum arguments track which primes can cancel.  The correct invariant is usually not the whole expression, but its difference, orbit pairing, or valuation.
+These divisibility methods are forms of discrete calculus and local arithmetic.  Finite differences lower complexity, telescoping keeps boundary terms, pairing exploits symmetry, valuations measure prime-power divisibility, and rational-sum arguments track which primes can cancel.  The useful invariant is often a difference, orbit pairing, or valuation rather than the whole expression.

@@ -2,11 +2,11 @@
 
 \section{What this page is doing}
 
-This note is a handwritten exercise continuation of the set-and-counting lecture.  The problems involve floor functions, set-builder notation, binomial identities, lattice or coordinate sets, and counting arguments.  The common goal is to learn how to translate a compact set expression into something countable.
+The exercises involve floor functions, set-builder notation, binomial identities, lattice or coordinate sets, and counting arguments.  Their common goal is to translate a compact set expression into something countable.
 
 \section{A floor-function example}
 
-One example asks for a set defined by inequalities and floor functions.  The handwritten solution separates the problem into intervals because
+For a set defined by inequalities and floor functions, separate the problem into intervals because
 \[
   \lfloor x\rfloor=k\quad\Longleftrightarrow\quad k\le x<k+1.
 \]
@@ -28,7 +28,7 @@ One then intersects this with the remaining condition, such as a quadratic inequ
 
 \section{A binomial counting identity}
 
-Another exercise invokes the binomial theorem.  The handwritten note uses the idea that terms in a sum can be counted by choosing which positions have a particular property.  A typical identity is
+The binomial theorem counts terms by choosing which positions have a particular property.  A typical identity is
 \[
   \sum_{j=0}^n\binom nj=2^n,
 \]
@@ -41,7 +41,7 @@ The important thought is not the formula alone.  The coefficient \(\binom nj\) c
 
 \section{Solving a system by discriminants}
 
-One problem gives a two-variable system whose equations can be transformed into a quadratic with a parameter \(p\).  The handwritten solution examines the discriminant
+A two-variable system can often be transformed into a quadratic with a parameter \(p\).  Examine the discriminant
 \[
   \Delta\ge0
 \]
@@ -51,7 +51,7 @@ This is a recurring analytic-algebraic pattern: if a system can be reduced to a 
 
 \section{A prime-number exercise}
 
-Another exercise involves primes \(p,q\).  The handwritten reasoning uses parity and basic divisibility.  The standard approach is:
+For problems involving primes \(p,q\), parity and basic divisibility give the standard approach:
 \begin{enumerate}[(i)]
   \item reduce the equation modulo a small integer such as \(2,3,4\);
   \item use the fact that the only even prime is \(2\);
@@ -79,13 +79,13 @@ One exercise defines sets recursively, for example
 \[
   A_{k+1}=A_k\cup\{x_{k+1}\}
 \]
-or by adding all new subsets involving a new element.  The handwritten solution proves the pattern by induction: assume the formula for \(A_k\), then show the construction gives \(A_{k+1}\).
+or by adding all new subsets involving a new element.  Induction proves the pattern: assume the formula for \(A_k\), then show the construction gives \(A_{k+1}\).
 
 This is the set-theoretic analogue of a recurrence relation.  Instead of numbers changing with \(k\), collections of objects change with \(k\).
 
 \section{An intersection-counting problem}
 
-The final exercise on the second page asks whether a selected element belongs to an intersection of many sets.  The handwritten solution builds sets \(B(A_i)\) and counts their sizes, arriving at a large product-like number.  The exact numerical expression is less important than the logic:
+For an element selected from an intersection of many sets, introduce the auxiliary sets \(B(A_i)\) that record which constraints it satisfies.  The resulting product-like count is less important than the underlying logic:
 \begin{enumerate}[(i)]
   \item translate membership into a condition;
   \item count how many sets contain a fixed element;

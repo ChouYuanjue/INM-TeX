@@ -2,7 +2,7 @@
 
 \section{Relations and equivalence classes}
 
-This note continues the foundational setup, moving from sets and functions to relations, products, and the integers.  The original title says ``Intergers''; I will silently correct this to \emph{integers}.
+This chapter continues the foundational setup, moving from sets and functions to relations, products, and the integers.
 
 \begin{definition}
 For sets or classes \(A\) and \(B\), their Cartesian product is
@@ -13,7 +13,7 @@ A \vocab{relation from \(A\) to \(B\)} is a subclass of \(A\times B\).  A \vocab
 \end{definition}
 
 \begin{caution}
-The original note has the phrase ``a subset of \(R\) is a relation on \(A\times B\)'', which is clearly a slip.  The intended statement is that a relation is a subset of \(A\times B\).
+A relation from \(A\) to \(B\) is a subset of \(A\times B\).
 \end{caution}
 
 \begin{definition}
@@ -67,7 +67,7 @@ This is one of the most useful ways to remember equivalence relations: an equiva
 
 \section{Indexed products and projections}
 
-The note then generalizes finite Cartesian products.  For a set-indexed family \(\{A_i\mid i\in I\}\), define
+Finite Cartesian products generalize to a set-indexed family \(\{A_i\mid i\in I\}\), define
 \[
   \prod_{i\in I}A_i
 \]
@@ -87,7 +87,7 @@ because such a function is the same information as the ordered \(n\)-tuple
 \]
 
 \begin{remark}
-The original note pauses over the case \(I=\{1,2\}\).  A point of \(A_1\times A_2\) may be written as a pair \((a_1,a_2)\), but it may also be regarded as a function \(f\) with \(f(1)=a_1\) and \(f(2)=a_2\).  This is a small but important shift: products are not just lists; they are choice-like functions over an index set.
+When \(I=\{1,2\}\), a point of \(A_1\times A_2\) may be written as a pair \((a_1,a_2)\), but it may also be regarded as a function \(f\) with \(f(1)=a_1\) and \(f(2)=a_2\).  This is a small but important shift: products are not just lists; they are choice-like functions over an index set.
 \end{remark}
 
 For each \(k\in I\), the \vocab{canonical projection}
@@ -108,7 +108,7 @@ If \(I=\mathbb R\) and \(A_i=\mathbb C\) for all \(i\), then an element of \(\pr
 
 \section{The first universal property}
 
-Here the original note becomes excited: ``Appears! Universal property!''  This is worth preserving.  Products are not only sets of tuples; they are characterized by how maps into them behave.
+The first universal property now appears.  Products are not only sets of tuples; they are characterized by how maps into them behave.
 
 \begin{theorem}[Universal property of products]
 Let \(\{A_i\mid i\in I\}\) be a family of sets.  There is a set \(D\), equipped with maps
@@ -135,7 +135,7 @@ Then \(f(c)\in\prod_i A_i\), and \(\pi_i(f(c))=f_i(c)\).  Uniqueness follows bec
 \end{proof}
 
 \begin{remark}
-The original note says that the proof is a little long and should maybe be postponed until systematic study of category theory.  The cleaned-up proof above is short because we already know the concrete product.  The deeper point is that the same pattern will later define products in arbitrary categories, where elements and coordinates may no longer be available.
+The proof is short because the concrete product is already known.  The deeper point is that the same pattern defines products in arbitrary categories, where elements and coordinates may no longer be available.
 \end{remark}
 
 \section{Integers and induction}
@@ -160,7 +160,7 @@ then \(S=\mathbb N\).
 \end{theorem}
 
 \begin{caution}
-The original note proves this by taking the least element of \(\mathbb N\setminus S\).  That proof is clean if the well-ordering principle for \(\mathbb N\) is already available.  If one is deriving the theory strictly from Peano's axioms, one should first justify the well-ordering principle or prove the statement directly by induction.
+A proof by taking the least element of \(\mathbb N\setminus S\) is clean if the well-ordering principle for \(\mathbb N\) is already available.  If one is deriving the theory strictly from Peano's axioms, one should first justify the well-ordering principle or prove the statement directly by induction.
 \end{caution}
 
 \section{Division, gcd, and congruence}
@@ -209,7 +209,7 @@ Let \(m>0\) and \(a,b,c,d\in\mathbb Z\).
 \end{theorem}
 
 \begin{proof}
-The original note leaves this as an exercise.  The key point is divisibility.  For example,
+The key point is divisibility.  For example,
 \[
   m\mid(a-b),\qquad m\mid(c-d)
 \]

@@ -2,9 +2,9 @@
 
 \section{Vectors beyond arrows}
 
-The first page stresses that vectors are not only geometric arrows.  Polynomials can form a vector space: they can be added and scaled.  Audio signals can also be treated as vectors: an audio signal is represented by a list of numbers, and adding or scaling those lists gives another signal.
+Vectors are not only geometric arrows.  Polynomials form a vector space because they can be added and scaled.  Audio signals can likewise be represented by lists of numbers whose addition and scalar multiplication remain valid signals.
 
-The handwritten remark connects this to embeddings.  In machine learning, word vectors or sentence vectors are not geometric arrows in the elementary sense, but they live in vector spaces and obey vector operations.  Their meaning comes from the representation learned by the model, not from a literal physical arrow.
+Machine-learning embeddings provide another example.  Word and sentence vectors are not literal geometric arrows, but they live in vector spaces and obey vector operations; their meaning comes from the learned representation.
 
 The lesson is that a vector is an element of a vector space.  Geometry is only one model.
 
@@ -22,7 +22,7 @@ The point is not magic.  It is a compact way of doing the usual free-variable su
 
 \section{Example of the trick}
 
-The note's example starts with
+Consider
 \[
   A=
   \begin{bmatrix}
@@ -59,7 +59,7 @@ A mapping $\Phi:V\to W$ between vector spaces is linear if
 \]
 for all $x,y\in V$ and scalars $\lambda,\psi$.
 
-The note lists special cases:
+Important special cases are:
 \begin{itemize}
   \item an isomorphism is linear and bijective;
   \item an endomorphism is a linear map $V\to V$;
@@ -67,7 +67,7 @@ The note lists special cases:
   \item the identity map $\operatorname{id}_V:V\to V$ is the identity automorphism.
 \end{itemize}
 
-The handwritten annotations translate these as “same structure,” “same domain and codomain,” and “self-isomorphism.”
+These notions may be summarized as “same structure,” “same domain and codomain,” and “self-isomorphism.”
 
 \section{Complex numbers as a real vector space}
 
@@ -119,7 +119,7 @@ If $A_\Phi$ is the matrix of $\Phi$ with respect to $B,C$, and $\widetilde A_\Ph
 \]
 Here $S$ converts coordinates from the new basis of $V$ to the old basis of $V$, and $T$ converts coordinates from the new basis of $W$ to the old basis of $W$.
 
-The diagram in the source page says exactly this: to use the old matrix, first translate the input coordinates into the old basis, then apply $A_\Phi$, then translate the output coordinates into the new output basis.
+The coordinate-change diagram expresses exactly this procedure: translate the input coordinates into the original basis, apply $A_\Phi$, and then translate the output coordinates into the new output basis.
 
 \section{Equivalence and similarity}
 
@@ -135,7 +135,7 @@ Two square matrices $A,\widetilde A\in\mathbb R^{n\times n}$ are similar if
 \]
 This corresponds to changing basis for a linear map $V\to V$ using the same coordinate change in domain and codomain.
 
-The handwritten table emphasizes the difference:
+The distinction is:
 \begin{center}
 \begin{tabular}{lll}
 \toprule

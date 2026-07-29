@@ -2,9 +2,9 @@
 
 \section{A set-counting problem}
 
-The first page studies finite sets \(A_1,A_2,\ldots,A_{32}\) and asks how many subsets can satisfy certain intersection conditions.  The handwritten solution builds a toy example in which each set contains a fixed number of elements and one carefully controls pairwise intersections.
+Consider finite sets \(A_1,A_2,\ldots,A_{32}\) subject to prescribed intersection conditions.  A useful toy model gives each set a fixed size and controls every pairwise intersection explicitly.
 
-The general strategy is inclusion--exclusion.  If every set has \(m\) elements and pairwise overlaps have controlled size, then the size of the union is not simply the sum of sizes.  One must subtract overlaps and add back higher overlaps.  The note's construction eventually counts a large number of possible sets, obtaining a count of the form
+The general strategy is inclusion--exclusion.  If every set has \(m\) elements and pairwise overlaps have controlled size, then the size of the union is not simply the sum of sizes: subtract pairwise overlaps and add back higher overlaps.  The construction yields a count of the form
 \[
   31+28\cdot30=871.
 \]
@@ -39,7 +39,7 @@ This distinction is crucial: constructing an example proves a lower bound, but p
 
 \section{Sequence exercises}
 
-Later pages return to sequence problems.  Examples include arithmetic and geometric sequences, partial sums, and recurrence-like identities.  One problem has
+Arithmetic and geometric sequences, partial sums, and recurrence-like identities provide a second family of examples.  One problem has
 \[
   a_n=a_1+(n-1)d
 \]
@@ -57,7 +57,7 @@ again appears, with the warning that \(q=1\) is a separate case.
 
 \section{Mathematical induction}
 
-The most substantial later pages discuss induction.  The note distinguishes several forms:
+Induction appears in several distinct forms:
 \begin{enumerate}[(i)]
   \item ordinary induction: prove \(P(1)\), then prove \(P(n)\Rightarrow P(n+1)\);
   \item strong induction: prove \(P(1),\ldots,P(n)\Rightarrow P(n+1)\);
@@ -73,7 +73,7 @@ The proof skeleton is:
   \item conclusion.
 
 \end{enumerate}
-The note emphasizes that the induction hypothesis must be used precisely.  One cannot simply assume the desired statement for \(n+1\).
+The induction hypothesis must be used precisely; one cannot simply assume the desired statement for \(n+1\).
 
 \section{Examples of induction}
 
@@ -121,7 +121,7 @@ then all behavior is determined by the first \(m\) terms.  This is the organizin
 
 \section{A note on scope}
 
-This note is about finite structure.  Set problems use inclusion--exclusion and modular residues; sequence problems use closed forms; induction proves that a pattern persists for all \(n\).  The conceptual chain is:
+Finite structure links set problems through inclusion--exclusion and modular residues, sequence problems through closed forms, and induction through persistence for all \(n\).  The conceptual chain is:
 \[
   \text{example}\quad\Rightarrow\quad\text{pattern}\quad\Rightarrow\quad\text{proof by induction or upper bound}.
 \]
@@ -131,7 +131,7 @@ A mature solution must know which stage it is in.  Guessing a pattern is not pro
 
 A combinatorial extremal problem has two halves.  A construction proves a lower bound: it shows that at least \(N\) objects are possible.  An upper bound proves that no construction can exceed \(N\).  Only when the two match is the extremal value determined.
 
-The note's "problem reserved" comments are therefore mathematically honest.  Producing a residue-class construction is not the same as proving optimality.  The missing step is usually an invariant, counting argument, or compression method that forbids larger examples.
+Producing a residue-class construction is not the same as proving optimality.  The missing step is usually an invariant, counting argument, or compression method that forbids larger examples.
 
 \section{Residue classes as finite quotient spaces}
 
@@ -187,4 +187,4 @@ In extremal problems, one often defines boxes by residues, intervals, or local c
 
 \section{Finite structure from quotients and induction}
 
-The note's finite examples are unified by quotienting and persistence.  Modular constructions live in finite quotient groups, induction proves that a pattern persists, finite differences turn induction into summation, floor functions count lattice points, and extremal constructions require matching lower and upper bounds.
+The finite examples are unified by quotienting and persistence.  Modular constructions live in finite quotient groups, induction proves persistence, finite differences turn induction into summation, floor functions count lattice points, and extremal constructions require matching lower and upper bounds.

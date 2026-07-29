@@ -2,7 +2,7 @@
 
 \section{The route of the note}
 
-This note is about Tarski's circle-squaring problem, but the source pages do not treat it as a single isolated puzzle.  They move through a sequence of increasingly subtle notions:
+Tarski's circle-squaring problem unfolds through a sequence of increasingly subtle notions:
 \[
 \begin{gathered}
   \text{Tarski circle-squaring}\longrightarrow \text{Hilbert's third problem}\\
@@ -10,7 +10,7 @@ This note is about Tarski's circle-squaring problem, but the source pages do not
   \longrightarrow \text{Laczkovich's theorem}\longrightarrow \text{Borel circle squaring}.
 \end{gathered}
 \]
-The figures below are kept only when the visual configuration itself matters.  The surrounding theorem statements, comments, formulas, and handwritten annotations have been incorporated into the prose.
+The visual configurations below support theorem statements whose algebraic and measure-theoretic content is developed directly in the prose.
 
 Tarski asked in 1925 whether a disk and a square of equal area in the plane are equidecomposable: can the disk be partitioned into finitely many pieces, and can those pieces be moved by isometries to partition the square?
 
@@ -76,15 +76,15 @@ The extra obstruction is the Dehn invariant.  If a polyhedron has edge lengths $
 \[
   D(P)=\sum_i \ell_i\otimes \theta_i
 \]
-with values in a tensor product such as $\mathbb R\otimes_{\mathbb Z} \mathbb R/(2\pi\mathbb Z)$, depending on conventions.  The invariant records length-angle data that volume does not see.  The handwritten note correctly marks the tensor product as a point worth noticing: this is not elementary area bookkeeping anymore.
+with values in a tensor product such as $\mathbb R\otimes_{\mathbb Z} \mathbb R/(2\pi\mathbb Z)$, depending on conventions.  The invariant records length-angle data that volume does not see; the tensor product signals that this is no longer elementary area bookkeeping.
 
 Sydler's theorem says that volume and Dehn invariant together are complete in dimension three.  Thus the two-dimensional polygon theorem has no naive three-dimensional analogue.
 
 \section{Measure-theoretic background}
 
-The source page then discusses measure.  Vitali sets imply that for every $n\ge1$, there is no extension of Lebesgue measure to all subsets of $\mathbb R^n$ that is both countably additive and invariant under isometries.
+Measure introduces a fundamental obstruction.  Vitali sets imply that for every $n\ge1$, there is no extension of Lebesgue measure to all subsets of $\mathbb R^n$ that is both countably additive and invariant under isometries.
 
-If countable additivity is weakened to finite additivity, the dimension matters.  For $n\ge3$, the Banach--Tarski paradox shows that there is no such finitely additive isometry-invariant measure on all bounded sets compatible with volume.  For $n\le2$, Banach measures exist.  The note emphasizes the reason: in dimension at least three, the isometry group contains enough free-group behavior to allow paradoxical decompositions; in dimensions one and two it does not.
+If countable additivity is weakened to finite additivity, the dimension matters.  For $n\ge3$, the Banach--Tarski paradox rules out a finitely additive isometry-invariant measure on all bounded sets compatible with volume, whereas Banach measures exist for $n\le2$.  The reason is group-theoretic: in dimension at least three, the isometry group contains enough free-group behavior for paradoxical decompositions; in dimensions one and two it does not.
 
 For Tarski's problem in the plane, this means that equal area is still a necessary condition.  A disk and square that are equidecomposable by isometries must have the same Lebesgue measure, even if the pieces themselves are nonmeasurable.
 
@@ -229,7 +229,7 @@ Ergodic intuition suggests
 \[
   |S_N(x)\cap A|\approx \lambda(A)N^d.
 \]
-The handwritten note warns that this is only a heuristic: ordinary ergodic theorems alone are not strong enough.  Laczkovich needs a uniform quantitative estimate from Diophantine approximation and discrepancy theory.
+This is only a heuristic: ordinary ergodic theorems alone are not strong enough.  Laczkovich needs a uniform quantitative estimate from Diophantine approximation and discrepancy theory.
 
 \begin{figure}[H]
 \centering
@@ -259,7 +259,7 @@ Laczkovich's original proof used the axiom of choice.  Later work by Marks and U
 \caption{A visual impression of the Borel circle-squaring pieces.}
 \end{figure}
 
-The final handwritten note says the main components are: Dehn invariant, group action, torus embedding, traversal/matching, and measure/discrepancy theory.  That summary is accurate.  The proof is not one trick; it is a combination of several fields.
+The main components are the Dehn invariant, group actions, torus embeddings, traversal and matching, and measure/discrepancy theory.  The proof is not one trick but a combination of several fields.
 
 \section{Bridge to later ideas}
 

@@ -2,22 +2,20 @@
 
 \section{Starting point}
 
-In July 2021, a table titled ``Some dualities'' appeared in our Geek College chat.  It was shared by Dr. Keyao Peng, and at first glance it looked like a compact list of examples.  The table had three columns: a geometric object, an algebraic object, and a mysterious third entry called the dualizing object or gauge object.
+A recurring family of dualities places three ingredients side by side: a geometric object, an algebraic presentation, and a dualizing or gauge object.  Stone spaces and Boolean algebras form the most concrete entry point, because they expose a spatial fact about logic: Boolean operations are realized by clopen regions, while complete truth assignments become points.
 
-The table became one of the first places where I felt that modern mathematics was not merely a collection of topics, but a repeated pattern.  Geometry and algebra were not standing separately.  They seemed to be two languages for the same structure.  The first row, Stone spaces versus Boolean algebras, was the entry point that most immediately caught my attention.  It led to my later attempt to write about Boolean algebra, but that earlier writing mostly explained the algebraic operations.  It did not yet explain the missing spatial half: why logic should have a topology.
-
-This note rewrites that summer question in a more systematic form.  The aim is not merely to list several dualities.  The aim is to understand the mechanism behind the table:
+The aim is not merely to list several dualities, but to isolate the mechanism behind them:
 \[
 \begin{array}{c}
   \text{a space is studied through its observations,}\\
   \text{an algebra is studied through its models or points.}
 \end{array}
 \]
-The third column of the table is the key.  The dualizing object is the interpreter through which the two sides talk to each other.
+The dualizing object is the interpreter through which the two sides communicate.  It determines which observations are allowed and therefore which geometry can be recovered.
 
 \section{The table is not a list}
 
-Here is the table in a cleaned-up form.
+The central examples are:
 
 \begin{center}
 \small
@@ -212,7 +210,7 @@ The dualizing object \(\mathbf 2\) explains both directions:
 \]
 On the geometric side, maps to \(\mathbf 2\) are clopen predicates.  On the algebraic side, homomorphisms to \(\mathbf 2\) are truth assignments, equivalently ultrafilters.
 
-This is what I had not fully seen in 2021.  I understood the algebraic rules of Boolean algebra, but I had not yet seen that the rules reconstruct a space.
+The algebraic rules do more than organize Boolean operations: they reconstruct a space of compatible truth assignments.
 
 \section{Gelfand duality as a continuous analogue}
 
@@ -360,7 +358,7 @@ A more precise statement is:
 \]
 The geometry/algebra distinction is then a matter of viewpoint.  A space can be treated through its functions.  An algebra can be treated through its spectrum of points.
 
-\section{What I should have understood in 2021}
+\section{The duality principle behind the table}
 
 The table's first row was already enough to contain the lesson.  A Boolean algebra is not only a formal calculus of \(\vee\), \(\wedge\), and complement.  It has a Stone space of complete truth assignments.  Conversely, a Stone space is not only a topological object.  It has a Boolean algebra of clopen predicates.
 
@@ -375,7 +373,7 @@ The right summary is:
 
 In Stone duality, the question is yes-or-no, so the dualizing object is \(\mathbf 2\).  In Gelfand duality, the question is complex-valued measurement, so the dualizing object is \(\mathbb C\).  In locale theory, the question is openness, so the dualizing object is the Sierpi\'nski space.  In topos theory, the question becomes internal mathematics itself.
 
-This is the missing half of the 2021 Boolean algebra study.  I had understood the syntax of Boolean operations, but not yet the topology of truth assignments.  The real lesson of the table is:
+Boolean operations describe the syntax of propositions, while the Stone space supplies the topology of their complete truth assignments.  The structural lesson of the table is:
 \[
 \begin{array}{c}
   \text{space is recovered from its observations,}\\

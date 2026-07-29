@@ -2,16 +2,16 @@
 
 \section{First orientation}
 
-This note is reconstructed from a ten-page PDF titled \emph{The Geometry of Dialogue and the Logic of Narrative: A Taste of Linear Logic}, dated 2022-10-05.  The original text was not a conventional mathematical note.  It was closer to a reflective synthesis: a recent immersion into linear logic, several remarks attributed to Dr. Keyao Peng, an interest in game design and emergent narrative, and a set of visual fragments from Ludics, sequent calculus, and Geometry of Interaction.
+Linear logic, Ludics, game semantics, sequent calculus, and Geometry of Interaction all treat proof as structured interaction rather than as a static truth value.  The common question is how resources, moves, addresses, and feedback turn logical deduction into a process.
 
-The background matters.  The original memo was written at the moment when logic stopped looking like a static taxonomy of truth values and began to look like a theory of interaction.  The guiding words were:
+The decisive shift is from logic as a static taxonomy of truth values to logic as a theory of interaction.  The guiding words are:
 \[
   \text{interaction},\qquad \text{resource},\qquad \text{game},\qquad \text{narrative}.
 \]
-The reconstruction below keeps this origin, but changes the form.  Instead of an essay moving from metaphor to metaphor, this note is organized as a usable mathematical notebook: definitions first, then small calculi, then code-like models, and finally the more philosophical interpretation.
+The exposition proceeds from definitions to small calculi, then to code-like models, and only afterward to the broader philosophical interpretation.  This order keeps every metaphor anchored in a usable mathematical construction.
 
 \begin{remark}
-The original PDF repeatedly tried to connect three worlds: a child's fable, a philosophical debate, and high-level topology or geometry of interaction.  The stable mathematical bridge between them is linear logic's treatment of resources and duality.
+A child's fable, a philosophical debate, and the geometry of interaction can be connected through linear logic's treatment of resources and duality.
 \end{remark}
 
 \section{From truth to resources}
@@ -121,7 +121,7 @@ assert state == Counter({"brick_house": 1})
 This is exactly the resource-sensitive reading: a pig used to build the straw house is consumed; it cannot simultaneously remain an unused pig.  The wolf survives the destruction of the straw and stick houses, but not the encounter with the brick house.
 \end{example}
 
-The proof tree in the original PDF should therefore be read as a storyboard.  Each inference step is not only a logical step but a plot event.  The proof search is the narrative search.
+A proof tree can therefore be read as a storyboard: each inference step is both a logical step and a plot event, so proof search becomes narrative search.
 
 \section{Tensor, additives, and branching stories}
 
@@ -263,7 +263,7 @@ The visible morphism has the form
 \[
   L a \longrightarrow L({}^\ast m)\otimes L((R m)\otimes a).
 \]
-For a first reading, the notation is less important than the picture.  The colored ribbons behave like wires.  They route input types into output types, bend around each other, and meet at nodes.  This is why the original PDF compares human interaction to Feynman diagrams: logical equivalence becomes a kind of topological deformation of processes.
+The picture is more important than the notation at first.  Colored ribbons behave like wires: they route input types into output types, bend around each other, and meet at nodes.  The comparison with Feynman diagrams expresses the idea that logical equivalence is a topological deformation of processes.
 
 \begin{remark}
 The diagram should not be treated as a decorative metaphor.  In Geometry of Interaction, cut elimination is modeled by the circulation of information through a network.  The graphical form is an attempt to make proof normalization visible.
@@ -271,7 +271,7 @@ The diagram should not be treated as a decorative metaphor.  In Geometry of Inte
 
 \section{From narrative to social relations}
 
-The original PDF ends by extending the same logic to narrative generation and social relations.  This is speculative, but it has a precise core.  A social or narrative process can be modeled as a resource transformation system:
+The same logic extends, more speculatively, to narrative generation and social relations.  Its precise core is that a social or narrative process can be modeled as a resource transformation system:
 \[
   \text{inputs} \otimes \text{labor/process}
   \multimap
@@ -310,7 +310,7 @@ The reconstructed message is simple:
 \end{array}
 \]
 
-The first version of the PDF used large philosophical language: signifier chains, narrative, game, topology, dialectics, social relations.  The cleaned-up mathematical version keeps the ambition but anchors it in four concrete devices:
+Broad language about signifier chains, narrative, games, topology, dialectics, and social relations becomes mathematically useful only when anchored in four concrete devices:
 \[
   A\multimap B,
   \qquad

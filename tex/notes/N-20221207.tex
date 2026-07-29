@@ -6,7 +6,7 @@ The first problem defines a finite set
 \[
   A=\{a_1<a_2<\cdots<a_k\}
 \]
-of positive integers and builds two derived sets, one from sums and one from differences.  The handwritten solution records the important idea: use the union \(S\cup T\), and do not try to identify every element exactly.  Bound its size from below and above.
+of positive integers and builds two derived sets, one from sums and one from differences.  The important idea is to use the union \(S\cup T\) without identifying every element exactly, and instead bound its size from below and above.
 
 The sum set contains at least the ordered chain
 \[
@@ -51,7 +51,7 @@ attains this bound, so the maximum is
 
 \section{What this problem teaches}
 
-The note's blue comment says that using \(S\cup T\) is a good way to avoid proving a complicated extremal statement directly.  This is the key lesson.  When a problem asks for the largest possible size of a set, it often helps to build auxiliary sets whose sizes are forced by the structure.
+Using \(S\cup T\) avoids a complicated direct extremal argument.  When a problem asks for the largest possible size of a set, auxiliary sets with structurally forced sizes often reveal the correct bound.
 
 A lower bound comes from a construction.  An upper bound comes from counting constraints.  A complete solution needs both.
 
@@ -74,13 +74,13 @@ or
   A\cap B\cap C=\varnothing.
 \]
 
-The handwritten solution first draws a Venn diagram, then rewrites the pieces algebraically.  The symmetric difference
+A Venn diagram suggests an algebraic decomposition.  The symmetric difference
 \[
   (A-B)\cup(B-A)
 \]
 is the part where membership in \(A\) and \(B\) differs.  If this is contained in \(C\), then outside \(C\) the sets \(A\) and \(B\) must agree.
 
-The correct way to solve such problems is to analyze each of the eight Venn regions.  The note records a false start and then corrects it, which is valuable: set identities are easy to get wrong if one reasons only verbally.
+The reliable method is to analyze each of the eight Venn regions.  Verbal manipulation alone is unsafe because it can silently merge distinct regions or reverse a complement; region-by-region membership prevents those errors.
 
 \begin{figure}[H]
 \centering
@@ -98,7 +98,7 @@ The correct way to solve such problems is to analyze each of the eight Venn regi
 
 \section{Difference identities}
 
-One useful identity appearing in the handwritten reasoning is
+One useful identity is
 \[
   B-C=B\cap C^c.
 \]
@@ -126,7 +126,7 @@ This is exactly the kind of algebraic cleanup that a Venn diagram suggests but d
 
 \section{Coordinate and algebraic exercises}
 
-The later pages contain a mixture of algebraic and coordinate exercises.  They include problems about quadratic expressions, tangent or chord diagrams, and conditions that must be translated into equations.  The handwritten computations repeatedly use the same pattern:
+Algebraic and coordinate exercises involving quadratic expressions, tangent or chord diagrams, and geometric conditions repeatedly use the same pattern:
 \begin{enumerate}[(i)]
   \item introduce the unknowns explicitly;
   \item translate each condition into an equation or inequality;
@@ -139,12 +139,12 @@ Several sketches show lines touching curves or intersecting regions.  Rather tha
 
 \section{A note on proof writing}
 
-The red handwritten reflection says that a purely diagrammatic method is intuitive but can be unreliable.  The mature solution uses the diagram to discover the statement, then uses set algebra to prove it.  This is an excellent general lesson.  Geometry and diagrams are for finding the path; formal manipulations are for making the path safe.
+A purely diagrammatic method is intuitive but can be unreliable.  Use the diagram to discover the statement, then use set algebra to prove it: geometry finds the path, while formal manipulation makes the path safe.
 
 
 \section{Extremal set problems: why constructions matter}
 
-In an extremal counting problem, an upper bound is only half the solution.  One must also give a construction showing the bound is sharp.  The note's sum-set and difference-set arguments follow this pattern: first prove that the derived sets must contain enough elements; then exhibit a set \(A\) for which the lower bound is actually attained.
+In an extremal counting problem, an upper bound is only half the solution; a construction must show sharpness.  For sum sets and difference sets, first prove that the derived sets contain enough elements, then exhibit a set \(A\) attaining the bound.
 
 This is a common combinatorial habit.  Inequalities show impossibility beyond a threshold.  Constructions show that the threshold is real.
 
@@ -164,7 +164,7 @@ This is exactly the condition for membership in the right-hand side.  The diagra
 
 \section{A wider frame}
 
-This note is about extremal and logical reasoning.  The extremal problem uses auxiliary sets and cardinality bounds.  The Venn problem uses Boolean algebra and region decomposition.  Both are early forms of a common method: replace a vague configuration by a finite list of regions or quantities that can be counted exactly.  This is the same spirit behind combinatorial proofs, measure decompositions, and even sigma-algebra calculations later in analysis.
+Extremal counting and Boolean region decomposition share a common method: replace a vague configuration by a finite list of regions or quantities that can be counted exactly.  The same principle underlies combinatorial proofs, measure decompositions, and sigma-algebra calculations.
 
 \section{Extremal problems: upper bound plus construction}
 
@@ -237,7 +237,7 @@ For intersecting families, the Erdős--Ko--Rado theorem says that if \(\mathcal 
 \]
 The extremal example is a star: all \(k\)-sets containing a fixed element.
 
-These theorems are advanced versions of the note's method: identify the forbidden configuration, prove an upper bound, and classify sharp examples.
+These theorems refine the same method: identify the forbidden configuration, prove an upper bound, and classify sharp examples.
 
 \section{Shifting and stability}
 

@@ -2,7 +2,7 @@
 
 \section{What this note continues}
 
-This note continues the elementary category-theory reading.  The source pages are not just a list of definitions.  They contain several examples whose purpose is to change one's intuition about what an arrow may be.  In ordinary algebra courses, a morphism is often a function preserving structure.  Category theory is more flexible: arrows can be order relations, group elements, inclusions, or constructions whose nature depends on the category.
+Elementary category theory changes the intuition of what an arrow may be.  A morphism is often introduced as a structure-preserving function, but arrows may instead be order relations, group elements, inclusions, or other constructions determined by the category.
 
 The main examples are:
 \[
@@ -36,7 +36,7 @@ Suppose $P$ has four objects $a,b,c,d$ with relations
 \]
 and identities at every object.  The corresponding category has arrows exactly for these order relations.  In a Hasse diagram, upward paths encode arrows, but the category contains the composite arrow as well.  For example, from $a\le c$ and $c\le d$, the composite gives the arrow $a\to d$.
 
-The handwritten note emphasizes the point: the same symbol $\le$ can be treated as an arrow.  This is not a metaphor; it satisfies the category axioms.
+The same symbol $\le$ can be treated as an arrow.  This is not a metaphor; it satisfies the category axioms.
 
 \section{Isomorphisms in a poset category}
 
@@ -59,7 +59,7 @@ In a poset category, an arrow $p\to q$ means $p\le q$.  An isomorphism between $
 \]
 By antisymmetry of a partial order, this forces $p=q$.  Therefore no two distinct objects of a poset category are isomorphic.
 
-This explains the source's short handwritten answer, “Obviously.”  It is obvious only after translating categorical isomorphism back into the order axioms.
+The result becomes obvious only after translating categorical isomorphism back into the order axioms.
 
 \section{Groups as one-object categories}
 
@@ -131,6 +131,6 @@ In $\mathbf{Set}$, monomorphisms are exactly injective functions, and epimorphis
 
 \section{The lesson of the note}
 
-The note's guiding idea is that category theory asks us to stop identifying arrows with functions.  In a poset, arrows are inequalities.  In a group-as-category, arrows are group elements.  In a product category, arrows are pairs of arrows.  In an opposite category, arrows are formally reversed.  Monomorphism and epimorphism then express injective-like and surjective-like behavior without mentioning elements.
+The guiding idea is to stop identifying arrows with functions.  In a poset they are inequalities, in a group-as-category they are group elements, in a product category they are pairs, and in an opposite category they are formally reversed.  Monomorphism and epimorphism then express injective-like and surjective-like behavior without mentioning elements.
 
 The transition is from element-based thinking to arrow-based thinking.  This is the first real shift in category theory.

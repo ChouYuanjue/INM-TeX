@@ -2,7 +2,7 @@
 
 \section{The derivative from secants to tangents}
 
-The note begins with the geometric idea of derivative.  Given two nearby points on the curve,
+The derivative begins with the geometry of two nearby points on a curve.
 \[
   (x_0,f(x_0)),\qquad (x_0+\Delta x,f(x_0+\Delta x)),
 \]
@@ -25,7 +25,7 @@ The tangent line at $x_0$ is therefore
 \[
   y-f(x_0)=f'(x_0)(x-x_0).
 \]
-The source page stresses the visual transition: the secant line approaches a unique limiting line.  If that limiting line is not vertical and the slope is finite, we call the slope the derivative.
+Geometrically, the secant line approaches a unique limiting line.  If that line is not vertical and its slope is finite, the limiting slope is the derivative.
 
 \begin{center}
 \begin{tikzpicture}[scale=.78,>=Stealth,every node/.style={fill=white,inner sep=1pt}]
@@ -61,7 +61,7 @@ The definition requires $f$ to be defined on a punctured neighborhood of $x_0$, 
 \]
 If $f$ is differentiable at every point of an open interval $(a,b)$, then $x\mapsto f'(x)$ is the derivative function on that interval.
 
-The note emphasizes a small logical point: before asking whether $f$ is differentiable at a point, one must first know that the function is defined near that point.  Differentiability is a local property.
+Before asking whether $f$ is differentiable at a point, one must know that it is defined on a neighborhood of that point.  Differentiability is a local property.
 
 \section{Rules of differentiation}
 
@@ -130,7 +130,7 @@ If $f''(x_0)>0$ and $f'(x_0)=0$, then $x_0$ is a local minimum.  If $f''(x_0)<0$
 
 \section{A derivative proof of a basic inequality}
 
-The note proves, for $x>0$,
+For $x>0$, one has
 \[
   x^\alpha-\alpha x+\alpha-1\le0,\qquad 0<\alpha<1,
 \]
@@ -184,7 +184,7 @@ The proof in the source normalizes
 \]
 and applies Young's inequality termwise.  After adding the inequalities, the normalized sum becomes $1$, giving Holder.
 
-A handwritten note observes that the integral form follows the same idea:
+The integral form follows the same idea:
 \[
   \int_a^b f(x)g(x)\,dx
   \le
@@ -216,7 +216,7 @@ Because $q=p/(p-1)$, we have
 \]
 After factoring the common term and dividing by it, one obtains Minkowski.
 
-The handwritten margin notes that for $p=2$ this is exactly the triangle inequality for Euclidean length:
+For $p=2$, this is exactly the triangle inequality for Euclidean length:
 \[
   \sqrt{(x_1+y_1)^2+\cdots+(x_n+y_n)^2}
   \le
@@ -233,7 +233,7 @@ The note defines a convex function by the inequality
   \alpha_1f(x_1)+\alpha_2f(x_2),\qquad
   \alpha_1+\alpha_2=1,\quad \alpha_i\ge0.
 \]
-The handwritten annotation explains the geometry: the point on the chord between $(x_1,f(x_1))$ and $(x_2,f(x_2))$ lies above the graph.
+Geometrically, the point on the chord between $(x_1,f(x_1))$ and $(x_2,f(x_2))$ lies above the graph.
 
 Equivalently, for $x_1<x<x_2$,
 \[

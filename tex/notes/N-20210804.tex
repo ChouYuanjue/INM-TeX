@@ -2,9 +2,9 @@
 
 \section{Boolean algebra beyond computing}
 
-This note began from a small but common misunderstanding: Boolean algebra is often first seen through computer science, so it is easy to think that it is mainly a computational convention rather than a mathematical structure.  I want to push against that impression.
+Boolean algebra is often first encountered through computer science, which can make it look like a computational convention rather than a mathematical structure.  The broader theory immediately pushes beyond that impression.
 
-Boolean algebra belongs simultaneously to logic, set theory, topology, measure theory, ring theory, and later to categorical duality.  The original motivation was a comparison between Stone duality for Boolean algebras and broader dualities involving topological or logical structures.  I also had Heyting algebras in mind, although at this stage it is better not to start there.
+Boolean algebra belongs simultaneously to logic, set theory, topology, measure theory, ring theory, and categorical duality.  Stone duality supplies the topological direction, while Heyting algebras show how the story changes when classical logic is weakened; the elementary algebraic models come first.
 
 \begin{remark}
 The planned route is deliberately elementary: first collect the algebraic vocabulary, then introduce Boolean rings and Boolean algebras, and only later move toward Stone spaces, Stone duality, and perhaps Heyting algebras.  The point is not to pretend that Boolean algebra is difficult at the entry level, but to show that it has more mathematical depth than its first appearance suggests.
@@ -26,7 +26,7 @@ or equivalently
 \end{definition}
 
 \begin{caution}
-This definition is elegant but not beginner-friendly.  If one has not learned Heyting algebras, it hides the concrete content.  So in the rest of this chapter I reconstruct Boolean algebras through groups, rings, lattices, subsets, and characteristic functions.
+This definition is elegant but not beginner-friendly.  If one has not learned Heyting algebras, it hides the concrete content.  The concrete content is therefore developed through groups, rings, lattices, subsets, and characteristic functions.
 \end{caution}
 
 \section{A small amount of algebra}
@@ -49,7 +49,7 @@ If there is an element \(e\in G\) such that \(ae=ea=a\), and every element \(a\i
 then \(G\) is a group.  If \(ab=ba\) for all \(a,b\in G\), then \(G\) is an abelian group.
 \end{definition}
 
-I will not need the full theory of group homomorphisms, kernels, images, cosets, normal subgroups, or quotient groups here, but the rough memory is useful: a quotient group \(G/N\) consists of cosets of a normal subgroup \(N\triangleleft G\), with multiplication
+The full theory of group homomorphisms, kernels, images, cosets, normal subgroups, and quotient groups is not needed here, but one basic model is useful: a quotient group \(G/N\) consists of cosets of a normal subgroup \(N\triangleleft G\), with multiplication
 \[
   (aN)(bN)=abN.
 \]
@@ -191,7 +191,7 @@ together with commutativity, associativity, and distributivity.
 \end{definition}
 
 \begin{caution}
-One sentence in the original note has an obvious slip: it says, in effect, that every Boolean algebra can be turned into a Boolean ring and every Boolean algebra can be turned into a Boolean algebra.  The intended statement is that Boolean algebras and Boolean rings with unit are two equivalent presentations of the same structure.
+Boolean algebras and Boolean rings with unit are two equivalent presentations of the same structure.
 \end{caution}
 
 \section[Characteristic functions and the meaning of 2\textasciicircum{}X]{Characteristic functions and the meaning of \(2^X\)}

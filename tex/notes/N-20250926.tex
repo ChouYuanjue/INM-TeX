@@ -19,7 +19,7 @@ The activation function $\sigma$ acts elementwise, for example sigmoid or ReLU. 
 \]
 for a loss function $L$.
 
-The note uses the common softmax--cross-entropy setting as motivation.  If the final layer produces logits $z_i$, then
+The softmax--cross-entropy setting provides a standard example.  If the final layer produces logits $z_i$, then
 \[
   \hat y_i=\frac{e^{z_i}}{\sum_j e^{z_j}},\qquad
   L=-\sum_i t_i\ln \hat y_i,
@@ -111,7 +111,7 @@ where
 
 The original derivative $\partial y/\partial W$ is a tensor with shape $(m,m,n)$.  But backpropagation does not need to store it.  The chain rule contracts it with the vector $\partial L/\partial y$, leaving a matrix of shape $(m,n)$.
 
-In the note's language:
+Equivalently:
 \[
   \text{three-dimensional tensor}
   \quad\xrightarrow{\text{chain-rule summation}}
@@ -222,7 +222,7 @@ Each row is the input vector scaled by the derivative of the corresponding outpu
 
 \section{Einstein notation proof}
 
-The handwritten proof uses indices.  Let $y=f(z)$ and $z=Wx$.  For a matrix entry $A_{pq}=W_{pq}$,
+An index calculation makes the chain rule explicit.  Let $y=f(z)$ and $z=Wx$.  For a matrix entry $A_{pq}=W_{pq}$,
 \[
   \frac{\partial z_i}{\partial A_{pq}}
   =\frac{\partial}{\partial A_{pq}}

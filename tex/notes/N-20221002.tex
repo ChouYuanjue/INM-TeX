@@ -2,9 +2,9 @@
 
 \section{Why finite fields matter}
 
-This note is a more systematic essay on finite fields and factorization.  The central question is: how do polynomials factor when the coefficients live in a finite field rather than in \(\mathbb Q\), \(\mathbb R\), or \(\mathbb C\)?
+The central question is: how do polynomials factor when the coefficients live in a finite field rather than in \(\mathbb Q\), \(\mathbb R\), or \(\mathbb C\)?
 
-This question is not only theoretical.  It appears in coding theory, cryptography, computational algebra, and the construction of algebraic extensions.  The note correctly starts from the definition of a field, because factorization depends heavily on the coefficient domain.
+The question is not only theoretical: it appears in coding theory, cryptography, computational algebra, and the construction of algebraic extensions.  The definition of a field comes first because factorization depends heavily on the coefficient domain.
 
 \section{Fields}
 
@@ -46,7 +46,7 @@ If \(K\) is finite-dimensional as a vector space over \(F\), its dimension is th
 \[
   [K:F]=\dim_F K.
 \]
-The note's intuition is good: finite extensions are tractable because linear algebra can be used.  Infinite extensions require much heavier tools.
+Finite extensions are tractable because linear algebra applies directly, whereas infinite extensions require substantially heavier tools.
 
 \section{Constructing finite fields}
 
@@ -128,7 +128,7 @@ This illustrates the basic workflow: root testing only detects linear factors.  
 
 \section{Algorithms}
 
-The note lists several factorization algorithms:
+Several standard factorization algorithms are:
 \begin{enumerate}[(i)]
   \item trial division, useful for very small degrees;
   \item Berlekamp's algorithm, which converts factorization into linear algebra over finite fields;
@@ -156,7 +156,7 @@ Finite-field factorization appears in:
   \item symbolic algebra systems.
 
 \end{enumerate}
-The note's final reflection is that finite fields are small enough for computation but structured enough to retain deep algebraic behavior.  That is why they are so central.
+Finite fields are small enough for exhaustive computation yet structured enough to retain deep algebraic behavior.  That combination explains their central role.
 
 
 \section{Irreducibility over finite fields}
@@ -205,7 +205,7 @@ The polynomial
 \]
 has all elements of \(\mathbb F_{p^n}\) as roots, and it factors over \(\mathbb F_p\) as the product of all monic irreducible polynomials whose degrees divide \(n\).  This is a central organizing fact for finite-field factorization.
 
-\section{What survives later}
+\section{Structural consequences}
 
 Finite fields turn algebra into arithmetic.  Roots of polynomials become elements of finite extensions, irreducibility becomes a modular phenomenon, and Frobenius gives a canonical symmetry.  This is why finite fields appear in coding theory and cryptography: their algebra is rich but completely finite and computable.
 

@@ -2,7 +2,7 @@
 
 \section{Correcting a trigonometric mistake}
 
-The first handwritten line says that an earlier calculation from February 20 contained a mistake.  The attempted determinant manipulation involved vectors built from angles $\alpha$ and $\beta$, and a factor such as $\tan(\alpha-\beta)$.  The note records that the determinant-style computation did not work and that the reason for the error was not immediately clear.
+A tempting determinant manipulation with vectors built from angles $\alpha$ and $\beta$ introduces a factor such as $\tan(\alpha-\beta)$, but the argument is invalid.  The failure comes from treating angle-dependent vector identities as though the relevant coordinates and orientations were interchangeable; the correct derivation must track the chosen basis and the domain of every tangent factor.
 
 This is worth preserving.  A failed determinant manipulation is not useless; it tells us that the problem probably has hidden dependencies among the trigonometric variables.  Before choosing a linear algebra method, one must check whether the equations are genuinely linear in the chosen unknowns.
 
@@ -14,7 +14,7 @@ The main problem asks for $\cos\alpha\cos\beta$ under conditions of the form
   \qquad
   \cos\alpha-\cos\beta=\frac13.
 \]
-The note introduces
+Introduce
 \[
   a=\sin\alpha,\qquad b=\sin\beta,\qquad
   c=\cos\alpha,\qquad d=\cos\beta.
@@ -28,7 +28,7 @@ This transforms a trigonometric problem into an algebraic system.
 
 \section{A rational-parametrization idea}
 
-The handwritten solution tries to express the four variables as sums of rational parts and radicals:
+Express the four variables as sums of rational parts and radicals:
 \[
   a=q_1+r_1,\qquad b=q_2-r_1,\qquad
   c=q_3+r_2,\qquad d=q_4+r_2,
@@ -70,7 +70,7 @@ The direct method shows why the algebraic system has hidden trigonometric struct
 
 \section{Multiple-angle formulas}
 
-The second page records standard multiple-angle formulas.  One form is
+A standard multiple-angle formula is
 \[
   \sin(nx)=\sum_{k=0}^n \binom nk
   \cos^k x\,\sin^{n-k}x\;
@@ -111,11 +111,11 @@ If $D_n$ denotes the determinant of the $n\times n$ tridiagonal matrix with diag
 \]
 This is the same recurrence as the multiple-angle formulas.  Therefore $D_n$ can be expressed in terms of $\sin((n+1)\theta)/\sin\theta$ or a related Chebyshev polynomial, depending on the exact boundary convention.
 
-The note's blue comment says that proving the determinant is a cosine expression can be done by the recurrence.  This is exactly the right idea: the matrix determinant and the trigonometric formula are the same recurrence with the same initial values.
+The determinant is a cosine expression because the matrix determinant and the trigonometric formula satisfy the same recurrence with the same initial values.
 
 \section{From technique to structure}
 
-This note is about recognizing when a problem should be treated as trigonometry, algebra, or linear algebra.  A failed determinant trick reveals hidden constraints.  Sum-to-product formulas solve the angle system more naturally.  Multiple-angle identities come from De Moivre's formula.  Tridiagonal determinants satisfy the same recurrence as Chebyshev polynomials.  The common theme is that recurrence relations are a bridge between trigonometry and matrices.
+Choosing between trigonometry, algebra, and linear algebra is part of the problem.  A failed determinant trick reveals hidden constraints; sum-to-product formulas solve the angle system; De Moivre produces multiple-angle identities; and tridiagonal determinants share Chebyshev recurrences.  Recurrence relations are the bridge between trigonometry and matrices.
 
 \section{Trigonometric systems as algebraic systems}
 

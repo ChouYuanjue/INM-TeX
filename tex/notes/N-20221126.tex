@@ -14,7 +14,7 @@ This definition is just divisibility language with a new notation.  It allows us
 
 \section{Basic properties}
 
-The note lists the standard properties:
+The standard properties are:
 \begin{enumerate}[(i)]
   \item Reflexivity: \(a\equiv a\pmod m\).
   \item Symmetry: if \(a\equiv b\pmod m\), then \(b\equiv a\pmod m\).
@@ -44,7 +44,7 @@ The integers split into \(n\) disjoint classes:
 \[
   M_0,M_1,\ldots,M_{n-1}.
 \]
-This is a partition of \(\mathbb Z\).  The note records two important consequences:
+This is a partition of \(\mathbb Z\), with two important consequences:
 \begin{enumerate}[(i)]
   \item among any \(n+1\) integers, two are congruent modulo \(n\);
   \item if \((i,n)=1\), then every integer in \(M_i\) is coprime to \(n\).
@@ -87,7 +87,7 @@ we get
 \]
 Thus the last digit is \(5\).
 
-The note's method is to reduce early.  Do not expand powers; replace the base by its residue.
+Reduce early: do not expand powers when the base can first be replaced by its residue.
 
 \section[Example: modulo 17]{Example: modulo \(17\)}
 
@@ -158,7 +158,7 @@ Congruence classes are quotient thinking.  Instead of remembering the whole inte
 \[
   \mathbb Z/n\mathbb Z.
 \]
-Complete residue systems are representatives of all classes; reduced residue systems are the invertible classes.  Euler's function counts the units.  This note is therefore the elementary entrance to the ring \(\mathbb Z/n\mathbb Z\) and its unit group.
+Complete residue systems represent all classes, reduced residue systems represent the units, and Euler's function counts those units.  These ideas form the elementary entrance to the ring \(\mathbb Z/n\mathbb Z\) and its multiplicative group.
 
 \section{Residue systems as representatives}
 A complete residue system modulo \(n\) is a choice of one representative from each class in \(\mathbb Z/n\mathbb Z\).  A reduced residue system is a choice of representatives from the unit group
@@ -221,7 +221,7 @@ extended to all integers by setting $\chi(a)=0$ when $\gcd(a,n)>1$.  They are Fo
 
 \section{Residue systems are calculations inside finite groups}
 
-The note's residue tables, reduced systems, and Euler-function formulas are not just modular arithmetic.  They are computations inside finite groups.  The next levels are group decomposition, primitive roots, and characters.
+Residue tables, reduced systems, and Euler-function formulas are computations inside finite groups, not merely modular bookkeeping.  Group decomposition, primitive roots, and characters develop this structure further.
 
 \section{Primitive roots as logarithms in finite groups}
 

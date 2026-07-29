@@ -4,7 +4,7 @@
 
 \section{Convexity and the Hermite--Hadamard inequality}
 
-The first blackboard block considers a function $f$ continuous on $[a,b]$ and twice differentiable on $(a,b)$ with
+Let $f$ be continuous on $[a,b]$ and twice differentiable on $(a,b)$, with
 \[
   f''(x)>0.
 \]
@@ -35,7 +35,7 @@ Integrating this gives the upper bound.  Second, symmetry around the midpoint an
 \]
 Integrating from $a$ to $b$ gives the lower bound.
 
-The handwritten comment points to the geometric picture: the tangent line is below a convex graph, while the chord is above it.
+Geometrically, the tangent line lies below a convex graph, while the chord lies above it.
 
 \section{Kantorovich-type integral inequality}
 
@@ -84,7 +84,7 @@ Since for positive numbers $u,v$ one has $uv\le ((u+v)/2)^2$, we get
 \]
 This is the desired inequality.
 
-The note's important warning is that the usual Cauchy inequality gives the lower bound
+The usual Cauchy inequality gives the lower bound
 \[
   \left(\int_a^b f
 \right)\left(\int_a^b
@@ -95,7 +95,7 @@ whereas this problem asks for an upper bound under a two-sided bound on $f$.
 
 \section{Integral mean value with odd symmetry}
 
-A lower-left blackboard block considers a function defined on a symmetric interval and transforms two integrals.  The visible pattern is
+For a function on a symmetric interval, combine the two oriented integrals as
 \[
   \int_0^x f(t)\,dt+\int_0^{-x}f(t)\,dt
   =
@@ -125,7 +125,7 @@ Thus the natural limiting value is
   	heta	o
 \frac12.
 \]
-The board notes this as a typical use of the integral mean value theorem plus local linearization.
+This is a typical use of the integral mean value theorem together with local linearization.
 
 \section[A lower bound involving f double-prime over f]{A lower bound involving $f''/f$}
 
@@ -133,7 +133,7 @@ Another problem assumes
 \[
   f\in C^2[a,b],\qquad f(x)>0	ext{ on }(a,b),\qquad f(a)=f(b)=0.
 \]
-The blackboard proves an inequality of the form
+The following estimate holds:
 \[
   \int_a^b \left|
 \frac{f''(x)}{f(x)}
@@ -178,7 +178,7 @@ The proof is a good example of turning a global integral estimate into a maximum
 
 \section{Symmetry of integrals about the midpoint}
 
-The second page records a common symmetry fact.  If
+A common symmetry fact is the following.  If
 \[
   f(x)=f(a+b-x),
 \]
@@ -210,7 +210,7 @@ This averaging trick is useful whenever $f(x)+f(a+b-x)$ simplifies.
 
 \section{Midpoint and trapezoidal error terms}
 
-The board also derives the error term for the midpoint rule.  Let
+Taylor expansion also gives the midpoint-rule error term.  Let
 \[
   m=
 \frac{a+b}{2}.
@@ -236,11 +236,11 @@ Similarly, the trapezoidal rule error has the form
   -
 \frac{(b-a)^3}{12}f''(\xi)
 \]
-for some $\xi\in(a,b)$.  The board comments that confusing these constants is a common mistake: the midpoint coefficient is $1/24$, while the trapezoidal coefficient is $1/12$ with the opposite sign.
+for some $\xi\in(a,b)$.  The constants should not be confused: the midpoint coefficient is $1/24$, while the trapezoidal coefficient is $1/12$ with the opposite sign.
 
 \section{First special integral}
 
-One board example evaluates
+Consider the integral
 \[
   I=\int_0^1
 \frac{\ln(1+x)}{1+x^2}\,dx.
@@ -286,7 +286,7 @@ The trick is not the tangent substitution alone; it is pairing the interval by t
 
 \section{Positivity of a Fresnel-type integral}
 
-Another board example proves
+Another example proves
 \[
   \int_0^{\sqrt{2\pi}}\sin x^2\,dx>0.
 \]
@@ -312,11 +312,11 @@ Split the interval into $[0,\pi]$ and $[\pi,2\pi]$.  In the second part use $t=u
 \]
 For $u\in(0,\pi)$, both factors are positive, so the integral is positive.
 
-The board circles the comparison of the two weights.  The oscillation alone is not enough; the positive half has larger weight because $1/\sqrt t$ decreases.
+The oscillation alone is not enough; the positive half has larger weight because $1/\sqrt t$ decreases.
 
 \section{A symmetry integral with arcsine}
 
-The lower-left board example evaluates
+Consider also
 \[
   I=\int_0^1
 \frac{\arcsin\sqrt x}{\sqrt{x(1-x)}}\,dx.
@@ -336,7 +336,7 @@ Hence
 \frac{\pi^2}{4}.
 \]
 
-The board also uses symmetry:
+Symmetry gives the alternative identity
 \[
   \arcsin\sqrt x+\arcsin\sqrt{1-x}=
 \frac\pi2.
@@ -354,7 +354,7 @@ The last integral equals $\pi$, so again $I=\pi^2/4$.
 
 \section{A logarithmic sine integral}
 
-The lower-right board example is
+A logarithmic sine example is
 \[
   I=\int_0^{\pi/2}\sin x\ln(\sin x)\,dx.
 \]
@@ -384,7 +384,7 @@ This example trains the habit of choosing $u=\cos x$ when the factor $\sin x\,dx
 
 \section[Integrals of 1/(a + b cos x)]{Integrals of \(1/(a+b\cos x)\)}
 
-The final page records two standard results.  If $a>0$ and $|b|<a$, then on the interval $[-\pi/2,\pi/2]$,
+Two standard formulas complete this family.  If $a>0$ and $|b|<a$, then on the interval $[-\pi/2,\pi/2]$,
 \[
   \int_{-\pi/2}^{\pi/2}
 \frac{dx}{a+b\cos x}
@@ -415,11 +415,11 @@ On the interval $[0,\pi]$, the standard formula is
 \frac{\pi}{\sqrt{a^2-b^2}},
   \qquad a>0,\ |b|<a.
 \]
-The note remarks that this follows directly from the universal tangent half-angle substitution, and that symmetry over the full half-period makes the final result simpler.
+This follows from the universal tangent half-angle substitution, while symmetry over the full half-period simplifies the result.
 
 \section{Wallis integral and Wallis product}
 
-The last block recalls the Wallis integral
+The Wallis integral is
 \[
   I_n=\int_0^{\pi/2}\sin^n x\,dx.
 \]
@@ -444,7 +444,7 @@ Comparing even and odd subsequences $I_{2n}$ and $I_{2n+1}$ and letting $n	o\inf
 
 \section{A wider frame}
 
-This note is about integral problem-solving as pattern recognition.  Convexity gives chord and midpoint inequalities.  Bounded positive functions give product estimates.  Symmetry turns an integral into an average with its reflected version.  Taylor's formula gives quadrature error terms.  Special substitutions, especially $x=	an t$ and $t=x^2$, turn difficult integrals into symmetric or sign-controlled expressions.  Wallis' recurrence shows that integration by parts can convert a family of integrals into a product formula.
+Integral problem-solving is pattern recognition.  Convexity gives chord and midpoint inequalities; bounded positive functions give product estimates; symmetry pairs an integral with its reflected version; Taylor's formula controls quadrature error; substitutions such as \(x=\tan t\) and \(t=x^2\) expose symmetry or sign; and Wallis' recurrence turns integration by parts into a product formula.
 
 \section{Convexity as second-order positivity}
 

@@ -2,11 +2,7 @@
 
 \section{Purpose of the note}
 
-This note was written as preparation for a seminar on homotopy groups and the Hopf fibration.  The goal is modest: I only want enough background so that the seminar is not blocked by unfamiliar words.  The content is therefore a quick route through group actions, homotopy, cofibrations and fibrations, homotopy groups, and finally the Hopf fibration.
-
-\begin{caution}
-The original note was written quickly and openly says that errors may remain.  I have corrected the most obvious convention problems and phrasing issues, while keeping the exploratory style.
-\end{caution}
+The goal is a compact route through the vocabulary needed for homotopy groups and the Hopf fibration: group actions, homotopy, cofibrations and fibrations, homotopy groups, and finally the Hopf map itself.
 
 \section{Group actions}
 
@@ -33,7 +29,7 @@ One may also use right actions, written \(x\cdot g\), satisfying
 \[
   x\cdot 1=x,\qquad (x\cdot g)\cdot h=x\cdot(gh).
 \]
-The original note switches viewpoints, so I fix the left-action convention unless stated otherwise.
+Unless stated otherwise, the left-action convention will be used throughout.
 \end{remark}
 
 \begin{example}
@@ -120,7 +116,7 @@ Two spaces \(X\) and \(Y\) have the same homotopy type if there are maps \(f:X\t
 
 \section{Cofibrations, fibrations, and deformation retracts}
 
-The original note introduces cofibrations and fibrations through lifting diagrams.  These diagrams are not decorative: each arrow is one piece of the data in the definition.  I spell them out because this is exactly where the abstraction tends to hide the simple geometric idea.
+Cofibrations and fibrations are most transparent through their extension and lifting diagrams.  Each arrow is part of the data, and writing the diagrams explicitly prevents the simple geometric idea from disappearing behind the abstraction.
 
 \subsection{Homotopy extension property}
 
@@ -276,10 +272,6 @@ The \(n\)-torus is
 \]
 Thus a point of \(T^2\) may be described by a pair of angles, or equivalently by a point of \(S^1\times S^1\).
 
-\begin{caution}
-The original note says that a personal translation habit used the wrong word for ``equator''.  I use the standard word \emph{equator} throughout.
-\end{caution}
-
 Stereographic projection identifies a sphere minus one point with Euclidean space.  For example,
 \[
   S^2\setminus\{\text{north pole}\}\cong\mathbb R^2.
@@ -399,11 +391,9 @@ This gives another description of a map \(S^3\to S^2\), equivalent to the Hopf f
 The main fact to remember is simple but powerful: the Hopf fibration has total space \(S^3\), base \(S^2\), and fibre \(S^1\).  A full understanding needs pictures, but the formula already shows why complex numbers, quaternions, and topology appear together.
 \end{remark}
 
-\section{References to return to}
+\section{Further reading and visual models}
 
-The original note points toward Hatcher's \emph{Algebraic Topology}, Niles Johnson's visual material on the Hopf fibration, and interactive Hopf-fibration demonstrations.  Those should be treated as the real next step, because this note is mainly a vocabulary bridge.
-
-The diagrammatic part of the note should be read as a staged program.  The homotopy extension property and the homotopy lifting property have now been drawn explicitly above, because those two diagrams are the quickest way to connect the abstract definitions with the words ``extend'' and ``lift''.  The same visual habit should also be used when returning to the pinch map
+Hatcher's \emph{Algebraic Topology}, Niles Johnson's visual material on the Hopf fibration, and interactive Hopf-fibration demonstrations provide natural continuations.  The extension and lifting diagrams above connect the abstract definitions with the literal operations ``extend'' and ``lift''.  The same visual habit is useful for the pinch map
 \[
   S^n\to S^n\vee S^n
 \]

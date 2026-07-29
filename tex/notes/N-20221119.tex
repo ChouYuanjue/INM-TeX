@@ -2,7 +2,7 @@
 
 \section{Prime and composite numbers}
 
-The first page defines prime and composite numbers.  An integer $a>1$ is prime if its only positive divisors are $1$ and $a$.  If $a>1$ is not prime, it is composite.
+An integer $a>1$ is prime if its only positive divisors are $1$ and $a$; otherwise it is composite.
 
 A basic observation is that if $a$ is composite, then it has a prime divisor not exceeding $\sqrt a$.  Indeed, if
 \[
@@ -37,11 +37,11 @@ Let
 \]
 No $p_i$ divides $N$, since division by $p_i$ leaves remainder $1$.  But every integer $N>1$ has a prime divisor.  This prime divisor is not among the listed primes, contradiction.
 
-The handwritten version uses exactly this remainder idea: the product of all known primes plus one creates a new prime factor.
+The key remainder idea is that the product of all known primes plus one creates a new prime factor.
 
 \section{Prime divisibility}
 
-The page records several prime-divisibility facts.  If $p$ is prime and
+Several prime-divisibility facts follow.  If $p$ is prime and
 \[
   p\mid ab,
 \]
@@ -70,7 +70,7 @@ Every integer $n>1$ can be written uniquely as
 \]
 where the $p_i$ are distinct primes and $\alpha_i>0$.  The order of factors is the only ambiguity.
 
-The note uses this factorization to compute divisor functions.  If
+This factorization computes divisor functions.  If
 \[
   d\mid n,
 \]
@@ -96,7 +96,7 @@ A number $n$ is perfect if the sum of its positive divisors is $2n$:
 \[
   \sigma(n)=2n.
 \]
-The note lists the first examples:
+The first examples are:
 \[
   6,\quad 28,\quad 496,\quad 8128,\ldots
 \]
@@ -109,7 +109,7 @@ If $n=p_1^{\alpha_1}\cdots p_k^{\alpha_k}$, then $n$ is a square iff every $\alp
 
 \section[Exponent of a prime in n factorial]{Exponent of a prime in $n!$}
 
-The note records Legendre's formula.  If $p$ is prime, then the exponent of $p$ in $n!$ is
+Legendre's formula gives the exponent of a prime $p$ in $n!$:
 \[
   \sum_{j\ge1} \left\lfloor \frac n{p^j}\right\rfloor.
 \]
@@ -138,7 +138,7 @@ Once the period is known, the exponent can be reduced modulo the period.
 
 \section{Broader perspective}
 
-This note is a transition from divisibility to arithmetic structure.  Prime factorization turns every positive integer into exponent data.  Divisor counting and divisor sums become products over primes.  Congruences turn equality into equality up to remainders.  Together, these tools make large integer problems finite and computable.
+Divisibility becomes arithmetic structure through three transformations: prime factorization turns integers into exponent data, divisor functions become products over primes, and congruences replace equality by equality of residue classes.  Together, these tools make large integer problems finite and computable.
 
 \section{Prime exponents and valuations}
 For a prime \(p\), the exponent \(v_p(n)\) turns divisibility into arithmetic:
@@ -163,7 +163,7 @@ Prime factorization supplies coordinates, divisor functions multiply across prim
 
 \section{Arithmetic functions and convolution}
 
-The divisor-counting functions in the original note are examples of arithmetic functions, functions
+Divisor-counting functions are examples of arithmetic functions, namely functions
 \[
   f:\mathbb N\to\mathbb C.
 \]

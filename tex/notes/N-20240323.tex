@@ -61,7 +61,7 @@ so $B$ is a good subset of $[n]$.  This gives $a_n$ possibilities.  Hence
   a_{n+2}=a_{n+1}+a_n+1.
 \]
 
-The handwritten page also gives a summation proof by fixing $|A|=k$.  If $|A|=k$, then every element must be at least $k$, so one chooses the remaining data from a tail interval.  The recurrence then follows by repeated Pascal identities.
+A summation proof fixes $|A|=k$.  Every element must then be at least $k$, so the remaining data are chosen from a tail interval, and repeated Pascal identities yield the recurrence.
 
 \section{Generating functions}
 
@@ -94,7 +94,7 @@ The notes also use generating functions to separate parity or color constraints.
 \enlargethispage{4\baselineskip}
 \section{A probability example with repeated trials}
 
-One example considers repeated trials and asks for a probability after $n$ operations.  The handwritten solution introduces a generating function and then rewrites nested binomial sums using exponentials.  The important method is not the final closed form alone but the transformation:
+For repeated trials, a generating function rewrites nested binomial sums using exponentials.  The important method is not the final closed form alone but the transformation:
 \[
   \text{complicated convolution}
   \quad\longrightarrow\quad
@@ -142,13 +142,13 @@ For finitely many points $x_1,\ldots,x_k$, their convex hull is
 \[
   \left\{\sum_{i=1}^k t_ix_i:\ t_i\ge0,\ \sum_{i=1}^k t_i=1\right\}.
 \]
-The handwritten proof uses induction on $k$: the case $k=2$ is the definition of a segment; the induction step writes the convex combination as a combination of one point and a convex combination of the remaining points.
+Induction on $k$ proves the claim: the case $k=2$ is the definition of a segment, and the induction step writes the convex combination as a combination of one point with a convex combination of the remaining points.
 
 \section{Separating convex sets}
 
 The note sketches a separation idea.  For two disjoint convex sets, one tries to find a point pair realizing minimal distance and then uses the perpendicular bisector of the segment between them as a separating line.  In symbols, if $u\in S_1$ and $v\in S_2$ are closest points, then the hyperplane perpendicular to $v-u$ near the midpoint separates the two sets.
 
-In finite-dimensional Euclidean geometry, this is the intuitive core of the separating hyperplane theorem.  The handwritten diagrams show projections onto a line and inequalities involving squared distances.  The algebra expands
+In finite-dimensional Euclidean geometry, this is the intuitive core of the separating hyperplane theorem.  Projection onto a line produces inequalities involving squared distances, and the algebra expands
 \[
   \|u+t(a-u)-v\|^2
 \]
@@ -156,7 +156,7 @@ for small $t$ and extracts a sign condition by letting $t\to0$.
 
 \section{Planar graphs and Euler-type counting}
 
-The later pages move toward graph theory and planar configurations.  The recurring idea is that a planar drawing imposes counting restrictions.  Vertices, edges, and faces cannot vary independently; they are constrained by Euler-type formulas.
+Graph theory and planar configurations provide another counting mechanism: a planar drawing constrains vertices, edges, and faces through Euler-type formulas.
 
 This connects naturally with the previous convex-geometry material: triangulations, planar graphs, polygon decompositions, and convex hulls are different languages for controlling incidence data.
 
@@ -182,7 +182,7 @@ which counts all intermediate vertices $v_k$.  The general case follows by induc
 \enlargethispage{4\baselineskip}
 \section{The deeper habit}
 
-This note collects several ways of counting: direct binomial identities, recurrence, generating functions, Catalan decomposition, convex geometry, and graph adjacency matrices.  The common habit is to replace a raw counting problem by a structure-preserving encoding: subsets become binomial coefficients, recursions become generating functions, triangulations become Catalan recurrences, convex hulls become linear combinations, and walks become matrix powers.
+Several counting languages share one habit: replace a raw problem by a structure-preserving encoding.  Subsets become binomial coefficients, recursions become generating functions, triangulations become Catalan recurrences, convex hulls become linear combinations, and walks become matrix powers.
 
 \section{Generating functions as algebraic counting}
 A generating function packages a sequence into a formal series.  Products encode decomposition of objects, and coefficient extraction reads off counts:
@@ -260,7 +260,7 @@ Then $P$ is the transition matrix of a random walk.  The distribution after $k$ 
 \]
 Eigenvalues of $P$ determine convergence to stationarity.  If the graph is connected and non-bipartite, the walk converges to the uniform distribution.
 
-The same object therefore has two readings: $A^k$ counts deterministic walks, while $P^k$ describes probabilities.  The note's graph-walk calculations are the finite beginning of Markov-chain theory.
+The same object has two readings: $A^k$ counts deterministic walks, while $P^k$ describes probabilities.  These finite graph-walk calculations are the beginning of Markov-chain theory.
 
 \section{Catalan recursion and parenthesization}
 

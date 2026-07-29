@@ -2,7 +2,7 @@
 
 \section{Why classes enter before functions}
 
-The point of this note is to set up the basic language of sets, classes, indexed families, and functions.  The original PDF begins very much in the style of a reading note: it is following the opening sections of a book, but it also pauses at the places where the distinction between a set and a proper class starts to feel less innocent.
+The basic language of sets, classes, indexed families, and functions begins with a distinction that is easy to underestimate: sets may be elements of other collections, whereas proper classes cannot be treated in the same way without recreating the classical paradoxes.
 
 \begin{definition}
 A \vocab{set} is a class which can be an element of another class.  A class which is not a set is called a \vocab{proper class}.
@@ -11,7 +11,7 @@ A \vocab{set} is a class which can be an element of another class.  A class whic
 This is not meant to be the whole foundation of set theory, but it explains the working convention of the note: some collections are small enough to be members of other collections, while others are too large and must remain proper classes.
 
 \begin{caution}
-The original note says that the distinction between sets and proper classes is ``not too clear''.  Informally this is understandable, but formally this distinction is exactly what prevents the usual paradoxes.  In a class theory such as NBG, sets are precisely the classes that may occur as elements of classes; proper classes may not be elements.
+The distinction between sets and proper classes is formally essential: it is one of the mechanisms that prevents the usual paradoxes.  In a class theory such as NBG, sets are precisely the classes that may occur as elements of classes; proper classes may not be elements.
 \end{caution}
 
 \section{Russell's class as the first warning}
@@ -60,7 +60,7 @@ and
 \]
 
 \begin{remark}
-The original note explicitly points out that the indexing collection \(I\) need not be finite or countable.  This is a useful mental shift: the notation \(\{A_i\}_{i\in I}\) is not just a long list.  It may be a genuinely infinite family.
+The indexing collection \(I\) need not be finite or countable.  This is a useful mental shift: the notation \(\{A_i\}_{i\in I}\) is not just a long list.  It may be a genuinely infinite family.
 \end{remark}
 
 \begin{caution}
@@ -75,7 +75,7 @@ If all classes under discussion are subsets of a fixed universe \(U\), then \(U\
 
 \section{Set identities}
 
-The original note lists the standard identities and leaves the proof as easy.  A cleaned-up version is:
+The standard set identities take the following form:
 \begin{proposition}
 Let \(A\), \(B\), and \(B_i\) be subsets of a fixed universe \(U\).  Then
 \[
@@ -134,7 +134,7 @@ For composable maps \(A\xrightarrow{f}B\xrightarrow{g}C\):
 
 \section{One-sided inverses}
 
-The last theorem in the original note is about recognizing injective and surjective maps through one-sided inverses.
+One-sided inverses recognize injective and surjective maps.
 
 \begin{theorem}
 Let \(f:A\to B\) be a function and assume \(A\neq\varnothing\).
@@ -163,7 +163,7 @@ For (ii), if \(h\) exists and \(f\circ h=1_B\), then every \(b\in B\) equals \(f
 \end{proof}
 
 \begin{caution}
-The last choice of one element from each fibre is exactly where the Axiom of Choice may enter.  The original note itself flags this point in a footnote, and it will reappear in the later note on choice and cardinal numbers.
+The last choice of one element from each fibre is exactly where the Axiom of Choice may enter.  This point will reappear in the chapter on choice and cardinal numbers.
 \end{caution}
 
 \section{Set-level bookkeeping behind functions}

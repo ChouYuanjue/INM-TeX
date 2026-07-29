@@ -2,7 +2,7 @@
 
 \section{Choice enters the story}
 
-This note begins exactly where the previous chapter warned us: sometimes a construction requires choosing one element from each set in a family.  The original note states the Axiom of Choice in product form.
+Choice enters when a construction requires selecting one element from each set in a family.  The product formulation states this directly.
 
 \begin{axiom}[Axiom of Choice]
 The product of a family of nonempty sets indexed by a nonempty set is nonempty.
@@ -13,7 +13,7 @@ Equivalently, if \(S\) is a set, then there is a choice function defined on the 
 \[
   f(A)\in A
 \]
-for every nonempty \(A\subseteq S\).  This is the alternate version recorded in the original note.
+for every nonempty \(A\subseteq S\).  This is an equivalent choice-function formulation.
 \end{remark}
 
 \section{Partially ordered sets}
@@ -37,7 +37,7 @@ Let \(A\) be a nonempty partially ordered set.  If every chain in \(A\) has an u
 \end{theorem}
 
 \begin{caution}
-The original note says ``local maximum''.  The standard term is \emph{maximal element}.  It need not be a greatest element: there may be no element above all elements of \(A\).
+The standard term is \emph{maximal element}, not ``local maximum''.  A maximal element need not be greatest: there may be no element above all elements of \(A\).
 \end{caution}
 
 \section{Well-ordering}
@@ -51,7 +51,7 @@ Every nonempty set \(A\) admits a total ordering under which it is well ordered.
 \end{proposition}
 
 \begin{remark}
-The original note notes that this extends mathematical induction from \(\mathbb N\) to arbitrary well-ordered sets.  Conceptually this is the beginning of transfinite induction, even if the note does not yet develop ordinals.
+This extends mathematical induction from \(\mathbb N\) to arbitrary well-ordered sets.  Conceptually this is the beginning of transfinite induction, even before ordinals are developed systematically.
 \end{remark}
 
 \section{Equipollence and cardinal numbers}
@@ -73,7 +73,7 @@ The \vocab{cardinal number} of a set \(A\), denoted \(|A|\), is its equivalence 
 \end{definition}
 
 \begin{caution}
-Strictly speaking, the ``equivalence class of all sets bijective with \(A\)'' is usually too large to be a set.  A formal treatment either uses representatives such as initial ordinals, or works in a class theory where such collections are proper classes.  The original note is using the usual informal convention.
+Strictly speaking, the ``equivalence class of all sets bijective with \(A\)'' is usually too large to be a set.  A formal treatment either uses representatives such as initial ordinals, or works in a class theory where such collections are proper classes.  The equivalence-class language is therefore an informal convention.
 \end{caution}
 
 If \(A\) and \(B\) are disjoint sets with \(|A|=\alpha\) and \(|B|=\beta\), define
@@ -127,12 +127,12 @@ The class of cardinal numbers is linearly ordered by \(\le\).  If \(\alpha\) and
 \end{theorem}
 
 \begin{remark}
-The original note calls this the Law of Trichotomy and mentions that, in the proof, one orders a family of functions by extension.  This is one of the standard places where Zorn's lemma enters the comparison of cardinalities.
+This is often called the Law of Trichotomy.  A standard proof orders a family of partial functions by extension, making this one of the classical places where Zorn's lemma enters the comparison of cardinalities.
 \end{remark}
 
 \section{Infinite cardinals and finite disturbance}
 
-The final part of the original note deliberately becomes a theorem list after the writing process was interrupted.  I keep the statements, but the better way to read them is through explicit encodings: pairing functions and binary strings let us put our hands on the size of these infinite sets.
+The following cardinality statements are best read through explicit encodings: pairing functions and binary strings make the size comparisons concrete.
 
 \begin{theorem}
 Every infinite set has a denumerable subset.  In particular,
