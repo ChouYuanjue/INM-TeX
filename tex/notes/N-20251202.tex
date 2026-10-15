@@ -166,56 +166,58 @@ QR factorization is Gram--Schmidt written as a matrix identity: \(Q\) stores the
 
 \section{Householder reflections reveal why stable QR avoids repeated subtraction}
 
-Classical Gram--Schmidt can lose accuracy when columns are nearly dependent, because it subtracts nearly equal vectors.  Modified Gram--Schmidt reduces the damage by updating the residual after each projection.  Householder QR takes a different route: it reflects an entire column onto a coordinate axis.
+Classical Gram--Schmidt can lose accuracy when columns are nearly dependent, because it subtracts nearly equal vectors. Modified Gram--Schmidt reduces the damage by updating residuals after each projection. Householder QR takes a different route: reflect an entire column onto a coordinate axis, with a crucial choice of sign that prevents a small subtraction.
 
-For a nonzero vector \(x\), choose
+For a nonzero real vector \(x\), define
 \[
-  v=x-\alpha e_1,
-  \qquad
-  \alpha=\operatorname{sign}(x_1)\|x\|,
+ s=\begin{cases}1,&x_1\ge0,\\-1,&x_1<0,\end{cases}
+ \qquad
+ \alpha=-s\|x\|_2,
+ \qquad v=x-\alpha e_1=x+s\|x\|_2e_1.
 \]
-and define
-\[
-  H=I-2\frac{vv^T}{v^Tv}.
-\]
-Then
-\[
-  H^T=H,
-  \qquad
-  H^2=I,
-\]
-so \(H\) is an orthogonal reflection, and \(Hx=\alpha e_1\).
+The sign convention at \(x_1=0\) is intentional: the usual sign function with \(\operatorname{sign}(0)=0\) would make the proposed target \(\alpha e_1=0\), which no orthogonal map can produce from nonzero \(x\). Moreover \(|v_1|=|x_1|+\|x\|_2\), so the first component is formed by adding magnitudes rather than subtracting nearly equal numbers.
 
-Consider
+Now set
 \[
-  A=
-  \begin{pmatrix}
-    3&0\\
-    4&5
-  \end{pmatrix}.
+ \boxed{H=I-2\frac{vv^T}{v^Tv}.}
 \]
-For the first column \(x=(3,4)^T\), take \(\alpha=5\) and \(v=(-2,4)^T\).  Then
+Because \(vv^T\) is symmetric and \((vv^T)^2=(v^Tv)vv^T\),
 \[
-  H=
-  \begin{pmatrix}
-    3/5&4/5\\
-    4/5&-3/5
-  \end{pmatrix},
+ H^T=H,\qquad H^2=I.
 \]
-and
+It is therefore an orthogonal reflection. The choice \(\alpha^2=\|x\|_2^2\) also gives
 \[
-  HA=
-  \begin{pmatrix}
-    5&4\\
-    0&-3
-  \end{pmatrix}=R.
+ v^Tv=2\bigl(\|x\|_2^2-\alpha x_1\bigr),
+ \qquad
+ 2v^Tx=v^Tv.
 \]
-Since \(H^T=H\),
+Consequently
 \[
-  A=QR,
-  \qquad Q=H.
+ Hx=x-\frac{2v(v^Tx)}{v^Tv}=x-v
+     =\boxed{\alpha e_1}.
 \]
-The reflection zeros an entire subcolumn at once and preserves norms exactly in exact arithmetic.  This geometric operation is the basis of stable QR algorithms.
+So the first column is sent exactly to the coordinate axis without repeatedly subtracting projections.
+
+For a complete example, take
+\[
+ A=\begin{pmatrix}3&0\\4&5\end{pmatrix},\qquad
+ x=\begin{pmatrix}3\\4\end{pmatrix}.
+\]
+Our stable sign choice is \(\alpha=-5\) and \(v=(8,4)^T\). Thus
+\[
+ H=
+ \begin{pmatrix}-3/5&-4/5\\-4/5&3/5\end{pmatrix},
+ \qquad
+ HA=
+ \begin{pmatrix}-5&-4\\0&3\end{pmatrix}=R.
+\]
+Since \(H^T=H=H^{-1}\), putting \(Q=H\) gives the exact QR factorization
+\[
+ \boxed{A=QR,\qquad Q^TQ=I.}
+\]
+The upper-triangular factor need not have positive diagonal entries; if positive diagonals are preferred, multiplying a column of \(Q\) and the corresponding row of \(R\) by \(-1\) does not change their product.
+
+In exact arithmetic either target sign \(\alpha=\pm\|x\|_2\) can work when \(v\ne0\); the \emph{opposite} sign used here avoids cancellation in floating-point computation. This small choice helps explain why a numerically stable Householder implementation is more than the geometric formula for a reflection. The same mechanism underlies practical QR algorithms.\footnote{For Householder QR and the noncancelling sign convention, see Trefethen and Bau, \emph{Numerical Linear Algebra}, Lecture 10.}
 
 \section{Orthogonal maps preserve geometry, and reflections generate them}
 
