@@ -73,7 +73,7 @@ The ELBO is not introduced by magic.  It is exactly what remains when the intrac
 
 \section{Jensen's inequality derivation}
 
-The same lower bound can be derived directly from Jensen's inequality.  Insert any density \(q_\phi(z\mid x)\) whose support is compatible with \(p_\theta(x,z)\):
+The same lower bound can be derived directly from Jensen's inequality. For the equality in the next display we assume $p_\theta(x,z)=0$ almost everywhere that $q_\phi(z\mid x)=0$: the trial density covers the support of the unnormalized target. (A Gaussian trial density with strictly positive variance has full support and satisfies this in ordinary continuous latent models.) If $q$ misses some posterior mass, the intervening equality is replaced by an inequality, and Jensen still supplies a lower bound.
 \[
 \begin{aligned}
 \log p_\theta(x)
@@ -146,6 +146,64 @@ If \(q_\phi\) were flexible enough to equal the true posterior, then the bound w
   \mathcal L(\theta,\phi;x)=\log p_\theta(x).
 \]
 In practice, \(q_\phi\) is restricted, often to a diagonal Gaussian, so the bound is generally not exact.
+
+\section{A Gaussian calculation puts a number on the bound's gap}
+
+We can measure how loose an ELBO is without training a neural network. Consider the continuous latent model
+\[
+ Z\sim\mathcal N(0,1),\qquad
+ X\mid Z=z\sim\mathcal N(z,1),
+\]
+and observe $x=2$. Completing the square gives
+\[
+ \begin{aligned}
+ -\frac{z^2}{2}-\frac{(2-z)^2}{2}
+ &=-(z-1)^2-1,\\
+ Z\mid X=2&\sim\mathcal N(1,\tfrac12),\\
+ X&\sim\mathcal N(0,2).
+ \end{aligned}
+\]
+The exact log evidence is therefore
+\[
+ \log p(2)=-1-\frac12\log(4\pi).
+\]
+Choose a variational family of Gaussians with the correct posterior variance but a movable mean:
+\[
+ q_\mu(z\mid2)=\mathcal N(\mu,\tfrac12).
+\]
+The KL divergence between two normals of equal variance $v$ is
+$(m_1-m_2)^2/(2v)$. Here $v=1/2$, so
+\[
+ \boxed{D_{\mathrm{KL}}(q_\mu\Vert p(z\mid2))=(\mu-1)^2.}
+\]
+The ELBO identity now describes a complete curve, not just an inequality:
+\[
+ \boxed{\mathcal L(\mu;2)=\log p(2)-(\mu-1)^2.}
+\]
+At $\mu=0$ the bound is one nat below the evidence. At $\mu=1$ it touches the evidence exactly. In this example we can tighten the ELBO by improving the \emph{inference} distribution while holding the \emph{generative} model fixed.
+
+\begin{figure}[H]
+ \centering
+ \begin{tikzpicture}[x=1.25cm,y=1.0cm,>=Stealth]
+  \draw[->,gray!75] (-.75,0)--(3.05,0) node[right] {$\mu$};
+  \draw[->,gray!75] (-.5,-3.3)--(-.5,.64)
+     node[above,align=center,font=\footnotesize] {$\mathcal L(\mu;2)-\log p(2)$};
+  \draw[densely dashed,gray!80] (-.5,0)--(2.95,0);
+  \draw[thick,blue!75!black]
+      plot[domain=-.70:2.70,samples=80] (\x,{-(\x-1)*(\x-1)});
+  \fill[orange!85!black] (1,0) circle (2.2pt);
+  \fill[orange!85!black] (0,-1) circle (2.2pt);
+  \draw[densely dotted,orange!85!black] (0,-1)--(0,0);
+  \node[font=\footnotesize,anchor=north] at (1,0) {$1$};
+  \node[font=\footnotesize,anchor=north east] at (0,-1.05) {$-1$};
+  \node[font=\footnotesize,blue!75!black] at (2.25,-.4) {ELBO};
+  \node[font=\footnotesize,anchor=west] at (.14,-.5)
+    {gap at $\mu=0$: one nat};
+ \end{tikzpicture}
+ \caption{For a fixed Gaussian generative model, the ELBO touches the exact evidence when the variational mean matches the posterior mean. A loose ELBO can reflect an inaccurate inference network.}
+\end{figure}
+
+This also clarifies a common inference mistake. Maximizing the ELBO over both $\theta$ and $\phi$ does \emph{not} guarantee that every upward optimization step increases the true $\log p_\theta(x)$: the model evidence and approximation gap can change simultaneously. In a flexible posterior family, good inference makes the bound a better proxy for likelihood. In a restrictive family, model fitting and approximate inference remain entangled.\footnote{For the general variational derivation and its statistical interpretation, see Blei, Kucukelbir and McAuliffe, \href{https://arxiv.org/abs/1601.00670}{\emph{Variational Inference: A Review for Statisticians}}.}
 
 \section{Closed-form KL for diagonal Gaussians}
 
@@ -249,6 +307,33 @@ D_{\mathrm{KL}}(q_\phi(z\mid x)\Vert p(z)) & \text{rate / information cost}
 \end{array}
 \]
 This interpretation is helpful, but it should not replace the probabilistic derivation.  The ELBO is first of all a lower bound on marginal likelihood.
+
+There is an exact identity behind the rate interpretation, and it makes the limitations of that interpretation precise. Suppose inputs are drawn from $p_{\mathrm{data}}(x)$, and write the joint law induced by the encoder as
+\[
+ q(x,z)=p_{\mathrm{data}}(x)q_\phi(z\mid x),\qquad
+ q(z)=\int p_{\mathrm{data}}(x)q_\phi(z\mid x)\,dx.
+\]
+The latter $q(z)$ is the \emph{aggregated posterior}: sample a training input and then a code from its encoder distribution. Insert $\log q(z)-\log q(z)$ into the KL term averaged over inputs:
+\[
+\begin{aligned}
+ &\mathbb E_{p_{\mathrm{data}}(x)}
+    D_{\mathrm{KL}}(q_\phi(z\mid x)\Vert p(z))\\
+ &=\mathbb E_{q(x,z)}
+   \left[\log\frac{q_\phi(z\mid x)}{q(z)}
+         +\log\frac{q(z)}{p(z)}\right]\\
+ &=\boxed{I_q(X;Z)+D_{\mathrm{KL}}(q(z)\Vert p(z)).}
+\end{aligned}
+\]
+The first term is mutual information: how much the code tells us about the observed input. The second term measures how far the \emph{overall} distribution of inferred codes is from the sampling prior. Thus the per-example KL penalty is an \emph{upper bound} on encoded mutual information, and it also penalizes a mismatch between aggregate code usage and the prior.
+
+A two-bit calculation distinguishes the terms. Let $X$ be a fair bit, encode it perfectly by $Z=X$, and choose the prior $p(Z=0)=p(Z=1)=1/2$. Then the aggregated posterior already equals the prior, so $D_{\mathrm{KL}}(q(z)\Vert p(z))=0$. Yet the encoder carries one bit about $X$, and
+\[
+ I_q(X;Z)=\log2,\qquad
+ \mathbb E_XD_{\mathrm{KL}}(q(z\mid X)\Vert p(z))=\log2.
+\]
+Matching the aggregated posterior to the prior does not force the representation to forget the input. Conversely, if the encoder ignores $x$ and always returns the prior, the KL is zero and $I_q(X;Z)=0$. Such a representation can suffer posterior collapse if the decoder can explain the data unaided.
+
+The rate--distortion analogy is therefore more than a slogan, but the word \emph{rate} requires care: the KL to the prior contains mutual information \emph{plus} aggregated-posterior mismatch. Neither term automatically measures the semantic usefulness of a latent coordinate.
 
 \section{Limits of the ELBO}
 
