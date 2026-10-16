@@ -130,7 +130,11 @@ symbol & type & linear meaning & intuition\\
 \end{tabular}
 \end{center}
 
-One must be careful about the word ``copy.''  In ordinary vector spaces, there is no natural linear map \(V\to V\oplus V\) for every abstract vector space \(V\) unless one has fixed the diagonal map.  In this prop, one wire represents the free rank-one module \(k\).  The copy generator is the linear map
+The distinction between direct-sum copying and tensor-product copying matters. The diagonal map
+\[
+ \Delta_V:V\longrightarrow V\oplus V,\qquad v\longmapsto(v,v)
+\]
+is linear and natural for every vector space: $(f\oplus f)\Delta_V=\Delta_W f$ for any linear $f:V\to W$. By contrast, $v\mapsto v\otimes v$ is generally nonlinear, as the cross terms $v\otimes w+w\otimes v$ appear when $v+w$ is substituted. In the matrix prop, parallel wiring is direct sum, and one wire represents the free rank-one module $k$. Thus its copy generator is the instance $\Delta_k$:
 \[
   k\to k\oplus k,\qquad x\mapsto(x,x).
 \]
@@ -165,7 +169,7 @@ The calculus becomes interesting because these two structures are not independen
 
 The central equation says:
 \[
-  \text{copy after add}=	ext{add after copying both inputs.}
+  \text{copy after add}=\text{add after copying both inputs.}
 \]
 In ordinary algebra, this is the statement
 \[

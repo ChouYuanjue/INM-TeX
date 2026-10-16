@@ -72,7 +72,7 @@ Indeed, a number divides both \(a\) and \(b\) exactly when it divides both \(b\)
 \]
 The set of common divisors has not changed.
 
-This invariant turns division into an algorithm.  Starting with \(a,b\), repeatedly replace the larger pair by the divisor and remainder:
+This invariant turns division into an algorithm. First take absolute values and arrange the inputs so that $a\ge b>0$; a zero input has an immediate gcd. Now repeatedly replace a pair by its divisor and remainder:
 \[
 \begin{aligned}
   a&=q_0b+r_0,\\
@@ -85,7 +85,7 @@ with
 \[
   b>r_0>r_1>r_2>\cdots\ge0.
 \]
-Well-ordering forces the remainders to reach zero.  The last nonzero remainder is the gcd because the common-divisor invariant survives every step.
+Stop when the next remainder is zero. Every nonzero remainder is smaller than the previous positive divisor, so well-ordering guarantees termination. The last nonzero remainder is the gcd because the common-divisor invariant survives every step.
 
 The important object is not the displayed chain of divisions but the transformation
 \[
