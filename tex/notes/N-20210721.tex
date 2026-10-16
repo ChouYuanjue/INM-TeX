@@ -12,6 +12,27 @@ The finite experiment leads to Stone duality. Its more surprising descendants ar
 The exposition of the first duality follows Marcus Tressl's \href{https://personalpages.manchester.ac.uk/staff/marcus.tressl/papers/StoneDualityBooleanAlgebras.pdf}{\emph{Stone Duality for Boolean Algebras}}.
 
 
+\begin{table}[H]
+\centering
+\small
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.27\textwidth}>{\raggedright\arraybackslash}p{0.30\textwidth}>{\raggedright\arraybackslash}p{0.28\textwidth}@{}}
+\toprule
+Geometry & Algebra & Typical gauge object\\
+\midrule
+Stone spaces & Boolean algebras & $\mathbf2=\{0,1\}$\\
+Compact Hausdorff spaces & Unital commutative $C^*$-algebras & $\mathbb C$\\
+Affine schemes & Commutative rings & $\mathbb A^1$\\
+Locales & Frames & Sierpi\'nski space $\mathbb S$\\
+Topoi & Logoi & $\mathbf{Set}$\\
+$\infty$-topoi & $\infty$-logoi & Spaces $\mathcal S$ ($\infty$-groupoids)\\
+\bottomrule
+\end{tabular}
+\caption{Six geometry--algebra correspondences. In the last two rows the precise duality reverses morphisms between categories of topoi and logoi.}
+\end{table}
+
+The first four rows can be approached through actual functions taking values in a test object. In the last two, the gauge object becomes a whole category---sets, and then spaces---and the reversal occurs between two ways of reading a geometric morphism. We will meet both versions after the concrete Stone construction.
+
 \section{Three points, eight regions, and three consistent answers}
 
 For $X=\{a,b,c\}$ the algebra of all yes-or-no tests is
@@ -395,27 +416,99 @@ Therefore
 \]
 At the boundary point $0$, neither side is locally forced. This is the first glimpse of \emph{intuitionistic} internal logic: truth can be local, and Boolean complementation is too strong for general open information.
 
-The deeper language of topoi, including classifying topoi and higher topoi, develops these themes in categorical and homotopical directions. The term \emph{logos} is used for particular logical presentations in higher category theory, but there is no general identity obtained by putting $\mathbf{Set}$ into both sides of $\operatorname{Hom}(-,\Omega)$ and declaring every topos to be its dual. What survives from the elementary examples is the structural question: which tests describe a space, and what reconstruction theorem, if any, makes the description complete?
+There is another precise reversal still to come. A geometric map of topoi has an inverse-image functor that preserves finite limits and colimits; reading this functor in the opposite direction is the algebraic map of logoi. This is the topos--logos duality, and it persists for $\infty$-topoi. Its arrow reversal is genuine, even though it takes a different form from the earlier character-space constructions.
 
 A standard reference for the connection between sheaves and internal logic is Saunders Mac Lane and Ieke Moerdijk, \emph{Sheaves in Geometry and Logic}.
 
 
-\section{A duality remembers both the object and its maps}
+\section{The two directions of a sheaf map}
 
-The category-theoretic content is an equivalence $\mathcal C\simeq\mathcal D^{\mathrm{op}}$. Two contravariant constructions must reconstruct objects up to natural isomorphism and maps compatibly with composition. The simplest warning is our connected interval: maps $[0,1]\to\mathbf2$ with $\mathbf2$ discrete cannot distinguish its points, so this particular family of tests does not reconstruct it. Replacing the tests by continuous complex-valued functions restores far more information.
-
-The main correspondences have different exact domains:
+Let $X=\{p,q\}$ be a discrete two-point space and $Y=\{*\}$ a single point. A sheaf of sets on $X$ is simply a pair of sets:
 \[
-\begin{array}{c|c}
- \text{space-like side} & \text{algebraic side}\\ \hline
- \text{Stone spaces} & \text{Boolean algebras}\\
- \text{compact Hausdorff spaces} & \text{unital commutative }C^*\text{-algebras}\\
- \text{affine schemes} & \text{commutative rings}\\
- \text{locales} & \text{frames}
-\end{array}
+ \mathbf{Sh}(X)\simeq\mathbf{Set}\times\mathbf{Set},
+ \qquad
+ \mathbf{Sh}(Y)\simeq\mathbf{Set}.
 \]
-Each row reverses arrows, but the reconstruction theorems are different. The discrete two-point object measures clopen predicates; $\mathbb C$ measures continuous functions; the affine line represents regular functions; the Sierpi\'nski space represents open predicates. Inside a topos, the subobject classifier $\Omega$ classifies subobjects, and its truth values may themselves vary over a base space. These are related forms of mathematical observation, with distinct hypotheses.
+The unique continuous map $f:X\to Y$ has an inverse-image functor and a direct-image functor. In this example we can write out both:
+\[
+ \begin{aligned}
+ f^*:\mathbf{Set}&\longrightarrow\mathbf{Set}\times\mathbf{Set},
+       &S&\longmapsto(S,S),\\
+ f_*:\mathbf{Set}\times\mathbf{Set}&\longrightarrow\mathbf{Set},
+       &(A,B)&\longmapsto A\times B.
+ \end{aligned}
+\]
+A set on the one-point base pulls back to a copy at each of the two points. A sheaf on $X$ pushes forward to its global sections, which consist of one choice at each point.
 
-The sequence of examples can now be read from the perspective of the three-point world. We began by recovering a point from all its yes-or-no answers. Then we allowed continuously varying answers to distinguish points of connected spaces. In algebraic geometry the answers were regular functions and even infinitesimal data; in locale theory they were open conditions; in sheaf theory an answer itself became local.
+The two operations are adjoint:
+\[
+ \begin{aligned}
+ \operatorname{Hom}_{\mathbf{Set}\times\mathbf{Set}}
+       ((S,S),(A,B))
+ &\cong
+ \operatorname{Hom}_{\mathbf{Set}}(S,A)
+       \times\operatorname{Hom}_{\mathbf{Set}}(S,B)\\
+ &\cong\operatorname{Hom}_{\mathbf{Set}}(S,A\times B).
+ \end{aligned}
+\]
+In symbols, $\boxed{f^*\dashv f_*}$. This little calculation is the adjunction behind a geometric morphism.
 
-The reversal of arrows is easy: an observation of $Y$ can always be pulled back along a map $X\to Y$. The beautiful part is \emph{recoverability}. When the observations encode exactly the right structure, points and maps reappear from what they do to all possible questions.
+Why is there a dual description? The geometric arrow goes from the two-point space to the one-point space, and hence from $\mathbf{Sh}(X)$ to $\mathbf{Sh}(Y)$. Its algebraic inverse-image functor goes the other way:
+\[
+ \underbrace{\mathbf{Sh}(X)\longrightarrow\mathbf{Sh}(Y)}
+       _{\text{geometric }f}
+ \qquad\longleftrightarrow\qquad
+ \underbrace{\mathbf{Sh}(Y)\xrightarrow{\ f^*\ }\mathbf{Sh}(X)}
+       _{\text{algebraic }f^*}.
+\]
+The functor $f^*$ preserves finite limits and all small colimits. For the diagonal functor above this is immediate: limits and colimits in a product category are computed coordinatewise. Its right adjoint $f_*$ is determined by the adjunction and need not preserve colimits.
+
+The same phenomenon holds for arbitrary Grothendieck topoi. The algebraic morphisms of logoi are their left-exact, colimit-preserving functors. The geometric morphisms of topoi read the corresponding adjunctions in the opposite direction:
+\[
+ \boxed{\mathbf{Topos}\simeq\mathbf{Logos}^{\mathrm{op}}.}
+\]
+With transformations between functors retained, one uses the corresponding bicategorical or higher-categorical conventions. The reversal here is a genuine equivalence of the categories of structured objects and their chosen morphisms, rather than a supposed one-size-fits-all formula using $\operatorname{Hom}(-,\Omega)$.
+
+Even the role of $\mathbf{Set}$ in the table is concrete. A point of a topos $\mathcal E$ is a geometric morphism $\mathbf{Set}\to\mathcal E$. For $\mathcal E=\mathbf{Set}\times\mathbf{Set}$, the two familiar points have inverse-image functors
+\[
+ (A,B)\longmapsto A,\qquad(A,B)\longmapsto B.
+\]
+They probe a sheaf by asking for its value at one point or the other. An arbitrary topos need not have enough such points to recover its whole sheaf category.
+
+\section{Why the gauge changes from sets to spaces}
+
+Now replace $\mathbf{Set}$ by the $\infty$-category $\mathcal S$ of spaces, understood as $\infty$-groupoids or homotopy types. A space remembers not only its points but paths between them, homotopies between paths, and higher coherence data. A sheaf of spaces can glue that richer information locally.
+
+There is a tiny example which justifies the upgrade. Let $G=\mathbb Z/2\mathbb Z$ and form the one-object groupoid $BG$ whose automorphisms are the two elements of $G$. Its classifying space has
+\[
+ \boxed{\pi_0(BG)=\{*\},\qquad
+        \pi_1(BG,*)\cong\mathbb Z/2\mathbb Z.}
+\]
+If we replace $BG$ by its set of connected components, we obtain only one point. The nontrivial loop has disappeared. This is information that ordinary sets cannot record.
+
+The two-point sheaf experiment still works. Ordinary Hom sets become mapping spaces:
+\[
+ \mathbf{Sh}_{\infty}(\{p,q\})\simeq\mathcal S\times\mathcal S,
+ \qquad
+ \Delta:\mathcal S\longrightarrow\mathcal S\times\mathcal S,
+ \qquad
+ \Pi:\mathcal S\times\mathcal S\longrightarrow\mathcal S,
+\]
+where $\Delta(T)=(T,T)$ and $\Pi(A,B)=A\times B$. The higher adjunction reads
+\[
+ \boxed{
+ \operatorname{Map}_{\mathcal S\times\mathcal S}
+   (\Delta T,(A,B))
+ \simeq
+ \operatorname{Map}_{\mathcal S}(T,A\times B).}
+\]
+Here the mapping objects and products are themselves spaces, retaining possible homotopies and higher identifications.
+
+The corresponding arrow reversal is
+\[
+ \boxed{\mathbf{Topos}_{\infty}
+          \simeq\mathbf{Logos}_{\infty}^{\mathrm{op}}.}
+\]
+The logos direction records left-exact colimit-preserving functors, while the topos direction records their geometric morphisms. The mathematical point of view is developed in Mathieu Anel and Andr\'e Joyal's \href{https://doi.org/10.1017/9781108854429.007}{\emph{Topo-logie}}, especially its treatments of the topos--logos and higher topos--logos dualities.
+
+The finite Stone construction recovered points from Boolean characters. In these last two rows, the object of interest has become an entire sheaf category and an arrow carries a pair of adjoint functors. The one-object groupoid $BG$ demonstrates why the higher version matters: even a generalized point can carry a loop that ordinary set-valued observations would forget.
