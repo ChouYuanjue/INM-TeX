@@ -1,4 +1,4 @@
-\notechapter{N-20260318}{Matrix Computation III: Eigenvalues and Iteration}
+\notechapter{N-20260318}{Matrix Computation III: Canonical Forms, Spectral Localization, and Eigenvalue Iteration}
 
 \section{Before computing an eigenvalue, decide what can change}
 
@@ -22,7 +22,7 @@ These are different levels of information:
 \]
 Trying to use one level as a substitute for another causes confusion.  Jordan form explains exact structure but is usually a poor numerical algorithm.  Gershgorin discs are robust and cheap but rarely exact.  Iteration computes selected eigenpairs but only under separation and stability assumptions.
 
-\section{The polynomial matrix \texorpdfstring{$\lambda I-A$}{lambda I minus A} contains more than the characteristic polynomial}
+\section{Polynomial Matrices and Invariant Factors}
 
 The characteristic polynomial
 \[
@@ -169,7 +169,7 @@ and the elementary divisors are
 \]
 They recover the block structure \(J_2(2)\oplus J_1(3)\).
 
-\section{Jordan chains turn algebraic multiplicity into dynamics}
+\section{Jordan Chains and Growth}
 
 A Jordan chain for eigenvalue \(\mu\) is a sequence
 \[
@@ -231,7 +231,7 @@ This also explains why Jordan form is mathematically revealing but numerically d
 \]
 where \(Q\) is unitary and \(T\) is upper triangular.  The diagonal of \(T\) gives the eigenvalues while unitary similarity avoids an ill-conditioned eigenvector basis.
 
-\section{Gershgorin reads spectral information directly from rows}
+\section{Gershgorin from Row Sums}
 
 Canonical forms describe exact similarity invariants, but they are not a cheap first diagnostic.  Gershgorin's theorem locates every eigenvalue using only row sums.
 
@@ -291,7 +291,7 @@ The chosen coordinate may depend on the eigenvector, so the theorem gives a unio
 \caption{A separated component containing exactly $m$ Gershgorin discs contains exactly $m$ eigenvalues, counted with algebraic multiplicity.}
 \end{figure}
 
-\section{Separated discs count eigenvalues, not merely contain them}
+\section{Counting Eigenvalues with Gershgorin}
 
 A stronger form of the theorem says that if a connected component of
 \[
@@ -326,7 +326,7 @@ This separated-component principle is particularly useful for proving that a mat
   |a_{ii}|>\sum_{j\ne i}|a_{ij}|.
 \]
 
-\section{Diagonal scaling can reveal localization hidden by coordinates}
+\section{Gershgorin after Diagonal Scaling}
 
 Gershgorin discs depend on the chosen basis even though eigenvalues do not.  This is not a defect; it is an opportunity.  A diagonal similarity
 \[

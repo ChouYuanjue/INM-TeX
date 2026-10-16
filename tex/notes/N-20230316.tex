@@ -1,6 +1,6 @@
 \notechapter{N-20230316}{Fixed Points, Convergent Iteration, and Compactness Methods}
 
-\section{A fixed point does not by itself explain an iteration}
+\section{Fixed Points versus Iterations}
 
 A fixed point of a map \(T:X\to X\) is a point \(x^*\) satisfying
 \[
@@ -29,7 +29,7 @@ has the fixed point \(0\), but an orbit starting from \(x_0\ne0\) alternates bet
 \]
 has every point fixed, so there is no unique target for iteration.  A useful fixed-point theorem must therefore specify which mechanism supplies existence, uniqueness, and convergence.
 
-\section{Contractions make successive points geometrically closer}
+\section{Geometry of Contractions}
 
 Let \((X,d)\) be a metric space.  A map \(T:X\to X\) is a contraction when there is a constant \(0<c<1\) such that
 \[
@@ -58,7 +58,7 @@ For \(m>n\), the triangle inequality then yields
 \]
 The orbit is therefore Cauchy.  This is the key analytic fact; all later conclusions depend on where that Cauchy sequence is allowed to converge.
 
-\section{Completeness supplies the point that the estimates approach}
+\section{The Role of Completeness}
 
 A metric space is complete when every Cauchy sequence converges to a point of the space.
 
@@ -244,7 +244,7 @@ On a compact interval $[-h,h]$, the error is bounded by a factorial tail, for ex
 \]
 The convergence is uniform for every fixed $h$. In the local Banach argument, choosing $h<1$ makes the Lipschitz constant $Lh=h<1$; the explicit factorial bound reveals even more about this particular equation. The infinite-dimensional contraction proof and the elementary Taylor series have converged on the same object.
 
-\section{Topological existence does not provide Banach's algorithm}
+\section{Existence versus Banach Iteration}
 
 Banach's theorem is not the only route to a fixed point.  Brouwer's theorem says that every continuous map from a nonempty compact convex subset of \(\mathbb R^n\) to itself has a fixed point.  No metric contraction is required.
 
@@ -252,7 +252,7 @@ The difference in conclusions is substantial.  The identity map on a closed ball
 
 This distinction matters in applications.  If the goal is a certified numerical method, the Banach hypotheses are valuable precisely because they are stronger.  If the map is continuous on a compact convex region but cannot be made contractive, Brouwer may still prove that a solution exists, though a separate method is needed to locate it.
 
-\section{Schauder replaces finite-dimensional compactness by a compact map}
+\section{Schauder's Fixed-Point Theorem}
 
 Closed bounded sets in infinite-dimensional Banach spaces are usually not compact, so Brouwer cannot be applied directly.  Schauder's fixed-point theorem uses compactness of the operator instead.
 
@@ -268,7 +268,7 @@ where \(K\), \(F\), and \(g\) are continuous and a closed ball \(C\) is chosen s
 
 Schauder therefore yields a solution of the integral equation even when no Lipschitz estimate makes \(T\) contractive.  What is lost is uniqueness and convergence of the naive iteration.  Several fixed points may exist.
 
-\section{Krasnoselskii separates the shrinking and compact parts}
+\section{Krasnoselskii's Decomposition}
 
 Many nonlinear equations produce an operator that is neither contractive nor compact as a whole but decomposes as
 \[

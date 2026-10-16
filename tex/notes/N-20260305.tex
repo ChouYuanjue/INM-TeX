@@ -102,7 +102,7 @@ and
 
 This formula looks more complicated than the one-dimensional version only because the basis vectors need not be orthogonal.  The Gram matrix records their mutual angles and corrects for the fact that the coordinate directions interfere with one another.
 
-\section{The projection matrix remembers the subspace, not the basis}
+\section{Projection Matrices and Subspaces}
 
 Define
 \[
@@ -139,7 +139,7 @@ It sends \(y\) to the residual \(r=y-Py\), which lies in \(W^\perp\).  Thus
   y=Py+(I-P)y.
 \]
 
-\section{Least squares is projection written as a fitting problem}
+\section{Least Squares as Projection}
 
 Now consider a system
 \[
@@ -322,7 +322,7 @@ The Moore--Penrose inverse, studied later in more detail, chooses the minimizer 
 \]
 Here the pseudoinverse is a canonical coordinate choice, while the geometric heart of the problem remains projection onto \(R(A)\).
 
-\section{Weighted least squares changes the notion of perpendicular}
+\section{Weighted Least Squares}
 
 Sometimes residual coordinates should not be treated equally.  If \(W\) is symmetric positive definite, define
 \[

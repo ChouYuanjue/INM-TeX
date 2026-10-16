@@ -1,6 +1,6 @@
 \notechapter{N-20230118}{Local Information, Global Structure: Pigeonhole, Ramsey, Radon, and Helly}
 
-\section{Pigeonhole is an averaging theorem with a design problem hidden inside}
+\section{Pigeonhole as Averaging}
 
 If \(N\) objects are placed into \(r\) boxes, some box contains at least
 \[
@@ -21,7 +21,7 @@ possible patterns.  Among nine elements, two have the same pattern and therefore
 
 The conclusion is not merely “two objects coincide.”  A carefully chosen finite state space forces two complicated objects to become indistinguishable with respect to all recorded tests.
 
-\section{Partial sums turn a divisibility problem into a finite-state collision}
+\section{Partial Sums and Divisibility}
 
 Let \(a_1,\ldots,a_n\) be integers.  There is always a nonempty consecutive block whose sum is divisible by \(n\).
 
@@ -48,7 +48,7 @@ Subtracting gives
 
 The objects are partial histories, the boxes are residue states, and a collision cancels the common prefix.  This pattern appears throughout additive combinatorics and automata: encode a running process in finitely many states, then use repetition to extract a structured segment.
 
-\section{Repeated pigeonhole becomes sequential compactness on an interval}
+\section{Pigeonhole and Sequential Compactness}
 
 Let \((x_n)\) be an infinite sequence in \([0,1]\).  Divide the interval into two closed halves.  At least one half contains infinitely many terms; call it \(I_1\).  Divide \(I_1\) into two halves and choose one, \(I_2\), that again contains infinitely many terms.  Continuing gives nested intervals
 \[
@@ -81,7 +81,7 @@ Hence
 
 This is Bolzano--Weierstrass on \([0,1]\).  The infinite conclusion is built by iterating a finite pigeonhole step at finer and finer scales.  In a compact metric space, finite covers by small balls play the role of interval subdivisions.
 
-\section{Ramsey theory forces a pattern, not merely a repeated label}
+\section{Ramsey's Forced Patterns}
 
 Color every edge of the complete graph \(K_6\) red or blue.  Choose a vertex \(v\).  Among the five edges incident to \(v\), at least three have the same color; suppose
 \[
@@ -139,7 +139,7 @@ so \(a\le b\).  Every interval contains the segment \([a,b]\), and therefore
 
 Pairwise intersection is enough in one dimension because the order lets one reduce all left endpoints to their maximum and all right endpoints to their minimum.  In higher dimensions there is no total order of boundaries; convexity and affine dependence replace it.
 
-\section{Radon's theorem is an affine dependence split into two convex combinations}
+\section{Radon's Theorem from Affine Dependence}
 
 \begin{theorem}[Radon]
 Any \(d+2\) points in \(\mathbb R^d\) can be partitioned into two disjoint sets whose convex hulls intersect.
@@ -181,7 +181,7 @@ Both sides are convex combinations.  Their common value lies in
 
 The Radon partition is the geometric form of a minimal affine dependence.  In oriented-matroid language, such a signed dependence is the prototype of a circuit.
 
-\section{Helly's theorem follows by applying Radon to carefully chosen witnesses}
+\section{Helly's Theorem via Radon}
 
 \begin{theorem}[Finite Helly]
 Let \(C_1,\ldots,C_m\) be convex subsets of \(\mathbb R^d\), with \(m\ge d+1\).  If every \(d+1\) of them have nonempty intersection, then
@@ -215,7 +215,7 @@ If \(k\in J\), use the convex hull indexed by \(I\).  If \(k>d+2\), every \(x_i\
 
 The proof shows exactly where the number \(d+1\) comes from: Radon's affine dependence begins at \(d+2\) points.
 
-\section{Carathéodory reduces a large convex representation to \texorpdfstring{$d+1$}{d+1} points}
+\section{Carathéodory's Reduction}
 
 \begin{theorem}[Carathéodory]
 If \(x\in\operatorname{conv}S\subset\mathbb R^d\), then \(x\) lies in the convex hull of at most \(d+1\) points of \(S\).

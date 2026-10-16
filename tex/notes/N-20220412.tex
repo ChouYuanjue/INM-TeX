@@ -1,6 +1,6 @@
 \notechapter{N-20220412}{Indices, Dual Maps, Adjoints, Trace, and Singular Values}
 
-\section{Indices carry type information before they abbreviate sums}
+\section{Indices as Type Information}
 
 Let \(V\) have basis \(e_1,\ldots,e_n\), with dual basis \(e^1,\ldots,e^n\).  The Kronecker delta is
 \[
@@ -31,7 +31,7 @@ An index that survives once in every term is free and determines the output type
 \]
 are ill typed if \(i\) is intended to be the output index, because it occurs twice while \(j\) remains unmatched.  Index notation is valuable precisely because many algebraic mistakes become visible as type errors.
 
-\section{Matrix multiplication is contraction of an output with an input}
+\section{Matrix Products as Contractions}
 
 Let
 \[
@@ -71,7 +71,7 @@ Trace is another contraction:
 \]
 Matrix multiplication and trace are therefore not unrelated recipes; both pair an output index with a compatible input index.
 
-\section{A change of basis transforms both indices and leaves contractions unchanged}
+\section{Basis Changes and Contractions}
 
 Let \(P\) be the change-of-basis matrix, so coordinate columns satisfy
 \[
@@ -156,7 +156,7 @@ In matrices,
 \]
 Transposition reverses order because a functional is pulled backward through a composite map.
 
-\section{An adjoint is a dual map returned to vectors by an inner product}
+\section{Adjoints from the Dual Space}
 
 The transpose needs only vector spaces and duality.  An adjoint additionally needs inner products.  Let
 \[
@@ -228,7 +228,7 @@ The operations should be kept distinct:
 \]
 Over \(\mathbb R\), conjugation disappears and the adjoint matrix in orthonormal bases is the transpose.
 
-\section{In nonorthonormal coordinates the Gram matrices enter the adjoint}
+\section{Adjoints in Nonorthogonal Frames}
 
 Suppose the chosen bases have Gram matrices
 \[
@@ -285,7 +285,7 @@ Although \(A^T=A\), its adjoint in this metric is
 \]
 The coordinate swap is not self-adjoint when the second coordinate has four times the metric weight.
 
-\section{Rank is the dimension of the image and the size of a minimal factorization}
+\section{Rank and Minimal Factorizations}
 
 For
 \[
@@ -338,7 +338,7 @@ so every row of \(C\) is a linear combination of rows of \(A\).  Thus
 \]
 and its dimension is \(r\), the same as the column rank.
 
-\section{Trace is contraction, and cyclicity is a legal index relabelling}
+\section{Trace and Cyclic Contraction}
 
 For endomorphisms \(A,B\),
 \[
@@ -386,7 +386,7 @@ More generally, an orthogonal projector has eigenvalues \(0,1\), hence
 \]
 Trace counts the dimension of a projected subspace because it sums the projector's surviving modes.
 
-\section{The Hilbert--Schmidt inner product leads to Schatten norms}
+\section{Hilbert--Schmidt and Schatten Norms}
 
 Matrices themselves form an inner-product space with
 \[
@@ -460,7 +460,7 @@ The Hilbert--Schmidt product also gives the estimate
 \]
 which is ordinary Cauchy--Schwarz applied in the matrix space.
 
-\section{Categorical trace closes an output wire into an input wire}
+\section{Categorical Trace as Wire Closure}
 
 Let \(V\) be finite dimensional with basis \(e_i\) and dual basis \(e^i\).  The coevaluation map is
 \[

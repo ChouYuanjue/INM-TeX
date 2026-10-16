@@ -1,6 +1,6 @@
 \notechapter{N-20220321}{Motion on the Unit Circle, Roots of Unity, and Finite Fourier Analysis}
 
-\section{The differential equation \texorpdfstring{$Z'=iZ$}{Z'=iZ} produces uniform circular motion}
+\section{A Differential Equation for Rotation}
 
 Consider the complex-valued initial-value problem
 \[
@@ -101,7 +101,7 @@ The endpoint difference satisfies
 \]
 for an integer \(k\), the winding number of the loop.  The kernel of the exponential map is what makes this integer possible.
 
-\section{Taking an \texorpdfstring{$n$}{n}-th root means dividing angles and choosing a branch}
+\section{Roots and Branch Choices}
 
 Let
 \[
@@ -197,7 +197,7 @@ are the primitive roots:
 \]
 Exact rotational period has become an elementary gcd calculation.
 
-\section{Polynomial divisibility becomes evaluation on a finite subgroup}
+\section{Divisibility on Finite Subgroups}
 
 Let
 \[
@@ -307,7 +307,7 @@ matching
 \]
 The filter replaces a restricted coefficient sum by a short list of evaluations.
 
-\section{The discrete Fourier transform is the full set of character coordinates}
+\section{The DFT as Character Coordinates}
 
 For a function
 \[
@@ -361,7 +361,7 @@ Thus
 \]
 Applying the inverse formula recovers all four original entries.  The transform is not merely evaluation at roots of unity; orthogonality makes those evaluations a complete coordinate system.
 
-\section{Fourier characters diagonalize every circulant operator}
+\section{Fourier Characters and Circulants}
 
 Let \(S\) be the cyclic shift on \(\mathbb C^n\):
 \[
@@ -424,7 +424,7 @@ then
 \]
 Convolution in physical coordinates is multiplication in character coordinates.
 
-\section{Heat on a cycle is just four independent Fourier modes}
+\section{Heat on a Four-Node Cycle}
 
 The Fourier basis earns its keep when we let an operator evolve rather than merely diagonalize it. Imagine four sites arranged on a circle, with heat (or a probability distribution) allowed to move between nearest neighbors. If $u_k(t)$ is the quantity at vertex $k\in\mathbb Z/4\mathbb Z$, the discrete heat equation is
 \[
@@ -507,7 +507,7 @@ groups roots of unity according to exact order.  For \(n=12\),
 \]
 The last factor contains exactly the primitive twelfth roots.  This is enough for the present chapter: finite Fourier analysis uses all characters of the cyclic group, while cyclotomic factorization separates those characters by exact order.  The arithmetic of the factors themselves belongs to the dedicated cyclotomic chapter.
 
-\section{A primitive fifth root already explains the constructible pentagon}
+\section{Fifth Roots and the Pentagon}
 
 Let
 \[

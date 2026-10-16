@@ -1,12 +1,12 @@
 \notechapter{N-20221013}{Oriented Boundary Sums, Polynomial Remainders, and Congruence Classes}
 
-\section{Three short computations hide three different kinds of structure}
+\section{Three Computations, Three Structures}
 
 A coordinate-area formula, a polynomial remainder problem, and a modular-exponent problem can appear on the same exercise sheet without sharing one master theorem.  What they do share is a style of simplification: each calculation throws away information that the question does not need.
 
 For a polygon, the relevant data are the oriented contributions of its edges.  For a polynomial modulo \(x-a\), all multiples of \(x-a\) become invisible and only the value at \(a\) remains.  For an integer modulo \(m\), numbers differing by a multiple of \(m\) are treated as the same residue class.  The useful lesson is therefore not that every ``remainder'' is secretly identical, but that one should identify the map that preserves exactly the requested invariant.
 
-\section{A determinant is the signed area of two position vectors}
+\section{Determinants as Signed Area}
 
 For vectors
 \[
@@ -35,7 +35,7 @@ Triangulating from the origin suggests the signed sum
 \]
 If the origin lies outside the polygon, some triangles point with the opposite orientation.  This is not a defect: the negative pieces cancel the extra positive pieces, leaving the polygon's oriented area.
 
-\section{The shoelace formula is a boundary integral evaluated edge by edge}
+\section{Shoelace as a Boundary Integral}
 
 Green's theorem gives an origin-free expression for the oriented area of a positively oriented region \(D\):
 \[
@@ -66,7 +66,7 @@ Summing over the edges yields
 \]
 The familiar crossing columns are therefore a mnemonic for a discrete line integral, not the reason the formula is true.
 
-\section{Translation and orientation provide immediate consistency checks}
+\section{Translation and Orientation Checks}
 
 The shoelace sum should not depend on where the coordinate origin is placed.  Translate every vertex by a fixed vector \(t\).  Then
 \[
@@ -134,7 +134,7 @@ Its kernel is the ideal \((x-a)\), so the first isomorphism theorem gives
 \]
 The quotient notation is useful because it says exactly what has been discarded: two polynomials become equal when their difference is divisible by \(x-a\).
 
-\section{Remainders modulo several linear factors are interpolation data}
+\section{Remainders as Interpolation Data}
 
 Suppose \(f(x)\) leaves remainder \(99\) modulo \(x-19\) and remainder \(19\) modulo \(x-99\).  The remainder modulo
 \[
@@ -175,7 +175,7 @@ This is not a separate trick from interpolation.  A polynomial of degree at most
 \]
 which simplifies to the same answer.
 
-\section{The polynomial Chinese remainder theorem explains uniqueness}
+\section{Polynomial CRT and Uniqueness}
 
 Because \(19\ne99\), the ideals \((x-19)\) and \((x-99)\) are comaximal.  The Chinese remainder theorem gives
 \[
@@ -201,7 +201,7 @@ More generally, for distinct \(a_1,\ldots,a_n\),
 \]
 and the inverse map is Lagrange interpolation.  The elementary remainder theorem has grown into a structural statement without changing the computation it was designed to perform.
 
-\section{Repeated factors remember derivatives: Hermite interpolation}
+\section{Repeated Factors and Hermite Data}
 
 Evaluation modulo $x-a$ forgets everything except $f(a)$. A natural question is what remains visible modulo a higher power $(x-a)^2$. Write the exact polynomial Taylor expansion
 \[
@@ -241,7 +241,7 @@ The first component is the pair of numbers $(f(1),f'(1))$, and the second compon
 
 Why is this solution unique? If $R$ and $S$ both have the three prescribed data, their difference is divisible by $(x-1)^2$ and by $(x+1)$. Since these factors are coprime, their product divides $R-S$. But $\deg(R-S)<3$; therefore $R=S$. This proves uniqueness without a determinant calculation.
 
-\section{An infinitesimal arithmetic hidden inside a quotient ring}
+\section{Infinitesimals in Quotient Rings}
 
 There is a particularly memorable way to interpret the first component. Introduce a symbol $\varepsilon$ with $\varepsilon^2=0$, but \emph{do not} assume $\varepsilon=0$. The ring
 \[

@@ -1,6 +1,6 @@
 \notechapter{N-20260311}{Matrix Computation I: Norms, Amplification, and Numerical Size}
 
-\section{A matrix can be small entrywise and large as an operator}
+\section{Entrywise versus Operator Norms}
 
 A matrix is not merely a rectangular table of numbers.  It is a map
 \[
@@ -259,7 +259,7 @@ The spectral norm asks for the single strongest direction.  The Frobenius norm c
 \]
 where \(r=\operatorname{rank}A\).
 
-\section{Schatten norms place spectral and Frobenius size in one family}
+\section{Schatten Norms}
 
 For \(1\le p<\infty\), define the Schatten \(p\)-norm by applying a vector \(p\)-norm to the singular values:
 \[
@@ -309,7 +309,7 @@ Norms also bound truncation and rounding errors.  If a computed matrix is \(A+E\
 \]
 The norm of the perturbation is meaningful only relative to the chosen geometry.  A small Frobenius perturbation controls average singular energy, while a small spectral perturbation controls every Euclidean input direction.
 
-\section{The distance to singularity appears in the smallest singular value}
+\section{Distance to Singularity}
 
 For an invertible square matrix,
 \[

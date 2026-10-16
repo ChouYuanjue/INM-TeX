@@ -1,6 +1,6 @@
 \notechapter{N-20221221}{Completion, Uniform Structure, and Quotient Topology}
 
-\section{A Cauchy sequence can describe a point missing from the space}
+\section{Cauchy Sequences and Missing Points}
 
 A sequence \((x_n)\) in a metric space \((X,d)\) is Cauchy when for every \(\varepsilon>0\) there is \(N\) such that
 \[
@@ -64,7 +64,7 @@ Nonnegativity and symmetry pass directly to the limit.  If \(\widehat d=0\), the
 \]
 passes to the limit and gives the triangle inequality.  Therefore \(\widehat d\) is a genuine metric.
 
-\section{The original space sits isometrically and densely inside its completion}
+\section{Embedding into the Completion}
 
 Send \(x\in X\) to the constant sequence:
 \[
@@ -97,7 +97,7 @@ For \(X=\mathbb Q\), the decimal truncations \((q_n)\) of \(\sqrt2\) define a cl
 \]
 forcing \(r=\sqrt2\).  The new class is exactly the missing irrational point described by rational approximations.
 
-\section{A diagonal approximation proves that the completed space is complete}
+\section{Completeness by a Diagonal Argument}
 
 Let \((\xi_r)\) be a Cauchy sequence in \(\widehat X\).  Passing to a subsequence if necessary, arrange that
 \[
@@ -131,7 +131,7 @@ along the chosen subsequence, and since the original sequence was Cauchy, the wh
 
 The argument exposes the mechanism: approximate each abstract completed point by an original point with rapidly shrinking error, then use one diagonal Cauchy sequence in \(X\) to encode the limit.
 
-\section{Uniformly continuous maps extend because they preserve Cauchy information}
+\section{Extending Uniformly Continuous Maps}
 
 Let \(Y\) be complete and let
 \[
@@ -262,7 +262,7 @@ and their difference grows on the order of \(n\).  No single \(\delta\) controls
 
 Topology records which sets are neighborhoods.  Uniform structure additionally records which pairs are uniformly close across the whole space.  Completion depends on the latter, because Cauchy sequences are uniform objects.
 
-\section{A continuous bijection needs extra hypotheses to be a homeomorphism}
+\section{When a Bijection Is a Homeomorphism}
 
 The map
 \[
@@ -288,7 +288,7 @@ is closed, so \(f^{-1}\) is continuous.
 
 The failed half-open-interval example lacks compactness.  The theorem identifies exactly which global hypotheses make inverse continuity automatic.
 
-\section{Quotient topology is designed to control maps out of a gluing}
+\section{Quotient Topology and Gluing}
 
 Let \(q:X\to Y\) be a surjection.  The quotient topology on \(Y\) is defined by
 \[
@@ -355,7 +355,7 @@ The residue classes $[q_n]$ form a Cauchy sequence in $\mathbb Q/\mathbb Z$ whos
 
 This construction differs from identifying the endpoints of $[0,1]$. The map $[0,1]\to S^1$, $t\mapsto e^{2\pi it}$, realizes a \emph{topological quotient} by gluing $0$ and $1$; the isometric embedding above realizes a \emph{metric completion} by adding all the missing irrational angle classes. Both routes lead to the same familiar circle, but they answer different universal problems. That is a satisfying concrete explanation of why completion and quotient both appear in the same chapter.
 
-\section{Endpoint gluing becomes the circle by quotient factorization}
+\section{The Circle as an Endpoint Quotient}
 
 Let
 \[
