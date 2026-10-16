@@ -171,12 +171,46 @@ is characterized by
   \langle Ax,y\rangle_W
   =\langle x,A^\dagger y\rangle_V.
 \]
-Riesz representation identifies each covector with a unique vector, so the adjoint is the composite
+There is a subtlety over $\mathbb C$. In this note the inner product is \emph{conjugate-linear in the first slot} and linear in the second:
 \[
-  W\xrightarrow{\text{Riesz}}W^*
-  \xrightarrow{A^\vee}V^*
-  \xrightarrow{\text{Riesz}^{-1}}V.
+ \langle x,z\rangle=x^*Gz.
 \]
+The ordinary algebraic dual $V^*$ consists of \emph{complex-linear} functionals. Riesz representation therefore gives the map
+\[
+ R_V:V\longrightarrow V^*,
+ \qquad R_V(y)(x)=\langle y,x\rangle_V.
+\]
+It identifies covectors with unique vectors, but the map $R_V$ is \emph{conjugate-linear}:
+\[
+ R_V(cy)(x)=\langle cy,x\rangle
+ =\overline c\,\langle y,x\rangle
+ =\overline c\,R_V(y)(x).
+\]
+We may now express the adjoint precisely as
+\[
+ \boxed{A^\dagger=R_V^{-1}\circ A^\vee\circ R_W:
+ W\longrightarrow V.}
+\]
+Indeed, evaluating the right side at $y\in W$ gives the unique vector $z\in V$ with
+\[
+ \langle z,x\rangle_V
+ =(A^\vee R_W(y))(x)
+ =R_W(y)(Ax)
+ =\langle y,Ax\rangle_W
+\]
+for every $x\in V$. Taking conjugates yields
+$\langle x,z\rangle_V=\langle Ax,y\rangle_W$,
+so $z=A^\dagger y$.
+
+The two conjugate-linear Riesz maps cancel one another's conjugation, which is why $A^\dagger:W\to V$ is an ordinary \emph{complex-linear} map. This is easy to miss if one calls the dual map and adjoint the same operation. For the one-dimensional operator
+\[
+ A:\mathbb C\to\mathbb C,\qquad A(z)=iz,
+\]
+the dual map multiplies the coefficient of a linear functional by $i$, whereas the Hilbert adjoint is
+\[
+ \boxed{A^\dagger(z)=-iz.}
+\]
+For instance, $\langle i,1\rangle=-i=\langle1,-i\rangle$. Over $\mathbb R$, conjugation disappears and both Riesz maps are linear.\footnote{Compare Sergei Treil, \href{https://www.math.brown.edu/streil/papers/LADW/HTML_2026_08-31/Ch8.html}{\emph{Linear Algebra Done Wrong}}, Chapter 8, on complex duality and the Riesz map.}
 
 In orthonormal bases,
 \[
