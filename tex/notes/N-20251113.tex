@@ -1,37 +1,26 @@
 \notechapter{N-20251113}{When Addition Starts Floating: Theta-Links, Log-Links, and Arithmetic Deformation}
 
-\section{What has to be explained}
+\section{A multiplicative period and its arithmetic scale}
 
-The previous note ended with a deliberately strange operation.  At a bad split multiplicative valuation \(v\), one has a Tate parameter \(q_v\), and the arithmetic-deformation viewpoint takes seriously transformations of the shape
+Imagine a curve whose local points can be described by multiplying nonzero numbers, with one special number $q$ acting as a period. Over a nonarchimedean local field $L$, an elliptic curve with split multiplicative reduction admits a Tate uniformization
 \[
-  q_v\longmapsto q_v^{m^2},
-  \qquad
-  u\longmapsto u\quad (u\in\mathcal O_{F_v}^{\times}).
-\]
-This is not a ring homomorphism.  It is a transformation of multiplicative data.  The mathematical question is therefore precise:
-
-\begin{center}
-\emph{How can one deform multiplicative theta-data, lose ordinary additive compatibility, and still recover enough structure to prove an inequality?}
-\end{center}
-
-Fesenko's survey passes through nonarchimedean theta-functions, generalized Kummer theory, theta-links, log-links, log-shells, multiradial reconstruction, and indeterminacies.  Each object appears because the previous one no longer carries enough structure to compare the deformed multiplicative data.
-
-It is helpful to know what the construction is looking at before meeting its technical vocabulary. A Tate curve over a nonarchimedean local field looks, analytically, like a multiplicative group in which multiplication by $q$ is treated as periodic:
-\[
- E_q(\overline L)\simeq \overline L^\times/q^{\mathbb Z},
+ E_q(\overline L)\simeq\overline L^\times/q^{\mathbb Z},
  \qquad 0<|q|_v<1.
 \]
-Think of $q$ as the size of one turn around a multiplicative circle. Its valuation $v(q)$ tells us how deep that period lies in the $v$-adic scale. On a Tate curve with split multiplicative reduction, this valuation also equals the valuation of the minimal discriminant. In other words, a rather abstract deformation will eventually be compared to a concrete number that measures the curve's bad reduction.
+The quotient identifies $u$, $qu$, $q^2u$ and so on, just as $\mathbb R/\mathbb Z$ identifies numbers differing by an integer. The operation here is multiplication, though, and the valuation $v(q)$ measures the size of the period in the nonarchimedean direction. It also records the valuation of the minimal discriminant of the curve.
 
-There is a particularly nice real example to keep in mind. Dupuy and Hilado work out initial theta data starting from the elliptic curve with label $11a1$,
+A genuine example gives the notation some weight. Dupuy and Hilado construct initial theta data beginning with the elliptic curve $11a1$,
 \[
- E:\quad y^2+y=x^3-x^2-10x-20.
+ E:\quad y^2+y=x^3-x^2-10x-20,
+ \qquad v_{11}(q_{11})=5.
 \]
-It has split multiplicative reduction at $11$, and its $11$-adic Tate parameter satisfies
+The valuations of $q_{11}$, $q_{11}^{4}$ and $q_{11}^{9}$ are consequently
 \[
- \boxed{v_{11}(q_{11})=5.}
+ \boxed{5,\quad20,\quad45.}
 \]
-Consequently the theta-value scale $q_{11}^{m^2}$ has valuations $5,20,45,\ldots$ for $m=1,2,3,\ldots$. The striking $m^2$ is visible before any Hodge theater is built. Of course, an elliptic curve and its local $q$ alone are not yet the full \emph{initial theta data}: there are choices of auxiliary prime, torsion points, fields and compatible places. The useful point of this example is that such data can begin with an honest elliptic curve and computable local invariants.\footnote{For the overview, see Ivan Fesenko, \href{https://ivanfesenko.org/wp-content/uploads/2021/10/notesoniut.pdf}{\emph{Arithmetic Deformation Theory via Arithmetic Fundamental Groups and Nonarchimedean Theta-Functions}}; for the $11a1$ example, see Taylor Dupuy and Anton Hilado, \href{https://arxiv.org/abs/2004.13228}{\emph{The Statement of Mochizuki's Corollary 3.12: Initial Theta Data}}.}
+Here the squares $1,4,9$ are particularly suggestive. Special values of nonarchimedean theta-functions naturally produce $q^{m^2}$-type information; a theta-link is designed to compare this selected multiplicative information across arithmetic settings.
+
+There is a catch with far-reaching consequences. A comparison that respects products and special theta-values has no automatic reason to respect sums. Once the additive structures can no longer be identified directly, it becomes necessary to control what survives: roots and Galois actions, logarithms of units, and the ambiguities in reconstructing numbers from those records. This is the motivation for theta-links, Kummer theory, log-links and the network of Hodge theaters. Their common goal is a numerical inequality extracted from arithmetic information that can still be compared.\footnote{See Ivan Fesenko, \href{https://ivanfesenko.org/wp-content/uploads/2021/10/notesoniut.pdf}{\emph{Arithmetic Deformation Theory via Arithmetic Fundamental Groups and Nonarchimedean Theta-Functions}}, and Taylor Dupuy and Anton Hilado, \href{https://arxiv.org/abs/2004.13228}{\emph{The Statement of Mochizuki's Corollary 3.12: Initial Theta Data}}.}
 
 \section{The nonarchimedean theta-function}
 
