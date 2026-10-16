@@ -185,15 +185,22 @@ Assume that \(f\) is Lipschitz in its second variable:
 \[
   |f(t,u)-f(t,v)|\le L|u-v|.
 \]
-Then
+For $t$ on \emph{either side} of $t_0$, the integral estimate must account for orientation:
 \[
 \begin{aligned}
-  \|Ty-Tz\|_\infty
-  &\le\sup_t\int_{t_0}^{t}
-    |f(s,y(s))-f(s,z(s))|\,ds\\
-  &\le Lh\,\|y-z\|_\infty.
+ |(Ty)(t)-(Tz)(t)|
+ &=\left|\int_{t_0}^{t}
+     [f(s,y(s))-f(s,z(s))]\,ds\right|\\
+ &\le\int_{\min(t,t_0)}^{\max(t,t_0)}
+        |f(s,y(s))-f(s,z(s))|\,ds\\
+ &\le L|t-t_0|\,\|y-z\|_\infty.
 \end{aligned}
 \]
+Taking the supremum over the symmetric interval gives
+\[
+ \boxed{\|Ty-Tz\|_\infty\le Lh\,\|y-z\|_\infty.}
+\]
+It would be incorrect to omit the absolute value on the integral when $t<t_0$: the oriented integral of a nonnegative function from $t_0$ down to $t$ is nonpositive, and cannot bound a norm from above.
 If \(h<1/L\), the operator is a contraction.  One also chooses a closed ball of functions on which \(T\) maps the ball into itself; this follows from a bound on \(|f|\) on a suitable rectangle around \((t_0,y_0)\).
 
 Banach's theorem now gives a unique fixed point of \(T\), hence a unique local solution of the differential equation.  The iterates
@@ -202,6 +209,40 @@ Banach's theorem now gives a unique fixed point of \(T\), hence a unique local s
   =y_0+\int_{t_0}^{t}f(s,y_n(s))\,ds
 \]
 are the Picard approximations.  The same geometric contraction estimate that solved \(x=\cos x\) now proves existence and uniqueness in an infinite-dimensional space.
+
+The operator also provides an explicit sequence of approximations. For the small initial-value problem
+\[
+ y'(t)=y(t),\qquad y(0)=1,
+\]
+the Picard map is
+\[
+ (Ty)(t)=1+\int_0^t y(s)\,ds.
+\]
+Start with the constant function $y_0(t)=1$. Repeated integration gives
+\[
+\begin{aligned}
+ y_1(t)&=1+t,\\
+ y_2(t)&=1+t+\frac{t^2}{2!},\\
+ y_3(t)&=1+t+\frac{t^2}{2!}+\frac{t^3}{3!}.
+\end{aligned}
+\]
+Inductively, if $y_n(t)=\sum_{k=0}^{n}t^k/k!$, then
+\[
+ y_{n+1}(t)
+ =1+\int_0^t\sum_{k=0}^{n}\frac{s^k}{k!}\,ds
+ =\sum_{k=0}^{n+1}\frac{t^k}{k!}.
+\]
+We have therefore discovered the exponential series by applying the fixed-point operator:
+\[
+ \boxed{y_n(t)=\sum_{k=0}^{n}\frac{t^k}{k!}
+       \xrightarrow[n\to\infty]{}e^t.}
+\]
+On a compact interval $[-h,h]$, the error is bounded by a factorial tail, for example
+\[
+ |e^t-y_n(t)|
+ \le e^h\frac{h^{n+1}}{(n+1)!}.
+\]
+The convergence is uniform for every fixed $h$. In the local Banach argument, choosing $h<1$ makes the Lipschitz constant $Lh=h<1$; the explicit factorial bound reveals even more about this particular equation. The infinite-dimensional contraction proof and the elementary Taylor series have converged on the same object.
 
 \section{Topological existence does not provide Banach's algorithm}
 
