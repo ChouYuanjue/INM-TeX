@@ -13,6 +13,7 @@ Default rebuild rule:
 from __future__ import annotations
 
 import argparse
+from concurrent.futures import ThreadPoolExecutor, as_completed
 import shutil
 import subprocess
 import sys
@@ -43,6 +44,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--clean-workdirs", action="store_true", help="delete each per-note work directory after success")
     parser.add_argument("--verbose-latexmk", action="store_true", help="show latexmk output instead of capturing it")
     parser.add_argument("--limit", type=int, default=0, help="compile/list only the first N queued notes")
+    parser.add_argument("--workers", type=int, default=1, help="independent note build workers (default: 1)")
     return parser.parse_args()
 
 
@@ -77,7 +79,32 @@ def make_wrapper(note_id: str) -> str:
 """
 
 
+def run_direct_xelatex(
+    root: Path, wrapper: Path, workdir: Path, verbose: bool
+) -> subprocess.CompletedProcess[str]:
+    """MiKTeX fallback for hosts without the Perl runtime required by latexmk.
+
+    Preserve the original standalone wrapper and run XeLaTeX, Biber, then two
+    XeLaTeX passes for independent bibliographies and stable cross-references.
+    """
+    base = wrapper.stem
+    tex = ["xelatex", "-interaction=nonstopmode", "-halt-on-error", f"-output-directory={workdir}", str(wrapper)]
+    bib = ["biber", f"--input-directory={workdir}", f"--output-directory={workdir}", base]
+    for cmd in (tex, bib, tex, tex):
+        try:
+            result = subprocess.run(cmd, cwd=root, text=True, capture_output=not verbose)
+        except OSError as error:
+            return subprocess.CompletedProcess(cmd, 1, "", str(error))
+        if result.returncode != 0:
+            return result
+    return result
+
+
 def run_latexmk(root: Path, wrapper: Path, workdir: Path, verbose: bool) -> subprocess.CompletedProcess[str]:
+    # latexmk.exe is a Perl wrapper on MiKTeX. The executable may exist even
+    # though Perl is absent, yielding MiKTeX's unhelpful 'internal error'.
+    if shutil.which("perl") is None:
+        return run_direct_xelatex(root, wrapper, workdir, verbose)
     cmd = [
         "latexmk",
         "-xelatex",
@@ -88,10 +115,13 @@ def run_latexmk(root: Path, wrapper: Path, workdir: Path, verbose: bool) -> subp
     if not verbose:
         cmd.append("-silent")
     cmd.append(str(wrapper))
-
-    if verbose:
-        return subprocess.run(cmd, cwd=root, text=True)
-    return subprocess.run(cmd, cwd=root, text=True, capture_output=True)
+    try:
+        result = subprocess.run(cmd, cwd=root, text=True, capture_output=not verbose)
+    except OSError:
+        result = None
+    if result is not None and result.returncode == 0:
+        return result
+    return run_direct_xelatex(root, wrapper, workdir, verbose)
 
 
 def main() -> int:
@@ -137,37 +167,39 @@ def main() -> int:
     successes: list[str] = []
     failures: list[str] = []
 
-    for job in queue:
+    def build_one(job: NoteJob) -> tuple[str, str | None]:
         note_id = job.note_id
         workdir = build_dir / note_id
-        if workdir.exists():
-            shutil.rmtree(workdir)
-        workdir.mkdir(parents=True)
-
-        wrapper = workdir / f"{note_id}-single.tex"
-        wrapper.write_text(make_wrapper(note_id), encoding="utf-8")
-
-        info(f"compiling {note_id}")
-        result = run_latexmk(root=root, wrapper=wrapper, workdir=workdir, verbose=args.verbose_latexmk)
-        built_pdf = workdir / f"{note_id}-single.pdf"
-
-        if result.returncode == 0 and built_pdf.exists():
-            shutil.copy2(built_pdf, job.pdf)
-            successes.append(note_id)
-            info(f"ok {note_id} -> {output_dir.name}/{note_id}.pdf")
-            if args.clean_workdirs:
+        try:
+            if workdir.exists():
                 shutil.rmtree(workdir)
-        else:
-            failures.append(note_id)
-            print(f"[single-note] failed {note_id}; see {workdir}", file=sys.stderr)
-            if not args.verbose_latexmk:
-                log_path = workdir / f"{note_id}-single.log"
-                if log_path.exists():
-                    print(f"[single-note] log: {log_path}", file=sys.stderr)
-                if result.stdout:
-                    print(result.stdout[-4000:], file=sys.stderr)
-                if result.stderr:
-                    print(result.stderr[-4000:], file=sys.stderr)
+            workdir.mkdir(parents=True)
+            wrapper = workdir / f"{note_id}-single.tex"
+            wrapper.write_text(make_wrapper(note_id), encoding="utf-8")
+            result = run_latexmk(root=root, wrapper=wrapper, workdir=workdir, verbose=args.verbose_latexmk)
+            built_pdf = workdir / f"{note_id}-single.pdf"
+            if result.returncode == 0 and built_pdf.exists():
+                shutil.copy2(built_pdf, job.pdf)
+                if args.clean_workdirs:
+                    shutil.rmtree(workdir)
+                return note_id, None
+            details = (result.stdout or "")[-2000:] + (result.stderr or "")[-2000:]
+            return note_id, f"exit={result.returncode}; log={workdir / (note_id + '-single.log')}; {details}"
+        except Exception as exc:
+            return note_id, f"{type(exc).__name__}: {exc}"
+
+    max_workers = max(1, min(args.workers, 8))
+    info(f"workers: {max_workers}")
+    with ThreadPoolExecutor(max_workers=max_workers) as executor:
+        futures = [executor.submit(build_one, job) for job in queue]
+        for future in as_completed(futures):
+            note_id, failure = future.result()
+            if failure is None:
+                successes.append(note_id)
+                info(f"ok {note_id} -> {output_dir.name}/{note_id}.pdf")
+            else:
+                failures.append(note_id)
+                print(f"[single-note] failed {note_id}: {failure}", file=sys.stderr, flush=True)
 
     print()
     info(f"compiled: {len(successes)}")
