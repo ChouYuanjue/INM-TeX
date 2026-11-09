@@ -37,8 +37,8 @@ where \(R\) is the distance of the chord's midpoint from the center. The choice 
  \draw[very thick,teal!75!black] (-2.04,.50)--(2.04,.50);
  \fill (0,0) circle (1.9pt) node[below left] {\(O\)};
  \fill (0,.50) circle (1.9pt) node[above left] {\(M\)};
- \draw[<->,very thick] (.14,.02)--(.14,.48);
- \node[right] at (.2,.23) {\(r\)};
+ \draw[|-|,semithick] (.64,0)--(.64,.50);
+ \node[anchor=east] at (.46,.25) {\(r\)};
  \draw[->,thin] (1.48,-1.58)--(1.04,-.30);
  \node[anchor=west] at (1.35,-1.75) {\(\frac12\)};
  \node[align=left,anchor=west,font=\footnotesize] at (2.60,.72)
@@ -369,7 +369,8 @@ Both \(U,V\) are uniform on \([0,1]\), but their joint law is concentrated on a 
  \draw[->] (0,-.08)--(0,2.55) node[left] {\(v\)};
  \draw[gray!50] (0,0) rectangle (2.2,2.2);
  \draw[very thick,teal!75!black] (0,2.2)--(1.1,0)--(2.2,2.2);
- \node[above right,font=\small] at (1.3,.75) {\(v=|2u-1|\)};
+ \node[font=\small,fill=white,inner sep=1.5pt] at (1.10,1.52)
+    {\(v=|2u-1|\)};
  \node[below] at (1.1,-.1) {\(\frac12\)};
  \node[below] at (2.2,-.1) {\(1\)};
  \node[left] at (-.05,2.2) {\(1\)};

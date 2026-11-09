@@ -106,8 +106,8 @@ There is no nonempty \emph{proper} border of a one-letter word. That explains th
      node[above] {\(\mathrm T\)} (q0);
  \draw[->] (q1) to[out=128,in=52,looseness=4.5]
      node[above] {\(\mathrm H\)} (q1);
- \draw[->] (q2) to[bend left=32]
-     node[below] {\(\mathrm T\)} (q0);
+ \draw[->] (q2.225) .. controls +(-1.20,-1.85) and +(-1.10,-1.85) ..
+     node[midway,below=3pt] {\(\mathrm T\)} (q0.225);
  \node[below=5pt] at (q0.south) {\scriptsize empty};
  \node[below=5pt] at (q1.south) {\scriptsize \(\mathrm H\)};
  \node[below=5pt] at (q2.south) {\scriptsize \(\mathrm{HT}\)};
