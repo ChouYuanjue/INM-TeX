@@ -1,0 +1,166 @@
+{
+  "source_sha256": "fdf8a8c7f09d8e58d789b62abd646040b3f69726a2e778b8712d0b17538ba6f8",
+  "video_duration_sec": 694.767,
+  "frames": [
+    {
+      "asset": "01-antipodal",
+      "timestamp_seconds": 130,
+      "subject": "antipodal points and a single odd scalar",
+      "source": "Borsuk-Ulam定理内测V0.5772版.mp4",
+      "crop": [
+        160,
+        100,
+        1780,
+        755
+      ],
+      "size": [
+        1260,
+        510
+      ],
+      "jpeg_bytes": 30868,
+      "file": "01-antipodal.jpg",
+      "jpeg_sha256": "961a1373ffa52bfa1da5ca01fbaa8a78ff51ed20f72192eb1316078c4aee5233"
+    },
+    {
+      "asset": "02-paired-functions",
+      "timestamp_seconds": 203,
+      "subject": "two scalar odd functions as planar trace",
+      "source": "Borsuk-Ulam定理内测V0.5772版.mp4",
+      "crop": [
+        160,
+        100,
+        1780,
+        755
+      ],
+      "size": [
+        1260,
+        510
+      ],
+      "jpeg_bytes": 37358,
+      "file": "02-paired-functions.jpg",
+      "jpeg_sha256": "7ab795f534d1e4da3b9fd34cf1ac6230262ca0e426a3d63a9404ea652e042902"
+    },
+    {
+      "asset": "03-rotating-meridian",
+      "timestamp_seconds": 272,
+      "subject": "antipodal meridians and centrally symmetric planar tracks",
+      "source": "Borsuk-Ulam定理内测V0.5772版.mp4",
+      "crop": [
+        160,
+        100,
+        1780,
+        755
+      ],
+      "size": [
+        1260,
+        510
+      ],
+      "jpeg_bytes": 44116,
+      "file": "03-rotating-meridian.jpg",
+      "jpeg_sha256": "f40385aecfa59a356615ff30f788efa1cac96af2e99edc62b5f0dbb40d8a4fb5"
+    },
+    {
+      "asset": "04-self-intersections",
+      "timestamp_seconds": 361,
+      "subject": "general self-intersecting curves",
+      "source": "Borsuk-Ulam定理内测V0.5772版.mp4",
+      "crop": [
+        160,
+        100,
+        1780,
+        755
+      ],
+      "size": [
+        1260,
+        510
+      ],
+      "jpeg_bytes": 50844,
+      "file": "04-self-intersections.jpg",
+      "jpeg_sha256": "ad852988fa6bdc560e9875e0542f01d135906b22dbd32efe86ea29acbd80be5c"
+    },
+    {
+      "asset": "05-total-angle",
+      "timestamp_seconds": 466,
+      "subject": "endpoint opposite and winding lift",
+      "source": "Borsuk-Ulam定理内测V0.5772版.mp4",
+      "crop": [
+        160,
+        100,
+        1780,
+        755
+      ],
+      "size": [
+        1260,
+        510
+      ],
+      "jpeg_bytes": 14916,
+      "file": "05-total-angle.jpg",
+      "jpeg_sha256": "448de89fce194ad5d08a5509dc76df002db9329267f7bcdfe13550e40fa70491"
+    },
+    {
+      "asset": "06-deformation",
+      "timestamp_seconds": 531,
+      "subject": "deformation of path avoiding origin",
+      "source": "Borsuk-Ulam定理内测V0.5772版.mp4",
+      "crop": [
+        160,
+        100,
+        1780,
+        755
+      ],
+      "size": [
+        1260,
+        510
+      ],
+      "jpeg_bytes": 23515,
+      "file": "06-deformation.jpg",
+      "jpeg_sha256": "ae76e596b50bda9f2854b03e1440da835b950298ef7bd110c09802b0d5c66826"
+    },
+    {
+      "asset": "07-reversed-path",
+      "timestamp_seconds": 639,
+      "subject": "orientation reversal of antipodal curves",
+      "source": "Borsuk-Ulam定理内测V0.5772版.mp4",
+      "crop": [
+        160,
+        100,
+        1780,
+        755
+      ],
+      "size": [
+        1260,
+        510
+      ],
+      "jpeg_bytes": 53272,
+      "file": "07-reversed-path.jpg",
+      "jpeg_sha256": "b8aabff0968b7605d35a4309a2fe852811301c2662fe5e01add0325159de8ff1"
+    },
+    {
+      "asset": "08-forced-zero",
+      "timestamp_seconds": 666,
+      "subject": "final trace through origin",
+      "source": "Borsuk-Ulam定理内测V0.5772版.mp4",
+      "crop": [
+        160,
+        100,
+        1780,
+        755
+      ],
+      "size": [
+        1260,
+        510
+      ],
+      "jpeg_bytes": 42453,
+      "file": "08-forced-zero.jpg",
+      "jpeg_sha256": "704fd8543765df515c0db611ff2daa2d606d8ad80f1308c1aa76764f7ae6571a"
+    }
+  ],
+  "processing": "Deterministic extraction from user-supplied video, subtitle/title crop, white background remapping with source hues preserved, clipped outer angle-scale strip cleaned on three final stills. No generated imagery.",
+  "source_file": "Borsuk-Ulam定理内测V0.5772版.mp4",
+  "creator": {
+    "linked_handle": "@FatFish",
+    "plain_alias": "Dr.Wei",
+    "profile": "https://chaoli.club/index.php/member/1202"
+  },
+  "source_coverage": "source-coverage.md"
+}
