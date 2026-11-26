@@ -165,3 +165,18 @@ inm.pdf
 The PDF is included because the document is book-length, rebuilding may be inconvenient for casual readers, and the compiled file is the natural reading artifact.
 
 Ordinary LaTeX auxiliary files are ignored by `.gitignore`.  Source files and `inm.pdf` are the important tracked artifacts.
+
+## Synchronized publication
+
+The TeX repository is the sole source of the published edition. From an authenticated Windows development environment (Python with PyMuPDF, Pillow and requests, MiKTeX, Perl, Node.js, Git and GitHub CLI), run:
+
+```powershell
+& E:\anaconda3\python.exe scripts/sync_release.py --publish
+```
+
+This compiles changed standalone notes and the complete book, validates note IDs and hashes, regenerates the personal-site archive, and refreshes the 3D reader PDF, outline, mobile/desktop preview packs, cached edition key and static site. It then commits only release-related paths and pushes the three repositories. The 3D reader uses the production publishing checkout (`INM-3D-Book-publish-reference`), not the separate experimental checkout.
+
+Omit `--publish` to prepare and validate locally. Use `--reuse-build` for an already compiled edition, and `--reuse-build --resume --publish` after an interrupted preparation or publication; the script checks the saved edition and upstream branch before resuming. Override checkout locations using `--homepage` and `--book-dir`. Add `--homepage-build` to run the full Next.js build as well. Close any PDF viewer locking `inm.pdf` before compiling.
+
+Each release includes `inm-release.json` with the canonical book SHA-256, page count, bookmark count, and per-note TeX/PDF hashes. The script checks all three copies before publishing. It never force-pushes or incorporates unrelated staged changes. Remote hosting deployments may complete after the Git publication.
+
