@@ -160,6 +160,15 @@ def sync_site(site, release, build=False):
     env["INM_TEX_DIR"] = str(ROOT)
     run(["node", "scripts/generate-notes-index.js"], cwd=site, env=env)
     copy_if_different(ROOT / MANIFEST, site / "public/notes" / MANIFEST)
+    validate_site(site, release)
+    if build:
+        run(["npm", "run", "build"], cwd=site)
+    say("Personal-site archive verified")
+
+
+def validate_site(site, release):
+    require(json.loads((site / "public/notes" / MANIFEST).read_text(encoding="utf-8")) == release,
+            "Website release manifest differs")
     index = json.loads((site / "data/inm_notes_index.json").read_text(encoding="utf-8"))
     require(index["project"]["noteCount"] == release["note_count"], "Website note count mismatch")
     require({x["id"] for x in index["notes"]} == {x["id"] for x in release["notes"]},
@@ -170,9 +179,7 @@ def sync_site(site, release, build=False):
         dst = site / "public/notes" / id[2:6] / id
         require(sha256(dst.with_suffix(".pdf")) == row["pdf_sha256"], f"Website PDF differs: {id}")
         require(sha256(dst.with_suffix(".tex")) == row["tex_sha256"], f"Website TeX differs: {id}")
-    if build:
-        run(["npm", "run", "build"], cwd=site)
-    say("Personal-site archive verified")
+
 
 def edit_text(path, fn):
     # Preserve the checkout's newline convention; avoid unrelated source changes.
@@ -383,6 +390,40 @@ def push_verify(cwd, branch, commit):
     say(f"Published {cwd.name}/{branch}: {commit}")
     return actual
 
+def already_published(site, book, release, prior, baseline, source_parent, site_parent):
+    """Skip generation and publication only for a verified, unchanged release."""
+    if (prior.get("status") != "published" or
+            prior.get("pdf_sha256") != release["pdf_sha256"] or
+            prior.get("book_remote") != baseline[0]):
+        return False
+    for cwd, paths, parent in [(ROOT, SOURCE_PATHS, source_parent),
+                               (site, SITE_PATHS, site_parent),
+                               (book, BOOK_PATHS, None)]:
+        if parent and git(cwd, "rev-parse", "HEAD") != parent:
+            return False
+        if git(cwd, "status", "--porcelain", "--untracked-files=all", "--", *paths):
+            return False
+    try:
+        validate_site(site, release)
+        for dest in (book / "public", book / "docs"):
+            require(json.loads((dest / MANIFEST).read_text(encoding="utf-8")) == release,
+                    "3D release manifest differs")
+            require(sha256(dest / "inm.pdf") == release["pdf_sha256"], "3D PDF differs")
+            outline = json.loads((dest / "outline.json").read_text(encoding="utf-8"))
+            require(outline["pages"] == release["pages"] and len(outline["items"]) == release["bookmarks"],
+                    "3D outline differs")
+        preview = validate_preview(book, release)
+        require((book / "docs/page-previews/index.json").read_bytes() ==
+                (book / "public/page-previews/index.json").read_bytes(), "Deployed preview index differs")
+        for name in preview["packs"] + preview["mobile"]["packs"]:
+            require(sha256(book / "docs/page-previews" / name) ==
+                    sha256(book / "public/page-previews" / name), f"Deployed pack differs: {name}")
+    except (RuntimeError, OSError, KeyError, ValueError, TypeError) as exc:
+        say("Existing release needs synchronization:", exc)
+        return False
+    return True
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--homepage", type=Path, default=ROOT.parent / ".homepage")
@@ -398,13 +439,20 @@ def main():
     check_repo(ROOT, "ChouYuanjue/INM-TeX", "main")
     check_repo(site, "ChouYuanjue/bibliotheca-runnel", "master")
     check_repo(book, REPO_3D)
+    source_parent = site_parent = None
     if args.publish:
-        fast_forward_check(ROOT, "main")
-        fast_forward_check(site, "master")
+        source_parent = fast_forward_check(ROOT, "main")
+        site_parent = fast_forward_check(site, "master")
     prior = json.loads(STATE.read_text(encoding="utf-8")) if STATE.exists() else {}
     api = BookApi()
     baseline = api.preflight(book, args.resume, prior)
     release = compile_and_validate(args.reuse_build, args.workers)
+    if args.publish and not args.homepage_build and already_published(
+            site, book, release, prior, baseline, source_parent, site_parent):
+        write_json(STATE, {**prior, "source_commit": source_parent, "source_remote": source_parent,
+                           "homepage_commit": site_parent, "homepage_remote": site_parent})
+        say("Already published and verified; skipped archive generation, preview builds, commits and pushes.")
+        return
     state = {"book_parent": baseline[0], "book_dir": str(book),
              "pdf_sha256": release["pdf_sha256"], "status": "preparing"}
     if args.resume and prior.get("book_parent") == baseline[0]:

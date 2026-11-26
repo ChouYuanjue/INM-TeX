@@ -178,5 +178,5 @@ This compiles changed standalone notes and the complete book, validates note IDs
 
 Omit `--publish` to prepare and validate locally. Use `--reuse-build` for an already compiled edition, and `--reuse-build --resume --publish` after an interrupted preparation or publication; the script checks the saved edition and upstream branch before resuming. Override checkout locations using `--homepage` and `--book-dir`. Add `--homepage-build` to run the full Next.js build as well. Close any PDF viewer locking `inm.pdf` before compiling.
 
-Each release includes `inm-release.json` with the canonical book SHA-256, page count, bookmark count, and per-note TeX/PDF hashes. The script checks all three copies before publishing. It never force-pushes or incorporates unrelated staged changes. Remote hosting deployments may complete after the Git publication.
+Each release includes `inm-release.json` with the canonical book SHA-256, page count, bookmark count, and per-note TeX/PDF hashes. The script checks all three copies before publishing. It never force-pushes or incorporates unrelated staged changes. Remote hosting deployments may complete after the Git publication. A repeat publication of an unchanged, verified edition skips website generation, preview generation, static builds, commits and pushes.
 
