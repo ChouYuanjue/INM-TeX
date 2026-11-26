@@ -174,11 +174,21 @@ def validate_site(site, release):
     require({x["id"] for x in index["notes"]} == {x["id"] for x in release["notes"]},
             "Website note IDs differ")
     require(sha256(site / "public/notes/inm.pdf") == release["pdf_sha256"], "Website full PDF differs")
+    def expected_url(path, digest):
+        return f"{path}?edition={digest[:12]}"
+    require(index["project"]["fullPdf"] == expected_url("/notes/inm.pdf", release["pdf_sha256"]),
+            "Website full PDF link lacks the canonical revision")
+    indexed = {row["id"]: row for row in index["notes"]}
     for row in release["notes"]:
         id = row["id"]
         dst = site / "public/notes" / id[2:6] / id
         require(sha256(dst.with_suffix(".pdf")) == row["pdf_sha256"], f"Website PDF differs: {id}")
         require(sha256(dst.with_suffix(".tex")) == row["tex_sha256"], f"Website TeX differs: {id}")
+        url = f"/notes/{id[2:6]}/{id}"
+        require(indexed[id]["pdf"] == expected_url(url + ".pdf", row["pdf_sha256"]),
+                f"Website PDF link has a stale revision: {id}")
+        require(indexed[id]["tex"] == expected_url(url + ".tex", row["tex_sha256"]),
+                f"Website TeX link has a stale revision: {id}")
 
 
 def edit_text(path, fn):
